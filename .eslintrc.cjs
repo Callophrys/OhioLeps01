@@ -10,7 +10,7 @@ module.exports = {
 	parser: '@typescript-eslint/parser',
 	plugins: ['@typescript-eslint'],
 	parserOptions: {
-		sourceType: 'module',
+		sourceType: 'latest',
 		ecmaVersion: 2020,
 		extraFileExtensions: ['.svelte']
 	},

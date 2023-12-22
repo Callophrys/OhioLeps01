@@ -1,15 +1,24 @@
 <script lang="ts">
 import { goto } from '$app/navigation'
-import CStateCounty from '$lib/components/CStateCounty.svelte';
-import type { StateCounty } from '@prisma/client'
+//import CStateCounty from '$lib/components/CStateCounty.svelte';
+//import CStateCounty from '$lib/components'; /* this works but annoying linter or something complains */
+//import type { StateCounty } from '@prisma/client' /* is this doing anything? */
 
-export let data: { stateCounty: CStateCounty; } // & { author?: { name: string } } }
+//export let data: { stateCounty: StateCounty; } // & { author?: { name: string } } }
+export let data;
+console.log(data);
 
-  const { stateCounty } = data
+/*
+import type { PageData } from './$types';
+export let data: PageData;
+
+  const stateCounty: StateCounty = data.stateCounty as StateCounty;
+  //const { stateCounty } = data;
+*/
 
   const deleteStateCounty = async () => {
     await (
-      await fetch(`/api/stateCounty/${stateCounty.stateCountyKey}`, {
+      await fetch(`/api/stateCounty/${data.stateCounty.stateCountyKey}`, {
         method: 'DELETE',
       })
     ).json()
@@ -18,7 +27,7 @@ export let data: { stateCounty: CStateCounty; } // & { author?: { name: string }
 
   const publishStateCounty = async () => {
     await (
-      await fetch(`/api/publish/${stateCounty.stateCountyKey}`, {
+      await fetch(`/api/publish/${data.stateCounty.stateCountyKey}`, {
         method: 'PUT',
       })
     ).json()
@@ -28,8 +37,9 @@ export let data: { stateCounty: CStateCounty; } // & { author?: { name: string }
 
 <div class="page">
   <main>
-    <h2>{stateCounty.state} &gt;</h2>
-    <p>{stateCounty.county}</p>
+    <h2>{data.stateCounty[0].state}</h2>
+    <p>{data.stateCounty[0].county}</p>
+    <span>{data.stateCounty[0].sites.length}</span>
     <div class="actions">
       <!--
         {#if !stateCounty.published}
@@ -43,7 +53,7 @@ export let data: { stateCounty: CStateCounty; } // & { author?: { name: string }
 
 <style>
   .page {
-    background: white;
+    background: olive;
     padding: 2rem;
   }
 

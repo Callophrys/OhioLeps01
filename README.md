@@ -40,10 +40,19 @@ You can preview the production build with `npm run preview`.
 ## Steps
 
 
+6.
+pnpm i -D @skeletonlabs/skeleton @skeletonlabs/tw-plugin
+npx svelte-add@latest tailwindcss  # only needed to add tailwind
+pnpm install
 
-3.
-git init && git add -A && git commit -m "Initial commit"
+
+
+
+5.
 pnpm run dev -- --open
+
+4.
+git init && git add -A && git commit -m "Initial commit"
 
 3.
 pnpm install @prisma/client
@@ -88,18 +97,23 @@ Next steps:
 use ohioleps
 mysql --user=zabulon --password ohioleps
 
-CREATE USER 'zabulon'@'localhost'
-  IDENTIFIED BY 'The......123';
+```SQL
+CREATE USER 'zabulon'@'localhost' IDENTIFIED BY 'The......123';
 GRANT ALL
   ON *.*
   TO 'zabulon'@'localhost'
   WITH GRANT OPTION;
+```
 
-
-show tables;
-use ohioleps
+```SQL
 create database ohioleps;
+use ohioleps
+show tables;
+```
 
+```SQL
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPass';
+```
 bis........
 -- pwd is empty at first
 mysql -u root -p

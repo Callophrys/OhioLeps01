@@ -14,7 +14,16 @@ model StateCounty {
   stateCountyKey Int @id
   state String // @db.String(2)
   county String // @db.String(30)
+  sites Site[]  // one-to-many relation
 
   @@unique([state, county])
 }
 
+model Site {
+  id Int @id @default(autoincrement())
+  name String
+  stateCounty StateCounty @relation(fields: [stateCountyId], references: [stateCountyKey])
+  stateCountyId Int
+  location String
+  note String
+}

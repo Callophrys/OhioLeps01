@@ -13,6 +13,12 @@ dependencies:
     version: 5.7.1
 
 devDependencies:
+  '@skeletonlabs/skeleton':
+    specifier: ^2.6.1
+    version: 2.6.1(svelte@4.2.8)
+  '@skeletonlabs/tw-plugin':
+    specifier: ^0.3.0
+    version: 0.3.0(tailwindcss@3.4.0)
   '@sveltejs/adapter-auto':
     specifier: ^3.0.0
     version: 3.0.1(@sveltejs/kit@2.0.6)
@@ -597,6 +603,23 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@skeletonlabs/skeleton@2.6.1(svelte@4.2.8):
+    resolution: {integrity: sha512-LDdgsnCgD+ZsI/82F7tHXmBXwd0Kx0WnQSSvgd94qgf2zZVeDMaKh2C6lEvgF0z31tvi83dyGnL7vM3IJlmWhg==}
+    peerDependencies:
+      svelte: ^3.56.0 || ^4.0.0
+    dependencies:
+      esm-env: 1.0.0
+      svelte: 4.2.8
+    dev: true
+
+  /@skeletonlabs/tw-plugin@0.3.0(tailwindcss@3.4.0):
+    resolution: {integrity: sha512-0tBlZSHk791jvDTC41FlIafa8ZmaODjvOwmghcbla96Fbv9dI1u9+OJ2ScSxzy7xI6qjuQ80Uhw9kn53MMYi4Q==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0'
+    dependencies:
+      tailwindcss: 3.4.0(ts-node@10.9.2)
+    dev: true
 
   /@sveltejs/adapter-auto@3.0.1(@sveltejs/kit@2.0.6):
     resolution: {integrity: sha512-OpilmvRN136lUgOa9F0zpSI6g+PouOmk+YvJQrB+/hAtllLghjjYuoyfUsrF7U6oJ52cxCtAJTPXgZdyyCffrQ==}
