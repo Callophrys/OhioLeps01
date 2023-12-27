@@ -1,3 +1,11 @@
+# Auth
+https://joyofcode.xyz/sveltekit-authentication-using-cookies
+https://github.com/Dan6erbond/sk-auth
+Figure out shared auth via wordpress or such
+Figure out roles (can see regular data, can see privileged data, can edit regular data, edit priv. data, can review data, can approve data, admin to fix users, super admin, reports access), sign off (approvals to edits and new data), auditing (what was done), security (who is doing this or trying to) and error (problems and exceptions) logs.  Privileged data can be dictionaries or site lists and can effect the whole system.
+Need IP blocking (start with whitelisting USA), relog delays, and account disabling
+
+
 # create-svelte
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
