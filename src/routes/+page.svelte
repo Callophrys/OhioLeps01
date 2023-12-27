@@ -4,7 +4,7 @@
 
   // data returned from +page.server.js
   export let data: PageData
-      //{#each data.stateCounties as stateCounty (stateCounty.stateCountyKey)}
+      //{#each data.stateCounties as stateCounty (stateCounty.stateCountyId)}
 </script>
 
 <div>

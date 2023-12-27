@@ -11,7 +11,7 @@ datasource db {
 }
 
 model StateCounty {
-  stateCountyKey Int @id
+  stateCountyId Int @id
   state String // @db.String(2)
   county String // @db.String(30)
   sites Site[]  // one-to-many relation
@@ -20,10 +20,181 @@ model StateCounty {
 }
 
 model Site {
-  id Int @id @default(autoincrement())
-  name String
-  stateCounty StateCounty @relation(fields: [stateCountyId], references: [stateCountyKey])
+  siteId Int @id @default(autoincrement())
+  name String // @db.String(30)
+  county String // @db.String(12)
+  township String? // @db.String(50)
+  locationZip String? // @db.String(50)
+  siteAddress String? // @db.String(40)
+  siteAddress2 String? // @db.String(40)
+  siteCityStateZip String? // @db.String(40)
+  person String // @db.String(30)
+  address String // @db.String(40)
+  address2 String? // @db.String(40)
+  cityStateZip String? // @db.String(40)
+  phone String? // @db.String(12)
+  email String? // @db.String(30)
+  latitudeStart String? // @db.String(50)
+  latitudeEnd String? // @db.String(50)
+  altPerson String? // @db.String(30)
+  altAddress String? // @db.String(40)
+  altAddress2 String? // @db.String(40)
+  altCityStateZip String? // @db.String(40)
+  altPhone String? // @db.String(12)
+  altEmail String? // @db.String(30)
+  otherParticipants String? // @db.String(250)
+  desciption_of_Site String?
+  s1995 String // @db.String(4)
+  s1996 String // @db.String(4)
+  s1997 String // @db.String(4)
+  s1998 String // @db.String(4)
+  s1999 String // @db.String(4)
+  s2000 String? // @db.String(4)
+  s2001 String? // @db.String(4)
+  s2002 String? // @db.String(4)
+  s2003 String? // @db.String(4)
+  s2004 String? // @db.String(4)
+  changeDate DateTime @default(now())
+  //tmp_SpeciesRecorded Int
+  //tmp_SpeciesEverRecorded Int
+  //tmp_Visits Int
+  //tmp_HighCount Int
+
+  stateCounty StateCounty @relation(fields: [stateCountyId], references: [stateCountyId])
   stateCountyId Int
-  location String
-  note String
 }
+
+model CheckList {
+  checkListId Int @id @default(autoincrement())
+  genus String // @db.String(20)
+  species String // @db.String(20)
+  subspecies String // @db.String(16)
+  combinedLatin String // @db.String(50)
+  commonName String // @db.String(30)
+  show Boolean
+  kind String // @db.String(1)
+  revised String // @db.String(1)
+  author String // @db.String(22)
+  year String // @db.String(8)
+  changeDate DateTime?
+  changeBy String? // @db.String(25)
+  comment String? // @db.String(255)
+  references Int
+  countys Int
+  endangered String? // @db.String(50)
+  synonym String? // @db.String(50)
+  family Int // @db.String(3)
+  gCKey Int
+  grp Int
+  sortOrder String? // @db.String(10)
+  tmp_SitesReporting Int?
+  tmp_TotalCount Int?
+  tmp_HighCount Int?
+
+    @@index([genus])
+    @@index([species])
+    @@index([commonName])
+
+}
+
+model SiteObservation {
+  siteObservationId Int @id @default(autoincrement())
+  seqId Int
+  checkListId String // @db.String(8)
+  id String // @db.String(1)
+  total Int
+  s1 Int
+  s2 Int
+  s3 Int
+  s4 Int
+  s5 Int
+  s6 Int
+  s7 Int
+  s8 Int
+  s9 Int
+  s10 Int
+  s11 Int
+  s12 Int
+  s13 Int
+  s14 Int
+  s15 Int
+  mark String // @db.String(50)
+  dateChg DateTime @default(now())
+}
+
+model StatusCode {
+  statusCodeId Int @id @default(autoincrement())
+  code String
+  description String
+}
+
+model SiteStatus {
+  siteStatusId Int @id @default(autoincrement())
+  siteId Int
+  statusCodeId Int
+  year Int
+}
+
+model SiteDate {
+  siteDateId Int @id @default(autoincrement())
+  seqId Int
+  siteId Int
+  date DateTime
+  week Int
+  recorder String // @db.String(25)
+  startTime DateTime
+  endTime DateTime
+  startTemp Int
+  endTemp Int
+  startClouds Int
+  endClouds Int
+  startWindDir String // @db.String(3)
+  endWindDir String // @db.String(3)
+  startWindMPH Int
+  endWindMPH Int
+  w1 String // @db.String(1)
+  w2 String // @db.String(1)
+  w3 String // @db.String(1)
+  w4 String // @db.String(1)
+  w5 String // @db.String(1)
+  w6 String // @db.String(1)
+  w7 String // @db.String(1)
+  w8 String // @db.String(1)
+  w9 String // @db.String(1)
+  w10 String // @db.String(1)
+  w11 String // @db.String(1)
+  w12 String // @db.String(1)
+  w13 String // @db.String(1)
+  w14 String // @db.String(1)
+  w15 String // @db.String(1)
+  lEsec1 String // @db.String(8)
+  lEsec2 String // @db.String(8)
+  lEsec3 String // @db.String(8)
+  lEsec4 String // @db.String(8)
+  lEsec5 String // @db.String(8)
+  lEsec6 String // @db.String(8)
+  lEsec7 String // @db.String(8)
+  lEsec8 String // @db.String(8)
+  lEsec9 String // @db.String(8)
+  lEsec10 String // @db.String(8)
+  lEsec11 String // @db.String(8)
+  lEsec12 String // @db.String(8)
+  lEsec13 String // @db.String(8)
+  lEsec14 String // @db.String(8)
+  lEsec15 String // @db.String(8)
+  larvaObA String // @db.String(25)
+  larvaObB String // @db.String(25)
+  larvaObC String // @db.String(25)
+  larvaObD String // @db.String(25)
+  energySource1 String // @db.String(25)
+  energySource2 String // @db.String(25)
+  energySource3 String // @db.String(25)
+  energySource4 String // @db.String(25)
+  flowersInBloom String // @db.String(150)
+  fieldNotes String // @db.String(100)
+  dateChg DateTime @default(now())
+
+  @@unique([seqId, siteId])
+}
+
+

@@ -18,7 +18,7 @@ export let data: PageData;
 
   const deleteStateCounty = async () => {
     await (
-      await fetch(`/api/stateCounty/${data.stateCounty.stateCountyKey}`, {
+      await fetch(`/api/stateCounty/${data.stateCounty.stateCountyId}`, {
         method: 'DELETE',
       })
     ).json()
@@ -27,7 +27,7 @@ export let data: PageData;
 
   const publishStateCounty = async () => {
     await (
-      await fetch(`/api/publish/${data.stateCounty.stateCountyKey}`, {
+      await fetch(`/api/publish/${data.stateCounty.stateCountyId}`, {
         method: 'PUT',
       })
     ).json()
