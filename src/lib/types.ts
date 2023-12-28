@@ -25,7 +25,7 @@ export type StateCounty = {
 export type Site = {
   siteId: number,
   siteName: string,
-  county: string,
+  county: string, // deprecated
   township: string,
   locationZip: string,
   siteAddress: string,
@@ -46,7 +46,8 @@ export type Site = {
   altPhone: string,
   altEmail: string,
   otherParticipants: string,
-  desciption_of_Site: string,
+  description: string,
+  // Should make these numbers since their pointing to statusCode
   s1995: string,
   s1996: string,
   s1997: string,
@@ -60,7 +61,10 @@ export type Site = {
   changeDate: string,
 
   stateCounty: StateCounty,
-  stateCountyId: number
+  stateCountyId: number,
+  
+  siteDates: SiteDate[],
+  siteStatuses: SiteStatus[]
 }
 
 export type CheckList = {
@@ -89,11 +93,13 @@ export type CheckList = {
     tmp_SitesReporting: number,
     tmp_TotalCount: number,
     tmp_HighCount: number,
+    
+    siteObservations: SiteObservation[]
 }
 
 export type SiteObservation = {
     siteObservationId: number,
-    seqId: number,
+    seqId: number, // deprecated
     checkListId: string,
     id: string,
     total: number,
@@ -114,6 +120,12 @@ export type SiteObservation = {
     s15: number,
     mark: string,
     dateChg: string,
+    
+    checklist: CheckList,
+    checklistId: number,
+    
+    siteDate: SiteDate,
+    siteDateId: number
 }
 
 export type StatusCode = {
@@ -131,8 +143,7 @@ export type SiteStatus = {
 
 export type SiteDate = {
     siteDateId: number,
-    seqId: number,
-    siteId: number,
+    seqId: number, // deprecated
     date: string,
     week: number,
     recorder: string,
@@ -187,4 +198,9 @@ export type SiteDate = {
     flowersInBloom: string,
     fieldNotes: string,
     dateChg: string,
+
+    siteObservations: SiteObservation[],
+
+    site: Site,
+    siteId: number
 }

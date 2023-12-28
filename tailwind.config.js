@@ -1,8 +1,9 @@
+import type { Config } from 'tailwindcss';
 import { join } from 'path';
 import { skeleton } from '@skeletonlabs/tw-plugin';
 
 /** @type {import('tailwindcss').Config} */
-export default {
+const config = {
   darkMode: 'class',
   content: [
     './src/**/*.{html,js,svelte,ts}',
@@ -19,5 +20,6 @@ export default {
       themes: { preset: [ "rocket" ]}
     })
   ],
-}
+} satisfies Config;
 
+export default config;

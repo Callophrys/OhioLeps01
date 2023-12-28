@@ -5,6 +5,8 @@ Figure out shared auth via wordpress or such
 Figure out roles (can see regular data, can see privileged data, can edit regular data, edit priv. data, can review data, can approve data, admin to fix users, super admin, reports access), sign off (approvals to edits and new data), auditing (what was done), security (who is doing this or trying to) and error (problems and exceptions) logs.  Privileged data can be dictionaries or site lists and can effect the whole system.
 Need IP blocking (start with whitelisting USA), relog delays, and account disabling
 
+https://github.com/prisma/prisma-examples/blob/latest/typescript/rest-nextjs-api-routes/prisma/seed.ts
+
 
 # create-svelte
 
@@ -164,8 +166,55 @@ Empty set (0.00 sec)
 ```
 
 ```
-update siteObservation o
-  join checklist k
-    on o.checklistKey = k.checklistKey
+select table_name, table_rows from INFORMATION_SCHEMA.TABLES where table_schema = 'ohioleps';
+
+update siteObservation o join checklist k on o.checklistKey = k.checklistKey
    set o.checklistId = k.checklistId
+
+update site s join statecounty y on s.county = y.county
+   set s.stateCountyId = y.stateCountyId
+
+update siteObservation o join siteDate d on o.seqId = d.seqId
+   set o.siteDateId = d.siteDateId
 ```
+### Node.js way to get json from mdb
+import * as adodb  from "node-adodb";
+import * as fs from "fs";
+
+// write to a new file named 2pac.txt
+
+const connection = adodb.open('Provider=Microsoft.Jet.OLEDB.4.0;Data Source=db.mdb;');
+async function toJSON(filename:string,sql:string) {
+  try {
+    const data = await connection.query(sql);
+    const dataString=JSON.stringify(data, null, 2);
+
+    fs.writeFile('data/' + filename, dataString, (err) => {  
+      if (err) throw err;
+      console.log(filename + ' saved!');
+  });
+  } catch (error) {
+    console.log(filename + ' error !');
+    console.error(error);
+  }
+}
+
+### SUNDRY
+
+for nvim lang server issue, install:
+pnpm i -g vscode-langservers-extractedo
+
+#### Squash migrations
+
+DROP TABLE IF EXISTS _prisma_migrations;
+DROP TABLE IF EXISTS checklist;
+DROP TABLE IF EXISTS site;
+DROP TABLE IF EXISTS sitedate;
+DROP TABLE IF EXISTS siteobservation;
+DROP TABLE IF EXISTS sitestatus;
+DROP TABLE IF EXISTS statecounty;
+DROP TABLE IF EXISTS statuscode;
+
+npx prisma migrate dev --name initial_migration
+
+

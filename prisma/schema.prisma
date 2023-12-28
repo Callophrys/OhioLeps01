@@ -11,58 +11,62 @@ datasource db {
 }
 
 model StateCounty {
-  stateCountyId Int @id
-  state String // @db.String(2)
-  county String // @db.String(30)
+    stateCountyId Int @id
+    state String // @db.String(2)
+    county String // @db.String(30)
 
-  sites Site[]
+    // Relations
+    //sites Site[]
 
-  @@unique([state, county])
+    @@unique([state, county])
 }
 
 model Site {
-  siteId Int @id @default(autoincrement())
-  name String // @db.String(30)
-  county String // @db.String(12)
-  township String? // @db.String(50)
-  locationZip String? // @db.String(50)
-  siteAddress String? // @db.String(40)
-  siteAddress2 String? // @db.String(40)
-  siteCityStateZip String? // @db.String(40)
-  person String // @db.String(30)
-  address String // @db.String(40)
-  address2 String? // @db.String(40)
-  cityStateZip String? // @db.String(40)
-  phone String? // @db.String(12)
-  email String? // @db.String(30)
-  latitudeStart String? // @db.String(50)
-  latitudeEnd String? // @db.String(50)
-  altPerson String? // @db.String(30)
-  altAddress String? // @db.String(40)
-  altAddress2 String? // @db.String(40)
-  altCityStateZip String? // @db.String(40)
-  altPhone String? // @db.String(12)
-  altEmail String? // @db.String(30)
-  otherParticipants String? // @db.String(250)
-  desciption_of_Site String?
-  s1995 String // @db.String(4)
-  s1996 String // @db.String(4)
-  s1997 String // @db.String(4)
-  s1998 String // @db.String(4)
-  s1999 String // @db.String(4)
-  s2000 String? // @db.String(4)
-  s2001 String? // @db.String(4)
-  s2002 String? // @db.String(4)
-  s2003 String? // @db.String(4)
-  s2004 String? // @db.String(4)
-  changeDate DateTime @default(now())
-  //tmp_SpeciesRecorded Int
-  //tmp_SpeciesEverRecorded Int
-  //tmp_Visits Int
-  //tmp_HighCount Int
+    siteId Int @id @default(autoincrement())
+    siteName String // @db.String(30)
+    county String // @db.String(12)
+    township String? // @db.String(50)
+    locationZip String? // @db.String(50)
+    siteAddress String? // @db.String(40)
+    siteAddress2 String? // @db.String(40)
+    siteCityStateZip String? // @db.String(40)
+    person String // @db.String(30)
+    address String? // @db.String(40)
+    address2 String? // @db.String(40)
+    cityStateZip String? // @db.String(40)
+    phone String? // @db.String(12)
+    email String? // @db.String(30)
+    latitudeStart String? // @db.String(50)
+    latitudeEnd String? // @db.String(50)
+    altPerson String? // @db.String(30)
+    altAddress String? // @db.String(40)
+    altAddress2 String? // @db.String(40)
+    altCityStateZip String? // @db.String(40)
+    altPhone String? // @db.String(12)
+    altEmail String? // @db.String(30)
+    otherParticipants String? // @db.String(250)
+    description String? @db.Text
+    s1995 Int @default(5)
+    s1996 Int @default(5)
+    s1997 Int @default(5)
+    s1998 Int @default(5)
+    s1999 Int @default(5)
+    s2000 Int @default(5)
+    s2001 Int @default(5)
+    s2002 Int @default(5)
+    s2003 Int @default(5)
+    s2004 Int @default(5)
+    changeDate DateTime @default(now())
 
-  stateCounty StateCounty @relation(fields: [stateCountyId], references: [stateCountyId])
-  stateCountyId Int
+    // Relations
+    //stateCounty StateCounty @relation(fields: [stateCountyId], references: [stateCountyId])
+    //stateCountyId Int @default(0) // new so need SQL to get this using county field
+    
+    // Relations
+    //siteDates SiteDate[]
+
+    // Relations
+    //siteStatuses SiteStatus[]
 }
 
 model Checklist {
@@ -97,18 +101,20 @@ model Checklist {
     @@index([genus])
     @@index([species])
     @@index([commonName])
-    @@unique([checklistKey])
+    //@@unique([checklistKey])
 
-    siteObservations SiteObservation[]
+    // Relations
+    //siteObservations SiteObservation[]
 }
 
 model SiteObservation {
     siteObservationId Int @id @default(autoincrement())
+    // ** use siteObservationId as real key now - and later just drop 'seqId Int?'
     seqId Int?
     checklistKey String?
-    idCode String? // @db.String(1)
-    total Int
-    s1 Int?
+    idCode String? // @db.String(1)  // in { how id'ed:  O observ, N net, P photo, C collected }
+    total Int      // system maintained
+    s1 Int?        // counts of CheckList species per section
     s2 Int?
     s3 Int?
     s4 Int?
@@ -126,16 +132,21 @@ model SiteObservation {
     mark String? // @db.String(50)
     dateChg DateTime @default(now())
   
-    checklist Checklist @relation(fields: [checklistId], references: [checklistId])
-    checklistId Int //@default(0)
+    // Relations
+    //checklist Checklist @relation(fields: [checklistId], references: [checklistId])
+    //checklistId Int //@default(0) // new so need SQL to get this
+
+    // Relations
+    //siteDate SiteDate @relation(fields: [siteDateId], references: [siteDateId])
+    //siteDateId Int //@default(0) // new so need SQL to get this
 }
 
 model StatusCode {
-    statusCodeId Int @id @default(autoincrement())
+    statusCodeId Int @id
     code String
     description String
 
-    siteStatuses SiteStatus[]
+    //siteStatuses SiteStatus[]
 }
 
 model SiteStatus {
@@ -143,10 +154,15 @@ model SiteStatus {
     siteId Int
     year Int
 
-    statusCode StatusCode @relation(fields: [statusCodeId], references: [statusCodeId])
-    statusCodeId Int
+    // Relations
+    //statusCode StatusCode @relation(fields: [statusCodeId], references: [statusCodeId])
+    //statusCodeId Int
+
+    // Relations
+    //site Site @relation(fields: [siteId], references: [siteId])
+    //siteId Int // siteId provided by load
   
-    //@@unique([siteId, year])
+    @@unique([siteId, year])
 }
 
 enum Weather {
@@ -158,21 +174,21 @@ enum Weather {
 
 model SiteDate {
     siteDateId Int @id // @default(autoincrement())
-    seqId Int
     siteId Int
+    seqId Int? // temp and will be query key
     recordDate DateTime // was "date", a reserved word
     week Int
     recorder String // @db.String(25)
-    startTime DateTime
-    endTime DateTime
-    startTemp Int
-    endTemp Int
-    startClouds Int
-    endClouds Int
-    startWindDir String // @db.String(3)
-    endWindDir String // @db.String(3)
-    startWindMPH Int
-    endWindMPH Int
+    startTime DateTime?
+    endTime DateTime?
+    startTemp Int?
+    endTemp Int?
+    startClouds Int?
+    endClouds Int?
+    startWindDir String? // @db.String(3)
+    endWindDir String? // @db.String(3)
+    startWindMPH Int?
+    endWindMPH Int?
     w1 Weather @default(U)
     w2 Weather @default(U)
     w3 Weather @default(U)
@@ -214,8 +230,15 @@ model SiteDate {
     flowersInBloom String? // @db.String(150)
     fieldNotes String? // @db.String(100)
     dateChg DateTime @default(now())
+    
+    // Relations
+    //site Site @relation(fields: [siteId], references: [siteId])
+    //siteId Int //@default(0) // Provided by load
+    
+    // Relations
+    //siteObservations SiteObservation[]
 
-    @@unique([seqId, siteId])
+    //@@unique([seqId, siteId])
 }
 
 

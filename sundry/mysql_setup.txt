@@ -1,0 +1,47 @@
+-- Installing mysql --
+
+
+:: From command prompt
+choco install mysql
+
+-- choco options [start]
+    /installLocation - filesystem location for mysql binaries
+    /dataLocation - filesystem location for mysql data
+    /port - numberic TCP listening port
+    /serviceName - custom name for the Windows services entry
+
+Example: choco install mysql --params "/port:3307 /serviceName:AltSQL"
+-- choco options [end]
+
+-- mysql should be in the execute PATH after install so open
+-- a new term/window
+
+:: From command prompt
+mysql -u root -p
+-- Password is empty for root account at first
+
+-- Update password for root
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPass';
+
+-- Make a non-admin user for dev work
+CREATE USER 'regular_user'@'localhost' IDENTIFIED BY 'abc123ABC098';
+GRANT ALL
+  ON *.*
+  TO 'regular_user'@'localhost'
+  WITH GRANT OPTION;
+
+CREATE database example_db;
+USE example_db
+SHOW TABLES;
+
+exit
+
+:: Use new user account
+
+:: From command prompt
+mysql --user=regular_user --password example_db
+  Enter password: 
+-- Once logged in start using your database
+USE example_db
+-- do DDL and DML, etc...
+

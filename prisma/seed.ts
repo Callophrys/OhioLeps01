@@ -1,37 +1,31 @@
-import { PrismaClient } from "@prisma/client"
-
-const db = new PrismaClient()
+import seedStatusCode from './seed.statuscode'
+import seedSiteStatus from './seed.sitestatus'
 
 /*
-type Post = {
-    title: string
-    body: string
-}
-
-async function getPosts() {
-    const response = await fetch('https://dummyjson.com/posts')
-    const { posts } = await response.json()
-    return posts as Post[]
-}
-
-function slugify(text: string) {
-    return text
-        .replace(/\s/g, '-')
-        .replace(/[^a-zA-Z0-9-]/g, '')
-        .toLowerCase()
-}
+import seedStateCounty from './seed.statecounty'
+import seedSite from './seed.site'
+import seedSiteDate from './seed.sitedate'
+import seedSiteObservation from './seed.siteobservation'
+import seedChecklist from './seed.checklist'
 */
 
-async function main() {
-}
+await seedStatusCode();
+await seedSiteStatus();
+/*
+await seedStateCounty();
+await seedSite();
+await seedSiteDate();
+await seedSiteObservation();
+await seedChecklist();
+*/
 
+/*
+seed()
+  .catch((error) => {
+    console.error("Seeding error:", error);
+  })
+  .finally(async () => {
+    await db.$disconnect();
+  });
 
-  main()
-  .then(async () => {
-    await db.$disconnect()
-  })
-  .catch(async (e) => {
-    console.error(e)
-    await db.$disconnect()
-    process.exit(1)
-  })
+*/
