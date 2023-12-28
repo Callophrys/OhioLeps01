@@ -14,6 +14,7 @@ model StateCounty {
   stateCountyId Int @id
   state String // @db.String(2)
   county String // @db.String(30)
+
   sites Site[]
 
   @@unique([state, county])
@@ -64,29 +65,30 @@ model Site {
   stateCountyId Int
 }
 
-model CheckList {
-    checkListId Int @id @default(autoincrement())
+model Checklist {
+    checklistId Int @id @default(autoincrement())
+    checklistKey String
     genus String // @db.String(20)
     species String // @db.String(20)
-    subspecies String // @db.String(16)
+    subspecies String? // @db.String(16)
     combinedLatin String // @db.String(50)
-    commonName String // @db.String(30)
+    commonName String? // @db.String(30)
     show Boolean
     kind String // @db.String(1)
     revised String // @db.String(1)
     author String // @db.String(22)
-    year String // @db.String(8)
+    year String?
     changeDate DateTime?
     changeBy String? // @db.String(25)
     comment String? // @db.String(255)
-    references Int
+    referenceCount Int @default(0)
     // TODO: figure out this field and its spelling
-    countys Int
+    countyCount Int @default(0)
     endangered String? // @db.String(50)
     synonym String? // @db.String(50)
-    family Int // @db.String(3)
-    gCKey Int
-    grp Int
+    family Int @default(0)
+    gCKey Int @default(0)
+    grp Int @default(0)
     sortOrder String? // @db.String(10)
     tmp_SitesReporting Int?
     tmp_TotalCount Int?
@@ -95,31 +97,37 @@ model CheckList {
     @@index([genus])
     @@index([species])
     @@index([commonName])
+    @@unique([checklistKey])
+
+    siteObservations SiteObservation[]
 }
 
 model SiteObservation {
     siteObservationId Int @id @default(autoincrement())
-    seqId Int
-    checkListId String // @db.String(8)
-    id String // @db.String(1)
+    seqId Int?
+    checklistKey String?
+    idCode String? // @db.String(1)
     total Int
-    s1 Int
-    s2 Int
-    s3 Int
-    s4 Int
-    s5 Int
-    s6 Int
-    s7 Int
-    s8 Int
-    s9 Int
-    s10 Int
-    s11 Int
-    s12 Int
-    s13 Int
-    s14 Int
-    s15 Int
-    mark String // @db.String(50)
+    s1 Int?
+    s2 Int?
+    s3 Int?
+    s4 Int?
+    s5 Int?
+    s6 Int?
+    s7 Int?
+    s8 Int?
+    s9 Int?
+    s10 Int?
+    s11 Int?
+    s12 Int?
+    s13 Int?
+    s14 Int?
+    s15 Int?
+    mark String? // @db.String(50)
     dateChg DateTime @default(now())
+  
+    checklist Checklist @relation(fields: [checklistId], references: [checklistId])
+    checklistId Int //@default(0)
 }
 
 model StatusCode {
@@ -137,10 +145,19 @@ model SiteStatus {
 
     statusCode StatusCode @relation(fields: [statusCodeId], references: [statusCodeId])
     statusCodeId Int
+  
+    //@@unique([siteId, year])
+}
+
+enum Weather {
+    U
+    O
+    R
+    S
 }
 
 model SiteDate {
-    siteDateId Int @id @default(autoincrement())
+    siteDateId Int @id // @default(autoincrement())
     seqId Int
     siteId Int
     recordDate DateTime // was "date", a reserved word
@@ -156,46 +173,46 @@ model SiteDate {
     endWindDir String // @db.String(3)
     startWindMPH Int
     endWindMPH Int
-    w1 String // @db.String(1)
-    w2 String // @db.String(1)
-    w3 String // @db.String(1)
-    w4 String // @db.String(1)
-    w5 String // @db.String(1)
-    w6 String // @db.String(1)
-    w7 String // @db.String(1)
-    w8 String // @db.String(1)
-    w9 String // @db.String(1)
-    w10 String // @db.String(1)
-    w11 String // @db.String(1)
-    w12 String // @db.String(1)
-    w13 String // @db.String(1)
-    w14 String // @db.String(1)
-    w15 String // @db.String(1)
-    lEsec1 String // @db.String(8)
-    lEsec2 String // @db.String(8)
-    lEsec3 String // @db.String(8)
-    lEsec4 String // @db.String(8)
-    lEsec5 String // @db.String(8)
-    lEsec6 String // @db.String(8)
-    lEsec7 String // @db.String(8)
-    lEsec8 String // @db.String(8)
-    lEsec9 String // @db.String(8)
-    lEsec10 String // @db.String(8)
-    lEsec11 String // @db.String(8)
-    lEsec12 String // @db.String(8)
-    lEsec13 String // @db.String(8)
-    lEsec14 String // @db.String(8)
-    lEsec15 String // @db.String(8)
-    larvaObA String // @db.String(25)
-    larvaObB String // @db.String(25)
-    larvaObC String // @db.String(25)
-    larvaObD String // @db.String(25)
-    energySource1 String // @db.String(25)
-    energySource2 String // @db.String(25)
-    energySource3 String // @db.String(25)
-    energySource4 String // @db.String(25)
-    flowersInBloom String // @db.String(150)
-    fieldNotes String // @db.String(100)
+    w1 Weather @default(U)
+    w2 Weather @default(U)
+    w3 Weather @default(U)
+    w4 Weather @default(U)
+    w5 Weather @default(U)
+    w6 Weather @default(U)
+    w7 Weather @default(U)
+    w8 Weather @default(U)
+    w9 Weather @default(U)
+    w10 Weather @default(U)
+    w11 Weather @default(U)
+    w12 Weather @default(U)
+    w13 Weather @default(U)
+    w14 Weather @default(U)
+    w15 Weather @default(U)
+    lEsec1 String? // @db.String(8)
+    lEsec2 String? // @db.String(8)
+    lEsec3 String? // @db.String(8)
+    lEsec4 String? // @db.String(8)
+    lEsec5 String? // @db.String(8)
+    lEsec6 String? // @db.String(8)
+    lEsec7 String? // @db.String(8)
+    lEsec8 String? // @db.String(8)
+    lEsec9 String? // @db.String(8)
+    lEsec10 String? // @db.String(8)
+    lEsec11 String? // @db.String(8)
+    lEsec12 String? // @db.String(8)
+    lEsec13 String? // @db.String(8)
+    lEsec14 String? // @db.String(8)
+    lEsec15 String? // @db.String(8)
+    larvaObA String? // @db.String(25)
+    larvaObB String? // @db.String(25)
+    larvaObC String? // @db.String(25)
+    larvaObD String? // @db.String(25)
+    energySource1 String? // @db.String(25)
+    energySource2 String? // @db.String(25)
+    energySource3 String? // @db.String(25)
+    energySource4 String? // @db.String(25)
+    flowersInBloom String? // @db.String(150)
+    fieldNotes String? // @db.String(100)
     dateChg DateTime @default(now())
 
     @@unique([seqId, siteId])

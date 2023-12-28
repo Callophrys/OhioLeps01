@@ -1,84 +1,3 @@
-```
-{
-    "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
-    "Lua.workspace.checkThirdParty": false,
-    "workspace.library": [
-        "C:/Program Files/Neovim/share/nvim/runtime/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/zen-mode.nvim/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/clangd_extensions.nvim/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/cmp_luasnip/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/cmp-buffer/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/cmp-nvim-lsp/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/cmp-nvim-lua/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/cmp-path/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/cmp-zsh/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/nvim-dap/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/Comment.nvim/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/committia.vim/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/conform.nvim/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/diffview.nvim/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/dotenv.nvim/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/eyeliner.nvim/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/gist.nvim/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/gitsigns.nvim/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/harpoon/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/inlay-hints.nvim/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/lazy.nvim/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/lspkind-nvim/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/lualine.nvim/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/LuaSnip/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/mason.nvim/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/mason-lspconfig.nvim/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/mason-tool-installer.nvim/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/neodev.nvim/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/neogit/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/noice.nvim/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/nui.nvim/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/nvim-autopairs/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/nvim-cmp/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/nvim-dap/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/nvim-dap-ui/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/nvim-dap-virtual-text/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/nvim-lspconfig/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/nvim-lsp-ts-utils/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/nvim-luaref/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/nvim-neoclip.lua/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/nvim-surround/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/nvim-notify/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/nvim-treesitter/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/nvim-treesitter-context/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/nvim-treesitter-refactor/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/nvim-treesitter-textobjects/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/nvim-ts-context-commentstring/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/nvim-web-devicons/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/playground/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/plenary.nvim/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/readme/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/rose-pine/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/schemastore.nvim/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/statuscol.nvim/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/tabular/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/telescope.nvim/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/telescope-dap.nvim/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/telescope-file-browser.nvim/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/telescope-fzf-native.nvim/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/telescope-hop.nvim/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/telescope-ui-select.nvim/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/tokyonight.nvim/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/trouble.nvim/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/twilight.nvim/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/vim-dadbod/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/vim-dadbod-completion/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/vim-dadbod-ui/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/vim-easy-align/lua",
-        "C:/Users/bwilliams/AppData/Local/nvim-data/lazy/which-key.nvim/lua"
-    ],
-    "workspace.checkThirdParty": false
-}
-```
-
-
-
 # Auth
 https://joyofcode.xyz/sveltekit-authentication-using-cookies
 https://github.com/Dan6erbond/sk-auth
@@ -225,3 +144,28 @@ Example: choco install mysql --params "/port:3307 /serviceName:AltSQL"
 npx and ,not sure but also, prisma need to be global installs.
 Probably can remove ts-node and tsx after db seeding is done.
 Bring in tailwind/forms and skeleton/ui as needed.
+
+#### 12/28/23
+```
+mysql> select * from checklist where checklistKey is null;
++------------+---------+------------+--------------------------+------------------------+------+------+---------+--------+------+------------+----------+---------+------------+---------+--------+-------+-----+-----------+--------------------+----------------+---------------+-------------+--------------+-------------+----------------+
+| genus      | species | subspecies | combinedLatin            | commonName             | show | kind | revised | author | year | changeDate | changeBy | comment | endangered | synonym | family | gCKey | grp | sortOrder | tmp_SitesReporting | tmp_TotalCount | tmp_HighCount | checklistId | checklistKey | countyCount | referenceCount |
++------------+---------+------------+--------------------------+------------------------+------+------+---------+--------+------+------------+----------+---------+------------+---------+--------+-------+-----+-----------+--------------------+----------------+---------------+-------------+--------------+-------------+----------------+
+| Epargyreus | clarus  | clarus     | Epargyreus clarus clarus | Silver-spotted Skipper |    1 | S    | T       | Cramer | 1779 | NULL       | NULL     | NULL    | NULL       | NULL    |     40 |    40 |   0 | NULL      |                  0 |              0 |             0 |        3870 | NULL         |           0 |              0 |
++------------+---------+------------+--------------------------+------------------------+------+------+---------+--------+------+------------+----------+---------+------------+---------+--------+-------+-----+-----------+--------------------+----------------+---------------+-------------+--------------+-------------+----------------+
+1 row in set (0.00 sec)
+
+mysql> update checklist set checklistKey = '3870' where checklistKey is null;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from checklist where checklistKey is null;
+Empty set (0.00 sec)
+```
+
+```
+update siteObservation o
+  join checklist k
+    on o.checklistKey = k.checklistKey
+   set o.checklistId = k.checklistId
+```
