@@ -146,21 +146,22 @@ model StatusCode {
     code String
     description String
 
-    //siteStatuses SiteStatus[]
+    siteStatuses SiteStatus[]
 }
 
 model SiteStatus {
     siteStatusId Int @id @default(autoincrement())
     siteId Int
+    statusCodeId Int
     year Int
 
     // Relations
-    //statusCode StatusCode @relation(fields: [statusCodeId], references: [statusCodeId])
-    //statusCodeId Int
+    statusCode StatusCode @relation(fields: [statusCodeId], references: [statusCodeId])
+    // provided by load 'statusCodeId Int'
 
     // Relations
     //site Site @relation(fields: [siteId], references: [siteId])
-    //siteId Int // siteId provided by load
+    // provided by load 'siteId Int'
   
     @@unique([siteId, year])
 }

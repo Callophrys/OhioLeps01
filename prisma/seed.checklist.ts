@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client"
 
 const db = new PrismaClient()
 
-async function main() {
+export default async function() {
     console.log('Creating checklist records');
     await db.checklist.create({ data: {
         checklistKey: "3870",
@@ -3691,14 +3691,3 @@ async function main() {
         tmp_HighCount: 0
     }});
 }
-
-
-main()
-.then(async () => {
-    await db.$disconnect()
-})
-.catch(async (e) => {
-    console.error(e)
-    await db.$disconnect()
-    process.exit(1)
-})
