@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { formatDate } from '$lib/utils'
 	import * as config from '$lib/config'
-
 	export let data
 </script>
 
@@ -10,13 +9,18 @@
 </svelte:head>
 
 <!-- Sites -->
+<div class="bg-red">Count: {data.sites.length}</div>
 <section>
 	<ul class="sites">
 		{#each data.sites as site}
 			<li class="site">
 				<a href=site.slug class="title">{site.siteName}</a>
 				<p class="date">{formatDate(site.changeDate)}</p>
-				<p class="description">{site.siteAddress}, {site.siteCityStateZip} {site.stateCounty.state} (County: {site.stateCounty.county})</p>
+				<p class="border border-solid border-slate-900">
+					{site.siteAddress ?? ''}{
+					#if site.siteCityStateZip}
+						{site.siteAddress ? ',' : ''} {site.siteCityStateZip}{
+					/if}&nbsp;&#124;&nbsp;{site.stateCounty.state} (County: {site.stateCounty.county})</p>
 			</li>
 		{/each}
 	</ul>
@@ -44,9 +48,5 @@
 
 	.date {
 		color: var(--text-2);
-	}
-
-	.description {
-		margin-top: var(--size-3);
 	}
 </style>

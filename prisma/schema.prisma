@@ -15,8 +15,9 @@ model StateCounty {
     state String // @db.String(2)
     county String // @db.String(30)
 
-    // Relations
-    //sites Site[]
+    // Relations - Raw SQL in seed.ts will set this up.  Uncomment before doing
+    //             any schema changes with this prisma.
+    sites Site[]
 
     @@unique([state, county])
 }
@@ -58,9 +59,10 @@ model Site {
     s2004 Int @default(5)
     changeDate DateTime @default(now())
 
-    // Relations
-    //stateCounty StateCounty @relation(fields: [stateCountyId], references: [stateCountyId])
-    //stateCountyId Int @default(0) // new so need SQL to get this using county field
+    // Relations - Raw SQL in seed.ts will set this up.  Uncomment before doing
+    //             any schema changes with this prisma.
+    stateCounty StateCounty @relation(fields: [stateCountyId], references: [stateCountyId])
+    stateCountyId Int //@default(0) // new so need SQL to get this using county field
     
     // Relations
     //siteDates SiteDate[]
@@ -146,6 +148,7 @@ model StatusCode {
     code String
     description String
 
+    // Relations - Loads fine so no need to comment or uncomment
     siteStatuses SiteStatus[]
 }
 
@@ -155,7 +158,7 @@ model SiteStatus {
     statusCodeId Int
     year Int
 
-    // Relations
+    // Relations - Loads fine so no need to comment or uncomment
     statusCode StatusCode @relation(fields: [statusCodeId], references: [statusCodeId])
     // provided by load 'statusCodeId Int'
 

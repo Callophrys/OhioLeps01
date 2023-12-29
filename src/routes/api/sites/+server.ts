@@ -1,17 +1,14 @@
+import prisma from '$lib/prisma'
 import { json } from '@sveltejs/kit'
-import type { Site } from '$lib/types'
 
 async function getsites() {
-	let sites: Site[] = [];
+	const sites = await prisma.site.findMany({
+		include: {
+			stateCounty: true
+		}
+	});
 
-	sites = sites.sort((first, second) => second.siteName > first.siteName ? 1 : 0);
-
-	/*
-	sites = sites.sort((first, second) =>
-		new Date(second.date).getTime() - new Date(first.date).getTime()
-	);
-	*/
-
+	sites.sort((first, second) => second.siteName > first.siteName ? 1 : 0);
 	return sites
 }
 

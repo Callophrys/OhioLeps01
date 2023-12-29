@@ -166,8 +166,6 @@ Empty set (0.00 sec)
 ```
 
 ```
-select table_name, table_rows from INFORMATION_SCHEMA.TABLES where table_schema = 'ohioleps';
-
 update siteObservation o join checklist k on o.checklistKey = k.checklistKey
    set o.checklistId = k.checklistId
 
@@ -204,8 +202,11 @@ async function toJSON(filename:string,sql:string) {
 for nvim lang server issue, install:
 pnpm i -g vscode-langservers-extractedo
 
-#### Squash migrations
+#### MySql stuff
+select table_name, table_rows from INFORMATION_SCHEMA.TABLES where table_schema = 'ohioleps';
+show create table site;
 
+#### Squash migrations
 DROP TABLE IF EXISTS _prisma_migrations;
 DROP TABLE IF EXISTS checklist;
 DROP TABLE IF EXISTS site;
@@ -216,5 +217,7 @@ DROP TABLE IF EXISTS statecounty;
 DROP TABLE IF EXISTS statuscode;
 
 npx prisma migrate dev --name initial_migration
+npx prisma migrate dev --name <date + letter or number>
+npx prisma migrate dev --create-only
 
 

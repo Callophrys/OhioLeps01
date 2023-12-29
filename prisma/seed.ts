@@ -8,10 +8,10 @@ import seedStateCounty from './seed.statecounty'
 import seedSite from './seed.site'
 */
 
-/*
 import seedSiteDate from './seed.sitedate'
 import seedSiteObservation from './seed.siteobservation'
 import seedChecklist from './seed.checklist'
+/*
 */
 
 /*
@@ -19,27 +19,36 @@ await seedStatusCode();
 await seedSiteStatus();
 await seedStateCounty();
 await seedSite();
-*/
 await updateSiteForCounty();
+*/
 
-/*
 await seedSiteDate();
 await seedSiteObservation();
+await seedChecklist();
+/*
 await updateSiteObservationForSiteDate();
 await updateSiteObservationForChecklist();
-await seedChecklist();
 */
 
 async function updateSiteForCounty() {
-  /* will migration stuff remove this? */
+  /* will migration stuff remove this?
+     Be careful with un/commenting in seed.ts
+  */
   let result = await db.$executeRaw`
-    ALTER TABLE site ADD COLUMN stateCountyId INTEGER NOT NULL DEFAULT 0`
-  console.log("Added stateCountyId to site table.")
+    UPDATE site s JOIN statecounty y ON s.county = y.county SET s.stateCountyId = y.stateCountyId`;
+  console.log("Updated " + result + " site records for relation to county.")
+  
+  /*
+  result = await db.$executeRaw`
+    ALTER TABLE site ALTER COLUMN stateCountyId DROP DEFAULT`
+  console.log("Default to 0 removed from stateCountyId of site table.")
 
   result = await db.$executeRaw`
-    update site s join statecounty y on s.county = y.county
-      set s.stateCountyId = y.stateCountyId`;
-  console.log("Updated " + result + " site records for relation to county.")
+    ALTER TABLE Site ADD CONSTRAINT Site_stateCountyId_fkey
+    FOREIGN KEY (stateCountyId)
+    REFERENCES StateCounty(stateCountyId) ON DELETE RESTRICT ON UPDATE CASCADE`;
+  console.log("Added foreign key to site table to state-county table.")
+  */
 }
 
 async function updateSiteObservationForChecklist() {
