@@ -1,5 +1,3 @@
-import type { Site } from '$lib/types'
-
 export async function load({ fetch }) {
 	const response = await fetch('api/sites')
 	/*
@@ -9,6 +7,6 @@ export async function load({ fetch }) {
     });
 	*/
 
-	const sites: Site[] = await response.json()
+	const sites = await response.json()
 	return { sites }
 }

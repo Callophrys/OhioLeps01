@@ -3,10 +3,6 @@
 	export let data
 </script>
 
-<svelte:head>
-	<title>{config.title}</title>
-</svelte:head>
-
 <!-- StateCountys -->
 <div class="bg-red">Counties with sites: {data.stateCounties.length}</div>
 <section>

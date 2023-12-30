@@ -10,9 +10,11 @@
 				return localStorage.theme === 'dark' ||
 					(!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
 			});
-		</script
+</script>
 	</head>
 	<body data-sveltekit-preload-data="hover" data-theme="rocket">
-		<div class="contents flex flex-col">%sveltekit.body%</div>
+		<div style="display: contents;" class="h-full overflow-hidden">
+			%sveltekit.body%
+		</div>
 	</body>
 </html>

@@ -39,6 +39,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@floating-ui/dom": "^1.5.3",
 		"@prisma/client": "^5.7.1",
 		"prisma": "^5.7.1"
 	},

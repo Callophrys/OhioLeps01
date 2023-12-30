@@ -1,7 +1,7 @@
 import prisma from '$lib/prisma'
 import { json } from '@sveltejs/kit'
 
-async function getstatecounties() {
+async function getStateCounties() {
 	const stateCounties = await prisma.stateCounty.findMany({
     where: {
       sites: {
@@ -18,6 +18,6 @@ async function getstatecounties() {
 }
 
 export async function GET() {
-    const stateCounties = await getstatecounties();
+    const stateCounties = await getStateCounties();
     return json(stateCounties);
 }

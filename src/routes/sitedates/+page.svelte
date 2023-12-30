@@ -4,10 +4,6 @@
 	export let data
 </script>
 
-<svelte:head>
-	<title>{config.title}</title>
-</svelte:head>
-
 <!-- siteDates -->
 <div class="bg-red">Count: {data.siteDates.length}</div>
 <section>

@@ -4,24 +4,20 @@
 	export let data
 </script>
 
-<svelte:head>
-	<title>{config.title}</title>
-</svelte:head>
-
-<!-- Sites -->
 <div class="bg-red">Count: {data.sites.length}</div>
 <section>
 	<ul class="sites">
 		{#each data.sites as site}
 			<li class="site">
-				<a href=site.slug class="title">{site.siteName}</a>
-				<p class="date">{formatDate(site.changeDate)}</p>
-				<p class="border border-solid border-slate-900">
+				<a href="/sites/{site.siteId}" class="title">{site.siteName}
+				<div class="date">{formatDate(site.changeDate)}</div>
+				<div class="border border-solid border-slate-900">
 					{site.siteAddress ?? ''}{
 					#if site.siteCityStateZip}
 						{site.siteAddress ? ',' : ''} {site.siteCityStateZip}{
-					/if}&nbsp;&#124;&nbsp;{site.stateCounty.state} (County: {site.stateCounty.county})</p>
-			</li>
+					/if}&nbsp;&#124;&nbsp;{site.stateCounty.state} (County: {site.stateCounty.county})</div>
+				</a>
+		</li>
 		{/each}
 	</ul>
 </section>
@@ -31,22 +27,8 @@
 		display: grid;
 		gap: 2rem;
 	}
-
-	.site {
-		max-inline-size: var(--size-content-3);
-	}
-
-	.site:not(:last-child) {
-		border-bottom: 1px solid var(--border);
-		padding-bottom: var(--size-7);
-	}
-
 	.title {
 		font-size: var(--font-size-fluid-3);
 		text-transform: capitalize;
-	}
-
-	.date {
-		color: var(--text-2);
 	}
 </style>

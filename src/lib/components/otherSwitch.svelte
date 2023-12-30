@@ -27,12 +27,12 @@
     }
 </script>
 
-<div>
+<div class="float-right">
+    <label for="theme-toggle" />
     <input type="checkbox" id="theme-toggle"
         checked={darkMode}
         on:click={handleSwitchDarkMode}
     />
-    <label for="theme-toggle" />
 </div>
 
 <style lang="postcss">

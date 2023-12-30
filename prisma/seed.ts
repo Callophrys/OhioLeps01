@@ -8,10 +8,11 @@ import seedStateCounty from './seed.statecounty'
 import seedSite from './seed.site'
 */
 
+import seedNameAddress from './seed.nameaddress'
+/*
 import seedSiteDate from './seed.sitedate'
 import seedSiteObservation from './seed.siteobservation'
 import seedChecklist from './seed.checklist'
-/*
 */
 
 /*
@@ -21,11 +22,11 @@ await seedStateCounty();
 await seedSite();
 await updateSiteForCounty();
 */
-
+await seedNameAddress();
+/*
 await seedSiteDate();
 await seedSiteObservation();
 await seedChecklist();
-/*
 await updateSiteObservationForSiteDate();
 await updateSiteObservationForChecklist();
 */

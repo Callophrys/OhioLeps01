@@ -3,10 +3,6 @@
 	export let data
 </script>
 
-<svelte:head>
-	<title>{config.title}</title>
-</svelte:head>
-
 <!-- Checklists -->
 <div class="bg-red">Count: {data.checklists.length}</div>
 <section>

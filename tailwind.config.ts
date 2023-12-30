@@ -8,16 +8,20 @@ const config = {
   content: [
     './src/**/*.{html,js,svelte,ts}',
     join(require.resolve(
-      '@skeletonlabs/skeleton',
+      '@skeletonlabs/skeleton'),
       '../**/*.{html,js,svelte,ts}'
-    ))
+    )
   ],
   theme: {
     extend: {},
   },
   plugins: [
     skeleton({
-      themes: { preset: [ "rocket" ]}
+      themes: {
+        preset: [
+          "skeleton", "rocket", "modern", "crimson"
+        ]
+      }
     })
   ],
 } satisfies Config;

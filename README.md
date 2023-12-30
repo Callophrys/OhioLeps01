@@ -1,3 +1,12 @@
+# Popups
+pnpm install @floating-ui/dom
+#### Import Floating UI into your application's root layout /src/routes/+layout.svelte.
+import { computePosition, autoUpdate, offset, shift, flip, arrow } from '@floating-ui/dom';
+#### Import storePopup in your root layout, then pass an object containing the required Floating UI modules shown below.
+import { storePopup } from '@skeletonlabs/skeleton';
+storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
+			
+
 # Auth
 https://joyofcode.xyz/sveltekit-authentication-using-cookies
 https://github.com/Dan6erbond/sk-auth
@@ -205,6 +214,14 @@ pnpm i -g vscode-langservers-extractedo
 #### MySql stuff
 select table_name, table_rows from INFORMATION_SCHEMA.TABLES where table_schema = 'ohioleps';
 show create table site;
+
+SELECT COUNT(*) CT FROM checklist;
+SELECT COUNT(*) CT FROM site;
+SELECT COUNT(*) CT FROM sitedate;
+SELECT COUNT(*) CT FROM siteobservation;
+SELECT COUNT(*) CT FROM sitestatus;
+SELECT COUNT(*) CT FROM statecounty;
+SELECT COUNT(*) CT FROM statuscode;
 
 #### Squash migrations
 DROP TABLE IF EXISTS _prisma_migrations;

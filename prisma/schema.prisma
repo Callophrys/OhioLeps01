@@ -10,6 +10,8 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// createdAt, createdBy, changedAt, changedBy
+
 model StateCounty {
     stateCountyId Int @id
     state String // @db.String(2)
@@ -46,7 +48,7 @@ model Site {
     altPhone String? // @db.String(12)
     altEmail String? // @db.String(30)
     otherParticipants String? // @db.String(250)
-    description String? @db.Text
+    description String? @db.VarChar(2000) // @db.Text
     s1995 Int @default(5)
     s1996 Int @default(5)
     s1997 Int @default(5)
@@ -245,4 +247,23 @@ model SiteDate {
     //@@unique([seqId, siteId])
 }
 
+model NameAddress {
+    nameAddressId Int @id @default(autoincrement())
+    fullName String
+    firstName String?
+    lastName String?
+    middleName String?
+    nameSuffix String? // JR, III
+    postNominal String? // MD, PhD, JD
+    nameAddend String?  // "Naturalist", place, magazine, etc.
+    organization String?
+	address String?
+	cityStateZip String?
+	phone String?
+	mobile String?
+	emailAddress String?
+	notes String?
+	notes2 String?
+	changeDate DateTime @default(now())
+}
 

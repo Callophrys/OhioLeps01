@@ -1,21 +1,78 @@
 <script lang="ts">
-    import '../app.css';
 	import * as config from '$lib/config'
-    import OtherSwitch from '$lib/components/otherSwitch.svelte'
+    //import { TabGroup, Tab, TabAnchor, initializeStores } from '@skeletonlabs/skeleton';
+    import { AppShell, AppBar, Avatar, LightSwitch  } from '@skeletonlabs/skeleton';
+	import { computePosition, autoUpdate, offset, shift, flip, arrow } from '@floating-ui/dom';
 
-    import { TabGroup, Tab, TabAnchor, AppShell, initializeStores } from '@skeletonlabs/skeleton';
+import { storePopup } from '@skeletonlabs/skeleton';
+storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
+			
     import { writable, type Writable } from 'svelte/store';
+	import Themer from '$lib/components/Themer.svelte'
     const tabSet: Writable<number> = writable(0);
 </script>
 
-<AppShell>
+<AppShell
+	slotSidebarLeft="bg-surface-500/5 w-56 p-4"
+	slotPageContent=""
+	slotPageFooter="text-center text-xs">
 
+	<svelte:fragment slot="header">
+		<AppBar gridColumns="grid-cols-3"
+			slotDefault="place-self-center"
+			slotTrail="place-content-end">
 
-<!-- Header -->
-<div>Header block - {config.title}
-    <span>{new Intl.DateTimeFormat('en-US').format(Date.now())}</span>
-    <OtherSwitch />
-</div>
+			<svelte:fragment slot="lead">
+				(icon)
+			</svelte:fragment>
+
+			<div class="text-2xl">
+				{config.title} {new Intl.DateTimeFormat('en-US').format(Date.now())}
+			</div>
+
+			<svelte:fragment slot="trail">
+				<div class="columns-2 w-fit h-24 flex">
+					<div class="my-auto pr-2">
+						<Themer />	
+					</div>
+					<Avatar src="https://i.pravatar.cc/"
+						initials="OH"
+						width="w-24"
+						rounded="rounded-full"
+						border="border-4 border-surface-300-600-token hover:!border-primary-500"
+						cursor="cursor-pointer" />
+				</div>
+			</svelte:fragment>
+
+		</AppBar>
+	</svelte:fragment>
+
+	<svelte:fragment slot="sidebarLeft">
+		<nav class="list-nav">
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/sites">Sites</a></li>
+				<li><a href="/sitedates">Site Dates</a></li>
+				<li><a href="/siteobservations">Site Observations</a></li>
+				<li><a href="/checklists">Checklists</a></li>
+				<li><a href="/statecounties">State-County List</a></li>
+				<li><a href="/nameaddresses">Name-Address List</a></li>
+			</ul>
+		</nav>
+	</svelte:fragment>
+
+	<!-- (sidebarRight) -->
+	<!-- (pageHeader) -->
+
+	<!-- Router Slot -->
+	<slot />
+	<!-- ---- / ---- -->
+
+	<svelte:fragment slot="pageFooter">
+		{config.title} &copy;{new Date().getFullYear()}
+	</svelte:fragment>
+
+</AppShell>
 
 <!--
 <TabGroup>
@@ -37,23 +94,3 @@
 	</svelte:fragment>
 </TabGroup>
 -->		
-
-<nav>
-	<a href="/">home</a>
-	<a href="/sites">Sites</a>
-	<a href="/sitedates">Site Dates</a>
-	<a href="/siteobservations">Site Observations</a>
-	<a href="/checklists">Checklists</a>
-	<a href="/statecounties">State-Counties</a>
-</nav>
-
-
-<!-- Body -->
-<main>
-    <slot />
-</main>
-
-<!-- Footer -->
-<footer class="flex flex-col justify-between min-h-screen border-t border-solid border-t-slate-400 text-center"><p class="text-xs">{config.title} &copy;{new Date().getFullYear()}</p></footer>
-
-</AppShell>
