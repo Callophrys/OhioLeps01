@@ -19,7 +19,8 @@ const config = {
     skeleton({
       themes: {
         preset: [
-          "skeleton", "rocket", "modern", "crimson"
+          "skeleton", "rocket", "modern", "crimson", "wintry",
+          "seafoam", "vintage", "sahara", "hamlindigo", "gold-nouveau"
         ]
       }
     })

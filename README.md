@@ -206,6 +206,15 @@ async function toJSON(filename:string,sql:string) {
   }
 }
 
+
+### Svelte comments 
+use JS to comment out HTML elements. Its hackky but works:
+```<div id="myDiv" {...{/*commented-parameter=true*/}} regular-paramter=true />```
+
+ It only works for attributes, here is a solution for tag-level comments:
+
+```{""+/* Gets the job done.. */""}```
+
 ### SUNDRY
 
 for nvim lang server issue, install:

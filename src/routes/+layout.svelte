@@ -3,11 +3,12 @@
     //import { TabGroup, Tab, TabAnchor, initializeStores } from '@skeletonlabs/skeleton';
     import { AppShell, AppBar, Avatar, LightSwitch  } from '@skeletonlabs/skeleton';
 	import { computePosition, autoUpdate, offset, shift, flip, arrow } from '@floating-ui/dom';
+	import { storePopup } from '@skeletonlabs/skeleton';
 
-import { storePopup } from '@skeletonlabs/skeleton';
-storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
+	storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
 			
     import { writable, type Writable } from 'svelte/store';
+	//import Help from '$lib/components/Help.svelte'
 	import Themer from '$lib/components/Themer.svelte'
     const tabSet: Writable<number> = writable(0);
 </script>
@@ -33,6 +34,7 @@ storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
 			<svelte:fragment slot="trail">
 				<div class="columns-2 w-fit h-24 flex">
 					<div class="my-auto pr-2">
+						<!--<Help />-->
 						<Themer />	
 					</div>
 					<Avatar src="https://i.pravatar.cc/"
@@ -51,12 +53,13 @@ storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
 		<nav class="list-nav">
 			<ul>
 				<li><a href="/">Home</a></li>
-				<li><a href="/sites">Sites</a></li>
-				<li><a href="/sitedates">Site Dates</a></li>
-				<li><a href="/siteobservations">Site Observations</a></li>
-				<li><a href="/checklists">Checklists</a></li>
-				<li><a href="/statecounties">State-County List</a></li>
-				<li><a href="/nameaddresses">Name-Address List</a></li>
+				<li><a href="/dl/countypanes">County Panes</a></li>
+				<li><a href="/dl/sites">Sites</a></li>
+				<li><a href="/dl/sitedates">Site Dates</a></li>
+				<li><a href="/dl/siteobservations">Site Observations</a></li>
+				<li><a href="/dl/checklists">Checklists</a></li>
+				<li><a href="/dl/statecounties">State-County List</a></li>
+				<li><a href="/dl/nameaddresses">Name-Address List</a></li>
 			</ul>
 		</nav>
 	</svelte:fragment>
