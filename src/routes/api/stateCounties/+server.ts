@@ -3,11 +3,11 @@ import { json } from '@sveltejs/kit'
 
 async function getStateCounties() {
 	const stateCounties = await prisma.stateCounty.findMany({
-    where: {
+    /*where: {
       sites: {
         some: {}
       }
-    },
+    },*/
     include: {
       sites: true
     }

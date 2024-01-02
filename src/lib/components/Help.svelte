@@ -35,11 +35,25 @@
 	<span>↓</span>
 </button>
 
-<div class="card w-36 shadow-xl py-2" data-popup="popupComboboxHelp">
+<div class="card w-48 shadow-xl py-2" data-popup="popupComboboxHelp">
     <div class="content-center flex justify-between px-2 pb-1">
-        <div>Tooltips</div>
-        <SlideToggle name="medium" size="24px" />
+        <div class="pl-2">Show Tooltips</div><!-- toggle hide instead of show -->
+        <SlideToggle name="medium" size="sm" />
     </div>
+    <hr>
+    <nav class="list-nav rounded-none">
+    <ul class="rounded-none">
+        <li class="rounded-none">
+            <a href="/" class="rounded-none">Documents</a>
+        </li>
+        <li>
+            <a href="/" class="">Other</a>
+        </li>
+        <li>
+            <a href="/" class="">Other 2</a>
+        </li>
+    </ul>
+    </nav>
     <!--
     <hr>
 	<ListBox rounded="rounded-none">

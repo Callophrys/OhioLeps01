@@ -247,3 +247,6 @@ npx prisma migrate dev --name <date + letter or number>
 npx prisma migrate dev --create-only
 
 
+-- random color butterfly
+https://codepen.io/JEFworks/pen/XzKJmv
+

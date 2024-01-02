@@ -8,8 +8,9 @@
 	storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
 			
     import { writable, type Writable } from 'svelte/store';
-	//import Help from '$lib/components/Help.svelte'
+	import Help from '$lib/components/Help.svelte'
 	import Themer from '$lib/components/Themer.svelte'
+	import Fluttering from '$lib/components/Fluttering.svelte'
     const tabSet: Writable<number> = writable(0);
 </script>
 
@@ -24,7 +25,9 @@
 			slotTrail="place-content-end">
 
 			<svelte:fragment slot="lead">
-				(icon)
+				<div class="ml-16">
+					<Fluttering />
+				</div>
 			</svelte:fragment>
 
 			<div class="text-2xl">
@@ -34,8 +37,8 @@
 			<svelte:fragment slot="trail">
 				<div class="columns-2 w-fit h-24 flex">
 					<div class="my-auto pr-2">
-						<!--<Help />-->
-						<Themer />	
+							<Help />
+							<Themer />	
 					</div>
 					<Avatar src="https://i.pravatar.cc/"
 						initials="OH"

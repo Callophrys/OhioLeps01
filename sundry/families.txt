@@ -1,0 +1,580 @@
+    Papilionidae: swallowtails and parnassians (40 species)
+        Parnassiinae: parnassians (3 species)
+        Papilioninae: swallowtails (37 species)
+    Hesperiidae: skippers (300 species)
+        Pyrrhopyginae: firetips (1 species)
+        Pyrginae: spread-wing skippers (138 species)
+        Heteropterinae: skipperlings (7 species)
+        Hesperiinae: grass skippers (141 species)
+        Megathyminae: giant-skippers (13 species)
+    Pieridae: whites and sulphurs (70 species)
+        Pierinae: whites (29 species)
+        Coliadinae: sulphurs (40 species)
+        Dismorphiinae: mimic-whites (1 species)
+    Lycaenidae: gossamer-wings (144 species)
+        Miletinae: harvesters (1 species)
+        Lycaeninae: coppers (16 species)
+        Theclinae: hairstreaks (90 species)
+        Polyommatinae: blues (37 species)
+    Riodinidae: metalmarks (28 species)
+    Nymphalidae: brush-footed butterflies (233 species)
+        Libytheinae: snouts (1 species)
+        Heliconiinae: heliconians and fritillaries (40 species)
+        Nymphalinae: true brushfoots (76 species)
+        Limenitidinae: admirals, sisters and others (37 species)
+        Charaxinae: leafwings (8 species)
+        Apaturinae: emperors (5 species)
+        Morphinae: morphos (3 species)
+        Satyrinae: satyrs (49 species)
+        Danainae: milkweed butterflies and clearwings (8 species)
+======================================================================
+Subfamily Miletinae: harvesters
+Harvester, Feniseca tarquinius
+
+    Harvester, Feniseca tarquinius
+
+Subfamily Lycaeninae: coppers
+American copper, Lycaena phlaeas
+
+    Tailed copper, Lycaena arota
+    Lustrous copper, Lycaena cupreus
+        Snow's lustrous copper, Lycaena cupreus snowi
+    Gray copper, Lycaena dione
+    Dorcas copper, Lycaena dorcas
+        Maine dorcas copper, Lycaena dorcas claytoni
+        Salt marsh dorcas copper, Lycaena dorcas dospassosi
+    Edith's copper, Lycaena editha
+    Bog copper, Lycaena epixanthe
+    Gorgon copper, Lycaena gorgon
+    Purplish copper, Lycaena helloides
+    Hermes copper, Lycaena hermes
+    Blue copper, Lycaena heteronea
+    Bronze copper, Lycaena hyllus
+    Mariposa copper, Lycaena mariposa
+    Lilac-bordered copper, Lycaena nivalis
+    American copper, Lycaena phlaeas
+    Ruddy copper, Lycaena rubidus
+        White Mountains copper, Lycaena rubidus ferrisi
+    Great copper, Lycaena xanthoides
+
+Subfamily Theclinae: hairstreaks
+Atala, Eumaeus atala.
+Great purple hairstreak, Atlides halesus
+Coral hairstreak, Satyrium titus, on butterfly weed
+Banded hairstreak, Satyrium calanus
+Gray hairstreak, Strymon melinus
+Red-banded hairstreak, Calycopis cecrops
+
+    Colorado hairstreak, Hypaurotia crysalus
+    Golden hairstreak, Habrodais grunus
+    Atala, Eumaeus atala
+    Superb cycadian, Eumaeus childrenae
+    Strophius hairstreak, Allosmaitia strophius
+    Great purple hairstreak, Atlides halesus
+    Creamy stripe-streak, Arawacus jada
+    Gold-bordered hairstreak, Rekoa palegon
+    Smudged hairstreak, Rekoa stagira
+    Marius hairstreak, Rekoa marius
+    Black hairstreak, Ocaria ocrisia
+    Amethyst hairstreak, Chlorostrymon maesites
+    Telea hairstreak, Chlorostrymon telea
+    Silver-banded hairstreak, Chlorostrymon simaethis
+    Soapberry hairstreak, Phaeostrymon alcestis
+    Coral hairstreak, Satyrium titus
+    Behr's hairstreak, Satyrium behrii
+    Sooty hairstreak, Satyrium fuliginosum
+    Acadian hairstreak, Satyrium acadica
+    California hairstreak, Satyrium californica
+    Sylvan hairstreak, Satyrium sylvinus
+    Edward's hairstreak, Satyrium edwardsii
+    Banded hairstreak, Satyrium calanus
+    Hickory hairstreak, Satyrium caryaevorum
+    King's hairstreak, Satyrium kingi
+    Striped hairstreak, Satyrium liparops
+    Gold-hunter's hairstreak, Satyrium auretorum
+    Mountain mahogany hairstreak, Satyrium tetra
+    Hedgerow hairstreak, Satyrium saepium
+    Oak hairstreak, Satyrium favonius
+        Southern oak hairstreak, Satyrium favonius favonius
+        Northern oak hairstreak, Satyrium favonius ontario
+    Ilavia hairstreak, Satyrium ilavia
+    Poling's hairstreak, Satyrium polingi
+    Clench's greenstreak, Cyanophrys miserabilis
+    Goodson's greenstreak, Cyanophrys goodsoni
+    Cramer's greenstreak, Cyanophrys amyntor
+    Tropical greenstreak, Cyanophrys herodotus
+    Brown-spotted greenstreak, Cyanophrys longula
+    Bramble hairstreak, Callophrys dumetorum
+        Bramble bramble hairstreak, Callophrys dumetorum dumetorum
+        Coastal bramble hairstreak, Callophrys dumetorum viridis
+        Canyon bramble hairstreak, Callophrys dumetorum apama
+        Immaculate bramble hairstreak, Callophys dumetorum affinis
+    Sheridan's hairstreak, Callophrys sheridanii
+        White-lined Sheridan's hairstreak, Callophrys sheridanii sheridanii
+        Desert Sheridan's hairstreak, Callophrys sheridanii comstocki
+        Alpine Sheridan's hairstreak, Callophrys sheridanii lemberti
+    Xami hairstreak, Callophrys xami
+    Sandia hairstreak, Callophrys mcfarlandi
+    Brown elfin, Callophrys augustinus
+    Desert elfin, Callophrys fotis
+    Moss's elfin, Callophrys mossii
+    Hoary elfin, Callophrys polios
+    Frosted elfin, Callophrys irus
+    Henry's elfin, Callophrys henrici
+    Bog elfin, Callophrys lanoraieensis
+    Eastern pine elfin, Callophrys niphon
+    Western pine elfin, Callophrys eryphon
+    Thicket hairstreak, Callophrys spinetorum
+    Johnson's hairstreak, Callophrys johnsoni
+    Juniper hairstreak, Callophrys gryneus
+        Olive juniper hairstreak, Callophrys gryneus gryneus
+        Sweadner's juniper hairstreak, Callophrys gryneus sweadneri
+        Siva juniper hairstreak, Callophrys gryneus siva
+        Nelson's juniper hairstreak, Callophrys gryneus nelsoni
+        Muir's juniper hairstreak, Callophrys gryneus muiri
+        Loki's juniper hairstreak, Callophrys gryneus loki
+        Thorne's juniper hairstreak, Callophrys gryneus thornei
+    Hessel's hairstreak, Callophrys hesseli
+    Aquamarine hairstreak, Oenomaus ortygnus
+    Broken-M hairstreak, Parrhasius polibetes
+    White M hairstreak, Parrhasius m-album
+    Mexican-M hairstreak, Parhassius moctezuma
+    Gray hairstreak, Strymon melinus
+    Avalon scrub-hairstreak, Strymon avalona
+    Red-crescent scrub-hairstreak, Strymon rufofusca
+    Red-lined scrub-hairstreak, Strymon bebrycia
+    Martial scrub-hairstreak, Strymon martialis
+    Yojoa scrub-hairstreak, Strymon yojoa
+    White scrub-hairstreak, Strymon albata
+    Bartram's scrub-hairstreak, Strymon acis
+    Lacey's scrub-hairstreak, Strymon alea
+    Mallow scrub-hairstreak, Strymon istapa
+    Disguised scrub-hairstreak, Strymon limenia
+    Tailless scrub-hairstreak, Strymon cestri
+    Lantana scrub-hairstreak, Strymon bazochii
+    Bromeliad scrub-hairstreak, Strymon serapio
+    Confusing scrub-hairstreak, Strymon megarus
+    Orange-crescent groundstreak, Ziegleria guzanta
+    Ruddy hairstreak, Electrostrymon sangala
+    Fulvous hairstreak, Electrostrymon angelia
+    Muted hairstreak, Electrostrymon canus
+    Red-banded hairstreak, Calycopis cecrops
+    Dusky-blue groundstreak, Calycopis isobeon
+    Susanna's groundstreak, Calycopis origo
+    Red-spotted hairstreak, Tmolus echion
+    Pearly-gray hairstreak, Siderus tephraeus
+    Leda ministreak, Ministrymon leda
+    Clytie ministreak, Ministrymon clytie
+    Red-flocked ministreak, Ministrymon phrutus
+    Gray ministreak, Ministrymon azia
+    Vicroy's ministreak, Ministrymon janevicroy
+    Sonoran hairstreak, Hypostrymon critola
+    Early hairstreak, Erora laeta
+    Arizona hairstreak, Erora quaderna
+
+Subfamily Polyommatinae: blues
+Western pygmy blue, Brephidium exilis
+Male eastern tailed blue, Cupido comyntas
+Female eastern tailed blue, Cupido comyntas
+Acmon blue, Icaricia acmon
+
+    Heather blue, Agriades cassiope
+    Arctic blue, Agriades glandon
+    Cranberry blue, Agriades optilete
+    Sierra Nevada blue, Agriades podarce
+    Western pygmy blue, Brephidium exilis
+    Eastern pygmy blue, Brephidium isophthalma
+    Echo azure, Celastrina echo
+        Baker's echo azure, Celastrina echo bakeri
+        Arizona echo azure, Celastrina echo cinerea
+        Mexican echo azure, Celastrina echo gozora
+        Dark echo azure, Celastrina echo nigrescens
+        Front Range echo azure, Celastrina echo sidara
+    Hops azure, Celastrina humulus
+    Holly azure, Celastrina idella
+    Spring azure, Celastrina ladon
+    Northern azure, Celastrina lucia
+        Colorado northern azure, Celastrina lucia lumarco
+    Summer azure, Celastrina neglecta
+        Manitoba summer azure, Celastrina neglecta argentata
+    Appalachian azure, Celastrina neglectamajor
+    Dusky azure, Celastrina nigra
+    Cherry gall azure, Celastrina serotina
+    Western tailed-blue, Cupido amyntula
+    Eastern tailed-blue, Cupido comyntas
+    Nickerbean blue, Cyclargus ammon
+    Miami blue, Cyclargus thomasi
+    Reakirt's blue, Echinargus isola
+    Square-spotted blue, Euphilotes battoides
+        El Segundo square-spotted blue, Euphilotes battoides allyni
+        Bauer's square-spotted blue, Euphilotes battoides baueri
+        Bernardino square-spotted blue, Euphilotes battoides bernardino
+        Central square-spotted blue, Euphilotes battoides centralis
+        Ellis's square-spotted blue, Euphilotes battoides ellisi
+        Euphilotes battoides intermedia
+    Dotted blue, Euphilotes enoptes
+        Ancilla dotted blue, Euphilotes enoptes ancilla
+        Dammer's dotted blue, Euphilotes enoptes dammersi
+        Mojave dotted blue, Euphilotes enoptes mojave
+    Rita blue, Euphilotes rita
+        Pale Rita blue, Euphilotes rita pallescens
+    Spalding's blue, Euphilotes spaldingi
+    Silvery blue, Glaucopsyche lygdamus
+    Arrowhead blue, Glaucopsyche piasus
+    Ceraunus blue, Hemiargus ceraunus
+    Acmon blue, Icaricia acmon
+    Boisduval's blue, Icaricia icarioides
+        Mission Boisduval's blue, Icaricia icarioides missionensis
+    Lupine blue, Icaricia lupini
+    Veined blue, Icaricia neurona
+    Greenish blue, Icaricia saepiolus
+    Shasta blue, Icaricia shasta
+    Pea blue, Lampides boeticus
+    Cassius blue, Leptotes cassius
+    Marine blue, Leptotes marina
+    Sonoran blue, Philotes sonorensis
+    Small blue, Philotiella speciosa
+        Philotiella speciosa leona
+    Northern blue, Plebejus idas
+    Melissa blue, Plebejus melissa
+        Karner Melissa blue, Plebejus melissa samuelis
+    San Emigdio blue, Plebulina emigdionis
+    Cyna blue, Zizula cyna
+    Lesser grass-blue, Zizina otis
+    
+======================================================================
+Subfamily Pyrrhopyginae: firetips
+
+    Dull firetip, Pyrrhopyge araxes
+
+Subfamily Pyrginae: spread-wing skippers
+Silver-spotted skipper, Epargyreus clarus
+Long-tailed skipper, Urbanus proteus
+Golden banded-skipper, Autochton cellus
+Common checkered-skipper, Pyrgus communis
+
+    Beautiful beamer, Phocides belus
+    Mercurial skipper, Proteides mercurius
+    Mangrove skipper, Phocides pigmalion
+    Guava skipper, Phocides polybius
+    Teal beamer, Phocides urania
+    Silver-spotted skipper, Epargyreus clarus
+    Broken silverdrop, Epargyreus exadeus
+    Pepper-spotted silverdrop, Epargyreus socus orizaba
+    Weak-frosted silverdrop, Epargyreus spinosa
+    Zestos skipper, Epargyreus zestos
+    Hammock skipper, Polygonus leo
+    Manuel's skipper, Polygonus manueli
+    White-striped longtail, Chioides catillus
+    Zilpa longtail, Chioides zilpa
+    Golden-spotted aguna, Aguna asander
+    Emerald aguna, Aguna claxon
+    Tailed aguna, Aguna metophis
+    Mottled longtail, Typhedanus undulatus
+    Mexican longtail, Polythrix mexicana
+    Eight-spotted longtail, Polythrix octomaculata
+    Short-tailed skipper, Zestusa dorus
+    White-crescent longtail, Codatractus alcaeus
+    Arizona skipper, Codatractus arizonensis
+    Valeriana skipper, Codatractus mysie
+    Double-striped longtail, Urbanus belli
+    Dorantes longtail, Urbanus dorantes
+    White-tailed longtail, Urbanus doryssus
+    Esmeralda longtail, Urbanus esmeraldus
+    Turquoise longtail, Urbanus evona
+    Brown longtail, Urbanus procne
+    Pronus longtail, Urbanus pronus
+    Long-tailed skipper, Urbanus proteus
+    Plain longtail, Urbanus simplicius
+    Tanna longtail, Urbanus tanna
+    Teleus longtail, Urbanus teleus
+    Cobalt longtail, Urbanus viterboana
+    Frosted flasher, Astraptes alardus
+    Yellow-tipped flasher, Astraptes anaphus
+    Small-spotted flasher, Astraptes egregius
+    Two-barred flasher, Astraptes fulgerator
+    Gilbert's flasher, Astraptes gilberti
+    Golden banded-skipper, Autochton cellus
+    Chisos banded skipper, Autochton cincta
+    Spiky banded-skipper, Autochton neis
+    Sonoran banded-skipper, Autochton pseudocellus
+    Sierra Madre banded-skipper, Autochton siermadror
+    Hoary edge, Achalarus lyciades
+    Desert cloudywing, Achalarus casica
+    Dark cloudywing, Achalarus tehuanaca
+    Skinner's cloudywing, Achalarus albociliatus
+    Coyote cloudywing, Achalarus toxeus
+    Jalapus cloudywing, Achalarus jalapus
+    Southern cloudywing, Thorybes bathyllus
+    Northern cloudywing, Thorybes pylades
+    Western cloudywing, Thorybes diversus
+    Mexican cloudywing, Thorybes mexicana
+    Confused cloudywing, Thorybes confusis
+    Drusius cloudywing, Thorybes drusius
+    Potrillo skipper, Cabares potrillo
+    Common scarlet-eye, Nascus phocus
+    Fritzgaertner's flat, Celaenorrhinus fritzgaertneri
+    Stallings's flat, Celaenorrhinus stallingsi
+    Falcate skipper, Spathilepia
+    Mimosa skipper, Cogia calchas
+    Acacia skipper, Cogia hippalus
+    Outis skipper, Cogia outis
+    Gold-costa skipper, Cogia caicus
+    Starred skipper, Arteurotia tractipennis
+    Brown enops, Polyctor enops
+    Purplish-black skipper, Nisoniades rubescens
+    Glazed pellicia, Pellicia arina
+    Morning glory pellicia, Pellicia dimidiata
+    White-haired skipper, Noctuana lactifera bipuncta
+    Mottled bolla, Bolla clytius
+    Rounded bolla, Bolla imbras
+    Obscure bolla, Bolla brennus
+    Mauve bolla, Bolla eusebius
+    Golden-headed scallopwing, Staphylus ceos
+    Mazans scallopwing, Staphylus mazans
+    Hayhurst's scallopwing, Staphylus hayhurstii
+    Aztec scallopwing, Staphylus azteca
+    Variegated skipper, Gorgythion begga
+    Blue-studded skipper, Sostrata bifasciata
+    Dingy mylon, Mylon pelopidas
+    Hoary skipper, Carrhenes canescens
+    Black-spotted hoary-skipper, Carrhenes fuscescens
+    Northern clipper, Milanion clito
+    Glassy-winged skipper, Xenophanes tryxus
+    Dusted spurwing, Antigonus erosus
+    White spurwing, Antigonus emorsus
+    Red-studded skipper, Noctuana stator
+    Texas powdered-skipper, Systasea pulverulenta
+    Arizona powdered-skipper, Systasea zampa
+    Sickle-winged skipper, Achylodes thraso
+    Pale sicklewing, Achlyodes pallida
+    Hermit skipper, Grais stigmatica
+    Brown-banded skipper, Timochares ruptifasciatus
+    Common bluevent, Anastrus sempiternus
+    Common bentwing, Ebrietas anacreon
+    White-patched skipper, Chiomara asychis
+    False duskywing, Gesta gesta
+    Afranius duskywing, Erynnis afranius
+    Wild indigo duskywing, Erynnis baptisiae
+    Sleepy duskywing, Erynnis brizo
+    Florida duskywing, Erynnis brunneus
+    Funereal duskywing, Erynnis funeralis
+    Horace's duskywing, Erynnis horatius
+    Dreamy duskywing, Erynnis icelus
+    Juvenal's duskywing, Erynnis juvenalis
+        Arizona Juvenal's duskywing, Erynnis juvenalis clitus
+    Columbine duskywing, Erynnis lucilius
+    Mottled duskywing, Erynnis martialis
+    Meridian duskywing, Erynnis meridianus
+    Pacuvius duskywing, Erynnis pacuvius
+    Persius duskywing, Erynnis persius
+    Propertius duskywing, Erynnis propertius
+    Scudder's duskywing, Erynnis scudderi
+    Rocky Mountain duskywing, Erynnis telemachus
+    Mournful duskywing, Erynnis tristis
+    Zarucco duskywing, Erynnis zarucco
+    White checkered-skipper, Pyrgus albescens
+    Grizzled skipper, Pyrgus centaureae
+        Appalachian grizzled skipper, Pyrgus centaureae wyandot
+    Common checkered-skipper, Pyrgus communis
+    Tropical checkered-skipper, Pyrgus oileus
+    Desert checkered-skipper, Pyrgus philetas
+    Two-banded checkered-skipper, Pyrgus ruralis
+    Small checkered-skipper, Pyrgus scriptura
+    Mountain checkered-skipper, Pyrgus xanthus
+    Erichson's white-skipper, Heliopetes domicella
+    Northern white-skipper, Heliopetes ericetorum
+    Laviana white-skipper, Heliopetes laviana
+    Turk's-cap white-skipper, Heliopetes macaira
+    East-Mexican white-skipper, Heliopetes sublinea
+    Veined white-skipper, Heliopetes arsalte
+    Common streaky-skipper, Celotes nessus
+    Scarce streaky-skipper, Celotes limpia
+    Common sootywing, Pholisora catullus
+    Mexican sootywing, Pholisora mejicana
+    Mojave sootywing, Hesperopsis libya
+    Saltbush sootywing, Hesperopsis alpheus
+        Saltbush saltbush sootywing, Hesperopsis alpheus alpheus
+        McNeill's saltbush sootywing, Hesperopsis alpheus gracielae
+
+Subfamily Heteropterinae: skipperlings
+Arctic skipper, Carterocephalus palaemon
+
+    Arctic skipper, Carterocephalus palaemon
+    Russet skipperling, Piruna pirus
+    Four-spotted skipperling, Piruna polingi
+    Many-spotted skipperling, Piruna cingo
+    Small-spotted skipperling, Piruna microstictus
+    Chisos skipperling, Piruna haferniki
+    Two-rayed skipperling, Piruna roeveri
+
+Subfamily Hesperiinae: grass skippers
+European skipper, Thymelicus lineola
+Dakota skipper, Hesperia dacotae
+Zabulon skipper, Poanes zabulon
+Lace-winged roadside-skipper, Amblyscirtes aesculapius
+
+    Banana skipper, Erionota thrax
+    Malicious skipper, Synapte malitiosa
+    Salenus skipper, Synapte salenus
+    Faceted skipper, Synapte syraces
+    Redundant skipper, Corticea corticea
+    Pale-rayed skipper, Vidius perigenes
+    Violet-patched skipper, Monca tyrtaeus
+    Swarthy skipper, Nastra lherminier
+    Julia's skipper, Nastra julia
+    Neamathla skipper, Nastra neamathla
+    Three-spotted skipper, Cymaenes tripunctus
+    Fawn-spotted skipper, Cymaenes odilia
+    Inca brown-skipper, Vehilius inca
+    Pasture brown-skipper, Vehilius stictomenes
+    Whitened remella, Remella remus
+    Clouded skipper, Lerema accius
+    Liris skipper, Lerema liris
+    Fantastic skipper, Vettius fantasos
+    Green-backed ruby-eye, Perichares philetes
+    Osca skipper, Rhinthon osca
+    Double-dotted skipper, Decinea percosius
+    Hidden-ray skipper, Conga chydaea
+    Least skipper, Ancyloxypha numitor
+    Tropical least skipper, Ancyloxypha arene
+    Poweshiek skipperling, Oarisma poweshiek
+    Garita skipperling, Oarisma garita
+    Edwards' skipperling, Oarisma edwardsii
+    Orange skipperling, Copaeodes aurantiacus
+    Southern skipperling, Copaeodes minimus
+    Sunrise skipper, Adopaeoides prittwitzi
+    European skipper, Thymelicus lineola
+    Fiery skipper, Hylephila phyleus
+    Alkali skipper, Pseudocopaeodes eunus
+    Morrison's skipper, Stinga morrisoni
+    Uncas skipper, Hesperia uncas
+    Juba skipper, Hesperia juba
+    Common branded skipper, Hesperia comma
+        Hesperia comma colorado
+        Hesperia comma assiniboia
+    Apache skipper, Hesperia woodgatei
+    Ottoe skipper, Hesperia ottoe
+    Leonard's skipper, Hesperia leonardus
+    Pahaska skipper, Hesperia pahaska
+    Columbian skipper, Hesperia columbia
+    Cobweb skipper, Hesperia metea
+    Green skipper, Hesperia viridis
+    Dotted skipper, Hesperia attalus
+    Meske's skipper, Hesperia meskei
+    Dakota skipper, Hesperia dacotae
+    Lindsey's skipper, Hesperia lindseyi
+    Indian skipper, Hesperia sassacus
+    Sierra skipper, Hesperia miriamae
+    Nevada skipper, Hesperia nevada
+    Rhesus skipper, Polites rhesus
+    Carus skipper, Polites carus
+    Peck's skipper, Polites peckius
+    Sandhill skipper, Polites sabuleti
+    Mardon skipper, Polites mardon
+    Draco skipper, Polites draco
+    Baracoa skipper, Polites baracoa
+    Tawny-edged skipper, Polites themistocles
+    Crossline skipper, Polites origenes
+    Long dash, Polites mystic
+    Sonoran skipper, Polites sonora
+    Whirlabout, Polites vibex
+    Southern broken-dash, Wallengrenia otho
+    Northern broken-dash, Wallengrenia egeremet
+    Common glassywing, Pompeius pompeius
+    Little glassywing, Pompeius verna
+    Sachem, Atalopedes campestris
+    Arogos skipper, Atrytone arogos
+    Delaware skipper, Anatrytone logan
+    Glowing skipper, Anatrytone mazai
+    Byssus skipper, Problema byssus
+    Rare skipper, Problema bulenta
+    Woodland skipper, Ochlodes sylvanoides
+    Rural skipper, Ochlodes agricola
+    Yuma skipper, Ochlodes yuma
+    Snow's skipper, Paratrytone snowi
+    Spiked poan, Paratrytone rhexenor
+    Mulberry wing, Poanes massasoit
+    Hobomok skipper, Poanes hobomok
+    Zabulon skipper, Poanes zabulon
+    Taxiles skipper, Poanes taxiles
+    Aaron's skipper, Poanes aaroni
+    Yehl skipper, Poanes yehl
+    Broad-winged skipper, Poanes viator
+    Umber skipper, Poanes melane
+    Common mellana, Quasimellana eulogius
+    Palmetto skipper, Euphyes arpa
+    Palatka skipper, Euphyes pilatka
+    Dion skipper, Euphyes dion
+    Bay skipper, Euphyes bayensis
+    Dukes' skipper, Euphyes dukesi
+    Black dash, Euphyes conspicua
+    Berry's skipper, Euphyes berryi
+    Two-spotted skipper, Euphyes bimacula
+    Dun skipper, Euphyes vestris
+    Monk skipper, Asbolis capucinus
+    Dusted skipper, Atrytonopsis hianna
+        Atrytonopsis hianna loammi
+    Deva skipper, Atrytonopsis deva
+    Moon-marked skipper, Atrytonopsis lunus
+    Viereck's skipper, Atrytonopsis vierecki
+    White-barred skipper, Atrytonopsis pittacus
+    Python skipper, Atrytonopsis python
+    Cestus skipper, Atrytonopsis cestus
+    Sheep skipper, Atrytonopsis edwardsii
+    Simius roadside-skipper, Amblyscirtes simius
+    Large roadside-skipper, Amblyscirtes exoteria
+    Cassus roadside-skipper, Amblyscirtes cassus
+    Bronze roadside-skipper, Amblyscirtes aenus
+    Linda's roadside-skipper, Amblyscirtes linda
+    Oslar's roadside-skipper, Amblyscirtes oslari
+    Pepper and salt skipper, Amblyscirtes hegon
+    Elissa roadside-skipper, Amblyscirtes elissa
+    Texas roadside-skipper, Amblyscirtes texanae
+    Toltec roadside-skipper, Amblyscirtes tolteca
+        Prenda Toltec roadside-skipper, Amblyscirtes tolteca prenda
+    Lace-winged roadside-skipper, Amblyscirtes aesculapius
+    Carolina roadside-skipper, Amblyscirtes carolina
+    Reversed roadside-skipper, Amblyscirtes reversa
+    Slaty roadside-skipper, Amblyscirtes nereus
+    Nysa roadside-skipper, Amblyscirtes nysa
+    Dotted roadside-skipper, Amblyscirtes eos
+    Common roadside-skipper, Amblyscirtes vialis
+    Celia's roadside-skipper, Amblyscirtes celia
+    Bell's roadside-skipper, Amblyscirtes belli
+    Dusky roadside-skipper, Amblyscirtes alternata
+    Orange-headed roadside-skipper, Amblyscirtes phylace
+    Orange-edged roadside-skipper, Amblyscirtes fimbriata
+    Eufala skipper, Lerodea eufala
+    Violet-clouded skipper, Lerodea arabus
+    Olive-clouded skipper, Lerodea dysaules
+    Twin-spot skipper, Oligoria maculata
+    Brazilian skipper, Calpodes ethlius
+    Salt marsh skipper, Panoquina panoquin
+    Obscure skipper, Panoquina panoquinoides
+    Wandering skipper, Panoquina errans
+    Ocola skipper, Panoquina ocola
+    Hecebolus skipper, Panoquina hecebola
+    Purple-washed skipper, Panoquina sylvicola
+    Evans' skipper, Panoquina fusina
+    Violet-banded skipper, Nyctelius nyctelius
+    Common therra, Vacerra bonifilius aeas
+    Chestnut-marked skipper, Thespieus macareus
+
+Subfamily Megathyminae: giant-skippers
+
+    Orange giant-skipper, Agathymus neumoegeni (includes chisosensis)
+    Arizona giant-skipper, Agathymus aryxna
+        Agathymus aryxna baueri
+        Agathymus aryxna gentryi
+    Huachuca giant-skipper, Agathymus evansi
+    Mary's giant-skipper, Agathymus mariae
+    California giant-skipper, Agathymus stephensi
+    Coahuila giant-skipper, Agathymus remingtoni
+    Poling's giant-skipper, Agathymus polingi
+    Mojave giant-skipper, Agathymus alliae
+    Yucca giant-skipper, Megathymus yuccae (includes coloradensis)
+    Cofaqui giant-skipper, Megathymus cofaqui (includes harrisi)
+    Strecker's giant-skipper, Megathymus streckeri
+    Ursine giant-skipper, Megathymus ursus
+    Manfreda giant-skipper, Stallingsia maculosa
