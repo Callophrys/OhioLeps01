@@ -1,32 +1,12 @@
 <script lang="ts">
-    import { ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
-
-	export let data
-	
-	let valueMultiple: string;
+    import StateCountyPicker from '$lib/components/StateCountyPicker.svelte';
+	export let data;
 </script>
 
 <div class="p-4">
-
-	<ListBox multiple regionLead="bg-amber-400">
-		<ListBoxItem bind:group={valueMultiple} name="medium" value="books">Books</ListBoxItem>
-		<ListBoxItem bind:group={valueMultiple} name="medium" value="movies">Movies</ListBoxItem>
-		<ListBoxItem bind:group={valueMultiple} name="medium" value="tv">TV</ListBoxItem>
-	</ListBox>
-				
-	<label class="label">
-		<span>State/Counties</span>
-		<select class="select">
-			{#each data.stateCounties as stateCounty}
-			<option>{ stateCounty.county }
-			</option>
-		{/each}
-		</select>
-	</label>
-
-		<span>Species</span>
-
-		<span>Timeframe</span>
+	<StateCountyPicker stateCounties={data.stateCounties} />
+	<div>Species</div>
+	<div>Timeframe</div>
 
 	<label class="label">
 		<span>State/County</span>

@@ -1,4 +1,5 @@
 <script lang="ts">
+    import '../app.css';
 	import * as config from '$lib/config'
     //import { TabGroup, Tab, TabAnchor, initializeStores } from '@skeletonlabs/skeleton';
     import { AppShell, AppBar, Avatar, LightSwitch  } from '@skeletonlabs/skeleton';
@@ -7,11 +8,12 @@
 
 	storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
 			
-    import { writable, type Writable } from 'svelte/store';
+    //import { writable, type Writable } from 'svelte/store';
 	import Help from '$lib/components/Help.svelte'
 	import Themer from '$lib/components/Themer.svelte'
 	import Fluttering from '$lib/components/Fluttering.svelte'
-    const tabSet: Writable<number> = writable(0);
+    //const tabSet: Writable<number> = writable(0);
+
 </script>
 
 <AppShell
@@ -20,14 +22,17 @@
 	slotPageFooter="text-center text-xs">
 
 	<svelte:fragment slot="header">
+	{#if config.showAppBar}
 		<AppBar gridColumns="grid-cols-3"
 			slotDefault="place-self-center"
 			slotTrail="place-content-end">
 
 			<svelte:fragment slot="lead">
+			{#if config.showAnimatedIcon}
 				<div class="ml-16">
 					<Fluttering />
 				</div>
+			{/if}
 			</svelte:fragment>
 
 			<div class="text-2xl">
@@ -50,6 +55,7 @@
 			</svelte:fragment>
 
 		</AppBar>
+	{/if}
 	</svelte:fragment>
 
 	<svelte:fragment slot="sidebarLeft">

@@ -1,8 +1,9 @@
 <script lang="ts">
-    import { browser } from '$app/environment'
     import { popup } from '@skeletonlabs/skeleton';
     import type { PopupSettings } from '@skeletonlabs/skeleton';
     import { ListBox, ListBoxItem, LightSwitch } from '@skeletonlabs/skeleton';
+    import { setInitialClassState } from '@skeletonlabs/skeleton';
+    import { onMount } from 'svelte';
 
     let comboboxValue: string;
 
@@ -13,22 +14,37 @@
         closeQuery: '.listbox-item'
     };
 
-    if (browser) {
-        comboboxValue = localStorage.themeName ?? 'rocket';
+    let themes: string[] = [
+        "skeleton",
+        "rocket",
+        "modern",
+        "crimson",
+        "wintry",
+        "seafoam",
+        "vintage",
+        "sahara",
+        "hamlindigo",
+        "gold-nouveau",
+    ];
+
+    function setTheme(themeName: string){
+        document.body.setAttribute('data-theme', themeName);
+        localStorage.setItem('themeName', themeName);
     }
 
-	$: {
-		if (browser) { //&& typeof document !== 'undefined') {
-            if (typeof document !== 'undefined') {
-                console.log('comboboxvalue:', comboboxValue, " data-theme is", document.documentElement.getAttribute('data-theme'));
-                document.body.setAttribute('data-theme', comboboxValue);
-                localStorage.setItem('themeName', comboboxValue);
-            }
-		}
-	}
-				
+    function handleClick(event: any){
+        if (event.currentTarget?.value) {
+            setTheme(event.currentTarget.value);
+        }
+    }
+
+	onMount(() => {
+        comboboxValue = localStorage?.themeName ?? 'rocket';
+		setTheme(comboboxValue);
+	});
 </script>
 
+<svelte:head>{@html '<script>(' + setInitialClassState.toString() + ')();</script>'}</svelte:head>
 <button class="btn variant-filled w-36 justify-between" use:popup={popupCombobox}>
 	<span class="capitalize">Theme</span>
 	<span>↓</span>
@@ -40,17 +56,10 @@
         <LightSwitch />
     </div>
     <hr>
-	<ListBox rounded="rounded-none">
-		<ListBoxItem bind:group={comboboxValue} name="medium" value="skeleton">Skeleton</ListBoxItem>
-		<ListBoxItem bind:group={comboboxValue} name="medium" value="rocket">Rocket</ListBoxItem>
-		<ListBoxItem bind:group={comboboxValue} name="medium" value="modern">Modern</ListBoxItem>
-		<ListBoxItem bind:group={comboboxValue} name="medium" value="crimson">Crimson</ListBoxItem>
-		<ListBoxItem bind:group={comboboxValue} name="medium" value="wintry">Wintry</ListBoxItem>
-		<ListBoxItem bind:group={comboboxValue} name="medium" value="seafoam">Seafoom</ListBoxItem>
-		<ListBoxItem bind:group={comboboxValue} name="medium" value="vintage">Vintage</ListBoxItem>
-		<ListBoxItem bind:group={comboboxValue} name="medium" value="sahara">Sahara</ListBoxItem>
-		<ListBoxItem bind:group={comboboxValue} name="medium" value="hamlindigo">Hamlindigo</ListBoxItem>
-		<ListBoxItem bind:group={comboboxValue} name="medium" value="gold-nouveau">Gold Nouveau</ListBoxItem>
+	<ListBox rounded="rounded-none" class="capitalize">
+    {#each themes as theme}
+		<ListBoxItem bind:group={comboboxValue} name="medium" on:click={handleClick} value={theme}>{theme.replace('-', ' ')}</ListBoxItem>
+    {/each}
 	</ListBox>
 	<div class="arrow bg-surface-100-800-token" />
 </div>

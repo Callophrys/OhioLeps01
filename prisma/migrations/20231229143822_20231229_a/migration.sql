@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE `site` ADD COLUMN `stateCountyId` INTEGER NOT NULL DEFAULT 0;

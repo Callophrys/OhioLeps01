@@ -6,9 +6,9 @@ import seedStatusCode from './seed.statuscode'
 import seedSiteStatus from './seed.sitestatus'
 import seedStateCounty from './seed.statecounty'
 import seedSite from './seed.site'
+import seedNameAddress from './seed.nameaddress'
 */
 
-import seedNameAddress from './seed.nameaddress'
 /*
 import seedSiteDate from './seed.sitedate'
 import seedSiteObservation from './seed.siteobservation'
@@ -21,8 +21,9 @@ await seedSiteStatus();
 await seedStateCounty();
 await seedSite();
 await updateSiteForCounty();
-*/
 await seedNameAddress();
+*/
+
 /*
 await seedSiteDate();
 await seedSiteObservation();

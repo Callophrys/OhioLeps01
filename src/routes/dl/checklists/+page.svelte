@@ -9,9 +9,11 @@
 	<ul class="checklists">
 		{#each data.checklists as checklist}
 			<li class="checklist">
-				<span class="bg-red-600">{checklist.xname}</span>
-				<a href=checklist.slug class="title">{checklist.combinedLatin}</a>
-				<span class="bg-red-600">{checklist.commonName ?? ''}</span>
+				<div class="grid grid-cols-4 gap-2">
+					<span class="">{checklist.commonName ?? ''}</span>
+					<span class="">{checklist.xname}</span>
+					<a href=checklist.slug class="title">{checklist.combinedLatin}</a>
+				</div>
 			</li>
 		{/each}
 	</ul>

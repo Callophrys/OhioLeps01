@@ -8,9 +8,9 @@
 <section>
 	<ul class="stateCountys">
 		{#each data.stateCounties as stateCounty}
-			<li class="border border-solid border-slate-900 pb-2">
+			<li class="border border-solid border-slate-900 pb-1 pl-6">
 				<a href=stateCounty.slug class="title">{stateCounty.county}, {stateCounty.state}</a>
-				Has {stateCounty.sites?.length ?? 'Unk'} sites
+				- {stateCounty.sites.length} {stateCounty.sites.length !== 1 ? 'sites' : 'site'}
 			</li>
 		{/each}
 	</ul>

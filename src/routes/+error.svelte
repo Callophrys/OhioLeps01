@@ -1,6 +1,5 @@
 <script>
 	import { page } from '$app/stores'
-    import '../app.css';
 </script>
 
 <div class="error h-full grid place-content-center">

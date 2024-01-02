@@ -231,6 +231,7 @@ SELECT COUNT(*) CT FROM siteobservation;
 SELECT COUNT(*) CT FROM sitestatus;
 SELECT COUNT(*) CT FROM statecounty;
 SELECT COUNT(*) CT FROM statuscode;
+SELECT COUNT(*) CT FROM nameaddress;
 
 #### Squash migrations
 DROP TABLE IF EXISTS _prisma_migrations;
@@ -241,6 +242,7 @@ DROP TABLE IF EXISTS siteobservation;
 DROP TABLE IF EXISTS sitestatus;
 DROP TABLE IF EXISTS statecounty;
 DROP TABLE IF EXISTS statuscode;
+DROP TABLE IF EXISTS nameaddress;
 
 npx prisma migrate dev --name initial_migration
 npx prisma migrate dev --name <date + letter or number>
@@ -250,3 +252,14 @@ npx prisma migrate dev --create-only
 -- random color butterfly
 https://codepen.io/JEFworks/pen/XzKJmv
 
+paseto and auth0:
+https://github.com/auth0/auth0.js
+
+
+// Create subclass
+import { Prisma } from "@prisma/client";
+//import { Types } from "@prisma/client/runtime/library";
+const stateCountiesWithSites = Prisma.validator<Prisma.StateCountyDefaultArgs>()({
+	include: { sites: true }
+});
+type StateCountiesWithSites = Prisma.StateCountyGetPayload<typeof stateCountiesWithSites>;
