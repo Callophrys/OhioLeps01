@@ -9,9 +9,9 @@
 	storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
 			
     //import { writable, type Writable } from 'svelte/store';
-	import Help from '$lib/components/Help.svelte'
-	import Themer from '$lib/components/Themer.svelte'
-	import Fluttering from '$lib/components/Fluttering.svelte'
+	import Help from '$lib/components/appbar/Help.svelte'
+	import Themer from '$lib/components/appbar/Themer.svelte'
+	import Fluttering from '$lib/components/appbar/Fluttering.svelte'
     //const tabSet: Writable<number> = writable(0);
 
 </script>

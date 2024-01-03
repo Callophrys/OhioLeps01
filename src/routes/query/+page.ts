@@ -9,9 +9,6 @@ export async function load({ fetch }) {
 	const stateCounties = await responseStateCounties.json();
 	const speciesList = await responseSpecies.json();
 
-	return { 
-			stateCounties,
-			speciesList
-	};
+	return { stateCounties, speciesList };
 }
 

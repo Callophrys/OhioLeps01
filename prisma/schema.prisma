@@ -178,16 +178,16 @@ model StatusCode {
 
 model SiteStatus {
     siteStatusId Int @id @default(autoincrement())
-    siteId Int
-    statusCodeId Int
+    siteId Int?
+    statusCodeId Int?
     year Int
 
     // Relations - Loads fine so no need to comment or uncomment
-    statusCode StatusCode @relation(fields: [statusCodeId], references: [statusCodeId])
+    statusCode StatusCode? @relation(fields: [statusCodeId], references: [statusCodeId])
     // provided by load 'statusCodeId Int'
 
     // Relations
-    site Site @relation(fields: [siteId], references: [siteId])
+    site Site? @relation(fields: [siteId], references: [siteId])
     // provided by load: 'siteId Int'
   
     @@unique([siteId, year])
