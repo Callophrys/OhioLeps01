@@ -4,7 +4,7 @@
 </script>
 
 <!-- nameAddresses -->
-<div class="bg-red">Count: {data.nameAddresses.length}</div>
+<div class="bg-red">Name-Address Count: {data.nameAddresses.length}</div>
 <section>
 	<ul class="nameAddresses">
 		{#each data.nameAddresses as nameAddress}

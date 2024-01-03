@@ -4,7 +4,8 @@
 </script>
 
 <!-- StateCountys -->
-<div class="bg-red">Counties with sites: {data.stateCounties.length}</div>
+<div class="bg-red">County count: {data.stateCounties.length}
+	&nbsp;&nbsp;Counties with monitored sites: {data.stateCounties.filter(c => c.isMonitored).length}</div>
 <section>
 	<ul class="stateCountys">
 		{#each data.stateCounties as stateCounty}

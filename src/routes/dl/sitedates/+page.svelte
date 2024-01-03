@@ -5,7 +5,7 @@
 </script>
 
 <!-- siteDates -->
-<div class="bg-red">Count: {data.siteDates.length}</div>
+<div class="bg-red">SiteDate Count: {data.siteDates.length}</div>
 <section>
 	<ul class="siteDates">
 		{#each data.siteDates as siteDate}

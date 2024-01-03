@@ -224,6 +224,7 @@ pnpm i -g vscode-langservers-extractedo
 select table_name, table_rows from INFORMATION_SCHEMA.TABLES where table_schema = 'ohioleps';
 show create table site;
 
+SELECT COUNT(*) CT FROM nameaddress;
 SELECT COUNT(*) CT FROM checklist;
 SELECT COUNT(*) CT FROM site;
 SELECT COUNT(*) CT FROM sitedate;
@@ -231,10 +232,12 @@ SELECT COUNT(*) CT FROM siteobservation;
 SELECT COUNT(*) CT FROM sitestatus;
 SELECT COUNT(*) CT FROM statecounty;
 SELECT COUNT(*) CT FROM statuscode;
-SELECT COUNT(*) CT FROM nameaddress;
+SELECT COUNT(*) CT FROM taxonomyfamily;
+SELECT COUNT(*) CT FROM taxonomysubfamily;
 
 #### Squash migrations
 DROP TABLE IF EXISTS _prisma_migrations;
+DROP TABLE IF EXISTS nameaddress;
 DROP TABLE IF EXISTS checklist;
 DROP TABLE IF EXISTS site;
 DROP TABLE IF EXISTS sitedate;
@@ -242,7 +245,8 @@ DROP TABLE IF EXISTS siteobservation;
 DROP TABLE IF EXISTS sitestatus;
 DROP TABLE IF EXISTS statecounty;
 DROP TABLE IF EXISTS statuscode;
-DROP TABLE IF EXISTS nameaddress;
+DROP TABLE IF EXISTS taxonomysubfamily;
+DROP TABLE IF EXISTS taxonomyfamily;
 
 npx prisma migrate dev --name initial_migration
 npx prisma migrate dev --name <date + letter or number>
@@ -254,6 +258,7 @@ https://codepen.io/JEFworks/pen/XzKJmv
 
 paseto and auth0:
 https://github.com/auth0/auth0.js
+https://github.com/panva/paseto/
 
 
 // Create subclass

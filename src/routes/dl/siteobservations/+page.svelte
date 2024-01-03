@@ -4,7 +4,7 @@
 </script>
 
 <!-- siteobservations -->
-<div class="bg-red">Count: {data.siteobservations.length}</div>
+<div class="bg-red">SiteObservation Count: {data.siteobservations.length}</div>
 <section>
 	<ul class="siteobservations">
 		{#each data.siteobservations as siteobservation}

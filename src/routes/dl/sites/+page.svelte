@@ -4,7 +4,7 @@
 	export let data
 </script>
 
-<div class="bg-red">Count: {data.sites.length}</div>
+<div class="bg-red">Site Count: {data.sites.length}</div>
 <section>
 	<ul class="sites">
 		{#each data.sites as site}

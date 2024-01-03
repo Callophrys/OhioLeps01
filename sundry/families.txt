@@ -1,32 +1,162 @@
-    Papilionidae: swallowtails and parnassians (40 species)
-        Parnassiinae: parnassians (3 species)
-        Papilioninae: swallowtails (37 species)
-    Hesperiidae: skippers (300 species)
-        Pyrrhopyginae: firetips (1 species)
-        Pyrginae: spread-wing skippers (138 species)
-        Heteropterinae: skipperlings (7 species)
-        Hesperiinae: grass skippers (141 species)
-        Megathyminae: giant-skippers (13 species)
-    Pieridae: whites and sulphurs (70 species)
-        Pierinae: whites (29 species)
-        Coliadinae: sulphurs (40 species)
-        Dismorphiinae: mimic-whites (1 species)
-    Lycaenidae: gossamer-wings (144 species)
-        Miletinae: harvesters (1 species)
-        Lycaeninae: coppers (16 species)
-        Theclinae: hairstreaks (90 species)
-        Polyommatinae: blues (37 species)
-    Riodinidae: metalmarks (28 species)
-    Nymphalidae: brush-footed butterflies (233 species)
-        Libytheinae: snouts (1 species)
-        Heliconiinae: heliconians and fritillaries (40 species)
-        Nymphalinae: true brushfoots (76 species)
-        Limenitidinae: admirals, sisters and others (37 species)
-        Charaxinae: leafwings (8 species)
-        Apaturinae: emperors (5 species)
-        Morphinae: morphos (3 species)
-        Satyrinae: satyrs (49 species)
-        Danainae: milkweed butterflies and clearwings (8 species)
+[
+    {
+        family: "Papilionidae",
+        familyDescription: "swallowtails and parnassians",
+        familySpeciesCount": 40,
+        subfamilies: [
+            {
+                subfamily: "Parnassiinae",
+                subfamilyDescription: "parnassians",
+                subfamilySpeciesCount: 3,
+            },
+            {
+                subfamily: "Papilioninae",
+                subfamilyDescription: "swallowtails",
+                subfamilySpeciesCount: 37,
+            }
+        ]
+    },
+    {
+        family: "Hesperiidae",
+        familyDescription: "skippers",
+        familySpeciesCount: 300,
+        subfamilies: [
+            {
+                subfamily: "Pyrrhopyginae",
+                subfamilyDescription: "firetips",
+                subfamilySpeciesCount: 1
+            },
+            {
+                subfamily: "Pyrginae",
+                subfamilyDescription: "spread-wing skippers",
+                subfamilySpeciesCount: 138
+            },
+            {
+                subfamily: "Heteropterinae",
+                subfamilyDescription: "skipperlings",
+                subfamilySpeciesCount: 7
+            },
+            {
+                subfamily: "Hesperiinae",
+                subfamilyDescription: "grass skippers",
+                subfamilySpeciesCount: 141
+            },
+            {
+                subfamily: "Megathyminae",
+                subfamilyDescription: "giant-skippers",
+                subfamilySpeciesCount: 13
+            }
+        ]
+    },
+    {
+        family: "Pieridae",
+        familyDescription: "whites and sulphurs",
+        familySpeciesCount: 70,
+        subfamilies: [
+            {
+                subfamily: "Pierinae",
+                subfamilyDescription: "whites",
+                subfamilySpeciesCount: 29
+            },
+            {
+                subfamily: "Coliadinae",
+                subfamilyDescription: "sulphurs",
+                subfamilySpeciesCount: 40
+            },
+            {
+                subfamily: "Dismorphiinae",
+                subfamilyDescription: "mimic-whites",
+                subfamilySpeciesCount: 1
+            }
+        ]
+    },
+    {
+        family: "Lycaenidae",
+        familyDescription: "gossamer-wings",
+        familySpeciesCount: 144,
+        subfamilies: [
+            {
+                subfamily: "Miletinae",
+                subfamilyDescription: "harvesters",
+                subfamilySpeciesCount: 1
+            },
+            {
+                subfamily: "Lycaeninae",
+                subfamilyDescription: "coppers",
+                subfamilySpeciesCount: 16
+            },
+            {
+                subfamily: "Theclinae",
+                subfamilyDescription: "hairstreaks",
+                subfamilySpeciesCount: 90
+            },
+            {
+                subfamily: "Polyommatinae",
+                subfamilyDescription: "blues",
+                subfamilySpeciesCount: 37
+            }
+        ]
+    },
+    {
+        family: "Riodinidae",
+        familyDescription: "metalmarks",
+        familySpeciesCount: 28,
+        subfamilies: [
+        ]
+    },
+    {
+        family: "Nymphalidae",
+        familyDescription: "brush-footed butterflies",
+        familySpeciesCount: 233,
+        subfamilies: [
+            {
+                subfamily: "Libytheinae",
+                subfamilyDescription: "snouts",
+                subfamilySpeciesCount: 1
+            },
+            {
+                subfamily: "Heliconiinae",
+                subfamilyDescription: "heliconians and fritillaries",
+                subfamilySpeciesCount: 40
+            },
+            {
+                subfamily: "Nymphalinae",
+                subfamilyDescription: "true brushfoots",
+                subfamilySpeciesCount: 76
+            },
+            {
+                subfamily: "Limenitidinae",
+                subfamilyDescription: "admirals, sisters and others",
+                subfamilySpeciesCount: 37
+            },
+            {
+                subfamily: "Charaxinae",
+                subfamilyDescription: "leafwings",
+                subfamilySpeciesCount: 8
+            },
+            {
+                subfamily: "Apaturinae",
+                subfamilyDescription: "emperors",
+                subfamilySpeciesCount: 5
+            },
+            {
+                subfamily: "Morphinae",
+                subfamilyDescription: "morphos",
+                subfamilySpeciesCount: 3
+            },
+            {
+                subfamily: "Satyrinae",
+                subfamilyDescription: "satyrs",
+                subfamilySpeciesCount: 49
+            },
+            {
+                subfamily: "Danainae",
+                subfamilyDescription: "milkweed butterflies and clearwings",
+                subfamilySpeciesCount: 8
+            }
+        ]
+    }
+]
 ======================================================================
 Subfamily Miletinae: harvesters
 Harvester, Feniseca tarquinius

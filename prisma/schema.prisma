@@ -12,6 +12,23 @@ datasource db {
 
 // createdAt, createdBy, changedAt, changedBy
 
+//model TaxonomyFamily {
+//    familyId Int @id @default(autoincrement())
+//    family String @unique
+//    familyDescription String
+//    familySpeciesCount String
+//    subfamilies TaxonomySubfamily[]
+//}
+//
+//model TaxonomySubfamily {
+//    subamilyId Int @id @default(autoincrement())
+//    subfamily String @unique
+//    subfamilyDescription String
+//    subfamilySpeciesCount String
+//    familyId Int
+//    family TaxonomyFamily @relation(fields: [familyId], references: [familyId])
+//}
+
 model StateCounty {
     stateCountyId Int @id
     state String // @db.String(2)
@@ -67,10 +84,12 @@ model Site {
     stateCountyId Int //@default(0) // new so need SQL to get this using county field
     
     // Relations
-    //siteDates SiteDate[]
+    siteDates SiteDate[]
 
     // Relations
-    //siteStatuses SiteStatus[]
+    siteStatuses SiteStatus[]
+    
+    //@@index([stateCountyId]); // error on run
 }
 
 model Checklist {
@@ -108,7 +127,7 @@ model Checklist {
     //@@unique([checklistKey])
 
     // Relations
-    //siteObservations SiteObservation[]
+    siteObservations SiteObservation[]
 }
 
 model SiteObservation {
@@ -137,12 +156,15 @@ model SiteObservation {
     dateChg DateTime @default(now())
   
     // Relations
-    //checklist Checklist @relation(fields: [checklistId], references: [checklistId])
-    //checklistId Int //@default(0) // new so need SQL to get this
+    checklist Checklist? @relation(fields: [checklistId], references: [checklistId])
+    checklistId Int? //@default(0) // new so need SQL to get this
 
     // Relations
-    //siteDate SiteDate @relation(fields: [siteDateId], references: [siteDateId])
-    //siteDateId Int //@default(0) // new so need SQL to get this
+    siteDate SiteDate? @relation(fields: [siteDateId], references: [siteDateId])
+    siteDateId Int? //@default(0) // new so need SQL to get this
+    
+    //@@index([checklistId]); // error on run
+    //@@index([siteDateId]);  // error on run
 }
 
 model StatusCode {
@@ -165,10 +187,11 @@ model SiteStatus {
     // provided by load 'statusCodeId Int'
 
     // Relations
-    //site Site @relation(fields: [siteId], references: [siteId])
-    // provided by load 'siteId Int'
+    site Site @relation(fields: [siteId], references: [siteId])
+    // provided by load: 'siteId Int'
   
     @@unique([siteId, year])
+    @@index([siteId])
 }
 
 enum Weather {
@@ -238,13 +261,15 @@ model SiteDate {
     dateChg DateTime @default(now())
     
     // Relations
-    //site Site @relation(fields: [siteId], references: [siteId])
-    //siteId Int //@default(0) // Provided by load
+    site Site @relation(fields: [siteId], references: [siteId])
+    // provided by load: siteId Int //@default(0)
     
     // Relations
-    //siteObservations SiteObservation[]
+    siteObservations SiteObservation[]
 
     //@@unique([seqId, siteId])
+    
+    @@index([siteId])
 }
 
 model NameAddress {

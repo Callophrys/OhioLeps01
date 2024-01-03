@@ -2,55 +2,33 @@ import { PrismaClient } from "@prisma/client"
 const db = new PrismaClient()
 
 /*
-import seedStatusCode from './seed.statuscode'
-import seedSiteStatus from './seed.sitestatus'
-import seedStateCounty from './seed.statecounty'
-import seedSite from './seed.site'
-import seedNameAddress from './seed.nameaddress'
-*/
-
-/*
-import seedSiteDate from './seed.sitedate'
-import seedSiteObservation from './seed.siteobservation'
-import seedChecklist from './seed.checklist'
-*/
-
-/*
-await seedStatusCode();
-await seedSiteStatus();
-await seedStateCounty();
-await seedSite();
-await updateSiteForCounty();
-await seedNameAddress();
-*/
-
-/*
-await seedSiteDate();
-await seedSiteObservation();
-await seedChecklist();
+import seedNameAddress from './seed.nameaddress'; await seedNameAddress();
+import seedStatusCode from './seed.statuscode'; await seedStatusCode();
+import seedSiteStatus from './seed.sitestatus'; await seedSiteStatus();
+import seedStateCounty from './seed.statecounty'; await seedStateCounty();
+import seedSite from './seed.site'; await seedSite();
+await updateSiteForCounty(); // then update these in schema
+import seedSiteDate from './seed.sitedate'; await seedSiteDate();
+import seedChecklist from './seed.checklist'; await seedChecklist();
+import seedSiteObservation from './seed.siteobservation'; await seedSiteObservation();
 await updateSiteObservationForSiteDate();
 await updateSiteObservationForChecklist();
 */
 
+/*
+*/
+
+/*
+import seedTaxonomyFamily from "./seed.taxonomy.family"; seedTaxonomyFamily();
+*/
+
+/*
+*/
+
 async function updateSiteForCounty() {
-  /* will migration stuff remove this?
-     Be careful with un/commenting in seed.ts
-  */
   let result = await db.$executeRaw`
     UPDATE site s JOIN statecounty y ON s.county = y.county SET s.stateCountyId = y.stateCountyId`;
   console.log("Updated " + result + " site records for relation to county.")
-  
-  /*
-  result = await db.$executeRaw`
-    ALTER TABLE site ALTER COLUMN stateCountyId DROP DEFAULT`
-  console.log("Default to 0 removed from stateCountyId of site table.")
-
-  result = await db.$executeRaw`
-    ALTER TABLE Site ADD CONSTRAINT Site_stateCountyId_fkey
-    FOREIGN KEY (stateCountyId)
-    REFERENCES StateCounty(stateCountyId) ON DELETE RESTRICT ON UPDATE CASCADE`;
-  console.log("Added foreign key to site table to state-county table.")
-  */
 }
 
 async function updateSiteObservationForChecklist() {

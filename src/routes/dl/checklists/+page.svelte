@@ -4,7 +4,7 @@
 </script>
 
 <!-- Checklists -->
-<div class="bg-red">Count: {data.checklists.length}</div>
+<div class="bg-red">Checklist (species) Count: {data.checklists.length}</div>
 <section>
 	<ul class="checklists">
 		{#each data.checklists as checklist}
