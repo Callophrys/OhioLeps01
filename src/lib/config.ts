@@ -5,3 +5,13 @@ export const description: string = "Xzy Cba"; // "Ohio Lepidopterists' Long-Term
 export const url: string = dev ? 'http://localhost:5173/' : 'https://mylongwindedurl.sfx/';
 export const showAnimatedIcon: boolean = false; //true;
 export const showAppBar: boolean = true;
+export const monitorSeason = {
+    start: {
+        month: 4,
+        day: 1
+    },
+    end: {
+        month: 10,
+        day: 1
+    }
+}
