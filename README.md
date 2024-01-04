@@ -273,3 +273,22 @@ const stateCountiesWithSites = Prisma.validator<Prisma.StateCountyDefaultArgs>()
 	include: { sites: true }
 });
 type StateCountiesWithSites = Prisma.StateCountyGetPayload<typeof stateCountiesWithSites>;
+
+https://www.paigeniedringhaus.com/blog/tips-and-tricks-for-using-the-prisma-orm
+https://www.mikenikles.com/blog/svelte-kit-prisma-a-match-made-in-digital-heaven
+https://github.com/mootoday/sveltekit-prisma  // hooks
+https://github.com/prisma/prisma-client-extensions
+
+
+- export and use globals
+
+- I use this nasty trick to disable type checking of a single attribue :
+```
+<script lang="ts">
+	const notypecheck = (x:any)=>x;
+</script>
+
+<MyComponent {...notypecheck({
+    attribute:  value
+})} />
+```

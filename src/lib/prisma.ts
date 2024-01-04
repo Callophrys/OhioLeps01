@@ -1,10 +1,12 @@
 import { PrismaClient } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 
 
 /*
 https://www.prisma.io/docs/orm/prisma-client/client-extensions/type-utilities
 https://www.prisma.io/docs/orm/prisma-client/type-safety/operating-against-partial-structures-of-model-types
 https://www.prisma.io/docs/orm/prisma-client/queries/computed-fields#using-a-computation-function
+https://github.com/prisma/prisma-client-extensions
 
 */
 
@@ -26,6 +28,12 @@ const prisma = new PrismaClient().$extends({
                 needs: { sites: true },
                 compute(stateCounty) {
                     return stateCounty.sites.length !== 0;
+                }
+            },
+            siteCount: {
+                needs: { sites: true },
+                compute(stateCounty) {
+                    return stateCounty.sites.length;
                 }
             }
         }

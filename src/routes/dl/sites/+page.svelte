@@ -1,26 +1,30 @@
 <script lang="ts">
+	import StandardContainer from '$lib/components/StandardContainer.svelte';
 	import { formatDate } from '$lib/utils'
-	import * as config from '$lib/config'
 	export let data
 </script>
 
-<div class="bg-red">Site Count: {data.sites.length}</div>
-<section>
-	<ul class="sites">
-		{#each data.sites as site}
-			<li class="site">
-				<a href="/sites/{site.siteId}" class="title">{site.siteName}
-				<div class="date">{formatDate(site.changeDate)}</div>
-				<div class="border border-solid border-slate-900">
-					{site.siteAddress ?? ''}{
-					#if site.siteCityStateZip}
-						{site.siteAddress ? ',' : ''} {site.siteCityStateZip}{
-					/if}&nbsp;&#124;&nbsp;{site.stateCounty.state} (County: {site.stateCounty.county})</div>
-				</a>
-		</li>
-		{/each}
-	</ul>
-</section>
+<StandardContainer>
+	
+	<div class="bg-red">Site Count: {data.sites.length}</div>
+	<section>
+		<ul class="sites">
+			{#each data.sites as site}
+				<li class="site">
+					<a href="/sites/{site.siteId}" class="title">{site.siteName}
+					<div class="date">{formatDate(site.changeDate)}</div>
+					<div class="border border-solid border-slate-900">
+						{site.siteAddress ?? ''}{
+						#if site.siteCityStateZip}
+							{site.siteAddress ? ',' : ''} {site.siteCityStateZip}{
+						/if}&nbsp;&#124;&nbsp;{site.stateCounty.state} (County: {site.stateCounty.county})</div>
+					</a>
+			</li>
+			{/each}
+		</ul>
+	</section>
+	
+</StandardContainer>
 
 <style>
 	.sites {

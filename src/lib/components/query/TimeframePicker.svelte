@@ -36,6 +36,7 @@
 </div>
 
 <div class="pl-8 space-y-2">
+
 	<label class="flex">
 		<span class="w-12 pr-4">From</span>
 		<input class="input w-36 px-2" type={dateRangeMode === 0 ? 'date' : 'week'} min={monitorStartDate} />
@@ -47,6 +48,7 @@
 		<input class="input w-36 px-2" type={dateRangeMode === 0 ? 'date' : 'week'} min={monitorStartDate} />
 		<span class="validity pl-1 text-warning-500"></span>
 	</label>
+
 </div>
 
 <style>

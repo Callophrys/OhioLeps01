@@ -1,4 +1,5 @@
 <script lang="ts">
+    import type { ChecklistCombinedName } from '$lib/types';
     import type { Checklist } from '@prisma/client';
     import { popup } from '@skeletonlabs/skeleton';
     import type { PopupSettings } from '@skeletonlabs/skeleton';
@@ -13,7 +14,7 @@
     };
 
 	export let initialUseLatinChoice: number = 0;
-	export let speciesChecklist: Checklist[] = [];
+	export let speciesChecklist: ChecklistCombinedName<Checklist>[] = [];
     
 	let useLatin: number;
 	let speciesChecked: number[] = [];
@@ -21,7 +22,7 @@
 	function toggleAllSpecies() {
         allSelected = !allSelected;
 		if (allSelected) {
-			speciesChecked = speciesChecklist.map(c => c.checklistId);
+			speciesChecked = speciesChecklist.map(c => c.checklistId) as number[];
 		} else {
 			speciesChecked = [];
 		}
@@ -68,7 +69,7 @@
 
     <div class="flex justify-between space-x-2">
         <span class="my-auto">Naming</span>
-        <div><!-- class="scale-75 origin-right" -->
+        <div class="scale-75 origin-right">
         <RadioGroup active="variant-filled-primary" hover="hover:variant-soft-primary">
             <RadioItem bind:group={useLatin} name="justify" value={0}>Common</RadioItem>
             <RadioItem bind:group={useLatin} name="justify" value={1}>Latin</RadioItem>

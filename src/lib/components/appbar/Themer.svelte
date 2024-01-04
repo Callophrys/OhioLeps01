@@ -61,5 +61,4 @@
 		<ListBoxItem bind:group={comboboxValue} name="medium" on:click={handleClick} value={theme}>{theme.replace('-', ' ')}</ListBoxItem>
     {/each}
 	</ListBox>
-	<div class="arrow bg-surface-100-800-token" />
 </div>

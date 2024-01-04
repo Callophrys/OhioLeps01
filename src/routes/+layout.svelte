@@ -1,7 +1,6 @@
 <script lang="ts">
     import '../app.css';
     import * as config from '$lib/config'
-    //import { TabGroup, Tab, TabAnchor, initializeStores } from '@skeletonlabs/skeleton';
     import { AppShell, AppBar, Avatar, LightSwitch  } from '@skeletonlabs/skeleton';
     import { computePosition, autoUpdate, offset, shift, flip, arrow } from '@floating-ui/dom';
     import { storePopup } from '@skeletonlabs/skeleton';
@@ -42,11 +41,12 @@
             <svelte:fragment slot="trail">
                 <div class="columns-2 w-fit h-24 flex">
 
-                    <div class="my-auto pr-2">
+                    <div class="my-auto space-x-2 space-y-2">
                     
                         {#if (!loggedInValue)}
                         <a class="btn variant-filled w-36 justify-between" href="/login" on:click={()=>loggedInValue=!loggedInValue}>
                             <span class="capitalize">Login</span>
+                            <i class="fa-solid fa-arrow-right-to-bracket"></i>
                         </a>
                         {:else}
                         <a class="btn variant-filled w-36 justify-between" href="/logout" on:click={()=>loggedInValue=!loggedInValue}>
@@ -54,8 +54,30 @@
                         </a>
                         {/if}
 
-                        <Help />
+                        <Help>
+                            <nav class="list-nav">
+                                <ul class="">
+                                    <li class="">
+                                        <a href="https://tailwindcss.com/docs/container" target="_blank" class="hover:rounded-none">TailwindCSS</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.skeleton.dev/elements/forms" target="_blank" class="hover:rounded-none">SkeletonUI</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://svelte.dev/docs/components" target="_blank">Svelte</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://kit.svelte.dev/docs/routing" target="_blank">Sveltekit</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.prisma.io/docs/orm/prisma-schema/data-model/models" target="_blank">Prisma</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </Help>
+
                         <Themer />    
+
                     </div>
 
                     <Avatar src="https://i.pravatar.cc/"

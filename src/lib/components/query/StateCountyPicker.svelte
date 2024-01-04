@@ -1,5 +1,6 @@
 <script lang="ts">
     import type { StateCounty } from '@prisma/client';
+    import type { StateCountyIsMonitored } from '$lib/types'
     import { popup } from '@skeletonlabs/skeleton';
     import type { PopupSettings } from '@skeletonlabs/skeleton';
     import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
@@ -12,18 +13,18 @@
         placement: 'bottom',
     };
 
-	export let stateCounties: StateCounty[] = [];
+	export let stateCounties: StateCountyIsMonitored<StateCounty>[] = [];
 	export let initialHideUnmonitoredChoice: number = 0;
 
     let comboboxValue: string;
 	
-    let hideUnmonitoredCounties: boolean;
+    let hideUnmonitoredCounties: number;
 	let counties: number[] = [];
 
 	function toggleAllCounties() {
         allSelected = !allSelected;
 		if (allSelected) {
-			counties = stateCounties.filter(c => c.isMonitored).map(c => c.stateCountyId);
+			counties = stateCounties.filter(c => c.isMonitored).map(c => c.stateCountyId) as number[];
 		} else {
 			counties = [];
 		}
@@ -32,9 +33,9 @@
 	onMount(() => {
         let x: string = localStorage?.useHideUnmonitoredChoice;
         if (x && x.length) {
-			hideUnmonitoredCounties = (x === "1");
+			hideUnmonitoredCounties = parseInt(x);
 		} else {
-			hideUnmonitoredCounties = (initialHideUnmonitoredChoice === 1);
+			hideUnmonitoredCounties = initialHideUnmonitoredChoice;
 		}
 
         toggleAllCounties();
@@ -66,13 +67,15 @@
          checked={allSelected} on:click={toggleAllCounties} /><input hidden>
     </label>
 
-    <div class="flex justify-between space-x-2">
-        <span class="my-auto">Unmonitored counties</span>
-        <div class="scale-75 origin-right">
+    <div class="h-full grid grid-cols-2">
+        <div class="flex"><span class="my-auto">Unmonitored</span></div>
+        <div class="mt-1 mr-20">
+        <div class="scale-75 origin-top-right">
         <RadioGroup active="variant-filled-primary" hover="hover:variant-soft-primary">
             <RadioItem bind:group={hideUnmonitoredCounties} name="justify" value={0}>Show</RadioItem>
             <RadioItem bind:group={hideUnmonitoredCounties} name="justify" value={1}>Hide</RadioItem>
         </RadioGroup>
+        </div>
         </div>
     </div>
 
