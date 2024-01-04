@@ -236,12 +236,15 @@ SELECT COUNT(*) CT FROM taxonomyfamily;
 SELECT COUNT(*) CT FROM taxonomysubfamily;
 
 #### Squash migrations
+ALTER TABLE SITEOBSERVATION DROP FOREIGN KEY SiteObservation_checklistId_fkey;
+ALTER TABLE SITE DROP FOREIGN KEY Site_stateCountyId_fkey;
+ALTER TABLE SITEDATE DROP FOREIGN KEY SiteDate_siteId_fkey;
+ALTER TABLE SITEDATE DROP FOREIGN KEY SiteObservation_siteDateId_fkey;
+
 DROP TABLE IF EXISTS _prisma_migrations;
 DROP TABLE IF EXISTS nameaddress;
 DROP TABLE IF EXISTS checklist;
-ALTER TABLE SITE DROP FOREIGN KEY Site_stateCountyId_fkey;
 DROP TABLE IF EXISTS site;
-ALTER TABLE SITEDATE DROP FOREIGN KEY SiteDate_siteId_fkey;
 DROP TABLE IF EXISTS sitedate;
 DROP TABLE IF EXISTS siteobservation;
 DROP TABLE IF EXISTS sitestatus;

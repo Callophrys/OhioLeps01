@@ -1,7 +1,6 @@
 import { PrismaClient } from "@prisma/client"
 const db = new PrismaClient()
 
-/*
 import seedNameAddress from './seed.nameaddress'; await seedNameAddress();
 import seedStatusCode from './seed.statuscode'; await seedStatusCode();
 import seedStateCounty from './seed.statecounty'; await seedStateCounty();
@@ -11,6 +10,7 @@ await updateSiteForCounty(); // then update these in schema
 import seedSiteDate from './seed.sitedate'; await seedSiteDate();
 import seedChecklist from './seed.checklist'; await seedChecklist();
 import seedSiteObservation from './seed.siteobservation'; await seedSiteObservation();
+/*
 */
 
 await updateSiteObservationForSiteDate();
