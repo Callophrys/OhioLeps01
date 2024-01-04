@@ -98,7 +98,7 @@ model Checklist {
     genus String // @db.String(20)
     species String // @db.String(20)
     subspecies String? // @db.String(16)
-    combinedLatin String // @db.String(50)
+    combinedLatin String // @db.String(50) // DOOMED
     commonName String? // @db.String(30)
     show Boolean
     kind String // @db.String(1)
