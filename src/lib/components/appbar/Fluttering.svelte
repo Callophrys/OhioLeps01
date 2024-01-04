@@ -26,7 +26,8 @@ $: {
 </script>
 
 <!-- SVG modified from freepik.com -->
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve" xmlns:xml="http://www.w3.org/XML/1998/namespace" class="svg-defs">
+<!-- [old ]<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve" xmlns:xml="http://www.w3.org/XML/1998/namespace" class="svg-defs">-->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve" class="svg-defs">
     <defs>	
 	<g id="shape-moth">
 	    <path id="main" style="fill:{fillColor};" d="M2.457,32.759c6.752,15.757,12.862,9.004,19.615,31.513
@@ -352,6 +353,7 @@ $: {
   -o-transform: rotate3d(1, 0.5, 0, 50deg);
   transform: rotate3d(1, 0.5, 0, 50deg);
 }
+/*
 .butterfly_container var.translate3d {
   -webkit-animation: fluttering 10s ease-in-out infinite;
   -moz-animation: fluttering 10s ease-in-out infinite;
@@ -359,6 +361,7 @@ $: {
   -o-animation: fluttering 10s ease-in-out infinite;
   animation: fluttering 10s ease-in-out infinite;
 }
+*/
 .butterfly_container figure.butterfly {
   position: absolute;
   left: 50%;

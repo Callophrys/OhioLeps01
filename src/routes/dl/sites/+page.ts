@@ -1,5 +1,5 @@
 export async function load({ fetch }) {
-	const response = await fetch('../api/sites')
+	const response = await fetch('../../api/sites')
 	/*
 	response.text()
     .then((text) => {

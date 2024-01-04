@@ -11,13 +11,8 @@
     import Help from '$lib/components/appbar/Help.svelte'
     import Themer from '$lib/components/appbar/Themer.svelte'
     import Fluttering from '$lib/components/appbar/Fluttering.svelte'
-    import { iAmLoggedIn } from '$lib/stores';
     
-    let loggedInValue: boolean;
-
-	iAmLoggedIn.subscribe((value) => {
-		loggedInValue = value;
-	});
+    export let loggedInValue: boolean = false;
     
 </script>
 
@@ -46,22 +41,23 @@
 
             <svelte:fragment slot="trail">
                 <div class="columns-2 w-fit h-24 flex">
+
                     <div class="my-auto pr-2">
                     
-{#if (!loggedInValue)}
-<a class="btn variant-filled w-36 justify-between" href="/login">
-	<span class="capitalize">Login</span>
-</a>
-{:else}
-<a class="btn variant-filled w-36 justify-between" href="/login">
-	<span class="capitalize">Logout</span>
-</a>
-{/if}
+                        {#if (!loggedInValue)}
+                        <a class="btn variant-filled w-36 justify-between" href="/login" on:click={()=>loggedInValue=!loggedInValue}>
+                            <span class="capitalize">Login</span>
+                        </a>
+                        {:else}
+                        <a class="btn variant-filled w-36 justify-between" href="/logout" on:click={()=>loggedInValue=!loggedInValue}>
+                            <span class="capitalize">Logout</span>
+                        </a>
+                        {/if}
 
-
-                            <Help />
-                            <Themer />    
+                        <Help />
+                        <Themer />    
                     </div>
+
                     <Avatar src="https://i.pravatar.cc/"
                         initials="OH"
                         width="w-24"

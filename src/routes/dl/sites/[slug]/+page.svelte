@@ -5,7 +5,7 @@
 
 <hgroup>
   <h1>{data.site.siteName}</h1>
-  <h2>{formatDate(data.site.changeDate)}</h2>
+  <h2>{formatDate(data.site.changeDate.toDateString())}</h2>
 </hgroup>
 
 <h2>Check out this site</h2>

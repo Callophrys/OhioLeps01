@@ -16,6 +16,7 @@ export let data: PageData;
   //const { stateCounty } = data;
 */
 
+/*
   const deleteStateCounty = async () => {
     await (
       await fetch(`/api/stateCounty/${data.stateCounty.stateCountyId}`, {
@@ -33,6 +34,7 @@ export let data: PageData;
     ).json()
     goto('/')
   }
+  */
 </script>
 
 <div class="page">
@@ -46,7 +48,8 @@ export let data: PageData;
         <button on:click={publishStateCounty}>Publish</button>
       {/if}
       -->
-      <button on:click={deleteStateCounty}>Delete</button>
+      <!--<button on:click={deleteStateCounty}>Delete</button>-->
+      <button class="btn variant-filled">Blank</button>
     </div>
   </main>
 </div>
