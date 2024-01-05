@@ -17,9 +17,6 @@ Need IP blocking (start with whitelisting USA), relog delays, and account disabl
 https://github.com/prisma/prisma-examples/blob/latest/typescript/rest-nextjs-api-routes/prisma/seed.ts
 
 
-# create-svelte
-
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
 
 ## Creating a project
 
@@ -157,21 +154,9 @@ Probably can remove ts-node and tsx after db seeding is done.
 Bring in tailwind/forms and skeleton/ui as needed.
 
 #### 12/28/23
-```
-mysql> select * from checklist where checklistKey is null;
-+------------+---------+------------+--------------------------+------------------------+------+------+---------+--------+------+------------+----------+---------+------------+---------+--------+-------+-----+-----------+--------------------+----------------+---------------+-------------+--------------+-------------+----------------+
-| genus      | species | subspecies | combinedLatin            | commonName             | show | kind | revised | author | year | changeDate | changeBy | comment | endangered | synonym | family | gCKey | grp | sortOrder | tmp_SitesReporting | tmp_TotalCount | tmp_HighCount | checklistId | checklistKey | countyCount | referenceCount |
-+------------+---------+------------+--------------------------+------------------------+------+------+---------+--------+------+------------+----------+---------+------------+---------+--------+-------+-----+-----------+--------------------+----------------+---------------+-------------+--------------+-------------+----------------+
-| Epargyreus | clarus  | clarus     | Epargyreus clarus clarus | Silver-spotted Skipper |    1 | S    | T       | Cramer | 1779 | NULL       | NULL     | NULL    | NULL       | NULL    |     40 |    40 |   0 | NULL      |                  0 |              0 |             0 |        3870 | NULL         |           0 |              0 |
-+------------+---------+------------+--------------------------+------------------------+------+------+---------+--------+------+------------+----------+---------+------------+---------+--------+-------+-----+-----------+--------------------+----------------+---------------+-------------+--------------+-------------+----------------+
-1 row in set (0.00 sec)
-
-mysql> update checklist set checklistKey = '3870' where checklistKey is null;
-Query OK, 1 row affected (0.01 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
 
 mysql> select * from checklist where checklistKey is null;
-Empty set (0.00 sec)
+
 ```
 
 ```
@@ -276,7 +261,7 @@ type StateCountiesWithSites = Prisma.StateCountyGetPayload<typeof stateCountiesW
 
 https://www.paigeniedringhaus.com/blog/tips-and-tricks-for-using-the-prisma-orm
 https://www.mikenikles.com/blog/svelte-kit-prisma-a-match-made-in-digital-heaven
-https://github.com/mootoday/sveltekit-prisma  // hooks
+  https://github.com/mootoday/sveltekit-prisma  // hooks
 https://github.com/prisma/prisma-client-extensions
 
 

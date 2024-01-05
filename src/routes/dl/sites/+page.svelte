@@ -8,7 +8,7 @@
 	
 	<div class="bg-red">Site Count: {data.sites.length}</div>
 	<section>
-		<ul class="sites">
+		<ul>
 			{#each data.sites as site}
 				<li class="site">
 					<a href="/sites/{site.siteId}" class="title">{site.siteName}
@@ -25,14 +25,3 @@
 	</section>
 	
 </StandardContainer>
-
-<style>
-	.sites {
-		display: grid;
-		gap: 2rem;
-	}
-	.title {
-		font-size: var(--font-size-fluid-3);
-		text-transform: capitalize;
-	}
-</style>

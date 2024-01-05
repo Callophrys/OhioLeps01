@@ -12,11 +12,6 @@ export async function load({ fetch }) {
 			responseSpecies.json()
 		]);
 
-	/*
-	const stateCounties = await responseStateCounties.json();
-	const speciesList = await responseSpecies.json();
-	*/
-
 	return { stateCounties, speciesList };
 }
 

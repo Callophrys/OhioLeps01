@@ -5,9 +5,10 @@
 
 <!-- Checklists -->
 <StandardContainer>
+
 	<div class="bg-red">Checklist (species) Count: {data.checklists.length}</div>
 	<section>
-		<ul class="checklists">
+		<ul>
 			{#each data.checklists as checklist}
 				<li class="checklist">
 					<div class="grid grid-cols-4 gap-2">
@@ -19,4 +20,5 @@
 			{/each}
 		</ul>
 	</section>
+
 </StandardContainer>
