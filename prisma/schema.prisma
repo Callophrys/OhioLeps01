@@ -39,7 +39,6 @@ model Taxonomy {
     baseTaxon   Taxonomy?   @relation("TaxonomicTree", fields: [baseTaxonId], references: [id])
     branchTaxa  Taxonomy[]  @relation("TaxonomicTree")
 
-    @@unique([taxonType, latinName])
     @@index([taxonType, latinName])
 }
 

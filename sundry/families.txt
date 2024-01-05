@@ -214,15 +214,9 @@ Acmon blue, Icaricia acmon
     
 ======================================================================
 Subfamily Pyrrhopyginae: firetips
-
     Dull firetip, Pyrrhopyge araxes
 
 Subfamily Pyrginae: spread-wing skippers
-Silver-spotted skipper, Epargyreus clarus
-Long-tailed skipper, Urbanus proteus
-Golden banded-skipper, Autochton cellus
-Common checkered-skipper, Pyrgus communis
-
     Beautiful beamer, Phocides belus
     Mercurial skipper, Proteides mercurius
     Mangrove skipper, Phocides pigmalion
@@ -368,8 +362,6 @@ Common checkered-skipper, Pyrgus communis
         McNeill's saltbush sootywing, Hesperopsis alpheus gracielae
 
 Subfamily Heteropterinae: skipperlings
-Arctic skipper, Carterocephalus palaemon
-
     Arctic skipper, Carterocephalus palaemon
     Russet skipperling, Piruna pirus
     Four-spotted skipperling, Piruna polingi
