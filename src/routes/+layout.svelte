@@ -41,7 +41,7 @@
             <svelte:fragment slot="trail">
                 <div class="columns-2 w-fit h-24 flex">
 
-                    <div class="my-auto space-x-2 space-y-2">
+                    <div class="my-auto space-x-2 space-y-2 pr-2">
                     
                         {#if (!loggedInValue)}
                         <a class="btn variant-filled w-36 justify-between" href="/login" on:click={()=>loggedInValue=!loggedInValue}>

@@ -1,15 +1,15 @@
 <script lang="ts">
 
 	import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
-	import { monitorSeason, monitorStartYear } from '$lib/config';
+	import { monitorSeason } from '$lib/config';
 	import { afterUpdate, onMount } from 'svelte';
 	import { browser } from '$app/environment';
 
 	export let initialDateRangeChoice: number = 0;
 
 	let dateRangeMode: number;
-	let { month, day }: any = monitorSeason.start;
-	let todayDate = new Date(monitorStartYear, month - 1, day);
+	let { month, day, year }: any = monitorSeason.start;
+	let todayDate = new Date(year, month - 1, day);
 	todayDate.setMinutes(todayDate.getMinutes() - todayDate.getTimezoneOffset());
 	let monitorStartDate = todayDate.toISOString().slice(0,10);
 

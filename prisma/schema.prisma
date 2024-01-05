@@ -1,8 +1,10 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// Prisma schema file
+// Learn more at: https://pris.ly/d/prisma-schema
 
+// added previewFeatures to allow for non-key uniques to work on updates
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["extendedWhereUnique"]
 }
 
 datasource db {
@@ -11,6 +13,35 @@ datasource db {
 }
 
 // createdAt, createdBy, changedAt, changedBy
+
+enum TaxonomicType {
+    K
+    P
+    SP
+    C
+    O
+    F
+    SF
+    G
+    S
+    SS
+}
+
+model Taxonomy {
+    id Int @id @default(autoincrement())
+    taxonType TaxonomicType
+    latinName String
+    commonName String?
+    // Could calculate speciesCount.  But since already known and unlikely to change just populate it.
+    speciesCount Int @default(0)
+
+    baseTaxonId Int?
+    baseTaxon   Taxonomy?   @relation("TaxonomicTree", fields: [baseTaxonId], references: [id])
+    branchTaxa  Taxonomy[]  @relation("TaxonomicTree")
+
+    @@unique([taxonType, latinName])
+    @@index([taxonType, latinName])
+}
 
 //model TaxonomyFamily {
 //    familyId Int @id @default(autoincrement())

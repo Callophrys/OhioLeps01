@@ -6,6 +6,7 @@
     import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
     import { SlideToggle } from '@skeletonlabs/skeleton';
     import { afterUpdate, onMount } from 'svelte';
+	import { showStateProvince } from '$lib/config';
 
     const popupComboboxStateCounty: PopupSettings = {
         event: 'focus-click',
@@ -51,7 +52,7 @@
 
 <div class="flex items-center space-x-2">
     <button class="btn variant-filled w-auto justify-between" use:popup={popupComboboxStateCounty}>
-        <span class="capitalize">State/Counties</span>
+        <span class="capitalize">{(showStateProvince ? 'State/' : '') + 'Counties'}</span>
         <span>↓</span>
     </button>
     <div class="text-warning-500 italic text-sm">

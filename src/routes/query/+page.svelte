@@ -9,14 +9,59 @@
 	
 let myTreeViewNodes: TreeViewNode[] = [
 	{
-		id: 'unique-id',
-		content: 'content',
+		id: 'unique-id-1-p',
+		content: 'programming',
 		lead: '(icon)',
-		children: [ ]
+		children: [
+			{
+				id: 'unique-id-2-d',
+				content: 'database',
+				lead: '(icon)',
+				children: [
+					{
+						id: 'unique-id-3-m',
+						content: 'mongodb',
+						lead: '(icon)',
+						children: [ ]
+					},
+					{
+						id: 'unique-id-3-mysql',
+						content: 'mysql',
+						lead: '(icon)',
+						children: [ ]
+					}
+				]
+			},
+			{
+				id: 'unique-id-2-l',
+				content: 'language',
+				lead: '(icon)',
+				children: [
+					{
+						id: 'unique-id-33-j',
+						content: 'javascript',
+						lead: '(icon)',
+						children: [ ]
+					},
+					{
+						id: 'unique-id-33-h',
+						content: 'haskell',
+						lead: '(icon)',
+						children: [ ]
+					}
+				]
+			},
+			{
+				id: 'unique-id-2-f',
+				content: 'framework',
+				lead: '(icon)',
+				children: [ ]
+			}
+		 ]
 	},
 	{
-		id: 'unique-id-2',
-		content: 'content',
+		id: 'unique-id-1-b',
+		content: 'books',
 		lead: '(icon)',
 		children: [ ]
 	}
@@ -43,6 +88,20 @@ let indeterminateNodes : string[] = ['programming', 'language'];
 			</button>
 		</div>
 		
+		<hr>
+
+		<RecursiveTreeView 
+			selection 
+			multiple 
+			relational 
+			nodes={myTreeViewNodes} 
+			bind:checkedNodes={checkedNodes} 
+			bind:indeterminateNodes={indeterminateNodes}/>
+
+	</svelte:fragment>
+
+	<svelte:fragment slot="right">
+		<span class="">Results</span>
 		<TreeView>
 			<TreeViewItem>
 				(item 1)
@@ -68,20 +127,6 @@ let indeterminateNodes : string[] = ['programming', 'language'];
 			</TreeViewItem>
 		</TreeView>
 		
-		<hr>
-
-<RecursiveTreeView 
-	selection 
-	multiple 
-	relational 
-	nodes={myTreeViewNodes} 
-	bind:checkedNodes={checkedNodes} 
-	bind:indeterminateNodes={indeterminateNodes}/>
-
-	</svelte:fragment>
-
-	<svelte:fragment slot="right">
-		<span class="">Results</span>
 	</svelte:fragment>
 
 </DoubledContainer>
