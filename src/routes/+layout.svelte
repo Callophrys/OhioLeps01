@@ -104,6 +104,7 @@
                 <li><a href="/dl/siteobservations">Site Observations</a></li>
                 <li><a href="/dl/checklists">Checklists</a></li>
                 <li><a href="/dl/statecounties">State-County</a></li>
+                <li><a href="/dl/taxonomy">Butterflies of North America</a></li>
                 <li><a href="/dl/nameaddresses">Name-Address (auth)</a></li>
             </ul>
         </nav>
