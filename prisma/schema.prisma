@@ -35,29 +35,38 @@ model Taxonomy {
     // Could calculate speciesCount.  But since already known and unlikely to change just populate it.
     speciesCount Int @default(0)
 
+    // Parent of self
     baseTaxonId Int?
     baseTaxon   Taxonomy?   @relation("TaxonomicTree", fields: [baseTaxonId], references: [id])
+    
+    // Children of self
     branchTaxa  Taxonomy[]  @relation("TaxonomicTree")
+    
+    // Checklist - not working yet
+    //checklist  Checklist[]
 
     @@index([taxonType, latinName])
 }
 
-//model TaxonomyFamily {
-//    familyId Int @id @default(autoincrement())
-//    family String @unique
-//    familyDescription String
-//    familySpeciesCount String
-//    subfamilies TaxonomySubfamily[]
-//}
-//
-//model TaxonomySubfamily {
-//    subamilyId Int @id @default(autoincrement())
-//    subfamily String @unique
-//    subfamilyDescription String
-//    subfamilySpeciesCount String
-//    familyId Int
-//    family TaxonomyFamily @relation(fields: [familyId], references: [familyId])
-//}
+model User {
+  id            String @id @default(uuid())
+  username      String @unique
+  passwordHash  String
+  userAuthToken String @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  role   Role @relation(fields: [roleId], references: [id])
+  roleId Int
+}
+
+// Could make this an enum
+model Role {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+  users User[]
+}
 
 model StateCounty {
     stateCountyId Int @id
@@ -158,6 +167,10 @@ model Checklist {
 
     // Relations
     siteObservations SiteObservation[]
+    
+    // Not working yet
+    //taxonId Int? 
+    //taxon   Taxonomy? @relation("TaxonomicTree", fields: [taxonId], references: [id])
 }
 
 model SiteObservation {

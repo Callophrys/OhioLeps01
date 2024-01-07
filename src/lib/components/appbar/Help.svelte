@@ -27,7 +27,7 @@
 				
 </script>
 
-<button class="btn variant-filled w-36 justify-between" use:popup={popupComboboxHelp}>
+<button class="btn variant-filled w-32 justify-between" use:popup={popupComboboxHelp}>
 	<span class="capitalize">Help</span>
 	<span>↓</span>
 </button>

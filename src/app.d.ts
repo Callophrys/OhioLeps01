@@ -7,7 +7,28 @@ declare global {
 		// interface PageData {}
 		// interface PageState {}
 		// interface Platform {}
+    interface Locals {
+      user: {
+        name: string
+        role: string
+      }
+    }
 	}
 }
+
+/*  // moved this stuff up 
+declare namespace App {
+  interface Locals {
+    user: {
+      name: string
+      role: string
+    }
+  }
+
+  // interface PageData {}
+
+  // interface Platform {}
+}
+*/
 
 export {};

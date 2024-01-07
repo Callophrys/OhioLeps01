@@ -6,8 +6,11 @@ import { computePosition, autoUpdate, offset, shift, flip, arrow } from '@floati
 import { storePopup } from '@skeletonlabs/skeleton';
 storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
 			
+posts/sveltekit-authentication-using-cookies/sveltekit-authentication-using-cookies.md
 
 # Auth
+https://www.programmingtil.com/contents/better-protected-routes-with-endpoints-hooks-and-load-in-sveltekit
+https://dev.to/brewhousedigital/secure-authentication-in-svelte-using-hooks-k5j
 https://joyofcode.xyz/sveltekit-authentication-using-cookies
 https://github.com/Dan6erbond/sk-auth
 Figure out shared auth via wordpress or such
@@ -54,6 +57,18 @@ You can preview the production build with `npm run preview`.
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
 
 ## Steps
+
+8.
+# View/edit data
+pnpx prisma studio
+
+7.
+# for hashing the password
+pnpm i bcrypt
+
+# optional bcrypt types
+pnpm i -D @types/bcrypt
+
 
 
 6.
@@ -217,8 +232,9 @@ SELECT COUNT(*) CT FROM siteobservation;
 SELECT COUNT(*) CT FROM sitestatus;
 SELECT COUNT(*) CT FROM statecounty;
 SELECT COUNT(*) CT FROM statuscode;
-SELECT COUNT(*) CT FROM taxonomyfamily;
-SELECT COUNT(*) CT FROM taxonomysubfamily;
+SELECT COUNT(*) CT FROM taxonomy;
+SELECT COUNT(*) CT FROM user;
+SELECT COUNT(*) CT FROM role;
 
 #### Squash migrations
 ALTER TABLE SITEOBSERVATION DROP FOREIGN KEY SiteObservation_checklistId_fkey;
@@ -235,8 +251,9 @@ DROP TABLE IF EXISTS siteobservation;
 DROP TABLE IF EXISTS sitestatus;
 DROP TABLE IF EXISTS statecounty;
 DROP TABLE IF EXISTS statuscode;
-DROP TABLE IF EXISTS taxonomysubfamily;
-DROP TABLE IF EXISTS taxonomyfamily;
+DROP TABLE IF EXISTS taxonomy;
+DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS role;
 
 npx prisma migrate dev --name initial_migration
 npx prisma migrate dev --name <date + letter or number>

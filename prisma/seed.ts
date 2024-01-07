@@ -13,11 +13,19 @@ import seedChecklist from './seed.checklist'; await seedChecklist();
 import seedSiteObservation from './seed.siteobservation'; await seedSiteObservation();
 await updateSiteObservationForSiteDate();
 await updateSiteObservationForChecklist();
-*/
 import seedTaxonomy from "./seed.taxonomy"; await seedTaxonomy();
-
+*/
+await updateRoles();
 /*
 */
+
+async function updateRoles() {
+    console.log('Creating Roles');
+    await db.role.createMany({ data: [
+        { id: 1, name: 'USER' },
+        { id: 2, name: 'ADMIN' },
+    ]});
+}
 
 async function updateSiteForCounty() {
   let result = await db.$executeRaw`

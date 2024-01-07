@@ -14,6 +14,6 @@
 
 <div class="p-2 mt-2 rounded bg-slate-400 w-fit">
 <h2>{stateCounty.state}</h2>
-  <p>{@html stateCounty.county}</p>
+  <p>{stateCounty.county}</p>
   <button type="button" class="btn" on:click={() => goto(`/p/${stateCounty.stateCountyId}`)}> See Sites </button>
 </div>

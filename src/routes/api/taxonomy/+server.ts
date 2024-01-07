@@ -1,13 +1,29 @@
 import prisma from '$lib/prisma'
 import { json } from '@sveltejs/kit'
 
-async function gettaxonomy() {
-	const taxonomy = await prisma.taxonomy.findMany();
+async function getTaxonomy() {
+	const taxonomy = await prisma.taxonomy.findMany({
+		include: {
+			baseTaxon: {
+				select: {
+					taxonType: true,
+					latinName: true,
+					baseTaxon: {
+						select: {
+							taxonType: true,
+							latinName: true,
+							baseTaxon: false,
+						}
+					}
+				}
+			}
+		}
+	});
 	taxonomy.sort((first, second) => second.latinName > first.latinName ? 1 : 0);
 	return taxonomy;
 }
 
 export async function GET() {
-    const taxonomy = await gettaxonomy();
+    const taxonomy = await getTaxonomy();
     return json(taxonomy);
 }

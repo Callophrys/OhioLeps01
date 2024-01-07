@@ -13,6 +13,11 @@
     
     export let loggedInValue: boolean = false;
     
+    import { page } from '$app/stores'
+    import { enhance } from '$app/forms'
+    
+    console.log('layout',$page.data);
+
 </script>
 
 <AppShell
@@ -43,13 +48,13 @@
 
                     <div class="my-auto space-x-2 space-y-2 pr-2">
                     
-                        {#if (!loggedInValue)}
-                        <a class="btn variant-filled w-36 justify-between" href="/login" on:click={()=>loggedInValue=!loggedInValue}>
-                            <span class="capitalize">Login</span>
-                            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                        {#if (!$page.data.user)}
+                        <a class="btn variant-filled w-32 justify-between" href="/login" on:click={()=>loggedInValue=!loggedInValue}>
+                            <span class="">Login</span>
+                            <!--i class=""></i-->
                         </a>
                         {:else}
-                        <a class="btn variant-filled w-36 justify-between" href="/logout" on:click={()=>loggedInValue=!loggedInValue}>
+                        <a class="btn variant-filled w-32 justify-between" href="/logout" on:click={()=>loggedInValue=!loggedInValue}>
                             <span class="capitalize">Logout</span>
                         </a>
                         {/if}
@@ -95,6 +100,17 @@
 
     <svelte:fragment slot="sidebarLeft">
         <nav class="list-nav">
+            {#if !$page.data.user}
+                <a href="/login">Login</a>
+                <a href="/register">Register</a>
+            {:else}
+                <a href="/admin">Admin</a>
+                <a href="/logout">Login</a>
+                <!--form class="logout" action="/logout" method="POST" use:enhance>
+                  <button type="submit">Log out</button>
+                </form-->
+            {/if}
+
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/ohio">Ohio</a></li>

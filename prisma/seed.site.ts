@@ -40,7 +40,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("9/6/1999 4:16:54 PM GMT-5"),
+				"changeDate": (new Date("9/6/1999 4:16:54 PM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":2,
@@ -77,7 +77,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("3/28/2000 1:34:09 PM GMT-5"),
+				"changeDate": (new Date("3/28/2000 1:34:09 PM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":3,
@@ -114,7 +114,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("3/16/2000 10:47:14 AM GMT-5"),
+				"changeDate": (new Date("3/16/2000 10:47:14 AM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":4,
@@ -151,7 +151,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("11/5/1999 11:33:13 AM GMT-5"),
+				"changeDate": (new Date("11/5/1999 11:33:13 AM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":5,
@@ -188,7 +188,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("10/5/1999 10:08:10 AM GMT-5"),
+				"changeDate": (new Date("10/5/1999 10:08:10 AM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":6,
@@ -225,7 +225,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("3/28/2000 11:13:08 AM GMT-5"),
+				"changeDate": (new Date("3/28/2000 11:13:08 AM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":7,
@@ -262,7 +262,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("7/31/2000 1:58:54 PM GMT-5"),
+				"changeDate": (new Date("7/31/2000 1:58:54 PM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":8,
@@ -299,7 +299,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("10/7/1999 11:00:46 AM GMT-5"),
+				"changeDate": (new Date("10/7/1999 11:00:46 AM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":9,
@@ -336,7 +336,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("5/28/1999 11:08:34 PM GMT-5"),
+				"changeDate": (new Date("5/28/1999 11:08:34 PM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":10,
@@ -373,7 +373,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("6/26/2000 10:26:50 AM GMT-5"),
+				"changeDate": (new Date("6/26/2000 10:26:50 AM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":11,
@@ -410,7 +410,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("3/27/2000 1:29:48 PM GMT-5"),
+				"changeDate": (new Date("3/27/2000 1:29:48 PM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":12,
@@ -447,7 +447,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("6/26/2000 1:52:01 PM GMT-5"),
+				"changeDate": (new Date("6/26/2000 1:52:01 PM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":13,
@@ -484,7 +484,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("3/27/2000 2:35:17 PM GMT-5"),
+				"changeDate": (new Date("3/27/2000 2:35:17 PM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":14,
@@ -521,7 +521,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("12/2/1999 2:28:34 PM GMT-5"),
+				"changeDate": (new Date("12/2/1999 2:28:34 PM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":15,
@@ -558,7 +558,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("3/28/2000 11:32:38 AM GMT-5"),
+				"changeDate": (new Date("3/28/2000 11:32:38 AM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":16,
@@ -595,7 +595,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("3/20/2000 2:15:43 PM GMT-5"),
+				"changeDate": (new Date("3/20/2000 2:15:43 PM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":17,
@@ -632,7 +632,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("4/10/2000 1:22:52 PM GMT-5"),
+				"changeDate": (new Date("4/10/2000 1:22:52 PM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":18,
@@ -669,7 +669,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("3/13/2000 11:30:13 AM GMT-5"),
+				"changeDate": (new Date("3/13/2000 11:30:13 AM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":19,
@@ -706,7 +706,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("3/21/2000 10:43:23 AM GMT-5"),
+				"changeDate": (new Date("3/21/2000 10:43:23 AM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":20,
@@ -743,7 +743,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("12/15/1999 2:19:36 PM GMT-5"),
+				"changeDate": (new Date("12/15/1999 2:19:36 PM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":21,
@@ -780,7 +780,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("3/20/2000 2:14:52 PM GMT-5"),
+				"changeDate": (new Date("3/20/2000 2:14:52 PM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":22,
@@ -817,7 +817,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("3/20/2000 2:18:03 PM GMT-5"),
+				"changeDate": (new Date("3/20/2000 2:18:03 PM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":23,
@@ -854,7 +854,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("3/27/2000 1:07:24 PM GMT-5"),
+				"changeDate": (new Date("3/27/2000 1:07:24 PM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":24,
@@ -891,7 +891,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("3/27/2000 2:22:11 PM GMT-5"),
+				"changeDate": (new Date("3/27/2000 2:22:11 PM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":25,
@@ -928,7 +928,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("3/27/2000 1:53:49 PM GMT-5"),
+				"changeDate": (new Date("3/27/2000 1:53:49 PM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":26,
@@ -965,7 +965,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("6/27/2000 10:17:32 AM GMT-5"),
+				"changeDate": (new Date("6/27/2000 10:17:32 AM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":27,
@@ -1002,7 +1002,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("3/28/2000 1:47:15 PM GMT-5"),
+				"changeDate": (new Date("3/28/2000 1:47:15 PM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":28,
@@ -1039,7 +1039,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("4/18/2000 1:25:28 PM GMT-5"),
+				"changeDate": (new Date("4/18/2000 1:25:28 PM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":29,
@@ -1076,7 +1076,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("3/20/2000 2:16:27 PM GMT-5"),
+				"changeDate": (new Date("3/20/2000 2:16:27 PM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":30,
@@ -1113,7 +1113,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("3/20/2000 2:16:51 PM GMT-5"),
+				"changeDate": (new Date("3/20/2000 2:16:51 PM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":31,
@@ -1150,7 +1150,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("3/20/2000 2:17:10 PM GMT-5"),
+				"changeDate": (new Date("3/20/2000 2:17:10 PM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":32,
@@ -1187,7 +1187,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("12/28/1999 1:45:20 PM GMT-5"),
+				"changeDate": (new Date("12/28/1999 1:45:20 PM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":34,
@@ -1224,7 +1224,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("4/10/2000 1:22:58 PM GMT-5"),
+				"changeDate": (new Date("4/10/2000 1:22:58 PM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":35,
@@ -1261,7 +1261,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("3/2/2000 10:00:33 AM GMT-5"),
+				"changeDate": (new Date("3/2/2000 10:00:33 AM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":37,
@@ -1298,7 +1298,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("1/13/2000 11:21:20 AM GMT-5"),
+				"changeDate": (new Date("1/13/2000 11:21:20 AM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":39,
@@ -1335,7 +1335,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("3/20/2000 2:17:47 PM GMT-5"),
+				"changeDate": (new Date("3/20/2000 2:17:47 PM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":40,
@@ -1372,7 +1372,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("3/27/2000 2:10:04 PM GMT-5"),
+				"changeDate": (new Date("3/27/2000 2:10:04 PM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":42,
@@ -1409,7 +1409,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("8/22/2000 1:27:06 PM GMT-5"),
+				"changeDate": (new Date("8/22/2000 1:27:06 PM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":43,
@@ -1446,7 +1446,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("5/1/2000 11:45:56 AM GMT-5"),
+				"changeDate": (new Date("5/1/2000 11:45:56 AM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":45,
@@ -1483,7 +1483,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("3/21/2000 12:03:54 PM GMT-5"),
+				"changeDate": (new Date("3/21/2000 12:03:54 PM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":46,
@@ -1520,7 +1520,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("6/26/2000 9:48:14 AM GMT-5"),
+				"changeDate": (new Date("6/26/2000 9:48:14 AM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":47,
@@ -1557,7 +1557,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("9/26/2000 2:45:58 PM GMT-5"),
+				"changeDate": (new Date("9/26/2000 2:45:58 PM GMT-5")).toString(),
 			"stateCountyId":89},
 			{
 				"siteId":48,
@@ -1594,7 +1594,7 @@ export default async function() {
 				"s2002":5,
 				"s2003":5,
 				"s2004":5,
-				"changeDate": new Date("10/5/2000 9:51:55 AM GMT-5"),
+				"changeDate": (new Date("10/5/2000 9:51:55 AM GMT-5")).toString(),
 			"stateCountyId":89}
 		]
 	});

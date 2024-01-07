@@ -1,6 +1,8 @@
 <script lang="ts">
 	import StandardContainer from '$lib/components/StandardContainer.svelte';
 	import { formatDate } from '$lib/utils'
+	import { popup } from '@skeletonlabs/skeleton';
+	import type { PopupSettings } from '@skeletonlabs/skeleton';
 	export let data
 </script>
 
@@ -8,20 +10,33 @@
 	
 	<div class="bg-red">Site Count: {data.sites.length}</div>
 	<section>
-		<ul>
-			{#each data.sites as site}
-				<li class="site">
-					<a href="/sites/{site.siteId}" class="title">{site.siteName}
-					<div class="date">{formatDate(site.changeDate)}</div>
-					<div class="border border-solid border-slate-900">
-						{site.siteAddress ?? ''}{
-						#if site.siteCityStateZip}
-							{site.siteAddress ? ',' : ''} {site.siteCityStateZip}{
-						/if}&nbsp;&#124;&nbsp;{site.stateCounty.state} (County: {site.stateCounty.county})</div>
-					</a>
-			</li>
-			{/each}
-		</ul>
+		<div class="grid grid-cols-3 gap-4 w-fit">
+		{#each data.sites as site, i}
+			<!-- Trigger -->
+			<div class="card w-60 p-4 [&>*]:pointer-events-none" use:popup={{
+				event: 'hover',
+				target: 'loopExample-' + i,
+				placement: 'right' }}>
+				<h3>{site.siteName}</h3>
+				<div>{formatDate(site.changeDate)}</div>
+				<div>
+					{site.siteAddress ?? ''}{
+					#if site.siteCityStateZip}
+						{site.siteAddress ? ',' : ''} {@html site.siteCityStateZip + '&nbsp;&#124;&nbsp;'}{
+					/if}
+					{site.stateCounty.state} (County: {site.stateCounty.county})
+				</div>
+			</div>
+			
+			<!-- Popup -->
+			<div class="card py-2 px-4 shadow-xl variant-filled-surface" data-popup="loopExample-{i}">
+				<div class="underline">Directions</div>
+				<p>{site.siteName}<br>{site.person}</p>
+				<div class="arrow variant-filled-surface" />
+			</div>
+					
+		{/each}
+		</div>
 	</section>
 	
 </StandardContainer>

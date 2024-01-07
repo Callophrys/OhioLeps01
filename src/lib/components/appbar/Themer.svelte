@@ -45,7 +45,7 @@
 </script>
 
 <svelte:head>{@html '<script>(' + setInitialClassState.toString() + ')();</script>'}</svelte:head>
-<button class="btn variant-filled w-36 justify-between" use:popup={popupCombobox}>
+<button class="btn variant-filled w-32 justify-between" use:popup={popupCombobox}>
 	<span class="capitalize">Theme</span>
 	<span>↓</span>
 </button>
