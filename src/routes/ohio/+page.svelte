@@ -4,7 +4,9 @@
 
     let isMouseDown = false;
 
-    const sss: { sh: any } = { sh: null };
+    const sss: { sh: any; svgvp: any } = { sh: null, svgvp: null };
+    type countyItem = { id: string; name: string };
+    const selectedCounties: countyItem[] = [];
 
     function handleMouseOut(e: any) {
         sss.sh.textContent = '';
@@ -27,33 +29,45 @@
         }
     }
 
-    let svgvp: any;
-    onMount(() => {
-        svgvp = document.getElementById('svg_oh');
-        sss.sh = document.getElementById('svg_hover');
-        if (svgvp) {
-            svgvp.addEventListener('mousemove', handleMouseMove);
-            svgvp.addEventListener('mouseout', handleMouseOut);
-        }
-
-        document.addEventListener('mousedown', (e: any) => {
-            isMouseDown = true;
-            svgvp?.classList.add('cursor-pointer');
-            if (e.target.tagName === 'polygon') {
-                if (!e.ctrlKey) {
-                    svgvp
-                        ?.querySelectorAll('polygon')
-                        .forEach((p: any) => p.classList.remove('polygon-select'));
+    function handleMouseDown(e: any) {
+        isMouseDown = true;
+        sss.svgvp.classList.add('cursor-pointer');
+        if (e.target.tagName === 'polygon') {
+            if (!e.ctrlKey) {
+                sss.svgvp
+                    .querySelectorAll('polygon')
+                    .forEach((p: any) => p.classList.remove('polygon-select'));
+                selectedCounties.length = 0;
+            } else {
+                if (e.target.classList.contains('polygon-select')) {
+                    e.target.classList.remove('polygon-select');
+                    selectedCounties.splice(
+                        selectedCounties.findIndex((c: countyItem) => c.id === e.target.id),
+                        1
+                    );
                 } else {
                     e.target.classList.add('polygon-select');
+                    selectedCounties.push({
+                        id: e.target.id,
+                        name: e.target.id.substring(e.target.id.lastIndexOf('_') + 1),
+                    });
                 }
             }
-        });
+        }
+    }
 
-        window.addEventListener('mouseup', (e) => {
-            isMouseDown = false;
-            svgvp?.classList.remove('cursor-pointer');
-        });
+    function handleMouseUp(e: any) {
+        isMouseDown = false;
+        sss.svgvp.classList.remove('cursor-pointer');
+    }
+
+    onMount(() => {
+        sss.sh = document.getElementById('svg_hover');
+        sss.svgvp = document.getElementById('svg_oh');
+        sss.svgvp.addEventListener('mousemove', handleMouseMove);
+        sss.svgvp.addEventListener('mouseout', handleMouseOut);
+        sss.svgvp.addEventListener('mousedown', handleMouseDown);
+        sss.svgvp.addEventListener('mouseup', handleMouseUp);
     });
 </script>
 
@@ -515,14 +529,13 @@
     </svelte:fragment>
 
     <svelte:fragment slot="right">
-        <div>Selected counties (2):</div>
+        <div>Selected counties ({selectedCounties.length}):</div>
         <ul class="list ml-4">
-            <li>
-                <span>Adams</span>
-            </li>
-            <li>
-                <span>Allen</span>
-            </li>
+            {#each selectedCounties as county}
+                <li>
+                    <span>{county.name}</span>
+                </li>
+            {/each}
         </ul>
     </svelte:fragment>
 </DoubledContainer>
