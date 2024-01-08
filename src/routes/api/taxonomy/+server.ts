@@ -26,11 +26,11 @@ async function getTaxonomy() {
 			}
 		}
 	});
-	taxonomy.sort((first, second) => second.latinName > first.latinName ? 1 : 0 );
+	taxonomy.sort((first, second) => second.latinName > first.latinName ? 1 : 0);
 	return taxonomy;
 }
 
 export async function GET() {
-    const taxonomy = await getTaxonomy();
-    return json(taxonomy);
+	const taxonomy = await getTaxonomy();
+	return json(taxonomy);
 }

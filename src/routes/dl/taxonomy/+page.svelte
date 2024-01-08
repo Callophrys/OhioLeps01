@@ -48,52 +48,6 @@
         children: [],
     };
 
-    /*
-    console.log(data.taxonomy);
-
-    let hierarchy = ['O', 'F', 'SF', 'G']; //, 'S', 'SS'];
-
-    function getTaxaLevels(level: number, depth: number) {
-        console.log('hi');
-        if (level >= hierarchy.length) return [];
-        const filtered = data.taxonomy.filter(
-            (x: any): boolean => x.taxonType === hierarchy[level]
-        );
-        return filtered.map((y: any) => {
-            return {
-                id: y.id.toString(),
-                content: getScientificName(y) + (y.commonName ? ' - - - - ' + y.commonName : ''),
-                lead: '',
-                children: getTaxaLevels(1 + level, depth),
-            };
-        });
-    }
-    */
-    //myTreeViewNodes[0].children = getTaxaLevels(1, 1);
-
-    /*
-    let myTreeViewNodes: TreeViewNode[] = [tOrder];
-    myTreeViewNodes[0].children = data.taxonomy
-        .filter((x: any) => x.taxonType === 'F')
-        .map((y: any) => {
-            return {
-                id: y.id.toString(),
-                content: y.latinName + (y.commonName ? ' - - - - ' + y.commonName : ''),
-                lead: '',
-                children: data.taxonomy
-                    .filter((a: any) => a.taxonType === 'SF')
-                    .map((b: any) => {
-                        return {
-                            id: b.id.toString(),
-                            content: b.latinName + (b.commonName ? ' - - - - ' + b.commonName : ''),
-                            lead: '',
-                            children: getTaxaLevel('G', data.taxonomy),
-                        };
-                    }),
-            };
-        });
-    */
-
     let myTreeViewNodes: TreeViewNode[] = [tOrder];
     data.taxonomy.forEach((f: any) => {
         if (f.taxonType !== 'F') return true;
@@ -157,11 +111,58 @@
 
     let checkedNodes: string[] = [];
     let indeterminateNodes: string[] = [];
+
+    function getBranch(t: any) {
+        return data.taxonomy.filter((b: any) => b.baseTaxonId === t.id);
+    }
+
+    //let o: any = data.taxonomy.find((x: any) => x.taxonType === 'O');
 </script>
 
 <!-- Taxonomy -->
 <StandardContainer>
     <div class="">Butterflies of North America</div>
+    <TreeView>
+        <TreeViewItem>
+            {getScientificName(o) + ' - - - - ' + o.commonName}
+            <svelte:fragment slot="children">
+                {#each getBranch(o) as f}
+                    <TreeViewItem>
+                        {getScientificName(f) + ' - - - - ' + f.commonName}
+                        <svelte:fragment slot="children">
+                            {#each getBranch(f) as sf}
+                                <TreeViewItem>
+                                    {getScientificName(sf) + ' - - - - ' + sf.commonName}
+                                    <svelte:fragment slot="children"
+                                        >{#each getBranch(sf) as g}
+                                            <TreeViewItem>
+                                                {getScientificName(g)}
+                                                <svelte:fragment slot="children">
+                                                    {#each getBranch(g) as s}
+                                                        <TreeViewItem>
+                                                            {getScientificName(s)}
+                                                            <svelte:fragment slot="children">
+                                                                {#each getBranch(s) as ss}
+                                                                    <TreeViewItem>
+                                                                        {getScientificName(ss)}
+                                                                    </TreeViewItem>
+                                                                {/each}
+                                                            </svelte:fragment>
+                                                        </TreeViewItem>
+                                                    {/each}
+                                                </svelte:fragment>
+                                            </TreeViewItem>
+                                        {/each}</svelte:fragment
+                                    >
+                                </TreeViewItem>
+                            {/each}
+                        </svelte:fragment>
+                    </TreeViewItem>
+                {/each}
+            </svelte:fragment>
+        </TreeViewItem>
+    </TreeView>
+
     <RecursiveTreeView
         selection
         multiple

@@ -53,7 +53,8 @@
                                         on:click={() => {
                                             document.getElementsByName('main')[0].textContent = '';
                                         }}
-                                        class="btn w-32 variant-filled">Log out</button
+                                        class="btn variant-filled w-32 justify-between"
+                                        >Log out</button
                                     >
                                 </form>
                             {/if}

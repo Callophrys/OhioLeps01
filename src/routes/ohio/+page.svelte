@@ -4,7 +4,12 @@
 
     let isMouseDown = false;
 
-    const sss: { sh: any; svgvp: any } = { sh: null, svgvp: null };
+    const sss: { sh: any; svgvp: any; selcnt: any; sellst: any } = {
+        sh: null,
+        svgvp: null,
+        selcnt: null,
+        sellst: null,
+    };
     type countyItem = { id: string; name: string };
     let selectedCounties: countyItem[] = [];
 
@@ -32,6 +37,7 @@
                         id: e.target.id,
                         name: e.target.id.substring(e.target.id.lastIndexOf('_') + 1),
                     });
+                    updateCounties();
                 }
             }
         } else {
@@ -64,18 +70,31 @@
                     });
                 }
             }
+            updateCounties();
         }
     }
 
     function handleMouseUp(e: any) {
         isMouseDown = false;
         sss.svgvp.classList.remove('cursor-pointer');
-        console.log(selectedCounties);
+    }
+
+    function updateCounties() {
+        sss.selcnt.textContent = 'Selected counties (' + selectedCounties.length + '):';
+        sss.sellst.innerHTML =
+            '<ul class="list">' +
+            selectedCounties
+                .map((c: any) => '<li class="capitalize">' + c.name + '</li>')
+                .sort()
+                .join('') +
+            '</ul>';
     }
 
     onMount(() => {
         sss.sh = document.getElementById('svg_hover');
         sss.svgvp = document.getElementById('svg_oh');
+        sss.selcnt = document.getElementById('selected-counties-count');
+        sss.sellst = document.getElementById('selected-counties-list');
     });
 </script>
 
@@ -89,6 +108,7 @@
             xmlns="http://www.w3.org/2000/svg"
             height="60vmin"
             width="60vmin"
+            class="outline-none"
             on:mousedown={handleMouseDown}
             on:mouseup={handleMouseUp}
             on:mousemove={handleMouseMove}
@@ -542,14 +562,8 @@
     </svelte:fragment>
 
     <svelte:fragment slot="right">
-        <div>Selected counties ({selectedCounties.length}):</div>
-        <ul class="list ml-4">
-            {#each selectedCounties as county}
-                <li>
-                    <span>{county.name}</span>
-                </li>
-            {/each}
-        </ul>
+        <div id="selected-counties-count">Selected counties (0)</div>
+        <ul id="selected-counties-list" class="list ml-4" />
     </svelte:fragment>
 </DoubledContainer>
 <div class="hidden polygon-select" />
