@@ -4,73 +4,8 @@
 	import SpeciesPicker from '$lib/components/query/SpeciesPicker.svelte';
 	import TimeframePicker from '$lib/components/query/TimeframePicker.svelte';
 	import DoubledContainer from '$lib/components/DoubledContainer.svelte';
-	import { TreeView, TreeViewItem, RecursiveTreeView } from '@skeletonlabs/skeleton';
-	import type { TreeViewNode } from '@skeletonlabs/skeleton';
+	import { TreeView, TreeViewItem } from '@skeletonlabs/skeleton';
 	
-let myTreeViewNodes: TreeViewNode[] = [
-	{
-		id: 'unique-id-1-p',
-		content: 'programming',
-		lead: '(icon)',
-		children: [
-			{
-				id: 'unique-id-2-d',
-				content: 'database',
-				lead: '(icon)',
-				children: [
-					{
-						id: 'unique-id-3-m',
-						content: 'mongodb',
-						lead: '(icon)',
-						children: [ ]
-					},
-					{
-						id: 'unique-id-3-mysql',
-						content: 'mysql',
-						lead: '(icon)',
-						children: [ ]
-					}
-				]
-			},
-			{
-				id: 'unique-id-2-l',
-				content: 'language',
-				lead: '(icon)',
-				children: [
-					{
-						id: 'unique-id-33-j',
-						content: 'javascript',
-						lead: '(icon)',
-						children: [ ]
-					},
-					{
-						id: 'unique-id-33-h',
-						content: 'haskell',
-						lead: '(icon)',
-						children: [ ]
-					}
-				]
-			},
-			{
-				id: 'unique-id-2-f',
-				content: 'framework',
-				lead: '(icon)',
-				children: [ ]
-			}
-		 ]
-	},
-	{
-		id: 'unique-id-1-b',
-		content: 'books',
-		lead: '(icon)',
-		children: [ ]
-	}
-	// ...
-]
-let checkedNodes : string[] = ['javascript'];
-let indeterminateNodes : string[] = ['programming', 'language'];
-						
-
 	export let data;
 </script>
 
@@ -87,16 +22,6 @@ let indeterminateNodes : string[] = ['programming', 'language'];
 				<span>↓</span>
 			</button>
 		</div>
-		
-		<hr>
-
-		<RecursiveTreeView 
-			selection 
-			multiple 
-			relational 
-			nodes={myTreeViewNodes} 
-			bind:checkedNodes={checkedNodes} 
-			bind:indeterminateNodes={indeterminateNodes}/>
 
 	</svelte:fragment>
 

@@ -1,8 +1,10 @@
-import { redirect } from '@sveltejs/kit';
+import { redirect } from '@sveltejs/kit'
+import type { PageServerLoad } from './$types'
 
-export const actions = {
-	default: ({ cookies, url }) => {
-		cookies.set('logged_in', 'true', { path: '/' });
-		throw redirect(303, url.searchParams.get('redirectTo') ?? '/');
-	}
-};
+export const load: PageServerLoad = async ({ locals }) => {
+  // redirect user if not logged in
+  if (!locals.user) {
+    throw redirect(302, '/')
+  }
+}
+

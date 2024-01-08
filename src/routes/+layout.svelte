@@ -11,12 +11,10 @@
     import Themer from '$lib/components/appbar/Themer.svelte'
     import Fluttering from '$lib/components/appbar/Fluttering.svelte'
     
-    export let loggedInValue: boolean = false;
-    
     import { page } from '$app/stores'
     import { enhance } from '$app/forms'
     
-    console.log('layout',$page.data);
+    let mainContent;
 
 </script>
 
@@ -40,7 +38,7 @@
             </svelte:fragment>
 
             <div class="text-2xl">
-                {config.title} {new Intl.DateTimeFormat('en-US').format(Date.now())}
+                {config.title}
             </div>
 
             <svelte:fragment slot="trail">
@@ -49,16 +47,15 @@
                     <div class="my-auto space-x-2 space-y-2 pr-2">
                     
                         {#if (!$page.data.user)}
-                        <a class="btn variant-filled w-32 justify-between" href="/login" on:click={()=>loggedInValue=!loggedInValue}>
-                            <span class="">Login</span>
-                            <!--i class=""></i-->
+                        <a class="btn variant-filled w-32 justify-between" href="/login" >
+                            <span>Login</span>
                         </a>
                         {:else}
-                        <a class="btn variant-filled w-32 justify-between" href="/logout" on:click={()=>loggedInValue=!loggedInValue}>
-                            <span class="capitalize">Logout</span>
-                        </a>
+                        <form class="contents" action="/logout" method="POST" use:enhance>
+                          <button type="submit" on:click={()=>{document.getElementsByName('main')[0].textContent=''}} class="btn w-32 variant-filled">Log out</button>
+                        </form>
                         {/if}
-
+                    
                         <Help>
                             <nav class="list-nav">
                                 <ul class="">
@@ -100,28 +97,22 @@
 
     <svelte:fragment slot="sidebarLeft">
         <nav class="list-nav">
-            {#if !$page.data.user}
-                <a href="/login">Login</a>
-                <a href="/register">Register</a>
-            {:else}
-                <a href="/admin">Admin</a>
-                <a href="/logout">Login</a>
-                <!--form class="logout" action="/logout" method="POST" use:enhance>
-                  <button type="submit">Log out</button>
-                </form-->
-            {/if}
-
             <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="/ohio">Ohio</a></li>
+                {#if ($page.data.user)}
+                    {#if ($page.data.user.role === "ADMIN")}
+                <li><a href="/admin">Admin</a></li>
+                    {/if}
                 <li><a href="/dl/countypanes">County Panes</a></li>
                 <li><a href="/dl/sites">Sites</a></li>
                 <li><a href="/dl/sitedates">Site Dates</a></li>
                 <li><a href="/dl/siteobservations">Site Observations</a></li>
                 <li><a href="/dl/checklists">Checklists</a></li>
                 <li><a href="/dl/statecounties">State-County</a></li>
+                <li><a href="/dl/nameaddresses">Name-Address</a></li>
+                {/if}
+                <li><a href="/ohio">Ohio</a></li>
                 <li><a href="/dl/taxonomy">Butterflies of North America</a></li>
-                <li><a href="/dl/nameaddresses">Name-Address (auth)</a></li>
             </ul>
         </nav>
     </svelte:fragment>
@@ -138,24 +129,3 @@
     </svelte:fragment>
 
 </AppShell>
-
-<!--
-<TabGroup>
-    <Tab bind:group={$tabSet} name="tab1" value={0}>
-        <svelte:fragment slot="lead">(icon)</svelte:fragment>
-        <span>(label 1)</span>
-    </Tab>
-    <Tab bind:group={$tabSet} name="tab2" value={1}>(label 2)</Tab>
-    <Tab bind:group={$tabSet} name="tab3" value={2}>(label 3)</Tab>
-    < !-- Tab Panels --- >
-    <svelte:fragment slot="panel">
-        {#if $tabSet === 0}
-            (tab panel 1 contents)
-        {:else if $tabSet === 1}
-            (tab panel 2 contents)
-        {:else if $tabSet === 2}
-            (tab panel 3 contents)
-        {/if}
-    </svelte:fragment>
-</TabGroup>
--->        

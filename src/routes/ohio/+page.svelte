@@ -2,6 +2,9 @@
     import StandardContainer from '$lib/components/StandardContainer.svelte';
     import { browser } from '$app/environment';
     
+    let isMouseDown = false;
+    let isCtrlKeyDown = false;
+    
     const sss: { sh: any } = { sh: null };
 
     function handleMouseOut(e: any) {
@@ -10,13 +13,18 @@
     }
 
     function handleMouseMove(e: any) {
-
+        
         if (e.target.tagName === 'polygon') {
-
+            
             sss.sh.textContent = e.target.id.substring(e.target.id.lastIndexOf('_') + 1);
             sss.sh.style.left = e.clientX - Math.ceil(sss.sh.clientWidth / 2) + 'px';
             sss.sh.style.top = e.clientY - 40 + 'px';
             sss.sh.classList.replace('opacity-0', 'opacity-100');
+            
+            if (isMouseDown) {
+                debugger;
+                e.target.classList.add('polygon-select');
+            }
 
                 /*
             sh.style.left =
@@ -43,6 +51,25 @@
             svgvp.addEventListener("mousemove", handleMouseMove);
             svgvp.addEventListener("mouseout", handleMouseOut);
         }
+        
+        document.addEventListener("mousedown", (e: any) => {
+            isMouseDown = true;
+            svgvp?.classList.add("cursor-pointer");
+            if (e.target.tagName === 'polygon') {
+                if (!e.ctrlKey) {
+                    svgvp?.querySelectorAll('polygon').forEach((p) => p.classList.remove('polygon-select'));
+                } else {
+                    e.target.classList.add('polygon-select');
+                }
+            }
+        });
+
+        window.addEventListener("mouseup", (e) => {
+            isMouseDown = false;
+            svgvp?.classList.remove("cursor-pointer");
+        });
+        
+        //window.addEventListener("keydown", (e) => isCtrlKeyDown = e.ctrlKey)
     }
 					
 </script>
@@ -147,16 +174,21 @@
         <polygon class="region5" id="svg_oh_warren" points="41,270 40,267 34,267 35,242 33,243 33,239 39,238 52,239 61,240 59,271 41,270" />
 
     </svg>
+    <div class="hidden polygon-select"/>
 </StandardContainer>
 
 <style>
     polygon {
-        cursor: pointer; /* opt to only do when mouse button is held down and dragging */
+        /* cursor: pointer; opt to only do when mouse button is held down and dragging */
         fill: #ff9966;
         stroke: #000;
         stroke-width: 1;
         pointer-events: visible;
         transition: background-color 1000ms linear;
+    }
+
+    .polygon-select {
+        fill: #9118b0eb !important;
     }
 
     polygon.region1 {

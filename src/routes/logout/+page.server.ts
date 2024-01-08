@@ -1,20 +1,7 @@
-
-/*
-import { redirect } from '@sveltejs/kit';
-
-export const actions = {
-	default: ({ cookies }) => {
-		cookies.delete('logged_in', { path: '/' });
-		throw redirect(303, '/');
-	}
-};
-*/
-
 import { redirect } from '@sveltejs/kit'
 import type { Actions, PageServerLoad } from './$types'
 
 export const load: PageServerLoad = async () => {
-  console.log('logout');
   // we only use this endpoint for the api
   // and don't need to see the page
   throw redirect(302, '/');

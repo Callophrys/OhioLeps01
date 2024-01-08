@@ -51,7 +51,7 @@
 </script>
 
 <div class="flex items-center space-x-2">
-    <button class="btn variant-filled w-auto justify-between" use:popup={popupComboboxStateCounty}>
+    <button class="btn w-32 variant-filled justify-between" use:popup={popupComboboxStateCounty}>
         <span class="capitalize">{(showStateProvince ? 'State/' : '') + 'Counties'}</span>
         <span>↓</span>
     </button>

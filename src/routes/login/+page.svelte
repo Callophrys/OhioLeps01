@@ -31,7 +31,7 @@ export let form: ActionData
 <StandardContainer>
   <h1>Login</h1>
 
-  <form action="?/login" method="POST" class="max-w-80 min-w-32" use:enhance>
+  <form action="?/login" method="POST" class="max-w-80 min-w-32 space-y-2" use:enhance>
     <div>
       <label for="username">Username</label>
       <input id="username" name="username" class="input" type="text" placeholder="Username" required />
@@ -52,5 +52,13 @@ export let form: ActionData
 
     <button type="submit" class="btn variant-filled">Log in</button>
   </form>
+  
+  <div class="pt-16 max-w-80">
+    No account?
+    <a href="/register" class="btn variant-filled">Register</a>
+    <p>This is here for development purposes and will be removed in prod.
+      Authentication will preferably happen via single sign on shared
+      authentication via Ohio Leps-wordpress account. </p>
+</div>
 
 </StandardContainer>

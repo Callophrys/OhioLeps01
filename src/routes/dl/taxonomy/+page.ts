@@ -4,3 +4,5 @@ export async function load({ fetch }) {
 	const taxonomy = await response.json()
 	return { taxonomy }
 }
+
+export const prerender = true;

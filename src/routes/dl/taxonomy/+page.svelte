@@ -1,7 +1,7 @@
 <script lang="ts">
 	import StandardContainer from '$lib/components/StandardContainer.svelte';
-    import type { Taxonomy } from '@prisma/client';
-	export let data
+    import { type Taxonomy } from '@prisma/client';
+	export let data;
 	
 	function getScientificName(taxon: Taxonomy) {
 		if (taxon.taxonType !== "S" && taxon.taxonType !== "SS")
@@ -9,17 +9,17 @@
 		
 		let scientificName = taxon.latinName;
 		if (taxon.taxonType === "S") {
-	 		if (taxon.baseTaxonId)		
-				scientificName = taxon.baseTaxon?.latinName + ' ' + scientificName;
+	 		if (taxon.baseTaxon)		
+				scientificName = taxon.baseTaxon.latinName + ' ' + scientificName;
 			return scientificName;
 		}
 		
-		if (taxon.taxonType === "SS" && taxon.baseTaxonId) {
-	 		if (taxon.baseTaxonId) {
+		if (taxon.taxonType === "SS") {
+	 		if (taxon.baseTaxon) {
 				scientificName = taxon.baseTaxon?.latinName + ' ' + scientificName;
 
-				if (taxon.baseTaxon.baseTaxonId) {
-					scientificName = taxon.baseTaxon?.baseTaxon.latinName + ' ' + scientificName;
+				if (taxon.baseTaxon.baseTaxon) {
+					scientificName = taxon.baseTaxon.baseTaxon.latinName + ' ' + scientificName;
 				}
 
 				return scientificName;
@@ -39,23 +39,90 @@
 		return '';
 	}
 
+	import { TreeView, TreeViewItem, RecursiveTreeView } from '@skeletonlabs/skeleton';
+	import type { TreeViewNode } from '@skeletonlabs/skeleton';
+
+	let o: any = data.taxonomy.find((x: any) => x.taxonType === 'O');
+	const tOrder = {
+		id: o.id.toString(),
+		content: o.latinName + ' - - - - ' + (o.commonName ?? ''),
+		lead: '',
+		children: []
+	}
+
+	let myTreeViewNodes: TreeViewNode[] = [tOrder];
+
+	data.taxonomy.forEach((f: any) => {
+		if (f.taxonType !== 'F') return true;
+		let tmpF: any = {
+			id: f.id.toString(),
+			content: f.latinName + ' - - - - ' + (f.commonName ?? ''),
+			lead: '', // icon
+			children: []
+		};
+		//console.log(f);
+		f.branchTaxa.forEach((sfid: { id: number }) => {
+			//console.log('sfid', sfid);
+			let sf: any = data.taxonomy.find((x: any) => x.id === sfid.id);
+			//console.log(sf);
+			if (sf) {
+			let tmpSF = {
+				id: sf.id.toString(),
+				content: sf.latinName + (sf.commonName ? ' - - - - ' + sf.commonName : ''),
+				lead: '', // icon
+				children: []
+			};
+			tmpF.children.push(tmpSF as never);
+			sf.branchTaxa.forEach((gfid: { id: number }) => {
+				let g: any = data.taxonomy.find((x: any) => x.id === gfid.id);
+				let tmpG = {
+					id: g.id.toString(),
+					content: g.latinName + (g.commonName ? ' - - - - ' + g.commonName : ''),
+					lead: '', // icon
+					children: []
+				};
+				tmpSF.children.push(tmpG as never);
+				g.branchTaxa.forEach((spfid: { id: number }) => {
+					let s: any = data.taxonomy.find((x: any) => x.id === spfid.id);
+					let tmpS = {
+						id: s.id.toString(),
+						content: getScientificName(s) + (s.commonName ? ' - - - - ' + s.commonName : ''),
+						lead: '', // icon
+						children: []
+					};
+					tmpG.children.push(tmpS as never);
+					s.branchTaxa.forEach((sspfid: { id: number }) => {
+						let ss: any = data.taxonomy.find((x: any) => x.id === sspfid.id);
+						let tmpSS = {
+							id: ss.id.toString(),
+							content: getScientificName(ss) + (ss.commonName ? ' - - - - ' + ss.commonName : ''),
+							lead: '', // icon
+							children: []
+						};
+						tmpS.children.push(tmpSS as never);
+					});
+				});
+			});
+			}
+		});
+		tOrder.children.push(tmpF as never);
+	});
+
+	let checkedNodes : string[] = [];
+	let indeterminateNodes : string[] = [];
+	
 </script>
 
 <!-- Taxonomy -->
 <StandardContainer>
 
 	<div class="">Butterflies of North America</div>
-	<section>
-		<ul>
-			{#each data.taxonomy as taxon}
-				<li class="checklist">
-					<div class="grid grid-cols-4 gap-2 bt-solid">
-						<span class={getTaxonIndent(taxon.taxonType)}>{getScientificName(taxon)}</span>
-						<span class="">{taxon.commonName ?? ''}</span>
-					</div>
-				</li>
-			{/each}
-		</ul>
-	</section>
-
+		<RecursiveTreeView 
+		selection 
+		multiple 
+		relational 
+		nodes={myTreeViewNodes} 
+		bind:checkedNodes={checkedNodes} 
+		bind:indeterminateNodes={indeterminateNodes}/>
+		
 </StandardContainer>

@@ -10,7 +10,7 @@
 
 <h1>Register</h1>
 
-<form action="?/register" method="POST" class="max-w-80 min-w-32" use:enhance>
+<form action="?/register" method="POST" class="max-w-80 min-w-32 space-y-2" use:enhance>
   <div>
     <label for="username">Username</label>
     <input id="username" name="username" class="input" type="text" placeholder="Username" required />
