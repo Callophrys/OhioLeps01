@@ -6,7 +6,12 @@
 
     const sss: { sh: any; svgvp: any } = { sh: null, svgvp: null };
     type countyItem = { id: string; name: string };
-    const selectedCounties: countyItem[] = [];
+    let selectedCounties: countyItem[] = [];
+
+    function handleBlur(e: any) {
+        sss.sh.textContent = '';
+        sss.sh.classList.replace('opacity-100', 'opacity-0');
+    }
 
     function handleMouseOut(e: any) {
         sss.sh.textContent = '';
@@ -22,6 +27,12 @@
 
             if (isMouseDown) {
                 e.target.classList.add('polygon-select');
+                if (selectedCounties.findIndex((c) => c.id === e.target.id) < 0) {
+                    selectedCounties.push({
+                        id: e.target.id,
+                        name: e.target.id.substring(e.target.id.lastIndexOf('_') + 1),
+                    });
+                }
             }
         } else {
             sss.sh.classList.replace('opacity-100', 'opacity-0');
@@ -59,27 +70,29 @@
     function handleMouseUp(e: any) {
         isMouseDown = false;
         sss.svgvp.classList.remove('cursor-pointer');
+        console.log(selectedCounties);
     }
 
     onMount(() => {
         sss.sh = document.getElementById('svg_hover');
         sss.svgvp = document.getElementById('svg_oh');
-        sss.svgvp.addEventListener('mousemove', handleMouseMove);
-        sss.svgvp.addEventListener('mouseout', handleMouseOut);
-        sss.svgvp.addEventListener('mousedown', handleMouseDown);
-        sss.svgvp.addEventListener('mouseup', handleMouseUp);
     });
 </script>
 
 <DoubledContainer>
     <svelte:fragment slot="left">
         <div class="opacity-0 font-semibold text-white capitalize absolute" id="svg_hover"></div>
+        <!-- svelte-ignore a11y-no-static-element-interactions -->
         <svg
             id="svg_oh"
             viewBox="0 0 308 350"
             xmlns="http://www.w3.org/2000/svg"
             height="60vmin"
             width="60vmin"
+            on:mousedown={handleMouseDown}
+            on:mouseup={handleMouseUp}
+            on:mousemove={handleMouseMove}
+            on:blur={handleBlur}
         >
             <polygon
                 class="region1"
