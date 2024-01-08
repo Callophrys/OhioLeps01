@@ -1,15 +1,4 @@
 
-/*
-import { redirect } from '@sveltejs/kit';
-
-export const actions = {
-	default: ({ cookies, url }) => {
-		cookies.set('logged_in', 'true', { path: '/' });
-		throw redirect(303, url.searchParams.get('redirectTo') ?? '/');
-	}
-};
-*/
-
 import { fail, redirect } from '@sveltejs/kit'
 import bcrypt from 'bcrypt'
 import type { Action, Actions, PageServerLoad } from './$types'
@@ -17,14 +6,11 @@ import type { Action, Actions, PageServerLoad } from './$types'
 import prisma from '$lib/prisma'
 
 export const load: PageServerLoad = async ({ locals }) => {
-  console.log('login>PageServerLoad: ', locals);
   // redirect user if logged in
-  console.log('login: ', locals);
   if (locals.user) {
     throw redirect(302, '/');
   }
 }
-
 
 const login: Action = async ({ cookies, request }) => {
   const data = await request.formData()

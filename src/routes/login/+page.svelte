@@ -1,5 +1,3 @@
-
-
 <!--
 <script lang="ts">
     import StandardContainer from '$lib/components/StandardContainer.svelte';
@@ -21,44 +19,59 @@
 -->
 
 <script lang="ts">
-import type { ActionData } from './$types'
-import StandardContainer from '$lib/components/StandardContainer.svelte';
-import { enhance } from '$app/forms'
+    import type { ActionData } from './$types';
+    import StandardContainer from '$lib/components/StandardContainer.svelte';
+    import { enhance } from '$app/forms';
 
-export let form: ActionData
+    export let form: ActionData;
 </script>
 
 <StandardContainer>
-  <h1>Login</h1>
+    <h1>Login</h1>
 
-  <form action="?/login" method="POST" class="max-w-80 min-w-32 space-y-2" use:enhance>
-    <div>
-      <label for="username">Username</label>
-      <input id="username" name="username" class="input" type="text" placeholder="Username" required />
+    <form action="?/login" method="POST" class="max-w-80 min-w-32 space-y-2" use:enhance>
+        <div>
+            <label for="username">Username</label>
+            <input
+                id="username"
+                name="username"
+                class="input pl-4"
+                type="text"
+                placeholder="Username"
+                required
+            />
+        </div>
+
+        <div>
+            <label for="password">Password</label>
+            <input
+                id="password"
+                name="password"
+                class="input pl-4"
+                type="password"
+                placeholder="Password"
+                required
+            />
+        </div>
+
+        {#if form?.invalid}
+            <p class="error">Username and password is required.</p>
+        {/if}
+
+        {#if form?.credentials}
+            <p class="error">You have entered the wrong credentials.</p>
+        {/if}
+
+        <button type="submit" class="btn variant-filled">Log in</button>
+    </form>
+
+    <div class="pt-16 max-w-80">
+        No account?
+        <a href="/register" class="btn variant-filled">Register</a>
+        <p>
+            This is here for development purposes and will be removed in prod. Authentication will
+            preferably happen via single sign on shared authentication via Ohio Leps-wordpress
+            account.
+        </p>
     </div>
-
-    <div>
-      <label for="password">Password</label>
-      <input id="password" name="password" class="input" type="password" placeholder="Password" required />
-    </div>
-
-    {#if form?.invalid}
-      <p class="error">Username and password is required.</p>
-    {/if}
-
-    {#if form?.credentials}
-      <p class="error">You have entered the wrong credentials.</p>
-    {/if}
-
-    <button type="submit" class="btn variant-filled">Log in</button>
-  </form>
-  
-  <div class="pt-16 max-w-80">
-    No account?
-    <a href="/register" class="btn variant-filled">Register</a>
-    <p>This is here for development purposes and will be removed in prod.
-      Authentication will preferably happen via single sign on shared
-      authentication via Ohio Leps-wordpress account. </p>
-</div>
-
 </StandardContainer>

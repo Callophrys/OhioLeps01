@@ -1,8 +1,9 @@
 <script lang="ts">
-    import { browser } from '$app/environment'
     import { popup } from '@skeletonlabs/skeleton';
     import { SlideToggle } from '@skeletonlabs/skeleton';
     import type { PopupSettings } from '@skeletonlabs/skeleton';
+    import { onMount } from 'svelte';
+    import { browser } from '$app/environment';
 
     let comboboxHelpValue: string;
 
@@ -10,37 +11,29 @@
         event: 'focus-click',
         target: 'popupComboboxHelp',
         placement: 'bottom',
-        closeQuery: '.listbox-item'
+        closeQuery: '.listbox-item',
     };
 
-    if (browser) {
+    onMount(() => {
         comboboxHelpValue = localStorage.helpToolTips ?? 'false';
-    }
+    });
 
-	$: {
-		if (browser) {
-            if (typeof document !== 'undefined') {
-                localStorage.setItem('helpToolTips', comboboxHelpValue);
-            }
-		}
-	}
-				
+    $: if (browser && comboboxHelpValue) localStorage.setItem('helpToolTips', comboboxHelpValue);
 </script>
 
 <button class="btn variant-filled w-32 justify-between" use:popup={popupComboboxHelp}>
-	<span class="capitalize">Help</span>
-	<span>↓</span>
+    <span class="capitalize">Help</span>
+    <span>↓</span>
 </button>
 
 <div class="card w-48 shadow-xl py-2" data-popup="popupComboboxHelp">
-
     <div class="content-center flex justify-between px-2 pb-1">
-        <div class="pl-2">Show Tooltips</div><!-- toggle hide instead of show -->
+        <div class="pl-2">Show Tooltips</div>
+        <!-- toggle hide instead of show -->
         <SlideToggle name="medium" size="sm" />
     </div>
 
-    <hr>
+    <hr />
 
     <slot />
-
 </div>
