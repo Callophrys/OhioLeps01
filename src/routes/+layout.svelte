@@ -62,37 +62,23 @@
                             <Help>
                                 <nav class="list-nav">
                                     <ul class="">
+                                        <li>
+                                            <a href="https://www.prisma.io/docs/orm/prisma-schema/data-model/models" target="_blank">Prisma</a>
+                                        </li>
                                         <li class="">
-                                            <a
-                                                href="https://tailwindcss.com/docs/container"
-                                                target="_blank"
-                                                class="hover:rounded-none">TailwindCSS</a
-                                            >
+                                            <a href="https://tailwindcss.com/docs/container" target="_blank" class="hover:rounded-none">TailwindCSS</a>
                                         </li>
                                         <li>
-                                            <a
-                                                href="https://www.skeleton.dev/elements/forms"
-                                                target="_blank"
-                                                class="hover:rounded-none">SkeletonUI</a
-                                            >
+                                            <a href="https://www.skeleton.dev/elements/forms" target="_blank" class="hover:rounded-none">SkeletonUI</a>
                                         </li>
                                         <li>
-                                            <a
-                                                href="https://svelte.dev/docs/components"
-                                                target="_blank">Svelte</a
-                                            >
+                                            <a href="https://svelte.dev/docs/components" target="_blank">Svelte</a>
                                         </li>
                                         <li>
-                                            <a
-                                                href="https://kit.svelte.dev/docs/routing"
-                                                target="_blank">Sveltekit</a
-                                            >
+                                            <a href="https://kit.svelte.dev/docs/routing" target="_blank">Sveltekit</a>
                                         </li>
                                         <li>
-                                            <a
-                                                href="https://www.prisma.io/docs/orm/prisma-schema/data-model/models"
-                                                target="_blank">Prisma</a
-                                            >
+                                            <a href="https://www.compart.com/en/unicode/U+2193" target="_blank">Unicodes</a>
                                         </li>
                                     </ul>
                                 </nav>

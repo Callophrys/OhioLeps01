@@ -49,7 +49,9 @@
 
 
 <div class="flex items-center space-x-2">
-    <button class="btn w-32 variant-filled justify-between" use:popup={popupComboboxSpecies}>
+    <button class="btn w-32 variant-filled justify-between"
+        use:popup={popupComboboxSpecies}
+        on:click={e => e.preventDefault()}>
         <span>Species</span>
         <span>↓</span>
     </button>
@@ -63,16 +65,16 @@
 
     <label class="flex justify-between space-x-2">
         <span>{allSelected ? 'Unselect all' : 'Select all'}</span>
-        <SlideToggle name="medium" size="sm" active="variant-filled-primary"
+        <SlideToggle name="toggle-all-species" size="sm" active="variant-filled-primary"
          checked={allSelected} on:click={toggleAllSpecies} /><input hidden>
     </label>
 
     <div class="flex justify-between space-x-2">
         <span class="my-auto">Naming</span>
         <div class="scale-75 origin-right">
-        <RadioGroup active="variant-filled-primary" hover="hover:variant-soft-primary">
-            <RadioItem bind:group={useLatin} name="justify" value={0}>Common</RadioItem>
-            <RadioItem bind:group={useLatin} name="justify" value={1}>Latin</RadioItem>
+        <RadioGroup name="toggle-naming-group" active="variant-filled-primary" hover="hover:variant-soft-primary">
+            <RadioItem bind:group={useLatin} name="toggle-naming" value={0}>Common</RadioItem>
+            <RadioItem bind:group={useLatin} name="toggle-naming" value={1}>Latin</RadioItem>
         </RadioGroup>
         </div>
     </div>
@@ -82,6 +84,7 @@
     {#each speciesChecklist as species}
     <label class="flex items-center space-x-2 pl-6">
         <input type="checkbox" class="checkbox"
+            name="select-species"
             value={species.checklistId}
             bind:group={speciesChecked} >
         <p>{useLatin ? species.xname : species.commonName}</p>

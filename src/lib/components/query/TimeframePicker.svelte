@@ -30,8 +30,8 @@
 <div class="flex">
 	<span class="my-auto pr-2">Date range by</span>
 	<RadioGroup active="variant-filled-primary" hover="hover:variant-soft-primary">
-		<RadioItem bind:group={dateRangeMode} name="justify" value={0}>Date</RadioItem>
-		<RadioItem bind:group={dateRangeMode} name="justify" value={1}>Week</RadioItem>
+		<RadioItem bind:group={dateRangeMode} name="toggle-date-type" value={0}>Date</RadioItem>
+		<RadioItem bind:group={dateRangeMode} name="toggle-date-type" value={1}>Week</RadioItem>
 	</RadioGroup>
 </div>
 
@@ -39,13 +39,13 @@
 
 	<label class="flex">
 		<span class="w-12 pr-4">From</span>
-		<input class="input w-36 px-2" type={dateRangeMode === 0 ? 'date' : 'week'} min={monitorStartDate} />
+		<input class="input w-36 px-2" name="range-start" type={dateRangeMode === 0 ? 'date' : 'week'} min={monitorStartDate} />
 		<span class="validity pl-1 text-warning-500"></span>
 	</label>
 
 	<label class="flex">
 		<span class="w-12 pr-4">To</span>
-		<input class="input w-36 px-2" type={dateRangeMode === 0 ? 'date' : 'week'} min={monitorStartDate} />
+		<input class="input w-36 px-2" name="range-end" type={dateRangeMode === 0 ? 'date' : 'week'} min={monitorStartDate} />
 		<span class="validity pl-1 text-warning-500"></span>
 	</label>
 

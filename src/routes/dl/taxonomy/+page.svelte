@@ -1,6 +1,7 @@
 <script lang="ts">
     import StandardContainer from '$lib/components/StandardContainer.svelte';
     import { type Taxonomy } from '@prisma/client';
+    import { onMount } from 'svelte';
     export let data;
 
     function getScientificName(taxon: Taxonomy) {
@@ -47,7 +48,7 @@
         lead: '',
         children: [],
     };
-
+    
     let myTreeViewNodes: TreeViewNode[] = [tOrder];
     data.taxonomy.forEach((f: any) => {
         if (f.taxonType !== 'F') return true;
@@ -116,13 +117,15 @@
         return data.taxonomy.filter((b: any) => b.baseTaxonId === t.id);
     }
 
-    //let o: any = data.taxonomy.find((x: any) => x.taxonType === 'O');
+    let myTreeView: TreeView;
+    onMount(() => myTreeView.expandAll());
+    
 </script>
 
 <!-- Taxonomy -->
 <StandardContainer>
     <div class="">Butterflies of North America</div>
-    <TreeView>
+    <TreeView bind:this={myTreeView}>
         <TreeViewItem>
             {getScientificName(o) + ' - - - - ' + o.commonName}
             <svelte:fragment slot="children">

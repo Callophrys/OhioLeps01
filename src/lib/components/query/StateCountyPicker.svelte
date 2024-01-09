@@ -51,7 +51,9 @@
 </script>
 
 <div class="flex items-center space-x-2">
-    <button class="btn w-32 variant-filled justify-between" use:popup={popupComboboxStateCounty}>
+    <button class="btn w-32 variant-filled justify-between"
+    use:popup={popupComboboxStateCounty}
+    on:click={e => e.preventDefault()}>
         <span class="capitalize">{(showStateProvince ? 'State/' : '') + 'Counties'}</span>
         <span>↓</span>
     </button>
@@ -64,19 +66,21 @@
 
     <label class="flex justify-between space-x-2">
         <span>{allSelected ? 'Unselect all' : 'Select all'}</span>
-        <SlideToggle name="medium" size="sm" active="variant-filled-primary"
+        <SlideToggle name="toggle-all-counties" size="sm" active="variant-filled-primary"
          checked={allSelected} on:click={toggleAllCounties} /><input hidden>
     </label>
 
     <div class="h-full grid grid-cols-2">
-        <div class="flex"><span class="my-auto">Unmonitored</span></div>
-        <div class="mt-1 mr-20">
-        <div class="scale-75 origin-top-right">
-        <RadioGroup active="variant-filled-primary" hover="hover:variant-soft-primary">
-            <RadioItem bind:group={hideUnmonitoredCounties} name="justify" value={0}>Show</RadioItem>
-            <RadioItem bind:group={hideUnmonitoredCounties} name="justify" value={1}>Hide</RadioItem>
-        </RadioGroup>
+        <div class="flex">
+            <span class="my-auto">Unmonitored</span>
         </div>
+        <div class="mt-1 mr-20">
+            <div class="scale-75 origin-top-right">
+            <RadioGroup active="variant-filled-primary" hover="hover:variant-soft-primary">
+                <RadioItem bind:group={hideUnmonitoredCounties} name="toggle-show-unmonitored" value={0}>Show</RadioItem>
+                <RadioItem bind:group={hideUnmonitoredCounties} name="toggle-show-unmonitored" value={1}>Hide</RadioItem>
+            </RadioGroup>
+            </div>
         </div>
     </div>
 
@@ -88,6 +92,7 @@
         <input type="checkbox" class="checkbox"
             value={stateCounty.stateCountyId}
             bind:group={counties}
+            name="select-county"
             disabled={!stateCounty.isMonitored} />
         <p>{stateCounty.county}{stateCounty.isMonitored ? '' : '*'}</p>
     </label>
