@@ -65,35 +65,6 @@
                                             <a href="https://www.skeleton.dev/elements/forms" target="_blank" class="hover:rounded-none">SkeletonUI</a>
                                         </li>
                                         <li>
-<<<<<<< HEAD
-                                            <a href="https://svelte.dev/docs/components" target="_blank">Svelte</a>
-                                        </li>
-                                        <li>
-                                            <a href="https://kit.svelte.dev/docs/routing" target="_blank">Sveltekit</a>
-                                        </li>
-                                        <li>
-                                            <a href="https://www.compart.com/en/unicode/U+2193" target="_blank">Unicodes</a>
-=======
-                                            <a
-                                                href="https://svelte.dev/docs/components"
-                                                target="_blank"
-                                                class="hover:rounded-none">Svelte</a
-                                            >
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="https://kit.svelte.dev/docs/routing"
-                                                target="_blank"
-                                                class="hover:rounded-none">Sveltekit</a
-                                            >
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="https://www.prisma.io/docs/orm/prisma-schema/data-model/models"
-                                                target="_blank"
-                                                class="hover:rounded-none">Prisma</a
-                                            >
->>>>>>> 60c154a9e349baaf50524034e69e7cc370eb530d
                                         </li>
                                     </ul>
                                 </nav>

@@ -17,7 +17,7 @@ const login: Action = async ({ cookies, request }) => {
   const username = data.get('username')
   const password = data.get('password')
 
-  console.log('trying to log in ', username, password);
+  //  console.log('trying to log in ', username, password);
   if (
     typeof username !== 'string' ||
     typeof password !== 'string' ||

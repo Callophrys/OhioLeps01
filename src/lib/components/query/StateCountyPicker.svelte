@@ -68,7 +68,7 @@
         <label class="flex justify-between space-x-2">
             <span>{allSelected ? 'Unselect all' : 'Select all'}</span>
             <SlideToggle
-                name="medium"
+                name="toggle-all-counties"
                 size="sm"
                 active="variant-filled-primary"
                 checked={allSelected}
@@ -76,54 +76,13 @@
             /><input hidden />
         </label>
 
-<<<<<<< HEAD
-    <label class="flex justify-between space-x-2">
-        <span>{allSelected ? 'Unselect all' : 'Select all'}</span>
-        <SlideToggle name="toggle-all-counties" size="sm" active="variant-filled-primary"
-         checked={allSelected} on:click={toggleAllCounties} /><input hidden>
-    </label>
-
-    <div class="h-full grid grid-cols-2">
-        <div class="flex">
-            <span class="my-auto">Unmonitored</span>
-        </div>
-        <div class="mt-1 mr-20">
-            <div class="scale-75 origin-top-right">
-            <RadioGroup active="variant-filled-primary" hover="hover:variant-soft-primary">
-                <RadioItem bind:group={hideUnmonitoredCounties} name="toggle-show-unmonitored" value={0}>Show</RadioItem>
-                <RadioItem bind:group={hideUnmonitoredCounties} name="toggle-show-unmonitored" value={1}>Hide</RadioItem>
-            </RadioGroup>
-            </div>
-        </div>
-    </div>
-
-    <hr>
-
-    {#each stateCounties as stateCounty}
-    {#if !hideUnmonitoredCounties || stateCounty.isMonitored}
-    <label class="flex items-center space-x-2 pl-6">
-        <input type="checkbox" class="checkbox"
-            value={stateCounty.stateCountyId}
-            bind:group={counties}
-            name="select-county"
-            disabled={!stateCounty.isMonitored} />
-        <p>{stateCounty.county}{stateCounty.isMonitored ? '' : '*'}</p>
-    </label>
-    {/if}
-    {/each}
-</div>
-=======
         <div class="h-full grid grid-cols-2">
             <div class="flex"><span class="my-auto">Unmonitored</span></div>
             <div class="mt-1 mr-20">
                 <div class="scale-75 origin-top-right">
                     <RadioGroup active="variant-filled-primary" hover="hover:variant-soft-primary">
-                        <RadioItem bind:group={hideUnmonitoredCounties} name="justify" value={0}
-                            >Show</RadioItem
-                        >
-                        <RadioItem bind:group={hideUnmonitoredCounties} name="justify" value={1}
-                            >Hide</RadioItem
-                        >
+                        <RadioItem bind:group={hideUnmonitoredCounties} name="toggle-show-unmonitored" value={0}>Show</RadioItem>
+                        <RadioItem bind:group={hideUnmonitoredCounties} name="toggle-show-unmonitored" value={1}>Hide</RadioItem>
                     </RadioGroup>
                 </div>
             </div>
@@ -139,6 +98,7 @@
                         class="checkbox"
                         value={stateCounty.stateCountyId}
                         bind:group={counties}
+                        name="select-county"
                         disabled={!stateCounty.isMonitored}
                     />
                     <p>{stateCounty.county}{stateCounty.isMonitored ? '' : '*'}</p>
@@ -147,4 +107,3 @@
         {/each}
     </div>
 </div>
->>>>>>> 60c154a9e349baaf50524034e69e7cc370eb530d
