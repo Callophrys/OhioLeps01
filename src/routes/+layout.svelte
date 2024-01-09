@@ -22,11 +22,7 @@
 >
     <svelte:fragment slot="header">
         {#if config.showAppBar}
-            <AppBar
-                gridColumns="grid-cols-3"
-                slotDefault="place-self-center"
-                slotTrail="place-content-end"
-            >
+            <AppBar>
                 <svelte:fragment slot="lead">
                     {#if config.showAnimatedIcon}
                         <div class="ml-16">
@@ -40,7 +36,7 @@
                 </div>
 
                 <svelte:fragment slot="trail">
-                    <div class="columns-2 w-fit h-24 flex">
+                    <div class="w-fit h-24 flex">
                         <div class="my-auto space-x-2 space-y-2 pr-2">
                             {#if !$page.data.user}
                                 <a class="btn variant-filled w-32 justify-between" href="/login">
@@ -50,9 +46,6 @@
                                 <form class="contents" action="/logout" method="POST" use:enhance>
                                     <button
                                         type="submit"
-                                        on:click={() => {
-                                            document.getElementsByName('main')[0].textContent = '';
-                                        }}
                                         class="btn variant-filled w-32 justify-between"
                                         >Log out</button
                                     >
@@ -79,19 +72,22 @@
                                         <li>
                                             <a
                                                 href="https://svelte.dev/docs/components"
-                                                target="_blank">Svelte</a
+                                                target="_blank"
+                                                class="hover:rounded-none">Svelte</a
                                             >
                                         </li>
                                         <li>
                                             <a
                                                 href="https://kit.svelte.dev/docs/routing"
-                                                target="_blank">Sveltekit</a
+                                                target="_blank"
+                                                class="hover:rounded-none">Sveltekit</a
                                             >
                                         </li>
                                         <li>
                                             <a
                                                 href="https://www.prisma.io/docs/orm/prisma-schema/data-model/models"
-                                                target="_blank">Prisma</a
+                                                target="_blank"
+                                                class="hover:rounded-none">Prisma</a
                                             >
                                         </li>
                                     </ul>
@@ -99,17 +95,25 @@
                             </Help>
 
                             <Themer />
+
+                            {#if !config.showAvatar}
+                                <a class="btn variant-filled w-32 justify-between" href="/account">
+                                    <span>Account</span>
+                                </a>
+                            {/if}
                         </div>
 
                         {#if config.showAvatar}
-                            <Avatar
-                                src="https://i.pravatar.cc/"
-                                initials="OH"
-                                width="w-24"
-                                rounded="rounded-full"
-                                border="border-4 border-surface-300-600-token hover:!border-primary-500"
-                                cursor="cursor-pointer"
-                            />
+                            <a href="/account">
+                                <Avatar
+                                    src="https://i.pravatar.cc/"
+                                    initials="OH"
+                                    width="w-24"
+                                    rounded="rounded-full"
+                                    border="border-4 border-surface-300-600-token hover:!border-primary-500"
+                                    cursor="cursor-pointer"
+                                />
+                            </a>
                         {/if}
                     </div>
                 </svelte:fragment>
@@ -133,7 +137,7 @@
                     <li><a href="/dl/statecounties">State-County</a></li>
                     <li><a href="/dl/nameaddresses">Name-Address</a></li>
                 {/if}
-                <li><a href="/ohio">Ohio</a></li>
+                <li><a href="/dl/ohio">Ohio</a></li>
                 <li><a href="/dl/taxonomy">Butterflies of North America</a></li>
             </ul>
         </nav>

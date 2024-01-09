@@ -294,3 +294,12 @@ https://github.com/prisma/prisma-client-extensions
     attribute:  value
 })} />
 ```
+### 1/9/2024
+
+mysql history log: https://stackoverflow.com/questions/12563706/is-there-a-mysql-option-feature-to-track-history-of-changes-to-records
+
+add, edit, remove with forms
+https://joyofcode.xyz/working-with-forms-in-sveltekit
+
+The SvelteKit language server is doing a lot of work under the hood and sometimes you might have a problem with the generated types in which case you can press Ctrl + P and type > Svelte: Restart Language Server but if that doesn’t work restart the development server or your editor as a last resort.
+

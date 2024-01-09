@@ -4,8 +4,8 @@
 
 <StandardContainer>
     <div class="bg-slate-950 h-full">
-        <h1>account</h1>
+        <h1>Data Entry</h1>
 
-        <p>this is the account page</p>
+        <p>this is the entry page</p>
     </div>
 </StandardContainer>
