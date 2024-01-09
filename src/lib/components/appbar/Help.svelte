@@ -26,14 +26,16 @@
     <span>↓</span>
 </button>
 
-<div class="card w-48 shadow-xl py-2" data-popup="popupComboboxHelp">
-    <div class="content-center flex justify-between px-2 pb-1">
-        <div class="pl-2">Show Tooltips</div>
-        <!-- toggle hide instead of show -->
-        <SlideToggle name="medium" size="sm" />
+<div data-popup="popupComboboxHelp">
+    <div class="card w-48 shadow-xl py-2">
+        <div class="content-center flex justify-between px-2 pb-1">
+            <div class="pl-2">Show Tooltips</div>
+            <!-- toggle hide instead of show -->
+            <SlideToggle name="medium" size="sm" />
+        </div>
+
+        <hr />
+
+        <slot />
     </div>
-
-    <hr />
-
-    <slot />
 </div>

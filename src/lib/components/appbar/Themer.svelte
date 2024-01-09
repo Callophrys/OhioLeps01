@@ -11,54 +11,61 @@
         event: 'focus-click',
         target: 'popupCombobox',
         placement: 'bottom',
-        closeQuery: '.listbox-item'
+        closeQuery: '.listbox-item',
     };
 
     let themes: string[] = [
-        "skeleton",
-        "rocket",
-        "modern",
-        "crimson",
-        "wintry",
-        "seafoam",
-        "vintage",
-        "sahara",
-        "hamlindigo",
-        "gold-nouveau",
+        'skeleton',
+        'rocket',
+        'modern',
+        'crimson',
+        'wintry',
+        'seafoam',
+        'vintage',
+        'sahara',
+        'hamlindigo',
+        'gold-nouveau',
     ];
 
-    function setTheme(themeName: string){
+    function setTheme(themeName: string) {
         document.body.setAttribute('data-theme', themeName);
         localStorage.setItem('themeName', themeName);
     }
 
-    function handleClick(event: any){
+    function handleClick(event: any) {
         if (event.currentTarget?.value) {
             setTheme(event.currentTarget.value);
         }
     }
 
-	onMount(() => {
+    onMount(() => {
         comboboxValue = localStorage?.themeName ?? 'rocket';
-		setTheme(comboboxValue);
-	});
+        setTheme(comboboxValue);
+    });
 </script>
 
 <svelte:head>{@html '<script>(' + setInitialClassState.toString() + ')();</script>'}</svelte:head>
 <button class="btn variant-filled w-32 justify-between" use:popup={popupCombobox}>
-	<span class="capitalize">Theme</span>
-	<span>↓</span>
+    <span class="capitalize">Theme</span>
+    <span>↓</span>
 </button>
 
-<div class="card w-36 shadow-xl py-2" data-popup="popupCombobox">
-    <div class="content-center flex justify-between px-2 pb-1">
-        <div>Mode</div>
-        <LightSwitch />
+<div data-popup="popupCombobox">
+    <div class="card w-36 shadow-xl py-2">
+        <div class="content-center flex justify-between px-2 pb-1">
+            <div>Mode</div>
+            <LightSwitch />
+        </div>
+        <hr />
+        <ListBox rounded="rounded-none" class="capitalize">
+            {#each themes as theme}
+                <ListBoxItem
+                    bind:group={comboboxValue}
+                    name="medium"
+                    on:click={handleClick}
+                    value={theme}>{theme.replace('-', ' ')}</ListBoxItem
+                >
+            {/each}
+        </ListBox>
     </div>
-    <hr>
-	<ListBox rounded="rounded-none" class="capitalize">
-    {#each themes as theme}
-		<ListBoxItem bind:group={comboboxValue} name="medium" on:click={handleClick} value={theme}>{theme.replace('-', ' ')}</ListBoxItem>
-    {/each}
-	</ListBox>
 </div>
