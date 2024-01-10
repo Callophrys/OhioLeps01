@@ -1,56 +1,59 @@
 import prisma from "$lib/prisma"
 
-/*
-let todos: Site[] = [
-    {
-        id: Date.now(),
-        text: 'Learn how forms work',
-        completed: false
-    }
-]
-*/
-
-export function getSite(siteId: number) {
-    const sites = await prisma.site.findMany({
-        include: {
-            stateCounty: true
+export async function getSite(siteId: number) {
+    const site = await prisma.site.findFirst({
+      include: {
+        stateCounty: true,
+        siteStatuses: {
+          select: {
+            year: true,
+            statusCode: true
+          }
         }
-    });
-
-	sites.sort((first, second) => second.siteName > first.siteName ? 1 : 0);
-	return sites
-}
-
-export function getSites() {
-
-    const sites = await prisma.site.findMany({
-        include: {
-            stateCounty: true
       },
-      order: {
-        siteName: true
+      where: {
+        siteId: {
+          equals: siteId
+        }
       }
     });
 
-	sites.sort((first, second) => second.siteName > first.siteName ? 1 : 0);
-	return sites
-}
-  return todos
+  return site;
 }
 
-export function addSite(text: string) {
-  const todo: Site = {
-    id: Date.now(),
-    text,
-    completed: false
-  }
-  todos.push(todo)
+export async function getSites() {
+
+    const sites = await prisma.site.findMany({
+      include: {
+          stateCounty: true
+      },
+      orderBy: {
+        siteName: 'asc'
+      }
+    });
+
+  return sites;
 }
 
-export function removeSite(id: number) {
-  todos = todos.filter((todo) => todo.id !== id)
+export async function addSite(site: any) {
+  const newSite = await prisma.site.create({
+    data: {
+      siteName: 'Glen Helen',
+      county: 'Greene',
+      person: 'Nate D',
+      stateCountyId: 29
+    }
+  });
+  
+  return newSite;
 }
 
-export function clearSites() {
-  todos = []
+export async function removeSite(siteId: number) {
+  const deletedSite = await prisma.site.delete({
+    where: {
+      siteId: siteId
+    }
+  });
+
+  return deletedSite;
 }

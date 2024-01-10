@@ -6,6 +6,7 @@ import type { Action, Actions, PageServerLoad } from './$types'
 import prisma from '$lib/prisma'
 
 export const load: PageServerLoad = async ({ locals }) => {
+
   // redirect user if logged in
   if (locals.user) {
     throw redirect(302, '/');
@@ -16,7 +17,7 @@ const login: Action = async ({ cookies, request }) => {
   const data = await request.formData()
   const username = data.get('username')
   const password = data.get('password')
-
+  
   //  console.log('trying to log in ', username, password);
   if (
     typeof username !== 'string' ||
