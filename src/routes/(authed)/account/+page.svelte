@@ -3,9 +3,9 @@
 </script>
 
 <StandardContainer>
-    <div class="bg-slate-950 h-full">
-        <h1>account</h1>
+    <div class="">
+        <h1>Account</h1>
 
-        <p>this is the account page</p>
+        <p>User's account page</p>
     </div>
 </StandardContainer>

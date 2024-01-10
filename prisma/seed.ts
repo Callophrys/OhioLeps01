@@ -14,17 +14,21 @@ import seedSiteObservation from './seed.siteobservation'; await seedSiteObservat
 await updateSiteObservationForSiteDate();
 await updateSiteObservationForChecklist();
 import seedTaxonomy from "./seed.taxonomy"; await seedTaxonomy();
-*/
 await updateRoles();
+*/
+import seedStates from "./seed.state"; await seedStates();
 /*
 */
 
+// Consider making into ENUM
 async function updateRoles() {
-    console.log('Creating Roles');
-    await db.role.createMany({ data: [
-        { id: 1, name: 'USER' },
-        { id: 2, name: 'ADMIN' },
-    ]});
+  console.log('Creating Roles');
+  await db.role.createMany({
+    data: [
+      { id: 1, name: 'USER' },
+      { id: 2, name: 'ADMIN' },
+    ]
+  });
 }
 
 async function updateSiteForCounty() {

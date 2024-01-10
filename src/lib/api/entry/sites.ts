@@ -1,36 +1,36 @@
 import prisma from "$lib/prisma"
 
 export async function getSite(siteId: number) {
-    const site = await prisma.site.findFirst({
-      include: {
-        stateCounty: true,
-        siteStatuses: {
-          select: {
-            year: true,
-            statusCode: true
-          }
-        }
-      },
-      where: {
-        siteId: {
-          equals: siteId
+  const site = await prisma.site.findUnique({
+    include: {
+      stateCounty: true,
+      siteStatuses: {
+        select: {
+          year: true,
+          statusCode: true
         }
       }
-    });
+    },
+    where: {
+      siteId: {
+        equals: siteId
+      }
+    }
+  });
 
   return site;
 }
 
 export async function getSites() {
 
-    const sites = await prisma.site.findMany({
-      include: {
-          stateCounty: true
-      },
-      orderBy: {
-        siteName: 'asc'
-      }
-    });
+  const sites = await prisma.site.findMany({
+    include: {
+      stateCounty: true
+    },
+    orderBy: {
+      siteName: 'asc'
+    }
+  });
 
   return sites;
 }
@@ -44,7 +44,7 @@ export async function addSite(site: any) {
       stateCountyId: 29
     }
   });
-  
+
   return newSite;
 }
 

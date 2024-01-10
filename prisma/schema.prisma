@@ -335,3 +335,43 @@ model NameAddress {
 	changeDate DateTime @default(now())
 }
 
+model Country {
+    id Int @id @default(autoincrement())
+    abbreviation String @db.VarChar(2) @unique
+    name String @unique
+
+    states State[] @relation("CountryOfState")
+}
+
+model State {
+    id Int @id @default(autoincrement())
+    abbreviation String @db.VarChar(2)
+    name String
+
+    countryId Int
+    country Country @relation("CountryOfState", fields: [countryId], references: [id])
+
+    regions Region[] @relation("StateOfRegion")
+    counties County[] @relation("StateOfCounty")
+}
+
+model Region {
+    id Int @id @default(autoincrement())
+    name String
+
+    stateId Int
+    state State @relation("StateOfRegion", fields: [stateId], references: [id])
+
+    counties County[] @relation("RegionOfCounty")
+}
+
+model County {
+    id Int @id @default(autoincrement())
+    name String
+
+    regionId Int
+    region Region @relation("RegionOfCounty", fields: [regionId], references: [id])
+
+    stateId Int
+    state State @relation("StateOfCounty", fields: [stateId], references: [id])
+}

@@ -14,10 +14,11 @@ export const load: PageServerLoad = async ({ locals }) => {
 }
 
 const login: Action = async ({ cookies, request }) => {
+
   const data = await request.formData()
   const username = data.get('username')
   const password = data.get('password')
-  
+
   //  console.log('trying to log in ', username, password);
   if (
     typeof username !== 'string' ||

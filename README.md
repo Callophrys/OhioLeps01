@@ -235,6 +235,11 @@ SELECT COUNT(*) CT FROM statuscode;
 SELECT COUNT(*) CT FROM taxonomy;
 SELECT COUNT(*) CT FROM user;
 SELECT COUNT(*) CT FROM role;
+SELECT COUNT(*) CT FROM country;
+SELECT COUNT(*) CT FROM state;
+SELECT COUNT(*) CT FROM region;
+SELECT COUNT(*) CT FROM county;
+
 
 #### Squash migrations
 ALTER TABLE SITEOBSERVATION DROP FOREIGN KEY SiteObservation_checklistId_fkey;
@@ -254,6 +259,10 @@ DROP TABLE IF EXISTS statuscode;
 DROP TABLE IF EXISTS taxonomy;
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS role;
+DROP TABLE IF EXISTS country;
+DROP TABLE IF EXISTS state;
+DROP TABLE IF EXISTS region;
+DROP TABLE IF EXISTS county;
 
 npx prisma migrate dev --name initial_migration
 npx prisma migrate dev --name <date + letter or number>
@@ -303,3 +312,14 @@ https://joyofcode.xyz/working-with-forms-in-sveltekit
 
 The SvelteKit language server is doing a lot of work under the hood and sometimes you might have a problem with the generated types in which case you can press Ctrl + P and type > Svelte: Restart Language Server but if that doesn’t work restart the development server or your editor as a last resort.
 
+### 1/10/2024
+
+Prima update:
+Update available 5.7.1 -> 5.8.0                        │
+│  Run the following to update                            │
+│    npm i --save-dev prisma@latest                       │
+│    npm i @prisma/client@latest
+
+Pnpm update:
+pnpm add -g pnpm  # updates package.json only
+npm add -g pnpm   # updates actual pnpm but does it do the package.json update?

@@ -3,7 +3,7 @@
 </script>
 
 <StandardContainer>
-    <div class="bg-slate-950 h-full">
+    <div class="">
         <h1>Data Entry</h1>
 
         <p>this is the entry page</p>
