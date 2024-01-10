@@ -32,7 +32,9 @@
                 </svelte:fragment>
 
                 <div class="text-2xl">
-                    {config.title}
+                    <a href="/">
+                        {config.title}
+                    </a>
                 </div>
 
                 <svelte:fragment slot="trail">
@@ -48,7 +50,7 @@
                                         type="submit"
                                         class="btn variant-filled w-32 justify-between"
                                         >Log out</button
-                                    >
+                                    ><input type="hidden" name="to" value="/">
                                 </form>
                             {/if}
 
