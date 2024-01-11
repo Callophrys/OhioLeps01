@@ -4,7 +4,6 @@
 // added previewFeatures to allow for non-key uniques to work on updates
 generator client {
   provider = "prisma-client-js"
-  previewFeatures = ["extendedWhereUnique"]
 }
 
 datasource db {

@@ -3,9 +3,15 @@ const db = new PrismaClient()
 
 /*
 import seedNameAddress from './seed.nameaddress'; await seedNameAddress();
+*/
+
+/*
 import seedStatusCode from './seed.statuscode'; await seedStatusCode();
 import seedStateCounty from './seed.statecounty'; await seedStateCounty();
 import seedSite from './seed.site'; await seedSite();
+*/
+
+/*
 import seedSiteStatus from './seed.sitestatus'; await seedSiteStatus();
 await updateSiteForCounty(); // then update these in schema
 import seedSiteDate from './seed.sitedate'; await seedSiteDate();
@@ -15,9 +21,7 @@ await updateSiteObservationForSiteDate();
 await updateSiteObservationForChecklist();
 import seedTaxonomy from "./seed.taxonomy"; await seedTaxonomy();
 await updateRoles();
-*/
 import seedStates from "./seed.state"; await seedStates();
-/*
 */
 
 // Consider making into ENUM

@@ -259,10 +259,10 @@ DROP TABLE IF EXISTS statuscode;
 DROP TABLE IF EXISTS taxonomy;
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS role;
-DROP TABLE IF EXISTS country;
-DROP TABLE IF EXISTS state;
-DROP TABLE IF EXISTS region;
 DROP TABLE IF EXISTS county;
+DROP TABLE IF EXISTS region;
+DROP TABLE IF EXISTS state;
+DROP TABLE IF EXISTS country;
 
 npx prisma migrate dev --name initial_migration
 npx prisma migrate dev --name <date + letter or number>
@@ -315,11 +315,14 @@ The SvelteKit language server is doing a lot of work under the hood and sometime
 ### 1/10/2024
 
 Prima update:
-Update available 5.7.1 -> 5.8.0                        │
-│  Run the following to update                            │
-│    npm i --save-dev prisma@latest                       │
-│    npm i @prisma/client@latest
+Update available 5.7.1 -> 5.8.0
+Run the following to update:
+npm i --save-dev prisma@latest
+npm i @prisma/client@latest
 
 Pnpm update:
 pnpm add -g pnpm  # updates package.json only
 npm add -g pnpm   # updates actual pnpm but does it do the package.json update?
+** seems i have to do bot
+
+https://vercel.com/docs/beginner-sveltekit/data-binding-and-event-handling

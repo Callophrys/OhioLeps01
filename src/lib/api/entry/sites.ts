@@ -1,7 +1,10 @@
 import prisma from "$lib/prisma"
 
-export async function getSite(siteId: number) {
+export async function getSite(siteId: any) {
   const site = await prisma.site.findUnique({
+    where: {
+      siteId: siteId
+    },
     include: {
       stateCounty: true,
       siteStatuses: {
@@ -11,11 +14,6 @@ export async function getSite(siteId: number) {
         }
       }
     },
-    where: {
-      siteId: {
-        equals: siteId
-      }
-    }
   });
 
   return site;
