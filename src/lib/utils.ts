@@ -14,3 +14,8 @@ export function formatDate(date: string, dateStyle: DateStyle = 'short', timeSty
     */
     return dateFormatter.format(dateToFormat);
 }
+
+export function isEmpty(obj: object) {
+    for (var x in obj) { return false; }
+    return true;
+}

@@ -19,7 +19,7 @@ export const actions: Actions = {
 
     console.log('sites - default action - before login');
     // redirect the user
-    //throw redirect(302, '/')
-    throw redirect(302, '/login')
+    throw redirect(302, '/')
+    //throw redirect(302, '/login')
   },
 }

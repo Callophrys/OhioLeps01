@@ -50,7 +50,7 @@
                                         type="submit"
                                         class="btn variant-filled w-32 justify-between"
                                         >Log out</button
-                                    ><input type="hidden" name="to" value="/">
+                                    ><input type="hidden" name="to" value="/" />
                                 </form>
                             {/if}
 
@@ -58,22 +58,60 @@
                                 <nav class="list-nav">
                                     <ul class="">
                                         <li>
-                                            <a href="https://svelte.dev/docs/introduction" target="_blank" class="hover:rounded-none">Svelte</a>
+                                            <a
+                                                href="https://svelte.dev/docs/introduction"
+                                                target="_blank"
+                                                class="hover:rounded-none">Svelte</a
+                                            >
                                         </li>
                                         <li>
-                                            <a href="https://kit.svelte.dev/docs/introduction" target="_blank" class="hover:rounded-none">SvelteKit</a>
+                                            <a
+                                                href="https://kit.svelte.dev/docs/introduction"
+                                                target="_blank"
+                                                class="hover:rounded-none">SvelteKit</a
+                                            >
                                         </li>
                                         <li class="">
-                                            <a href="https://tailwindcss.com/docs/container" target="_blank" class="hover:rounded-none">TailwindCSS</a>
+                                            <a
+                                                href="https://tailwindcss.com/docs/container"
+                                                target="_blank"
+                                                class="hover:rounded-none">TailwindCSS</a
+                                            >
                                         </li>
                                         <li>
-                                            <a href="https://www.skeleton.dev/elements/forms" target="_blank" class="hover:rounded-none">SkeletonUI</a>
+                                            <a
+                                                href="https://www.skeleton.dev/elements/forms"
+                                                target="_blank"
+                                                class="hover:rounded-none">SkeletonUI</a
+                                            >
                                         </li>
                                         <li>
-                                            <a href="https://www.compart.com/en/unicode/block/U+2190" target="_blank" class="hover:rounded-none">Icons</a>
+                                            <a
+                                                href="https://www.compart.com/en/unicode/block/U+2190"
+                                                target="_blank"
+                                                class="hover:rounded-none">Icons - Arrows</a
+                                            >
                                         </li>
                                         <li>
-                                            <a href="https://www.prisma.io/docs/orm/prisma-schema/data-model/models" target="_blank">Prisma</a>
+                                            <a
+                                                href="https://www.compart.com/en/unicode/block/U+2700"
+                                                target="_blank"
+                                                class="hover:rounded-none">Icons - Dingbats</a
+                                            >
+                                        </li>
+                                        <li>
+                                            <a
+                                                href="https://www.compart.com/en/unicode/block/U+1F300"
+                                                target="_blank"
+                                                class="hover:rounded-none"
+                                                >Icons - Pics &amp; Symbols</a
+                                            >
+                                        </li>
+                                        <li>
+                                            <a
+                                                href="https://www.prisma.io/docs/orm/prisma-schema/data-model/models"
+                                                target="_blank">Prisma</a
+                                            >
                                         </li>
                                     </ul>
                                 </nav>

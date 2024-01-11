@@ -319,10 +319,13 @@ Update available 5.7.1 -> 5.8.0
 Run the following to update:
 npm i --save-dev prisma@latest
 npm i @prisma/client@latest
+- first of above displays errors
+- also must run 'pnpm run build' after
 
 Pnpm update:
 pnpm add -g pnpm  # updates package.json only
 npm add -g pnpm   # updates actual pnpm but does it do the package.json update?
-** seems i have to do bot
+** seems i have to do both
 
 https://vercel.com/docs/beginner-sveltekit/data-binding-and-event-handling
+
