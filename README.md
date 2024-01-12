@@ -178,9 +178,6 @@ mysql> select * from checklist where checklistKey is null;
 update siteObservation o join checklist k on o.checklistKey = k.checklistKey
    set o.checklistId = k.checklistId
 
-update site s join statecounty y on s.county = y.county
-   set s.stateCountyId = y.stateCountyId
-
 update siteObservation o join siteDate d on o.seqId = d.seqId
    set o.siteDateId = d.siteDateId
 ```
@@ -230,7 +227,6 @@ SELECT COUNT(*) CT FROM site;
 SELECT COUNT(*) CT FROM sitedate;
 SELECT COUNT(*) CT FROM siteobservation;
 SELECT COUNT(*) CT FROM sitestatus;
-SELECT COUNT(*) CT FROM statecounty;
 SELECT COUNT(*) CT FROM statuscode;
 SELECT COUNT(*) CT FROM taxonomy;
 SELECT COUNT(*) CT FROM user;
@@ -243,7 +239,6 @@ SELECT COUNT(*) CT FROM county;
 
 #### Squash migrations
 ALTER TABLE SITEOBSERVATION DROP FOREIGN KEY SiteObservation_checklistId_fkey;
-ALTER TABLE SITE DROP FOREIGN KEY Site_stateCountyId_fkey;
 ALTER TABLE SITEDATE DROP FOREIGN KEY SiteDate_siteId_fkey;
 ALTER TABLE SITEDATE DROP FOREIGN KEY SiteObservation_siteDateId_fkey;
 
@@ -254,7 +249,6 @@ DROP TABLE IF EXISTS site;
 DROP TABLE IF EXISTS sitedate;
 DROP TABLE IF EXISTS siteobservation;
 DROP TABLE IF EXISTS sitestatus;
-DROP TABLE IF EXISTS statecounty;
 DROP TABLE IF EXISTS statuscode;
 DROP TABLE IF EXISTS taxonomy;
 DROP TABLE IF EXISTS user;
@@ -276,14 +270,6 @@ paseto and auth0:
 https://github.com/auth0/auth0.js
 https://github.com/panva/paseto/
 
-
-// Create subclass
-import { Prisma } from "@prisma/client";
-//import { Types } from "@prisma/client/runtime/library";
-const stateCountiesWithSites = Prisma.validator<Prisma.StateCountyDefaultArgs>()({
-	include: { sites: true }
-});
-type StateCountiesWithSites = Prisma.StateCountyGetPayload<typeof stateCountiesWithSites>;
 
 https://www.paigeniedringhaus.com/blog/tips-and-tricks-for-using-the-prisma-orm
 https://www.mikenikles.com/blog/svelte-kit-prisma-a-match-made-in-digital-heaven

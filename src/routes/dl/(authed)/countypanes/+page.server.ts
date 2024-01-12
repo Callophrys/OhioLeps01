@@ -1,11 +1,11 @@
 // +page.server.ts version
-import type { StateCounty } from "@prisma/client";
+import type { County } from "@prisma/client";
 import type { PageServerLoad } from "./$types"
 
 export const load: PageServerLoad = async ({ fetch }) => {
-  const response = await fetch('/api/stateCounties');
+	const response = await fetch('/api/counties');
 
-  return { stateCounties: (await response.json()) as StateCounty[] };
+	return { counties: (await response.json()) as County[] };
 };
 
 // +page.ts version

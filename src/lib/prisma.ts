@@ -23,17 +23,17 @@ const prisma = new PrismaClient().$extends({
                 }
             }
         },
-        stateCounty: {
+        county: {
             isMonitored: {
                 needs: { sites: true },
-                compute(stateCounty) {
-                    return stateCounty.sites.length !== 0;
+                compute(county) {
+                    return county.sites.length !== 0;
                 }
             },
             siteCount: {
                 needs: { sites: true },
-                compute(stateCounty) {
-                    return stateCounty.sites.length;
+                compute(county) {
+                    return county.sites.length;
                 }
             }
         }

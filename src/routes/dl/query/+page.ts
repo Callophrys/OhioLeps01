@@ -1,17 +1,17 @@
 
 export async function load({ fetch }) {
-	const [responseStateCounties, responseSpecies] =
+	const [responseCounties, responseSpecies] =
 		await Promise.all([
-			fetch('../api/stateCounties'),
+			fetch('../api/counties'),
 			fetch('../api/checklists'),
 		]);
 
-	const [ stateCounties, speciesList ] =
+	const [counties, speciesList] =
 		await Promise.all([
-			responseStateCounties.json(),
+			responseCounties.json(),
 			responseSpecies.json()
 		]);
 
-	return { stateCounties, speciesList };
+	return { counties, speciesList };
 }
 

@@ -5,23 +5,16 @@
 export type Categories = 'sveltekit' | 'svelte'
 
 export type Post = {
-	title: string
-	slug: string
-	description: string
-	date: string
-	categories: Categories[]
-	published: boolean
+    title: string
+    slug: string
+    description: string
+    date: string
+    categories: Categories[]
+    published: boolean
 }
 */
 
 /*
-export type StateCounty = {
-  stateCountyId: number,
-  state: string,
-  county: string,
-  sites: Site[]
-}
-
 export type Site = {
   siteId: number,
   siteName: string,
@@ -61,9 +54,6 @@ export type Site = {
   s2004: number,
   changeDate: Date,
 
-  stateCounty: StateCounty,
-  stateCountyId: number,
-  
   //siteDates: SiteDate[],
   //siteStatuses: SiteStatus[]
 }

@@ -157,7 +157,7 @@
                     <li><a href="/dl/sitedates">Site Dates</a></li>
                     <li><a href="/dl/siteobservations">Site Observations</a></li>
                     <li><a href="/dl/checklists">Checklists</a></li>
-                    <li><a href="/dl/statecounties">State-County</a></li>
+                    <li><a href="/dl/counties">County</a></li>
                     <li><a href="/dl/nameaddresses">Name-Address</a></li>
                 {/if}
                 <li><a href="/dl/ohio">Ohio</a></li>

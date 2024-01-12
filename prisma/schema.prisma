@@ -67,18 +67,6 @@ model Role {
   users User[]
 }
 
-model StateCounty {
-    stateCountyId Int @id
-    state String // @db.String(2)
-    county String // @db.String(30)
-
-    // Relations - Raw SQL in seed.ts will set this up.  Uncomment before doing
-    //             any schema changes with this prisma.
-    sites Site[]
-
-    @@unique([state, county])
-}
-
 model Site {
     siteId Int @id @default(autoincrement())
     siteName String // @db.String(30)
@@ -115,11 +103,6 @@ model Site {
     s2004 Int @default(5)
     changeDate DateTime @default(now())
 
-    // Relations - Raw SQL in seed.ts will set this up.  Uncomment before doing
-    //             any schema changes with this prisma.
-    stateCounty StateCounty @relation(fields: [stateCountyId], references: [stateCountyId])
-    stateCountyId Int //@default(0) // new so need SQL to get this using county field
-    
     countyId Int
     county County @relation("SiteOfCounty", fields: [countyId], references: [id])
     
@@ -128,8 +111,6 @@ model Site {
 
     // Relations
     siteStatuses SiteStatus[]
-    
-    //@@index([stateCountyId]); // error on run
 }
 
 model Checklist {

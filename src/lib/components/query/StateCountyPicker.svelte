@@ -1,6 +1,6 @@
 <script lang="ts">
-    import type { StateCounty } from '@prisma/client';
-    import type { StateCountyIsMonitored } from '$lib/types';
+    import type { County } from '@prisma/client';
+    import type { CountyIsMonitored } from '$lib/types';
     import { popup } from '@skeletonlabs/skeleton';
     import type { PopupSettings } from '@skeletonlabs/skeleton';
     import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
@@ -8,28 +8,26 @@
     import { afterUpdate, onMount } from 'svelte';
     import { showStateProvince } from '$lib/config';
 
-    const popupComboboxStateCounty: PopupSettings = {
+    const popupComboboxCounty: PopupSettings = {
         event: 'focus-click',
-        target: 'popupComboboxStateCounty',
+        target: 'popupComboboxCounty',
         placement: 'bottom',
     };
 
-    export let stateCounties: StateCountyIsMonitored<StateCounty>[] = [];
+    export let counties: CountyIsMonitored<County>[] = [];
     export let initialHideUnmonitoredChoice: number = 0;
 
     let comboboxValue: string;
 
     let hideUnmonitoredCounties: number;
-    let counties: number[] = [];
+    let countyIds: number[] = [];
 
     function toggleAllCounties() {
         allSelected = !allSelected;
         if (allSelected) {
-            counties = stateCounties
-                .filter((c) => c.isMonitored)
-                .map((c) => c.stateCountyId) as number[];
+            countyIds = counties.filter((c) => c.isMonitored).map((c) => c.id) as number[];
         } else {
-            counties = [];
+            countyIds = [];
         }
     }
 
@@ -48,22 +46,24 @@
         localStorage.setItem('useHideUnmonitoredChoice', hideUnmonitoredCounties ? '1' : '0');
     });
 
-    $: allSelected = stateCounties.filter((c) => c.isMonitored).length === counties.length;
+    $: allSelected = counties.filter((c) => c.isMonitored).length === countyIds.length;
 </script>
 
 <div class="flex items-center space-x-2">
-    <button class="btn w-32 variant-filled justify-between"
-    use:popup={popupComboboxStateCounty}
-    on:click={e => e.preventDefault()}>
+    <button
+        class="btn w-32 variant-filled justify-between"
+        use:popup={popupComboboxCounty}
+        on:click={(e) => e.preventDefault()}
+    >
         <span class="capitalize">{(showStateProvince ? 'State/' : '') + 'Counties'}</span>
         <span>↓</span>
     </button>
     <div class="text-warning-500 italic text-sm">
-        {allSelected ? 'All counties' : counties.length > 0 ? 'Counties filtered' : 'Not filtered'}
+        {allSelected ? 'All counties' : countyIds.length > 0 ? 'Counties filtered' : 'Not filtered'}
     </div>
 </div>
 
-<div data-popup="popupComboboxStateCounty">
+<div data-popup="popupComboboxCounty">
     <div class="card w-64 shadow-xl p-2">
         <label class="flex justify-between space-x-2">
             <span>{allSelected ? 'Unselect all' : 'Select all'}</span>
@@ -81,8 +81,16 @@
             <div class="mt-1 mr-20">
                 <div class="scale-75 origin-top-right">
                     <RadioGroup active="variant-filled-primary" hover="hover:variant-soft-primary">
-                        <RadioItem bind:group={hideUnmonitoredCounties} name="toggle-show-unmonitored" value={0}>Show</RadioItem>
-                        <RadioItem bind:group={hideUnmonitoredCounties} name="toggle-show-unmonitored" value={1}>Hide</RadioItem>
+                        <RadioItem
+                            bind:group={hideUnmonitoredCounties}
+                            name="toggle-show-unmonitored"
+                            value={0}>Show</RadioItem
+                        >
+                        <RadioItem
+                            bind:group={hideUnmonitoredCounties}
+                            name="toggle-show-unmonitored"
+                            value={1}>Hide</RadioItem
+                        >
                     </RadioGroup>
                 </div>
             </div>
@@ -90,18 +98,18 @@
 
         <hr />
 
-        {#each stateCounties as stateCounty}
-            {#if !hideUnmonitoredCounties || stateCounty.isMonitored}
+        {#each counties as county}
+            {#if !hideUnmonitoredCounties || county.isMonitored}
                 <label class="flex items-center space-x-2 pl-6">
                     <input
                         type="checkbox"
                         class="checkbox"
-                        value={stateCounty.stateCountyId}
-                        bind:group={counties}
+                        value={county.id}
+                        bind:group={countyIds}
                         name="select-county"
-                        disabled={!stateCounty.isMonitored}
+                        disabled={!county.isMonitored}
                     />
-                    <p>{stateCounty.county}{stateCounty.isMonitored ? '' : '*'}</p>
+                    <p>{county.name}{county.isMonitored ? '' : '*'}</p>
                 </label>
             {/if}
         {/each}

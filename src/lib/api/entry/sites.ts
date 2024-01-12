@@ -8,7 +8,7 @@ export async function getSite(siteId: number) {
       siteId: siteId
     },
     include: {
-      stateCounty: true,
+      county: true,
       siteStatuses: {
         select: {
           year: true,
@@ -26,7 +26,7 @@ export async function getSites() {
 
   const sites = await prisma.site.findMany({
     include: {
-      stateCounty: true
+      county: true
     },
     orderBy: {
       siteName: 'asc'
@@ -41,9 +41,8 @@ export async function addSite(site: any) {
   const newSite = await prisma.site.create({
     data: {
       siteName: 'Glen Helen',
-      county: 'Greene',
       person: 'Nate D',
-      stateCountyId: 29
+      countyId: 29
     }
   });
 
