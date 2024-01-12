@@ -1,6 +1,9 @@
 import { PrismaClient } from "@prisma/client"
 const db = new PrismaClient()
 
+const counties = await db.county.findMany();
+const countyLookup = Object.assign({}, ...counties.map((c: any) => ({[c.name]: c.id})));
+
 export default async function() {
     console.log('Creating site records');
 	await db.site.createMany({
@@ -8,7 +11,7 @@ export default async function() {
 			{
 				"siteId":1,
 				"siteName":"Caley Wildlife Area",
-				"county":"Lorain",
+				"countyId": countyLookup.Lorain,
 				"township":"Pittsfield",
 				"locationZip":null,
 				"siteAddress":null,
@@ -45,7 +48,7 @@ export default async function() {
 			{
 				"siteId":2,
 				"siteName":"Terra Vista",
-				"county":"Cuyahoga",
+				"countyId": countyLookup.Cuyahoga,
 				"township":"Valley View Village",
 				"locationZip":"44125",
 				"siteAddress":null,
@@ -82,7 +85,7 @@ export default async function() {
 			{
 				"siteId":3,
 				"siteName":"Armington Pond",
-				"county":"Summit",
+				"countyId": countyLookup.Summit,
 				"township":null,
 				"locationZip":null,
 				"siteAddress":null,
@@ -119,7 +122,7 @@ export default async function() {
 			{
 				"siteId":4,
 				"siteName":"NCR-Meadow/Marsh",
-				"county":"Cuyahoga",
+				"countyId": countyLookup.Cuyahoga,
 				"township":null,
 				"locationZip":null,
 				"siteAddress":null,
@@ -156,7 +159,7 @@ export default async function() {
 			{
 				"siteId":5,
 				"siteName":"Koelliker Fen",
-				"county":"Geauga",
+				"countyId": countyLookup.Geauga,
 				"township":"Munson",
 				"locationZip":null,
 				"siteAddress":null,
@@ -193,7 +196,7 @@ export default async function() {
 			{
 				"siteId":6,
 				"siteName":"Luce Creek",
-				"county":"Cuyahoga",
+				"countyId": countyLookup.Cuyahoga,
 				"township":null,
 				"locationZip":null,
 				"siteAddress":null,
@@ -230,7 +233,7 @@ export default async function() {
 			{
 				"siteId":7,
 				"siteName":"Penitentiary Glen",
-				"county":"Lake",
+				"countyId": countyLookup.Lake,
 				"township":null,
 				"locationZip":"44099",
 				"siteAddress":null,
@@ -267,7 +270,7 @@ export default async function() {
 			{
 				"siteId":8,
 				"siteName":"Huntoon Road",
-				"county":"Lake",
+				"countyId": countyLookup.Lake,
 				"township":"Leroy",
 				"locationZip":"44077",
 				"siteAddress":null,
@@ -304,7 +307,7 @@ export default async function() {
 			{
 				"siteId":9,
 				"siteName":"Resthaven Wildlife Area",
-				"county":"Erie",
+				"countyId": countyLookup.Erie,
 				"township":"Margaretta",
 				"locationZip":null,
 				"siteAddress":null,
@@ -341,7 +344,7 @@ export default async function() {
 			{
 				"siteId":10,
 				"siteName":"Kelleys Island - Bookerman Roa",
-				"county":"Erie",
+				"countyId": countyLookup.Erie,
 				"township":"Kelleys Island",
 				"locationZip":"43438",
 				"siteAddress":null,
@@ -378,7 +381,7 @@ export default async function() {
 			{
 				"siteId":11,
 				"siteName":"Girdled Road Park",
-				"county":"Lake",
+				"countyId": countyLookup.Lake,
 				"township":"Leroy",
 				"locationZip":"44077",
 				"siteAddress":null,
@@ -415,7 +418,7 @@ export default async function() {
 			{
 				"siteId":12,
 				"siteName":"Naturealm",
-				"county":"Summit",
+				"countyId": countyLookup.Summit,
 				"township":null,
 				"locationZip":"44313",
 				"siteAddress":null,
@@ -452,7 +455,7 @@ export default async function() {
 			{
 				"siteId":13,
 				"siteName":"Kiracofe Prairie",
-				"county":"Allen",
+				"countyId": countyLookup.Allen,
 				"township":null,
 				"locationZip":null,
 				"siteAddress":null,
@@ -489,7 +492,7 @@ export default async function() {
 			{
 				"siteId":14,
 				"siteName":"Jackson Field",
-				"county":"Cuyahoga",
+				"countyId": countyLookup.Cuyahoga,
 				"township":null,
 				"locationZip":null,
 				"siteAddress":null,
@@ -526,7 +529,7 @@ export default async function() {
 			{
 				"siteId":15,
 				"siteName":"Mentor Marsh",
-				"county":"Lake",
+				"countyId": countyLookup.Lake,
 				"township":null,
 				"locationZip":null,
 				"siteAddress":null,
@@ -563,7 +566,7 @@ export default async function() {
 			{
 				"siteId":16,
 				"siteName":"Lakeshore Reservation",
-				"county":"Lake",
+				"countyId": countyLookup.Lake,
 				"township":"Perry",
 				"locationZip":null,
 				"siteAddress":null,
@@ -600,7 +603,7 @@ export default async function() {
 			{
 				"siteId":17,
 				"siteName":"Battelle-Darby Creek",
-				"county":"Franklin",
+				"countyId": countyLookup.Franklin,
 				"township":"Pleasant",
 				"locationZip":null,
 				"siteAddress":null,
@@ -637,7 +640,7 @@ export default async function() {
 			{
 				"siteId":18,
 				"siteName":"Wilderness Center",
-				"county":"Stark",
+				"countyId": countyLookup.Stark,
 				"township":null,
 				"locationZip":null,
 				"siteAddress":null,
@@ -674,7 +677,7 @@ export default async function() {
 			{
 				"siteId":19,
 				"siteName":"Farbach-Werner",
-				"county":"Hamilton",
+				"countyId": countyLookup.Hamilton,
 				"township":"Colerain",
 				"locationZip":null,
 				"siteAddress":null,
@@ -711,7 +714,7 @@ export default async function() {
 			{
 				"siteId":20,
 				"siteName":"Coshocton",
-				"county":"Coshocton",
+				"countyId": countyLookup.Coshocton,
 				"township":null,
 				"locationZip":null,
 				"siteAddress":null,
@@ -748,7 +751,7 @@ export default async function() {
 			{
 				"siteId":21,
 				"siteName":"Heston's Wood Lot",
-				"county":"Allen",
+				"countyId": countyLookup.Allen,
 				"township":"Bath",
 				"locationZip":"45801",
 				"siteAddress":null,
@@ -785,7 +788,7 @@ export default async function() {
 			{
 				"siteId":22,
 				"siteName":"Osborne Park Area",
-				"county":"Erie",
+				"countyId": countyLookup.Erie,
 				"township":"Huron",
 				"locationZip":"44839",
 				"siteAddress":null,
@@ -822,7 +825,7 @@ export default async function() {
 			{
 				"siteId":23,
 				"siteName":"Castalia Quarry Reserve",
-				"county":"Erie",
+				"countyId": countyLookup.Erie,
 				"township":"Margaretta",
 				"locationZip":"44839",
 				"siteAddress":null,
@@ -859,7 +862,7 @@ export default async function() {
 			{
 				"siteId":24,
 				"siteName":"James McBride Arboretum",
-				"county":"Erie",
+				"countyId": countyLookup.Erie,
 				"township":null,
 				"locationZip":"44839",
 				"siteAddress":null,
@@ -896,7 +899,7 @@ export default async function() {
 			{
 				"siteId":25,
 				"siteName":"Krebs Farm",
-				"county":"Erie",
+				"countyId": countyLookup.Erie,
 				"township":null,
 				"locationZip":"44839",
 				"siteAddress":null,
@@ -933,7 +936,7 @@ export default async function() {
 			{
 				"siteId":26,
 				"siteName":"Oak Openings",
-				"county":"Lucas",
+				"countyId": countyLookup.Lucas,
 				"township":"Swanton",
 				"locationZip":null,
 				"siteAddress":null,
@@ -970,7 +973,7 @@ export default async function() {
 			{
 				"siteId":27,
 				"siteName":"Top Of The World",
-				"county":"Summit",
+				"countyId": countyLookup.Summit,
 				"township":null,
 				"locationZip":"44313",
 				"siteAddress":null,
@@ -1007,7 +1010,7 @@ export default async function() {
 			{
 				"siteId":28,
 				"siteName":"Cincinnati Nature Center",
-				"county":"Clermont",
+				"countyId": countyLookup.Clermont,
 				"township":"Union",
 				"locationZip":"45150",
 				"siteAddress":null,
@@ -1044,7 +1047,7 @@ export default async function() {
 			{
 				"siteId":29,
 				"siteName":"NCR-Bluebird Field",
-				"county":"Cuyahoga",
+				"countyId": countyLookup.Cuyahoga,
 				"township":null,
 				"locationZip":null,
 				"siteAddress":null,
@@ -1081,7 +1084,7 @@ export default async function() {
 			{
 				"siteId":30,
 				"siteName":"NCR-Rogers Road",
-				"county":"Cuyahoga",
+				"countyId": countyLookup.Cuyahoga,
 				"township":null,
 				"locationZip":null,
 				"siteAddress":null,
@@ -1118,7 +1121,7 @@ export default async function() {
 			{
 				"siteId":31,
 				"siteName":"NCR-Strawberry Field",
-				"county":"Cuyahoga",
+				"countyId": countyLookup.Cuyahoga,
 				"township":null,
 				"locationZip":null,
 				"siteAddress":null,
@@ -1155,7 +1158,7 @@ export default async function() {
 			{
 				"siteId":32,
 				"siteName":"NCR-Maintenance Meadow",
-				"county":"Cuyahoga",
+				"countyId": countyLookup.Cuyahoga,
 				"township":null,
 				"locationZip":null,
 				"siteAddress":null,
@@ -1192,7 +1195,7 @@ export default async function() {
 			{
 				"siteId":34,
 				"siteName":"Beavercreek Wildlife Area",
-				"county":"Greene",
+				"countyId": countyLookup.Greene,
 				"township":"Beavercreek",
 				"locationZip":"45385",
 				"siteAddress":null,
@@ -1229,7 +1232,7 @@ export default async function() {
 			{
 				"siteId":35,
 				"siteName":"Blacklick Park",
-				"county":"Franklin",
+				"countyId": countyLookup.Franklin,
 				"township":null,
 				"locationZip":null,
 				"siteAddress":null,
@@ -1266,7 +1269,7 @@ export default async function() {
 			{
 				"siteId":37,
 				"siteName":"Jude's Butterfly Trail",
-				"county":"Montgomery",
+				"countyId": countyLookup.Montgomery,
 				"township":"Jackson",
 				"locationZip":"45325",
 				"siteAddress":null,
@@ -1303,7 +1306,7 @@ export default async function() {
 			{
 				"siteId":39,
 				"siteName":"OR79-147JER",
-				"county":"Hocking",
+				"countyId": countyLookup.Hocking,
 				"township":"Perry",
 				"locationZip":"43135",
 				"siteAddress":null,
@@ -1340,7 +1343,7 @@ export default async function() {
 			{
 				"siteId":40,
 				"siteName":"Greenacres Foundation",
-				"county":"Hamilton",
+				"countyId": countyLookup.Hamilton,
 				"township":"Village Of Indian Hill",
 				"locationZip":"45242",
 				"siteAddress":null,
@@ -1377,7 +1380,7 @@ export default async function() {
 			{
 				"siteId":42,
 				"siteName":"Alrutz Loop",
-				"county":"Licking",
+				"countyId": countyLookup.Licking,
 				"township":"Granville",
 				"locationZip":"43023",
 				"siteAddress":null,
@@ -1414,7 +1417,7 @@ export default async function() {
 			{
 				"siteId":43,
 				"siteName":"Clear Creek Metro Park",
-				"county":"Hocking",
+				"countyId": countyLookup.Hocking,
 				"township":"Good Hope",
 				"locationZip":null,
 				"siteAddress":null,
@@ -1451,7 +1454,7 @@ export default async function() {
 			{
 				"siteId":45,
 				"siteName":"Thoreau Wildlife Sanctuary",
-				"county":"Defiance",
+				"countyId": countyLookup.Defiance,
 				"township":"Noble",
 				"locationZip":null,
 				"siteAddress":null,
@@ -1488,7 +1491,7 @@ export default async function() {
 			{
 				"siteId":46,
 				"siteName":"Kelleys Island - Coleman Tract",
-				"county":"Erie",
+				"countyId": countyLookup.Erie,
 				"township":"Kelleys Island",
 				"locationZip":"43438",
 				"siteAddress":null,
@@ -1525,7 +1528,7 @@ export default async function() {
 			{
 				"siteId":47,
 				"siteName":"Shaker Trace Wetlands",
-				"county":"Hamilton",
+				"countyId": countyLookup.Hamilton,
 				"township":null,
 				"locationZip":null,
 				"siteAddress":null,
@@ -1562,7 +1565,7 @@ export default async function() {
 			{
 				"siteId":48,
 				"siteName":"McLean Teddy Bear Park",
-				"county":"Allen",
+				"countyId": countyLookup.Allen,
 				"township":"Bath",
 				"locationZip":"45801",
 				"siteAddress":"North Dixie Highway",

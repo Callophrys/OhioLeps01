@@ -9,12 +9,12 @@ export async function getSite(siteId: number) {
     },
     include: {
       stateCounty: true,
-      /*siteStatuses: {
+      siteStatuses: {
         select: {
           year: true,
           statusCode: true
         }
-      }*/
+      }
     },
   });
 

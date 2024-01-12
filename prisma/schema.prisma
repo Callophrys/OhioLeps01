@@ -82,13 +82,12 @@ model StateCounty {
 model Site {
     siteId Int @id @default(autoincrement())
     siteName String // @db.String(30)
-    county String // @db.String(12)
     township String? // @db.String(50)
     locationZip String? // @db.String(50)
     siteAddress String? // @db.String(40)
     siteAddress2 String? // @db.String(40)
     siteCityStateZip String? // @db.String(40)
-    person String // @db.String(30)
+    person String? // @db.String(30)
     address String? // @db.String(40)
     address2 String? // @db.String(40)
     cityStateZip String? // @db.String(40)
@@ -120,6 +119,9 @@ model Site {
     //             any schema changes with this prisma.
     stateCounty StateCounty @relation(fields: [stateCountyId], references: [stateCountyId])
     stateCountyId Int //@default(0) // new so need SQL to get this using county field
+    
+    countyId Int
+    county County @relation("SiteOfCounty", fields: [countyId], references: [id])
     
     // Relations
     siteDates SiteDate[]
@@ -373,4 +375,6 @@ model County {
 
     stateId Int
     state State @relation("StateOfCounty", fields: [stateId], references: [id])
+
+    sites Site[] @relation("SiteOfCounty")
 }

@@ -321,6 +321,7 @@ npm i --save-dev prisma@latest
 npm i @prisma/client@latest
 - first of above displays errors
 - also must run 'pnpm run build' after
+- can the npm commands be replaced with pnpm?
 
 Pnpm update:
 pnpm add -g pnpm  # updates package.json only

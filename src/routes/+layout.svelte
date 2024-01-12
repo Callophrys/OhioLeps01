@@ -59,20 +59,6 @@
                                     <ul class="">
                                         <li>
                                             <a
-                                                href="https://svelte.dev/docs/introduction"
-                                                target="_blank"
-                                                class="hover:rounded-none">Svelte</a
-                                            >
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="https://kit.svelte.dev/docs/introduction"
-                                                target="_blank"
-                                                class="hover:rounded-none">SvelteKit</a
-                                            >
-                                        </li>
-                                        <li class="">
-                                            <a
                                                 href="https://tailwindcss.com/docs/container"
                                                 target="_blank"
                                                 class="hover:rounded-none">TailwindCSS</a
@@ -83,6 +69,20 @@
                                                 href="https://www.skeleton.dev/elements/forms"
                                                 target="_blank"
                                                 class="hover:rounded-none">SkeletonUI</a
+                                            >
+                                        </li>
+                                        <li class="">
+                                            <a
+                                                href="https://svelte.dev/docs/introduction"
+                                                target="_blank"
+                                                class="hover:rounded-none">Svelte</a
+                                            >
+                                        </li>
+                                        <li>
+                                            <a
+                                                href="https://kit.svelte.dev/docs/introduction"
+                                                target="_blank"
+                                                class="hover:rounded-none">SvelteKit</a
                                             >
                                         </li>
                                         <li>
