@@ -26,7 +26,12 @@ export async function getSites() {
 
   const sites = await prisma.site.findMany({
     include: {
-      county: true
+      county: {
+        select: {
+          name: true,
+          state: true
+        }
+      },
     },
     orderBy: {
       siteName: 'asc'

@@ -5,12 +5,9 @@
 </script>
 
 <StandardContainer>
-    <div class="bg-red">Root page</div>
+    <div class="">Root page</div>
     <section>
-        <div
-            class="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-7 xl:grid-cols-8 2xl:grid-cols-10 gap-4"
-            style="background-color: coral"
-        >
+        <div class="flex gap-2">
             {#each data.counties as county}
                 {#if county.sites.length > 0}
                     <CCounty {county} />

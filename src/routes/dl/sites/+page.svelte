@@ -174,8 +174,10 @@
                         <div class="card btn grid w-64 p-0 m-0 text-wrap">
                             <div class="px-2 pt-2 w-full">
                                 <h3>{site.siteName}</h3>
+                                <div>
+                                    {site.county.state.name} - {site.county.name}
+                                </div>
                                 <div>{site.person}</div>
-                                <div>{site.county.state} - {site.county.county}</div>
                                 <div>Last update: {formatDate(site.changeDate)}</div>
                             </div>
                             <div class="flex m-0">
@@ -230,3 +232,15 @@
         {/if}
     </div>
 </StandardContainer>
+
+<style>
+    .text-base-token {
+        color: rgba(var(--theme-font-color-base));
+    }
+    .text-dark-token {
+        color: rgba(var(--theme-font-color-dark));
+    }
+    .text-token {
+        @apply text-base-token dark:text-dark-token;
+    }
+</style>
