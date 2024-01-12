@@ -15,14 +15,14 @@ https://github.com/prisma/prisma-client-extensions
 // May have to trim or account for missing parts. E.g. subspecies
 const prisma = new PrismaClient().$extends({
     result: {
-        checklist: {
+        /*checklist: {
             xname: {
                 needs: { genus: true, species: true, subspecies: true },
                 compute(checklist) {
                     return `${checklist.genus} ${checklist.species}${checklist.subspecies ? ' ' + checklist.subspecies : ''}`
                 }
             }
-        },
+        },*/
         county: {
             isMonitored: {
                 needs: { sites: true },

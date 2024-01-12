@@ -5,6 +5,8 @@ const db = new PrismaClient()
 import seedStates from "./seed.state"; await seedStates();
 import seedStatusCode from './seed.statuscode'; await seedStatusCode();
 */
+
+// seems a pause is needed here
 import seedSite from './seed.site'; await seedSite();
 import seedSiteStatus from './seed.sitestatus'; await seedSiteStatus();
 
@@ -34,7 +36,7 @@ async function updateRoles() {
 
 async function updateSiteObservationForChecklist() {
   let result = await db.$executeRaw`
-    update siteObservation o join checklist k on o.checklistKey = k.checklistKey
+    update siteObservation o join checklist k on o.hodges = k.hodges
       set o.checklistId = k.checklistId`;
   console.log("Updated " + result + " siteObservation records for relation to checklist.")
 }

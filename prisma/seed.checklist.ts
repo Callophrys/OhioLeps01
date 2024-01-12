@@ -2,3692 +2,3891 @@ import { PrismaClient } from "@prisma/client"
 
 const db = new PrismaClient()
 
-export default async function() {
-    console.log('Creating checklist records');
-    await db.checklist.create({ data: {
-        checklistKey: "3870",
-        genus: "Epargyreus",
-        species: "clarus",
-        subspecies: "clarus",
-        combinedLatin: "Epargyreus clarus clarus",
-        commonName: "Silver-spotted Skipper",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "Cramer",
-        year: "1779",
-        referenceCount: 249,
-        countyCount: 84,
-        family: 40,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "3886",
-        genus: "Urbanus",
-        species: "proteus",
-        combinedLatin: "Urbanus proteus",
-        commonName: "Long-tailed Skipper",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "Linnaeus",
-        year: "1758",
-        referenceCount: 1,
-        countyCount: 1,
-        family: 40,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "3902",
-        genus: "Autochton",
-        species: "cellus",
-        combinedLatin: "Autochton cellus",
-        commonName: "Gold-banded Skipper",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "Boisduval and LeConte",
-        year: "1834",
-        referenceCount: 30,
-        countyCount: 10,
-        family: 40,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "3904",
-        genus: "Achalarus",
-        species: "lyciades",
-        combinedLatin: "Achalarus lyciades",
-        commonName: "Hoary Edge",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "Geyer",
-        year: "1832",
-        referenceCount: 121,
-        countyCount: 43,
-        family: 40,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "3909",
-        genus: "Thorybes",
-        species: "bathyllus",
-        combinedLatin: "Thorybes bathyllus",
-        commonName: "Southern Cloudy Wing",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "J. E. Smith",
-        year: "1797",
-        referenceCount: 147,
-        countyCount: 53,
-        family: 40,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "3910",
-        genus: "Thorybes",
-        species: "pylades",
-        combinedLatin: "Thorybes pylades",
-        commonName: "Northern Cloudy Wing",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "Scudder",
-        year: "1870",
-        referenceCount: 161,
-        countyCount: 53,
-        family: 40,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "3913",
-        genus: "Thorybes",
-        species: "confusis",
-        combinedLatin: "Thorybes confusis",
-        commonName: "Confused Cloudy Wing",
-        show: true,
-        kind: "S",
-        revised: "F",
-        author: "Bell",
-        year: "1922",
-        referenceCount: 1,
-        countyCount: 1,
-        family: 40,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "3932",
-        genus: "Staphylus",
-        species: "hayhurstii",
-        combinedLatin: "Staphylus hayhurstii",
-        commonName: "Southern Sooty Wing",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "W. H. Edwards",
-        year: "1870",
-        referenceCount: 50,
-        countyCount: 17,
-        family: 40,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "3945",
-        genus: "Erynnis",
-        species: "icelus",
-        combinedLatin: "Erynnis icelus",
-        commonName: "Dreamy Dusky Wing",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "Scudder and Burgess",
-        year: "1870",
-        referenceCount: 151,
-        countyCount: 50,
-        family: 40,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "3946",
-        genus: "Erynnis",
-        species: "brizo",
-        subspecies: "brizo",
-        combinedLatin: "Erynnis brizo brizo",
-        commonName: "Sleepy Dusky Wing",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "Boisduval and LeConte",
-        year: "1834",
-        referenceCount: 124,
-        countyCount: 46,
-        family: 40,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "3947",
-        genus: "Erynnis",
-        species: "juvenalis",
-        subspecies: "juvenalis",
-        combinedLatin: "Erynnis juvenalis juvenalis",
-        commonName: "Juvenal's Dusky Wing",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "Fabricius",
-        year: "1793",
-        referenceCount: 211,
-        countyCount: 74,
-        family: 40,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "3952",
-        genus: "Erynnis",
-        species: "horatius",
-        combinedLatin: "Erynnis horatius",
-        commonName: "Horace's Dusky Wing",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "Scudder and Burgess",
-        year: "1870",
-        referenceCount: 131,
-        countyCount: 44,
-        family: 40,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "3954",
-        genus: "Erynnis",
-        species: "martialis",
-        combinedLatin: "Erynnis martialis",
-        commonName: "Mottled Dusky Wing",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "Scudder",
-        year: "1869",
-        referenceCount: 52,
-        countyCount: 9,
-        family: 40,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "3958",
-        genus: "Erynnis",
-        species: "lucilius",
-        combinedLatin: "Erynnis lucilius",
-        commonName: "Columbine Dusky Wing",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "Scudder and Burgess",
-        year: "1870",
-        referenceCount: 3,
-        countyCount: 2,
-        family: 40,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "3959",
-        genus: "Erynnis",
-        species: "baptisiae",
-        combinedLatin: "Erynnis baptisiae",
-        commonName: "Wild Indigo Dusky Wing",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "Forbes",
-        year: "1936",
-        referenceCount: 95,
-        countyCount: 38,
-        family: 40,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "3961",
-        genus: "Erynnis",
-        species: "persius",
-        subspecies: "persius",
-        combinedLatin: "Erynnis persius persius",
-        commonName: "Persius Dusky Wing",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "Scudder",
-        year: "1863",
-        referenceCount: 25,
-        countyCount: 2,
-        family: 40,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "3962",
-        genus: "Pyrgus",
-        species: "centaureae",
-        combinedLatin: "Pyrgus centaureae",
-        commonName: "Grizzled Skipper",
-        show: false,
-        kind: "S",
-        revised: "T",
-        author: "Rambur",
-        year: "1840",
-        referenceCount: 1,
-        countyCount: 1,
-        family: 40,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "3962  b",
-        genus: "Pyrgus",
-        species: "centaureae",
-        subspecies: "wyandot",
-        combinedLatin: "Pyrgus centaureae wyandot",
-        commonName: "Grizzled Skipper",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "W. H. Edwards",
-        year: "1863",
-        referenceCount: 12,
-        countyCount: 4,
-        family: 40,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "3966",
-        genus: "Pyrgus",
-        species: "communis",
-        combinedLatin: "Pyrgus communis",
-        commonName: "Checkered Skipper",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "Grote",
-        year: "1872",
-        referenceCount: 140,
-        countyCount: 53,
-        family: 40,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "3977",
-        genus: "Pholisora",
-        species: "catullus",
-        combinedLatin: "Pholisora catullus",
-        commonName: "Common Sooty Wing",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "Fabricius",
-        year: "1793",
-        referenceCount: 222,
-        countyCount: 78,
-        family: 40,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "3993",
-        genus: "Nastra",
-        species: "lherminier",
-        combinedLatin: "Nastra lherminier",
-        commonName: "Swarthy Skipper",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "Latreille",
-        year: "1824",
-        referenceCount: 86,
-        countyCount: 32,
-        family: 40,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4004",
-        genus: "Ancyloxypha",
-        species: "numitor",
-        combinedLatin: "Ancyloxypha numitor",
-        commonName: "Least Skipper",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "Fabricius",
-        year: "1793",
-        referenceCount: 251,
-        countyCount: 82,
-        family: 40,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4010",
-        genus: "Copaeodes",
-        species: "minimus",
-        combinedLatin: "Copaeodes minimus",
-        commonName: "Southern Skipperling",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "W. H. Edwards",
-        year: "1870",
-        referenceCount: 1,
-        countyCount: 1,
-        family: 40,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4012",
-        genus: "Thymelicus",
-        species: "lineola",
-        combinedLatin: "Thymelicus lineola",
-        commonName: "European Skipper",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "Ochsenheimer",
-        year: "1808",
-        referenceCount: 162,
-        countyCount: 65,
-        family: 40,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4013",
-        genus: "Hylephila",
-        species: "phyleus",
-        combinedLatin: "Hylephila phyleus",
-        commonName: "Fiery Skipper",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "Drury",
-        year: "1773",
-        referenceCount: 69,
-        countyCount: 29,
-        family: 40,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4023",
-        genus: "Hesperia",
-        species: "leonardus",
-        combinedLatin: "Hesperia leonardus",
-        commonName: "Leonard's Skipper",
-        show: true,
-        kind: "S",
-        revised: "F",
-        author: "Harris",
-        year: "1862",
-        referenceCount: 117,
-        countyCount: 35,
-        family: 40,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4027",
-        genus: "Hesperia",
-        species: "metea",
-        subspecies: "metea",
-        combinedLatin: "Hesperia metea metea",
-        commonName: "Cobweb Skipper",
-        show: true,
-        kind: "S",
-        revised: "F",
-        author: "Scudder",
-        year: "1864",
-        referenceCount: 25,
-        countyCount: 10,
-        family: 40,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4029",
-        genus: "Hesperia",
-        species: "attalus",
-        subspecies: "attalus",
-        combinedLatin: "Hesperia attalus attalus",
-        commonName: "Dotted Skipper",
-        show: false,
-        kind: "S",
-        revised: "T",
-        author: "W. H. Edwards",
-        year: "1871",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 40,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4033",
-        genus: "Hesperia",
-        species: "sassacus",
-        subspecies: "sassacus",
-        combinedLatin: "Hesperia sassacus sassacus",
-        commonName: "Indian Skipper",
-        show: true,
-        kind: "S",
-        revised: "F",
-        author: "Harris",
-        year: "1862",
-        referenceCount: 64,
-        countyCount: 20,
-        family: 40,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4036",
-        genus: "Polites",
-        species: "coras",
-        combinedLatin: "Polites coras",
-        commonName: "Peck's Skipper",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "Cramer",
-        year: "1775",
-        referenceCount: 251,
-        countyCount: 83,
-        family: 40,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4041",
-        genus: "Polites",
-        species: "themistocles",
-        combinedLatin: "Polites themistocles",
-        commonName: "Tawny-edged Skipper",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "Latreille",
-        year: "1824",
-        referenceCount: 201,
-        countyCount: 73,
-        family: 40,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4042",
-        genus: "Polites",
-        species: "origenes",
-        subspecies: "origenes",
-        combinedLatin: "Polites origenes origenes",
-        commonName: "Cross Line Skipper",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "Fabricius",
-        year: "1793",
-        referenceCount: 171,
-        countyCount: 56,
-        family: 40,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4043",
-        genus: "Polites",
-        species: "mystic",
-        subspecies: "mystic",
-        combinedLatin: "Polites mystic mystic",
-        commonName: "Long Dash",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "W. H. Edwards",
-        year: "1863",
-        referenceCount: 126,
-        countyCount: 37,
-        family: 40,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4045",
-        genus: "Polites",
-        species: "vibex",
-        subspecies: "vibex",
-        combinedLatin: "Polites vibex vibex",
-        commonName: "Whirlabout",
-        show: false,
-        kind: "S",
-        revised: "T",
-        author: "Geyer",
-        year: "1832",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 40,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4047",
-        genus: "Wallengrenia",
-        species: "egeremet",
-        combinedLatin: "Wallengrenia egeremet",
-        commonName: "Northern Broken Dash",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "Scudder",
-        year: "1864",
-        referenceCount: 203,
-        countyCount: 68,
-        family: 40,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4048",
-        genus: "Pompeius",
-        species: "verna",
-        combinedLatin: "Pompeius verna",
-        commonName: "Little Glassy Wing",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "W. H. Edwards",
-        year: "1862",
-        referenceCount: 179,
-        countyCount: 65,
-        family: 40,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4049",
-        genus: "Atalopedes",
-        species: "campestris",
-        combinedLatin: "Atalopedes campestris",
-        commonName: "Sachem",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "Boisduval",
-        year: "1852",
-        referenceCount: 3,
-        countyCount: 1,
-        family: 40,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4049  a",
-        genus: "Atalopedes",
-        species: "campestris",
-        subspecies: "huron",
-        combinedLatin: "Atalopedes campestris huron",
-        commonName: "Sachem",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "W. H. Edwards",
-        year: "1863",
-        referenceCount: 80,
-        countyCount: 32,
-        family: 40,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4051",
-        genus: "Atrytone",
-        species: "delaware",
-        combinedLatin: "Atrytone delaware",
-        commonName: "Delaware Skipper",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "W. H. Edwards",
-        year: "1863",
-        referenceCount: 111,
-        countyCount: 37,
-        family: 40,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4051  +",
-        genus: "Atrytone",
-        species: "delaware",
-        subspecies: "delaware",
-        combinedLatin: "Atrytone delaware delaware",
-        commonName: "Delaware Skipper",
-        show: false,
-        kind: "S",
-        revised: "T",
-        author: "W. H. Edwards",
-        year: "1863",
-        referenceCount: 24,
-        countyCount: 22,
-        family: 40,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4058",
-        genus: "Poanes",
-        species: "massasoit",
-        subspecies: "massasoit",
-        combinedLatin: "Poanes massasoit massasoit",
-        commonName: "Mulberry Wing",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "Scudder",
-        year: "1864",
-        referenceCount: 64,
-        countyCount: 12,
-        family: 40,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4059",
-        genus: "Poanes",
-        species: "hobomok",
-        combinedLatin: "Poanes hobomok",
-        commonName: "Hobomok Skipper",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "Harris",
-        year: "1862",
-        referenceCount: 238,
-        countyCount: 70,
-        family: 40,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4060",
-        genus: "Poanes",
-        species: "zabulon",
-        combinedLatin: "Poanes zabulon",
-        commonName: "Zabulon Skipper",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "Boisduval and LeConte",
-        year: "1834",
-        referenceCount: 241,
-        countyCount: 71,
-        family: 40,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4064",
-        genus: "Poanes",
-        species: "viator",
-        subspecies: "viator",
-        combinedLatin: "Poanes viator viator",
-        commonName: "Broad-winged Skipper",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "W. H. Edwards",
-        year: "1865",
-        referenceCount: 61,
-        countyCount: 15,
-        family: 40,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4072",
-        genus: "Euphyes",
-        species: "dion",
-        combinedLatin: "Euphyes dion",
-        commonName: "Dion Skipper",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "W. H. Edwards",
-        year: "1879",
-        referenceCount: 118,
-        countyCount: 35,
-        family: 40,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4074",
-        genus: "Euphyes",
-        species: "dukesi",
-        combinedLatin: "Euphyes dukesi",
-        commonName: "Duke's Skipper",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "Lindsey",
-        year: "1923",
-        referenceCount: 122,
-        countyCount: 20,
-        family: 40,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4075",
-        genus: "Euphyes",
-        species: "conspicuus",
-        subspecies: "conspicuus",
-        combinedLatin: "Euphyes conspicuus conspicuus",
-        commonName: "Black Dash",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "W. H. Edwards",
-        year: "1863",
-        referenceCount: 82,
-        countyCount: 28,
-        family: 40,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4077",
-        genus: "Euphyes",
-        species: "bimacula",
-        combinedLatin: "Euphyes bimacula",
-        commonName: "Two-spotted Skipper",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "Grote and Robinson",
-        year: "1867",
-        referenceCount: 43,
-        countyCount: 14,
-        family: 40,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4078",
-        genus: "Euphyes",
-        species: "ruricola",
-        combinedLatin: "Euphyes ruricola",
-        commonName: "Dun Skipper",
-        show: false,
-        kind: "S",
-        revised: "T",
-        author: "Boisduval",
-        year: "1852",
-        referenceCount: 2,
-        countyCount: 2,
-        family: 40,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4078  a",
-        genus: "Euphyes",
-        species: "ruricola",
-        subspecies: "metacomet",
-        combinedLatin: "Euphyes ruricola metacomet",
-        commonName: "Dun Skipper",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "Harris",
-        year: "1862",
-        referenceCount: 194,
-        countyCount: 75,
-        family: 40,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4080",
-        genus: "Atrytonopsis",
-        species: "hianna",
-        subspecies: "hianna",
-        combinedLatin: "Atrytonopsis hianna hianna",
-        commonName: "Dusted Skipper",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "Scudder",
-        year: "1868",
-        referenceCount: 30,
-        countyCount: 10,
-        family: 40,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4096",
-        genus: "Amblyscirtes",
-        species: "hegon",
-        combinedLatin: "Amblyscirtes hegon",
-        commonName: "Pepper and Salt Skipper",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "Scudder",
-        year: "1864",
-        referenceCount: 49,
-        countyCount: 17,
-        family: 40,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4105",
-        genus: "Amblyscirtes",
-        species: "vialis",
-        combinedLatin: "Amblyscirtes vialis",
-        commonName: "Roadside Skipper",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "W. H. Edwards",
-        year: "1862",
-        referenceCount: 110,
-        countyCount: 44,
-        family: 40,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4107",
-        genus: "Amblyscirtes",
-        species: "belli",
-        combinedLatin: "Amblyscirtes belli",
-        commonName: "Bell's Roadside Skipper",
-        show: true,
-        kind: "S",
-        revised: "F",
-        author: "H.A. Freeman",
-        year: "1941",
-        referenceCount: 1,
-        countyCount: 1,
-        family: 40,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4111",
-        genus: "Lerodea",
-        species: "eufala",
-        combinedLatin: "Lerodea eufala",
-        commonName: "Eufala Skipper",
-        show: false,
-        kind: "S",
-        revised: "T",
-        author: "W. H. Edwards",
-        year: "1869",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 40,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4115",
-        genus: "Calpodes",
-        species: "ethlius",
-        combinedLatin: "Calpodes ethlius",
-        commonName: "Brazilian Skipper",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "Stoll",
-        year: "1782",
-        referenceCount: 1,
-        countyCount: 1,
-        family: 40,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4119",
-        genus: "Panoquina",
-        species: "ocola",
-        combinedLatin: "Panoquina ocola",
-        commonName: "Ocola Skipper",
-        show: true,
-        kind: "S",
-        revised: "T",
-        author: "W. H. Edwards",
-        year: "1863",
-        referenceCount: 8,
-        countyCount: 8,
-        family: 40,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4157",
-        genus: "Battus",
-        species: "philenor",
-        subspecies: "philenor",
-        combinedLatin: "Battus philenor philenor",
-        commonName: "Pipevine Swallowtail",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Linnaeus",
-        year: "1771",
-        referenceCount: 185,
-        countyCount: 70,
-        family: 41,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4159",
-        genus: "Papilio",
-        species: "polyxenes",
-        combinedLatin: "Papilio polyxenes",
-        commonName: "Black Swallowtail",
-        show: true,
-        kind: "B",
-        revised: "F",
-        author: "Fabricius",
-        year: "1775",
-        referenceCount: 16,
-        countyCount: 4,
-        family: 41,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4159  a",
-        genus: "Papilio",
-        species: "polyxenes",
-        subspecies: "asterius",
-        combinedLatin: "Papilio polyxenes asterius",
-        commonName: "Black Swallowtail",
-        show: false,
-        kind: "B",
-        revised: "F",
-        author: "Stoll",
-        year: "1782",
-        referenceCount: 342,
-        countyCount: 86,
-        family: 41,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4170",
-        genus: "Papilio",
-        species: "cresphontes",
-        combinedLatin: "Papilio cresphontes",
-        commonName: "Giant Swallowtail",
-        show: true,
-        kind: "B",
-        revised: "F",
-        author: "Cramer",
-        year: "1777",
-        referenceCount: 130,
-        countyCount: 52,
-        family: 41,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4176",
-        genus: "Papilio",
-        species: "glaucus",
-        subspecies: "glaucus",
-        combinedLatin: "Papilio glaucus glaucus",
-        commonName: "Tiger Swallowtail",
-        show: true,
-        kind: "B",
-        revised: "F",
-        author: "Linnaeus",
-        year: "1758",
-        referenceCount: 432,
-        countyCount: 85,
-        family: 41,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4181",
-        genus: "Papilio",
-        species: "troilus",
-        subspecies: "troilus",
-        combinedLatin: "Papilio troilus troilus",
-        commonName: "Spicebush Swallowtail",
-        show: true,
-        kind: "B",
-        revised: "F",
-        author: "Linnaeus",
-        year: "1758",
-        referenceCount: 293,
-        countyCount: 84,
-        family: 41,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4184",
-        genus: "Eurytides",
-        species: "marcellus",
-        combinedLatin: "Eurytides marcellus",
-        commonName: "Zebra Swallowtail",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Cramer",
-        year: "1777",
-        referenceCount: 234,
-        countyCount: 62,
-        family: 41,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4193",
-        genus: "Pontia",
-        species: "protodice",
-        combinedLatin: "Pontia protodice",
-        commonName: "Checkered White",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Boisduval and LeConte",
-        year: "1829",
-        referenceCount: 141,
-        countyCount: 54,
-        family: 42,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4195",
-        genus: "Pieris",
-        species: "napi",
-        combinedLatin: "Pieris napi",
-        commonName: "Mustard White",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Linnaeus",
-        year: "1761",
-        referenceCount: 1,
-        countyCount: 1,
-        family: 42,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4195  d",
-        genus: "Pieris",
-        species: "napi",
-        subspecies: "oleracea",
-        combinedLatin: "Pieris napi oleracea",
-        commonName: "Mustard White",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "Harris",
-        year: "1829",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 42,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4196",
-        genus: "Pieris",
-        species: "virginiensis",
-        combinedLatin: "Pieris virginiensis",
-        commonName: "West Virginia White",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "W. H. Edwards",
-        year: "1870",
-        referenceCount: 96,
-        countyCount: 23,
-        family: 42,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4197",
-        genus: "Pieris",
-        species: "rapae",
-        combinedLatin: "Pieris rapae",
-        commonName: "European Cabbage White",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Linnaeus",
-        year: "1758",
-        referenceCount: 325,
-        countyCount: 88,
-        family: 42,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4202",
-        genus: "Euchloe",
-        species: "olympia",
-        combinedLatin: "Euchloe olympia",
-        commonName: "Olympia Marble",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "W.H.Edwards",
-        year: "1871",
-        referenceCount: 7,
-        countyCount: 1,
-        family: 42,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4207",
-        genus: "Falcapica",
-        species: "midea",
-        combinedLatin: "Falcapica midea",
-        commonName: "Falcate Orange Tip",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "Huebner",
-        year: "1809",
-        referenceCount: 1,
-        countyCount: 1,
-        family: 42,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4207  a",
-        genus: "Falcapica",
-        species: "midea",
-        subspecies: "annickae",
-        combinedLatin: "Falcapica midea annickae",
-        commonName: "Falcate Orange Tip",
-        show: true,
-        kind: "B",
-        revised: "F",
-        author: "Dos Pasos and Klots",
-        year: "1969",
-        referenceCount: 131,
-        countyCount: 35,
-        family: 42,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4209",
-        genus: "Colias",
-        species: "philodice",
-        subspecies: "philodice",
-        combinedLatin: "Colias philodice philodice",
-        commonName: "Clouded Sulphur",
-        show: true,
-        kind: "B",
-        revised: "F",
-        author: "Godart",
-        year: "1819",
-        referenceCount: 348,
-        countyCount: 87,
-        family: 42,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4210",
-        genus: "Colias",
-        species: "eurytheme",
-        combinedLatin: "Colias eurytheme",
-        commonName: "Alfalfa Butterfly",
-        show: true,
-        kind: "B",
-        revised: "F",
-        author: "Boisduval",
-        year: "1852",
-        referenceCount: 460,
-        countyCount: 87,
-        family: 42,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4224",
-        genus: "Zerene",
-        species: "cesonia",
-        combinedLatin: "Zerene cesonia",
-        commonName: "Dog Face",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Stoll",
-        year: "1790",
-        referenceCount: 7,
-        countyCount: 7,
-        family: 42,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4228  a",
-        genus: "Phoebis",
-        species: "sennae",
-        subspecies: "eubule",
-        combinedLatin: "Phoebis sennae eubule",
-        commonName: "Cloudless Sulphur",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Linnaeus",
-        year: "1767",
-        referenceCount: 38,
-        countyCount: 23,
-        family: 42,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4229",
-        genus: "Phoebis",
-        species: "philea",
-        combinedLatin: "Phoebis philea",
-        commonName: "Orange-barred Sulphur",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "Johansson",
-        year: "1763",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 42,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4237",
-        genus: "Eurema",
-        species: "lisa",
-        combinedLatin: "Eurema lisa",
-        commonName: "Little Sulphur",
-        show: true,
-        kind: "B",
-        revised: "F",
-        author: "Boisduval and LeConte",
-        year: "1829",
-        referenceCount: 168,
-        countyCount: 53,
-        family: 42,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4242",
-        genus: "Eurema",
-        species: "nicippe",
-        combinedLatin: "Eurema nicippe",
-        commonName: "Sleepy Sulphur",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Cramer",
-        year: "1870",
-        referenceCount: 57,
-        countyCount: 27,
-        family: 42,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4248",
-        genus: "Nathalis",
-        species: "iole",
-        combinedLatin: "Nathalis iole",
-        commonName: "Dainty Sulphur",
-        show: true,
-        kind: "B",
-        revised: "F",
-        author: "Boisduval",
-        year: "1836",
-        referenceCount: 6,
-        countyCount: 5,
-        family: 42,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4249",
-        genus: "Feniseca",
-        species: "tarquinius",
-        combinedLatin: "Feniseca tarquinius",
-        commonName: "Harvester",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Fabricius",
-        year: "1793",
-        referenceCount: 104,
-        countyCount: 46,
-        family: 43,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4249  +",
-        genus: "Feniseca",
-        species: "tarquinius",
-        subspecies: "tarquinius",
-        combinedLatin: "Feniseca tarquinius tarquinius",
-        commonName: "Harvester",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "Fabricius",
-        year: "1793",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 43,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4251  a",
-        genus: "Lycaena",
-        species: "phlaeas",
-        subspecies: "americana",
-        combinedLatin: "Lycaena phlaeas americana",
-        commonName: "American Copper",
-        show: true,
-        kind: "B",
-        revised: "F",
-        author: "Harris",
-        year: "1862",
-        referenceCount: 234,
-        countyCount: 62,
-        family: 43,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4256",
-        genus: "Hyllolycaena",
-        species: "hyllus",
-        combinedLatin: "Hyllolycaena hyllus",
-        commonName: "Bronze Copper",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Cramer",
-        year: "1775",
-        referenceCount: 214,
-        countyCount: 63,
-        family: 43,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4260",
-        genus: "Epidemia",
-        species: "epixanthe",
-        combinedLatin: "Epidemia epixanthe",
-        commonName: "Bog Copper",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "Boisduval and LeConte",
-        year: "1833",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 43,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4261",
-        genus: "Epidemia",
-        species: "dorcus",
-        subspecies: "dorcus",
-        combinedLatin: "Epidemia dorcus dorcus",
-        commonName: "Dorcus Copper",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "W. Kirby",
-        year: "1837",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 43,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4262",
-        genus: "Epidemia",
-        species: "helloides",
-        combinedLatin: "Epidemia helloides",
-        commonName: "Purplish Copper",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Boisduval",
-        year: "1852",
-        referenceCount: 13,
-        countyCount: 5,
-        family: 43,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4270",
-        genus: "Atlides",
-        species: "halesus",
-        subspecies: "halesus",
-        combinedLatin: "Atlides halesus halesus",
-        commonName: "Great Purple Hairstreak",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Cramer",
-        year: "1777",
-        referenceCount: 1,
-        countyCount: 1,
-        family: 43,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4275",
-        genus: "Harkenclenus",
-        species: "titus",
-        combinedLatin: "Harkenclenus titus",
-        commonName: "Coral Hairstreak",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Fabricius",
-        year: "1793",
-        referenceCount: 156,
-        countyCount: 62,
-        family: 43,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4275  +",
-        genus: "Harkenclenus",
-        species: "titus",
-        subspecies: "titus",
-        combinedLatin: "Harkenclenus titus titus",
-        commonName: "Coral Hairstreak",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "Fabricius",
-        year: "1793",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 43,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4275  a",
-        genus: "Harkenclenus",
-        species: "titus",
-        subspecies: "mopsus",
-        combinedLatin: "Harkenclenus titus mopsus",
-        commonName: "Coral Hairstreak",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "Hubner",
-        year: "1818",
-        referenceCount: 4,
-        countyCount: 2,
-        family: 43,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4278",
-        genus: "Satyrium",
-        species: "acadicum",
-        subspecies: "acadicum",
-        combinedLatin: "Satyrium acadicum acadicum",
-        commonName: "Acadian Hairstreak",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "W. H. Edwards",
-        year: "1862",
-        referenceCount: 91,
-        countyCount: 30,
-        family: 43,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4281",
-        genus: "Satyrium",
-        species: "edwardsii",
-        combinedLatin: "Satyrium edwardsii",
-        commonName: "Edward's Hairstreak",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Grote and Robinson",
-        year: "1869",
-        referenceCount: 36,
-        countyCount: 10,
-        family: 43,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4282",
-        genus: "Satyrium",
-        species: "calanus",
-        combinedLatin: "Satyrium calanus",
-        commonName: "Banded Hairstreak",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "Huebner",
-        year: "1809",
-        referenceCount: 4,
-        countyCount: 2,
-        family: 43,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4282  a",
-        genus: "Satyrium",
-        species: "calanus",
-        subspecies: "falacer",
-        combinedLatin: "Satyrium calanus falacer",
-        commonName: "Banded Hairstreak",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Godart",
-        year: "1824",
-        referenceCount: 226,
-        countyCount: 68,
-        family: 43,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4283",
-        genus: "Satyrium",
-        species: "caryaevorum",
-        combinedLatin: "Satyrium caryaevorum",
-        commonName: "Hickory Hairstreak",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "McDunnough",
-        year: "1942",
-        referenceCount: 80,
-        countyCount: 35,
-        family: 43,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4285",
-        genus: "Satyrium",
-        species: "liparops",
-        combinedLatin: "Satyrium liparops",
-        commonName: "Striped Hairstreak",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "Leconte",
-        year: "1833",
-        referenceCount: 3,
-        countyCount: 3,
-        family: 43,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4285  a",
-        genus: "Satyrium",
-        species: "liparops",
-        subspecies: "strigosum",
-        combinedLatin: "Satyrium liparops strigosum",
-        commonName: "Striped Hairstreak",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Harris",
-        year: "1862",
-        referenceCount: 101,
-        countyCount: 40,
-        family: 43,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4299",
-        genus: "Calycopis",
-        species: "cecrops",
-        combinedLatin: "Calycopis cecrops",
-        commonName: "Red-banded Hairstreak",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Fabricius",
-        year: "1793",
-        referenceCount: 43,
-        countyCount: 13,
-        family: 43,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4318",
-        genus: "Mitoura",
-        species: "grynea",
-        subspecies: "grynea",
-        combinedLatin: "Mitoura grynea grynea",
-        commonName: "Olive Hairstreak",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Hubner",
-        year: "1819",
-        referenceCount: 44,
-        countyCount: 14,
-        family: 43,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4322  b",
-        genus: "Incisalia",
-        species: "augustus",
-        subspecies: "croesiodes",
-        combinedLatin: "Incisalia augustus croesiodes",
-        commonName: "Brown Elfin",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Scudder",
-        year: "1876",
-        referenceCount: 24,
-        countyCount: 4,
-        family: 43,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4325",
-        genus: "Incisalia",
-        species: "irus",
-        subspecies: "irus",
-        combinedLatin: "Incisalia irus irus",
-        commonName: "Frosted Elfin",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Godart",
-        year: "1824",
-        referenceCount: 34,
-        countyCount: 2,
-        family: 43,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4326",
-        genus: "Incisalia",
-        species: "henrici",
-        combinedLatin: "Incisalia henrici",
-        commonName: "Henry's Elfin",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Grote and Robinson",
-        year: "1867",
-        referenceCount: 63,
-        countyCount: 19,
-        family: 43,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4326  +",
-        genus: "Incisalia",
-        species: "henrici",
-        subspecies: "henrici",
-        combinedLatin: "Incisalia henrici henrici",
-        commonName: "Henry's Elfin",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "Grote and Robinson",
-        year: "1867",
-        referenceCount: 18,
-        countyCount: 9,
-        family: 43,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4328",
-        genus: "Incisalia",
-        species: "niphon",
-        subspecies: "niphon",
-        combinedLatin: "Incisalia niphon niphon",
-        commonName: "Pine Elfin",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Hubner",
-        year: "1819",
-        referenceCount: 26,
-        countyCount: 11,
-        family: 43,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4332",
-        genus: "Euristrymon",
-        species: "ontario",
-        subspecies: "ontario",
-        combinedLatin: "Euristrymon ontario ontario",
-        commonName: "Northern Hairstreak",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "W. H. Edwards",
-        year: "1868",
-        referenceCount: 9,
-        countyCount: 9,
-        family: 43,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4335",
-        genus: "Parrhasius",
-        species: "m-album",
-        combinedLatin: "Parrhasius m-album",
-        commonName: "White M Hairstreak",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Boisduval and LeConte",
-        year: "1833",
-        referenceCount: 29,
-        countyCount: 20,
-        family: 43,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4336",
-        genus: "Strymon",
-        species: "melinus",
-        combinedLatin: "Strymon melinus",
-        commonName: "Gray Hairstreak",
-        show: false,
-        kind: "B",
-        revised: "F",
-        author: "Huebner",
-        year: "1818",
-        referenceCount: 3,
-        countyCount: 1,
-        family: 43,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4336  a",
-        genus: "Strymon",
-        species: "melinus",
-        subspecies: "humuli",
-        combinedLatin: "Strymon melinus humuli",
-        commonName: "Gray Hairstreak",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Harris",
-        year: "1841",
-        referenceCount: 170,
-        countyCount: 66,
-        family: 43,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4349",
-        genus: "Erora",
-        species: "laetus",
-        combinedLatin: "Erora laetus",
-        commonName: "Early Hairstreak",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "W. H. Edwards",
-        year: "1862",
-        referenceCount: 2,
-        countyCount: 2,
-        family: 43,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4360  a",
-        genus: "Hemiargus",
-        species: "isola",
-        subspecies: "alce",
-        combinedLatin: "Hemiargus isola alce",
-        commonName: "Reakirt's Blue",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "W. H. Edwards",
-        year: "1871",
-        referenceCount: 3,
-        countyCount: 2,
-        family: 43,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4361",
-        genus: "Everes",
-        species: "comyntas",
-        subspecies: "comyntas",
-        combinedLatin: "Everes comyntas comyntas",
-        commonName: "Eastern Tailed Blue",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Godart",
-        year: "1824",
-        referenceCount: 343,
-        countyCount: 83,
-        family: 43,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4363",
-        genus: "Celastrina",
-        species: "ladon",
-        combinedLatin: "Celastrina ladon",
-        commonName: "Spring Azure",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Cramer",
-        year: "1780",
-        referenceCount: 421,
-        countyCount: 89,
-        family: 43,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4363  +",
-        genus: "Celastrina",
-        species: "ladon",
-        subspecies: "ladon",
-        combinedLatin: "Celastrina ladon ladon",
-        commonName: "Spring Azure",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "Cramer",
-        year: "1780",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 43,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4363  a",
-        genus: "Celastrina",
-        species: "ladon",
-        subspecies: "lucia",
-        combinedLatin: "Celastrina ladon lucia",
-        commonName: "Spring Azure",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "W. Kirby",
-        year: "1837",
-        referenceCount: 2,
-        countyCount: 1,
-        family: 43,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4364",
-        genus: "Celastrina",
-        species: "ebenina",
-        combinedLatin: "Celastrina ebenina",
-        commonName: "Dusky Blue",
-        show: true,
-        kind: "B",
-        revised: "F",
-        author: "Clench",
-        year: "1972",
-        referenceCount: 45,
-        countyCount: 12,
-        family: 43,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4372",
-        genus: "Glaucopsyche",
-        species: "lygdamus",
-        combinedLatin: "Glaucopsyche lygdamus",
-        commonName: "Silvery Blue",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Doubleday",
-        year: "1842",
-        referenceCount: 46,
-        countyCount: 11,
-        family: 43,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4372  +",
-        genus: "Glaucopsyche",
-        species: "lygdamus",
-        subspecies: "lygdamus",
-        combinedLatin: "Glaucopsyche lygdamus lygdamus",
-        commonName: "Silvery Blue",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "Doubleday",
-        year: "1842",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 43,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4375  d",
-        genus: "Lycaeides",
-        species: "melissa",
-        subspecies: "samuelis",
-        combinedLatin: "Lycaeides melissa samuelis",
-        commonName: "Karner Blue",
-        show: true,
-        kind: "B",
-        revised: "F",
-        author: "Nabokov",
-        year: "1944",
-        referenceCount: 25,
-        countyCount: 1,
-        family: 43,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4387",
-        genus: "Calephelis",
-        species: "borealis",
-        combinedLatin: "Calephelis borealis",
-        commonName: "Northern Metalmark",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Grote & Rob.",
-        year: "1866",
-        referenceCount: 107,
-        countyCount: 24,
-        family: 44,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4391",
-        genus: "Calephelis",
-        species: "mutica",
-        combinedLatin: "Calephelis mutica",
-        commonName: "Swamp Metalmark",
-        show: true,
-        kind: "B",
-        revised: "F",
-        author: "McAlpine",
-        year: "1937",
-        referenceCount: 19,
-        countyCount: 2,
-        family: 44,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4410",
-        genus: "Libytheana",
-        species: "bachmanii",
-        subspecies: "bachmanii",
-        combinedLatin: "Libytheana bachmanii bachmanii",
-        commonName: "Eastern Snout Butterfly",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Kirtland",
-        year: "1851",
-        referenceCount: 146,
-        countyCount: 59,
-        family: 45,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4413  a",
-        genus: "Agraulis",
-        species: "vanillae",
-        subspecies: "nigrior",
-        combinedLatin: "Agraulis vanillae nigrior",
-        commonName: "Gulf Fritillary",
-        show: true,
-        kind: "B",
-        revised: "F",
-        author: "Michener",
-        year: "1942",
-        referenceCount: 1,
-        countyCount: 1,
-        family: 46,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4420",
-        genus: "Polygonia",
-        species: "interrogationis",
-        combinedLatin: "Polygonia interrogationis",
-        commonName: "Question Mark",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Fabricius",
-        year: "1798",
-        referenceCount: 331,
-        countyCount: 82,
-        family: 46,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4421",
-        genus: "Polygonia",
-        species: "comma",
-        combinedLatin: "Polygonia comma",
-        commonName: "Comma",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Harris",
-        year: "1842",
-        referenceCount: 281,
-        countyCount: 84,
-        family: 46,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4429",
-        genus: "Polygonia",
-        species: "progne",
-        combinedLatin: "Polygonia progne",
-        commonName: "Gray Comma",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Cramer",
-        year: "1776",
-        referenceCount: 29,
-        countyCount: 20,
-        family: 46,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4430  a",
-        genus: "Nymphalis",
-        species: "vau-album",
-        subspecies: "j-album",
-        combinedLatin: "Nymphalis vau-album j-album",
-        commonName: "Compton Tortoise Shell",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Boisduval and LeConte",
-        year: "1775",
-        referenceCount: 20,
-        countyCount: 14,
-        family: 46,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4432",
-        genus: "Nymphalis",
-        species: "antiopa",
-        subspecies: "antiopa",
-        combinedLatin: "Nymphalis antiopa antiopa",
-        commonName: "Mourning Cloak",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Linnaeus",
-        year: "1758",
-        referenceCount: 166,
-        countyCount: 65,
-        family: 46,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4433",
-        genus: "Aglais",
-        species: "milberti",
-        subspecies: "milberti",
-        combinedLatin: "Aglais milberti milberti",
-        commonName: "Milbert's Tortoise Shell",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Godart",
-        year: "1819",
-        referenceCount: 233,
-        countyCount: 65,
-        family: 46,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4434",
-        genus: "Vanessa",
-        species: "virginiensis",
-        combinedLatin: "Vanessa virginiensis",
-        commonName: "American Painted Lady",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Drury",
-        year: "1773",
-        referenceCount: 205,
-        countyCount: 72,
-        family: 46,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4435",
-        genus: "Vanessa",
-        species: "cardui",
-        combinedLatin: "Vanessa cardui",
-        commonName: "Painted Lady",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Linnaeus",
-        year: "1758",
-        referenceCount: 173,
-        countyCount: 70,
-        family: 46,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4437  a",
-        genus: "Vanessa",
-        species: "atalanta",
-        subspecies: "rubria",
-        combinedLatin: "Vanessa atalanta rubria",
-        commonName: "Red Admiral",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Fruhstorfer",
-        year: "1909",
-        referenceCount: 253,
-        countyCount: 82,
-        family: 46,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4440",
-        genus: "Junonia",
-        species: "coenia",
-        combinedLatin: "Junonia coenia",
-        commonName: "Buckeye",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Hubner",
-        year: "1822",
-        referenceCount: 170,
-        countyCount: 66,
-        family: 46,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4447",
-        genus: "Euptoieta",
-        species: "claudia",
-        combinedLatin: "Euptoieta claudia",
-        commonName: "Variegated Fritillary",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Cramer",
-        year: "1776",
-        referenceCount: 129,
-        countyCount: 60,
-        family: 46,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4449",
-        genus: "Speyeria",
-        species: "diana",
-        combinedLatin: "Speyeria diana",
-        commonName: "Diana",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Cramer",
-        year: "1777",
-        referenceCount: 6,
-        countyCount: 3,
-        family: 46,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4450",
-        genus: "Speyeria",
-        species: "cybele",
-        subspecies: "cybele",
-        combinedLatin: "Speyeria cybele cybele",
-        commonName: "Great Spangled Fritillary",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Fabricius",
-        year: "1775",
-        referenceCount: 353,
-        countyCount: 87,
-        family: 46,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4451",
-        genus: "Speyeria",
-        species: "aphrodite",
-        combinedLatin: "Speyeria aphrodite",
-        commonName: "Aphrodite Fritillary",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Fabricius",
-        year: "1787",
-        referenceCount: 195,
-        countyCount: 50,
-        family: 46,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4451  +",
-        genus: "Speyeria",
-        species: "aphrodite",
-        subspecies: "aphrodite",
-        combinedLatin: "Speyeria aphrodite aphrodite",
-        commonName: "Aphrodite Fritillary",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "Fabricius",
-        year: "1787",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 46,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4451  b",
-        genus: "Speyeria",
-        species: "aphrodite",
-        subspecies: "alcestis",
-        combinedLatin: "Speyeria aphrodite alcestis",
-        commonName: "Alcestis Fritillary",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "W. H. Edwards",
-        year: "1877",
-        referenceCount: 1,
-        countyCount: 1,
-        family: 46,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4452",
-        genus: "Speyeria",
-        species: "idalia",
-        combinedLatin: "Speyeria idalia",
-        commonName: "Regal Fritillary",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Drury",
-        year: "1773",
-        referenceCount: 143,
-        countyCount: 43,
-        family: 46,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4459",
-        genus: "Speyeria",
-        species: "atlantis",
-        subspecies: "atlantis",
-        combinedLatin: "Speyeria atlantis atlantis",
-        commonName: "Mountain Silver-spot",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "W. H. Edwards",
-        year: "1862",
-        referenceCount: 3,
-        countyCount: 3,
-        family: 46,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4464",
-        genus: "Clossiana",
-        species: "selene",
-        combinedLatin: "Clossiana selene",
-        commonName: "Silver-bordered Fritillary",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Denis & Schiffermulle",
-        year: "1775",
-        referenceCount: 74,
-        countyCount: 20,
-        family: 46,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4464  a",
-        genus: "Clossiana",
-        species: "selene",
-        subspecies: "myrina",
-        combinedLatin: "Clossiana selene myrina",
-        commonName: "Silver-bordered Fritillary",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "Cramer",
-        year: "1777",
-        referenceCount: 1,
-        countyCount: 1,
-        family: 46,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4464  b",
-        genus: "Clossiana",
-        species: "selene",
-        subspecies: "nebraskensis",
-        combinedLatin: "Clossiana selene nebraskensis",
-        commonName: "Silver-bordered Fritillary",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "Holland",
-        year: "1928",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 46,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4465",
-        genus: "Clossiana",
-        species: "bellona",
-        combinedLatin: "Clossiana bellona",
-        commonName: "Meadow Fritillary",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Fabricius",
-        year: "1775",
-        referenceCount: 259,
-        countyCount: 86,
-        family: 46,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4465  +",
-        genus: "Clossiana",
-        species: "bellona",
-        subspecies: "bellona",
-        combinedLatin: "Clossiana bellona bellona",
-        commonName: "Meadow Fritillary",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "Fabricius",
-        year: "1775",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 46,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4465  a",
-        genus: "Clossiana",
-        species: "bellona",
-        subspecies: "toddi",
-        combinedLatin: "Clossiana bellona toddi",
-        commonName: "Meadow Fritillary",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "Holland",
-        year: "1928",
-        referenceCount: 1,
-        countyCount: 1,
-        family: 46,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4481",
-        genus: "Phyciodes",
-        species: "tharos",
-        combinedLatin: "Phyciodes tharos",
-        commonName: "Pearl Crescent",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Drury",
-        year: "1773",
-        referenceCount: 421,
-        countyCount: 84,
-        family: 46,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4481  +",
-        genus: "Phyciodes",
-        species: "tharos",
-        subspecies: "tharos",
-        combinedLatin: "Phyciodes tharos tharos",
-        commonName: "Pearl Crescent",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "Drury",
-        year: "1773",
-        referenceCount: 1,
-        countyCount: 1,
-        family: 46,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4481  b",
-        genus: "Phyciodes",
-        species: "tharos",
-        subspecies: "pascoensis",
-        combinedLatin: "Phyciodes tharos pascoensis",
-        commonName: "Pearl Crescent",
-        show: false,
-        kind: "B",
-        revised: "F",
-        author: "W. G. Wright",
-        year: "1905",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 46,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4482",
-        genus: "Phyciodes",
-        species: "batesii",
-        combinedLatin: "Phyciodes batesii",
-        commonName: "Tawny Crescent",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "Reakirt",
-        year: "1865",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 46,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4490",
-        genus: "Charidryas",
-        species: "nycteis",
-        subspecies: "nycteis",
-        combinedLatin: "Charidryas nycteis nycteis",
-        commonName: "Silvery Checkerspot",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Dubleday",
-        year: "1847",
-        referenceCount: 198,
-        countyCount: 59,
-        family: 46,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4491",
-        genus: "Charidryas",
-        species: "harrisii",
-        combinedLatin: "Charidryas harrisii",
-        commonName: "Harris' Checkerspot",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Scudder",
-        year: "1862",
-        referenceCount: 54,
-        countyCount: 8,
-        family: 46,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4491  +",
-        genus: "Charidryas",
-        species: "harrisii",
-        subspecies: "harrisii",
-        combinedLatin: "Charidryas harrisii harrisii",
-        commonName: "Harris' Checkerspot",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "Scudder",
-        year: "1862",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 46,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4491  b",
-        genus: "Charidryas",
-        species: "harrisii",
-        subspecies: "liggetti",
-        combinedLatin: "Charidryas harrisii liggetti",
-        commonName: "Harris' Checkerspot",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "Avinoff",
-        year: "1930",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 46,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4516",
-        genus: "Euphydryas",
-        species: "phaeton",
-        subspecies: "phaeton",
-        combinedLatin: "Euphydryas phaeton phaeton",
-        commonName: "Baltimore",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Drury",
-        year: "1773",
-        referenceCount: 154,
-        countyCount: 39,
-        family: 46,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4522",
-        genus: "Basilarchia",
-        species: "arthemis",
-        subspecies: "arthemis",
-        combinedLatin: "Basilarchia arthemis arthemis",
-        commonName: "White Admiral",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Drury",
-        year: "1773",
-        referenceCount: 24,
-        countyCount: 18,
-        family: 46,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4522  b",
-        genus: "Basilarchia",
-        species: "arthemis",
-        subspecies: "astyanax",
-        combinedLatin: "Basilarchia arthemis astyanax",
-        commonName: "Red-spotted Purple",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Fabricius",
-        year: "1775",
-        referenceCount: 265,
-        countyCount: 71,
-        family: 46,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4523",
-        genus: "Basilarchia",
-        species: "archippus",
-        subspecies: "archippus",
-        combinedLatin: "Basilarchia archippus archippus",
-        commonName: "Viceroy",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Cramer",
-        year: "1776",
-        referenceCount: 263,
-        countyCount: 78,
-        family: 46,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4554",
-        genus: "Anaea",
-        species: "andria",
-        combinedLatin: "Anaea andria",
-        commonName: "Goatweed Butterfly",
-        show: true,
-        kind: "B",
-        revised: "F",
-        author: "Scudder",
-        year: "1875",
-        referenceCount: 34,
-        countyCount: 9,
-        family: 47,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4557",
-        genus: "Asterocampa",
-        species: "celtis",
-        combinedLatin: "Asterocampa celtis",
-        commonName: "Hackberry Butterfly",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Boisduval and LeConte",
-        year: "1833",
-        referenceCount: 205,
-        countyCount: 63,
-        family: 47,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4562.1",
-        genus: "Asterocampa",
-        species: "clyton",
-        combinedLatin: "Asterocampa clyton",
-        commonName: "Tawny Emperor",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Boisduval and LeConte",
-        year: "1833",
-        referenceCount: 140,
-        countyCount: 54,
-        family: 47,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4568.1",
-        genus: "Enodia",
-        species: "anthedon",
-        combinedLatin: "Enodia anthedon",
-        commonName: "Northern Pearly Eye",
-        show: true,
-        kind: "B",
-        revised: "F",
-        author: "A. H. Clark",
-        year: "1936",
-        referenceCount: 178,
-        countyCount: 68,
-        family: 48,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4568.2",
-        genus: "Enodia",
-        species: "creola",
-        combinedLatin: "Enodia creola",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "Skinner",
-        year: "1897",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 48,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4568.3",
-        genus: "Satyrodes",
-        species: "eurydice",
-        combinedLatin: "Satyrodes eurydice",
-        commonName: "Northern Eyed Brown",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Johansson",
-        year: "1763",
-        referenceCount: 127,
-        countyCount: 33,
-        family: 48,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4568.3+",
-        genus: "Satyrodes",
-        species: "eurydice",
-        subspecies: "eurydice",
-        combinedLatin: "Satyrodes eurydice eurydice",
-        commonName: "Northern Eyed Brown",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "Johansson",
-        year: "1763",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 48,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4569",
-        genus: "Satyrodes",
-        species: "appalachia",
-        combinedLatin: "Satyrodes appalachia",
-        commonName: "Appalachian Eyed Brown",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "R. Chermock",
-        year: "1947",
-        referenceCount: 1,
-        countyCount: 1,
-        family: 48,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4569  +",
-        genus: "Satyrodes",
-        species: "appalachia",
-        subspecies: "appalachia",
-        combinedLatin: "Satyrodes appalachia appalachia",
-        commonName: "Appalachian Eyed Brown",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "R. Chermock",
-        year: "1947",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 48,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4569  a",
-        genus: "Satyrodes",
-        species: "appalachia",
-        subspecies: "leeuwi",
-        combinedLatin: "Satyrodes appalachia leeuwi",
-        commonName: "Appalachian Eyed Brown",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "Gatrelle and Arbogast",
-        year: "1974",
-        referenceCount: 67,
-        countyCount: 26,
-        family: 48,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4573",
-        genus: "Cyllopsis",
-        species: "gemma",
-        subspecies: "gemma",
-        combinedLatin: "Cyllopsis gemma gemma",
-        commonName: "Gemmed Satyr",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Hubner",
-        year: "1808",
-        referenceCount: 41,
-        countyCount: 8,
-        family: 48,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4575",
-        genus: "Hermeuptychia",
-        species: "sosybius",
-        combinedLatin: "Hermeuptychia sosybius",
-        commonName: "Carolina Satyr",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Fabricius",
-        year: "1793",
-        referenceCount: 32,
-        countyCount: 9,
-        family: 48,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4577",
-        genus: "Neonympha",
-        species: "mitchellii",
-        combinedLatin: "Neonympha mitchellii",
-        commonName: "Mitchell's Satyr",
-        show: true,
-        kind: "B",
-        revised: "F",
-        author: "French",
-        year: "1889",
-        referenceCount: 4,
-        countyCount: 1,
-        family: 48,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4578",
-        genus: "Megisto",
-        species: "cymela",
-        subspecies: "cymela",
-        combinedLatin: "Megisto cymela cymela",
-        commonName: "Little Wood Satyr",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Cramer",
-        year: "1777",
-        referenceCount: 265,
-        countyCount: 80,
-        family: 48,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4587",
-        genus: "Cercyonis",
-        species: "pegala",
-        combinedLatin: "Cercyonis pegala",
-        commonName: "Common Wood Nymph",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Fabricius",
-        year: "1775",
-        referenceCount: 316,
-        countyCount: 79,
-        family: 48,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4587  b",
-        genus: "Cercyonis",
-        species: "pegala",
-        subspecies: "alope",
-        combinedLatin: "Cercyonis pegala alope",
-        commonName: "Common Wood Nymph",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "Fabricius",
-        year: "1793",
-        referenceCount: 6,
-        countyCount: 1,
-        family: 48,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4587  c",
-        genus: "Cercyonis",
-        species: "pegala",
-        subspecies: "nephele",
-        combinedLatin: "Cercyonis pegala nephele",
-        commonName: "Common Wood Nymph",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "W. F. Kirby",
-        year: "1837",
-        referenceCount: 2,
-        countyCount: 1,
-        family: 48,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4596",
-        genus: "Pyrrhopyge",
-        species: "discoidalis",
-        combinedLatin: "Pyrrhopyge discoidalis",
-        show: false,
-        kind: "B",
-        revised: "F",
-        author: "W.F. Kirby",
-        year: "1837",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 48,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4597",
-        genus: "Pyrrhopgye",
-        species: "theano",
-        combinedLatin: "Pyrrhopgye theano",
-        show: false,
-        kind: "B",
-        revised: "F",
-        author: "Tauscher",
-        year: "1809",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 48,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4599",
-        genus: "Pyrrhopyge",
-        species: "epipsodea",
-        combinedLatin: "Pyrrhopyge epipsodea",
-        show: false,
-        kind: "B",
-        revised: "F",
-        author: "Butler",
-        year: "1868",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 48,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4600",
-        genus: "Pyrrhopyge",
-        species: "callias",
-        combinedLatin: "Pyrrhopyge callias",
-        show: false,
-        kind: "B",
-        revised: "F",
-        author: "W. H. Edwards",
-        year: "1871",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 48,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4601",
-        genus: "Pyrrhopyge",
-        species: "dabanensis",
-        combinedLatin: "Pyrrhopyge dabanensis",
-        show: false,
-        kind: "B",
-        revised: "F",
-        author: "Erschoff",
-        year: "1871",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 48,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4602",
-        genus: "Gyrocheilus",
-        species: "patrobas",
-        combinedLatin: "Gyrocheilus patrobas",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "Hewitson",
-        year: "1862",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 48,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4603",
-        genus: "Neominois",
-        species: "ridingsii",
-        combinedLatin: "Neominois ridingsii",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "W. H. Edwards",
-        year: "1865",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 48,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4603.1",
-        genus: "Oeneis",
-        species: "ivallda",
-        combinedLatin: "Oeneis ivallda",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "Mead",
-        year: "1878",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 48,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4604",
-        genus: "Oeneis",
-        species: "nevadensis",
-        combinedLatin: "Oeneis nevadensis",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "C.& R. Felder",
-        year: "1866",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 48,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4605",
-        genus: "Oeneis",
-        species: "macounii",
-        combinedLatin: "Oeneis macounii",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "W. H. Edwards",
-        year: "1885",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 48,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4606",
-        genus: "Oeneis",
-        species: "chryxus",
-        combinedLatin: "Oeneis chryxus",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "Doubleday & Hewitson",
-        year: "1849",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 48,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4607",
-        genus: "Oeneis",
-        species: "uhleri",
-        combinedLatin: "Oeneis uhleri",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "Reakirt",
-        year: "1866",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 48,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4608",
-        genus: "Oeneis",
-        species: "alberta",
-        combinedLatin: "Oeneis alberta",
-        show: false,
-        kind: "B",
-        revised: "F",
-        author: "Elwes",
-        year: "1893",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 48,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4609",
-        genus: "Oeneis",
-        species: "taygete",
-        combinedLatin: "Oeneis taygete",
-        show: false,
-        kind: "B",
-        revised: "F",
-        author: "Geyer",
-        year: "1830",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 48,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4610",
-        genus: "Oeneis",
-        species: "bore",
-        combinedLatin: "Oeneis bore",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "Schneider",
-        year: "1792",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 48,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4611",
-        genus: "Oeneis",
-        species: "jutta",
-        combinedLatin: "Oeneis jutta",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "Hubner",
-        year: "1805-6",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 48,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4612",
-        genus: "Oeneis",
-        species: "melissa",
-        combinedLatin: "Oeneis melissa",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "Fabricius",
-        year: "1775",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 48,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4613",
-        genus: "Oeneis",
-        species: "polixenes",
-        combinedLatin: "Oeneis polixenes",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "Fabricius",
-        year: "1775",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 48,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4614",
-        genus: "Danaus",
-        species: "plexippus",
-        combinedLatin: "Danaus plexippus",
-        commonName: "Monarch",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Linnaeus",
-        year: "1758",
-        referenceCount: 275,
-        countyCount: 87,
-        family: 49,
-        gCKey: 40,
-        grp: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4615  b",
-        genus: "Danaus",
-        species: "gilippus",
-        subspecies: "strigosus",
-        combinedLatin: "Danaus gilippus strigosus",
-        commonName: "Queen",
-        show: true,
-        kind: "B",
-        revised: "T",
-        author: "Bates",
-        year: "1864",
-        referenceCount: 1,
-        countyCount: 1,
-        family: 49,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4616",
-        genus: "Danaus",
-        species: "eresimus",
-        combinedLatin: "Danaus eresimus",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "Cramer",
-        year: "1777",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 49,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "4617",
-        genus: "Lycorea",
-        species: "cleobaea",
-        combinedLatin: "Lycorea cleobaea",
-        show: false,
-        kind: "B",
-        revised: "T",
-        author: "Godart",
-        year: "1819",
-        referenceCount: 0,
-        countyCount: 0,
-        family: 49,
-        gCKey: 40,
-        grp: 0
-  }});
-  await db.checklist.create({ data: {
-        checklistKey: "A000",
-        genus: "Unknown",
-        species: "unknown",
-        combinedLatin: "Unknown unknown",
-        commonName: "Unidentified Voucher",
-        show: true,
-        kind: "B",
-        revised: "F",
-        author: "unknown",
-        year: "0",
-        referenceCount: 0,
-        tmp_SitesReporting: 0,
-        tmp_TotalCount: 0,
-        tmp_HighCount: 0
-    }});
+export default async function () {
+      console.log('Creating checklist records');
+      await db.checklist.create({
+            data: {
+                  hodges: "3870",
+                  genus: "Epargyreus",
+                  species: "clarus",
+                  subspecies: "clarus",
+                  commonName: "Silver-spotted Skipper",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "Cramer",
+                  year: "1779",
+                  referenceCount: 249,
+                  countyCount: 84,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "3886",
+                  genus: "Urbanus",
+                  species: "proteus",
+                  commonName: "Long-tailed Skipper",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "Linnaeus",
+                  year: "1758",
+                  referenceCount: 1,
+                  countyCount: 1,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "3902",
+                  genus: "Autochton",
+                  species: "cellus",
+                  commonName: "Gold-banded Skipper",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "Boisduval and LeConte",
+                  year: "1834",
+                  referenceCount: 30,
+                  countyCount: 10,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "3904",
+                  genus: "Achalarus",
+                  species: "lyciades",
+                  commonName: "Hoary Edge",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "Geyer",
+                  year: "1832",
+                  referenceCount: 121,
+                  countyCount: 43,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "3909",
+                  genus: "Thorybes",
+                  species: "bathyllus",
+                  commonName: "Southern Cloudy Wing",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "J. E. Smith",
+                  year: "1797",
+                  referenceCount: 147,
+                  countyCount: 53,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "3910",
+                  genus: "Thorybes",
+                  species: "pylades",
+                  commonName: "Northern Cloudy Wing",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "Scudder",
+                  year: "1870",
+                  referenceCount: 161,
+                  countyCount: 53,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "3913",
+                  genus: "Thorybes",
+                  species: "confusis",
+                  commonName: "Confused Cloudy Wing",
+                  show: true,
+                  kind: "S",
+                  revised: "F",
+                  author: "Bell",
+                  year: "1922",
+                  referenceCount: 1,
+                  countyCount: 1,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "3932",
+                  genus: "Staphylus",
+                  species: "hayhurstii",
+                  commonName: "Southern Sooty Wing",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "W. H. Edwards",
+                  year: "1870",
+                  referenceCount: 50,
+                  countyCount: 17,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "3945",
+                  genus: "Erynnis",
+                  species: "icelus",
+                  commonName: "Dreamy Dusky Wing",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "Scudder and Burgess",
+                  year: "1870",
+                  referenceCount: 151,
+                  countyCount: 50,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "3946",
+                  genus: "Erynnis",
+                  species: "brizo",
+                  subspecies: "brizo",
+                  commonName: "Sleepy Dusky Wing",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "Boisduval and LeConte",
+                  year: "1834",
+                  referenceCount: 124,
+                  countyCount: 46,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "3947",
+                  genus: "Erynnis",
+                  species: "juvenalis",
+                  subspecies: "juvenalis",
+                  commonName: "Juvenal's Dusky Wing",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "Fabricius",
+                  year: "1793",
+                  referenceCount: 211,
+                  countyCount: 74,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "3952",
+                  genus: "Erynnis",
+                  species: "horatius",
+                  commonName: "Horace's Dusky Wing",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "Scudder and Burgess",
+                  year: "1870",
+                  referenceCount: 131,
+                  countyCount: 44,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "3954",
+                  genus: "Erynnis",
+                  species: "martialis",
+                  commonName: "Mottled Dusky Wing",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "Scudder",
+                  year: "1869",
+                  referenceCount: 52,
+                  countyCount: 9,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "3958",
+                  genus: "Erynnis",
+                  species: "lucilius",
+                  commonName: "Columbine Dusky Wing",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "Scudder and Burgess",
+                  year: "1870",
+                  referenceCount: 3,
+                  countyCount: 2,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "3959",
+                  genus: "Erynnis",
+                  species: "baptisiae",
+                  commonName: "Wild Indigo Dusky Wing",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "Forbes",
+                  year: "1936",
+                  referenceCount: 95,
+                  countyCount: 38,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "3961",
+                  genus: "Erynnis",
+                  species: "persius",
+                  subspecies: "persius",
+                  commonName: "Persius Dusky Wing",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "Scudder",
+                  year: "1863",
+                  referenceCount: 25,
+                  countyCount: 2,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "3962",
+                  genus: "Pyrgus",
+                  species: "centaureae",
+                  commonName: "Grizzled Skipper",
+                  show: false,
+                  kind: "S",
+                  revised: "T",
+                  author: "Rambur",
+                  year: "1840",
+                  referenceCount: 1,
+                  countyCount: 1,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "3962  b",
+                  genus: "Pyrgus",
+                  species: "centaureae",
+                  subspecies: "wyandot",
+                  commonName: "Grizzled Skipper",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "W. H. Edwards",
+                  year: "1863",
+                  referenceCount: 12,
+                  countyCount: 4,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "3966",
+                  genus: "Pyrgus",
+                  species: "communis",
+                  commonName: "Checkered Skipper",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "Grote",
+                  year: "1872",
+                  referenceCount: 140,
+                  countyCount: 53,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "3977",
+                  genus: "Pholisora",
+                  species: "catullus",
+                  commonName: "Common Sooty Wing",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "Fabricius",
+                  year: "1793",
+                  referenceCount: 222,
+                  countyCount: 78,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "3993",
+                  genus: "Nastra",
+                  species: "lherminier",
+                  commonName: "Swarthy Skipper",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "Latreille",
+                  year: "1824",
+                  referenceCount: 86,
+                  countyCount: 32,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4004",
+                  genus: "Ancyloxypha",
+                  species: "numitor",
+                  commonName: "Least Skipper",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "Fabricius",
+                  year: "1793",
+                  referenceCount: 251,
+                  countyCount: 82,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4010",
+                  genus: "Copaeodes",
+                  species: "minimus",
+                  commonName: "Southern Skipperling",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "W. H. Edwards",
+                  year: "1870",
+                  referenceCount: 1,
+                  countyCount: 1,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4012",
+                  genus: "Thymelicus",
+                  species: "lineola",
+                  commonName: "European Skipper",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "Ochsenheimer",
+                  year: "1808",
+                  referenceCount: 162,
+                  countyCount: 65,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4013",
+                  genus: "Hylephila",
+                  species: "phyleus",
+                  commonName: "Fiery Skipper",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "Drury",
+                  year: "1773",
+                  referenceCount: 69,
+                  countyCount: 29,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4023",
+                  genus: "Hesperia",
+                  species: "leonardus",
+                  commonName: "Leonard's Skipper",
+                  show: true,
+                  kind: "S",
+                  revised: "F",
+                  author: "Harris",
+                  year: "1862",
+                  referenceCount: 117,
+                  countyCount: 35,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4027",
+                  genus: "Hesperia",
+                  species: "metea",
+                  subspecies: "metea",
+                  commonName: "Cobweb Skipper",
+                  show: true,
+                  kind: "S",
+                  revised: "F",
+                  author: "Scudder",
+                  year: "1864",
+                  referenceCount: 25,
+                  countyCount: 10,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4029",
+                  genus: "Hesperia",
+                  species: "attalus",
+                  subspecies: "attalus",
+                  commonName: "Dotted Skipper",
+                  show: false,
+                  kind: "S",
+                  revised: "T",
+                  author: "W. H. Edwards",
+                  year: "1871",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4033",
+                  genus: "Hesperia",
+                  species: "sassacus",
+                  subspecies: "sassacus",
+                  commonName: "Indian Skipper",
+                  show: true,
+                  kind: "S",
+                  revised: "F",
+                  author: "Harris",
+                  year: "1862",
+                  referenceCount: 64,
+                  countyCount: 20,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4036",
+                  genus: "Polites",
+                  species: "coras",
+                  commonName: "Peck's Skipper",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "Cramer",
+                  year: "1775",
+                  referenceCount: 251,
+                  countyCount: 83,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4041",
+                  genus: "Polites",
+                  species: "themistocles",
+                  commonName: "Tawny-edged Skipper",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "Latreille",
+                  year: "1824",
+                  referenceCount: 201,
+                  countyCount: 73,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4042",
+                  genus: "Polites",
+                  species: "origenes",
+                  subspecies: "origenes",
+                  commonName: "Cross Line Skipper",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "Fabricius",
+                  year: "1793",
+                  referenceCount: 171,
+                  countyCount: 56,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4043",
+                  genus: "Polites",
+                  species: "mystic",
+                  subspecies: "mystic",
+                  commonName: "Long Dash",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "W. H. Edwards",
+                  year: "1863",
+                  referenceCount: 126,
+                  countyCount: 37,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4045",
+                  genus: "Polites",
+                  species: "vibex",
+                  subspecies: "vibex",
+                  commonName: "Whirlabout",
+                  show: false,
+                  kind: "S",
+                  revised: "T",
+                  author: "Geyer",
+                  year: "1832",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4047",
+                  genus: "Wallengrenia",
+                  species: "egeremet",
+                  commonName: "Northern Broken Dash",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "Scudder",
+                  year: "1864",
+                  referenceCount: 203,
+                  countyCount: 68,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4048",
+                  genus: "Pompeius",
+                  species: "verna",
+                  commonName: "Little Glassy Wing",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "W. H. Edwards",
+                  year: "1862",
+                  referenceCount: 179,
+                  countyCount: 65,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4049",
+                  genus: "Atalopedes",
+                  species: "campestris",
+                  commonName: "Sachem",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "Boisduval",
+                  year: "1852",
+                  referenceCount: 3,
+                  countyCount: 1,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4049  a",
+                  genus: "Atalopedes",
+                  species: "campestris",
+                  subspecies: "huron",
+                  commonName: "Sachem",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "W. H. Edwards",
+                  year: "1863",
+                  referenceCount: 80,
+                  countyCount: 32,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4051",
+                  genus: "Atrytone",
+                  species: "delaware",
+                  commonName: "Delaware Skipper",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "W. H. Edwards",
+                  year: "1863",
+                  referenceCount: 111,
+                  countyCount: 37,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4051  +",
+                  genus: "Atrytone",
+                  species: "delaware",
+                  subspecies: "delaware",
+                  commonName: "Delaware Skipper",
+                  show: false,
+                  kind: "S",
+                  revised: "T",
+                  author: "W. H. Edwards",
+                  year: "1863",
+                  referenceCount: 24,
+                  countyCount: 22,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4058",
+                  genus: "Poanes",
+                  species: "massasoit",
+                  subspecies: "massasoit",
+                  commonName: "Mulberry Wing",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "Scudder",
+                  year: "1864",
+                  referenceCount: 64,
+                  countyCount: 12,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4059",
+                  genus: "Poanes",
+                  species: "hobomok",
+                  commonName: "Hobomok Skipper",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "Harris",
+                  year: "1862",
+                  referenceCount: 238,
+                  countyCount: 70,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4060",
+                  genus: "Poanes",
+                  species: "zabulon",
+                  commonName: "Zabulon Skipper",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "Boisduval and LeConte",
+                  year: "1834",
+                  referenceCount: 241,
+                  countyCount: 71,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4064",
+                  genus: "Poanes",
+                  species: "viator",
+                  subspecies: "viator",
+                  commonName: "Broad-winged Skipper",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "W. H. Edwards",
+                  year: "1865",
+                  referenceCount: 61,
+                  countyCount: 15,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4072",
+                  genus: "Euphyes",
+                  species: "dion",
+                  commonName: "Dion Skipper",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "W. H. Edwards",
+                  year: "1879",
+                  referenceCount: 118,
+                  countyCount: 35,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4074",
+                  genus: "Euphyes",
+                  species: "dukesi",
+                  commonName: "Duke's Skipper",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "Lindsey",
+                  year: "1923",
+                  referenceCount: 122,
+                  countyCount: 20,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4075",
+                  genus: "Euphyes",
+                  species: "conspicuus",
+                  subspecies: "conspicuus",
+                  commonName: "Black Dash",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "W. H. Edwards",
+                  year: "1863",
+                  referenceCount: 82,
+                  countyCount: 28,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4077",
+                  genus: "Euphyes",
+                  species: "bimacula",
+                  commonName: "Two-spotted Skipper",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "Grote and Robinson",
+                  year: "1867",
+                  referenceCount: 43,
+                  countyCount: 14,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4078",
+                  genus: "Euphyes",
+                  species: "ruricola",
+                  commonName: "Dun Skipper",
+                  show: false,
+                  kind: "S",
+                  revised: "T",
+                  author: "Boisduval",
+                  year: "1852",
+                  referenceCount: 2,
+                  countyCount: 2,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4078  a",
+                  genus: "Euphyes",
+                  species: "ruricola",
+                  subspecies: "metacomet",
+                  commonName: "Dun Skipper",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "Harris",
+                  year: "1862",
+                  referenceCount: 194,
+                  countyCount: 75,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4080",
+                  genus: "Atrytonopsis",
+                  species: "hianna",
+                  subspecies: "hianna",
+                  commonName: "Dusted Skipper",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "Scudder",
+                  year: "1868",
+                  referenceCount: 30,
+                  countyCount: 10,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4096",
+                  genus: "Amblyscirtes",
+                  species: "hegon",
+                  commonName: "Pepper and Salt Skipper",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "Scudder",
+                  year: "1864",
+                  referenceCount: 49,
+                  countyCount: 17,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4105",
+                  genus: "Amblyscirtes",
+                  species: "vialis",
+                  commonName: "Roadside Skipper",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "W. H. Edwards",
+                  year: "1862",
+                  referenceCount: 110,
+                  countyCount: 44,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4107",
+                  genus: "Amblyscirtes",
+                  species: "belli",
+                  commonName: "Bell's Roadside Skipper",
+                  show: true,
+                  kind: "S",
+                  revised: "F",
+                  author: "H.A. Freeman",
+                  year: "1941",
+                  referenceCount: 1,
+                  countyCount: 1,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4111",
+                  genus: "Lerodea",
+                  species: "eufala",
+                  commonName: "Eufala Skipper",
+                  show: false,
+                  kind: "S",
+                  revised: "T",
+                  author: "W. H. Edwards",
+                  year: "1869",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4115",
+                  genus: "Calpodes",
+                  species: "ethlius",
+                  commonName: "Brazilian Skipper",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "Stoll",
+                  year: "1782",
+                  referenceCount: 1,
+                  countyCount: 1,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4119",
+                  genus: "Panoquina",
+                  species: "ocola",
+                  commonName: "Ocola Skipper",
+                  show: true,
+                  kind: "S",
+                  revised: "T",
+                  author: "W. H. Edwards",
+                  year: "1863",
+                  referenceCount: 8,
+                  countyCount: 8,
+                  family: 40,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4157",
+                  genus: "Battus",
+                  species: "philenor",
+                  subspecies: "philenor",
+                  commonName: "Pipevine Swallowtail",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Linnaeus",
+                  year: "1771",
+                  referenceCount: 185,
+                  countyCount: 70,
+                  family: 41,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4159",
+                  genus: "Papilio",
+                  species: "polyxenes",
+                  commonName: "Black Swallowtail",
+                  show: true,
+                  kind: "B",
+                  revised: "F",
+                  author: "Fabricius",
+                  year: "1775",
+                  referenceCount: 16,
+                  countyCount: 4,
+                  family: 41,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4159  a",
+                  genus: "Papilio",
+                  species: "polyxenes",
+                  subspecies: "asterius",
+                  commonName: "Black Swallowtail",
+                  show: false,
+                  kind: "B",
+                  revised: "F",
+                  author: "Stoll",
+                  year: "1782",
+                  referenceCount: 342,
+                  countyCount: 86,
+                  family: 41,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4170",
+                  genus: "Papilio",
+                  species: "cresphontes",
+                  commonName: "Giant Swallowtail",
+                  show: true,
+                  kind: "B",
+                  revised: "F",
+                  author: "Cramer",
+                  year: "1777",
+                  referenceCount: 130,
+                  countyCount: 52,
+                  family: 41,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4176",
+                  genus: "Papilio",
+                  species: "glaucus",
+                  subspecies: "glaucus",
+                  commonName: "Tiger Swallowtail",
+                  show: true,
+                  kind: "B",
+                  revised: "F",
+                  author: "Linnaeus",
+                  year: "1758",
+                  referenceCount: 432,
+                  countyCount: 85,
+                  family: 41,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4181",
+                  genus: "Papilio",
+                  species: "troilus",
+                  subspecies: "troilus",
+                  commonName: "Spicebush Swallowtail",
+                  show: true,
+                  kind: "B",
+                  revised: "F",
+                  author: "Linnaeus",
+                  year: "1758",
+                  referenceCount: 293,
+                  countyCount: 84,
+                  family: 41,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4184",
+                  genus: "Eurytides",
+                  species: "marcellus",
+                  commonName: "Zebra Swallowtail",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Cramer",
+                  year: "1777",
+                  referenceCount: 234,
+                  countyCount: 62,
+                  family: 41,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4193",
+                  genus: "Pontia",
+                  species: "protodice",
+                  commonName: "Checkered White",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Boisduval and LeConte",
+                  year: "1829",
+                  referenceCount: 141,
+                  countyCount: 54,
+                  family: 42,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4195",
+                  genus: "Pieris",
+                  species: "napi",
+                  commonName: "Mustard White",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Linnaeus",
+                  year: "1761",
+                  referenceCount: 1,
+                  countyCount: 1,
+                  family: 42,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4195  d",
+                  genus: "Pieris",
+                  species: "napi",
+                  subspecies: "oleracea",
+                  commonName: "Mustard White",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "Harris",
+                  year: "1829",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 42,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4196",
+                  genus: "Pieris",
+                  species: "virginiensis",
+                  commonName: "West Virginia White",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "W. H. Edwards",
+                  year: "1870",
+                  referenceCount: 96,
+                  countyCount: 23,
+                  family: 42,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4197",
+                  genus: "Pieris",
+                  species: "rapae",
+                  commonName: "European Cabbage White",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Linnaeus",
+                  year: "1758",
+                  referenceCount: 325,
+                  countyCount: 88,
+                  family: 42,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4202",
+                  genus: "Euchloe",
+                  species: "olympia",
+                  commonName: "Olympia Marble",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "W.H.Edwards",
+                  year: "1871",
+                  referenceCount: 7,
+                  countyCount: 1,
+                  family: 42,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4207",
+                  genus: "Falcapica",
+                  species: "midea",
+                  commonName: "Falcate Orange Tip",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "Huebner",
+                  year: "1809",
+                  referenceCount: 1,
+                  countyCount: 1,
+                  family: 42,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4207  a",
+                  genus: "Falcapica",
+                  species: "midea",
+                  subspecies: "annickae",
+                  commonName: "Falcate Orange Tip",
+                  show: true,
+                  kind: "B",
+                  revised: "F",
+                  author: "Dos Pasos and Klots",
+                  year: "1969",
+                  referenceCount: 131,
+                  countyCount: 35,
+                  family: 42,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4209",
+                  genus: "Colias",
+                  species: "philodice",
+                  subspecies: "philodice",
+                  commonName: "Clouded Sulphur",
+                  show: true,
+                  kind: "B",
+                  revised: "F",
+                  author: "Godart",
+                  year: "1819",
+                  referenceCount: 348,
+                  countyCount: 87,
+                  family: 42,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4210",
+                  genus: "Colias",
+                  species: "eurytheme",
+                  commonName: "Alfalfa Butterfly",
+                  show: true,
+                  kind: "B",
+                  revised: "F",
+                  author: "Boisduval",
+                  year: "1852",
+                  referenceCount: 460,
+                  countyCount: 87,
+                  family: 42,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4224",
+                  genus: "Zerene",
+                  species: "cesonia",
+                  commonName: "Dog Face",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Stoll",
+                  year: "1790",
+                  referenceCount: 7,
+                  countyCount: 7,
+                  family: 42,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4228  a",
+                  genus: "Phoebis",
+                  species: "sennae",
+                  subspecies: "eubule",
+                  commonName: "Cloudless Sulphur",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Linnaeus",
+                  year: "1767",
+                  referenceCount: 38,
+                  countyCount: 23,
+                  family: 42,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4229",
+                  genus: "Phoebis",
+                  species: "philea",
+                  commonName: "Orange-barred Sulphur",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "Johansson",
+                  year: "1763",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 42,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4237",
+                  genus: "Eurema",
+                  species: "lisa",
+                  commonName: "Little Sulphur",
+                  show: true,
+                  kind: "B",
+                  revised: "F",
+                  author: "Boisduval and LeConte",
+                  year: "1829",
+                  referenceCount: 168,
+                  countyCount: 53,
+                  family: 42,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4242",
+                  genus: "Eurema",
+                  species: "nicippe",
+                  commonName: "Sleepy Sulphur",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Cramer",
+                  year: "1870",
+                  referenceCount: 57,
+                  countyCount: 27,
+                  family: 42,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4248",
+                  genus: "Nathalis",
+                  species: "iole",
+                  commonName: "Dainty Sulphur",
+                  show: true,
+                  kind: "B",
+                  revised: "F",
+                  author: "Boisduval",
+                  year: "1836",
+                  referenceCount: 6,
+                  countyCount: 5,
+                  family: 42,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4249",
+                  genus: "Feniseca",
+                  species: "tarquinius",
+                  commonName: "Harvester",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Fabricius",
+                  year: "1793",
+                  referenceCount: 104,
+                  countyCount: 46,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4249  +",
+                  genus: "Feniseca",
+                  species: "tarquinius",
+                  subspecies: "tarquinius",
+                  commonName: "Harvester",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "Fabricius",
+                  year: "1793",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4251  a",
+                  genus: "Lycaena",
+                  species: "phlaeas",
+                  subspecies: "americana",
+                  commonName: "American Copper",
+                  show: true,
+                  kind: "B",
+                  revised: "F",
+                  author: "Harris",
+                  year: "1862",
+                  referenceCount: 234,
+                  countyCount: 62,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4256",
+                  genus: "Hyllolycaena",
+                  species: "hyllus",
+                  commonName: "Bronze Copper",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Cramer",
+                  year: "1775",
+                  referenceCount: 214,
+                  countyCount: 63,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4260",
+                  genus: "Epidemia",
+                  species: "epixanthe",
+                  commonName: "Bog Copper",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "Boisduval and LeConte",
+                  year: "1833",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4261",
+                  genus: "Epidemia",
+                  species: "dorcus",
+                  subspecies: "dorcus",
+                  commonName: "Dorcus Copper",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "W. Kirby",
+                  year: "1837",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4262",
+                  genus: "Epidemia",
+                  species: "helloides",
+                  commonName: "Purplish Copper",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Boisduval",
+                  year: "1852",
+                  referenceCount: 13,
+                  countyCount: 5,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4270",
+                  genus: "Atlides",
+                  species: "halesus",
+                  subspecies: "halesus",
+                  commonName: "Great Purple Hairstreak",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Cramer",
+                  year: "1777",
+                  referenceCount: 1,
+                  countyCount: 1,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4275",
+                  genus: "Harkenclenus",
+                  species: "titus",
+                  commonName: "Coral Hairstreak",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Fabricius",
+                  year: "1793",
+                  referenceCount: 156,
+                  countyCount: 62,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4275  +",
+                  genus: "Harkenclenus",
+                  species: "titus",
+                  subspecies: "titus",
+                  commonName: "Coral Hairstreak",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "Fabricius",
+                  year: "1793",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4275  a",
+                  genus: "Harkenclenus",
+                  species: "titus",
+                  subspecies: "mopsus",
+                  commonName: "Coral Hairstreak",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "Hubner",
+                  year: "1818",
+                  referenceCount: 4,
+                  countyCount: 2,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4278",
+                  genus: "Satyrium",
+                  species: "acadicum",
+                  subspecies: "acadicum",
+                  commonName: "Acadian Hairstreak",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "W. H. Edwards",
+                  year: "1862",
+                  referenceCount: 91,
+                  countyCount: 30,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4281",
+                  genus: "Satyrium",
+                  species: "edwardsii",
+                  commonName: "Edward's Hairstreak",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Grote and Robinson",
+                  year: "1869",
+                  referenceCount: 36,
+                  countyCount: 10,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4282",
+                  genus: "Satyrium",
+                  species: "calanus",
+                  commonName: "Banded Hairstreak",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "Huebner",
+                  year: "1809",
+                  referenceCount: 4,
+                  countyCount: 2,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4282  a",
+                  genus: "Satyrium",
+                  species: "calanus",
+                  subspecies: "falacer",
+                  commonName: "Banded Hairstreak",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Godart",
+                  year: "1824",
+                  referenceCount: 226,
+                  countyCount: 68,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4283",
+                  genus: "Satyrium",
+                  species: "caryaevorum",
+                  commonName: "Hickory Hairstreak",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "McDunnough",
+                  year: "1942",
+                  referenceCount: 80,
+                  countyCount: 35,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4285",
+                  genus: "Satyrium",
+                  species: "liparops",
+                  commonName: "Striped Hairstreak",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "Leconte",
+                  year: "1833",
+                  referenceCount: 3,
+                  countyCount: 3,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4285  a",
+                  genus: "Satyrium",
+                  species: "liparops",
+                  subspecies: "strigosum",
+                  commonName: "Striped Hairstreak",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Harris",
+                  year: "1862",
+                  referenceCount: 101,
+                  countyCount: 40,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4299",
+                  genus: "Calycopis",
+                  species: "cecrops",
+                  commonName: "Red-banded Hairstreak",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Fabricius",
+                  year: "1793",
+                  referenceCount: 43,
+                  countyCount: 13,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4318",
+                  genus: "Mitoura",
+                  species: "grynea",
+                  subspecies: "grynea",
+                  commonName: "Olive Hairstreak",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Hubner",
+                  year: "1819",
+                  referenceCount: 44,
+                  countyCount: 14,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4322  b",
+                  genus: "Incisalia",
+                  species: "augustus",
+                  subspecies: "croesiodes",
+                  commonName: "Brown Elfin",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Scudder",
+                  year: "1876",
+                  referenceCount: 24,
+                  countyCount: 4,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4325",
+                  genus: "Incisalia",
+                  species: "irus",
+                  subspecies: "irus",
+                  commonName: "Frosted Elfin",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Godart",
+                  year: "1824",
+                  referenceCount: 34,
+                  countyCount: 2,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4326",
+                  genus: "Incisalia",
+                  species: "henrici",
+                  commonName: "Henry's Elfin",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Grote and Robinson",
+                  year: "1867",
+                  referenceCount: 63,
+                  countyCount: 19,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4326  +",
+                  genus: "Incisalia",
+                  species: "henrici",
+                  subspecies: "henrici",
+                  commonName: "Henry's Elfin",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "Grote and Robinson",
+                  year: "1867",
+                  referenceCount: 18,
+                  countyCount: 9,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4328",
+                  genus: "Incisalia",
+                  species: "niphon",
+                  subspecies: "niphon",
+                  commonName: "Pine Elfin",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Hubner",
+                  year: "1819",
+                  referenceCount: 26,
+                  countyCount: 11,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4332",
+                  genus: "Euristrymon",
+                  species: "ontario",
+                  subspecies: "ontario",
+                  commonName: "Northern Hairstreak",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "W. H. Edwards",
+                  year: "1868",
+                  referenceCount: 9,
+                  countyCount: 9,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4335",
+                  genus: "Parrhasius",
+                  species: "m-album",
+                  commonName: "White M Hairstreak",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Boisduval and LeConte",
+                  year: "1833",
+                  referenceCount: 29,
+                  countyCount: 20,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4336",
+                  genus: "Strymon",
+                  species: "melinus",
+                  commonName: "Gray Hairstreak",
+                  show: false,
+                  kind: "B",
+                  revised: "F",
+                  author: "Huebner",
+                  year: "1818",
+                  referenceCount: 3,
+                  countyCount: 1,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4336  a",
+                  genus: "Strymon",
+                  species: "melinus",
+                  subspecies: "humuli",
+                  commonName: "Gray Hairstreak",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Harris",
+                  year: "1841",
+                  referenceCount: 170,
+                  countyCount: 66,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4349",
+                  genus: "Erora",
+                  species: "laetus",
+                  commonName: "Early Hairstreak",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "W. H. Edwards",
+                  year: "1862",
+                  referenceCount: 2,
+                  countyCount: 2,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4360  a",
+                  genus: "Hemiargus",
+                  species: "isola",
+                  subspecies: "alce",
+                  commonName: "Reakirt's Blue",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "W. H. Edwards",
+                  year: "1871",
+                  referenceCount: 3,
+                  countyCount: 2,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4361",
+                  genus: "Everes",
+                  species: "comyntas",
+                  subspecies: "comyntas",
+                  commonName: "Eastern Tailed Blue",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Godart",
+                  year: "1824",
+                  referenceCount: 343,
+                  countyCount: 83,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4363",
+                  genus: "Celastrina",
+                  species: "ladon",
+                  commonName: "Spring Azure",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Cramer",
+                  year: "1780",
+                  referenceCount: 421,
+                  countyCount: 89,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4363  +",
+                  genus: "Celastrina",
+                  species: "ladon",
+                  subspecies: "ladon",
+                  commonName: "Spring Azure",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "Cramer",
+                  year: "1780",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4363  a",
+                  genus: "Celastrina",
+                  species: "ladon",
+                  subspecies: "lucia",
+                  commonName: "Spring Azure",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "W. Kirby",
+                  year: "1837",
+                  referenceCount: 2,
+                  countyCount: 1,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4364",
+                  genus: "Celastrina",
+                  species: "ebenina",
+                  commonName: "Dusky Blue",
+                  show: true,
+                  kind: "B",
+                  revised: "F",
+                  author: "Clench",
+                  year: "1972",
+                  referenceCount: 45,
+                  countyCount: 12,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4372",
+                  genus: "Glaucopsyche",
+                  species: "lygdamus",
+                  commonName: "Silvery Blue",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Doubleday",
+                  year: "1842",
+                  referenceCount: 46,
+                  countyCount: 11,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4372  +",
+                  genus: "Glaucopsyche",
+                  species: "lygdamus",
+                  subspecies: "lygdamus",
+                  commonName: "Silvery Blue",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "Doubleday",
+                  year: "1842",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4375  d",
+                  genus: "Lycaeides",
+                  species: "melissa",
+                  subspecies: "samuelis",
+                  commonName: "Karner Blue",
+                  show: true,
+                  kind: "B",
+                  revised: "F",
+                  author: "Nabokov",
+                  year: "1944",
+                  referenceCount: 25,
+                  countyCount: 1,
+                  family: 43,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4387",
+                  genus: "Calephelis",
+                  species: "borealis",
+                  commonName: "Northern Metalmark",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Grote & Rob.",
+                  year: "1866",
+                  referenceCount: 107,
+                  countyCount: 24,
+                  family: 44,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4391",
+                  genus: "Calephelis",
+                  species: "mutica",
+                  commonName: "Swamp Metalmark",
+                  show: true,
+                  kind: "B",
+                  revised: "F",
+                  author: "McAlpine",
+                  year: "1937",
+                  referenceCount: 19,
+                  countyCount: 2,
+                  family: 44,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4410",
+                  genus: "Libytheana",
+                  species: "bachmanii",
+                  subspecies: "bachmanii",
+                  commonName: "Eastern Snout Butterfly",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Kirtland",
+                  year: "1851",
+                  referenceCount: 146,
+                  countyCount: 59,
+                  family: 45,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4413  a",
+                  genus: "Agraulis",
+                  species: "vanillae",
+                  subspecies: "nigrior",
+                  commonName: "Gulf Fritillary",
+                  show: true,
+                  kind: "B",
+                  revised: "F",
+                  author: "Michener",
+                  year: "1942",
+                  referenceCount: 1,
+                  countyCount: 1,
+                  family: 46,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4420",
+                  genus: "Polygonia",
+                  species: "interrogationis",
+                  commonName: "Question Mark",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Fabricius",
+                  year: "1798",
+                  referenceCount: 331,
+                  countyCount: 82,
+                  family: 46,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4421",
+                  genus: "Polygonia",
+                  species: "comma",
+                  commonName: "Comma",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Harris",
+                  year: "1842",
+                  referenceCount: 281,
+                  countyCount: 84,
+                  family: 46,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4429",
+                  genus: "Polygonia",
+                  species: "progne",
+                  commonName: "Gray Comma",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Cramer",
+                  year: "1776",
+                  referenceCount: 29,
+                  countyCount: 20,
+                  family: 46,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4430  a",
+                  genus: "Nymphalis",
+                  species: "vau-album",
+                  subspecies: "j-album",
+                  commonName: "Compton Tortoise Shell",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Boisduval and LeConte",
+                  year: "1775",
+                  referenceCount: 20,
+                  countyCount: 14,
+                  family: 46,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4432",
+                  genus: "Nymphalis",
+                  species: "antiopa",
+                  subspecies: "antiopa",
+                  commonName: "Mourning Cloak",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Linnaeus",
+                  year: "1758",
+                  referenceCount: 166,
+                  countyCount: 65,
+                  family: 46,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4433",
+                  genus: "Aglais",
+                  species: "milberti",
+                  subspecies: "milberti",
+                  commonName: "Milbert's Tortoise Shell",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Godart",
+                  year: "1819",
+                  referenceCount: 233,
+                  countyCount: 65,
+                  family: 46,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4434",
+                  genus: "Vanessa",
+                  species: "virginiensis",
+                  commonName: "American Painted Lady",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Drury",
+                  year: "1773",
+                  referenceCount: 205,
+                  countyCount: 72,
+                  family: 46,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4435",
+                  genus: "Vanessa",
+                  species: "cardui",
+                  commonName: "Painted Lady",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Linnaeus",
+                  year: "1758",
+                  referenceCount: 173,
+                  countyCount: 70,
+                  family: 46,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4437  a",
+                  genus: "Vanessa",
+                  species: "atalanta",
+                  subspecies: "rubria",
+                  commonName: "Red Admiral",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Fruhstorfer",
+                  year: "1909",
+                  referenceCount: 253,
+                  countyCount: 82,
+                  family: 46,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4440",
+                  genus: "Junonia",
+                  species: "coenia",
+                  commonName: "Buckeye",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Hubner",
+                  year: "1822",
+                  referenceCount: 170,
+                  countyCount: 66,
+                  family: 46,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4447",
+                  genus: "Euptoieta",
+                  species: "claudia",
+                  commonName: "Variegated Fritillary",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Cramer",
+                  year: "1776",
+                  referenceCount: 129,
+                  countyCount: 60,
+                  family: 46,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4449",
+                  genus: "Speyeria",
+                  species: "diana",
+                  commonName: "Diana",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Cramer",
+                  year: "1777",
+                  referenceCount: 6,
+                  countyCount: 3,
+                  family: 46,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4450",
+                  genus: "Speyeria",
+                  species: "cybele",
+                  subspecies: "cybele",
+                  commonName: "Great Spangled Fritillary",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Fabricius",
+                  year: "1775",
+                  referenceCount: 353,
+                  countyCount: 87,
+                  family: 46,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4451",
+                  genus: "Speyeria",
+                  species: "aphrodite",
+                  commonName: "Aphrodite Fritillary",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Fabricius",
+                  year: "1787",
+                  referenceCount: 195,
+                  countyCount: 50,
+                  family: 46,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4451  +",
+                  genus: "Speyeria",
+                  species: "aphrodite",
+                  subspecies: "aphrodite",
+                  commonName: "Aphrodite Fritillary",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "Fabricius",
+                  year: "1787",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 46,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4451  b",
+                  genus: "Speyeria",
+                  species: "aphrodite",
+                  subspecies: "alcestis",
+                  commonName: "Alcestis Fritillary",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "W. H. Edwards",
+                  year: "1877",
+                  referenceCount: 1,
+                  countyCount: 1,
+                  family: 46,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4452",
+                  genus: "Speyeria",
+                  species: "idalia",
+                  commonName: "Regal Fritillary",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Drury",
+                  year: "1773",
+                  referenceCount: 143,
+                  countyCount: 43,
+                  family: 46,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4459",
+                  genus: "Speyeria",
+                  species: "atlantis",
+                  subspecies: "atlantis",
+                  commonName: "Mountain Silver-spot",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "W. H. Edwards",
+                  year: "1862",
+                  referenceCount: 3,
+                  countyCount: 3,
+                  family: 46,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4464",
+                  genus: "Clossiana",
+                  species: "selene",
+                  commonName: "Silver-bordered Fritillary",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Denis & Schiffermulle",
+                  year: "1775",
+                  referenceCount: 74,
+                  countyCount: 20,
+                  family: 46,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4464  a",
+                  genus: "Clossiana",
+                  species: "selene",
+                  subspecies: "myrina",
+                  commonName: "Silver-bordered Fritillary",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "Cramer",
+                  year: "1777",
+                  referenceCount: 1,
+                  countyCount: 1,
+                  family: 46,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4464  b",
+                  genus: "Clossiana",
+                  species: "selene",
+                  subspecies: "nebraskensis",
+                  commonName: "Silver-bordered Fritillary",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "Holland",
+                  year: "1928",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 46,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4465",
+                  genus: "Clossiana",
+                  species: "bellona",
+                  commonName: "Meadow Fritillary",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Fabricius",
+                  year: "1775",
+                  referenceCount: 259,
+                  countyCount: 86,
+                  family: 46,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4465  +",
+                  genus: "Clossiana",
+                  species: "bellona",
+                  subspecies: "bellona",
+                  commonName: "Meadow Fritillary",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "Fabricius",
+                  year: "1775",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 46,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4465  a",
+                  genus: "Clossiana",
+                  species: "bellona",
+                  subspecies: "toddi",
+                  commonName: "Meadow Fritillary",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "Holland",
+                  year: "1928",
+                  referenceCount: 1,
+                  countyCount: 1,
+                  family: 46,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4481",
+                  genus: "Phyciodes",
+                  species: "tharos",
+                  commonName: "Pearl Crescent",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Drury",
+                  year: "1773",
+                  referenceCount: 421,
+                  countyCount: 84,
+                  family: 46,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4481  +",
+                  genus: "Phyciodes",
+                  species: "tharos",
+                  subspecies: "tharos",
+                  commonName: "Pearl Crescent",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "Drury",
+                  year: "1773",
+                  referenceCount: 1,
+                  countyCount: 1,
+                  family: 46,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4481  b",
+                  genus: "Phyciodes",
+                  species: "tharos",
+                  subspecies: "pascoensis",
+                  commonName: "Pearl Crescent",
+                  show: false,
+                  kind: "B",
+                  revised: "F",
+                  author: "W. G. Wright",
+                  year: "1905",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 46,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4482",
+                  genus: "Phyciodes",
+                  species: "batesii",
+                  commonName: "Tawny Crescent",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "Reakirt",
+                  year: "1865",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 46,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4490",
+                  genus: "Charidryas",
+                  species: "nycteis",
+                  subspecies: "nycteis",
+                  commonName: "Silvery Checkerspot",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Dubleday",
+                  year: "1847",
+                  referenceCount: 198,
+                  countyCount: 59,
+                  family: 46,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4491",
+                  genus: "Charidryas",
+                  species: "harrisii",
+                  commonName: "Harris' Checkerspot",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Scudder",
+                  year: "1862",
+                  referenceCount: 54,
+                  countyCount: 8,
+                  family: 46,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4491  +",
+                  genus: "Charidryas",
+                  species: "harrisii",
+                  subspecies: "harrisii",
+                  commonName: "Harris' Checkerspot",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "Scudder",
+                  year: "1862",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 46,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4491  b",
+                  genus: "Charidryas",
+                  species: "harrisii",
+                  subspecies: "liggetti",
+                  commonName: "Harris' Checkerspot",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "Avinoff",
+                  year: "1930",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 46,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4516",
+                  genus: "Euphydryas",
+                  species: "phaeton",
+                  subspecies: "phaeton",
+                  commonName: "Baltimore",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Drury",
+                  year: "1773",
+                  referenceCount: 154,
+                  countyCount: 39,
+                  family: 46,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4522",
+                  genus: "Basilarchia",
+                  species: "arthemis",
+                  subspecies: "arthemis",
+                  commonName: "White Admiral",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Drury",
+                  year: "1773",
+                  referenceCount: 24,
+                  countyCount: 18,
+                  family: 46,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4522  b",
+                  genus: "Basilarchia",
+                  species: "arthemis",
+                  subspecies: "astyanax",
+                  commonName: "Red-spotted Purple",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Fabricius",
+                  year: "1775",
+                  referenceCount: 265,
+                  countyCount: 71,
+                  family: 46,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4523",
+                  genus: "Basilarchia",
+                  species: "archippus",
+                  subspecies: "archippus",
+                  commonName: "Viceroy",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Cramer",
+                  year: "1776",
+                  referenceCount: 263,
+                  countyCount: 78,
+                  family: 46,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4554",
+                  genus: "Anaea",
+                  species: "andria",
+                  commonName: "Goatweed Butterfly",
+                  show: true,
+                  kind: "B",
+                  revised: "F",
+                  author: "Scudder",
+                  year: "1875",
+                  referenceCount: 34,
+                  countyCount: 9,
+                  family: 47,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4557",
+                  genus: "Asterocampa",
+                  species: "celtis",
+                  commonName: "Hackberry Butterfly",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Boisduval and LeConte",
+                  year: "1833",
+                  referenceCount: 205,
+                  countyCount: 63,
+                  family: 47,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4562.1",
+                  genus: "Asterocampa",
+                  species: "clyton",
+                  commonName: "Tawny Emperor",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Boisduval and LeConte",
+                  year: "1833",
+                  referenceCount: 140,
+                  countyCount: 54,
+                  family: 47,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4568.1",
+                  genus: "Enodia",
+                  species: "anthedon",
+                  commonName: "Northern Pearly Eye",
+                  show: true,
+                  kind: "B",
+                  revised: "F",
+                  author: "A. H. Clark",
+                  year: "1936",
+                  referenceCount: 178,
+                  countyCount: 68,
+                  family: 48,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4568.2",
+                  genus: "Enodia",
+                  species: "creola",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "Skinner",
+                  year: "1897",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 48,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4568.3",
+                  genus: "Satyrodes",
+                  species: "eurydice",
+                  commonName: "Northern Eyed Brown",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Johansson",
+                  year: "1763",
+                  referenceCount: 127,
+                  countyCount: 33,
+                  family: 48,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4568.3+",
+                  genus: "Satyrodes",
+                  species: "eurydice",
+                  subspecies: "eurydice",
+                  commonName: "Northern Eyed Brown",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "Johansson",
+                  year: "1763",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 48,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4569",
+                  genus: "Satyrodes",
+                  species: "appalachia",
+                  commonName: "Appalachian Eyed Brown",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "R. Chermock",
+                  year: "1947",
+                  referenceCount: 1,
+                  countyCount: 1,
+                  family: 48,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4569  +",
+                  genus: "Satyrodes",
+                  species: "appalachia",
+                  subspecies: "appalachia",
+                  commonName: "Appalachian Eyed Brown",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "R. Chermock",
+                  year: "1947",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 48,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4569  a",
+                  genus: "Satyrodes",
+                  species: "appalachia",
+                  subspecies: "leeuwi",
+                  commonName: "Appalachian Eyed Brown",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "Gatrelle and Arbogast",
+                  year: "1974",
+                  referenceCount: 67,
+                  countyCount: 26,
+                  family: 48,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4573",
+                  genus: "Cyllopsis",
+                  species: "gemma",
+                  subspecies: "gemma",
+                  commonName: "Gemmed Satyr",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Hubner",
+                  year: "1808",
+                  referenceCount: 41,
+                  countyCount: 8,
+                  family: 48,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4575",
+                  genus: "Hermeuptychia",
+                  species: "sosybius",
+                  commonName: "Carolina Satyr",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Fabricius",
+                  year: "1793",
+                  referenceCount: 32,
+                  countyCount: 9,
+                  family: 48,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4577",
+                  genus: "Neonympha",
+                  species: "mitchellii",
+                  commonName: "Mitchell's Satyr",
+                  show: true,
+                  kind: "B",
+                  revised: "F",
+                  author: "French",
+                  year: "1889",
+                  referenceCount: 4,
+                  countyCount: 1,
+                  family: 48,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4578",
+                  genus: "Megisto",
+                  species: "cymela",
+                  subspecies: "cymela",
+                  commonName: "Little Wood Satyr",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Cramer",
+                  year: "1777",
+                  referenceCount: 265,
+                  countyCount: 80,
+                  family: 48,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4587",
+                  genus: "Cercyonis",
+                  species: "pegala",
+                  commonName: "Common Wood Nymph",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Fabricius",
+                  year: "1775",
+                  referenceCount: 316,
+                  countyCount: 79,
+                  family: 48,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4587  b",
+                  genus: "Cercyonis",
+                  species: "pegala",
+                  subspecies: "alope",
+                  commonName: "Common Wood Nymph",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "Fabricius",
+                  year: "1793",
+                  referenceCount: 6,
+                  countyCount: 1,
+                  family: 48,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4587  c",
+                  genus: "Cercyonis",
+                  species: "pegala",
+                  subspecies: "nephele",
+                  commonName: "Common Wood Nymph",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "W. F. Kirby",
+                  year: "1837",
+                  referenceCount: 2,
+                  countyCount: 1,
+                  family: 48,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4596",
+                  genus: "Pyrrhopyge",
+                  species: "discoidalis",
+                  show: false,
+                  kind: "B",
+                  revised: "F",
+                  author: "W.F. Kirby",
+                  year: "1837",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 48,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4597",
+                  genus: "Pyrrhopgye",
+                  species: "theano",
+                  show: false,
+                  kind: "B",
+                  revised: "F",
+                  author: "Tauscher",
+                  year: "1809",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 48,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4599",
+                  genus: "Pyrrhopyge",
+                  species: "epipsodea",
+                  show: false,
+                  kind: "B",
+                  revised: "F",
+                  author: "Butler",
+                  year: "1868",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 48,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4600",
+                  genus: "Pyrrhopyge",
+                  species: "callias",
+                  show: false,
+                  kind: "B",
+                  revised: "F",
+                  author: "W. H. Edwards",
+                  year: "1871",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 48,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4601",
+                  genus: "Pyrrhopyge",
+                  species: "dabanensis",
+                  show: false,
+                  kind: "B",
+                  revised: "F",
+                  author: "Erschoff",
+                  year: "1871",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 48,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4602",
+                  genus: "Gyrocheilus",
+                  species: "patrobas",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "Hewitson",
+                  year: "1862",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 48,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4603",
+                  genus: "Neominois",
+                  species: "ridingsii",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "W. H. Edwards",
+                  year: "1865",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 48,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4603.1",
+                  genus: "Oeneis",
+                  species: "ivallda",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "Mead",
+                  year: "1878",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 48,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4604",
+                  genus: "Oeneis",
+                  species: "nevadensis",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "C.& R. Felder",
+                  year: "1866",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 48,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4605",
+                  genus: "Oeneis",
+                  species: "macounii",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "W. H. Edwards",
+                  year: "1885",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 48,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4606",
+                  genus: "Oeneis",
+                  species: "chryxus",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "Doubleday & Hewitson",
+                  year: "1849",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 48,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4607",
+                  genus: "Oeneis",
+                  species: "uhleri",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "Reakirt",
+                  year: "1866",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 48,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4608",
+                  genus: "Oeneis",
+                  species: "alberta",
+                  show: false,
+                  kind: "B",
+                  revised: "F",
+                  author: "Elwes",
+                  year: "1893",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 48,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4609",
+                  genus: "Oeneis",
+                  species: "taygete",
+                  show: false,
+                  kind: "B",
+                  revised: "F",
+                  author: "Geyer",
+                  year: "1830",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 48,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4610",
+                  genus: "Oeneis",
+                  species: "bore",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "Schneider",
+                  year: "1792",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 48,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4611",
+                  genus: "Oeneis",
+                  species: "jutta",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "Hubner",
+                  year: "1805-6",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 48,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4612",
+                  genus: "Oeneis",
+                  species: "melissa",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "Fabricius",
+                  year: "1775",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 48,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4613",
+                  genus: "Oeneis",
+                  species: "polixenes",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "Fabricius",
+                  year: "1775",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 48,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4614",
+                  genus: "Danaus",
+                  species: "plexippus",
+                  commonName: "Monarch",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Linnaeus",
+                  year: "1758",
+                  referenceCount: 275,
+                  countyCount: 87,
+                  family: 49,
+                  gCKey: 40,
+                  grp: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4615  b",
+                  genus: "Danaus",
+                  species: "gilippus",
+                  subspecies: "strigosus",
+                  commonName: "Queen",
+                  show: true,
+                  kind: "B",
+                  revised: "T",
+                  author: "Bates",
+                  year: "1864",
+                  referenceCount: 1,
+                  countyCount: 1,
+                  family: 49,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4616",
+                  genus: "Danaus",
+                  species: "eresimus",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "Cramer",
+                  year: "1777",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 49,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "4617",
+                  genus: "Lycorea",
+                  species: "cleobaea",
+                  show: false,
+                  kind: "B",
+                  revised: "T",
+                  author: "Godart",
+                  year: "1819",
+                  referenceCount: 0,
+                  countyCount: 0,
+                  family: 49,
+                  gCKey: 40,
+                  grp: 0
+            }
+      });
+      await db.checklist.create({
+            data: {
+                  hodges: "A000",
+                  genus: "Unknown",
+                  species: "unknown",
+                  commonName: "Unidentified Voucher",
+                  show: true,
+                  kind: "B",
+                  revised: "F",
+                  author: "unknown",
+                  year: "0",
+                  referenceCount: 0,
+                  tmp_SitesReporting: 0,
+                  tmp_TotalCount: 0,
+                  tmp_HighCount: 0
+            }
+      });
 }

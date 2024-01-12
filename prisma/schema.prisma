@@ -115,11 +115,10 @@ model Site {
 
 model Checklist {
     checklistId Int @id @default(autoincrement())
-    checklistKey String
+    hodges String @default("A000")
     genus String // @db.String(20)
     species String // @db.String(20)
     subspecies String? // @db.String(16)
-    combinedLatin String // @db.String(50) // DOOMED
     commonName String? // @db.String(30)
     show Boolean
     kind String // @db.String(1)
@@ -145,7 +144,7 @@ model Checklist {
     @@index([genus])
     @@index([species])
     @@index([commonName])
-    //@@unique([checklistKey])
+    //@@unique([hodges])
 
     // Relations
     siteObservations SiteObservation[]
@@ -159,7 +158,7 @@ model SiteObservation {
     siteObservationId Int @id @default(autoincrement())
     // ** use siteObservationId as real key now - and later just drop 'seqId Int?'
     seqId Int?
-    checklistKey String?
+    hodges String?
     idCode String? // @db.String(1)  // in { how id'ed:  O observ, N net, P photo, C collected }
     total Int      // system maintained
     s1 Int?        // counts of CheckList species per section

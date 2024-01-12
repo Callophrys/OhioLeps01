@@ -16,7 +16,9 @@
 <StandardContainer>
     <div class="">
         {#if $page.data?.user?.role === 'ADMIN' && typeof form === 'object' && !isEmpty(form?.data)}
-            <div class="text-2xl">Site: {form?.data?.siteName}</div>
+            <span>Site X of {data.sites?.length}: {form?.data?.siteName} </span>
+            <button type="submit"> ➜ Next site</button>
+
             <div class="flex gap-2">
                 <form method="POST" action="?/getSites" id="pickSite">
                     <label class="p-2 hover:bg-sky-700">
@@ -51,8 +53,11 @@
         <p>Added todo! 🥳</p>
     {/if}
     -->
+        {:else if typeof form === 'object' && !isEmpty(form?.data)}
+            <span>Site X of {data.sites?.length}: {form?.data?.siteName} </span>
+            <button type="submit"> ➜ Next site</button>
         {:else}
-            Site Count: {data.sites?.length}
+            <span>Sites: {data.sites?.length}</span>
         {/if}
     </div>
 

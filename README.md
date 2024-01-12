@@ -170,12 +170,12 @@ Bring in tailwind/forms and skeleton/ui as needed.
 
 #### 12/28/23
 
-mysql> select * from checklist where checklistKey is null;
+mysql> select * from checklist where hodges is null;
 
 ```
 
 ```
-update siteObservation o join checklist k on o.checklistKey = k.checklistKey
+update siteObservation o join checklist k on o.hodges = k.hodges
    set o.checklistId = k.checklistId
 
 update siteObservation o join siteDate d on o.seqId = d.seqId
@@ -241,6 +241,10 @@ SELECT COUNT(*) CT FROM county;
 ALTER TABLE SITEOBSERVATION DROP FOREIGN KEY SiteObservation_checklistId_fkey;
 ALTER TABLE SITEDATE DROP FOREIGN KEY SiteDate_siteId_fkey;
 ALTER TABLE SITEDATE DROP FOREIGN KEY SiteObservation_siteDateId_fkey;
+ALTER TABLE SITE DROP FOREIGN KEY Site_CountyId_fkey;
+ALTER TABLE COUNTY DROP FOREIGN KEY County_RegionId_fkey;
+ALTER TABLE REGION DROP FOREIGN KEY Region_StateId_fkey;
+ALTER TABLE STATE DROP FOREIGN KEY State_CountryId_fkey;
 
 DROP TABLE IF EXISTS _prisma_migrations;
 DROP TABLE IF EXISTS nameaddress;
@@ -315,4 +319,26 @@ npm add -g pnpm   # updates actual pnpm but does it do the package.json update?
 ** seems i have to do both
 
 https://vercel.com/docs/beginner-sveltekit/data-binding-and-event-handling
+
+### 1/12/2024
+http://wedgefoundation.org/publications_paypal.asp
+➜
+✐
+✎
+✔
+❗
+❕
+❓
+❔
+❌
+✘
+✚
+Character	Numerical Code	Name of Character
+|	&#124;	vertical bar/pipe
+¦	&#166;	broken vertical bar
+:	&#58;	colon
+;	&#59;	semicolon
+
+
+
 
