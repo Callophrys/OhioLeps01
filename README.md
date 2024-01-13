@@ -339,6 +339,9 @@ Character	Numerical Code	Name of Character
 :	&#58;	colon
 ;	&#59;	semicolon
 
+TODO: Deal with created|updated + By|At later
+TODO: Figure out edit history
+TODO: Figure out general auditing
 
 
 

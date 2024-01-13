@@ -5,14 +5,14 @@
 
 <hgroup>
     <h1>{data.site.siteName}</h1>
-    <h2>{formatDate(data.site.changeDate.toDateString())}</h2>
+    <h2>last changed at {formatDate(data.site.changedAt.toDateString())}</h2>
 </hgroup>
 
 <h2>Check out this site</h2>
 
 <div class="content">
     <div>siteName: {@html data.site.siteName ?? ''}</div>
-    <div>county: {@html data.site.county ?? ''}</div>
+    <div>county: {@html data.site.county.name ?? ''}</div>
     <div>township: {@html data.site.township ?? ''}</div>
     <div>locationZip: {@html data.site.locationZip ?? ''}</div>
     <div>siteAddress: {@html data.site.siteAddress ?? ''}</div>
@@ -44,5 +44,5 @@
     <div>s2002: {@html data.site.s2002 ?? ''}</div>
     <div>s2003: {@html data.site.s2003 ?? ''}</div>
     <div>s2004: {@html data.site.s2004 ?? ''}</div>
-    <div>changeDate: {@html data.site.changeDate ?? ''}</div>
+    <div>createdAt: {@html data.site.createdAt ?? ''}</div>
 </div>

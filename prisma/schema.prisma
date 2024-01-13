@@ -11,8 +11,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// createdAt, createdBy, changedAt, changedBy
-
 enum TaxonomicType {
     K
     P
@@ -42,7 +40,7 @@ model Taxonomy {
     branchTaxa  Taxonomy[]  @relation("TaxonomicTree")
     
     // Checklist - not working yet
-    //checklist  Checklist[]
+    checklist  Checklist[] @relation("ChecklistOfTaxon")
 
     @@index([taxonType, latinName])
 }
@@ -101,7 +99,10 @@ model Site {
     s2002 Int @default(5)
     s2003 Int @default(5)
     s2004 Int @default(5)
-    changeDate DateTime @default(now())
+	createBy   String @default("") // must be user id or something
+	createdAt DateTime @default(now())
+	updateBy   String?
+	changedAt DateTime?
 
     countyId Int
     county County @relation("SiteOfCounty", fields: [countyId], references: [id])
@@ -113,21 +114,19 @@ model Site {
     siteStatuses SiteStatus[]
 }
 
+// Will be one-to-one with big taxon data 
 model Checklist {
     checklistId Int @id @default(autoincrement())
-    hodges String @default("A000")
-    genus String // @db.String(20)
-    species String // @db.String(20)
-    subspecies String? // @db.String(16)
+    hodges String @default("A000") // or similar, note if another system, e.g. Patterson number
+    genus String? // @db.String(20) // doomed
+    species String? // @db.String(20) // doomed
+    subspecies String? // @db.String(16) // doomed
     commonName String? // @db.String(30)
     show Boolean
     kind String // @db.String(1)
     revised String // @db.String(1)
     author String // @db.String(22)
     year String?
-    changeDate DateTime?
-    changeBy String? // @db.String(25)
-    comment String? // @db.String(255)
     referenceCount Int @default(0)
     // TODO: figure out this field and its spelling
     countyCount Int @default(0)
@@ -150,8 +149,8 @@ model Checklist {
     siteObservations SiteObservation[]
     
     // Not working yet
-    //taxonId Int? 
-    //taxon   Taxonomy? @relation("TaxonomicTree", fields: [taxonId], references: [id])
+    taxonId Int? 
+    taxon   Taxonomy? @relation("ChecklistOfTaxon", fields: [taxonId], references: [id])
 }
 
 model SiteObservation {
@@ -313,7 +312,10 @@ model NameAddress {
 	emailAddress String?
 	notes String?
 	notes2 String?
-	changeDate DateTime @default(now())
+	createBy   String @default("")
+	createdAt DateTime @default(now())
+	updateBy   String?
+	changedAt DateTime?
 }
 
 model Country {

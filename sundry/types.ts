@@ -52,7 +52,7 @@ export type Site = {
   s2002: number,
   s2003: number,
   s2004: number,
-  changeDate: Date,
+  createdAt: Date,
 
   //siteDates: SiteDate[],
   //siteStatuses: SiteStatus[]
@@ -70,7 +70,7 @@ export type CheckList = {
     revised: string,
     author: string,
     year: string,
-    changeDate: string,
+    createdAt: string,
     changeBy: string,
     comment: string,
     references: number,

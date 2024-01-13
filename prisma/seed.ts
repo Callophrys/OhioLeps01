@@ -23,15 +23,38 @@ import seedNameAddress from './seed.nameaddress'; await seedNameAddress();
 /*
 */
 
-// Consider making into ENUM
+// Consider making role into ENUM
 async function updateRoles() {
-  console.log('Creating Roles');
+  console.log('Creating Roles and Users');
   await db.role.createMany({
     data: [
-      { id: 1, name: 'USER' },
-      { id: 2, name: 'ADMIN' },
+      {
+        id: 1,
+        name: 'USER',
+        users: {
+          create: {
+            username: "stella",
+            passwordHash: "$2b$10$bjXz/irXJrUh8gvG8fidZepQN0BrN2/d2R2RshizCHYSI.FP74s8G",
+            userAuthToken: "dc1c44da-fa33-4fb7-82cc-b5baa7522c4d",
+            roleId: 1
+          }
+        }
+      },
+      {
+        id: 2,
+        name: 'ADMIN',
+        users: {
+          create: {
+            username: "nate",
+            passwordHash: "$2b$10$iAIf7B4I9aUy9ZklbY.yy.GuJ0U3HjpttqEMiHb5zwvoMsYOqDXFy",
+            userAuthToken: "70e2e703-06d9-4ebc-bc39-889d85f9db4d",
+            roleId: 2
+          }
+        }
+      },
     ]
   });
+  console.log('  done creating Roles and Users');
 }
 
 async function updateSiteObservationForChecklist() {

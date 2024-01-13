@@ -168,8 +168,8 @@
                     </div>
                 {/each}
                 <div class="grid grid-cols-2 space-x-2 w-max">
-                    <div class="text-right w-40">ChangeDate</div>
-                    <div>{form.data.changeDate.toISOString()}</div>
+                    <div class="text-right w-40">Created on</div>
+                    <div>{form.data.createdAt.toISOString()}</div>
                 </div>
             </div>
         {:else if typeof data === 'object' && !isEmpty(data)}
@@ -183,7 +183,7 @@
                                     {site.county.state.name} - {site.county.name}
                                 </div>
                                 <div>{site.person}</div>
-                                <div>Last update: {formatDate(site.changeDate)}</div>
+                                <div>Last update: {formatDate(site.changedAt)}</div>
                             </div>
                             <div class="flex m-0">
                                 <form method="POST" action="?/getSite">
