@@ -239,14 +239,19 @@ SELECT COUNT(*) CT FROM continent;
 
 
 #### Squash migrations
-ALTER TABLE SITEOBSERVATION DROP FOREIGN KEY SiteObservation_checklistId_fkey;
-ALTER TABLE SITEDATE DROP FOREIGN KEY SiteDate_siteId_fkey;
-ALTER TABLE SITEDATE DROP FOREIGN KEY SiteObservation_siteDateId_fkey;
-ALTER TABLE SITE DROP FOREIGN KEY Site_CountyId_fkey;
-ALTER TABLE COUNTY DROP FOREIGN KEY County_RegionId_fkey;
-ALTER TABLE REGION DROP FOREIGN KEY Region_StateId_fkey;
-ALTER TABLE STATE DROP FOREIGN KEY State_CountryId_fkey;
-ALTER TABLE STATE DROP FOREIGN KEY Country_ContinentId_fkey;
+
+ALTER TABLE county           DROP FOREIGN KEY County_regionId_fkey;
+ALTER TABLE county           DROP FOREIGN KEY County_stateId_fkey;
+ALTER TABLE region           DROP FOREIGN KEY Region_stateId_fkey;
+ALTER TABLE sitedate         DROP FOREIGN KEY SiteDate_siteId_fkey;
+ALTER TABLE siteobservation  DROP FOREIGN KEY SiteObservation_checklistId_fkey;
+ALTER TABLE siteobservation  DROP FOREIGN KEY SiteObservation_siteDateId_fkey;
+ALTER TABLE sitestatus       DROP FOREIGN KEY SiteStatus_siteId_fkey;
+ALTER TABLE sitestatus       DROP FOREIGN KEY SiteStatus_statusCodeId_fkey;
+ALTER TABLE site             DROP FOREIGN KEY Site_countyId_fkey;
+ALTER TABLE state            DROP FOREIGN KEY State_countryId_fkey;
+ALTER TABLE taxonomy         DROP FOREIGN KEY Taxonomy_baseTaxonId_fkey;
+ALTER TABLE user             DROP FOREIGN KEY User_roleId_fkey;
 
 DROP TABLE IF EXISTS _prisma_migrations;
 DROP TABLE IF EXISTS nameaddress;
@@ -346,5 +351,29 @@ TODO: Deal with created|updated + By|At later
 TODO: Figure out edit history
 TODO: Figure out general auditing
 
+### 1/15/2024
+
+-- use information_schema.table_constraints table to get
+-- the names of the constraints defined on each table
+select *
+from information_schema.table_constraints
+where constraint_schema = 'ohioleps';
+
+-- use information_schema.key_column_usage table to
+-- get the fields in each one of those constraints
+select *
+from information_schema.key_column_usage
+where constraint_schema = 'ohioleps';
+
+-- use information_schema.referential_constraints to
+-- get the foreign key constraints
+select *
+from information_schema.referential_constraints
+where constraint_schema = 'ohioleps';
+
+-- myssql does not support check constraints and silently discards them
+
+
+select table_name, constraint_name from information_schema.referential_constraints where constraint_schema = 'ohioleps';
 
 

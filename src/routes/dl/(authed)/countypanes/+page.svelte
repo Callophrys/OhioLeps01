@@ -1,7 +1,10 @@
 <script lang="ts">
     import StandardContainer from '$lib/components/StandardContainer.svelte';
     import CCounty from '$lib/components/CCounty.svelte';
+    import type { CountyIsMonitored } from '$lib/types.js';
+    import type { County } from '@prisma/client';
     export let data;
+    console.log(data);
 </script>
 
 <StandardContainer>

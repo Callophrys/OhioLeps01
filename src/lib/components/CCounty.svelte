@@ -3,13 +3,6 @@
     import type { County } from '@prisma/client';
 
     export let county: County;
-    /*
-   & {
-    county?: {
-      name: string
-    }
-  }
-  */
 </script>
 
 <div class="p-2 mt-2 rounded bg-slate-400 w-fit">

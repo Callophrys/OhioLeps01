@@ -12,8 +12,8 @@
     console.log('+page.svelte > data:', data ?? 'empty');
     console.log('+page.svelte > form:', form ?? 'empty');
     /*
-    */
-    
+     */
+
     //$: ({ sites } = data)
 </script>
 
@@ -175,11 +175,15 @@
                 {/each}
                 <div class="grid grid-cols-2 space-x-2 w-max">
                     <div class="text-right w-40">Created on</div>
-                    <div>form.data.createdAt</div>
+                    <div>{form.data.createdAt.toString()}</div>
                 </div>
             </div>
         {:else if typeof data === 'object' && !isEmpty(data)}
-        <script>{console.log('made it here')}</script>
+            <script>
+                {
+                    console.log('made it here');
+                }
+            </script>
             <div>
                 <div class="grid grid-cols-2 gap-2 place-content-start">
                     {#each data.sites as site, i}
@@ -190,7 +194,9 @@
                                     site.county.state.name - {site.county.name}
                                 </div>
                                 <div>{site.person}</div>
-                                <div class="text-wrap">Last update: formatDate(site.changedAt)</div>
+                                <div class="text-wrap">
+                                    Last update: {formatDate(site.createdAt)}
+                                </div>
                             </div>
                             <div class="flex m-0">
                                 <form method="POST" action="?/getSite">
@@ -209,7 +215,11 @@
                 </div>
             </div>
         {:else}
-        <script> {console.log('made it to else', sites)} </script>
+            <script>
+                {
+                    console.log('made it to else', sites);
+                }
+            </script>
             <div>
                 <div class="grid grid-cols-3 gap-4 w-fit">
                     {#each data.sites as site, i}

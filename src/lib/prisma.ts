@@ -13,21 +13,14 @@ https://github.com/prisma/prisma-client-extensions
 
 // Adding new computed field to replace combinedLatinName
 // May have to trim or account for missing parts. E.g. subspecies
+/*
 const prisma = new PrismaClient().$extends({
     result: {
-        /*checklist: {
-            xname: {
-                needs: { genus: true, species: true, subspecies: true },
-                compute(checklist) {
-                    return `${checklist.genus} ${checklist.species}${checklist.subspecies ? ' ' + checklist.subspecies : ''}`
-                }
-            }
-        },*/
         county: {
             isMonitored: {
                 needs: { sites: true },
                 compute(county) {
-                    return county.sites.length !== 0;
+                    return String(county.sites.length !== 0);
                 }
             },
             siteCount: {
@@ -40,4 +33,6 @@ const prisma = new PrismaClient().$extends({
     }
 });
 
+*/
+const prisma = new PrismaClient();
 export default prisma;

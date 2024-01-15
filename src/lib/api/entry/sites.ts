@@ -37,8 +37,6 @@ export async function getSites() {
     }
   });
 
-  console.log('getSites returning ', sites);
-
   return sites;
 }
 
@@ -53,13 +51,12 @@ export async function addSite(site: any) {
   });
 }
 
-// Call this as remove since we probably need to keep
-// the history and support undos and auditing and so on.
+// Hard delete, we prob need the history and support for undos and auditing and so on.
 export async function removeSite(siteId: number) {
   console.log('/lib/api/entry/sites.ts > removeSite');
   await prisma.siteObservation.deleteMany({
     where: {
-      siteDateId: siteId
+      siteDateId: siteId // is this right?
     }
   });
   await prisma.siteDate.deleteMany({
