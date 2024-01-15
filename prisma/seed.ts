@@ -1,23 +1,30 @@
 import { PrismaClient } from "@prisma/client"
 const db = new PrismaClient()
 
+import seedStates from "./seed.state";
+import seedStatusCode from './seed.statuscode';
+import seedSite from './seed.site';
+import seedSiteStatus from './seed.sitestatus';
+import seedSiteDate from './seed.sitedate';
+import seedChecklist from './seed.checklist';
+import seedSiteObservation from './seed.siteobservation';
+import seedTaxonomy from "./seed.taxonomy";
+import seedNameAddress from './seed.nameaddress';
+
 /*
-import seedStates from "./seed.state"; await seedStates();
-import seedStatusCode from './seed.statuscode'; await seedStatusCode();
 */
-
-// seems a pause is needed here
-import seedSite from './seed.site'; await seedSite();
-import seedSiteStatus from './seed.sitestatus'; await seedSiteStatus();
-
-import seedSiteDate from './seed.sitedate'; await seedSiteDate();
-import seedChecklist from './seed.checklist'; await seedChecklist();
-import seedSiteObservation from './seed.siteobservation'; await seedSiteObservation();
+await seedStates();
+await seedStatusCode();
+await seedSite();
+await seedSiteStatus();
+await seedSiteDate();
+await seedChecklist();
+await seedSiteObservation();
 await updateSiteObservationForSiteDate();
 await updateSiteObservationForChecklist();
-import seedTaxonomy from "./seed.taxonomy"; await seedTaxonomy();
+await seedTaxonomy();
+await seedNameAddress();
 await updateRoles();
-import seedNameAddress from './seed.nameaddress'; await seedNameAddress();
 /*
 */
 /*
@@ -26,33 +33,31 @@ import seedNameAddress from './seed.nameaddress'; await seedNameAddress();
 // Consider making role into ENUM
 async function updateRoles() {
   console.log('Creating Roles and Users');
-  await db.role.createMany({
-    data: [
-      {
-        id: 1,
-        name: 'USER',
-        users: {
-          create: {
-            username: "stella",
-            passwordHash: "$2b$10$bjXz/irXJrUh8gvG8fidZepQN0BrN2/d2R2RshizCHYSI.FP74s8G",
-            userAuthToken: "dc1c44da-fa33-4fb7-82cc-b5baa7522c4d",
-            roleId: 1
-          }
+  await db.role.create({
+    data: {
+      id: 1,
+      name: 'USER',
+      users: {
+        create: {
+          username: "stella",
+          passwordHash: "$2b$10$bjXz/irXJrUh8gvG8fidZepQN0BrN2/d2R2RshizCHYSI.FP74s8G",
+          userAuthToken: "dc1c44da-fa33-4fb7-82cc-b5baa7522c4d",
         }
-      },
-      {
+      }
+    }
+  });
+  await db.role.create({
+      data: {
         id: 2,
         name: 'ADMIN',
         users: {
-          create: {
+          create: [{
             username: "nate",
             passwordHash: "$2b$10$iAIf7B4I9aUy9ZklbY.yy.GuJ0U3HjpttqEMiHb5zwvoMsYOqDXFy",
             userAuthToken: "70e2e703-06d9-4ebc-bc39-889d85f9db4d",
-            roleId: 2
-          }
+          }]
         }
       },
-    ]
   });
   console.log('  done creating Roles and Users');
 }

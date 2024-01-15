@@ -235,6 +235,7 @@ SELECT COUNT(*) CT FROM country;
 SELECT COUNT(*) CT FROM state;
 SELECT COUNT(*) CT FROM region;
 SELECT COUNT(*) CT FROM county;
+SELECT COUNT(*) CT FROM continent;
 
 
 #### Squash migrations
@@ -245,6 +246,7 @@ ALTER TABLE SITE DROP FOREIGN KEY Site_CountyId_fkey;
 ALTER TABLE COUNTY DROP FOREIGN KEY County_RegionId_fkey;
 ALTER TABLE REGION DROP FOREIGN KEY Region_StateId_fkey;
 ALTER TABLE STATE DROP FOREIGN KEY State_CountryId_fkey;
+ALTER TABLE STATE DROP FOREIGN KEY Country_ContinentId_fkey;
 
 DROP TABLE IF EXISTS _prisma_migrations;
 DROP TABLE IF EXISTS nameaddress;
@@ -261,6 +263,7 @@ DROP TABLE IF EXISTS county;
 DROP TABLE IF EXISTS region;
 DROP TABLE IF EXISTS state;
 DROP TABLE IF EXISTS country;
+DROP TABLE IF EXISTS continent;
 
 npx prisma migrate dev --name initial_migration
 npx prisma migrate dev --name <date + letter or number>

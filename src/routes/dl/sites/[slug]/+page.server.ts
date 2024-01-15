@@ -1,5 +1,7 @@
 import { error } from '@sveltejs/kit'
-import prisma from '$lib/prisma'
+//import prisma from '$lib/prisma'
+//
+import { getSites } from '$lib/api/entry/sites.js'
 
 export async function load({ params }) {
   console.log('params', params)

@@ -9,8 +9,12 @@
     export let data;
     export let form;
 
-    //console.log('+page.svelte > data:', data ?? 'empty');
+    console.log('+page.svelte > data:', data ?? 'empty');
     console.log('+page.svelte > form:', form ?? 'empty');
+    /*
+    */
+    
+    //$: ({ sites } = data)
 </script>
 
 <StandardContainer>
@@ -20,6 +24,7 @@
             <button type="submit"> ➜ Next site</button>
 
             <div class="flex gap-2">
+                <a href="/dl/sites" class="p-2 hover:bg-sky-700">🔍 Return to all sites</a>
                 <form method="POST" action="?/getSites" id="pickSite">
                     <label class="p-2 hover:bg-sky-700">
                         <button type="submit">🔍 Return to all sites</button>
@@ -32,6 +37,7 @@
                 </form>
                 <form method="POST" action="?/removeSite" id="pickSite">
                     <label class="p-2 hover:bg-sky-700">
+                        <input type="hidden" name="siteId" value={data.sites?.siteId} />
                         <button type="submit">❌ Delete this site</button>
                     </label>
                 </form>
@@ -169,10 +175,11 @@
                 {/each}
                 <div class="grid grid-cols-2 space-x-2 w-max">
                     <div class="text-right w-40">Created on</div>
-                    <div>{form.data.createdAt.toISOString()}</div>
+                    <div>form.data.createdAt</div>
                 </div>
             </div>
         {:else if typeof data === 'object' && !isEmpty(data)}
+        <script>{console.log('made it here')}</script>
             <div>
                 <div class="grid grid-cols-2 gap-2 place-content-start">
                     {#each data.sites as site, i}
@@ -180,10 +187,10 @@
                             <div class="px-2 pt-2 w-full">
                                 <h3>{site.siteName}</h3>
                                 <div>
-                                    {site.county.state.name} - {site.county.name}
+                                    site.county.state.name - {site.county.name}
                                 </div>
                                 <div>{site.person}</div>
-                                <div>Last update: {formatDate(site.changedAt)}</div>
+                                <div class="text-wrap">Last update: formatDate(site.changedAt)</div>
                             </div>
                             <div class="flex m-0">
                                 <form method="POST" action="?/getSite">
@@ -202,6 +209,7 @@
                 </div>
             </div>
         {:else}
+        <script> {console.log('made it to else', sites)} </script>
             <div>
                 <div class="grid grid-cols-3 gap-4 w-fit">
                     {#each data.sites as site, i}

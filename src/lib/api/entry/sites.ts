@@ -29,7 +29,6 @@ export async function getSites() {
       county: {
         select: {
           name: true,
-          state: true
         }
       },
     },
@@ -37,6 +36,8 @@ export async function getSites() {
       siteName: 'asc'
     }
   });
+
+  console.log('getSites returning ', sites);
 
   return sites;
 }
@@ -50,19 +51,25 @@ export async function addSite(site: any) {
       countyId: 29
     }
   });
-
-  return newSite;
 }
 
 // Call this as remove since we probably need to keep
 // the history and support undos and auditing and so on.
 export async function removeSite(siteId: number) {
   console.log('/lib/api/entry/sites.ts > removeSite');
-  const removedSite = await prisma.site.delete({
+  await prisma.siteObservation.deleteMany({
+    where: {
+      siteDateId: siteId
+    }
+  });
+  await prisma.siteDate.deleteMany({
     where: {
       siteId: siteId
     }
   });
-
-  return removedSite;
+  await prisma.site.delete({
+    where: {
+      siteId: siteId
+    }
+  });
 }

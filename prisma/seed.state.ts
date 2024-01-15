@@ -4,12 +4,29 @@ const db = new PrismaClient()
 export default async function () {
 
     console.log('Creating country records');
-    const countries = await db.country.createMany({
-        data: [
-            { abbreviation: 'US', name: 'United States of America' },
-            { abbreviation: 'CA', name: 'Canada' },
-        ]
+    await db.continent.create({
+        data: {
+            abbreviation: 'NA',
+            name: 'North America',
+            countries: {
+                create: [
+                    { abbreviation: 'US', name: 'United States of America' },
+                    { abbreviation: 'CA', name: 'Canada' },
+                    { abbreviation: 'MX', name: 'Mexico' },
+                ]
+            }
+        }
     });
+    
+    /*
+    Example of geogrphic regions of a country - Canada
+        Atlantic
+        Quebec
+        Ontario
+        Prairies
+        British Columbia
+        Territories
+    */
 
     console.log('Creating state records');
     await db.country.update({
@@ -98,6 +115,52 @@ export default async function () {
                         { abbreviation: 'QC', name: 'Quebec' },
                         { abbreviation: 'SK', name: 'Saskatchewan' },
                         { abbreviation: 'YT', name: 'Yukon' },
+                    ]
+                }
+            }
+        }
+    });
+
+    await db.country.update({
+        where: {
+            abbreviation: 'MX'
+        },
+        data: {
+            states: {
+                createMany: {
+                    data: [
+                        { abbreviation: 'AG', name: 'Aguascalientes' },
+                        { abbreviation: 'BN', name: 'Baja California' },
+                        { abbreviation: 'BS', name: 'Baja California Sur' },
+                        { abbreviation: 'CP', name: 'Campeche' },
+                        { abbreviation: 'CS', name: 'Chiapas' },
+                        { abbreviation: 'CI', name: 'Chihuahua' },
+                        { abbreviation: 'CH', name: 'Coahuila' },
+                        { abbreviation: 'CL', name: 'Colima' },
+                        { abbreviation: 'DG', name: 'Durango' },
+                        { abbreviation: 'GJ', name: 'Guanajuato' },
+                        { abbreviation: 'GE', name: 'Guerrero' },
+                        { abbreviation: 'HD', name: 'Hidalgo' },
+                        { abbreviation: 'JA', name: 'Jalisco' },
+                        { abbreviation: 'MC', name: 'Michoacán' },
+                        { abbreviation: 'MR', name: 'Morelos' },
+                        { abbreviation: 'MX', name: 'México' },
+                        { abbreviation: 'CDMX', name: 'México, Cuidad de' },
+                        { abbreviation: 'NA', name: 'Nayarit' },
+                        { abbreviation: 'NL', name: 'Nuevo León' },
+                        { abbreviation: 'OA', name: 'Oaxaca' },
+                        { abbreviation: 'PU', name: 'Puebla' },
+                        { abbreviation: 'QE', name: 'Querétaro' },
+                        { abbreviation: 'QI', name: 'Quintana Roo Roo. or Q.R.' },
+                        { abbreviation: 'SL', name: 'San Luis Potosí' },
+                        { abbreviation: 'SI', name: 'Sinaloa' },
+                        { abbreviation: 'SO', name: 'Sonora' },
+                        { abbreviation: 'TB', name: 'Tabasco' },
+                        { abbreviation: 'TA', name: 'Tamaulipas' },
+                        { abbreviation: 'TL', name: 'Tlaxcala' },
+                        { abbreviation: 'VC', name: 'Veracruz' },
+                        { abbreviation: 'YU', name: 'Yucatán' },
+                        { abbreviation: 'ZA', name: 'Zacatecas' },
                     ]
                 }
             }

@@ -52,7 +52,7 @@ model User {
   userAuthToken String @unique
 
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @default(now())
 
   role   Role @relation(fields: [roleId], references: [id])
   roleId Int
@@ -99,18 +99,23 @@ model Site {
     s2002 Int @default(5)
     s2003 Int @default(5)
     s2004 Int @default(5)
-	createBy   String @default("") // must be user id or something
+	createdBy String @default("") // must be user id or something
 	createdAt DateTime @default(now())
-	updateBy   String?
-	changedAt DateTime?
+	updatedBy String?
+	updatedAt DateTime?
 
+    // Parent Relation
     countyId Int
     county County @relation("SiteOfCounty", fields: [countyId], references: [id])
     
-    // Relations
+    // Parent Relation
+    stateId Int
+    state State @relation("SiteOfState", fields: [stateId], references: [id])
+    
+    // Child Relation
     siteDates SiteDate[]
 
-    // Relations
+    // Child Relation
     siteStatuses SiteStatus[]
 }
 
@@ -145,10 +150,10 @@ model Checklist {
     @@index([commonName])
     //@@unique([hodges])
 
-    // Relations
+    // Child Relation
     siteObservations SiteObservation[]
     
-    // Not working yet
+    // Parent Relation
     taxonId Int? 
     taxon   Taxonomy? @relation("ChecklistOfTaxon", fields: [taxonId], references: [id])
 }
@@ -176,13 +181,18 @@ model SiteObservation {
     s14 Int?
     s15 Int?
     mark String? // @db.String(50)
-    dateChg DateTime @default(now())
+	createdBy String @default("") // must be user id or something
+	createdAt DateTime @default(now())
+	updatedBy String?
+	updatedAt DateTime?
+	confirmBy String?
+	confirmAt DateTime?
   
-    // Relations
+    // Parent Relation
     checklist Checklist? @relation(fields: [checklistId], references: [checklistId])
     checklistId Int? //@default(0) // new so need SQL to get this
 
-    // Relations
+    // Parent Relation
     siteDate SiteDate? @relation(fields: [siteDateId], references: [siteDateId])
     siteDateId Int? //@default(0) // new so need SQL to get this
     
@@ -195,7 +205,7 @@ model StatusCode {
     code String
     description String
 
-    // Relations - Loads fine so no need to comment or uncomment
+    // Child Relation
     siteStatuses SiteStatus[]
 }
 
@@ -205,11 +215,11 @@ model SiteStatus {
     statusCodeId Int?
     year Int
 
-    // Relations - Loads fine so no need to comment or uncomment
+    // Parent Relation
     statusCode StatusCode? @relation(fields: [statusCodeId], references: [statusCodeId])
-    // provided by load 'statusCodeId Int'
+    // provided by load: 'statusCodeId Int'
 
-    // Relations
+    // Parent Relation
     site Site? @relation(fields: [siteId], references: [siteId])
     // provided by load: 'siteId Int'
   
@@ -281,17 +291,20 @@ model SiteDate {
     energySource4 String? // @db.String(25)
     flowersInBloom String? // @db.String(150)
     fieldNotes String? // @db.String(100)
-    dateChg DateTime @default(now())
+	createdBy String @default("") // must be user id or something
+	createdAt DateTime @default(now())
+	updatedBy String?
+	updatedAt DateTime?
+	confirmBy String?
+	confirmAt DateTime?
     
-    // Relations
+    // Parent Relation
     site Site @relation(fields: [siteId], references: [siteId])
     // provided by load: siteId Int //@default(0)
     
-    // Relations
+    // Child Relation
     siteObservations SiteObservation[]
 
-    //@@unique([seqId, siteId])
-    
     @@index([siteId])
 }
 
@@ -312,10 +325,19 @@ model NameAddress {
 	emailAddress String?
 	notes String?
 	notes2 String?
-	createBy   String @default("")
+	createdBy String @default("")
 	createdAt DateTime @default(now())
-	updateBy   String?
-	changedAt DateTime?
+	updatedBy String?
+	updatedAt DateTime?
+}
+
+model Continent {
+    id Int @id @default(autoincrement())
+    abbreviation String @db.VarChar(2) @unique
+    name String @unique
+
+    // Child Relation
+    countries Country[] @relation("ContinentOfCountry")
 }
 
 model Country {
@@ -323,28 +345,42 @@ model Country {
     abbreviation String @db.VarChar(2) @unique
     name String @unique
 
+    // Parent Relation
+    continentId Int
+    continent Continent@relation("ContinentOfCountry", fields: [continentId], references: [id])
+
+    // Child Relation
     states State[] @relation("CountryOfState")
 }
 
 model State {
     id Int @id @default(autoincrement())
-    abbreviation String @db.VarChar(2)
+    abbreviation String @db.VarChar(4)
     name String
 
+    // Parent Relation
     countryId Int
     country Country @relation("CountryOfState", fields: [countryId], references: [id])
 
+    // Child Relation
     regions Region[] @relation("StateOfRegion")
+
+    // Child Relation
     counties County[] @relation("StateOfCounty")
+
+    // Child Relation
+    sites Site[] @relation("SiteOfState")
 }
 
 model Region {
     id Int @id @default(autoincrement())
     name String
 
+    // Parent Relation
     stateId Int
     state State @relation("StateOfRegion", fields: [stateId], references: [id])
 
+    // Child Relation
     counties County[] @relation("RegionOfCounty")
 }
 
@@ -352,11 +388,14 @@ model County {
     id Int @id @default(autoincrement())
     name String
 
+    // Parent Relation
     regionId Int
     region Region @relation("RegionOfCounty", fields: [regionId], references: [id])
 
+    // Parent Relation
     stateId Int
     state State @relation("StateOfCounty", fields: [stateId], references: [id])
 
+    // Child Relation
     sites Site[] @relation("SiteOfCounty")
 }
