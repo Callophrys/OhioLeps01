@@ -34,5 +34,23 @@ const prisma = new PrismaClient().$extends({
 });
 
 */
-const prisma = new PrismaClient();
+const prisma = new PrismaClient().$extends({
+    result: {
+        siteDate: {
+            year: {
+                compute(siteDate): number {
+                    return siteDate.recordDate.getUTCFullYear();
+                }
+            }
+        },
+        checklist: {
+            scientificName: {
+                compute(checklist): string {
+                    return checklist.genus + ' ' + checklist.species + (checklist.subspecies ? ' ' + checklist.subspecies : '');
+                }
+            }
+        }
+    }
+});
+
 export default prisma;

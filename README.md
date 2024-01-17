@@ -376,4 +376,12 @@ where constraint_schema = 'ohioleps';
 
 select table_name, constraint_name from information_schema.referential_constraints where constraint_schema = 'ohioleps';
 
+### 1/17//2024
+
+Add property to each object in array
+```
+const siteDates: any = Array.from(ssiteDates).map((sd: any) => ({ ...sd, year: sd.year }));
+```
+TODO: hook up checklists to taxonomy
+TODO: think views to better fetch and compute data, e.g. all checklists to a site
 

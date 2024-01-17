@@ -6,7 +6,7 @@
 <StandardContainer>
     <div class="container h-full mx-auto p-8">
         <div class="card h-full p-8 space-x-2 space-y-2">
-            <a href="/dl/query" class="btn variant-filled"> Search Database </a>
+            <a href="/api/query" class="btn variant-filled"> Search Database </a>
             {#if $page.data.user}
                 <a href="/entry" class="btn variant-filled"> Enter/Update Database </a>
                 {#if $page.data.user.role === 'ADMIN'}

@@ -11,7 +11,7 @@ module.exports = {
 	plugins: ['@typescript-eslint'],
 	parserOptions: {
 		sourceType: 'latest',
-		ecmaVersion: 2020,
+		ecmaVersion: 2023,
 		extraFileExtensions: ['.svelte']
 	},
 	env: {

@@ -152,16 +152,16 @@
                     {#if $page.data.user.role === 'ADMIN'}
                         <li><a href="/admin">Admin</a></li>
                     {/if}
-                    <li><a href="/dl/countypanes">County Panes</a></li>
-                    <li><a href="/dl/sites">Sites</a></li>
-                    <li><a href="/dl/sitedates">Site Dates</a></li>
-                    <li><a href="/dl/siteobservations">Site Observations</a></li>
-                    <li><a href="/dl/checklists">Checklists</a></li>
-                    <li><a href="/dl/counties">County</a></li>
-                    <li><a href="/dl/nameaddresses">Name-Address</a></li>
+                    <li><a href="/api/countypanes">County Panes</a></li>
+                    <li><a href="/api/sites">Sites</a></li>
+                    <li class="indent-4"><a href="/api/sitedates">Year/Week Dates</a></li>
+                    <li class="indent-8"><a href="/api/siteobservations">Observations</a></li>
+                    <li><a href="/api/checklists">Checklists</a></li>
+                    <li><a href="/api/counties">County</a></li>
+                    <li><a href="/api/nameaddresses">Name-Address</a></li>
                 {/if}
-                <li><a href="/dl/ohio">Ohio</a></li>
-                <li><a href="/dl/taxonomy">Butterflies of North America</a></li>
+                <li><a href="/api/ohio">Ohio</a></li>
+                <li><a href="/api/taxonomy">Butterflies of North America</a></li>
             </ul>
         </nav>
     </svelte:fragment>
