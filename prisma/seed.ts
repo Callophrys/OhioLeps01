@@ -12,22 +12,23 @@ import seedTaxonomy from "./seed.taxonomy";
 import seedNameAddress from './seed.nameaddress';
 
 /*
-*/
 await seedStates();
 await seedStatusCode();
 await seedSite();
 await seedSiteStatus();
 await seedSiteDate();
 await seedChecklist();
+*/
 await seedSiteObservation();
-await updateSiteObservationForSiteDate();
-await updateSiteObservationForChecklist();
+/*
 await seedTaxonomy();
 await seedNameAddress();
 await updateRoles();
-/*
 */
 /*
+ * these are done in the seeding call
+await updateSiteObservationForSiteDate();
+await updateSiteObservationForChecklist();
 */
 
 // Consider making role into ENUM
