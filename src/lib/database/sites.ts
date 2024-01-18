@@ -52,6 +52,7 @@ export async function getSites() {
 
 export async function addSite(site: any) {
   console.log('/lib/api/entry/sites.ts > addSite');
+  /*
   const newSite = await prisma.site.create({
     data: {
       siteName: 'Glen Helen',
@@ -59,6 +60,7 @@ export async function addSite(site: any) {
       countyId: 29
     }
   });
+  */
 }
 
 // Hard delete, we prob need the history and support for undos and auditing and so on.

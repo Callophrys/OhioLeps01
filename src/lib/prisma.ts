@@ -43,6 +43,27 @@ const prisma = new PrismaClient().$extends({
                 }
             }
         },
+        siteObservation: {
+            total: {
+                compute(o) {
+                    return Number(o.s1)
+                        + Number(o.s2)
+                        + Number(o.s3)
+                        + Number(o.s4)
+                        + Number(o.s5)
+                        + Number(o.s6)
+                        + Number(o.s7)
+                        + Number(o.s8)
+                        + Number(o.s9)
+                        + Number(o.s10)
+                        + Number(o.s11)
+                        + Number(o.s12)
+                        + Number(o.s13)
+                        + Number(o.s14)
+                        + Number(o.s15);
+                }
+            }
+        },
         checklist: {
             scientificName: {
                 compute(checklist): string {

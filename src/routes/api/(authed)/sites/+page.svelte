@@ -172,13 +172,8 @@
                 </div>
             </div>
         {:else if typeof data === 'object' && !isEmpty(data)}
-            <script>
-                {
-                    console.log('made it here');
-                }
-            </script>
             <div>
-                <div class="grid grid-cols-2 gap-2 place-content-start">
+                <div class="flex flex-wrap gap-2">
                     {#each data.sites as site, i}
                         <div class="card btn grid w-64 p-0 m-0 text-wrap">
                             <div class="px-2 pt-2 w-full">
@@ -204,11 +199,6 @@
                 </div>
             </div>
         {:else}
-            <script>
-                {
-                    console.log('made it to else', sites);
-                }
-            </script>
             <div>
                 <div class="grid grid-cols-3 gap-4 w-fit">
                     {#each data.sites as site, i}

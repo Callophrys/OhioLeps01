@@ -164,7 +164,6 @@ model SiteObservation {
     seqId Int?
     hodges String?
     idCode String? // @db.String(1)  // in { how id'ed:  O observ, N net, P photo, C collected }
-    total Int      // system maintained
     s1 Int?        // counts of CheckList species per section
     s2 Int?
     s3 Int?

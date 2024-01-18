@@ -3,7 +3,7 @@
     export let county: any;
 </script>
 
-<div class="p-2 mt-2 rounded bg-slate-400 w-fit">
+<div class="p-2 rounded bg-slate-400 size-28">
     <h2>{county.state.name}</h2>
     <p>{county.name}</p>
     <button type="button" class="btn" on:click={() => goto(`/api/sites/${county.id}`)}>

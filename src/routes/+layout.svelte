@@ -15,11 +15,7 @@
     import { enhance } from '$app/forms';
 </script>
 
-<AppShell
-    slotSidebarLeft="bg-surface-500/5 w-56 p-4"
-    slotPageContent=""
-    slotPageFooter="text-center text-xs"
->
+<AppShell slotSidebarLeft="bg-surface-500/5 w-56 p-4" slotPageFooter="text-center text-xs">
     <svelte:fragment slot="header">
         {#if config.showAppBar}
             <AppBar>
@@ -173,7 +169,9 @@
     <slot />
     <!-- ---- / ---- -->
 
+    <!--
     <svelte:fragment slot="pageFooter">
         {config.title} &copy;{new Date().getFullYear()}
     </svelte:fragment>
+    -->
 </AppShell>
