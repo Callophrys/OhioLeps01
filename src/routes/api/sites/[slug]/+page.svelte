@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { createEventDispatcher } from 'svelte';
     import { formatDate } from '$lib/utils';
     import { goto } from '$app/navigation';
     import { ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
@@ -16,17 +17,35 @@
     };
 
     function handleClick(event: any) {
+        event.preventDefault();
         if (event.currentTarget?.value) {
-            goto('/api/siteobservations/' + event.currentTarget.value);
+            //goto('/api/siteobservations/' + event.currentTarget.value);
+            submit();
         }
     }
+
+    const dispatch = createEventDispatcher();
+    const submit = () => dispatch('submit');
+    let obsValue: number;
+    
+    // TODO
+    // bind the selected listboxtime
+    // and/or use action
+    // https://svelte.dev/docs/element-directives#use-action
+    // actions:
+    // https://svelte.dev/docs/svelte-action
+    // does bind selected go on the parent component?  See skeletonui for event stuff
+
 </script>
+
+<form><input type="hidden" id="obs" bind:value={obsValue}/></form>
 
 <div class="card w-48 shadow-xl py-2" data-popup="popupComboboxSiteDate">
     <ListBox rounded="rounded-none">
         {#each data.site.siteDates as siteDate}
             <ListBoxItem
                 bind:group={comboboxValueSiteDate}
+                bind:selected={obsValue} 
                 on:click={handleClick}
                 name="medium"
                 value={siteDate.year * 100 + siteDate.week}

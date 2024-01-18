@@ -189,8 +189,8 @@ model SiteObservation {
 	confirmAt DateTime?
   
     // Parent Relation
-    checklist Checklist @relation(fields: [checklistId], references: [checklistId])
-    checklistId Int //@default(0) // new so need SQL to get this
+    checklist Checklist? @relation(fields: [checklistId], references: [checklistId])
+    checklistId Int? //@default(0) // new so need SQL to get this
 
     // Parent Relation
     siteDate SiteDate? @relation(fields: [siteDateId], references: [siteDateId])

@@ -14,6 +14,6 @@ export async function load({ params }) {
 
   const json = JSON.stringify(site);
   const jsonResult: Site = JSON.parse(json);
-  console.log('site', jsonResult);
+  //console.log('site', jsonResult);
   return { site: jsonResult }
 }
