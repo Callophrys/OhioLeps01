@@ -1,7 +1,36 @@
 <script lang="ts">
     import DoubledContainer from '$lib/components/DoubledContainer.svelte';
     import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
+    import { SlideToggle } from '@skeletonlabs/skeleton';
+    import { createEventDispatcher } from 'svelte';
     export let data;
+
+    function handleToggle(e: any) {
+        return true;
+    }
+
+    function toggleTempScale(e: any) {
+        useF = !useF;
+        if (useF) {
+            startTemp = String(data.siteDate.startTemp);
+            endTemp = String(data.siteDate.endTemp);
+        } else {
+            startTemp = String(data.siteDate.startTemp ? Math.floor((data.siteDate.startTemp - 32) * 5 / 9) : '');
+            endTemp = String(data.siteDate.endTemp ? Math.floor((data.siteDate.endTemp - 32) * 5 / 9) : '');
+        }
+        acc.dispatch('toggleAccordion');
+    }
+
+    const dispatch = createEventDispatcher();
+
+    let acc: any;
+
+    let startTemp: string;
+    let endTemp: string;
+    let useF = true;
+    $: startTemp = String(data.siteDate.startTemp);
+    $: endTemp = String(data.siteDate.endTemp);
+
     console.log(data.siteObservations[0]);
 </script>
 
@@ -17,27 +46,35 @@
             <div>
                 recorder: {data.siteDate.recorder}
             </div>
-            <Accordion autocollapse>
+            <Accordion>
                 <AccordionItem open>
                     <svelte:fragment slot="summary">Times</svelte:fragment>
                     <svelte:fragment slot="content">
                         <div>
                             startTime: {data.siteDate.startTime}
-                            <span class="bg-slate-800">DateTime?</span>
                         </div>
                         <div>
                             endTime: {data.siteDate.endTime}
-                            <span class="bg-slate-800">DateTime?</span>
-                        </div></svelte:fragment
-                    >
+                        </div>
+                        </svelte:fragment>
                 </AccordionItem>
-                <AccordionItem>
-                    <svelte:fragment slot="summary">Temperature</svelte:fragment>
+                <AccordionItem id="ftoc" bind:this={acc} on:toggle={handleToggle}>
+                    <svelte:fragment slot="summary">
+                    <div class="flex space-x-4">
+                        <span>Temperature</span>
+                        <label class="flex justify-start space-x-2">
+                            <span class="{useF ? 'font-bold text-success-800' : ''}">&deg;F</span>
+                            <SlideToggle name="toggle-all-species" size="sm" active="variant-filled-primary"
+                             on:click={toggleTempScale} /><input hidden>
+                            <span class="{useF ? '' : 'font-bold text-success-800'}">&deg;C</span>
+                        </label>
+                    </div>
+                    </svelte:fragment>
                     <svelte:fragment slot="content">
                         <div>
-                            startTemp: {data.siteDate.startTemp}&deg;F
+                            startTemp: {startTemp}
                         </div>
-                        <div>endTemp: {data.siteDate.endTemp}&deg;F</div></svelte:fragment
+                        <div>endTemp: {endTemp}</div></svelte:fragment
                     >
                 </AccordionItem>
                 <AccordionItem>
@@ -140,6 +177,8 @@
                     </svelte:fragment>
                 </AccordionItem>
                 <AccordionItem>
+                    <svelte:fragment slot="summary">Larva food sources</svelte:fragment>
+                    <svelte:fragment slot="content">
                     <div>
                         lEsec1: {data.siteDate.lEsec1}
                         <span class="bg-slate-800">String? // @db.String(8)</span>
@@ -199,34 +238,32 @@
                     <div>
                         lEsec15: {data.siteDate.lEsec15}
                         <span class="bg-slate-800">String? // @db.String(8)</span>
-                    </div>
+                    </div></svelte:fragment>
                 </AccordionItem>
                 <AccordionItem>
+                    <svelte:fragment slot="summary">Larva</svelte:fragment>
+                    <svelte:fragment slot="content">
                     <div>
                         larvaObA: {data.siteDate.larvaObA}
-                        <span class="bg-slate-800">String? // @db.String(25)</span>
                     </div>
                     <div>
                         larvaObB: {data.siteDate.larvaObB}
-                        <span class="bg-slate-800">String? // @db.String(25)</span>
                     </div>
                     <div>
                         larvaObC: {data.siteDate.larvaObC}
-                        <span class="bg-slate-800">String? // @db.String(25)</span>
                     </div>
                     <div>
                         larvaObD: {data.siteDate.larvaObD}
-                        <span class="bg-slate-800">String? // @db.String(25)</span>
-                    </div>
+                    </div></svelte:fragment>  
                 </AccordionItem>
                 <AccordionItem>
+                    <svelte:fragment slot="summary">Energy/blooming</svelte:fragment>
+                    <svelte:fragment slot="content">
                     <div>
                         energySource1: {data.siteDate.energySource1}
-                        <span class="bg-slate-800">String? // @db.String(25)</span>
                     </div>
                     <div>
                         energySource2: {data.siteDate.energySource2}
-                        <span class="bg-slate-800">String? // @db.String(25)</span>
                     </div>
                     <div>
                         energySource3: {data.siteDate.energySource3}
@@ -234,44 +271,35 @@
                     </div>
                     <div>
                         energySource4: {data.siteDate.energySource4}
-                        <span class="bg-slate-800">String? // @db.String(25)</span>
                     </div>
                     <div>
                         flowersInBloom: {data.siteDate.flowersInBloom}
-                        <span class="bg-slate-800">String? // @db.String(150)</span>
-                    </div>
+                    </div></svelte:fragment>  
                 </AccordionItem>
                 <div>
                     fieldNotes: {data.siteDate.fieldNotes}
-                    <span class="bg-slate-800">String? // @db.String(100)</span>
                 </div>
                 <AccordionItem>
+                    <svelte:fragment slot="summary">Data history</svelte:fragment>
+                    <svelte:fragment slot="content">
                     <div>
                         createdBy: {data.siteDate.createdBy}
-                        <span class="bg-slate-800"
-                            >String @default("") // must be user id or something</span
-                        >
                     </div>
                     <div>
                         createdAt: {data.siteDate.createdAt}
-                        <span class="bg-slate-800">DateTime @default(now())</span>
                     </div>
                     <div>
                         updatedBy: {data.siteDate.updatedBy}
-                        <span class="bg-slate-800">String?</span>
                     </div>
                     <div>
                         updatedAt: {data.siteDate.updatedAt}
-                        <span class="bg-slate-800">DateTime?</span>
                     </div>
                     <div>
                         confirmBy: {data.siteDate.confirmBy}
-                        <span class="bg-slate-800">String?</span>
                     </div>
                     <div>
                         confirmAt: {data.siteDate.confirmAt}
-                        <span class="bg-slate-800">DateTime?</span>
-                    </div>
+                    </div></svelte:fragment>  
                 </AccordionItem>
             </Accordion>
         </div>

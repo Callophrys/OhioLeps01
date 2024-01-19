@@ -12,13 +12,13 @@ import seedTaxonomy from "./seed.taxonomy";
 import seedNameAddress from './seed.nameaddress';
 
 /*
-*/
 await seedStates();
 await seedStatusCode();
 await seedSite();
 await seedSiteStatus();
 await seedSiteDate();
 await seedChecklist();
+*/
 await seedSiteObservation();
 await seedTaxonomy();
 await seedNameAddress();
