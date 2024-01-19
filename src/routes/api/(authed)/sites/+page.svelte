@@ -175,8 +175,8 @@
             <div>
                 <div class="flex flex-wrap gap-2">
                     {#each data.sites as site, i}
-                        <div class="card btn grid w-64 p-0 m-0 text-wrap">
-                            <div class="px-2 pt-2 w-full">
+                        <div class="card grid w-56 h-36 p-0 m-0 text-wrap">
+                            <div class="px-2 pt-2 w-full text-center">
                                 <h3>{site.siteName}</h3>
                                 <div>
                                     {site.county.state.name} - {site.county.name}
@@ -186,9 +186,16 @@
                                     Last update: {formatDate(site.createdAt)}
                                 </div>
                             </div>
-                            <div class="flex m-0">
-                                <a href="/api/sites/{site.siteId}" class="edit">🔍</a>
-                                <form method="POST" action="?/removeSite">
+                            <div class="flex flex-row m-0">
+                                <a
+                                    href="/api/sites/{site.siteId}"
+                                    class="edit mx-auto w-1/2 text-center hover:variant-soft">🔍</a
+                                >
+                                <form
+                                    method="POST"
+                                    action="?/removeSite"
+                                    class="mx-auto w-1/2 text-center hover:variant-soft"
+                                >
                                     <input type="hidden" name="siteId" value={site.siteId} />
                                     <button class="delete" type="submit">❌</button>
                                     <!-- later add use:enhance-->
