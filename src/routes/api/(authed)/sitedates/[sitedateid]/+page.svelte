@@ -2,6 +2,7 @@
     import DoubledContainer from '$lib/components/DoubledContainer.svelte';
     import { formatDate, weekOfYearSince } from '$lib/utils';
     import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
+    import { goto } from '$app/navigation';
     import { SlideToggle } from '@skeletonlabs/skeleton';
     export let data;
 
@@ -20,21 +21,45 @@
         }
     }
 
+    function handleClick(event: any) {
+        event.preventDefault();
+        //console.log('/api/sitedates/' + event.currentTarget.value);
+        if (event.currentTarget?.value) {
+            goto('/api/sitedates/' + event.currentTarget.value);
+        }
+    }
+
     let startTemp: string;
     let endTemp: string;
     let useF = true;
 
-    let recordDate = new Date(data.siteDate.recordDate);
-    let recordYear = new Date(data.siteDate.recordDate).getFullYear();
-    let recordWeek = weekOfYearSince(new Date(data.siteDate.recordDate));
+    let recordDate: Date;
+    let recordYear: number;
+    let recordWeek: number;
+    let y: xyz;
+    let w: any;
+
+    $: recordDate = new Date(data.siteDate.recordDate);
+    $: recordYear = new Date(data.siteDate.recordDate).getFullYear();
+    $: recordWeek = weekOfYearSince(new Date(data.siteDate.recordDate));
 
     $: startTemp = String(data.siteDate.startTemp);
     $: endTemp = String(data.siteDate.endTemp);
+    
+    type uvw = {
+        siteDateId: number,
+        year: number,
+        week: number
+    }
+    type xyz = {
+        id: number,
+        children: uvw[]
+    }
 
     //console.log(data.siteRecordDates);
     const yrs = Array.from(data.siteRecordDates).map((y) => new Date(y.recordDate).getFullYear());
     const years = [...new Set(yrs)];
-    const weeks = Array.from(data.siteRecordDates).map((w) => ({
+    const weeks: uvw[] = Array.from(data.siteRecordDates).map((w) => ({
         siteDateId: w.siteDateId,
         year: new Date(w.recordDate).getFullYear(),
         week: weekOfYearSince(new Date(w.recordDate)),
@@ -60,24 +85,18 @@
                     year:{data.siteDate.year}&nbsp;&nbsp;week: {data.siteDate.week}
                 </div>
             </div>
-            <select class="select w-32">
+            Year<select class="select w-32" bind:value={y} on:blur={() => [w] = y.children}>
                 {#each years as year}
-                    {#if year === recordYear}
-                        <option selected>{year}</option>
-                    {:else}
-                        <option>{year}</option>
-                    {/if}
+                    <option value={{id: year, children: [...weeks.filter(z => z.year === year)]}}>{year}</option>
                 {/each}
             </select>
-            <select class="select w-32">
-                {#each weeks as week}
-                    {#if week.year === recordYear && week.week === recordWeek}
-                        <option value={week.siteDateId} selected>{week.year} {week.week}</option>
-                    {:else}
-                        <option value={week.siteDateId}>{week.year} {week.week}</option>
-                    {/if}
+            Week{#if y}<select class="select w-32" bind:value={w} on:change={handleClick}>
+                {#each y.children as week}
+                    <option value={week.siteDateId}>{week.year} {week.week}</option>
+            <!--
+            -->
                 {/each}
-            </select>
+            </select>{/if}
             <div>
                 recorder: {data.siteDate.recorder}
             </div>

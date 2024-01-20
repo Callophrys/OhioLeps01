@@ -55,6 +55,25 @@
                     .querySelectorAll('polygon')
                     .forEach((p: any) => p.classList.remove('polygon-select'));
                 selectedCounties.length = 0;
+            } else if (e.shiftKey) {
+                let region = Array.from(e.target.classList).find((c: any) => c.startsWith('region'));
+                let isAdding = !e.target.classList.contains('polygon-select');
+                Array.from(sss.svgvp.querySelectorAll('polygon')).filter((r: any) => r.classList.contains(region))
+                    .forEach((p: any) => {
+                        if (isAdding) {
+                            p.classList.add('polygon-select');
+                            selectedCounties.push({
+                                id: p.id,
+                                name: p.id.substring(p.id.lastIndexOf('_') + 1)
+                            });
+                        } else {
+                            p.classList.remove('polygon-select');
+                            selectedCounties.splice(
+                                selectedCounties.findIndex((c: countyItem) => c.id === p.id),
+                                1
+                            );
+                        }
+                    });
             } else {
                 if (e.target.classList.contains('polygon-select')) {
                     e.target.classList.remove('polygon-select');

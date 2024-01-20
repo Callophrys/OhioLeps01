@@ -3,6 +3,10 @@ import { browser } from '$app/environment';
 import { redirect } from '@sveltejs/kit';
 //import { getChecklists } from '$lib/api/checklists.js';
 import { json } from '@sveltejs/kit'
+import { getCounties } from '$lib/database/counties';
+import { getChecklists } from '$lib/database/checklists';
+import type { County } from '@prisma/client';
+import type { Checklist } from '@prisma/client';
 
 /*
 export async function load({ cookies, url }) {
@@ -28,7 +32,23 @@ export async function load({ cookies, url }) {
 
 	return { counties, speciesList };
 */
+export async function load() {
+	const [counties, speciesList] =
+		await Promise.all([
+			getCounties(),
+			getChecklists()
+		]);
 
+	const jsonC = JSON.stringify(counties);
+	const jsonResultC: County[] = JSON.parse(jsonC);
+
+	const jsonS = JSON.stringify(speciesList);
+	const jsonResultS: Checklist[] = JSON.parse(jsonS);
+
+	return { counties: jsonResultC, speciesList: jsonResultS }
+}
+
+/*
 export const actions = {
 	query: async ({ request }) => {
 
@@ -38,3 +58,4 @@ export const actions = {
 		return { success: true, snouts: "Piggy" };
 	}
 };
+*/

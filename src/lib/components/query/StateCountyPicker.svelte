@@ -1,6 +1,5 @@
 <script lang="ts">
     import type { County } from '@prisma/client';
-    import type { CountyIsMonitored } from '$lib/types';
     import { popup } from '@skeletonlabs/skeleton';
     import type { PopupSettings } from '@skeletonlabs/skeleton';
     import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
@@ -14,7 +13,7 @@
         placement: 'bottom',
     };
 
-    export let counties: CountyIsMonitored<County>[] = [];
+    export let counties: County[] = [];
     export let initialHideUnmonitoredChoice: number = 0;
 
     let comboboxValue: string;
@@ -25,7 +24,7 @@
     function toggleAllCounties() {
         allSelected = !allSelected;
         if (allSelected) {
-            countyIds = counties.filter((c) => c.isMonitored).map((c) => c.id) as number[];
+            countyIds = counties.filter((c) => c.sites.length > 0).map((c) => c.id) as number[];
         } else {
             countyIds = [];
         }
@@ -46,7 +45,7 @@
         localStorage.setItem('useHideUnmonitoredChoice', hideUnmonitoredCounties ? '1' : '0');
     });
 
-    $: allSelected = counties.filter((c) => c.isMonitored).length === countyIds.length;
+    $: allSelected = counties.filter((c) => c.sites.length > 0).length === countyIds.length;
 </script>
 
 <div class="flex items-center space-x-2">
@@ -99,7 +98,7 @@
         <hr />
 
         {#each counties as county}
-            {#if !hideUnmonitoredCounties || county.isMonitored}
+            {#if !hideUnmonitoredCounties || county.sites.length > 0}
                 <label class="flex items-center space-x-2 pl-6">
                     <input
                         type="checkbox"
@@ -107,9 +106,9 @@
                         value={county.id}
                         bind:group={countyIds}
                         name="select-county"
-                        disabled={!county.isMonitored}
+                        disabled={!(county.sites.length > 0)}
                     />
-                    <p>{county.name}{county.isMonitored ? '' : '*'}</p>
+                    <p>{county.name}{county.sites.length > 0 ? '' : '*'}</p>
                 </label>
             {/if}
         {/each}

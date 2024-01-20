@@ -14,7 +14,7 @@
     };
 
     export let initialUseLatinChoice: number = 0;
-    export let speciesChecklist: ChecklistCombinedName<Checklist>[] = [];
+    export let speciesChecklist: Checklist[] = [];     // ChecklistCombinedName<Checklist>[] = [];
 
     let useLatin: number;
     let speciesChecked: number[] = [];
@@ -84,7 +84,7 @@
                 name="select-species"
                 value={species.checklistId}
                 bind:group={speciesChecked} >
-            <p>{useLatin ? species.xname : species.commonName}</p>
+            <p>{useLatin ? species.scientificName : species.commonName}</p>
         </label>
         {/each}
 
