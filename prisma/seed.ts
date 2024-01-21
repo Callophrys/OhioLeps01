@@ -12,13 +12,13 @@ import seedTaxonomy from "./seed.taxonomy";
 import seedNameAddress from './seed.nameaddress';
 
 /*
+*/
 await seedStates();
 await seedStatusCode();
 await seedSite();
 await seedSiteStatus();
 await seedSiteDate();
 await seedChecklist();
-*/
 await seedSiteObservation();
 await seedTaxonomy();
 await seedNameAddress();
@@ -37,7 +37,7 @@ async function updateRoles() {
   await db.role.create({
     data: {
       id: 1,
-      name: 'USER',
+      name: 'USER', // view all data and reports
       users: {
         create: {
           username: "stella",
@@ -50,7 +50,20 @@ async function updateRoles() {
   await db.role.create({
       data: {
         id: 2,
-        name: 'ADMIN',
+        name: 'ENTRY', // edit new data and unconfirmed; view reports
+        users: {
+          create: [{
+            username: "snell",
+            passwordHash: "$2b$10$iAIf7B4I9aUy9ZklbY.yy.GuJ0U3HjpttqEMiHb5zwvoMsYOqDXFy",
+            userAuthToken: "70e2e703-06d9-4ebc-bc39-889d85f9db4d",
+          }]
+        }
+      },
+  });
+  await db.role.create({
+      data: {
+        id: 3,
+        name: 'ADMIN', // view and edit anything, e.g. data AND lists AND historic; confirm, e.g. sign off, on new data
         users: {
           create: [{
             username: "nate",

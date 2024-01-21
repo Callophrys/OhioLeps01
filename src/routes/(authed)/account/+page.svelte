@@ -6,6 +6,8 @@
     <div class="">
         <h1>Account</h1>
 
-        <p>User's account page</p>
+        <p class="p-8">change password</p>
+        <p class="p-8">account details</p>
+        <p class="p-8">avatar</p>
     </div>
 </StandardContainer>

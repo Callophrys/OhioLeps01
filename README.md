@@ -349,7 +349,11 @@ http://wedgefoundation.org/publications_paypal.asp
 🔬
 🔭
 🦋
-
+⨞
+▶
+◀
+▲
+▼
 Character	Numerical Code	Name of Character
 |	&#124;	vertical bar/pipe
 ¦	&#166;	broken vertical bar
@@ -393,4 +397,32 @@ const siteDates: any = Array.from(ssiteDates).map((sd: any) => ({ ...sd, year: s
 ```
 TODO: hook up checklists to taxonomy
 TODO: think views to better fetch and compute data, e.g. all checklists to a site
+
+select c.name county,
+r.name region,
+s.sitename site,
+d.recorddate,
+l.commonname
+from county c
+inner join region r on c.regionId = r.id
+inner join site s on s.countyId = c.id
+inner join sitedate d on s.siteid = d.siteid
+inner join siteobservation o on d.sitedateid = o.sitedateid
+inner join checklist l on o.checklistid = l.checklistid
+where c.name = 'greene';
+
+select distinct
+c.name county,
+r.name region,
+l.commonname
+from county c
+inner join region r on c.regionId = r.id
+inner join site s on s.countyId = c.id
+inner join sitedate d on s.siteid = d.siteid
+inner join siteobservation o on d.sitedateid = o.sitedateid
+inner join checklist l on o.checklistid = l.checklistid;
+
+
+where c.name = 'greene';
+
 

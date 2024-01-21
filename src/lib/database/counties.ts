@@ -22,6 +22,55 @@ export async function getCounties() {
       },
     ]
   });
-
+  
   return counties;
+}
+
+export async function getCountySpecimens() {
+  const countySpecimens = await prisma.$queryRaw`
+select distinct
+c.name county,
+r.name region,
+l.commonname
+from county c
+inner join region r on c.regionId = r.id
+inner join site s on s.countyId = c.id
+inner join sitedate d on s.siteid = d.siteid
+inner join siteobservation o on d.sitedateid = o.sitedateid
+inner join checklist l on o.checklistid = l.checklistid`;
+
+  return countySpecimens;
+}
+
+export async function xxxgetCountySpecimens() {
+  const countySpecimens = await prisma.county.findMany({
+    select: {
+      name: true,
+      region: {
+        select: {
+          name: true
+        }
+      },
+      sites: {
+        select: {
+          siteDates: {
+            select: {
+              siteObservations: {
+                select: {
+                  checklist: {
+                    select: {
+                      scientificName: true,
+                      commonName: true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  });
+
+  return countySpecimens;
 }

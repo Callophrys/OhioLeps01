@@ -2,7 +2,12 @@ type DateStyle = Intl.DateTimeFormatOptions['dateStyle'];
 type TimeStyle = Intl.DateTimeFormatOptions['timeStyle'];
 type TimeZone = Intl.DateTimeFormatOptions['timeZone'];
 
-function daysIntoYear(date: Date): number {
+export function convertFtoC(f: number | null) {
+    if (f === null) return;
+    return Math.floor((f - 32) * 5 / 9);
+}
+
+export function daysIntoYear(date: Date): number {
     return (
         (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) -
             Date.UTC(date.getFullYear(), 0, 0)) /

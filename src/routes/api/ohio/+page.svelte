@@ -1,14 +1,19 @@
 <script lang="ts">
     import DoubledContainer from '$lib/components/DoubledContainer.svelte';
     import { onMount } from 'svelte';
-
+    
+    export let data;
+    console.log('data\n', data.countySpecimens);
+    
     let isMouseDown = false;
 
-    const sss: { sh: any; svgvp: any; selcnt: any; sellst: any } = {
+    const sss: { sh: any; svgvp: any; selcnt: any; sellst: any, cspcnt: any, csplst: any } = {
         sh: null,
         svgvp: null,
         selcnt: null,
         sellst: null,
+        cspcnt: null,
+        csplst: null,
     };
     type countyItem = { id: string; name: string };
     let selectedCounties: countyItem[] = [];
@@ -107,6 +112,23 @@
                 .sort()
                 .join('') +
             '</ul>';
+            
+        const ctys = selectedCounties.map(c => c.name);
+        console.log('ctyspeciments:', data.countySpecimens);
+        console.log('ctys:', ctys);
+        let spcno = data.countySpecimens.filter((g:any) => {
+            console.log(g.county);
+            return ctys.includes(g.county.toString().toLowerCase());
+        });
+        console.log('spcno:', spcno);
+        
+        let spcnq = spcno.map((h:any) => h.species.map((i: any) => i.commonName));
+        let spcnr = [...new Set(spcnq.flat().sort())];
+        sss.cspcnt.textContent = `Species in selection (${spcnr.length})`;
+        sss.csplst.innerHTML =
+            '<ul class="list">' +
+            spcnr.map((s: any) => '<li class="">' + s + '</li>').join('') +
+            '</ul>';
     }
 
     onMount(() => {
@@ -114,6 +136,8 @@
         sss.svgvp = document.getElementById('svg_oh');
         sss.selcnt = document.getElementById('selected-counties-count');
         sss.sellst = document.getElementById('selected-counties-list');
+        sss.cspcnt = document.getElementById('species-in-selection');
+        sss.csplst = document.getElementById('species-in-selection-list');
     });
 </script>
 
@@ -581,8 +605,16 @@
     </svelte:fragment>
 
     <svelte:fragment slot="right">
-        <div id="selected-counties-count">Selected counties (0)</div>
-        <ul id="selected-counties-list" class="list ml-4" />
+        <div class="grid grid-cols-2">
+            <div>
+                <div id="selected-counties-count">Selected counties (0)</div>
+                <ul id="selected-counties-list" class="list ml-4" />
+            </div>
+            <div>
+                <div id="species-in-selection">Species in selection (0)</div>
+                <ul id="species-in-selection-list" class="list ml-4" />
+            </div>
+        </div>
     </svelte:fragment>
 </DoubledContainer>
 <div class="hidden polygon-select" />

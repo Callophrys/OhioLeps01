@@ -4,9 +4,9 @@ import { dev } from '$app/environment';
 export const title: string = 'Learn Svelte(kit), Vite, TailwindCSS, SkeletonUI and Prisma'; 'Butterfly Monitoring Database';
 export const description: string = "Ohio Lepidopterists' Long-Term Monitering of Ohio Butterflies";
 export const url: string = dev ? 'http://localhost:5173/' : 'https://mylongwindedurl.sfx/';
-export const showAnimatedIcon: boolean = false; // Shows as normal Account button when false
+export const showAnimatedIcon: boolean = true; // Shows as normal Account button when false
 export const showAppBar: boolean = true;
-export const showAvatar: boolean = false;
+export const showAvatar: boolean = true;
 export const showStateProvince: boolean = false;
 export const monitorStartYear = 1996
 export const monitorSeason = {

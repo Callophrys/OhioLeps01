@@ -1,26 +1,53 @@
 <script lang="ts">
     import DoubledContainer from '$lib/components/DoubledContainer.svelte';
-    import { formatDate, weekOfYearSince } from '$lib/utils';
+    import { formatDate, weekOfYearSince, convertFtoC } from '$lib/utils';
+    import { afterUpdate, onMount } from 'svelte';
     import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
     import { goto } from '$app/navigation';
-    import { SlideToggle } from '@skeletonlabs/skeleton';
+    import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
     export let data;
 
-    function toggleTempScale(e: any) {
-        useF = !useF;
-        if (useF) {
-            startTemp = String(data.siteDate.startTemp);
-            endTemp = String(data.siteDate.endTemp);
-        } else {
-            startTemp = String(
-                data.siteDate.startTemp ? Math.floor(((data.siteDate.startTemp - 32) * 5) / 9) : ''
-            );
-            endTemp = String(
-                data.siteDate.endTemp ? Math.floor(((data.siteDate.endTemp - 32) * 5) / 9) : ''
-            );
-        }
-    }
+    export let initialUseFarenheit: number = 0;
+    export let accA = true;
+    export let accB = false;
+    export let accC = false;
+    export let accD = false;
+    export let accE = false;
+    export let accF = false;
+    export let accG = false;
+    export let accH = false;
+    export let accI = false;
+    export let accJ = false;
 
+    onMount(() => {
+        let x: string = localStorage?.useFarenheit;
+        useFarenheit = (x && x.length) ? parseInt(x) : initialUseFarenheit;
+        x = localStorage?.optAccA; optAccA = (x && x.length) ? x === 'true' : accA;
+        x = localStorage?.optAccB; optAccB = (x && x.length) ? x === 'true' : accB;
+        x = localStorage?.optAccC; optAccC = (x && x.length) ? x === 'true' : accC;
+        x = localStorage?.optAccD; optAccD = (x && x.length) ? x === 'true' : accD;
+        x = localStorage?.optAccE; optAccE = (x && x.length) ? x === 'true' : accE;
+        x = localStorage?.optAccF; optAccF = (x && x.length) ? x === 'true' : accF;
+        x = localStorage?.optAccG; optAccG = (x && x.length) ? x === 'true' : accG;
+        x = localStorage?.optAccH; optAccH = (x && x.length) ? x === 'true' : accH;
+        x = localStorage?.optAccI; optAccI = (x && x.length) ? x === 'true' : accI;
+        x = localStorage?.optAccJ; optAccJ = (x && x.length) ? x === 'true' : accJ;
+    });
+
+    afterUpdate(() => {
+        localStorage.setItem('useFarenheit', useFarenheit.toString());
+        localStorage.setItem('optAccA', optAccA.toString());
+        localStorage.setItem('optAccB', optAccB.toString());
+        localStorage.setItem('optAccC', optAccC.toString());
+        localStorage.setItem('optAccD', optAccD.toString());
+        localStorage.setItem('optAccE', optAccE.toString());
+        localStorage.setItem('optAccF', optAccF.toString());
+        localStorage.setItem('optAccG', optAccG.toString());
+        localStorage.setItem('optAccH', optAccH.toString());
+        localStorage.setItem('optAccI', optAccI.toString());
+        localStorage.setItem('optAccJ', optAccJ.toString());
+    });
+    
     function handleClick(event: any) {
         event.preventDefault();
         //console.log('/api/sitedates/' + event.currentTarget.value);
@@ -32,6 +59,18 @@
     let startTemp: string;
     let endTemp: string;
     let useF = true;
+
+    let useFarenheit: number;
+    let optAccA: boolean;
+    let optAccB: boolean;
+    let optAccC: boolean;
+    let optAccD: boolean;
+    let optAccE: boolean;
+    let optAccF: boolean;
+    let optAccG: boolean;
+    let optAccH: boolean;
+    let optAccI: boolean;
+    let optAccJ: boolean;
 
     let recordDate: Date;
     let recordYear: number;
@@ -58,12 +97,12 @@
 
     //console.log(data.siteRecordDates);
     const yrs = Array.from(data.siteRecordDates).map((y) => new Date(y.recordDate).getFullYear());
-    const years = [...new Set(yrs)];
+    const years = [...new Set(yrs)].sort((a, b) => a - b);
     const weeks: uvw[] = Array.from(data.siteRecordDates).map((w) => ({
         siteDateId: w.siteDateId,
         year: new Date(w.recordDate).getFullYear(),
         week: weekOfYearSince(new Date(w.recordDate)),
-    }));
+    })).sort((a, b) => a.year > b.year ? 1 : a.week - b.week);
     //console.log(years);
     //console.log(weeks);
 
@@ -101,7 +140,7 @@
                 recorder: {data.siteDate.recorder}
             </div>
             <Accordion>
-                <AccordionItem open>
+                <AccordionItem bind:open={optAccA}>
                     <svelte:fragment slot="summary">Times</svelte:fragment>
                     <svelte:fragment slot="content">
                         <div class="pl-4 flex flex-row">
@@ -126,32 +165,28 @@
                         </div>
                     </svelte:fragment>
                 </AccordionItem>
-                <AccordionItem id="ftoc">
+                <AccordionItem id="ftoc" bind:open={optAccB}>
                     <svelte:fragment slot="summary">
                         <div class="flex space-x-4">
-                            <span>Temperature</span>
-                            <label class="flex justify-start space-x-2">
-                                <span class={useF ? 'font-bold text-success-800' : ''}>&deg;F</span>
-                                <SlideToggle
-                                    name="toggle-all-species"
-                                    size="sm"
-                                    active="variant-filled-primary"
-                                    on:click={toggleTempScale}
-                                /><input hidden />
-                                <span class={useF ? '' : 'font-bold text-success-800'}>&deg;C</span>
-                            </label>
+                            <span class="my-auto">Temperature</span>
+                            <div class="scale-75 origin-right">
+                            <RadioGroup name="toggle-naming-group" active="variant-filled-primary" hover="hover:variant-soft-primary">
+                                <RadioItem bind:group={useFarenheit} name="toggle-naming" value={1}>&deg;F</RadioItem>
+                                <RadioItem bind:group={useFarenheit} name="toggle-naming" value={0}>&degC</RadioItem>
+                            </RadioGroup>
+                            </div>
                         </div>
                     </svelte:fragment>
                     <svelte:fragment slot="content">
                         <div class="pl-4">
-                            Start Temp: {data.siteDate.startTemp}
+                            Start Temp: {useFarenheit ? data.siteDate.startTemp : convertFtoC(data.siteDate.startTemp) }
                         </div>
                         <div class="pl-4">
-                            End Temp: {data.siteDate.endTemp}
+                            End Temp: {useFarenheit ? data.siteDate.endTemp : convertFtoC(data.siteDate.endTemp) }
                         </div></svelte:fragment
                     >
                 </AccordionItem>
-                <AccordionItem>
+                <AccordionItem bind:open={optAccC}>
                     <svelte:fragment slot="summary">Cloud cover (&percnt;)</svelte:fragment>
                     <svelte:fragment slot="content">
                         <div class="pl-4">
@@ -162,7 +197,7 @@
                         </div></svelte:fragment
                     >
                 </AccordionItem>
-                <AccordionItem>
+                <AccordionItem bind:open={optAccD}>
                     <svelte:fragment slot="summary">Wind</svelte:fragment>
                     <svelte:fragment slot="content">
                         <div class="pl-4">
@@ -179,7 +214,7 @@
                         </div></svelte:fragment
                     >
                 </AccordionItem>
-                <AccordionItem>
+                <AccordionItem bind:open={optAccE}>
                     <svelte:fragment slot="summary">Weather</svelte:fragment>
                     <svelte:fragment slot="content">
                         <div class="pl-4">
@@ -244,7 +279,7 @@
                         </div>
                     </svelte:fragment>
                 </AccordionItem>
-                <AccordionItem>
+                <AccordionItem bind:open={optAccF}>
                     <svelte:fragment slot="summary">Larva food sources</svelte:fragment>
                     <svelte:fragment slot="content">
                         <div class="pl-4">
@@ -294,7 +329,7 @@
                         </div></svelte:fragment
                     >
                 </AccordionItem>
-                <AccordionItem>
+                <AccordionItem bind:open={optAccG}>
                     <svelte:fragment slot="summary">Larva</svelte:fragment>
                     <svelte:fragment slot="content">
                         <div class="pl-4">
@@ -311,7 +346,7 @@
                         </div></svelte:fragment
                     >
                 </AccordionItem>
-                <AccordionItem>
+                <AccordionItem bind:open={optAccH}>
                     <svelte:fragment slot="summary">Energy/blooming</svelte:fragment>
                     <svelte:fragment slot="content">
                         <div class="pl-4">
@@ -334,7 +369,7 @@
                 <div class="pl-4">
                     Field Notes: {data.siteDate.fieldNotes ?? ''}
                 </div>
-                <AccordionItem>
+                <AccordionItem bind:open={optAccI}>
                     <svelte:fragment slot="summary">Change history</svelte:fragment>
                     <svelte:fragment slot="content">
                         <div class="pl-4">
@@ -366,13 +401,15 @@
     </svelte:fragment>
 
     <svelte:fragment slot="right">
-        <h2 class="flex flex-row justify-between">
-            <div>{data.siteDate.site.siteName}</div>
-            <div>
-                year: {recordYear}
-                Week: {recordWeek}
+        <div class="flex flex-row justify-between mb-2">
+            <div class="">{data.siteDate.site.siteName}</div>
+            <div class="btn-group variant-soft scale-90 my-auto">
+                <button>◀</button>
+                <button class="w-24">Year: {recordYear}</button>
+                <button class="w-24">Week: {recordWeek}</button>
+                <button>▶</button>
             </div>
-        </h2>
+        </div>
         <hr />
         <div class="mt-2">
             {#each data.siteObservations as siteObservation}
