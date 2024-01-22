@@ -13,6 +13,7 @@ export async function load({ cookies, url, params }) {
 	}
 
 	let countyId = Number(params.countyId);
+	console.log(countyId);
 	const [sites, counties] = (countyId === -1) ?
 		await Promise.all([
 			getSites(null),
@@ -29,8 +30,8 @@ export async function load({ cookies, url, params }) {
 
 	const jsonC = JSON.stringify(counties);
 	const jsonResultC: County[] = JSON.parse(jsonC);
-	
+
 	//console.log(jsonResultC);
 
-	return { sites: jsonResultS, counties: jsonResultC };
+	return { sites: jsonResultS, counties: jsonResultC, refCountyId: countyId };
 }

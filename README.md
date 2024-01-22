@@ -425,4 +425,20 @@ inner join checklist l on o.checklistid = l.checklistid;
 
 where c.name = 'greene';
 
+### 1/22/2024
+
+```
+<style>
+    .text-base-token {
+        color: rgba(var(--theme-font-color-base));
+    }
+    .text-dark-token {
+        color: rgba(var(--theme-font-color-dark));
+    }
+    .text-token {
+        @apply text-base-token dark:text-dark-token;
+    }
+</style>
+```
+
 

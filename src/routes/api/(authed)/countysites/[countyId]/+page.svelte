@@ -4,7 +4,7 @@
     import { formatDate } from '$lib/utils.js';
     import type { County } from '@prisma/client';
     export let data;
-    
+
     function handleSiteSelect(e: any) {
         let id = e.currentTarget.value;
 
@@ -20,43 +20,46 @@
 	console.log(data.counties);
 	console.log(data.sites[0].countyId);
     */
-    let countyId = data.sites[0].countyId;
+    let countyId = data.refCountyId; // data.sites[0].countyId;
+    console.log(countyId);
     let county: County = data.counties.find((c: County) => c.id === countyId) as County;
-	console.log(county);
+    console.log(county);
 </script>
 
 <StandardContainer>
-	<svelte:fragment slot="standard-head">
+    <svelte:fragment slot="standard-head">
         <div class="flex flex-row justify-between">
             <div>All sites in county: {county.name}</div>
             <div>
-                <select class="select" bind:value={county.id} on:change={handleSiteSelect}>
+                <select class="select" bind:value={countyId} on:change={handleSiteSelect}>
                     <option value="-1">ALL SITES</option>
-                {#each data.counties as county}
-                    <option value={county.id}>{county.name}</option>
-                {/each}
+                    {#each data.counties as county}
+                        <option value={county.id}>{county.name}</option>
+                    {/each}
                 </select>
             </div>
         </div>
     </svelte:fragment>
-	<svelte:fragment slot="standard-content">
+    <svelte:fragment slot="standard-content">
         <div>
             <div class="flex flex-wrap gap-2">
                 {#each data.sites as site, i}
                     <a href="/api/sites/{site.siteId}">
-                    <div class="card relative grid w-56 h-32 p-0 m-0 text-wrap hover:variant-soft">
-                        <div class="absolute top-2 left-2">🔍</div>
-                        <div class="px-2 pt-2 w-full text-center">
-                            <h3>{site.siteName}</h3>
-                            <div>
-                                {site.county.name}
-                            </div>
-                            <div>{site.person}</div>
-                            <div class="text-wrap">
-                                Last update: {formatDate(site.createdAt)}
+                        <div
+                            class="card relative grid w-56 h-32 p-0 m-0 text-wrap hover:variant-soft"
+                        >
+                            <div class="absolute top-2 left-2">🔍</div>
+                            <div class="px-2 pt-2 w-full text-center">
+                                <h3>{site.siteName}</h3>
+                                <div>
+                                    {site.county.name}
+                                </div>
+                                <div>{site.person}</div>
+                                <div class="text-wrap">
+                                    Last update: {formatDate(site.createdAt)}
+                                </div>
                             </div>
                         </div>
-                    </div>
                     </a>
                 {/each}
             </div>

@@ -5,9 +5,11 @@
 </script>
 
 <StandardContainer>
-	<svelte:fragment slot="standard-content">
-    <div class="">Root page</div>
-    <section>
+    <svelte:fragment slot="standard-head">
+        <div class="">Counties with monitored sites</div>
+    </svelte:fragment>
+
+    <svelte:fragment slot="standard-content">
         <!-- div class="grid grid-cols-6 content-start"-->
         <div class="flex flex-wrap gap-2">
             {#each data.counties as county}
@@ -16,6 +18,5 @@
                 {/if}
             {/each}
         </div>
-    </section>
     </svelte:fragment>
 </StandardContainer>
