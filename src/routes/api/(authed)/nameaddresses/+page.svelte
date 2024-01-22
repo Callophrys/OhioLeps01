@@ -4,9 +4,10 @@
 </script>
 
 <StandardContainer>
-    <!-- nameAddresses -->
-    <div class="bg-red">Name-Address Count: {data.nameAddresses.length}</div>
-    <section>
+	<svelte:fragment slot="standard-head">
+        <div class="bg-red">Name-Address Count: {data.nameAddresses.length}</div>
+    </svelte:fragment>
+	<svelte:fragment slot="standard-content">
         <ul class="nameAddresses">
             {#each data.nameAddresses as nameAddress}
                 <li class="nameAddress">
@@ -15,5 +16,5 @@
                 </li>
             {/each}
         </ul>
-    </section>
+    </svelte:fragment>
 </StandardContainer>

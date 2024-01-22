@@ -38,6 +38,7 @@
 </script>
 
 <StandardContainer>
+	<svelte:fragment slot="standard-content">
     <div class="card w-48 shadow-xl py-2" data-popup="popupComboboxSiteDate">
         <ListBox rounded="rounded-none">
             {#each data.site.siteDates as siteDate}
@@ -54,25 +55,28 @@
         <div class="arrow bg-surface-100-800-token" />
     </div>
 
+<div class="max-w-[600px]">
     <div>
         <h1>{data.site.siteName}</h1>
-        <div>
-            <label>
+        <div class="flex flex-row justify-between space-x-4">
+            <div class="w-1/2 text-right my-auto">
                 View observations (year/week)
-                <button
-                    class="btn variant-soft w-48 justify-between"
-                    use:popup={popupComboboxSiteDate}
+            </div>
+            <div class="w-1/2">
+            <button
+                class="btn variant-soft w-48 justify-between"
+                use:popup={popupComboboxSiteDate}
+            >
+                <span class="capitalize"
+                    >{comboboxValueSiteDate
+                        ? `${comboboxValueSiteDate.toString().slice(0, 4)} week ${
+                              comboboxValueSiteDate % 100
+                          }`
+                        : 'Year week'}</span
                 >
-                    <span class="capitalize"
-                        >{comboboxValueSiteDate
-                            ? `${comboboxValueSiteDate.toString().slice(0, 4)} week ${
-                                  comboboxValueSiteDate % 100
-                              }`
-                            : 'Year week'}</span
-                    >
-                    <span>↓</span>
-                </button>
-            </label>
+                <span>↓</span>
+            </button>
+            </div>
         </div>
     </div>
     <div class="content">
@@ -116,4 +120,6 @@
             updated at {data.site.updatedAt ?? ''}
         </div>
     </div>
+</div>
+    </svelte:fragment>
 </StandardContainer>

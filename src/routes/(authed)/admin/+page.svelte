@@ -4,6 +4,7 @@
 </script>
 
 <StandardContainer>
+	<svelte:fragment slot="standard-content">
   <h1>Admin</h1>
 
   {#if $page.data.user}
@@ -18,4 +19,5 @@
   <p>Panes for editing, user management, and system configuration can go here.</p>
   {/if}
 
+</svelte:fragment>
 </StandardContainer>

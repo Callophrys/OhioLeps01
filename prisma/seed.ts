@@ -50,7 +50,7 @@ async function updateRoles() {
   await db.role.create({
       data: {
         id: 2,
-        name: 'ENTRY', // edit new data and unconfirmed; view reports
+        name: 'ENTRY', // edit new data and unconfirmed data; view reports
         users: {
           create: [{
             username: "snell",

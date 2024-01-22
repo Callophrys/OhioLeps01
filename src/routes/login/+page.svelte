@@ -27,6 +27,7 @@
 </script>
 
 <StandardContainer>
+	<svelte:fragment slot="standard-content">
     <h1>Login</h1>
 
     <form action="?/login" method="POST" class="max-w-80 min-w-32 space-y-2" use:enhance>
@@ -74,4 +75,5 @@
             account.
         </p>
     </div>
+    </svelte:fragment>
 </StandardContainer>

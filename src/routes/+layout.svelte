@@ -105,6 +105,14 @@
                                         </li>
                                         <li>
                                             <a
+                                                href="https://www.degraeve.com/reference/specialcharacters.php"
+                                                target="_blank"
+                                                class="hover:rounded-none"
+                                                >HTML special characters</a
+                                            >
+                                        </li>
+                                        <li>
+                                            <a
                                                 href="https://www.prisma.io/docs/orm/prisma-schema/data-model/models"
                                                 target="_blank">Prisma</a
                                             >
@@ -169,11 +177,25 @@
 
     <!-- Router Slot -->
     <slot />
+
+<!-- Wasn't wild for full page tranistions
+    import { fly } from 'svelte/transition'
+
+    {#key data.url}
+      <div
+        in:fly={{ x: -200, duration: 300, delay: 300 }}
+        out:fly={{ x: 200, duration: 300 }}
+      >
+        <slot />
+      </div>
+    {/key}
+-->
     <!-- ---- / ---- -->
 
-    <!--
     <svelte:fragment slot="pageFooter">
-        {config.title} &copy;{new Date().getFullYear()}
+    {#if config.showFooter}
+        {@html config.owner} {config.title} &copy;{new Date().getFullYear()}
+    {/if}
     </svelte:fragment>
-    -->
+
 </AppShell>

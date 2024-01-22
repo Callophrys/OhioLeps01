@@ -5,6 +5,7 @@
 
 <!-- siteObservations -->
 <StandardContainer>
+	<svelte:fragment slot="standard-content">
     <div class="bg-red">SiteObservation Count: {data.siteObservations.length}</div>
     <section>
         <ul class="siteObservations">
@@ -25,4 +26,5 @@
             {/each}
         </ul>
     </section>
+    </svelte:fragment>
 </StandardContainer>

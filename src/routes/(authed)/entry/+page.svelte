@@ -3,9 +3,11 @@
 </script>
 
 <StandardContainer>
+	<svelte:fragment slot="standard-content">
     <div class="">
         <h1>Data Entry</h1>
 
         <p>this is the entry page</p>
     </div>
+    </svelte:fragment>
 </StandardContainer>

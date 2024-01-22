@@ -3,11 +3,29 @@
 </script>
 
 <StandardContainer>
+	<svelte:fragment slot="standard-content">
     <div class="">
         <h1>Account</h1>
 
-        <p class="p-8">change password</p>
-        <p class="p-8">account details</p>
-        <p class="p-8">avatar</p>
+        <div class="p-4">
+            <div>account details</div>
+            <div class="pl-4 pt-4">
+                <ul>
+                    <li>Mortimer Snerd</li>
+                    <li>mort@bergenville.com</li>
+                    <li>member since: Jan. 1, 2024</li>
+                    <li>status: active</li>
+                </ul>
+            </div>
+        </div>
+        <div class="p-4">
+            <div>change password</div>
+            <button type="button" class="btn variant-filled">Update password</button>
+        </div>
+        <div class="p-4">
+            <div>avatar</div>
+            <button type="button" class="btn variant-filled">Update avatar</button>
+        </div>
     </div>
+    </svelte:fragment>
 </StandardContainer>

@@ -114,7 +114,7 @@
             '</ul>';
             
         const ctys = selectedCounties.map(c => c.name);
-        console.log('ctyspeciments:', data.countySpecimens);
+        console.log('countySpecimens:', data.countySpecimens);
         console.log('ctys:', ctys);
         let spcno = data.countySpecimens.filter((g:any) => {
             console.log(g.county);
@@ -604,14 +604,22 @@
         </svg>
     </svelte:fragment>
 
-    <svelte:fragment slot="right">
+    <svelte:fragment slot="right-head">
         <div class="grid grid-cols-2">
             <div>
                 <div id="selected-counties-count">Selected counties (0)</div>
-                <ul id="selected-counties-list" class="list ml-4" />
             </div>
             <div>
                 <div id="species-in-selection">Species in selection (0)</div>
+            </div>
+        </div>
+    </svelte:fragment>
+    <svelte:fragment slot="right">
+        <div class="grid grid-cols-2">
+            <div>
+                <ul id="selected-counties-list" class="list ml-4" />
+            </div>
+            <div>
                 <ul id="species-in-selection-list" class="list ml-4" />
             </div>
         </div>

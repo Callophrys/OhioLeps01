@@ -41,36 +41,3 @@ inner join checklist l on o.checklistid = l.checklistid`;
 
   return countySpecimens;
 }
-
-export async function xxxgetCountySpecimens() {
-  const countySpecimens = await prisma.county.findMany({
-    select: {
-      name: true,
-      region: {
-        select: {
-          name: true
-        }
-      },
-      sites: {
-        select: {
-          siteDates: {
-            select: {
-              siteObservations: {
-                select: {
-                  checklist: {
-                    select: {
-                      scientificName: true,
-                      commonName: true
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  });
-
-  return countySpecimens;
-}

@@ -26,10 +26,33 @@ export async function getSite(siteId: number) {
   return site;
 }
 
-export async function getSites() {
+export async function getSitesByCounty(countyId: number) {
+  const sites = await prisma.site.findMany({
+    where: {
+      countyId: countyId
+    },
+    include: {
+      county: true
+    },
+    orderBy: {
+      siteName: 'asc'
+    }
+  });
+
+  return sites;
+}
+
+export async function getSites(idList: number[]|null) {
   console.log('/lib/api/entry/sites.ts > getSites');
+  
+  let whereClause = idList && idList.length ? {
+    id: { in: idList }
+  } : true;
 
   const sites = await prisma.site.findMany({
+    where: {
+      ...(idList && idList.length ? {siteId: { in: idList }} : {})
+    },
     include: {
       county: {
         select: {

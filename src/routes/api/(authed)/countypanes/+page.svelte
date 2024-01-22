@@ -5,6 +5,7 @@
 </script>
 
 <StandardContainer>
+	<svelte:fragment slot="standard-content">
     <div class="">Root page</div>
     <section>
         <!-- div class="grid grid-cols-6 content-start"-->
@@ -16,4 +17,5 @@
             {/each}
         </div>
     </section>
+    </svelte:fragment>
 </StandardContainer>

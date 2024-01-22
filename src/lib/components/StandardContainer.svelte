@@ -1,5 +1,17 @@
-<div class="flex flex-col p-8 h-[calc(100vh_-_128px)]">
-    <div class="card p-8 space-x-2 h-full space-y-2 overflow-y-auto">
-        <slot />
+<script lang="ts">
+    import { showFooter } from '$lib/config';
+    let configclass = showFooter ?
+        "flex flex-col space-y-2 h-[calc(100vh_-_148px)] px-8 pt-8 pb-4" :
+        "flex flex-col space-y-2 h-[calc(100vh_-_132px)] p-8"; //should be 144 (with footer) or 128
+</script>
+
+<div class={configclass} >
+    <div class="card py-4 pl-4 h-full flex flex-col space-y-2">
+        <div class="pr-4">
+            <slot name="standard-head" />
+        </div>
+        <div class="space-y-2 h-full overflow-y-auto">
+            <slot name="standard-content" />
+        </div>
     </div>
 </div>

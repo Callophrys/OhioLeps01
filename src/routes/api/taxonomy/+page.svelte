@@ -124,7 +124,10 @@
 
 <!-- Taxonomy -->
 <StandardContainer>
+	<svelte:fragment slot="standard-head">
     <div class="">Butterflies of North America</div>
+    </svelte:fragment>
+	<svelte:fragment slot="standard-content">
     <TreeView bind:this={myTreeView}>
         <TreeViewItem>
             {getScientificName(o) + ' - - - - ' + o.commonName}
@@ -174,4 +177,5 @@
         bind:checkedNodes
         bind:indeterminateNodes
     />
+    </svelte:fragment>
 </StandardContainer>

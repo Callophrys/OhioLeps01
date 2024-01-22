@@ -11,6 +11,7 @@
 </script>
 
 <StandardContainer>
+	<svelte:fragment slot="standard-content">
     <div class="">
         {#if $page.data?.user?.role === 'ADMIN' && typeof form === 'object' && !isEmpty(form?.data)}
             <span>Site X of {data.sites?.length}: {form?.data?.siteName} </span>
@@ -175,7 +176,9 @@
             <div>
                 <div class="flex flex-wrap gap-2">
                     {#each data.sites as site, i}
-                        <div class="card grid w-56 h-36 p-0 m-0 text-wrap">
+                        <a href="/api/sites/{site.siteId}">
+                        <div class="card relative grid w-56 h-32 p-0 m-0 text-wrap hover:variant-soft">
+                            <div class="absolute top-2 left-2">🔍</div>
                             <div class="px-2 pt-2 w-full text-center">
                                 <h3>{site.siteName}</h3>
                                 <div>
@@ -186,6 +189,7 @@
                                     Last update: {formatDate(site.createdAt)}
                                 </div>
                             </div>
+                            <!--
                             <div class="flex flex-row m-0">
                                 <a
                                     href="/api/sites/{site.siteId}"
@@ -198,10 +202,12 @@
                                 >
                                     <input type="hidden" name="siteId" value={site.siteId} />
                                     <button class="delete" type="submit">❌</button>
-                                    <!-- later add use:enhance-->
+                                    <! -- later add use:enhance -- >
                                 </form>
                             </div>
+                            -->
                         </div>
+                        </a>
                     {/each}
                 </div>
             </div>
@@ -240,6 +246,7 @@
             </div>
         {/if}
     </div>
+    </svelte:fragment>
 </StandardContainer>
 
 <style>

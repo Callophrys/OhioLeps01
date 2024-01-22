@@ -13,7 +13,6 @@ https://github.com/prisma/prisma-client-extensions
 
 // Adding new computed field to replace combinedLatinName
 // May have to trim or account for missing parts. E.g. subspecies
-/*
 const prisma = new PrismaClient().$extends({
     result: {
         county: {
@@ -29,13 +28,7 @@ const prisma = new PrismaClient().$extends({
                     return county.sites.length;
                 }
             }
-        }
-    }
-});
-
-*/
-const prisma = new PrismaClient().$extends({
-    result: {
+        },
         siteDate: {
             year: {
                 compute(siteDate): number {
