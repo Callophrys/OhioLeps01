@@ -1,13 +1,13 @@
 <script lang="ts">
     import DoubledContainer from '$lib/components/DoubledContainer.svelte';
     import { onMount } from 'svelte';
-    
+
     export let data;
     console.log('data\n', data.countySpecimens);
-    
+
     let isMouseDown = false;
 
-    const sss: { sh: any; svgvp: any; selcnt: any; sellst: any, cspcnt: any, csplst: any } = {
+    const sss: { sh: any; svgvp: any; selcnt: any; sellst: any; cspcnt: any; csplst: any } = {
         sh: null,
         svgvp: null,
         selcnt: null,
@@ -61,15 +61,18 @@
                     .forEach((p: any) => p.classList.remove('polygon-select'));
                 selectedCounties.length = 0;
             } else if (e.shiftKey) {
-                let region = Array.from(e.target.classList).find((c: any) => c.startsWith('region'));
+                let region = Array.from(e.target.classList).find((c: any) =>
+                    c.startsWith('region')
+                );
                 let isAdding = !e.target.classList.contains('polygon-select');
-                Array.from(sss.svgvp.querySelectorAll('polygon')).filter((r: any) => r.classList.contains(region))
+                Array.from(sss.svgvp.querySelectorAll('polygon'))
+                    .filter((r: any) => r.classList.contains(region))
                     .forEach((p: any) => {
                         if (isAdding) {
                             p.classList.add('polygon-select');
                             selectedCounties.push({
                                 id: p.id,
-                                name: p.id.substring(p.id.lastIndexOf('_') + 1)
+                                name: p.id.substring(p.id.lastIndexOf('_') + 1),
                             });
                         } else {
                             p.classList.remove('polygon-select');
@@ -103,26 +106,41 @@
         sss.svgvp.classList.remove('cursor-pointer');
     }
 
+    function isMonitored(county: string) {
+        //console.log('v', county);
+        let x = data.countySpecimens.find((d: any) => d.county.toLowerCase() === county);
+        //console.log('x', x);
+        let y = x?.species.length ?? 0;
+        //console.log('y', y);
+        return y > 0;
+    }
+
     function updateCounties() {
         sss.selcnt.textContent = 'Selected counties (' + selectedCounties.length + '):';
         sss.sellst.innerHTML =
             '<ul class="list">' +
             selectedCounties
-                .map((c: any) => '<li class="capitalize">' + c.name + '</li>')
+                .map(
+                    (c: any) =>
+                        '<li class="capitalize">' +
+                        c.name +
+                        (isMonitored(c.name) ? '' : '<span class="text-secondary-500">*</span>') +
+                        '</li>'
+                )
                 .sort()
                 .join('') +
             '</ul>';
-            
-        const ctys = selectedCounties.map(c => c.name);
-        console.log('countySpecimens:', data.countySpecimens);
-        console.log('ctys:', ctys);
-        let spcno = data.countySpecimens.filter((g:any) => {
+
+        const ctys = selectedCounties.map((c) => c.name);
+        //console.log('countySpecimens:', data.countySpecimens);
+        //console.log('ctys:', ctys);
+        let spcno = data.countySpecimens.filter((g: any) => {
             console.log(g.county);
             return ctys.includes(g.county.toString().toLowerCase());
         });
-        console.log('spcno:', spcno);
-        
-        let spcnq = spcno.map((h:any) => h.species.map((i: any) => i.commonName));
+        //console.log('spcno:', spcno);
+
+        let spcnq = spcno.map((h: any) => h.species.map((i: any) => i.commonName));
         let spcnr = [...new Set(spcnq.flat().sort())];
         sss.cspcnt.textContent = `Species in selection (${spcnr.length})`;
         sss.csplst.innerHTML =
@@ -144,464 +162,478 @@
 <DoubledContainer>
     <svelte:fragment slot="left">
         <div class="opacity-0 font-semibold text-white capitalize absolute" id="svg_hover"></div>
-        <!-- svelte-ignore a11y-no-static-element-interactions -->
-        <svg
-            id="svg_oh"
-            viewBox="0 0 308 350"
-            xmlns="http://www.w3.org/2000/svg"
-            height="60vmin"
-            width="60vmin"
-            class="outline-none"
-            on:mousedown={handleMouseDown}
-            on:mouseup={handleMouseUp}
-            on:mousemove={handleMouseMove}
-            on:blur={handleBlur}
-        >
-            <polygon
-                class="region1"
-                id="svg_oh_champaign"
-                points="56,195 57,182 58,173 74,174 74,176 91,177 95,177 95,187 94,198 56,195"
-            />
-            <polygon
-                class="region1"
-                id="svg_oh_delaware"
-                points="118,184 118,175 112,174 112,155 128,155 129,157 136,157 136,163 149,164 149,171 148,185 118,184"
-            />
-            <polygon
-                class="region1"
-                id="svg_oh_fairfield"
-                points="152,240 143,239 144,231 143,231 144,217 144,215 146,214 146,206 145,206 145,203 147,203 170,204 170,212 175,213 175,221 178,221 178,229 169,229 169,235 160,235 160,239 152,239 152,240"
-            />
-            <polygon
-                class="region1"
-                id="svg_oh_fayette"
-                points="105,258 90,259 90,242 83,241 84,226 114,227 113,245 105,258"
-            />
-            <polygon
-                class="region1"
-                id="svg_oh_franklin"
-                points="114,217 113,206 114,205 112,198 113,196 112,193 115,193 116,187 118,187 118,184 148,185 148,200 147,200 147,203 145,203 145,206 146,206 146,214 144,215 144,217 114,217"
-            />
-            <polygon
-                class="region1"
-                id="svg_oh_knox"
-                points="149,171 149,164 156,164 156,146 155,146 155,144 157,144 173,143 178,142 186,141 189,141 189,152 189,174 168,173 168,171 149,171"
-            />
-            <polygon
-                class="region1"
-                id="svg_oh_licking"
-                points="170,204 147,203 147,200 148,200 148,185 149,171 168,171 168,173 189,174 190,173 190,180 189,201 187,201 187,204 173,204 173,203 170,203 170,204"
-            />
-            <polygon
-                class="region1"
-                id="svg_oh_logan"
-                points="91,177 74,176 74,174 58,173 58,153 59,153 59,148 67,148 93,150 93,151 91,177"
-            />
-            <polygon
-                class="region1"
-                id="svg_oh_madison"
-                points="84,226 85,220 89,221 94,198 95,187 116,187 115,193 112,193 113,196 112,198 114,205 113,206 114,217 114,227 84,226"
-            />
-            <polygon
-                class="region1"
-                id="svg_oh_marion"
-                points="112,155 112,150 100,150 100,148 99,133 108,132 108,131 122,130 140,130 140,135 133,135 133,150 129,151 128,155 112,155"
-            />
-            <polygon
-                class="region1"
-                id="svg_oh_morrow"
-                points="149,164 136,163 136,157 129,157 128,155 129,151 133,150 133,135 140,135 140,130 139,129 149,129 156,128 157,133 155,133 155,136 157,136 157,144 155,144 155,146 156,146 156,164 149,164"
-            />
-            <polygon
-                class="region1"
-                id="svg_oh_pickaway"
-                points="113,245 114,227 114,217 144,217 143,231 144,231 143,239 152,240 151,249 132,248 133,246 132,245 113,245"
-            />
-            <polygon
-                class="region1"
-                id="svg_oh_union"
-                points="95,187 95,177 91,177 93,151 100,150 112,150 112,155 112,174 118,175 118,184 118,187 116,187 95,187"
-            />
 
-            <polygon
-                class="region2"
-                id="svg_oh_allen"
-                points="66,137 50,137 50,136 42,136 42,133 30,133 30,121 34,121 34,117 50,117 50,113 58,112 58,111 66,111 67,121 66,137"
-            />
-            <polygon
-                class="region2"
-                id="svg_oh_crawford"
-                points="140,130 122,130 121,103 139,102 141,102 149,102 149,129 139,129 140,130"
-            />
-            <polygon
-                class="region2"
-                id="svg_oh_defiance"
-                points="33,63 41,63 41,88 33,88 33,84 25,84 25,79 1,79 1,77 0,63 33,63"
-            />
-            <polygon
-                class="region2"
-                id="svg_oh_erie"
-                points="175,73 140,74 139,61 134,60 148,58 160,63 174,59 175,73"
-            />
-            <polygon
-                class="region2"
-                id="svg_oh_fulton"
-                points="31,36 65,34 66,56 33,57 33,55 30,54 29,36 31,36"
-            />
-            <polygon
-                class="region2"
-                id="svg_oh_hancock"
-                points="93,120 67,121 66,111 66,87 99,87 99,104 96,104 97,108 95,108 95,112 93,112 93,120"
-            />
-            <polygon
-                class="region2"
-                id="svg_oh_hardin"
-                points="100,150 93,151 93,150 67,148 66,137 67,121 93,120 94,120 94,131 98,131 98,132 99,133 100,148 100,150"
-            />
-            <polygon
-                class="region2"
-                id="svg_oh_henry"
-                points="66,87 41,88 41,63 33,63 33,57 66,56 66,63 66,87"
-            />
-            <polygon
-                class="region2"
-                id="svg_oh_huron"
-                points="149,102 141,102 140,77 140,74 175,73 176,94 169,95 169,102 149,102"
-            />
-            <polygon
-                class="region2"
-                id="svg_oh_lucas"
-                points="73,34 93,33 116,42 98,43 87,44 84,48 78,52 77,56 70,62 66,63 66,56 65,34 73,34"
-            />
-            <polygon
-                class="region2"
-                id="svg_oh_ottawa"
-                points="98,55 98,43 116,42 127,50 142,50 143,53 122,58 104,59 104,55 98,55"
-            />
-            <polygon
-                class="region2"
-                id="svg_oh_paulding"
-                points="30,105 1,105 1,79 25,79 25,84 33,84 33,88 34,105 30,105"
-            />
-            <polygon
-                class="region2"
-                id="svg_oh_putnam"
-                points="66,111 58,111 58,112 50,113 50,117 34,117 34,112 30,113 30,105 34,105 33,88 41,88 66,87 66,111"
-            />
-            <polygon
-                class="region2"
-                id="svg_oh_richland"
-                points="157,144 157,136 155,136 155,133 157,133 156,128 149,129 149,102 169,102 171,101 172,119 173,120 174,127 177,127 178,142 173,143 157,144"
-            />
-            <polygon
-                class="region2"
-                id="svg_oh_sandusky"
-                points="98,79 98,55 104,55 104,59 122,58 134,60 139,61 140,74 140,77 98,79"
-            />
-            <polygon
-                class="region2"
-                id="svg_oh_seneca"
-                points="121,103 99,104 99,87 98,79 140,77 141,102 139,102 121,103"
-            />
-            <polygon
-                class="region2"
-                id="svg_oh_vanwert"
-                points="34,117 34,121 30,121 30,133 26,134 26,130 1,130 1,110 1,105 30,105 30,113 34,112 34,117"
-            />
-            <polygon
-                class="region2"
-                id="svg_oh_williams"
-                points="0,63 0,53 0,37 29,36 30,54 33,55 33,57 33,63 0,63"
-            />
-            <polygon
-                class="region2"
-                id="svg_oh_wood"
-                points="99,87 66,87 66,63 70,62 77,56 78,52 84,48 87,44 98,43 98,55 98,79 99,87"
-            />
-            <polygon
-                class="region2"
-                id="svg_oh_wyandot"
-                points="122,130 108,131 108,132 99,133 98,132 98,131 94,131 94,120 93,120 93,112 95,112 95,108 97,108 96,104 99,104 121,103 122,130"
-            />
+        <div class="flex gap-2 justify-between">
+            <!-- svelte-ignore a11y-no-static-element-interactions -->
+            <svg
+                id="svg_oh"
+                viewBox="0 0 308 350"
+                xmlns="http://www.w3.org/2000/svg"
+                height="60vmin"
+                width="60vmin"
+                class="outline-none"
+                on:mousedown={handleMouseDown}
+                on:mouseup={handleMouseUp}
+                on:mousemove={handleMouseMove}
+                on:blur={handleBlur}
+            >
+                <polygon
+                    class="region1"
+                    id="svg_oh_champaign"
+                    points="56,195 57,182 58,173 74,174 74,176 91,177 95,177 95,187 94,198 56,195"
+                />
+                <polygon
+                    class="region1"
+                    id="svg_oh_delaware"
+                    points="118,184 118,175 112,174 112,155 128,155 129,157 136,157 136,163 149,164 149,171 148,185 118,184"
+                />
+                <polygon
+                    class="region1"
+                    id="svg_oh_fairfield"
+                    points="152,240 143,239 144,231 143,231 144,217 144,215 146,214 146,206 145,206 145,203 147,203 170,204 170,212 175,213 175,221 178,221 178,229 169,229 169,235 160,235 160,239 152,239 152,240"
+                />
+                <polygon
+                    class="region1"
+                    id="svg_oh_fayette"
+                    points="105,258 90,259 90,242 83,241 84,226 114,227 113,245 105,258"
+                />
+                <polygon
+                    class="region1"
+                    id="svg_oh_franklin"
+                    points="114,217 113,206 114,205 112,198 113,196 112,193 115,193 116,187 118,187 118,184 148,185 148,200 147,200 147,203 145,203 145,206 146,206 146,214 144,215 144,217 114,217"
+                />
+                <polygon
+                    class="region1"
+                    id="svg_oh_knox"
+                    points="149,171 149,164 156,164 156,146 155,146 155,144 157,144 173,143 178,142 186,141 189,141 189,152 189,174 168,173 168,171 149,171"
+                />
+                <polygon
+                    class="region1"
+                    id="svg_oh_licking"
+                    points="170,204 147,203 147,200 148,200 148,185 149,171 168,171 168,173 189,174 190,173 190,180 189,201 187,201 187,204 173,204 173,203 170,203 170,204"
+                />
+                <polygon
+                    class="region1"
+                    id="svg_oh_logan"
+                    points="91,177 74,176 74,174 58,173 58,153 59,153 59,148 67,148 93,150 93,151 91,177"
+                />
+                <polygon
+                    class="region1"
+                    id="svg_oh_madison"
+                    points="84,226 85,220 89,221 94,198 95,187 116,187 115,193 112,193 113,196 112,198 114,205 113,206 114,217 114,227 84,226"
+                />
+                <polygon
+                    class="region1"
+                    id="svg_oh_marion"
+                    points="112,155 112,150 100,150 100,148 99,133 108,132 108,131 122,130 140,130 140,135 133,135 133,150 129,151 128,155 112,155"
+                />
+                <polygon
+                    class="region1"
+                    id="svg_oh_morrow"
+                    points="149,164 136,163 136,157 129,157 128,155 129,151 133,150 133,135 140,135 140,130 139,129 149,129 156,128 157,133 155,133 155,136 157,136 157,144 155,144 155,146 156,146 156,164 149,164"
+                />
+                <polygon
+                    class="region1"
+                    id="svg_oh_pickaway"
+                    points="113,245 114,227 114,217 144,217 143,231 144,231 143,239 152,240 151,249 132,248 133,246 132,245 113,245"
+                />
+                <polygon
+                    class="region1"
+                    id="svg_oh_union"
+                    points="95,187 95,177 91,177 93,151 100,150 112,150 112,155 112,174 118,175 118,184 118,187 116,187 95,187"
+                />
 
-            <polygon
-                class="region3"
-                id="svg_oh_ashland"
-                points="186,141 178,142 177,127 174,127 173,120 172,119 171,101 169,102 169,95 176,94 188,94 188,101 191,101 192,131 185,132 186,141"
-            />
-            <polygon
-                class="region3"
-                id="svg_oh_ashtabula"
-                points="269,49 268,28 267,15 300,1 301,14 303,48 269,49"
-            />
-            <polygon
-                class="region3"
-                id="svg_oh_carroll"
-                points="278,152 254,152 254,139 250,139 250,131 256,131 256,124 258,124 258,124 266,123 279,123 279,131 283,131 283,135 284,139 279,139 279,147 278,147 278,152"
-            />
-            <polygon
-                class="region3"
-                id="svg_oh_columbiana"
-                points="283,135 283,131 279,131 279,123 266,123 266,106 279,106 279,103 285,103 285,106 306,105 306,109 307,130 303,132 301,131 299,132 297,135 292,135 292,134 283,135"
-            />
-            <polygon
-                class="region3"
-                id="svg_oh_cuyahoga"
-                points="243,65 228,65 228,67 231,72 230,72 222,72 208,73 208,66 201,66 201,51 217,52 235,38 235,44 242,44 243,56 244,56 244,57 243,57 243,65"
-            />
-            <polygon
-                class="region3"
-                id="svg_oh_geauga"
-                points="268,28 269,49 269,64 243,65 243,57 244,57 244,56 243,56 242,44 248,43 248,37 262,36 261,29 268,28"
-            />
-            <polygon
-                class="region3"
-                id="svg_oh_harrison"
-                points="284,177 267,177 259,177 251,177 251,173 251,165 255,164 254,152 278,152 284,152 284,177"
-            />
-            <polygon
-                class="region3"
-                id="svg_oh_holmes"
-                points="189,152 189,141 186,141 185,132 192,131 227,130 227,134 226,134 226,152 223,152 189,152"
-            />
-            <polygon
-                class="region3"
-                id="svg_oh_jefferson"
-                points="296,176 284,177 284,152 278,152 278,147 279,147 279,139 284,139 283,135 292,134 292,135 297,135 297,137 299,139 300,143 302,145 301,153 301,154 302,155 303,161 302,164 300,167 298,172 296,175 296,176"
-            />
-            <polygon
-                class="region3"
-                id="svg_oh_lake"
-                points="268,28 261,29 262,36 248,37 248,43 242,44 235,44 235,38 242,28 267,15 268,28"
-            />
-            <polygon
-                class="region3"
-                id="svg_oh_lorain"
-                points="188,94 176,94 175,73 174,59 197,50 201,51 201,66 208,66 208,73 201,73 202,81 194,81 194,87 188,87 188,94"
-            />
-            <polygon
-                class="region3"
-                id="svg_oh_mahoning"
-                points="306,105 285,106 285,103 279,103 279,106 266,106 265,98 271,98 271,84 305,82 306,105"
-            />
-            <polygon
-                class="region3"
-                id="svg_oh_medina"
-                points="223,100 191,101 188,101 188,94 188,87 194,87 194,81 202,81 201,73 208,73 222,72 223,100"
-            />
-            <polygon
-                class="region3"
-                id="svg_oh_portage"
-                points="265,98 244,99 243,65 269,64 271,84 271,98 265,98"
-            />
-            <polygon
-                class="region3"
-                id="svg_oh_stark"
-                points="250,131 241,131 241,130 240,130 239,131 227,134 227,130 226,107 242,107 242,99 244,99 265,98 266,106 266,123 258,124 258,124 256,124 256,131 250,131"
-            />
-            <polygon
-                class="region3"
-                id="svg_oh_summit"
-                points="226,107 226,100 223,100 222,72 230,72 231,72 228,67 228,65 243,65 244,99 242,99 242,107 226,107"
-            />
-            <polygon
-                class="region3"
-                id="svg_oh_trumbull"
-                points="271,84 269,64 269,49 303,48 303,48 305,82 271,84"
-            />
-            <polygon
-                class="region3"
-                id="svg_oh_tuscarawas"
-                points="230,174 230,160 223,160 223,152 226,152 226,134 227,134 239,131 240,130 241,130 241,131 250,131 250,139 254,139 254,152 255,164 251,165 251,173 230,174"
-            />
-            <polygon
-                class="region3"
-                id="svg_oh_wayne"
-                points="227,130 192,131 191,101 223,100 226,100 226,107 227,130"
-            />
+                <polygon
+                    class="region2"
+                    id="svg_oh_allen"
+                    points="66,137 50,137 50,136 42,136 42,133 30,133 30,121 34,121 34,117 50,117 50,113 58,112 58,111 66,111 67,121 66,137"
+                />
+                <polygon
+                    class="region2"
+                    id="svg_oh_crawford"
+                    points="140,130 122,130 121,103 139,102 141,102 149,102 149,129 139,129 140,130"
+                />
+                <polygon
+                    class="region2"
+                    id="svg_oh_defiance"
+                    points="33,63 41,63 41,88 33,88 33,84 25,84 25,79 1,79 1,77 0,63 33,63"
+                />
+                <polygon
+                    class="region2"
+                    id="svg_oh_erie"
+                    points="175,73 140,74 139,61 134,60 148,58 160,63 174,59 175,73"
+                />
+                <polygon
+                    class="region2"
+                    id="svg_oh_fulton"
+                    points="31,36 65,34 66,56 33,57 33,55 30,54 29,36 31,36"
+                />
+                <polygon
+                    class="region2"
+                    id="svg_oh_hancock"
+                    points="93,120 67,121 66,111 66,87 99,87 99,104 96,104 97,108 95,108 95,112 93,112 93,120"
+                />
+                <polygon
+                    class="region2"
+                    id="svg_oh_hardin"
+                    points="100,150 93,151 93,150 67,148 66,137 67,121 93,120 94,120 94,131 98,131 98,132 99,133 100,148 100,150"
+                />
+                <polygon
+                    class="region2"
+                    id="svg_oh_henry"
+                    points="66,87 41,88 41,63 33,63 33,57 66,56 66,63 66,87"
+                />
+                <polygon
+                    class="region2"
+                    id="svg_oh_huron"
+                    points="149,102 141,102 140,77 140,74 175,73 176,94 169,95 169,102 149,102"
+                />
+                <polygon
+                    class="region2"
+                    id="svg_oh_lucas"
+                    points="73,34 93,33 116,42 98,43 87,44 84,48 78,52 77,56 70,62 66,63 66,56 65,34 73,34"
+                />
+                <polygon
+                    class="region2"
+                    id="svg_oh_ottawa"
+                    points="98,55 98,43 116,42 127,50 142,50 143,53 122,58 104,59 104,55 98,55"
+                />
+                <polygon
+                    class="region2"
+                    id="svg_oh_paulding"
+                    points="30,105 1,105 1,79 25,79 25,84 33,84 33,88 34,105 30,105"
+                />
+                <polygon
+                    class="region2"
+                    id="svg_oh_putnam"
+                    points="66,111 58,111 58,112 50,113 50,117 34,117 34,112 30,113 30,105 34,105 33,88 41,88 66,87 66,111"
+                />
+                <polygon
+                    class="region2"
+                    id="svg_oh_richland"
+                    points="157,144 157,136 155,136 155,133 157,133 156,128 149,129 149,102 169,102 171,101 172,119 173,120 174,127 177,127 178,142 173,143 157,144"
+                />
+                <polygon
+                    class="region2"
+                    id="svg_oh_sandusky"
+                    points="98,79 98,55 104,55 104,59 122,58 134,60 139,61 140,74 140,77 98,79"
+                />
+                <polygon
+                    class="region2"
+                    id="svg_oh_seneca"
+                    points="121,103 99,104 99,87 98,79 140,77 141,102 139,102 121,103"
+                />
+                <polygon
+                    class="region2"
+                    id="svg_oh_vanwert"
+                    points="34,117 34,121 30,121 30,133 26,134 26,130 1,130 1,110 1,105 30,105 30,113 34,112 34,117"
+                />
+                <polygon
+                    class="region2"
+                    id="svg_oh_williams"
+                    points="0,63 0,53 0,37 29,36 30,54 33,55 33,57 33,63 0,63"
+                />
+                <polygon
+                    class="region2"
+                    id="svg_oh_wood"
+                    points="99,87 66,87 66,63 70,62 77,56 78,52 84,48 87,44 98,43 98,55 98,79 99,87"
+                />
+                <polygon
+                    class="region2"
+                    id="svg_oh_wyandot"
+                    points="122,130 108,131 108,132 99,133 98,132 98,131 94,131 94,120 93,120 93,112 95,112 95,108 97,108 96,104 99,104 121,103 122,130"
+                />
 
-            <polygon
-                class="region4"
-                id="svg_oh_athens"
-                points="187,272 187,264 184,264 184,255 185,247 193,247 194,238 202,238 201,247 216,247 216,260 218,260 218,262 219,261 219,264 226,264 226,270 224,273 187,272"
-            />
-            <polygon
-                class="region4"
-                id="svg_oh_belmont"
-                points="259,206 259,198 259,177 267,177 284,177 296,176 294,188 295,193 293,196 293,199 293,200 291,199 290,200 290,201 291,204 291,205 289,207 259,206"
-            />
-            <polygon
-                class="region4"
-                id="svg_oh_coshocton"
-                points="190,180 190,173 189,174 189,152 223,152 223,160 230,160 230,174 227,174 227,180 224,181 190,180"
-            />
-            <polygon
-                class="region4"
-                id="svg_oh_gallia"
-                points="200,296 197,301 197,307 193,310 192,313 194,319 194,322 195,327 195,330 192,331 188,330 187,332 182,332 182,323 173,323 173,317 172,317 172,314 165,314 165,308 166,307 174,307 175,289 183,289 183,290 200,291 200,296"
-            />
-            <polygon
-                class="region4"
-                id="svg_oh_guernsey"
-                points="259,198 258,198 249,198 249,201 243,201 243,204 235,204 235,210 226,210 226,201 223,201 224,181 227,180 227,174 230,174 251,173 251,177 259,177 259,198"
-            />
-            <polygon
-                class="region4"
-                id="svg_oh_hocking"
-                points="184,255 168,255 167,258 159,257 159,258 151,258 151,249 152,240 152,239 160,239 160,235 169,235 169,229 178,229 177,235 186,235 186,238 194,238 193,247 185,247 184,255"
-            />
-            <polygon
-                class="region4"
-                id="svg_oh_jackson"
-                points="160,307 151,307 151,298 148,298 149,277 150,277 150,273 158,273 158,275 167,275 167,279 175,279 175,289 174,307 166,307 165,308 160,307"
-            />
-            <polygon
-                class="region4"
-                id="svg_oh_lawrence"
-                points="165,349 163,343 159,340 157,337 154,335 149,335 147,334 153,331 151,326 151,324 155,324 156,322 156,317 159,317 160,307 165,308 165,314 172,314 172,317 173,317 173,323 182,323 182,332 187,332 185,343 184,345 180,347 178,347 172,349 168,350 166,349 165,349"
-            />
-            <polygon
-                class="region4"
-                id="svg_oh_meigs"
-                points="200,296 200,291 183,290 183,289 184,272 187,272 224,273 225,278 224,281 222,283 220,283 219,284 220,286 223,289 223,293 224,297 223,298 220,295 219,296 217,302 215,303 213,302 212,301 214,297 212,292 211,292 209,292 207,289 204,290 203,292 201,293 200,296"
-            />
-            <polygon
-                class="region4"
-                id="svg_oh_monroe"
-                points="257,231 257,233 252,233 252,232 249,232 249,231 247,231 247,230 245,230 245,228 243,228 243,234 235,234 235,226 231,226 230,218 226,218 226,210 235,210 235,204 243,204 243,201 249,201 249,198 258,198 259,198 259,206 253,206 254,222 257,222 257,231"
-            />
-            <polygon
-                class="region4"
-                id="svg_oh_morgan"
-                points="216,247 201,247 202,238 203,222 199,222 199,217 226,218 230,218 231,226 235,226 235,234 225,234 224,236 225,239 225,240 226,240 226,244 223,244 222,244 218,243 218,247 216,247"
-            />
-            <polygon
-                class="region4"
-                id="svg_oh_muskingum"
-                points="199,217 199,213 192,213 192,205 187,204 187,201 189,201 190,180 224,181 223,201 226,201 226,210 226,218 199,217"
-            />
-            <polygon
-                class="region4"
-                id="svg_oh_noble"
-                points="257,231 257,222 254,222 253,206 259,206 289,207 290,210 286,215 287,217 289,219 289,220 287,222 286,224 286,228 284,229 282,230 279,232 275,236 275,237 275,233 260,233 260,234 259,234 259,231 257,231"
-            />
-            <polygon
-                class="region4"
-                id="svg_oh_perry"
-                points="194,238 186,238 186,235 177,235 178,229 178,221 175,221 175,213 170,212 170,204 170,203 173,203 173,204 187,204 192,205 192,213 199,213 199,217 199,222 203,222 202,238 194,238"
-            />
-            <polygon
-                class="region4"
-                id="svg_oh_pike"
-                points="148,298 119,297 116,293 114,292 111,290 110,289 105,289 107,275 149,277 148,298"
-            />
-            <polygon
-                class="region4"
-                id="svg_oh_ross"
-                points="107,275 108,271 107,271 107,270 106,271 105,270 105,268 104,268 105,266 105,258 113,245 132,245 133,246 132,248 151,249 151,258 150,273 150,277 149,277 107,275"
-            />
-            <polygon
-                class="region4"
-                id="svg_oh_scioto"
-                points="114,331 114,292 116,293 119,297 148,298 151,298 151,307 160,307 159,317 156,317 156,322 155,324 151,324 151,326 153,331 147,334 145,331 145,326 143,323 143,320 142,318 140,317 136,320 132,321 130,323 126,325 124,330 121,331 116,330 114,331"
-            />
-            <polygon
-                class="region4"
-                id="svg_oh_vinton"
-                points="175,289 175,279 167,279 167,275 158,275 158,273 150,273 151,258 159,258 159,257 167,258 168,255 184,255 184,264 187,264 187,272 184,272 183,289 175,289"
-            />
-            <polygon
-                class="region4"
-                id="svg_oh_washington"
-                points="251,256 247,250 246,250 244,250 239,256 238,258 237,264 230,264 229,265 228,269 226,270 226,264 219,264 219,261 218,262 218,260 216,260 216,247 218,247 218,243 222,244 223,244 226,244 226,240 225,240 225,239 224,236 225,234 235,234 243,234 243,228 245,228 245,230 247,230 247,231 249,231 249,232 252,232 252,233 257,233 257,231 259,231 259,234 260,234 260,233 275,233 275,237 271,241 269,243 265,247 264,249 262,250 261,251 258,252 254,255 251,256"
-            />
+                <polygon
+                    class="region3"
+                    id="svg_oh_ashland"
+                    points="186,141 178,142 177,127 174,127 173,120 172,119 171,101 169,102 169,95 176,94 188,94 188,101 191,101 192,131 185,132 186,141"
+                />
+                <polygon
+                    class="region3"
+                    id="svg_oh_ashtabula"
+                    points="269,49 268,28 267,15 300,1 301,14 303,48 269,49"
+                />
+                <polygon
+                    class="region3"
+                    id="svg_oh_carroll"
+                    points="278,152 254,152 254,139 250,139 250,131 256,131 256,124 258,124 258,124 266,123 279,123 279,131 283,131 283,135 284,139 279,139 279,147 278,147 278,152"
+                />
+                <polygon
+                    class="region3"
+                    id="svg_oh_columbiana"
+                    points="283,135 283,131 279,131 279,123 266,123 266,106 279,106 279,103 285,103 285,106 306,105 306,109 307,130 303,132 301,131 299,132 297,135 292,135 292,134 283,135"
+                />
+                <polygon
+                    class="region3"
+                    id="svg_oh_cuyahoga"
+                    points="243,65 228,65 228,67 231,72 230,72 222,72 208,73 208,66 201,66 201,51 217,52 235,38 235,44 242,44 243,56 244,56 244,57 243,57 243,65"
+                />
+                <polygon
+                    class="region3"
+                    id="svg_oh_geauga"
+                    points="268,28 269,49 269,64 243,65 243,57 244,57 244,56 243,56 242,44 248,43 248,37 262,36 261,29 268,28"
+                />
+                <polygon
+                    class="region3"
+                    id="svg_oh_harrison"
+                    points="284,177 267,177 259,177 251,177 251,173 251,165 255,164 254,152 278,152 284,152 284,177"
+                />
+                <polygon
+                    class="region3"
+                    id="svg_oh_holmes"
+                    points="189,152 189,141 186,141 185,132 192,131 227,130 227,134 226,134 226,152 223,152 189,152"
+                />
+                <polygon
+                    class="region3"
+                    id="svg_oh_jefferson"
+                    points="296,176 284,177 284,152 278,152 278,147 279,147 279,139 284,139 283,135 292,134 292,135 297,135 297,137 299,139 300,143 302,145 301,153 301,154 302,155 303,161 302,164 300,167 298,172 296,175 296,176"
+                />
+                <polygon
+                    class="region3"
+                    id="svg_oh_lake"
+                    points="268,28 261,29 262,36 248,37 248,43 242,44 235,44 235,38 242,28 267,15 268,28"
+                />
+                <polygon
+                    class="region3"
+                    id="svg_oh_lorain"
+                    points="188,94 176,94 175,73 174,59 197,50 201,51 201,66 208,66 208,73 201,73 202,81 194,81 194,87 188,87 188,94"
+                />
+                <polygon
+                    class="region3"
+                    id="svg_oh_mahoning"
+                    points="306,105 285,106 285,103 279,103 279,106 266,106 265,98 271,98 271,84 305,82 306,105"
+                />
+                <polygon
+                    class="region3"
+                    id="svg_oh_medina"
+                    points="223,100 191,101 188,101 188,94 188,87 194,87 194,81 202,81 201,73 208,73 222,72 223,100"
+                />
+                <polygon
+                    class="region3"
+                    id="svg_oh_portage"
+                    points="265,98 244,99 243,65 269,64 271,84 271,98 265,98"
+                />
+                <polygon
+                    class="region3"
+                    id="svg_oh_stark"
+                    points="250,131 241,131 241,130 240,130 239,131 227,134 227,130 226,107 242,107 242,99 244,99 265,98 266,106 266,123 258,124 258,124 256,124 256,131 250,131"
+                />
+                <polygon
+                    class="region3"
+                    id="svg_oh_summit"
+                    points="226,107 226,100 223,100 222,72 230,72 231,72 228,67 228,65 243,65 244,99 242,99 242,107 226,107"
+                />
+                <polygon
+                    class="region3"
+                    id="svg_oh_trumbull"
+                    points="271,84 269,64 269,49 303,48 303,48 305,82 271,84"
+                />
+                <polygon
+                    class="region3"
+                    id="svg_oh_tuscarawas"
+                    points="230,174 230,160 223,160 223,152 226,152 226,134 227,134 239,131 240,130 241,130 241,131 250,131 250,139 254,139 254,152 255,164 251,165 251,173 230,174"
+                />
+                <polygon
+                    class="region3"
+                    id="svg_oh_wayne"
+                    points="227,130 192,131 191,101 223,100 226,100 226,107 227,130"
+                />
 
-            <polygon
-                class="region5"
-                id="svg_oh_adams"
-                points="87,329 86,330 84,331 82,329 84,293 88,292 105,289 110,289 111,290 114,292 114,331 113,332 112,332 111,331 110,329 107,327 101,326 97,324 95,323 89,325 88,326 87,329"
-            />
-            <polygon
-                class="region5"
-                id="svg_oh_auglaize"
-                points="67,148 59,148 59,153 58,153 34,153 34,163 27,163 27,165 26,164 26,134 30,133 42,133 42,136 50,136 50,137 66,137 67,148"
-            />
-            <polygon
-                class="region5"
-                id="svg_oh_brown"
-                points="67,318 63,316 56,317 61,271 70,272 70,293 84,293 82,329 78,328 76,324 72,322 71,319 67,318"
-            />
-            <polygon
-                class="region5"
-                id="svg_oh_butler"
-                points="0,266 0,265 0,246 0,241 25,241 25,239 33,239 33,243 35,242 34,267 13,265 11,266 0,266"
-            />
-            <polygon
-                class="region5"
-                id="svg_oh_clark"
-                points="85,220 78,219 78,219 72,218 72,216 64,215 63,214 55,213 55,210 56,195 94,198 89,221 85,220"
-            />
-            <polygon
-                class="region5"
-                id="svg_oh_clermont"
-                points="44,313 43,307 41,303 39,300 37,294 39,279 40,276 39,275 37,276 37,275 41,270 59,271 61,271 56,317 54,317 47,315 44,313"
-            />
-            <polygon
-                class="region5"
-                id="svg_oh_clinton"
-                points="61,271 59,271 61,240 83,241 90,242 90,259 76,270 74,272 73,274 72,273 72,272 70,272 61,271"
-            />
-            <polygon
-                class="region5"
-                id="svg_oh_darke"
-                points="24,207 0,207 1,198 1,169 1,166 27,165 28,181 28,207 24,207"
-            />
-            <polygon
-                class="region5"
-                id="svg_oh_greene"
-                points="61,240 52,239 53,214 55,214 55,213 63,214 64,215 72,216 72,218 78,219 78,219 85,220 84,226 83,241 61,240"
-            />
-            <polygon
-                class="region5"
-                id="svg_oh_hamilton"
-                points="22,286 17,288 14,288 11,287 6,282 2,285 1,285 0,266 11,266 13,265 34,267 40,267 41,270 37,275 37,276 39,275 40,276 39,279 37,294 35,291 31,292 29,291 29,287 27,284 24,285 22,286"
-            />
-            <polygon
-                class="region5"
-                id="svg_oh_highland"
-                points="105,289 88,292 84,293 70,293 70,272 72,272 72,273 73,274 74,272 76,270 90,259 105,258 105,266 104,268 105,268 105,270 106,271 107,270 107,271 108,271 107,275 105,289"
-            />
-            <polygon
-                class="region5"
-                id="svg_oh_mercer"
-                points="26,134 26,164 27,165 1,166 1,143 1,130 26,130 26,134"
-            />
-            <polygon
-                class="region5"
-                id="svg_oh_miami"
-                points="55,210 47,210 47,207 28,207 28,181 40,180 57,182 56,195 55,210"
-            />
-            <polygon
-                class="region5"
-                id="svg_oh_montgomery"
-                points="24,207 28,207 47,207 47,210 55,210 55,213 55,214 53,214 52,239 39,238 33,239 25,239 24,207"
-            />
-            <polygon
-                class="region5"
-                id="svg_oh_preble"
-                points="25,239 25,241 0,241 0,225 0,207 24,207 25,239"
-            />
-            <polygon
-                class="region5"
-                id="svg_oh_shelby"
-                points="57,182 40,180 28,181 27,165 27,163 34,163 34,153 58,153 58,173 57,182"
-            />
-            <polygon
-                class="region5"
-                id="svg_oh_warren"
-                points="41,270 40,267 34,267 35,242 33,243 33,239 39,238 52,239 61,240 59,271 41,270"
-            />
-        </svg>
+                <polygon
+                    class="region4"
+                    id="svg_oh_athens"
+                    points="187,272 187,264 184,264 184,255 185,247 193,247 194,238 202,238 201,247 216,247 216,260 218,260 218,262 219,261 219,264 226,264 226,270 224,273 187,272"
+                />
+                <polygon
+                    class="region4"
+                    id="svg_oh_belmont"
+                    points="259,206 259,198 259,177 267,177 284,177 296,176 294,188 295,193 293,196 293,199 293,200 291,199 290,200 290,201 291,204 291,205 289,207 259,206"
+                />
+                <polygon
+                    class="region4"
+                    id="svg_oh_coshocton"
+                    points="190,180 190,173 189,174 189,152 223,152 223,160 230,160 230,174 227,174 227,180 224,181 190,180"
+                />
+                <polygon
+                    class="region4"
+                    id="svg_oh_gallia"
+                    points="200,296 197,301 197,307 193,310 192,313 194,319 194,322 195,327 195,330 192,331 188,330 187,332 182,332 182,323 173,323 173,317 172,317 172,314 165,314 165,308 166,307 174,307 175,289 183,289 183,290 200,291 200,296"
+                />
+                <polygon
+                    class="region4"
+                    id="svg_oh_guernsey"
+                    points="259,198 258,198 249,198 249,201 243,201 243,204 235,204 235,210 226,210 226,201 223,201 224,181 227,180 227,174 230,174 251,173 251,177 259,177 259,198"
+                />
+                <polygon
+                    class="region4"
+                    id="svg_oh_hocking"
+                    points="184,255 168,255 167,258 159,257 159,258 151,258 151,249 152,240 152,239 160,239 160,235 169,235 169,229 178,229 177,235 186,235 186,238 194,238 193,247 185,247 184,255"
+                />
+                <polygon
+                    class="region4"
+                    id="svg_oh_jackson"
+                    points="160,307 151,307 151,298 148,298 149,277 150,277 150,273 158,273 158,275 167,275 167,279 175,279 175,289 174,307 166,307 165,308 160,307"
+                />
+                <polygon
+                    class="region4"
+                    id="svg_oh_lawrence"
+                    points="165,349 163,343 159,340 157,337 154,335 149,335 147,334 153,331 151,326 151,324 155,324 156,322 156,317 159,317 160,307 165,308 165,314 172,314 172,317 173,317 173,323 182,323 182,332 187,332 185,343 184,345 180,347 178,347 172,349 168,350 166,349 165,349"
+                />
+                <polygon
+                    class="region4"
+                    id="svg_oh_meigs"
+                    points="200,296 200,291 183,290 183,289 184,272 187,272 224,273 225,278 224,281 222,283 220,283 219,284 220,286 223,289 223,293 224,297 223,298 220,295 219,296 217,302 215,303 213,302 212,301 214,297 212,292 211,292 209,292 207,289 204,290 203,292 201,293 200,296"
+                />
+                <polygon
+                    class="region4"
+                    id="svg_oh_monroe"
+                    points="257,231 257,233 252,233 252,232 249,232 249,231 247,231 247,230 245,230 245,228 243,228 243,234 235,234 235,226 231,226 230,218 226,218 226,210 235,210 235,204 243,204 243,201 249,201 249,198 258,198 259,198 259,206 253,206 254,222 257,222 257,231"
+                />
+                <polygon
+                    class="region4"
+                    id="svg_oh_morgan"
+                    points="216,247 201,247 202,238 203,222 199,222 199,217 226,218 230,218 231,226 235,226 235,234 225,234 224,236 225,239 225,240 226,240 226,244 223,244 222,244 218,243 218,247 216,247"
+                />
+                <polygon
+                    class="region4"
+                    id="svg_oh_muskingum"
+                    points="199,217 199,213 192,213 192,205 187,204 187,201 189,201 190,180 224,181 223,201 226,201 226,210 226,218 199,217"
+                />
+                <polygon
+                    class="region4"
+                    id="svg_oh_noble"
+                    points="257,231 257,222 254,222 253,206 259,206 289,207 290,210 286,215 287,217 289,219 289,220 287,222 286,224 286,228 284,229 282,230 279,232 275,236 275,237 275,233 260,233 260,234 259,234 259,231 257,231"
+                />
+                <polygon
+                    class="region4"
+                    id="svg_oh_perry"
+                    points="194,238 186,238 186,235 177,235 178,229 178,221 175,221 175,213 170,212 170,204 170,203 173,203 173,204 187,204 192,205 192,213 199,213 199,217 199,222 203,222 202,238 194,238"
+                />
+                <polygon
+                    class="region4"
+                    id="svg_oh_pike"
+                    points="148,298 119,297 116,293 114,292 111,290 110,289 105,289 107,275 149,277 148,298"
+                />
+                <polygon
+                    class="region4"
+                    id="svg_oh_ross"
+                    points="107,275 108,271 107,271 107,270 106,271 105,270 105,268 104,268 105,266 105,258 113,245 132,245 133,246 132,248 151,249 151,258 150,273 150,277 149,277 107,275"
+                />
+                <polygon
+                    class="region4"
+                    id="svg_oh_scioto"
+                    points="114,331 114,292 116,293 119,297 148,298 151,298 151,307 160,307 159,317 156,317 156,322 155,324 151,324 151,326 153,331 147,334 145,331 145,326 143,323 143,320 142,318 140,317 136,320 132,321 130,323 126,325 124,330 121,331 116,330 114,331"
+                />
+                <polygon
+                    class="region4"
+                    id="svg_oh_vinton"
+                    points="175,289 175,279 167,279 167,275 158,275 158,273 150,273 151,258 159,258 159,257 167,258 168,255 184,255 184,264 187,264 187,272 184,272 183,289 175,289"
+                />
+                <polygon
+                    class="region4"
+                    id="svg_oh_washington"
+                    points="251,256 247,250 246,250 244,250 239,256 238,258 237,264 230,264 229,265 228,269 226,270 226,264 219,264 219,261 218,262 218,260 216,260 216,247 218,247 218,243 222,244 223,244 226,244 226,240 225,240 225,239 224,236 225,234 235,234 243,234 243,228 245,228 245,230 247,230 247,231 249,231 249,232 252,232 252,233 257,233 257,231 259,231 259,234 260,234 260,233 275,233 275,237 271,241 269,243 265,247 264,249 262,250 261,251 258,252 254,255 251,256"
+                />
+
+                <polygon
+                    class="region5"
+                    id="svg_oh_adams"
+                    points="87,329 86,330 84,331 82,329 84,293 88,292 105,289 110,289 111,290 114,292 114,331 113,332 112,332 111,331 110,329 107,327 101,326 97,324 95,323 89,325 88,326 87,329"
+                />
+                <polygon
+                    class="region5"
+                    id="svg_oh_auglaize"
+                    points="67,148 59,148 59,153 58,153 34,153 34,163 27,163 27,165 26,164 26,134 30,133 42,133 42,136 50,136 50,137 66,137 67,148"
+                />
+                <polygon
+                    class="region5"
+                    id="svg_oh_brown"
+                    points="67,318 63,316 56,317 61,271 70,272 70,293 84,293 82,329 78,328 76,324 72,322 71,319 67,318"
+                />
+                <polygon
+                    class="region5"
+                    id="svg_oh_butler"
+                    points="0,266 0,265 0,246 0,241 25,241 25,239 33,239 33,243 35,242 34,267 13,265 11,266 0,266"
+                />
+                <polygon
+                    class="region5"
+                    id="svg_oh_clark"
+                    points="85,220 78,219 78,219 72,218 72,216 64,215 63,214 55,213 55,210 56,195 94,198 89,221 85,220"
+                />
+                <polygon
+                    class="region5"
+                    id="svg_oh_clermont"
+                    points="44,313 43,307 41,303 39,300 37,294 39,279 40,276 39,275 37,276 37,275 41,270 59,271 61,271 56,317 54,317 47,315 44,313"
+                />
+                <polygon
+                    class="region5"
+                    id="svg_oh_clinton"
+                    points="61,271 59,271 61,240 83,241 90,242 90,259 76,270 74,272 73,274 72,273 72,272 70,272 61,271"
+                />
+                <polygon
+                    class="region5"
+                    id="svg_oh_darke"
+                    points="24,207 0,207 1,198 1,169 1,166 27,165 28,181 28,207 24,207"
+                />
+                <polygon
+                    class="region5"
+                    id="svg_oh_greene"
+                    points="61,240 52,239 53,214 55,214 55,213 63,214 64,215 72,216 72,218 78,219 78,219 85,220 84,226 83,241 61,240"
+                />
+                <polygon
+                    class="region5"
+                    id="svg_oh_hamilton"
+                    points="22,286 17,288 14,288 11,287 6,282 2,285 1,285 0,266 11,266 13,265 34,267 40,267 41,270 37,275 37,276 39,275 40,276 39,279 37,294 35,291 31,292 29,291 29,287 27,284 24,285 22,286"
+                />
+                <polygon
+                    class="region5"
+                    id="svg_oh_highland"
+                    points="105,289 88,292 84,293 70,293 70,272 72,272 72,273 73,274 74,272 76,270 90,259 105,258 105,266 104,268 105,268 105,270 106,271 107,270 107,271 108,271 107,275 105,289"
+                />
+                <polygon
+                    class="region5"
+                    id="svg_oh_mercer"
+                    points="26,134 26,164 27,165 1,166 1,143 1,130 26,130 26,134"
+                />
+                <polygon
+                    class="region5"
+                    id="svg_oh_miami"
+                    points="55,210 47,210 47,207 28,207 28,181 40,180 57,182 56,195 55,210"
+                />
+                <polygon
+                    class="region5"
+                    id="svg_oh_montgomery"
+                    points="24,207 28,207 47,207 47,210 55,210 55,213 55,214 53,214 52,239 39,238 33,239 25,239 24,207"
+                />
+                <polygon
+                    class="region5"
+                    id="svg_oh_preble"
+                    points="25,239 25,241 0,241 0,225 0,207 24,207 25,239"
+                />
+                <polygon
+                    class="region5"
+                    id="svg_oh_shelby"
+                    points="57,182 40,180 28,181 27,165 27,163 34,163 34,153 58,153 58,173 57,182"
+                />
+                <polygon
+                    class="region5"
+                    id="svg_oh_warren"
+                    points="41,270 40,267 34,267 35,242 33,243 33,239 39,238 52,239 61,240 59,271 41,270"
+                />
+            </svg>
+
+            <div class="space-y-2 max-w-44">
+                <label class="flex items-center space-x-2">
+                    <input class="radio" type="radio" checked name="radio-direct" value="1" />
+                    <p>Species present</p>
+                </label>
+                <label class="flex items-center space-x-2">
+                    <input class="radio" type="radio" disabled name="radio-direct" value="2" />
+                    <p>Counties with species</p>
+                </label>
+            </div>
+        </div>
     </svelte:fragment>
 
     <svelte:fragment slot="right-head">
@@ -624,6 +656,11 @@
             </div>
         </div>
     </svelte:fragment>
+    <svelte:fragment slot="right-tail"
+        ><div class="text-xs text-secondary-500 mb-[-1em]">
+            * No monitored sites / no species observed
+        </div></svelte:fragment
+    >
 </DoubledContainer>
 <div class="hidden polygon-select" />
 
