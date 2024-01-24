@@ -442,4 +442,6 @@ where c.name = 'greene';
 </style>
 ```
 
+Example sort/filter of user list
+https://svelte.dev/repl/13570eb8a00747279a583a95f6d5b4f6?version=3.24.1
 

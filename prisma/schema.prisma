@@ -164,21 +164,21 @@ model SiteObservation {
     seqId Int?
     hodges String?
     idCode String? // @db.String(1)  // in { how id'ed:  O observ, N net, P photo, C collected }
-    s1 Int?        // counts of CheckList species per section
-    s2 Int?
-    s3 Int?
-    s4 Int?
-    s5 Int?
-    s6 Int?
-    s7 Int?
-    s8 Int?
-    s9 Int?
-    s10 Int?
-    s11 Int?
-    s12 Int?
-    s13 Int?
-    s14 Int?
-    s15 Int?
+    section1 Int?        // counts of CheckList species per section
+    section2 Int?
+    section3 Int?
+    section4 Int?
+    section5 Int?
+    section6 Int?
+    section7 Int?
+    section8 Int?
+    section9 Int?
+    section10 Int?
+    section11 Int?
+    section12 Int?
+    section13 Int?
+    section14 Int?
+    section15 Int?
     mark String? // @db.String(50)
 	createdBy String @default("") // must be user id or something
 	createdAt DateTime @default(now())

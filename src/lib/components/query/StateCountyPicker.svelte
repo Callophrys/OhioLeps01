@@ -14,8 +14,6 @@
     };
 
     export let counties: County[] = [];
-    export let initialHideUnmonitoredChoice: number = 0;
-    export let initialSelectAllCounties: boolean = true;
 
     let countyIds: number[] = [];
     let hideUnmonitoredCounties: number;
@@ -33,45 +31,49 @@
 
     onMount(() => {
         let z: string = localStorage?.useCaptureAllCounties;
-    console.log('z', z);
-        if (z) { 
+        console.log('z', z);
+        if (z) {
             captureAllCounties = z.split(',').map((v: string) => parseInt(v));
         } else {
-            captureAllCounties = counties.filter((c) => c.sites.length > 0).map((c) => c.id) as number[];
+            captureAllCounties = counties
+                .filter((c) => c.sites.length > 0)
+                .map((c) => c.id) as number[];
         }
-    console.log('captureAllCounties', captureAllCounties);
-        
-        
+        console.log('captureAllCounties', captureAllCounties);
+
         let y: string = localStorage?.useSelectAllCounties;
-    console.log('1 selectedall', y)
+        console.log('1 selectedall', y);
         if (y && y.length) {
             selectAllCounties = y === 'true';
-    console.log('2 selectedall', y)
+            console.log('2 selectedall', y);
         } else {
-            selectAllCounties = initialSelectAllCounties;
-    console.log('3 selectedall', y)
+            selectAllCounties = true;
+            console.log('3 selectedall', y);
         }
 
         let x: string = localStorage?.useHideUnmonitoredChoice;
         if (x && x.length) {
             hideUnmonitoredCounties = parseInt(x);
         } else {
-            hideUnmonitoredCounties = initialHideUnmonitoredChoice;
+            hideUnmonitoredCounties = 0;
         }
 
-    console.log('4 all Selected', allSelected, selectAllCounties);
-    console.log('5 all Selected', allSelected, selectAllCounties);
+        console.log('4 all Selected', allSelected, selectAllCounties);
+        console.log('5 all Selected', allSelected, selectAllCounties);
         if (selectAllCounties) {
             countyIds = counties.filter((c) => c.sites.length > 0).map((c) => c.id) as number[];
         } else {
             countyIds = captureAllCounties;
         }
-    console.log('6 all Selected', allSelected, selectAllCounties);
+        console.log('6 all Selected', allSelected, selectAllCounties);
     });
 
     afterUpdate(() => {
-    console.log('7 all Selected', allSelected, selectAllCounties);
-        localStorage.setItem('useCaptureAllCounties', countyIds.map((c: number) => c.toString()).join(','));
+        console.log('7 all Selected', allSelected, selectAllCounties);
+        localStorage.setItem(
+            'useCaptureAllCounties',
+            countyIds.map((c: number) => c.toString()).join(',')
+        );
         localStorage.setItem('useSelectAllCounties', allSelected ? 'true' : 'false');
         localStorage.setItem('useHideUnmonitoredChoice', hideUnmonitoredCounties ? '1' : '0');
     });
@@ -128,7 +130,7 @@
         </div>
 
         <hr />
-        
+
         <div class="half-vh-sp">
             {#each counties as county}
                 {#if !hideUnmonitoredCounties || county.sites.length > 0}
@@ -150,9 +152,9 @@
 </div>
 
 <style>
-.half-vh-sp {
-    @apply overflow-y-auto;
-    height: calc(100vh - 408px);
-    min-height: 128px;
-}
+    .half-vh-sp {
+        @apply overflow-y-auto;
+        height: calc(100vh - 408px);
+        min-height: 128px;
+    }
 </style>

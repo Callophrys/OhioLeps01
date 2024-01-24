@@ -8,6 +8,21 @@ export type CountyIsMonitored<T> = Partial<T> & { isMonitored: boolean, siteCoun
 export type specimenSearch = {
 	specimenIds: number[],
 	countyIds: number[],
-	dateStart: Date|null,
-	dateEnd: Date|null
+	dateStart: Date | null,
+	dateEnd: Date | null,
+	region: string | null,
+	year: number | null,
+	week: number | null
+}
+
+export type countySpecimen = {
+	countyId: number,
+	county: string,
+	region: string,
+	recordDate: Date,
+	checklistId: number,
+	commonName: string,
+	genus: string,
+	species: string,
+	subSpecies: string,
 }

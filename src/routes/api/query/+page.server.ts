@@ -8,6 +8,7 @@ import { getChecklists, getChecklistsFiltered } from '$lib/database/checklists';
 import type { specimenSearch } from '$lib/types';
 import type { County } from '@prisma/client';
 import type { Checklist } from '@prisma/client';
+import type { countySpecimen } from '$lib/types';
 import { sep } from 'path';
 
 /*
@@ -53,8 +54,8 @@ export async function load() {
 export const actions = {
 	query: async ({ request }) => {
 
-        const formData = await request.formData();
-        //console.log('formData', formData);
+		const formData = await request.formData();
+		//console.log('formData', formData);
 
 		let s: number[] = formData.getAll('select-species').map((s: any) => parseInt(s));
 		let c: number[] = formData.getAll('select-county').map((c: any) => parseInt(c));
@@ -67,10 +68,13 @@ export const actions = {
 			specimenIds: s,
 			countyIds: c,
 			dateStart: (sRangeStart ? new Date(sRangeStart) : null),
-			dateEnd: (sRangeEnd ? new Date(sRangeEnd) : null)
+			dateEnd: (sRangeEnd ? new Date(sRangeEnd) : null),
+			region: null,
+			year: null,
+			week: null
 		};
 		//console.log('specimenFilter', specimenFilter);
-		
+
 		const checklists = await getChecklistsFiltered(specimenFilter);
 
 		return { success: true, checklists: checklists };

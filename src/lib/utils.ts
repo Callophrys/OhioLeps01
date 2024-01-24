@@ -50,3 +50,7 @@ export function isEmpty(obj: object): boolean {
     for (var x in obj) { return false; }
     return true;
 }
+
+export function scientificName(genus: string, species: string, subSpecies: string) {
+    return `${genus.charAt(0).toLocaleUpperCase() + genus.slice(1).toLocaleLowerCase()} ${species.toLocaleLowerCase()}${subSpecies ? ' ' + subSpecies.toLocaleLowerCase() : ''}`;
+}
