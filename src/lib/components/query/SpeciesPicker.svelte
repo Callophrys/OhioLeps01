@@ -78,15 +78,25 @@
         </RadioGroup>
         </div>
 
-        {#each speciesChecklist as species}
-        <label class="flex items-center space-x-2 pl-6">
-            <input type="checkbox" class="checkbox"
-                name="select-species"
-                value={species.checklistId}
-                bind:group={speciesChecked} >
-            <p>{useLatin ? species.scientificName : species.commonName}</p>
-        </label>
-        {/each}
+        <div class="half-vh">
+            {#each speciesChecklist as species}
+            <label class="flex items-center space-x-2 pl-6">
+                <input type="checkbox" class="checkbox"
+                    name="select-species"
+                    value={species.checklistId}
+                    bind:group={speciesChecked} >
+                <p>{useLatin ? species.scientificName : species.commonName}</p>
+            </label>
+            {/each}
+        </div>
 
     </div>
 </div>
+
+<style>
+.half-vh {
+    @apply overflow-y-auto;
+    height: calc(100vh - 432px);
+    min-height: 128px;
+}
+</style>

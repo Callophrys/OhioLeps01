@@ -8,10 +8,16 @@
 
     export let data;
     export let form;
+    
+    /*
+    console.log('data', data);
+    */
+    console.log('form', form);
 </script>
 
 <DoubledContainer>
     <svelte:fragment slot="left">
+    <div>
         <form method="POST" class="p-4 space-y-2" action="?/query">
             <StateCountyPicker
                 counties={data.counties}
@@ -27,15 +33,25 @@
                 <button class="btn variant-filled w-auto justify-between mx-auto">
                     <span>Run Search</span>
                     <span>→</span>
-                </button>
+                </button> &varnothing;
             </div>
         </form>
+    </div>
     </svelte:fragment>
 
-    <svelte:fragment slot="right">
+    <svelte:fragment slot="right-head">
         <span class="">Results</span>
+    </svelte:fragment>
+    <svelte:fragment slot="right">
         {#if form?.success}
-            <p>here are {form.snouts} snouts.</p>
+            <p>here are {form.checklists.length} snouts.</p>
+            <div>
+                {#each form.checklists as checklist}
+                <div>checklist.county</div>
+                <div>checklist.region</div>
+                <div>checklist.commonName</div>
+                {/each}
+            </div>
         {/if}
         <TreeView>
             <TreeViewItem>

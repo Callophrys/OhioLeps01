@@ -15,11 +15,12 @@
 
     export let counties: County[] = [];
     export let initialHideUnmonitoredChoice: number = 0;
+    export let initialSelectAllCounties: boolean = true;
 
-    let comboboxValue: string;
-
-    let hideUnmonitoredCounties: number;
     let countyIds: number[] = [];
+    let hideUnmonitoredCounties: number;
+    let selectAllCounties: boolean;
+    let captureAllCounties: number[];
 
     function toggleAllCounties() {
         allSelected = !allSelected;
@@ -31,6 +32,26 @@
     }
 
     onMount(() => {
+        let z: string = localStorage?.useCaptureAllCounties;
+    console.log('z', z);
+        if (z) { 
+            captureAllCounties = z.split(',').map((v: string) => parseInt(v));
+        } else {
+            captureAllCounties = counties.filter((c) => c.sites.length > 0).map((c) => c.id) as number[];
+        }
+    console.log('captureAllCounties', captureAllCounties);
+        
+        
+        let y: string = localStorage?.useSelectAllCounties;
+    console.log('1 selectedall', y)
+        if (y && y.length) {
+            selectAllCounties = y === 'true';
+    console.log('2 selectedall', y)
+        } else {
+            selectAllCounties = initialSelectAllCounties;
+    console.log('3 selectedall', y)
+        }
+
         let x: string = localStorage?.useHideUnmonitoredChoice;
         if (x && x.length) {
             hideUnmonitoredCounties = parseInt(x);
@@ -38,10 +59,20 @@
             hideUnmonitoredCounties = initialHideUnmonitoredChoice;
         }
 
-        toggleAllCounties();
+    console.log('4 all Selected', allSelected, selectAllCounties);
+    console.log('5 all Selected', allSelected, selectAllCounties);
+        if (selectAllCounties) {
+            countyIds = counties.filter((c) => c.sites.length > 0).map((c) => c.id) as number[];
+        } else {
+            countyIds = captureAllCounties;
+        }
+    console.log('6 all Selected', allSelected, selectAllCounties);
     });
 
     afterUpdate(() => {
+    console.log('7 all Selected', allSelected, selectAllCounties);
+        localStorage.setItem('useCaptureAllCounties', countyIds.map((c: number) => c.toString()).join(','));
+        localStorage.setItem('useSelectAllCounties', allSelected ? 'true' : 'false');
         localStorage.setItem('useHideUnmonitoredChoice', hideUnmonitoredCounties ? '1' : '0');
     });
 
@@ -70,6 +101,7 @@
                 name="toggle-all-counties"
                 size="sm"
                 active="variant-filled-primary"
+                bind:value={selectAllCounties}
                 checked={allSelected}
                 on:click={toggleAllCounties}
             /><input hidden />
@@ -96,21 +128,31 @@
         </div>
 
         <hr />
-
-        {#each counties as county}
-            {#if !hideUnmonitoredCounties || county.sites.length > 0}
-                <label class="flex items-center space-x-2 pl-6">
-                    <input
-                        type="checkbox"
-                        class="checkbox"
-                        value={county.id}
-                        bind:group={countyIds}
-                        name="select-county"
-                        disabled={!(county.sites.length > 0)}
-                    />
-                    <p>{county.name}{county.sites.length > 0 ? '' : '*'}</p>
-                </label>
-            {/if}
-        {/each}
+        
+        <div class="half-vh-sp">
+            {#each counties as county}
+                {#if !hideUnmonitoredCounties || county.sites.length > 0}
+                    <label class="flex items-center space-x-2 pl-6">
+                        <input
+                            type="checkbox"
+                            class="checkbox"
+                            value={county.id}
+                            bind:group={countyIds}
+                            name="select-county"
+                            disabled={!(county.sites.length > 0)}
+                        />
+                        <p>{county.name}{county.sites.length > 0 ? '' : '*'}</p>
+                    </label>
+                {/if}
+            {/each}
+        </div>
     </div>
 </div>
+
+<style>
+.half-vh-sp {
+    @apply overflow-y-auto;
+    height: calc(100vh - 408px);
+    min-height: 128px;
+}
+</style>

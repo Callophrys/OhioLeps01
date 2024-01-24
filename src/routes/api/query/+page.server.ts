@@ -4,9 +4,11 @@ import { redirect } from '@sveltejs/kit';
 //import { getChecklists } from '$lib/api/checklists.js';
 import { json } from '@sveltejs/kit'
 import { getCounties } from '$lib/database/counties';
-import { getChecklists } from '$lib/database/checklists';
+import { getChecklists, getChecklistsFiltered } from '$lib/database/checklists';
+import type { specimenSearch } from '$lib/types';
 import type { County } from '@prisma/client';
 import type { Checklist } from '@prisma/client';
+import { sep } from 'path';
 
 /*
 export async function load({ cookies, url }) {
@@ -48,14 +50,29 @@ export async function load() {
 	return { counties: jsonResultC, speciesList: jsonResultS }
 }
 
-/*
 export const actions = {
 	query: async ({ request }) => {
 
-        const data = await request.formData();
-        console.log(data);
+        const formData = await request.formData();
+        //console.log('formData', formData);
 
-		return { success: true, snouts: "Piggy" };
+		let s: number[] = formData.getAll('select-species').map((s: any) => parseInt(s));
+		let c: number[] = formData.getAll('select-county').map((c: any) => parseInt(c));
+		//console.log('s', s, 'c', c);
+
+		let sRangeStart = String(formData.get('range-start'));
+		let sRangeEnd = String(formData.get('range-end'));
+
+		const specimenFilter: specimenSearch = {
+			specimenIds: s,
+			countyIds: c,
+			dateStart: (sRangeStart ? new Date(sRangeStart) : null),
+			dateEnd: (sRangeEnd ? new Date(sRangeEnd) : null)
+		};
+		//console.log('specimenFilter', specimenFilter);
+		
+		const checklists = await getChecklistsFiltered(specimenFilter);
+
+		return { success: true, checklists: checklists };
 	}
 };
-*/

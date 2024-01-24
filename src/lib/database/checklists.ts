@@ -1,4 +1,6 @@
 import prisma from '$lib/prisma'
+import { isDate } from 'util/types';
+import type { specimenSearch } from '$lib/types';
 
 export async function getChecklist(checklistId: number) {
 	const checklist = await prisma.checklist.findUnique({
@@ -28,7 +30,76 @@ export async function getChecklists() {
 	return checklists;
 }
 
-export async function getChecklistsFiltered(filter: any) {
+export async function getChecklistsFiltered(filter: specimenSearch): Promise<any[]> {
+
+	console.log('filter', filter);
+	
+	let whereClause = "";
+	let useSpecimens = (filter && (filter.specimenIds && filter.specimenIds.length));
+	let useCounties = (filter && (filter.countyIds && filter.countyIds.length));
+	let useDateStart = (filter && isDate(filter.dateStart));
+	let useDateEnd = (filter && isDate(filter.dateEnd));
+	
+	if (useSpecimens || useCounties || useDateStart || useDateEnd) {
+		let useAnd = false;
+		whereClause = " where ";
+		if (useSpecimens) {
+			if (useAnd) whereClause += ' and';
+			whereClause += ` l.checklistId in (${filter.specimenIds.join(',')})`;
+			useAnd = true;
+		}
+		if (useCounties) {
+			if (useAnd) whereClause += ' and';
+			whereClause += ` c.id in (${filter.countyIds.join(',')})`;
+			useAnd = true;
+		}
+		if (useDateStart) {
+			if (useAnd) whereClause += ' and';
+			whereClause += ` d.recordDate >= ${filter.dateStart?.toISOString()})`;
+			useAnd = true;
+		}
+		if (useDateEnd) {
+			if (useAnd) whereClause += ' and';
+			whereClause += ` d.recordDate <= ${filter.dateEnd?.toISOString()})`;
+			useAnd = true;
+		}
+	}
+	
+	let queryString = `
+		select
+		distinct
+		c.name county,
+		r.name region,
+		l.commonname
+		from county c
+		inner join region r on c.regionId = r.id
+		inner join site s on s.countyId = c.id
+		inner join sitedate d on s.siteid = d.siteid
+		inner join siteobservation o on d.sitedateid = o.sitedateid
+		inner join checklist l on o.checklistid = l.checklistid
+	` + whereClause;
+	
+	console.log('qs', queryString);
+
+	const countySpecimens: any[] = await prisma.$queryRaw`${queryString}`;
+
+	return countySpecimens;
+
+	const checklists = await prisma.checklist.findMany({
+		orderBy: [
+			{
+				genus: 'asc',
+			},
+			{
+				species: 'asc',
+			},
+			{
+				subspecies: { sort: 'asc', nulls: 'first' }
+			},
+		]
+	});
+
+	return checklists;
 	/* filter on:
 	 {
 		filter: {
@@ -54,10 +125,10 @@ export async function getChecklistsFiltered(filter: any) {
 			]
 		}
 	 }
-	*/
 
 	// not yet implemented so return all
 	return await getChecklists();
+	*/
 }
 
 export async function addChecklist(checklist: any) {

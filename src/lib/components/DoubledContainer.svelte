@@ -3,9 +3,11 @@
     export let basisLeft = 'basis-1/2';
     export let basisRight = 'basis-1/2';
     let hAdjust = 4 + (showAppBar ? 128 : 0) + (showFooter ? 16 : 0);
-    let configclass = showFooter //should be 144 (with footer) or 128
-        ? `container flex flex-row gap-8 h-[calc(100vh_-_${hAdjust}px)] px-8 pt-8 pb-4`
+    let configclass = "container flex flex-row gap-8"
+    /* showFooter //should be 144 (with footer) or 128
+        ? `container flex flex-row gap-8 h-[calc(100vh_-_${hAdjust}px)] px-8 pt-8 pb-4 has-footer`
         : `container flex flex-row gap-8 h-[calc(100vh_-_${hAdjust}px] p-8`;
+        */
 </script>
 
 <div class={configclass}>
@@ -33,3 +35,17 @@
         </div>
     </div>
 </div>
+<!--
+    the h and calc works in StandardContainer, but had to do below to make work
+    might be a thunderbird thing
+-->
+<style>
+.container.has-footer {
+    @apply px-8 pt-8 pb-4;
+    height: calc(100vh - 144px);
+}
+.container {
+    @apply p-8;
+    height: calc(100vh - 128px);
+}
+</style>
