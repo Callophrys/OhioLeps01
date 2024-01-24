@@ -1,7 +1,7 @@
 import { fail } from '@sveltejs/kit';
 import { browser } from '$app/environment';
 import { redirect } from '@sveltejs/kit';
-import { getCounties } from '$lib/database/counties.js';
+import { getMonitoredCounties } from '$lib/database/counties.js';
 import type { County } from '@prisma/client';
 
 export async function load({ cookies, url }) {
@@ -11,7 +11,7 @@ export async function load({ cookies, url }) {
 		throw redirect(303, `/login?redirectTo=${url.pathname}`);
 	}
 
-	const counties = await getCounties();
+	const counties = await getMonitoredCounties();
 	const json = JSON.stringify(counties);
 	const jsonResult: County[] = JSON.parse(json);
 

@@ -22,7 +22,36 @@ export async function getCounties() {
       },
     ]
   });
-  
+
+  return counties;
+}
+
+export async function getMonitoredCounties() {
+  // filtering for OH by default
+  const counties = await prisma.county.findMany({
+
+    include: {
+      region: true,
+      sites: true,
+      state: true,
+    },
+
+    where: {
+      state: {
+        abbreviation: 'OH',
+      },
+      sites: {
+        some: {}
+      }
+    },
+
+    orderBy: [
+      {
+        name: 'asc',
+      },
+    ]
+  });
+
   return counties;
 }
 

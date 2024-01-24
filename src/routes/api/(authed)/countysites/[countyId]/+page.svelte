@@ -7,12 +7,15 @@
 
     function handleSiteSelect(e: any) {
         let id = e.currentTarget.value;
+        goto(`/api/countysites/${id}`);
 
+        /*
         if (id > -1 && data.counties.find((x: any) => x.id === id)?.sites.length === 1) {
             goto(`/api/sites/${county.sites[0].siteId}`);
         } else {
             goto(`/api/countysites/${county.id}`);
         }
+        */
     }
 
     /*
@@ -29,7 +32,12 @@
 <StandardContainer>
     <svelte:fragment slot="standard-head">
         <div class="flex flex-row justify-between">
-            <div>All sites in county: {county.name}</div>
+            <div class="flex">
+                <div class="my-auto">All sites in county: {county.name}</div>
+                <button type="button" class="btn"
+                    ><span class="text-success-400">✚</span>&nbsp;Add new site</button
+                >
+            </div>
             <div>
                 <select class="select" bind:value={countyId} on:change={handleSiteSelect}>
                     <option value="-1">ALL SITES</option>

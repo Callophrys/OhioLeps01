@@ -19,7 +19,7 @@ const prisma = new PrismaClient().$extends({
             isMonitored: {
                 needs: { sites: true },
                 compute(county) {
-                    return String(county.sites.length !== 0);
+                    return county.sites.length > 0;
                 }
             },
             siteCount: {
@@ -27,7 +27,7 @@ const prisma = new PrismaClient().$extends({
                 compute(county) {
                     return county.sites.length;
                 }
-            }
+            },
         },
         siteDate: {
             year: {

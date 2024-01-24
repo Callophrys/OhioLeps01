@@ -1,6 +1,6 @@
 import prisma from '$lib/prisma'
 
-export async function getSiteObservations(siteDateId: number = 0, checklistId = 0) {
+export async function getSiteObservations(siteDateId: number = 0, checklistId: number = 0) {
     if (siteDateId > 0) {
         if (checklistId > 0) {
             return await getSiteObservationsBySiteDateAndChecklist(siteDateId, checklistId);

@@ -18,20 +18,42 @@
     export let accH = false;
     export let accI = false;
     export let accJ = false;
-    
+
+    type dateTracking = {
+        siteDateId: number;
+        year: number;
+        week: number;
+        recordDate: Date;
+    };
+
+    type dateTrackingSet = {
+        id: number;
+        children: dateTracking[];
+    };
+
     onMount(() => {
         let x: string = localStorage?.useFarenheit;
-        useFarenheit = (x && x.length) ? parseInt(x) : initialUseFarenheit;
-        x = localStorage?.optAccA; optAccA = (x && x.length) ? x === 'true' : accA;
-        x = localStorage?.optAccB; optAccB = (x && x.length) ? x === 'true' : accB;
-        x = localStorage?.optAccC; optAccC = (x && x.length) ? x === 'true' : accC;
-        x = localStorage?.optAccD; optAccD = (x && x.length) ? x === 'true' : accD;
-        x = localStorage?.optAccE; optAccE = (x && x.length) ? x === 'true' : accE;
-        x = localStorage?.optAccF; optAccF = (x && x.length) ? x === 'true' : accF;
-        x = localStorage?.optAccG; optAccG = (x && x.length) ? x === 'true' : accG;
-        x = localStorage?.optAccH; optAccH = (x && x.length) ? x === 'true' : accH;
-        x = localStorage?.optAccI; optAccI = (x && x.length) ? x === 'true' : accI;
-        x = localStorage?.optAccJ; optAccJ = (x && x.length) ? x === 'true' : accJ;
+        useFarenheit = x && x.length ? parseInt(x) : initialUseFarenheit;
+        x = localStorage?.optAccA;
+        optAccA = x && x.length ? x === 'true' : accA;
+        x = localStorage?.optAccB;
+        optAccB = x && x.length ? x === 'true' : accB;
+        x = localStorage?.optAccC;
+        optAccC = x && x.length ? x === 'true' : accC;
+        x = localStorage?.optAccD;
+        optAccD = x && x.length ? x === 'true' : accD;
+        x = localStorage?.optAccE;
+        optAccE = x && x.length ? x === 'true' : accE;
+        x = localStorage?.optAccF;
+        optAccF = x && x.length ? x === 'true' : accF;
+        x = localStorage?.optAccG;
+        optAccG = x && x.length ? x === 'true' : accG;
+        x = localStorage?.optAccH;
+        optAccH = x && x.length ? x === 'true' : accH;
+        x = localStorage?.optAccI;
+        optAccI = x && x.length ? x === 'true' : accI;
+        x = localStorage?.optAccJ;
+        optAccJ = x && x.length ? x === 'true' : accJ;
     });
 
     afterUpdate(() => {
@@ -47,7 +69,27 @@
         localStorage.setItem('optAccI', optAccI.toString());
         localStorage.setItem('optAccJ', optAccJ.toString());
     });
-    
+
+    $: foo = optAccB;
+
+    function handleRadioGroupClick(event: any) {
+        var ooo = document.getElementById('ftoc');
+        console.log('was here', ooo?.getAttribute('open'));
+        if (optAccB) {
+            optAccB = false;
+        }
+        return true;
+        /*
+        var ooo = document.getElementById('ftoc');
+        console.log('was here', ooo?.getAttribute('aria-expanded'));
+        if (ooo?.getAttribute('aria-expanded') === 'true') {
+            ooo.click();
+        } else {
+            return false;
+        }
+        */
+    }
+
     function handleClick(event: any) {
         event.preventDefault();
         //console.log('/api/sitedates/' + event.currentTarget.value);
@@ -57,21 +99,18 @@
     }
 
     function handleClickPrior(event: any) {
-        let idx = trackedWeeks.findIndex((x:dateTracking) => x.siteDateId === recordSiteId);
+        let idx = trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteId);
         if (idx > 0) {
-            goto('/api/sitedates/' + trackedWeeks[idx-1].siteDateId);
+            goto('/api/sitedates/' + trackedWeeks[idx - 1].siteDateId);
         }
     }
 
     function handleClickNext(event: any) {
-        let idx = trackedWeeks.findIndex((x:dateTracking) => x.siteDateId === recordSiteId);
+        let idx = trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteId);
         if (idx < trackedWeeks.length - 1) {
-            goto('/api/sitedates/' + trackedWeeks[idx+1].siteDateId);
+            goto('/api/sitedates/' + trackedWeeks[idx + 1].siteDateId);
         }
     }
-    
-    $: nextEnabled = trackedWeeks.findIndex((x:dateTracking) => x.siteDateId === recordSiteId) < trackedWeeks.length - 1;
-    $: priorEnabled = trackedWeeks.findIndex((x:dateTracking) => x.siteDateId === recordSiteId) > 0;
 
     let startTemp: string;
     let endTemp: string;
@@ -95,6 +134,28 @@
     let y: dateTrackingSet;
     let w: any;
 
+    //console.log(data.siteRecordDates);
+    const allYears = Array.from(data.siteRecordDates).map((y) =>
+        new Date(y.recordDate).getFullYear()
+    );
+    const uniqueYears = [...new Set(allYears)].sort((a, b) => a - b);
+
+    const trackedWeeks: dateTracking[] = Array.from(data.siteRecordDates)
+        .map<dateTracking>((w) => ({
+            siteDateId: w.siteDateId,
+            year: new Date(w.recordDate).getFullYear(),
+            week: weekOfYearSince(new Date(w.recordDate)),
+            recordDate: new Date(w.recordDate),
+        }))
+        .sort((a, b) => (a.year > b.year ? 1 : a.week - b.week));
+
+    $: nextEnabled =
+        trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteId) <
+        trackedWeeks.length - 1;
+    console.log('nextEnabled', nextEnabled);
+    $: prevEnabled = trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteId) > 0;
+    console.log('prevEnabled', prevEnabled);
+
     $: recordDate = new Date(data.siteDate.recordDate);
     $: recordYear = new Date(data.siteDate.recordDate).getFullYear();
     $: recordWeek = weekOfYearSince(new Date(data.siteDate.recordDate));
@@ -102,29 +163,6 @@
 
     $: startTemp = String(data.siteDate.startTemp);
     $: endTemp = String(data.siteDate.endTemp);
-    
-    type dateTracking = {
-        siteDateId: number,
-        year: number,
-        week: number,
-        recordDate: Date
-    }
-
-    type dateTrackingSet = {
-        id: number,
-        children: dateTracking[]
-    }
-
-    //console.log(data.siteRecordDates);
-    const allYears = Array.from(data.siteRecordDates).map((y) => new Date(y.recordDate).getFullYear());
-    const uniqueYears = [...new Set(allYears)].sort((a, b) => a - b);
-
-    const trackedWeeks: dateTracking[] = Array.from(data.siteRecordDates).map<dateTracking>((w) => ({
-        siteDateId: w.siteDateId,
-        year: new Date(w.recordDate).getFullYear(),
-        week: weekOfYearSince(new Date(w.recordDate)),
-        recordDate: new Date(w.recordDate)
-    })).sort((a, b) => a.year > b.year ? 1 : a.week - b.week);
 
     //console.log(uniqueYears);
     //console.log(trackedWeeks);
@@ -142,30 +180,43 @@
         </h2>
         <hr />
         <div class="flex flex-row justify-between space-x-2">
-
             <div>
                 year: {data.siteDate.year}&nbsp;&nbsp;week: {data.siteDate.week}
             </div>
-            <div class="text-warning-600 text-wrap my-auto">Per data entry 'year' and 'week' fields</div>
-
+            <div class="text-warning-600 text-wrap my-auto">
+                Per data entry 'year' and 'week' fields
+            </div>
         </div>
+        <!-- Year and week dropdowns -->
         <div class="flex flex-row space-x-2 pb-2">
-
-            <div>Year&nbsp;<select class="select w-28" bind:value={y} on:blur={() => [w] = y.children}>
-                {#each uniqueYears as year}
-                    <option value={{id: year, children: [...trackedWeeks.filter(z => z.year === year)]}}>{year}</option>
-                {/each}
-            </select></div>
-
-            <div>Week&nbsp;{#if y}<select class="select w-36" bind:value={w} on:change={handleClick}>
-                {#each y.children as dateTrackingItem}
-                    <option value={dateTrackingItem.siteDateId}>{dateTrackingItem.week} - {formatDate(dateTrackingItem.recordDate.toISOString())}</option>
-                {/each}
-                </select>{/if}
+            <div>
+                <select class="select w-28" bind:value={y} on:blur={() => ([w] = y.children)}>
+                    {#each uniqueYears as year}
+                        <option
+                            value={{
+                                id: year,
+                                children: [...trackedWeeks.filter((z) => z.year === year)],
+                            }}>{year}</option
+                        >
+                    {/each}
+                </select>
             </div>
 
-            <div class="text-warning-600 text-wrap my-auto">Calculated from 'record date' field</div>
+            <div>
+                {#if y}<select class="select w-36" bind:value={w} on:change={handleClick}>
+                        {#each y.children as dateTrackingItem}
+                            <option value={dateTrackingItem.siteDateId}
+                                >{dateTrackingItem.week} - {formatDate(
+                                    dateTrackingItem.recordDate.toISOString()
+                                )}</option
+                            >
+                        {/each}
+                    </select>{/if}
+            </div>
 
+            <div class="text-warning-600 text-wrap my-auto">
+                Calculated from 'record date' field
+            </div>
         </div>
         <hr />
     </svelte:fragment>
@@ -204,21 +255,37 @@
                     <div class="flex space-x-4">
                         <span class="my-auto">Temperature</span>
                         <div class="scale-75 origin-right">
-                        <RadioGroup name="toggle-naming-group"
-                            active="variant-filled-primary"
-                            hover="hover:variant-soft-primary">
-                            <RadioItem bind:group={useFarenheit} name="toggle-naming" value={1}>&deg;F</RadioItem>
-                            <RadioItem bind:group={useFarenheit} name="toggle-naming" value={0}>&degC</RadioItem>
-                        </RadioGroup>
+                            <RadioGroup
+                                name="toggle-naming-group"
+                                active="variant-filled-primary"
+                                hover="hover:variant-soft-primary"
+                            >
+                                <RadioItem
+                                    on:click={handleRadioGroupClick}
+                                    bind:group={useFarenheit}
+                                    name="toggle-naming"
+                                    value={1}>&deg;F</RadioItem
+                                >
+                                <RadioItem
+                                    on:click={handleRadioGroupClick}
+                                    bind:group={useFarenheit}
+                                    name="toggle-naming"
+                                    value={0}>&degC</RadioItem
+                                >
+                            </RadioGroup>
                         </div>
                     </div>
                 </svelte:fragment>
                 <svelte:fragment slot="content">
                     <div class="pl-4">
-                        Start Temp: {useFarenheit ? data.siteDate.startTemp : convertFtoC(data.siteDate.startTemp) }
+                        Start Temp: {useFarenheit
+                            ? data.siteDate.startTemp
+                            : convertFtoC(data.siteDate.startTemp)}
                     </div>
                     <div class="pl-4">
-                        End Temp: {useFarenheit ? data.siteDate.endTemp : convertFtoC(data.siteDate.endTemp) }
+                        End Temp: {useFarenheit
+                            ? data.siteDate.endTemp
+                            : convertFtoC(data.siteDate.endTemp)}
                     </div></svelte:fragment
                 >
             </AccordionItem>
@@ -436,7 +503,6 @@
     </svelte:fragment>
 
     <svelte:fragment slot="right">
-
         <div class="flex flex-row justify-between mb-2">
             <div class="">{data.siteDate.site.siteName}</div>
             <div class="btn-group variant-soft scale-90 my-auto">
@@ -459,5 +525,4 @@
             {/each}
         </div>
     </svelte:fragment>
-
 </DoubledContainer>

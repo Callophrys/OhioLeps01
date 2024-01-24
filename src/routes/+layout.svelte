@@ -156,15 +156,15 @@
                     {#if $page.data.user.role === 'ADMIN'}
                         <li><a href="/admin">Admin</a></li>
                     {/if}
+                    <li><a href="/api/checklists">Checklists</a></li>
+                    <li><a href="/api/counties">Counties</a></li>
                     <li><a href="/api/countypanes">County Panes</a></li>
                     <li><a href="/api/sites">Sites</a></li>
+                    <li><a href="/api/nameaddresses">Name-Address</a></li>
                     <!--
                     <li class="indent-4"><a href="/api/sitedates">Year/Week Dates</a></li>
                     <li class="indent-8"><a href="/api/siteobservations">Observations</a></li>
                     -->
-                    <li><a href="/api/checklists">Checklists</a></li>
-                    <li><a href="/api/counties">County</a></li>
-                    <li><a href="/api/nameaddresses">Name-Address</a></li>
                 {/if}
                 <li><a href="/api/ohio">Ohio</a></li>
                 <li><a href="/api/taxonomy">Butterflies of North America</a></li>
@@ -178,7 +178,7 @@
     <!-- Router Slot -->
     <slot />
 
-<!-- Wasn't wild for full page tranistions
+    <!-- Wasn't wild for full page tranistions
     import { fly } from 'svelte/transition'
 
     {#key data.url}
@@ -193,9 +193,8 @@
     <!-- ---- / ---- -->
 
     <svelte:fragment slot="pageFooter">
-    {#if config.showFooter}
-        {@html config.owner} {config.title} &copy;{new Date().getFullYear()}
-    {/if}
+        {#if config.showFooter}
+            {@html config.owner} {config.title} &copy;{new Date().getFullYear()}
+        {/if}
     </svelte:fragment>
-
 </AppShell>

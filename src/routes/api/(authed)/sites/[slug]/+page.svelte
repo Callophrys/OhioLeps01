@@ -38,23 +38,23 @@
 </script>
 
 <StandardContainer>
-    <div class="card w-48 shadow-xl py-2" data-popup="popupComboboxSiteDate">
-        <ListBox rounded="rounded-none">
-            {#each data.site.siteDates as siteDate}
-                <ListBoxItem
-                    bind:group={comboboxValueSiteDate}
-                    on:click={handleClick}
-                    name="medium"
-                    value={siteDate.siteDateId}
-                >
-                    {siteDate.year} - week {siteDate.week}
-                </ListBoxItem>
-            {/each}
-        </ListBox>
-        <div class="arrow bg-surface-100-800-token" />
-    </div>
-
     <svelte:fragment slot="standard-head">
+        <div class="card w-48 shadow-xl py-2" data-popup="popupComboboxSiteDate">
+            <ListBox rounded="rounded-none">
+                {#each data.site.siteDates as siteDate}
+                    <ListBoxItem
+                        bind:group={comboboxValueSiteDate}
+                        on:click={handleClick}
+                        name="medium"
+                        value={siteDate.siteDateId}
+                    >
+                        {siteDate.year} - week {siteDate.week}
+                    </ListBoxItem>
+                {/each}
+            </ListBox>
+            <div class="arrow bg-surface-100-800-token" />
+        </div>
+
         <div class="flex flex-row justify-between">
             <div class="basis-1/3 my-auto">
                 {data.site.siteName}, {data.site.county.name} County
