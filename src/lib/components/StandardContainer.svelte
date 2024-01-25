@@ -7,14 +7,20 @@
 
 <div class={configclass}>
     <div class="card py-4 pl-4 h-full flex flex-col space-y-2">
+        {#if $$slots.standardHead}
         <div class="pr-4">
-            <slot name="standard-head" />
+            <slot name="standardHead" />
         </div>
+        {/if}
+
         <div class="space-y-2 h-full overflow-y-auto">
-            <slot name="standard-content" />
+            <slot name="standardContent" />
         </div>
+
+        {#if $$slots.standardTail}
         <div class="pr-4">
-            <slot name="standard-tail" />
+            <slot name="standardTail" />
         </div>
+        {/if}
     </div>
 </div>

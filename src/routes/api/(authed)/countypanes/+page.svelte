@@ -5,11 +5,11 @@
 </script>
 
 <StandardContainer>
-    <svelte:fragment slot="standard-head">
+    <svelte:fragment slot="standardHead">
         <div class="">Counties with monitored sites</div>
     </svelte:fragment>
 
-    <svelte:fragment slot="standard-content">
+    <svelte:fragment slot="standardContent">
         <!-- div class="grid grid-cols-6 content-start"-->
         <div class="flex flex-wrap gap-2">
             {#each data.counties as county}

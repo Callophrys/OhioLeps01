@@ -15,6 +15,8 @@
 
     export let counties: County[] = [];
 
+    export let initialHideUnmonitoredChoice: number = 1;
+
     let countyIds: number[] = [];
     let hideUnmonitoredCounties: number;
     let selectAllCounties: boolean;
@@ -55,7 +57,7 @@
         if (x && x.length) {
             hideUnmonitoredCounties = parseInt(x);
         } else {
-            hideUnmonitoredCounties = 0;
+            hideUnmonitoredCounties = initialHideUnmonitoredChoice;
         }
 
         console.log('4 all Selected', allSelected, selectAllCounties);

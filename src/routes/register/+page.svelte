@@ -7,7 +7,7 @@
 </script>
 
 <StandardContainer>
-	<svelte:fragment slot="standard-content">
+	<svelte:fragment slot="standardContent">
     <h1>Register</h1>
 
     <form action="?/register" method="POST" class="max-w-80 min-w-32 space-y-2" use:enhance>

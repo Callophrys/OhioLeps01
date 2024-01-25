@@ -6,14 +6,14 @@
 
 <!-- Counties -->
 <StandardContainer>
-    <svelte:fragment slot="standard-head">
+    <svelte:fragment slot="standardHead">
         <div class="bg-red">
             County count: {data.counties.length}
             &nbsp;&nbsp;Counties with monitored sites: {data.counties.filter((c) => c.isMonitored)
                 .length}
         </div>
     </svelte:fragment>
-    <svelte:fragment slot="standard-content">
+    <svelte:fragment slot="standardContent">
         <div class="w-1/2">
             <dl class="list-dl max-w-80">
                 {#each data.counties as county}

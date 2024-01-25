@@ -171,7 +171,7 @@
 </script>
 
 <DoubledContainer basisLeft="basis-2/5" basisRight="basis-3/5">
-    <svelte:fragment slot="left-head">
+    <svelte:fragment slot="leftHead">
         <h2 class="flex flex-row justify-between pb-2">
             <div>{data.siteDate.site.siteName}</div>
             <div>
@@ -220,7 +220,7 @@
         </div>
         <hr />
     </svelte:fragment>
-    <svelte:fragment slot="left">
+    <svelte:fragment slot="leftBody">
         <div>
             recorder: {data.siteDate.recorder}
         </div>
@@ -502,7 +502,7 @@
         </Accordion>
     </svelte:fragment>
 
-    <svelte:fragment slot="right">
+    <svelte:fragment slot="rightBody">
         <div class="flex flex-row justify-between mb-2">
             <div class="">{data.siteDate.site.siteName}</div>
             <div class="btn-group variant-soft scale-90 my-auto">

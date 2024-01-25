@@ -14,6 +14,7 @@
     };
 
     export let speciesChecklist: Checklist[] = []; // ChecklistCombinedName<Checklist>[] = [];
+    export let initialUseLatinChoice: number = 1;
 
     let speciesChecked: number[] = [];
 
@@ -61,7 +62,7 @@
         if (x && x.length) {
             useLatin = parseInt(x);
         } else {
-            useLatin = 0;
+            useLatin = initialUseLatinChoice;
         }
 
         //ned 1/24/24 toggleAllSpecies();
@@ -154,6 +155,6 @@
     .half-vh {
         @apply overflow-y-auto;
         height: calc(100vh - 432px);
-        min-height: 128px;
+        min-height: 160px;
     }
 </style>

@@ -15,28 +15,40 @@
     const countedCounties = Object.create(null);
     const countedSpecies = Object.create(null);
 
+    const distinctRegions = Object.create(null);
+    const distinctCounties = Object.create(null);
+    const distinctSpecies = Object.create(null);
+
     $: {
         if (form?.success) {
             form.checklists.forEach((cs: countySpecimen) => {
                 countedRegions[cs.region] = 1 + (countedRegions[cs.region] ?? 0);
                 countedCounties[cs.county] = 1 + (countedCounties[cs.county] ?? 0);
                 countedSpecies[cs.checklistId] = 1 + (countedRegions[cs.checklistId] ?? 0);
+
+                distinctRegions[cs.region] = 1;
+                distinctCounties[cs.county] = 1;
+                distinctSpecies[cs.checklistId] = 1;
             });
         }
 
         console.log('countedRegions', countedRegions);
         console.log('countedCounties', countedCounties);
         console.log('countedSpecies', countedSpecies);
+
+        console.log('distinctRegions', Object.keys(distinctRegions).length);
+        console.log('distinctCounties', Object.keys(distinctCounties).length);
+        console.log('distinctSpecies', Object.keys(distinctSpecies).length);
     }
 
     /*
     console.log('data', data);
-    */
     console.log('form', form);
+    */
 </script>
 
-<DoubledContainer>
-    <svelte:fragment slot="left">
+<DoubledContainer rightBodyClasses="overflow-hidden h-[calc(100vh_-_212px)]">
+    <svelte:fragment slot="leftBody">
         <div>
             <form method="POST" class="p-4 space-y-2" action="?/query">
                 <StateCountyPicker
@@ -59,21 +71,19 @@
         </div>
     </svelte:fragment>
 
-    <svelte:fragment slot="right-head">
-        <span class="">Results</span>
-    </svelte:fragment>
-    <svelte:fragment slot="right">
+    <svelte:fragment slot="rightBody">
         {#if form?.success}
             <!-- Responsive Container (recommended) -->
             <div class="table-container">
-                <!-- Native Table Element -->
-                <table class="table table-hover">
+                <div class="flex flex-col h-screen">
+                <div class="flex-grow overflow-auto scroll-mt-6">
+                <table class="table table-hover relative w-full">
                     <thead>
                         <tr>
-                            <th>Region</th>
-                            <th>County</th>
-                            <th>Common Name</th>
-                            <th>Scientific Name</th>
+                            <th class="sticky top-0 px-6 py-3 bg-surface-700 variant-outline-surface rounded-tl">Region&nbsp;</th>
+                            <th class="sticky top-0 px-6 py-3 bg-surface-700 variant-outline-surface border-x mr-[-3px]">County&nbsp</th>
+                            <th class="sticky top-0 px-6 py-3 bg-surface-700 variant-outline-surface border-x">Common Name&nbsp;</th>
+                            <th class="sticky top-0 px-6 py-3 bg-surface-700 variant-outline-surface rounded-tr">Scientific Name&nbsp</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -100,14 +110,21 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td>{countedRegions.length}</td>
-                            <td>{countedCounties.length}</td>
-                            <td colspan="2">{countedSpecies.length}</td>
+                            <td class="indent-4">{[...new Set(form.checklists.map(x => x.county))].length}</td>
+                            <td class="indent-4">{[...new Set(form.checklists.map(x => x.region))].length}</td>
+                            <td class="indent-4">{[...new Set(form.checklists.map(x => x.checklistId))].length}</td>
+                            <td class="">[Totals of each distinct]</td>
                         </tr>
                     </tfoot>
                 </table>
+                </div>
+                </div>
             </div>
         {/if}
+    </svelte:fragment>
+</DoubledContainer>
+
+<!--
         <TreeView>
             <TreeViewItem>
                 (item 1)
@@ -124,5 +141,4 @@
             </TreeViewItem>
             <TreeViewItem>(item 2)</TreeViewItem>
         </TreeView>
-    </svelte:fragment>
-</DoubledContainer>
+-->

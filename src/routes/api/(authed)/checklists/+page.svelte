@@ -6,10 +6,10 @@
 
 <!-- Checklists -->
 <StandardContainer>
-    <svelte:fragment slot="standard-head">
+    <svelte:fragment slot="standardHead">
         <div class="bg-red">Checklist (species) Count: {data.checklists.length}</div>
     </svelte:fragment>
-    <svelte:fragment slot="standard-content">
+    <svelte:fragment slot="standardContent">
         <ul class="w-1/2 pl-4">
         {#each data.checklists as checklist}
             <li class="checklist">

@@ -4,10 +4,10 @@
 </script>
 
 <StandardContainer>
-	<svelte:fragment slot="standard-head">
+	<svelte:fragment slot="standardHead">
         <div class="bg-red">Name-Address Count: {data.nameAddresses.length}</div>
     </svelte:fragment>
-	<svelte:fragment slot="standard-content">
+	<svelte:fragment slot="standardContent">
         <ul class="nameAddresses">
             {#each data.nameAddresses as nameAddress}
                 <li class="nameAddress">

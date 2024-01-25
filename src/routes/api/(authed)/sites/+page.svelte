@@ -11,7 +11,7 @@
 </script>
 
 <StandardContainer>
-    <svelte:fragment slot="standard-head">
+    <svelte:fragment slot="standardHead">
         <div class="">
             {#if $page.data?.user?.role === 'ADMIN' && typeof form === 'object' && !isEmpty(form?.data)}
                 <span>Site X of {data.sites?.length}: {form?.data?.siteName} </span>
@@ -62,7 +62,7 @@
         </div>
     </svelte:fragment>
 
-    <svelte:fragment slot="standard-content">
+    <svelte:fragment slot="standardContent">
         <div class="">
             {#if typeof form === 'object' && !isEmpty(form?.data)}
                 <div class="w-1/2">

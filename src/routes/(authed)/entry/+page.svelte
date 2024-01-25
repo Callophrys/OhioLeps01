@@ -3,7 +3,7 @@
 </script>
 
 <StandardContainer>
-	<svelte:fragment slot="standard-content">
+	<svelte:fragment slot="standardContent">
     <div class="">
         <h1>Data Entry</h1>
 

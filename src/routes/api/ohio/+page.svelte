@@ -160,7 +160,7 @@
 </script>
 
 <DoubledContainer>
-    <svelte:fragment slot="left">
+    <svelte:fragment slot="leftBody">
         <div class="opacity-0 font-semibold text-white capitalize absolute" id="svg_hover"></div>
 
         <div class="flex gap-2 justify-between">
@@ -636,7 +636,7 @@
         </div>
     </svelte:fragment>
 
-    <svelte:fragment slot="right-head">
+    <svelte:fragment slot="rightHead">
         <div class="grid grid-cols-2">
             <div>
                 <div id="selected-counties-count">Selected counties (0)</div>
@@ -646,7 +646,7 @@
             </div>
         </div>
     </svelte:fragment>
-    <svelte:fragment slot="right">
+    <svelte:fragment slot="rightBody">
         <div class="grid grid-cols-2">
             <div>
                 <ul id="selected-counties-list" class="list ml-4" />

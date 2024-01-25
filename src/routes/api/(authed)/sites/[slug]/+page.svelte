@@ -38,7 +38,7 @@
 </script>
 
 <StandardContainer>
-    <svelte:fragment slot="standard-head">
+    <svelte:fragment slot="standardHead">
         <div class="card w-48 shadow-xl py-2" data-popup="popupComboboxSiteDate">
             <ListBox rounded="rounded-none">
                 {#each data.site.siteDates as siteDate}
@@ -87,7 +87,7 @@
         </div>
     </svelte:fragment>
 
-    <svelte:fragment slot="standard-content">
+    <svelte:fragment slot="standardContent">
         <div class="max-w-[600px]">
             <div class="content">
                 <div>siteName: {@html data.site.siteName ?? ''}</div>

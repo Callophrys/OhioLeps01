@@ -5,7 +5,7 @@
 </script>
 
 <StandardContainer>
-	<svelte:fragment slot="standard-content">
+	<svelte:fragment slot="standardContent">
     {#each data.siteDates as siteDate}
         <div>
             <div>

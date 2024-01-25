@@ -30,7 +30,7 @@
 </script>
 
 <StandardContainer>
-    <svelte:fragment slot="standard-head">
+    <svelte:fragment slot="standardHead">
         <div class="flex flex-row justify-between">
             <div class="flex">
                 <div class="my-auto">All sites in county: {county.name}</div>
@@ -48,7 +48,7 @@
             </div>
         </div>
     </svelte:fragment>
-    <svelte:fragment slot="standard-content">
+    <svelte:fragment slot="standardContent">
         <div>
             <div class="flex flex-wrap gap-2">
                 {#each data.sites as site, i}

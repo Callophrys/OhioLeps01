@@ -4,7 +4,7 @@
 </script>
 
 <StandardContainer>
-	<svelte:fragment slot="standard-content">
+	<svelte:fragment slot="standardContent">
     <div class="mx-auto p-8">
         <div class="card p-8 space-x-2 space-y-2">
             <a href="/api/query" class="btn variant-filled"> Search Database </a>
