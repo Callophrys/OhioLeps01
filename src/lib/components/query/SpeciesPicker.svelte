@@ -22,16 +22,34 @@
     let useLatin: number;
     let capturedSpecies: number[] = [];
 
-    function handleNamingChange(e: any) {
-        if (e.currentTarget.value === '1') {
-            console.log('e1', e.currentTarget.value);
-            speciesChecklist.sort((a: any, b: any) =>
-                a.scientificName > b.scientificName ? 1 : 0
-            );
+    function handleNamingClick(e: any) {
+        console.log(speciesChecklist[0]);
+// TODO: handle flip flop of sort order
+        if (useLatin) {
+            console.log('Latin - 1', e.currentTarget.value);
+            speciesChecklist = speciesChecklist.toSorted((a: Checklist, b: Checklist) => {
+                if (a.scientificName < b.scientificName) return -1;
+                if (a.scientificName > b.scientificName) return 1;
+                if (a.commonName < b.commonName) return -1;
+                if (a.commonName > b.commonName) return 1;
+                return 0;
+            });
         } else {
-            console.log('e0', e.currentTarget.value);
-            speciesChecklist.sort((a: any, b: any) => (a.commonName > b.commonName ? 1 : 0));
+            console.log('Common - 0', e.currentTarget.value);
+            speciesChecklist = speciesChecklist.toSorted((a: Checklist, b: Checklist) => {
+                if (a.commonName < b.commonName) return -1;
+                if (a.commonName > b.commonName) return 1;
+                if (a.scientificName < b.scientificName) return -1;
+                if (a.scientificName > b.scientificName) return 1;
+                return 0;
+            });
         }
+        console.log('useLatin', useLatin);
+        /*
+        console.log('keys', Object.keys(speciesChecklist));
+        console.log('values', Object.values(speciesChecklist));
+        console.log('entries', Object.entries(speciesChecklist));
+        */
     }
 
     function toggleAllSpecies() {
@@ -78,6 +96,7 @@
     });
 
     $: allSelected = speciesChecklist.length === speciesChecked.length;
+
 </script>
 
 <div class="flex items-center space-x-2">
@@ -121,13 +140,13 @@
             >
                 <RadioItem
                     bind:group={useLatin}
-                    on:change={handleNamingChange}
+                    on:change={handleNamingClick}
                     name="toggle-naming"
                     value={0}>Common</RadioItem
                 >
                 <RadioItem
                     bind:group={useLatin}
-                    on:change={handleNamingChange}
+                    on:change={handleNamingClick}
                     name="toggle-naming"
                     value={1}>Latin</RadioItem
                 >
@@ -135,7 +154,7 @@
         </div>
 
         <div class="half-vh">
-            {#each speciesChecklist as species}
+            {#each speciesChecklist as species (species.checklistId)}
                 <label class="flex items-center space-x-2 pl-6">
                     <input
                         type="checkbox"

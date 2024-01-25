@@ -35,10 +35,10 @@ model Taxonomy {
     // Parent of self
     baseTaxonId Int?
     baseTaxon   Taxonomy?   @relation("TaxonomicTree", fields: [baseTaxonId], references: [id])
-    
+
     // Children of self
     branchTaxa  Taxonomy[]  @relation("TaxonomicTree")
-    
+
     // Checklist - not working yet
     checklist  Checklist[] @relation("ChecklistOfTaxon")
 
@@ -107,11 +107,11 @@ model Site {
     // Parent Relation
     countyId Int
     county County @relation("SiteOfCounty", fields: [countyId], references: [id])
-    
+
     // Parent Relation
     stateId Int
     state State @relation("SiteOfState", fields: [stateId], references: [id])
-    
+
     // Child Relation
     siteDates SiteDate[]
 
@@ -119,7 +119,7 @@ model Site {
     siteStatuses SiteStatus[]
 }
 
-// Will be one-to-one with big taxon data 
+// Will be one-to-one with big taxon data
 model Checklist {
     checklistId Int @id @default(autoincrement())
     hodges String @default("A000") // or similar, note if another system, e.g. Patterson number
@@ -140,7 +140,6 @@ model Checklist {
     family Int @default(0)
     gCKey Int @default(0)
     grp Int @default(0)
-    sortOrder String? // @db.String(10)
     tmp_SitesReporting Int?
     tmp_TotalCount Int?
     tmp_HighCount Int?
@@ -152,9 +151,9 @@ model Checklist {
 
     // Child Relation
     siteObservations SiteObservation[]
-    
+
     // Parent Relation
-    taxonId Int? 
+    taxonId Int?
     taxon   Taxonomy? @relation("ChecklistOfTaxon", fields: [taxonId], references: [id])
 }
 
@@ -186,7 +185,7 @@ model SiteObservation {
 	updatedAt DateTime?
 	confirmBy String?
 	confirmAt DateTime?
-  
+
     // Parent Relation
     checklist Checklist? @relation(fields: [checklistId], references: [checklistId])
     checklistId Int? //@default(0) // new so need SQL to get this
@@ -194,7 +193,7 @@ model SiteObservation {
     // Parent Relation
     siteDate SiteDate? @relation(fields: [siteDateId], references: [siteDateId])
     siteDateId Int? //@default(0) // new so need SQL to get this
-    
+
     //@@index([checklistId]); // error on run
     //@@index([siteDateId]);  // error on run
 }
@@ -221,7 +220,7 @@ model SiteStatus {
     // Parent Relation
     site Site? @relation(fields: [siteId], references: [siteId])
     // provided by load: 'siteId Int'
-  
+
     @@unique([siteId, year])
     @@index([siteId])
 }
@@ -296,11 +295,11 @@ model SiteDate {
 	updatedAt DateTime?
 	confirmBy String?
 	confirmAt DateTime?
-    
+
     // Parent Relation
     site Site @relation(fields: [siteId], references: [siteId])
     // provided by load: siteId Int //@default(0)
-    
+
     // Child Relation
     siteObservations SiteObservation[]
 

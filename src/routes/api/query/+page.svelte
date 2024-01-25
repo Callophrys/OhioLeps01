@@ -76,48 +76,71 @@
             <!-- Responsive Container (recommended) -->
             <div class="table-container">
                 <div class="flex flex-col h-screen">
-                <div class="flex-grow overflow-auto scroll-mt-6">
-                <table class="table table-hover relative w-full">
-                    <thead>
-                        <tr>
-                            <th class="sticky top-0 px-6 py-3 bg-surface-700 variant-outline-surface rounded-tl">Region&nbsp;</th>
-                            <th class="sticky top-0 px-6 py-3 bg-surface-700 variant-outline-surface border-x mr-[-3px]">County&nbsp</th>
-                            <th class="sticky top-0 px-6 py-3 bg-surface-700 variant-outline-surface border-x">Common Name&nbsp;</th>
-                            <th class="sticky top-0 px-6 py-3 bg-surface-700 variant-outline-surface rounded-tr">Scientific Name&nbsp</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {#each form.checklists as checklist, i}
-                            <tr>
-                                <td>
-                                    {checklist.county}
-                                </td>
-                                <td>
-                                    {checklist.region}
-                                </td>
-                                <td>
-                                    {checklist.commonName}
-                                </td>
-                                <td>
-                                    {scientificName(
-                                        checklist.genus,
-                                        checklist.species,
-                                        checklist.subSpecies
-                                    )}
-                                </td>
-                            </tr>
-                        {/each}
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td class="indent-4">{[...new Set(form.checklists.map(x => x.county))].length}</td>
-                            <td class="indent-4">{[...new Set(form.checklists.map(x => x.region))].length}</td>
-                            <td class="indent-4">{[...new Set(form.checklists.map(x => x.checklistId))].length}</td>
-                            <td class="">[Totals of each distinct]</td>
-                        </tr>
-                    </tfoot>
-                </table>
-                </div>
+                    <div class="flex-grow overflow-auto scroll-mt-6">
+                        <table class="table table-hover relative w-full">
+                            <thead>
+                                <tr>
+                                    <!--<th
+                                        class="table-sort-asc sticky top-0 px-6 py-3 bg-surface-700 variant-outline-surface rounded-tl"
+                                        >Region&nbsp;</th
+                                    >-->
+                                    <th
+                                        class="sticky top-0 px-6 py-3 variant-ghost-surface rounded-tl"
+                                        >Region&nbsp;</th
+                                    >
+                                    <th class="sticky top-0 px-6 py-3 variant-outline-surface"
+                                        >County&nbsp</th
+                                    >
+                                    <th class="sticky top-0 px-6 py-3 variant-ghost-surface"
+                                        >Common Name&nbsp;</th
+                                    >
+                                    <th
+                                        class="sticky top-0 px-6 py-3 variant-ghost-surface rounded-tr"
+                                        >Scientific Name&nbsp</th
+                                    >
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {#each form.checklists as checklist, i}
+                                    <tr>
+                                        <td>
+                                            {checklist.county}
+                                        </td>
+                                        <td>
+                                            {checklist.region}
+                                        </td>
+                                        <td>
+                                            {checklist.commonName}
+                                        </td>
+                                        <td>
+                                            {scientificName(
+                                                checklist.genus,
+                                                checklist.species,
+                                                checklist.subSpecies
+                                            )}
+                                        </td>
+                                    </tr>
+                                {/each}
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td class="indent-4"
+                                        >{[...new Set(form.checklists.map((x) => x.county))]
+                                            .length}</td
+                                    >
+                                    <td class="indent-4"
+                                        >{[...new Set(form.checklists.map((x) => x.region))]
+                                            .length}</td
+                                    >
+                                    <td class="indent-4"
+                                        >{[...new Set(form.checklists.map((x) => x.checklistId))]
+                                            .length}</td
+                                    >
+                                    <td class="">[Totals of each distinct]</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
                 </div>
             </div>
         {/if}

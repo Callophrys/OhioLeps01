@@ -114,7 +114,15 @@
                                         <li>
                                             <a
                                                 href="https://www.prisma.io/docs/orm/prisma-schema/data-model/models"
-                                                target="_blank">Prisma</a
+                                                target="_blank"
+                                                class="hover:rounded-none">Prisma</a
+                                            >
+                                        </li>
+                                        <li>
+                                            <a
+                                                href="https://github.com/Callophrys/OhioLeps01"
+                                                target="_blank"
+                                                class="hover:rounded-none">Source repo</a
                                             >
                                         </li>
                                     </ul>

@@ -5,7 +5,7 @@ import { computePosition, autoUpdate, offset, shift, flip, arrow } from '@floati
 #### Import storePopup in your root layout, then pass an object containing the required Floating UI modules shown below.
 import { storePopup } from '@skeletonlabs/skeleton';
 storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
-			
+
 posts/sveltekit-authentication-using-cookies/sveltekit-authentication-using-cookies.md
 
 # Auth
@@ -193,7 +193,7 @@ async function toJSON(filename:string,sql:string) {
     const data = await connection.query(sql);
     const dataString=JSON.stringify(data, null, 2);
 
-    fs.writeFile('data/' + filename, dataString, (err) => {  
+    fs.writeFile('data/' + filename, dataString, (err) => {
       if (err) throw err;
       console.log(filename + ' saved!');
   });
@@ -204,7 +204,7 @@ async function toJSON(filename:string,sql:string) {
 }
 
 
-### Svelte comments 
+### Svelte comments
 use JS to comment out HTML elements. Its hackky but works:
 ```<div id="myDiv" {...{/*commented-parameter=true*/}} regular-paramter=true />```
 
@@ -444,4 +444,30 @@ where c.name = 'greene';
 
 Example sort/filter of user list
 https://svelte.dev/repl/13570eb8a00747279a583a95f6d5b4f6?version=3.24.1
+
+### 1/25/2024
+Interesting font, icon, svg and maps stuff
+```
+https://base64.guru/converter/encode/text text to base64
+https://base64.guru/converter/decode/file base64 to file
+https://base64.guru/converter/decode/file (for color arrow)....but
+is a ttf
+windows can't open per not a ttf file
+
+https://github.com/donbright/font_to_svg
+This code will convert a single character in a TrueType(R) font file into an SVG 'path' shape.
+
+https://github.com/StephanWagner/svgMap
+svgMap is a JavaScript library that lets you easily create an interactable world map comparing customizable data for each country.
+
+https://stephanwagner.me/create-world-map-charts-with-svgmap#svgMapDemoGDP
+show svg map with panning and hover popovers
+
+https://github.com/bumbu/svg-pan-zoom
+Simple pan/zoom solution for SVGs in HTML. It adds events listeners for mouse scroll, double-click and pan, plus it optionally offers:
+- JavaScript API for control of pan and zoom behavior
+- onPan and onZoom event handlers
+- On-screen zoom controls
+```
+
 
