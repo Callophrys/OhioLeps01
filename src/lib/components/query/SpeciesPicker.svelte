@@ -14,20 +14,21 @@
     };
 
     export let speciesChecklist: Checklist[] = []; // ChecklistCombinedName<Checklist>[] = [];
+    export let initialUseAllSpeciesChoice: number = 1;
     export let initialUseLatinChoice: number = 1;
 
     let speciesChecked: number[] = [];
 
-    let selectAllSpecies: number;
+    let useAllSpecies: number;
     let useLatin: number;
     let capturedSpecies: number[] = [];
 
-    function handleNamingClick(e: any) {
+    function SortSpecies(isScientific: boolean) {
         console.log(speciesChecklist[0]);
 // TODO: handle flip flop of sort order
-        if (useLatin) {
-            console.log('Latin - 1', e.currentTarget.value);
-            speciesChecklist = speciesChecklist.toSorted((a: Checklist, b: Checklist) => {
+        if (isScientific) {
+            console.log('useLatin', useLatin);
+            return speciesChecklist.toSorted((a: Checklist, b: Checklist) => {
                 if (a.scientificName < b.scientificName) return -1;
                 if (a.scientificName > b.scientificName) return 1;
                 if (a.commonName < b.commonName) return -1;
@@ -35,8 +36,8 @@
                 return 0;
             });
         } else {
-            console.log('Common - 0', e.currentTarget.value);
-            speciesChecklist = speciesChecklist.toSorted((a: Checklist, b: Checklist) => {
+            console.log('useLatin', useLatin);
+            return speciesChecklist.toSorted((a: Checklist, b: Checklist) => {
                 if (a.commonName < b.commonName) return -1;
                 if (a.commonName > b.commonName) return 1;
                 if (a.scientificName < b.scientificName) return -1;
@@ -44,7 +45,6 @@
                 return 0;
             });
         }
-        console.log('useLatin', useLatin);
         /*
         console.log('keys', Object.keys(speciesChecklist));
         console.log('values', Object.values(speciesChecklist));
@@ -52,29 +52,28 @@
         */
     }
 
-    function toggleAllSpecies() {
-        allSelected = !allSelected;
-        if (allSelected) {
-            speciesChecked = speciesChecklist.map((c) => c.checklistId) as number[];
-        } else {
+    function handleNamingClick(e: any) {
+        speciesChecklist = SortSpecies(useLatin);
+    }
+
+    function toggleAllSpecies(e: any) {
+        console.log('checked in as', useAllSpecies);
+        if (useAllSpecies) {
             speciesChecked = [];
+        } else {
+            speciesChecked = speciesChecklist.map((c) => c.checklistId) as number[];
         }
     }
 
     onMount(() => {
-        let z: string = localStorage?.useCapturedSpecies;
-        if (z) {
-            capturedSpecies = z.split(',').map((s: string) => parseInt(s));
-        } else {
-            capturedSpecies = speciesChecklist.map((s: any) => s.checklistId);
-        }
-
-        let y: string = localStorage?.useSelectAllSpecies;
+        let y: string = localStorage?.useAllSpeciesChoice;
+        //console.log('y', y, 'useallspecies', useAllSpecies);
         if (y && y.length) {
-            selectAllSpecies = parseInt(y);
+            useAllSpecies = parseInt(y);
         } else {
-            selectAllSpecies = 1;
+            useAllSpecies = initialUseAllSpeciesChoice;
         }
+        //console.log('useallspecies', useAllSpecies);
 
         let x: string = localStorage?.useLatinChoice;
         if (x && x.length) {
@@ -82,20 +81,33 @@
         } else {
             useLatin = initialUseLatinChoice;
         }
+        speciesChecklist = SortSpecies(useLatin);
 
         //ned 1/24/24 toggleAllSpecies();
+        if (useAllSpecies) {
+            speciesChecked = speciesChecklist.map((c) => c.checklistId);
+            //console.log('species checked', speciesChecked);
+        } else {
+            let z: string = localStorage?.useCapturedSpecies;
+            //console.log('z', z);
+            if (z) {
+                capturedSpecies = z.split(',').map((s: string) => parseInt(s));
+                speciesChecked = capturedSpecies;
+                capturedSpecies = speciesChecklist.map((s: any) => s.checklistId);
+            }
+        }
     });
 
     afterUpdate(() => {
-        localStorage.setItem('useLatinChoice', useLatin.toString());
-        localStorage.setItem('useSelectAllSpecies', allSelected ? '1' : '0');
+        localStorage.setItem('useLatinChoice', useLatin ? '1' : '0');
+        localStorage.setItem('useAllSpeciesChoice', useAllSpecies ? '1' : '0');
         localStorage.setItem(
             'useCapturedSpecies',
             speciesChecked.map((s) => s.toString()).join(',')
         );
     });
 
-    $: allSelected = speciesChecklist.length === speciesChecked.length;
+    $: useAllSpecies = speciesChecked.length === speciesChecklist.length;
 
 </script>
 
@@ -109,7 +121,7 @@
         <span>↓</span>
     </button>
     <div class="text-warning-500 italic text-sm">
-        {allSelected
+        {useAllSpecies
             ? 'All species'
             : speciesChecked.length > 0
               ? 'Species filtered'
@@ -120,13 +132,12 @@
 <div data-popup="popupComboboxSpecies">
     <div class="card w-64 shadow-xl p-2">
         <label class="flex justify-between space-x-2">
-            <span>{allSelected ? 'Unselect all' : 'Select all'}</span>
+            <span>{useAllSpecies ? 'Select all' : 'Unselect all'}</span>
             <SlideToggle
                 name="toggle-all-species"
                 size="sm"
                 active="variant-filled-primary"
-                bind:value={selectAllSpecies}
-                checked={allSelected}
+                bind:checked={useAllSpecies}
                 on:click={toggleAllSpecies}
             /><input hidden />
         </label>

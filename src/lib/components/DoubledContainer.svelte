@@ -13,13 +13,13 @@
     // Should do this for show/hide avatar and for show/hide app bar
     let heightAdjust = 4 + (showAppBar ? 132 : 0) + (showFooter ? 16 : 0);
     let configOuterBody: CssClasses = showFooter
-        ? `container flex flex-row gap-8 h-[calc(100vh_-_${heightAdjust}px)] px-8 pt-8 pb-4 has-footer`
-        : `container flex flex-row gap-8 h-[calc(100vh_-_${heightAdjust}px] p-8`;
+        ? `container flex flex-row gap-8 px-8 pt-8 pb-4 has-footer`
+        : `container flex flex-row gap-8 p-8`;
     /*
     const configOuterBody = "container flex flex-row gap-8"
     */
 
-    const cBaseCard = "card py-4 pl-4 h-full flex flex-col space-y-2";
+    const cBaseCard = 'card py-4 pl-4 h-full flex flex-col space-y-2';
     //const cBaseLeftHead = '';
     const cBaseLeftBody = 'space-y-2 h-full';
     //const cBaseLeftTail = '';
@@ -34,7 +34,7 @@
     export let rightHeadClasses: CssClasses = 'pr-4';
     export let rightBodyClasses: CssClasses = 'overflow-y-auto';
     export let rightTailClasses: CssClasses = '';
-    
+
     $: classesOuterBody = `${configOuterBody}`;
 
     $: classesLeftCard = `${cBaseCard} ${basisLeft}`;
@@ -52,9 +52,9 @@
 <div class={classesOuterBody}>
     <div class={classesLeftCard}>
         {#if $$slots.leftHead}
-        <div class={classesLeftHead}>
-            <slot name="leftHead" />
-        </div>
+            <div class={classesLeftHead}>
+                <slot name="leftHead" />
+            </div>
         {/if}
 
         <div class={classesLeftBody}>
@@ -62,17 +62,17 @@
         </div>
 
         {#if $$slots.leftTail}
-        <div class={classesLeftTail}>
-            <slot name="leftTail" />
-        </div>
+            <div class={classesLeftTail}>
+                <slot name="leftTail" />
+            </div>
         {/if}
     </div>
 
     <div class={classesRightCard}>
         {#if $$slots.rightHead}
-        <div class={classesRightHead}>
-            <slot name="rightHead" />
-        </div>
+            <div class={classesRightHead}>
+                <slot name="rightHead" />
+            </div>
         {/if}
 
         <div class={classesRightBody}>
@@ -80,23 +80,22 @@
         </div>
 
         {#if $$slots.rightTail}
-        <div class={classesRightTail}>
-            <slot name="rightTail" />
-        </div>
+            <div class={classesRightTail}>
+                <slot name="rightTail" />
+            </div>
         {/if}
     </div>
 </div>
+
 <!--
     the h and calc works in StandardContainer, but had to do below to make work
     - might be a thunderbird thing
 -->
 <style>
-.container.has-footer {
-    @apply px-8 pt-8 pb-4;
-    height: calc(100vh - 144px);
-}
-.container {
-    @apply p-8;
-    height: calc(100vh - 128px);
-}
+    .container.has-footer {
+        height: calc(100vh - 144px);
+    }
+    .container {
+        height: calc(100vh - 128px);
+    }
 </style>

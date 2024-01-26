@@ -5,19 +5,19 @@
 
 <StandardContainer>
 	<svelte:fragment slot="standardBody">
-  <h1>Admin</h1>
+    <h1>Admin</h1>
 
-  {#if $page.data.user}
+    {#if $page.data.user}
     <p>Welcome {$page.data.user.name}!</p>
-  {/if}
+    {/if}
 
     <form action="/logout" method="POST">
       <button type="submit" class="btn variant-filled">Log out</button>
     </form>
 
-  {#if $page.data.user.role === 'ADMIN'}
-  <p>Panes for editing, user management, and system configuration can go here.</p>
-  {/if}
+    {#if $page.data.user.role === 'ADMIN'}
+    <p>Panes for editing, user management, and system configuration can go here.</p>
+    {/if}
 
-</svelte:fragment>
+    </svelte:fragment>
 </StandardContainer>
