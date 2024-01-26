@@ -87,7 +87,7 @@
         </div>
     </svelte:fragment>
 
-    <svelte:fragment slot="standardContent">
+    <svelte:fragment slot="standardBody">
         <div class="max-w-[600px]">
             <div class="content">
                 <div>siteName: {@html data.site.siteName ?? ''}</div>

@@ -9,7 +9,7 @@
     <svelte:fragment slot="standardHead">
         <div class="bg-red">Checklist (species) Count: {data.checklists.length}</div>
     </svelte:fragment>
-    <svelte:fragment slot="standardContent">
+    <svelte:fragment slot="standardBody">
         <ul class="w-1/2 pl-4">
         {#each data.checklists as checklist}
             <li class="checklist">

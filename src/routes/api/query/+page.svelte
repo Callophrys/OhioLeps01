@@ -85,17 +85,17 @@
                                         >Region&nbsp;</th
                                     >-->
                                     <th
-                                        class="sticky top-0 px-6 py-3 variant-ghost-surface rounded-tl"
+                                        class="sticky top-0 px-6 py-3 variant-outline-surface rounded-tl"
                                         >Region&nbsp;</th
                                     >
                                     <th class="sticky top-0 px-6 py-3 variant-outline-surface"
                                         >County&nbsp</th
                                     >
-                                    <th class="sticky top-0 px-6 py-3 variant-ghost-surface"
+                                    <th class="sticky top-0 px-6 py-3 variant-outline-surface"
                                         >Common Name&nbsp;</th
                                     >
                                     <th
-                                        class="sticky top-0 px-6 py-3 variant-ghost-surface rounded-tr"
+                                        class="sticky top-0 px-6 py-3 variant-outline-surface rounded-tr"
                                         >Scientific Name&nbsp</th
                                     >
                                 </tr>

@@ -13,7 +13,7 @@
                 .length}
         </div>
     </svelte:fragment>
-    <svelte:fragment slot="standardContent">
+    <svelte:fragment slot="standardBody">
         <div class="w-1/2">
             <dl class="list-dl max-w-80">
                 {#each data.counties as county}

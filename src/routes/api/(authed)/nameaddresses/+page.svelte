@@ -7,7 +7,7 @@
 	<svelte:fragment slot="standardHead">
         <div class="bg-red">Name-Address Count: {data.nameAddresses.length}</div>
     </svelte:fragment>
-	<svelte:fragment slot="standardContent">
+	<svelte:fragment slot="standardBody">
         <ul class="nameAddresses">
             {#each data.nameAddresses as nameAddress}
                 <li class="nameAddress">

@@ -62,7 +62,7 @@
         </div>
     </svelte:fragment>
 
-    <svelte:fragment slot="standardContent">
+    <svelte:fragment slot="standardBody">
         <div class="">
             {#if typeof form === 'object' && !isEmpty(form?.data)}
                 <div class="w-1/2">

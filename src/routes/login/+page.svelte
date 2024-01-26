@@ -27,7 +27,7 @@
 </script>
 
 <StandardContainer>
-	<svelte:fragment slot="standardContent">
+	<svelte:fragment slot="standardBody">
     <h1>Login</h1>
 
     <form action="?/login" method="POST" class="max-w-80 min-w-32 space-y-2" use:enhance>

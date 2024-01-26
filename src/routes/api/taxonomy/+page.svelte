@@ -127,7 +127,7 @@
 	<svelte:fragment slot="standardHead">
     <div class="">Butterflies of North America</div>
     </svelte:fragment>
-	<svelte:fragment slot="standardContent">
+	<svelte:fragment slot="standardBody">
     <TreeView bind:this={myTreeView}>
         <TreeViewItem>
             {getScientificName(o) + ' - - - - ' + o.commonName}

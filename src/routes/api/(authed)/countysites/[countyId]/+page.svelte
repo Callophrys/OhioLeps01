@@ -48,7 +48,7 @@
             </div>
         </div>
     </svelte:fragment>
-    <svelte:fragment slot="standardContent">
+    <svelte:fragment slot="standardBody">
         <div>
             <div class="flex flex-wrap gap-2">
                 {#each data.sites as site, i}

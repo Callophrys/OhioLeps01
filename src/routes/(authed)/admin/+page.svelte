@@ -4,7 +4,7 @@
 </script>
 
 <StandardContainer>
-	<svelte:fragment slot="standardContent">
+	<svelte:fragment slot="standardBody">
   <h1>Admin</h1>
 
   {#if $page.data.user}
