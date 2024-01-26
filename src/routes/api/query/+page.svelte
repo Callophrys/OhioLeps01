@@ -4,7 +4,7 @@
     import SpeciesPicker from '$lib/components/query/SpeciesPicker.svelte';
     import TimeframePicker from '$lib/components/query/TimeframePicker.svelte';
     import DoubledContainer from '$lib/components/DoubledContainer.svelte';
-    import { TreeView, TreeViewItem } from '@skeletonlabs/skeleton';
+    //import { TreeView, TreeViewItem } from '@skeletonlabs/skeleton';
     import { scientificName } from '$lib/utils.js';
     import type { countySpecimen } from '$lib/types.js';
 
