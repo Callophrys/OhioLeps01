@@ -23,37 +23,95 @@
     let useLatin: number;
     let capturedSpecies: number[] = [];
 
-    function SortSpecies(isScientific: boolean) {
-        console.log(speciesChecklist[0]);
-// TODO: handle flip flop of sort order
-        if (isScientific) {
-            console.log('useLatin', useLatin);
+    enum SORTORDER {
+        NONE = 0,
+        ASC = 1,
+        DSC = 2
+    }
+
+    let sortOrderCommon: SORTORDER = SORTORDER.NONE;
+    let sortOrderLatin: SORTORDER = SORTORDER.NONE;
+    let sortIconCommon: string = '';
+    let sortIconLatin: string = '';
+
+    function GetSortedSpecies() {
+        /*
+        console.log(speciesChecklist[0]); console.log('Sort species - useLatin', useLatin);
+        console.log('sortOrderLatin', sortOrderLatin); console.log('sortOrderCommon',sortOrderCommon);
+        console.log('sortIconLatin', sortIconLatin); console.log('sortIconCommon', sortIconCommon);
+        */
+
+        if (useLatin) {
+
+            let factor1 = sortOrderLatin !== SORTORDER.ASC ? 1 : -1;
+            let factor2 = -1 * factor1;
+
             return speciesChecklist.toSorted((a: Checklist, b: Checklist) => {
-                if (a.scientificName < b.scientificName) return -1;
-                if (a.scientificName > b.scientificName) return 1;
-                if (a.commonName < b.commonName) return -1;
-                if (a.commonName > b.commonName) return 1;
+                if (a.scientificName < b.scientificName) return factor1;
+                if (a.scientificName > b.scientificName) return factor2;
+                if (a.commonName < b.commonName) return factor1;
+                if (a.commonName > b.commonName) return factor2;
                 return 0;
             });
         } else {
-            console.log('useLatin', useLatin);
+
+            let factor1 = sortOrderCommon !== SORTORDER.ASC ? 1 : -1;
+            let factor2 = -1 * factor1;
+
             return speciesChecklist.toSorted((a: Checklist, b: Checklist) => {
-                if (a.commonName < b.commonName) return -1;
-                if (a.commonName > b.commonName) return 1;
-                if (a.scientificName < b.scientificName) return -1;
-                if (a.scientificName > b.scientificName) return 1;
+                if (a.commonName < b.commonName) return factor1;
+                if (a.commonName > b.commonName) return factor2;
+                if (a.scientificName < b.scientificName) return factor1;
+                if (a.scientificName > b.scientificName) return factor2;
                 return 0;
             });
         }
-        /*
-        console.log('keys', Object.keys(speciesChecklist));
-        console.log('values', Object.values(speciesChecklist));
-        console.log('entries', Object.entries(speciesChecklist));
-        */
     }
 
     function handleNamingClick(e: any) {
-        speciesChecklist = SortSpecies(useLatin);
+
+        if (e.currentTarget.name === 'toggle-naming-latin') {
+
+            if (useLatin) {
+
+                if (sortOrderLatin !== SORTORDER.ASC) {
+                    sortOrderLatin = SORTORDER.ASC;
+                    sortIconLatin = 'table-sort-dsc';
+                } else {
+                    sortOrderLatin = SORTORDER.DSC;
+                    sortIconLatin = 'table-sort-asc';
+                }
+
+                sortOrderCommon = SORTORDER.NONE;
+                sortIconCommon = '';
+                speciesChecklist = GetSortedSpecies();
+
+            } else if (sortOrderCommon !== SORTORDER.NONE) {
+                sortOrderLatin = SORTORDER.NONE;
+                sortIconLatin = '';
+            }
+
+        } else {
+
+            if (!useLatin) {
+
+                if (sortOrderCommon !== SORTORDER.ASC) {
+                    sortOrderCommon = SORTORDER.ASC;
+                    sortIconCommon = 'table-sort-dsc';
+                } else {
+                    sortOrderCommon = SORTORDER.DSC;
+                    sortIconCommon = 'table-sort-asc';
+                }
+
+                sortOrderLatin = SORTORDER.NONE;
+                sortIconLatin = '';
+                speciesChecklist = GetSortedSpecies();
+
+            } else if (sortOrderLatin !== SORTORDER.NONE) {
+                sortOrderCommon = SORTORDER.NONE;
+                sortIconCommon = '';
+            }
+        }
     }
 
     function toggleAllSpecies(e: any) {
@@ -81,7 +139,7 @@
         } else {
             useLatin = initialUseLatinChoice;
         }
-        speciesChecklist = SortSpecies(useLatin);
+        speciesChecklist = GetSortedSpecies(useLatin);
 
         //ned 1/24/24 toggleAllSpecies();
         if (useAllSpecies) {
@@ -151,14 +209,16 @@
             >
                 <RadioItem
                     bind:group={useLatin}
-                    on:change={handleNamingClick}
-                    name="toggle-naming"
+                    on:click={handleNamingClick}
+                    class={sortIconCommon}
+                    name="toggle-naming-common"
                     value={0}>Common</RadioItem
                 >
                 <RadioItem
                     bind:group={useLatin}
-                    on:change={handleNamingClick}
-                    name="toggle-naming"
+                    on:click={handleNamingClick}
+                    class={sortIconLatin}
+                    name="toggle-naming-latin"
                     value={1}>Latin</RadioItem
                 >
             </RadioGroup>

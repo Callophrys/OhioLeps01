@@ -47,7 +47,7 @@
     */
 </script>
 
-<DoubledContainer rightBodyClasses="overflow-hidden h-[calc(100vh_-_212px)]">
+<DoubledContainer rightBodyClasses="overflow-hidden">
     <svelte:fragment slot="leftBody">
         <div>
             <form method="POST" class="p-4 space-y-2" action="?/query">

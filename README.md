@@ -468,6 +468,35 @@ Simple pan/zoom solution for SVGs in HTML. It adds events listeners for mouse sc
 - JavaScript API for control of pan and zoom behavior
 - onPan and onZoom event handlers
 - On-screen zoom controls
+
+https://github.com/JosephM101/Force-Windows-11-Install/blob/main/docs/UUPDump-Tutorial.md
+
+OPACITY stuff
+https://stackoverflow.com/questions/15597167/css3-opacity-gradient
 ```
+
+
+wsl --install
+wsl --list --online
+wsl --install -d ubuntu-22.04
+
+54      ux frog butt
+squeaks ux frogbutt - biscuit
+
+curl -fsSL https://deb.nodesource.com/setup_21.x | sudo -E bash - &&\
+sudo apt-get install -y nodejs
+
+sudo apt install neovim
+sudo apt install fd-find
+ln -s $(which fdfind) ./bin
+
+sudo apt-get install ninja-build gettext cmake unzip cur
+cd ~
+git clone https://github.com/neovim/neovim
+cd neovim/
+make CMAKE_BUILD_TYPE=Release
+sudo make install
+
+
 
 
