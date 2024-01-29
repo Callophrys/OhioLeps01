@@ -18,7 +18,9 @@
     export let initialUseLatinChoice: number = 1;
 
     let speciesChecked: number[] = [];
+    let i: number;
 
+    let namingSort: string; // L or C + N or A or D
     let useAllSpecies: number;
     let useLatin: number;
     let capturedSpecies: number[] = [];
@@ -34,14 +36,17 @@
     let sortIconCommon: string = '';
     let sortIconLatin: string = '';
 
-    function GetSortedSpecies() {
+    function GetSortedSpecies(isLatin: bool) {
+        i = 0;
         /*
-        console.log(speciesChecklist[0]); console.log('Sort species - useLatin', useLatin);
+        */
+        //console.log('inside sort');
+        //console.log(speciesChecklist[0]);
+        console.log('Sort species - useLatin', useLatin);
         console.log('sortOrderLatin', sortOrderLatin); console.log('sortOrderCommon',sortOrderCommon);
         console.log('sortIconLatin', sortIconLatin); console.log('sortIconCommon', sortIconCommon);
-        */
 
-        if (useLatin) {
+        if (isLatin) {
 
             let factor1 = sortOrderLatin !== SORTORDER.ASC ? 1 : -1;
             let factor2 = -1 * factor1;
@@ -84,7 +89,7 @@
 
                 sortOrderCommon = SORTORDER.NONE;
                 sortIconCommon = '';
-                speciesChecklist = GetSortedSpecies();
+                speciesChecklist = GetSortedSpecies(true);
 
             } else if (sortOrderCommon !== SORTORDER.NONE) {
                 sortOrderLatin = SORTORDER.NONE;
@@ -105,7 +110,7 @@
 
                 sortOrderLatin = SORTORDER.NONE;
                 sortIconLatin = '';
-                speciesChecklist = GetSortedSpecies();
+                speciesChecklist = GetSortedSpecies(false);
 
             } else if (sortOrderLatin !== SORTORDER.NONE) {
                 sortOrderCommon = SORTORDER.NONE;
@@ -124,14 +129,53 @@
     }
 
     onMount(() => {
+        let z: string = localStorage?.namingSort;
+        if (z && z.length) {
+            if (z[0] === 'L') {
+                if (z[1] === 'A') {
+                    sortOrderLatin = SORTORDER.ASC;
+                    sortIconLatin = 'table-sort-asc';
+                } else if (z[1] === 'D') {
+                    sortOrderLatin = SORTORDER.DSC;
+                    sortIconLatin = 'table-sort-dsc';
+                } else {
+                    sortOrderLatin = SORTORDER.NONE;
+                    sortIconLatin = '';
+                }
+                sortOrderCommon = SORTORDER.NONE;
+                sortIconCommon = '';
+
+                speciesChecklist = GetSortedSpecies(true);
+            } else {
+                if (z[1] === 'A') {
+                    sortOrderCommon = SORTORDER.ASC;
+                    sortIconCommon = 'table-sort-asc';
+                } else if (z[1] === 'D') {
+                    sortOrderCommon = SORTORDER.DSC;
+                    sortIconCommon = 'table-sort-dsc';
+                } else {
+                    sortOrderCommon = SORTORDER.NONE;
+                    sortIconCommon = '';
+                }
+                sortOrderLatin = SORTORDER.NONE;
+                sortIconLatin = '';
+
+                speciesChecklist = GetSortedSpecies(false);
+            }
+
+        } else {
+            sortOrderCommon = SORTORDER.NONE;
+            sortOrderLatin = SORTORDER.NONE;
+            sortIconCommon = '';
+            sortIconLatin = '';
+        }
+
         let y: string = localStorage?.useAllSpeciesChoice;
-        //console.log('y', y, 'useallspecies', useAllSpecies);
         if (y && y.length) {
             useAllSpecies = parseInt(y);
         } else {
             useAllSpecies = initialUseAllSpeciesChoice;
         }
-        //console.log('useallspecies', useAllSpecies);
 
         let x: string = localStorage?.useLatinChoice;
         if (x && x.length) {
@@ -139,15 +183,11 @@
         } else {
             useLatin = initialUseLatinChoice;
         }
-        speciesChecklist = GetSortedSpecies(useLatin);
 
-        //ned 1/24/24 toggleAllSpecies();
         if (useAllSpecies) {
             speciesChecked = speciesChecklist.map((c) => c.checklistId);
-            //console.log('species checked', speciesChecked);
         } else {
             let z: string = localStorage?.useCapturedSpecies;
-            //console.log('z', z);
             if (z) {
                 capturedSpecies = z.split(',').map((s: string) => parseInt(s));
                 speciesChecked = capturedSpecies;
@@ -156,8 +196,17 @@
         }
     });
 
+    const getSortSave = () => {
+        if (sortOrderLatin === SORTORDER.ASC) { return 'A'; }
+        if (sortOrderLatin === SORTORDER.DSC) { return 'D'; }
+        if (sortOrderCommon === SORTORDER.ASC) { return 'A'; }
+        if (sortOrderCommon === SORTORDER.DSC) { return 'D'; }
+        return 'N';
+    }
+
     afterUpdate(() => {
         localStorage.setItem('useLatinChoice', useLatin ? '1' : '0');
+        localStorage.setItem('namingSort', `${useLatin ? 'L' : 'C'}${getSortSave()}`);
         localStorage.setItem('useAllSpeciesChoice', useAllSpecies ? '1' : '0');
         localStorage.setItem(
             'useCapturedSpecies',
@@ -225,7 +274,7 @@
         </div>
 
         <div class="half-vh">
-            {#each speciesChecklist as species (species.checklistId)}
+            {#each speciesChecklist as species, i}
                 <label class="flex items-center space-x-2 pl-6">
                     <input
                         type="checkbox"
@@ -234,7 +283,7 @@
                         bind:group={speciesChecked}
                         name="select-species"
                     />
-                    <p>{useLatin ? species.scientificName : species.commonName}</p>
+                    <p>{i + 1}. {useLatin ? species.scientificName : (species.commonName ?? '')}</p>
                 </label>
             {/each}
         </div>

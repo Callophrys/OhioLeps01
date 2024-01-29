@@ -355,6 +355,7 @@ http://wedgefoundation.org/publications_paypal.asp
 ◀
 ▲
 ▼
+∅
 Character	Numerical Code	Name of Character
 |	&#124;	vertical bar/pipe
 ¦	&#166;	broken vertical bar
