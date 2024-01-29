@@ -65,14 +65,8 @@
     <svelte:fragment slot="leftBody">
         <div>
             <form method="POST" class="p-4 space-y-2" action="?/query" use:enhance={runSearch}>
-                <StateCountyPicker
-                    counties={data.counties}
-                    initialHideUnmonitoredChoice={config.initialHideUnmonitedChoice}
-                />
-                <SpeciesPicker
-                    speciesChecklist={data.speciesList}
-                    initialUseLatinChoice={config.initialUseLatinChoice}
-                />
+                <StateCountyPicker counties={data.counties} initialHideUnmonitoredChoice={config.initialHideUnmonitedChoice} />
+                <SpeciesPicker speciesChecklist={data.speciesList} initialUseLatinChoice={config.initialUseLatinChoice} />
                 <TimeframePicker initialDateRangeChoice={config.initialDateRangeChoice} />
                 <hr />
                 <div class="flex">
@@ -87,78 +81,36 @@
 
     <svelte:fragment slot="rightBody">
         {#if loading}
-            <div class="w-full h-full pl-4 pt-2 variant-filled-surface hover:cursor-wait">
-                Loading...
-            </div>
+            <div class="w-full h-full pl-4 pt-2 variant-filled-surface hover:cursor-wait">Loading...</div>
         {:else if form?.success}
-            <!-- Responsive Container (recommended) -->
-            <div class="table-container">
-                <div class="flex flex-col h-screen">
-                    <div class="flex-grow overflow-auto scroll-mt-6">
-                        <table class="table table-hover relative w-full">
-                            <thead>
-                                <tr>
-                                    <!--<th
-                                        class="table-sort-asc sticky top-0 px-6 py-3 bg-surface-700 variant-outline-surface rounded-tl"
-                                        >Region&nbsp;</th
-                                    >-->
-                                    <th
-                                        class="sticky top-0 px-6 py-3 variant-outline-surface rounded-tl"
-                                        >Region&nbsp;</th
-                                    >
-                                    <th class="sticky top-0 px-6 py-3 variant-outline-surface"
-                                        >County&nbsp</th
-                                    >
-                                    <th class="sticky top-0 px-6 py-3 variant-outline-surface"
-                                        >Common Name&nbsp;</th
-                                    >
-                                    <th
-                                        class="sticky top-0 px-6 py-3 variant-outline-surface rounded-tr"
-                                        >Scientific Name&nbsp</th
-                                    >
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {#each form.checklists as checklist, i}
-                                    <tr>
-                                        <td>
-                                            {checklist.county}
-                                        </td>
-                                        <td>
-                                            {checklist.region}
-                                        </td>
-                                        <td>
-                                            {checklist.commonName}
-                                        </td>
-                                        <td>
-                                            {scientificName(
-                                                checklist.genus,
-                                                checklist.species,
-                                                checklist.subSpecies
-                                            )}
-                                        </td>
-                                    </tr>
-                                {/each}
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td class="indent-4"
-                                        >{[...new Set(form.checklists.map((x) => x.county))]
-                                            .length}</td
-                                    >
-                                    <td class="indent-4"
-                                        >{[...new Set(form.checklists.map((x) => x.region))]
-                                            .length}</td
-                                    >
-                                    <td class="indent-4"
-                                        >{[...new Set(form.checklists.map((x) => x.checklistId))]
-                                            .length}</td
-                                    >
-                                    <td class="">[Totals of each distinct]</td>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
+            <div class="w-[calc(100%_-_1em)] h-[calc(100%_-_5em)]">
+                <div class="flex">
+                    <div class="w-28 top-0 px-6 py-3 font-bold text-center variant-outline-surface rounded-tl">Region&nbsp;</div>
+                    <div class="w-28 top-0 px-6 py-3 font-bold text-center variant-outline-surface">County&nbsp</div>
+                    <div class="top-0 px-6 py-3 basis-[calc(45%_-_calc(0.45_*_224px))] font-bold text-center variant-outline-surface">Common Name&nbsp;</div>
+                    <div class="top-0 px-6 py-3 flex-auto font-bold text-center variant-outline-surface rounded-tr">Scientific Name&nbsp</div>
+                </div>
+
+                <div class="overflow-y-auto h-full">
+                    {#each form.checklists as checklist, i}
+                        <div class="flex">
+                            <div class="w-28 pl-2">{checklist.county}</div>
+                            <div class="w-28 pl-2">{checklist.region}</div>
+                            <div class="basis-[calc(45%_-_calc(0.45_*_224px))] pl-2">
+                                {checklist.commonName}
+                            </div>
+                            <div class="flex-auto pl-2">
+                                {scientificName(checklist.genus, checklist.species, checklist.subSpecies)}
+                            </div>
+                        </div>
+                    {/each}
+                </div>
+
+                <div class="flex">
+                    <div class="w-28 pl-4">{[...new Set(form.checklists.map((x) => x.county))].length}</div>
+                    <div class="w-28 pl-4">{[...new Set(form.checklists.map((x) => x.region))].length}</div>
+                    <div class="basis-[calc(45%_-_calc(0.45_*_224px))] pl-4">{[...new Set(form.checklists.map((x) => x.checklistId))].length}</div>
+                    <div class="flex-auto">[Totals of each distinct]</div>
                 </div>
             </div>
         {/if}
