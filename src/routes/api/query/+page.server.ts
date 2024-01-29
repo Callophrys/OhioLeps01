@@ -10,6 +10,7 @@ import type { County } from '@prisma/client';
 import type { Checklist } from '@prisma/client';
 import type { countySpecimen } from '$lib/types';
 import { sep } from 'path';
+import { scientificName } from '$lib/utils.js';
 
 /*
 export async function load({ cookies, url }) {
@@ -76,7 +77,8 @@ export const actions = {
 		//console.log('specimenFilter', specimenFilter);
 
 		const checklists = await getChecklistsFiltered(specimenFilter);
-		return { success: true, checklists: checklists };
+		checklists.forEach((s: countySpecimen) => { s.scientificName = scientificName(s.genus, s.species, s.subSpecies) });
+		return { success: true, checklists }
 	}
 }
 

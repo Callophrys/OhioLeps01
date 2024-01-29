@@ -59,6 +59,54 @@
     console.log('data', data);
     console.log('form', form);
     */
+
+    type sortInfo = { col: string; ascending: boolean };
+    const sortBy: sortInfo[] = [];
+    let dirIndicator: any = {
+        region: '',
+        county: '',
+        commonName: '',
+        scientificName: '',
+    };
+
+    $: resultSort = (e: any) => {
+        if (form) {
+            let column = e.currentTarget.name;
+            console.log('column', column);
+            console.log('sortBy 0', sortBy);
+
+            if (sortBy.length === 1 && sortBy[0].col === column) {
+                sortBy[0].ascending = !sortBy[0].ascending;
+            } else {
+                let idx = sortBy.findIndex((c: { col: string; ascending: boolean }) => c.col === column);
+                if (idx > -1) {
+                    console.log('sortBy 1', sortBy);
+                    let spliced = sortBy.splice(idx, 1)[0];
+                    console.log('spliced', spliced);
+                    spliced.ascending = !spliced.ascending;
+                    sortBy.push(spliced);
+                    dirIndicator[column] = spliced.ascending ? 'table-sort-asc' : 'table-sort-dsc';
+                    console.log('sortBy 2', sortBy);
+                } else {
+                    sortBy.push({ col: column, ascending: true });
+                    dirIndicator[column] = 'table-sort-asc';
+                }
+            }
+
+            sortBy.forEach((s: sortInfo) => {
+                console.log(2, s.col);
+                let sortModifier = s.ascending ? 1 : -1;
+                const sort = (a: any, b: any) => (a.col < b.col ? -1 * sortModifier : a.col > b.col ? 1 * sortModifier : 0);
+                form?.checklists.sort(sort);
+            });
+
+            form.checklists = form.checklists;
+            console.log('form', form?.checklists[2]);
+            console.log();
+            /*
+             */
+        }
+    };
 </script>
 
 <DoubledContainer rightBodyClasses={loading ? 'overflow-hidden pr-4' : 'overflow-hidden'}>
@@ -85,30 +133,26 @@
         {:else if form?.success}
             <div class="w-[calc(100%_-_1em)] h-[calc(100%_-_5em)]">
                 <div class="flex">
-                    <div class="w-28 top-0 px-6 py-3 font-bold text-center variant-outline-surface rounded-tl">Region&nbsp;</div>
-                    <div class="w-28 top-0 px-6 py-3 font-bold text-center variant-outline-surface">County&nbsp</div>
-                    <div class="top-0 px-6 py-3 basis-[calc(45%_-_calc(0.45_*_224px))] font-bold text-center variant-outline-surface">Common Name&nbsp;</div>
-                    <div class="top-0 px-6 py-3 flex-auto font-bold text-center variant-outline-surface rounded-tr">Scientific Name&nbsp</div>
+                    <button class="w-28 top-0 px-6 py-3 font-bold text-center variant-outline-surface rounded-tl {dirIndicator.region}" name="region" on:click={resultSort}>Region&nbsp;</button>
+                    <button class="w-28 top-0 px-6 py-3 font-bold text-center variant-outline-surface {dirIndicator.county}" name="county" on:click={resultSort}>County&nbsp</button>
+                    <button class="top-0 px-6 py-3 basis-[calc(45%_-_calc(0.45_*_224px))] font-bold text-center variant-outline-surface {dirIndicator.commonName}" name="commonName" on:click={resultSort}>Common Name&nbsp;</button>
+                    <button class="top-0 px-6 py-3 flex-auto font-bold text-center variant-outline-surface rounded-tr {dirIndicator.scientificName}" name="scientificName" on:click={resultSort}>Scientific Name&nbsp</button>
                 </div>
 
                 <div class="overflow-y-auto h-full">
                     {#each form.checklists as checklist, i}
                         <div class="flex">
-                            <div class="w-28 pl-2">{checklist.county}</div>
                             <div class="w-28 pl-2">{checklist.region}</div>
-                            <div class="basis-[calc(45%_-_calc(0.45_*_224px))] pl-2">
-                                {checklist.commonName}
-                            </div>
-                            <div class="flex-auto pl-2">
-                                {scientificName(checklist.genus, checklist.species, checklist.subSpecies)}
-                            </div>
+                            <div class="w-28 pl-2">{checklist.county}</div>
+                            <div class="basis-[calc(45%_-_calc(0.45_*_224px))] pl-2">{checklist.commonName}</div>
+                            <div class="flex-auto pl-2">{checklist.scientificName}</div>
                         </div>
                     {/each}
                 </div>
 
                 <div class="flex">
-                    <div class="w-28 pl-4">{[...new Set(form.checklists.map((x) => x.county))].length}</div>
                     <div class="w-28 pl-4">{[...new Set(form.checklists.map((x) => x.region))].length}</div>
+                    <div class="w-28 pl-4">{[...new Set(form.checklists.map((x) => x.county))].length}</div>
                     <div class="basis-[calc(45%_-_calc(0.45_*_224px))] pl-4">{[...new Set(form.checklists.map((x) => x.checklistId))].length}</div>
                     <div class="flex-auto">[Totals of each distinct]</div>
                 </div>

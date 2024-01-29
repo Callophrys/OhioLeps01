@@ -22,6 +22,7 @@ export type countySpecimen = {
 	recordDate: Date,
 	checklistId: number,
 	commonName: string,
+	scientificName: string,
 	genus: string,
 	species: string,
 	subSpecies: string,
