@@ -361,6 +361,8 @@ Character	Numerical Code	Name of Character
 ¦	&#166;	broken vertical bar
 :	&#58;	colon
 ;	&#59;	semicolon
+∅   &varnothing; empty set or null symbol
+
 
 TODO: Deal with created|updated + By|At later
 TODO: Figure out edit history
@@ -472,6 +474,10 @@ Simple pan/zoom solution for SVGs in HTML. It adds events listeners for mouse sc
 
 https://github.com/JosephM101/Force-Windows-11-Install/blob/main/docs/UUPDump-Tutorial.md
 
+
+Table Sorts
+https://svelte.dev/repl/08aca4e5d75e4ba7b8b05680f3d3bf7a?version=3.49.0
+
 OPACITY stuff
 https://stackoverflow.com/questions/15597167/css3-opacity-gradient
 ```
@@ -497,6 +503,13 @@ git clone https://github.com/neovim/neovim
 cd neovim/
 make CMAKE_BUILD_TYPE=Release
 sudo make install
+
+# 1/29/2024
+```javascript
+async function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
+```
 
 
 

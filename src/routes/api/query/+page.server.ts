@@ -76,7 +76,7 @@ export const actions = {
 		//console.log('specimenFilter', specimenFilter);
 
 		const checklists = await getChecklistsFiltered(specimenFilter);
-
 		return { success: true, checklists: checklists };
 	}
-};
+}
+

@@ -4,12 +4,15 @@
     import SpeciesPicker from '$lib/components/query/SpeciesPicker.svelte';
     import TimeframePicker from '$lib/components/query/TimeframePicker.svelte';
     import DoubledContainer from '$lib/components/DoubledContainer.svelte';
-    //import { TreeView, TreeViewItem } from '@skeletonlabs/skeleton';
     import { scientificName } from '$lib/utils.js';
     import type { countySpecimen } from '$lib/types.js';
+    import { enhance } from '$app/forms';
+    import type { SubmitFunction } from '@sveltejs/kit';
 
     export let data;
     export let form;
+
+    let loading = false;
 
     const countedRegions = Object.create(null);
     const countedCounties = Object.create(null);
@@ -18,6 +21,15 @@
     const distinctRegions = Object.create(null);
     const distinctCounties = Object.create(null);
     const distinctSpecies = Object.create(null);
+
+    const runSearch: SubmitFunction = () => {
+        loading = true;
+
+        return async ({ update }) => {
+            loading = false;
+            await update();
+        };
+    };
 
     $: {
         if (form?.success) {
@@ -32,6 +44,7 @@
             });
         }
 
+        /*
         console.log('countedRegions', countedRegions);
         console.log('countedCounties', countedCounties);
         console.log('countedSpecies', countedSpecies);
@@ -39,6 +52,7 @@
         console.log('distinctRegions', Object.keys(distinctRegions).length);
         console.log('distinctCounties', Object.keys(distinctCounties).length);
         console.log('distinctSpecies', Object.keys(distinctSpecies).length);
+        */
     }
 
     /*
@@ -47,10 +61,10 @@
     */
 </script>
 
-<DoubledContainer rightBodyClasses="overflow-hidden">
+<DoubledContainer rightBodyClasses={loading ? 'overflow-hidden pr-4' : 'overflow-hidden'}>
     <svelte:fragment slot="leftBody">
         <div>
-            <form method="POST" class="p-4 space-y-2" action="?/query">
+            <form method="POST" class="p-4 space-y-2" action="?/query" use:enhance={runSearch}>
                 <StateCountyPicker
                     counties={data.counties}
                     initialHideUnmonitoredChoice={config.initialHideUnmonitedChoice}
@@ -62,17 +76,21 @@
                 <TimeframePicker initialDateRangeChoice={config.initialDateRangeChoice} />
                 <hr />
                 <div class="flex">
-                    <button class="btn variant-filled w-auto justify-between mx-auto">
+                    <button class="btn variant-filled w-auto justify-between mx-auto" type="submit">
                         <span>Run Search</span>
                         <span>→</span>
-                    </button> &varnothing;
+                    </button>
                 </div>
             </form>
         </div>
     </svelte:fragment>
 
     <svelte:fragment slot="rightBody">
-        {#if form?.success}
+        {#if loading}
+            <div class="w-full h-full pl-4 pt-2 variant-filled-surface hover:cursor-wait">
+                Loading...
+            </div>
+        {:else if form?.success}
             <!-- Responsive Container (recommended) -->
             <div class="table-container">
                 <div class="flex flex-col h-screen">
