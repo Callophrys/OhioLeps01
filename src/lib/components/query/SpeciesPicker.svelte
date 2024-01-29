@@ -42,34 +42,50 @@
         */
         //console.log('inside sort');
         //console.log(speciesChecklist[0]);
-        console.log('Sort species - useLatin', useLatin);
+        console.log('Sort species - isLatin', isLatin);
         console.log('sortOrderLatin', sortOrderLatin); console.log('sortOrderCommon',sortOrderCommon);
         console.log('sortIconLatin', sortIconLatin); console.log('sortIconCommon', sortIconCommon);
 
         if (isLatin) {
 
-            let factor1 = sortOrderLatin !== SORTORDER.ASC ? 1 : -1;
-            let factor2 = -1 * factor1;
+            if (sortOrderLatin === SORTORDER.ASC) {
+                speciesChecklist.sort((a: Checklist, b: Checklist) => {
+                    if (a.scientificName < b.scientificName) return 1;
+                    if (a.scientificName > b.scientificName) return -1;
+                    if (a.commonName < b.commonName) return 1;
+                    if (a.commonName > b.commonName) return -1;
+                    return 0;
+                });
+            } else {
+                speciesChecklist.sort((a: Checklist, b: Checklist) => {
+                    if (a.scientificName > b.scientificName) return 1;
+                    if (a.scientificName <  b.scientificName) return -1;
+                    if (a.commonName > b.commonName) return 1;
+                    if (a.commonName < b.commonName) return -1;
+                    return 0;
+                });
+            }
 
-            return speciesChecklist.toSorted((a: Checklist, b: Checklist) => {
-                if (a.scientificName < b.scientificName) return factor1;
-                if (a.scientificName > b.scientificName) return factor2;
-                if (a.commonName < b.commonName) return factor1;
-                if (a.commonName > b.commonName) return factor2;
-                return 0;
-            });
         } else {
 
-            let factor1 = sortOrderCommon !== SORTORDER.ASC ? 1 : -1;
-            let factor2 = -1 * factor1;
+            if (sortOrderCommon === SORTORDER.ASC) {
+                speciesChecklist.sort((a: Checklist, b: Checklist) => {
+                    if (a.commonName < b.commonName) return 1;
+                    if (a.commonName > b.commonName) return -1;
+                    if (a.scientificName < b.scientificName) return 1;
+                    if (a.scientificName > b.scientificName) return -1;
+                    return 0;
+                });
+            } else {
+                speciesChecklist.sort((a: Checklist, b: Checklist) => {
+                    if (a.commonName > b.commonName) return 1;
+                    if (a.commonName < b.commonName) return -1;
+                    if (a.scientificName > b.scientificName) return 1;
+                    if (a.scientificName <  b.scientificName) return -1;
+                    return 0;
+                });
+            }
 
-            return speciesChecklist.toSorted((a: Checklist, b: Checklist) => {
-                if (a.commonName < b.commonName) return factor1;
-                if (a.commonName > b.commonName) return factor2;
-                if (a.scientificName < b.scientificName) return factor1;
-                if (a.scientificName > b.scientificName) return factor2;
-                return 0;
-            });
         }
     }
 
@@ -89,7 +105,8 @@
 
                 sortOrderCommon = SORTORDER.NONE;
                 sortIconCommon = '';
-                speciesChecklist = GetSortedSpecies(true);
+                GetSortedSpecies(true);
+                speciesChecklist = speciesChecklist;
 
             } else if (sortOrderCommon !== SORTORDER.NONE) {
                 sortOrderLatin = SORTORDER.NONE;
@@ -110,7 +127,8 @@
 
                 sortOrderLatin = SORTORDER.NONE;
                 sortIconLatin = '';
-                speciesChecklist = GetSortedSpecies(false);
+                GetSortedSpecies(false);
+                speciesChecklist = speciesChecklist;
 
             } else if (sortOrderLatin !== SORTORDER.NONE) {
                 sortOrderCommon = SORTORDER.NONE;
@@ -145,7 +163,8 @@
                 sortOrderCommon = SORTORDER.NONE;
                 sortIconCommon = '';
 
-                speciesChecklist = GetSortedSpecies(true);
+                GetSortedSpecies(true);
+                speciesChecklist = speciesChecklist;
             } else {
                 if (z[1] === 'A') {
                     sortOrderCommon = SORTORDER.ASC;
@@ -160,7 +179,8 @@
                 sortOrderLatin = SORTORDER.NONE;
                 sortIconLatin = '';
 
-                speciesChecklist = GetSortedSpecies(false);
+                GetSortedSpecies(false);
+                speciesChecklist = speciesChecklist;
             }
 
         } else {
@@ -274,7 +294,7 @@
         </div>
 
         <div class="half-vh">
-            {#each speciesChecklist as species, i}
+            {#each speciesChecklist as species}
                 <label class="flex items-center space-x-2 pl-6">
                     <input
                         type="checkbox"
@@ -283,7 +303,9 @@
                         bind:group={speciesChecked}
                         name="select-species"
                     />
-                    <p>{i + 1}. {useLatin ? species.scientificName : (species.commonName ?? '')}</p>
+                    <p class="text-nowrap">{useLatin ?
+                        species.scientificName :
+                        (species.commonName ?? `(${species.scientificName})`)}</p>
                 </label>
             {/each}
         </div>
