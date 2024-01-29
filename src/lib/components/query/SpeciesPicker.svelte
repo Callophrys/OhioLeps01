@@ -37,55 +37,30 @@
     let sortIconLatin: string = '';
 
     function GetSortedSpecies(isLatin: bool) {
-        i = 0;
-        /*
-        */
-        //console.log('inside sort');
-        //console.log(speciesChecklist[0]);
-        console.log('Sort species - isLatin', isLatin);
-        console.log('sortOrderLatin', sortOrderLatin); console.log('sortOrderCommon',sortOrderCommon);
-        console.log('sortIconLatin', sortIconLatin); console.log('sortIconCommon', sortIconCommon);
+
+        if ((sortOrderCommon | sortOrderLatin) === SORTORDER.NONE) {
+            return;
+        }
 
         if (isLatin) {
 
-            if (sortOrderLatin === SORTORDER.ASC) {
-                speciesChecklist.sort((a: Checklist, b: Checklist) => {
-                    if (a.scientificName < b.scientificName) return 1;
-                    if (a.scientificName > b.scientificName) return -1;
-                    if (a.commonName < b.commonName) return 1;
-                    if (a.commonName > b.commonName) return -1;
-                    return 0;
-                });
-            } else {
-                speciesChecklist.sort((a: Checklist, b: Checklist) => {
-                    if (a.scientificName > b.scientificName) return 1;
-                    if (a.scientificName <  b.scientificName) return -1;
-                    if (a.commonName > b.commonName) return 1;
-                    if (a.commonName < b.commonName) return -1;
-                    return 0;
-                });
-            }
+            let sortDir = sortOrderLatin === SORTORDER.ASC ? 1 : -1;
+
+            speciesChecklist.sort((a: Checklist, b: Checklist) => {
+                if (a.scientificName > b.scientificName) return 1 * sortDir;
+                if (a.scientificName < b.scientificName) return -1 * sortDir;
+                return 0;
+            });
 
         } else {
 
-            if (sortOrderCommon === SORTORDER.ASC) {
-                speciesChecklist.sort((a: Checklist, b: Checklist) => {
-                    if (a.commonName < b.commonName) return 1;
-                    if (a.commonName > b.commonName) return -1;
-                    if (a.scientificName < b.scientificName) return 1;
-                    if (a.scientificName > b.scientificName) return -1;
-                    return 0;
-                });
-            } else {
-                speciesChecklist.sort((a: Checklist, b: Checklist) => {
-                    if (a.commonName > b.commonName) return 1;
-                    if (a.commonName < b.commonName) return -1;
-                    if (a.scientificName > b.scientificName) return 1;
-                    if (a.scientificName <  b.scientificName) return -1;
-                    return 0;
-                });
-            }
+            let sortDir = sortOrderCommon === SORTORDER.ASC ? 1 : -1;
 
+            speciesChecklist.sort((a: Checklist, b: Checklist) => {
+                if ((a.commonName ?? a.scientificName) > (b.commonName ?? b.scientificName)) return 1 * sortDir;
+                if ((a.commonName ?? a.scientificName) < (b.commonName ?? b.scientificName)) return -1 * sortDir;
+                return 0;
+            });
         }
     }
 
@@ -97,10 +72,10 @@
 
                 if (sortOrderLatin !== SORTORDER.ASC) {
                     sortOrderLatin = SORTORDER.ASC;
-                    sortIconLatin = 'table-sort-dsc';
+                    sortIconLatin = 'table-sort-asc';
                 } else {
                     sortOrderLatin = SORTORDER.DSC;
-                    sortIconLatin = 'table-sort-asc';
+                    sortIconLatin = 'table-sort-dsc';
                 }
 
                 sortOrderCommon = SORTORDER.NONE;
@@ -119,10 +94,10 @@
 
                 if (sortOrderCommon !== SORTORDER.ASC) {
                     sortOrderCommon = SORTORDER.ASC;
-                    sortIconCommon = 'table-sort-dsc';
+                    sortIconCommon = 'table-sort-asc';
                 } else {
                     sortOrderCommon = SORTORDER.DSC;
-                    sortIconCommon = 'table-sort-asc';
+                    sortIconCommon = 'table-sort-dsc';
                 }
 
                 sortOrderLatin = SORTORDER.NONE;
@@ -146,9 +121,17 @@
         }
     }
 
+    function clearSort() {
+        sortOrderCommon = SORTORDER.NONE;
+        sortOrderLatin = SORTORDER.NONE;
+        sortIconCommon = '';
+        sortIconLatin = '';
+    }
+
     onMount(() => {
         let z: string = localStorage?.namingSort;
-        if (z && z.length) {
+        console.log('Fetching namingSort:', z);
+        if (z && z.length === 2) {
             if (z[0] === 'L') {
                 if (z[1] === 'A') {
                     sortOrderLatin = SORTORDER.ASC;
@@ -163,9 +146,10 @@
                 sortOrderCommon = SORTORDER.NONE;
                 sortIconCommon = '';
 
+                // treat as latin even if other button is to be selected
                 GetSortedSpecies(true);
                 speciesChecklist = speciesChecklist;
-            } else {
+            } else if (z[0] === 'C') {
                 if (z[1] === 'A') {
                     sortOrderCommon = SORTORDER.ASC;
                     sortIconCommon = 'table-sort-asc';
@@ -179,15 +163,15 @@
                 sortOrderLatin = SORTORDER.NONE;
                 sortIconLatin = '';
 
+                // treat as common even if other button is to be selected
                 GetSortedSpecies(false);
                 speciesChecklist = speciesChecklist;
+            } else {
+                clearSort();
             }
 
         } else {
-            sortOrderCommon = SORTORDER.NONE;
-            sortOrderLatin = SORTORDER.NONE;
-            sortIconCommon = '';
-            sortIconLatin = '';
+            clearSort();
         }
 
         let y: string = localStorage?.useAllSpeciesChoice;
@@ -217,16 +201,18 @@
     });
 
     const getSortSave = () => {
-        if (sortOrderLatin === SORTORDER.ASC) { return 'A'; }
-        if (sortOrderLatin === SORTORDER.DSC) { return 'D'; }
-        if (sortOrderCommon === SORTORDER.ASC) { return 'A'; }
-        if (sortOrderCommon === SORTORDER.DSC) { return 'D'; }
-        return 'N';
+        if (sortOrderLatin !== SORTORDER.NONE) {
+            return 'L' + (sortOrderLatin === SORTORDER.DSC ? 'D' : 'A');
+        }
+        if (sortOrderCommon !== SORTORDER.NONE) {
+            return 'C' + (sortOrderCommon === SORTORDER.DSC ? 'D' : 'A');
+        }
+        return '';
     }
 
     afterUpdate(() => {
         localStorage.setItem('useLatinChoice', useLatin ? '1' : '0');
-        localStorage.setItem('namingSort', `${useLatin ? 'L' : 'C'}${getSortSave()}`);
+        localStorage.setItem('namingSort', getSortSave());
         localStorage.setItem('useAllSpeciesChoice', useAllSpecies ? '1' : '0');
         localStorage.setItem(
             'useCapturedSpecies',
