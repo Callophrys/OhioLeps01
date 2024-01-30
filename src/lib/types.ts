@@ -1,12 +1,21 @@
-import type { State, Checklist, SiteObservation } from '@prisma/client'
+import type {
+	County, State, Checklist, Region,
+	Site, SiteDate, SiteObservation, Taxonomy
+} from '@prisma/client'
 
 // Example: export type SomeNewName <T> = Partial<T> & { newMember: boolean }
 
-export type ChecklistCombinedName<T> = Partial<T> & { scientificName: string }
-export type CountyIsMonitored<T> = Partial<T> & { isMonitored: boolean, siteCount: number, state: State }
-export type SiteObservationChecklist = SiteObservation & { checklist: Checklist & { scientificName: string } } 
+export type ChecklistScientificName = Checklist & { scientificName: string }
+export type CountyMonitored = County & { isMonitored: boolean, siteCount: number, state: State }
+export type CountyComplete = CountyMonitored & { region: Region, sites: Site[] }
+export type SiteObservationChecklist = SiteObservation & {
+	checklist: ChecklistScientificName,
+	total: number
+}
+export type SiteDateYear = SiteDate & { siteName: string, year: number }
+export type SiteCounty = Site & { county: County }
 
-export type specimenSearch = {
+export type SpeciesSearchParams = {
 	specimenIds: number[],
 	countyIds: number[],
 	dateStart: Date | null,
@@ -16,7 +25,7 @@ export type specimenSearch = {
 	week: number | null
 }
 
-export type countySpecimen = {
+export type CountySpecimen = {
 	countyId: number,
 	county: string,
 	region: string,
@@ -27,4 +36,11 @@ export type countySpecimen = {
 	genus: string,
 	species: string,
 	subSpecies: string,
+}
+
+export type TaxonomyComplete = Taxonomy & {
+	branchTaxa: number[], // Not complte - objects' only contain id at this time
+	baseTaxon: Taxonomy & { // Not complete
+		baseTaxon: Taxonomy // Not complete
+	}
 }

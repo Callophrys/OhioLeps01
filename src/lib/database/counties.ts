@@ -56,7 +56,7 @@ export async function getMonitoredCounties() {
 }
 
 export async function getCountySpecimens() {
-  const countySpecimens = await prisma.$queryRaw`
+  const CountySpecimens = await prisma.$queryRaw`
 select distinct
 c.name county,
 r.name region,
@@ -68,5 +68,5 @@ inner join sitedate d on s.siteid = d.siteid
 inner join siteobservation o on d.sitedateid = o.sitedateid
 inner join checklist l on o.checklistid = l.checklistid`;
 
-  return countySpecimens;
+  return CountySpecimens;
 }

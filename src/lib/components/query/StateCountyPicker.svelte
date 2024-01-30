@@ -6,16 +6,16 @@
     import { SlideToggle } from '@skeletonlabs/skeleton';
     import { afterUpdate, onMount } from 'svelte';
     import { showStateProvince } from '$lib/config';
+    import { getContext } from 'svelte';
+
+    export let initialHideUnmonitoredChoice: number = 1;
+    let counties: County[] = getContext('counties');
 
     const popupComboboxCounty: PopupSettings = {
         event: 'focus-click',
         target: 'popupComboboxCounty',
         placement: 'bottom',
     };
-
-    export let counties: County[] = [];
-
-    export let initialHideUnmonitoredChoice: number = 1;
 
     let countyIds: number[] = [];
     let hideUnmonitoredCounties: number;

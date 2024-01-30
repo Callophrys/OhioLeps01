@@ -1,23 +1,23 @@
 <script lang="ts">
     import StandardContainer from '$lib/components/StandardContainer.svelte';
     export let data;
-    console.log(data);
+    //console.log(data);
 </script>
 
 <StandardContainer>
-	<svelte:fragment slot="standardBody">
-    {#each data.siteDates as siteDate}
-        <div>
+    <svelte:fragment slot="standardBody">
+        {#each data.siteDates as siteDate}
             <div>
-                recordDate: {siteDate.recordDate}
+                <div>
+                    recordDate: {siteDate.recordDate}
+                </div>
+                <div>
+                    year: {siteDate.year}&nbsp;&nbsp;week: {siteDate.week}
+                </div>
+                <div>
+                    recorder: {siteDate.recorder}
+                </div>
             </div>
-            <div>
-                year: {siteDate.year}&nbsp;&nbsp;week: {siteDate.week}
-            </div>
-            <div>
-                recorder: {siteDate.recorder}
-            </div>
-        </div>
-    {/each}
+        {/each}
     </svelte:fragment>
 </StandardContainer>

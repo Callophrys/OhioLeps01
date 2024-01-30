@@ -3,6 +3,7 @@ import { browser } from '$app/environment';
 import { redirect } from '@sveltejs/kit';
 import { getMonitoredCounties } from '$lib/database/counties.js';
 import type { County } from '@prisma/client';
+import type { CountyComplete } from '$lib/types.js';
 
 export async function load({ cookies, url }) {
 
@@ -13,7 +14,7 @@ export async function load({ cookies, url }) {
 
 	const counties = await getMonitoredCounties();
 	const json = JSON.stringify(counties);
-	const jsonResult: County[] = JSON.parse(json);
+	const jsonResult: CountyComplete[] = JSON.parse(json);
 
 	return { counties: jsonResult };
 }

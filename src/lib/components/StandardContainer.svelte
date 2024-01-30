@@ -9,10 +9,8 @@
 
     // Should be 144 (with footer) or 128 but added 4px for just in case
     // Should do this for show/hide avatar and for show/hide app bar
-    let heightAdjust = 4 + (showAppBar ? 132 : 0) + (showFooter ? 16 : 0);
-    let configOuterBody: CssClasses = showFooter
-        ? `container flex flex-row gap-8 px-8 pt-8 pb-4 has-footer`
-        : `container flex flex-row gap-8 p-8`;
+    //let heightAdjust = 4 + (showAppBar ? 132 : 0) + (showFooter ? 16 : 0);
+    let configOuterBody: CssClasses = showFooter ? `container flex flex-row gap-8 px-8 pt-8 pb-4 has-footer` : `container flex flex-row gap-8 p-8`;
 
     $: classesOuterBody = `${configOuterBody}`;
 </script>

@@ -4,13 +4,17 @@
     import SpeciesPicker from '$lib/components/query/SpeciesPicker.svelte';
     import TimeframePicker from '$lib/components/query/TimeframePicker.svelte';
     import DoubledContainer from '$lib/components/DoubledContainer.svelte';
-    import type { countySpecimen } from '$lib/types.js';
+    import type { CountySpecimen } from '$lib/types.js';
     import { enhance } from '$app/forms';
     import type { SubmitFunction } from '@sveltejs/kit';
+    import { setContext } from 'svelte';
     //import { json } from 'stream/consumers';
 
     export let data;
     export let form;
+
+    setContext('counties', data.counties);
+    setContext('speciesList', data.speciesList);
 
     let loading = false;
 
@@ -33,7 +37,7 @@
 
     $: {
         if (form?.success) {
-            form.checklists.forEach((cs: countySpecimen) => {
+            form.checklists.forEach((cs: CountySpecimen) => {
                 countedRegions[cs.region] = 1 + (countedRegions[cs.region] ?? 0);
                 countedCounties[cs.county] = 1 + (countedCounties[cs.county] ?? 0);
                 countedSpecies[cs.checklistId] = 1 + (countedRegions[cs.checklistId] ?? 0);
@@ -42,14 +46,13 @@
                 distinctCounties[cs.county] = 1;
                 distinctSpecies[cs.checklistId] = 1;
             });
-            
 
-            console.log(form.checklists.length);
-            const z = form.checklists.map((y: countySpecimen) => JSON.stringify({ region: y.region, county: y.county, commonName: y.commonName, scientificName: y.scientificName }));
+            //console.log(form.checklists.length);
+            const z = form.checklists.map((y: CountySpecimen) => JSON.stringify({ region: y.region, county: y.county, commonName: y.commonName, scientificName: y.scientificName }));
             const a = [...new Set(z)];
-            console.log(a);
-            const b = a.map(x => JSON.parse(x) as countySpecimen);
-            console.log(b.length);
+            //console.log(a);
+            const b = a.map((x) => JSON.parse(x) as CountySpecimen);
+            //console.log(b.length);
             form.checklists = b;
         }
 
@@ -82,14 +85,23 @@
         county: '',
         commonName: '',
         scientificName: '',
-    }
+    };
 
     const intensities: any = {
-        1: 'brightness-100',
-        2: 'brightness-90',
-        3: 'brightness-75',
-        4: 'brightness-50',
-    }
+        1: 'font-2xl text-xl after:text-current-900 after:brightness-0 dark:after:text-current-50 dark:after:brightness-200',
+        2: 'font-2xl text-lg after:text-current-700 after:brightness-50 dark:after:text-current-200 dark:after:brightness-150',
+        3: 'font-2xl text-base after:text-current-500 after:brightness-75 dark:after:text-current-400 dark:after:brightness-125',
+        4: 'font-2xl text-sm after:text-current-400 dark:after:text-current-600',
+    };
+
+    /*
+    const intensities: any = {
+        1: 'font-extrabold text-xl after:text-red-900 dark:after:text-slate-400',
+        2: 'font-extrabold text-lg after:text-green-900 dark:after:text-green-400',
+        3: 'font-extrabold text-base after:text-amber-900 dark:after:text-amber-400',
+        4: 'font-extrabold text-sm after:text-blue-900 dark:after:text-blue-400',
+    };
+    */
 
     /*
     brightness-110	filter: brightness(1.1);
@@ -97,10 +109,8 @@
     brightness-150	filter: brightness(1.5);
     */
 
-
     let isSorting = false;
     $: resultSort = (e: any) => {
-    
         if (isSorting) {
             console.log('isSorting...');
             return;
@@ -131,12 +141,12 @@
                 }
             }
 
-            let i = 1
+            let i = 1;
             sortBy.toReversed().forEach((s: sortInfo) => {
                 dirIntensity[s.col] = intensities[i];
                 ++i;
             });
-            
+
             console.log(sortBy);
 
             sortBy.forEach((s: sortInfo) => {
@@ -149,7 +159,7 @@
 
             form.checklists = form.checklists;
         }
-        
+
         isSorting = false;
     };
 </script>
@@ -158,14 +168,13 @@
     <svelte:fragment slot="leftBody">
         <div>
             <form method="POST" class="p-4 space-y-2" action="?/query" use:enhance={runSearch}>
-                <StateCountyPicker counties={data.counties} initialHideUnmonitoredChoice={config.initialHideUnmonitedChoice} />
-                <SpeciesPicker speciesChecklist={data.speciesList} initialUseLatinChoice={config.initialUseLatinChoice} />
+                <StateCountyPicker initialHideUnmonitoredChoice={config.initialHideUnmonitedChoice} />
+                <SpeciesPicker initialUseLatinChoice={config.initialUseLatinChoice} />
                 <TimeframePicker initialDateRangeChoice={config.initialDateRangeChoice} />
                 <hr />
                 <div class="flex">
-                    <button class="btn variant-filled w-auto justify-between mx-auto" type="submit">
-                        <span>Run Search</span>
-                        <span>→</span>
+                    <button disabled={loading} class="btn variant-filled disabled:bg-secondary-500 [&>span]:disabled:animate-spin w-auto justify-between mx-auto" type="submit">
+                        Run Search &nbsp<span class="">→</span>
                     </button>
                 </div>
             </form>
@@ -174,10 +183,10 @@
 
     <svelte:fragment slot="rightBody">
         {#if loading}
-            <div class="w-full h-full pl-4 pt-2 variant-filled-surface hover:cursor-wait">Loading...</div>
+            <div class="w-full h-full pl-4 pt-2 animate-pulse variant-filled-surface hover:cursor-wait">Loading...</div>
         {:else if form?.success}
-            <div class="w-[calc(100%_-_1em)] h-[calc(100%_-_5em)]">
-                <div class="flex">
+            <div class="w-[calc(100%_-_1em)] h-full">
+                <div class="flex h-[4.75em]">
                     <button class="w-28 top-0 px-6 py-3 font-bold text-center variant-outline-surface rounded-tl" name="region" on:click={resultSort}>
                         Region&nbsp;<span class={`${dirIndicator.region} ${dirIntensity.region}`}></span>
                     </button>
@@ -192,7 +201,7 @@
                     </button>
                 </div>
 
-                <div class="overflow-y-auto h-full">
+                <div class="overflow-y-auto h-[calc(100%_-_120px)] xl:h-[calc(100%_-_96px)]">
                     {#each form.checklists as checklist, i}
                         <div class="flex">
                             <div class="w-28 pl-2">{checklist.region}</div>
@@ -203,7 +212,9 @@
                     {/each}
                 </div>
 
-                <div class="flex">
+                <hr />
+
+                <div class="flex h-12 xl:h-6">
                     <div class="w-28 pl-4">{[...new Set(form.checklists.map((x) => x.region))].length}</div>
                     <div class="w-28 pl-4">{[...new Set(form.checklists.map((x) => x.county))].length}</div>
                     <div class="basis-[calc(45%_-_calc(0.45_*_224px))] pl-4">{[...new Set(form.checklists.map((x) => x.checklistId))].length}</div>

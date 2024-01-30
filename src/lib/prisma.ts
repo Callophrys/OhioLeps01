@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { Prisma } from '@prisma/client';
 import { scientificName } from '$lib/utils.js';
-import type { Checklist, SiteObservation } from '@prisma/client';
+import type { Checklist, SiteObservation, SiteDate } from '@prisma/client';
 
 
 /*
@@ -33,8 +33,14 @@ const prisma = new PrismaClient().$extends({
         },
         siteDate: {
             year: {
-                compute(siteDate): number {
+                compute(siteDate: SiteDate): number {
                     return siteDate.recordDate.getUTCFullYear();
+                }
+            },
+            siteName: {
+                needs: { site: true },
+                compute(siteDate): string {
+                    return site.siteName;
                 }
             }
         },

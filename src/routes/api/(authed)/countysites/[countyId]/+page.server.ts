@@ -2,6 +2,7 @@ import { fail } from '@sveltejs/kit';
 import { browser } from '$app/environment';
 import { redirect } from '@sveltejs/kit';
 import type { Site, County } from '@prisma/client';
+import type { SiteCounty } from '$lib/types.js';
 import { getSitesByCounty, getSites } from '$lib/database/sites.js';
 import { getCounties } from '$lib/database/counties.js';
 
@@ -26,7 +27,7 @@ export async function load({ cookies, url, params }) {
 		]);
 
 	const jsonS = JSON.stringify(sites);
-	const jsonResultS: Site[] = JSON.parse(jsonS);
+	const jsonResultS: SiteCounty[] = JSON.parse(jsonS);
 
 	const jsonC = JSON.stringify(counties);
 	const jsonResultC: County[] = JSON.parse(jsonC);

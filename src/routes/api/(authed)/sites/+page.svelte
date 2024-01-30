@@ -5,7 +5,7 @@
     import type { PopupSettings } from '@skeletonlabs/skeleton';
     import { page } from '$app/stores';
     import { enhance } from '$app/forms';
-    import { isEmpty } from '$lib/utils';
+    import { isEmpty, camelToLabel } from '$lib/utils';
     export let data;
     export let form;
 </script>
@@ -179,9 +179,7 @@
                     <div class="flex flex-wrap gap-2">
                         {#each data.sites as site, i}
                             <a href="/api/sites/{site.siteId}">
-                                <div
-                                    class="card relative grid w-56 h-32 p-0 m-0 text-wrap hover:variant-soft"
-                                >
+                                <div class="card relative grid w-56 h-32 p-0 m-0 text-wrap hover:variant-soft">
                                     <div class="absolute top-2 left-2">🔍</div>
                                     <div class="px-2 pt-2 w-full text-center">
                                         <h3>{site.siteName}</h3>

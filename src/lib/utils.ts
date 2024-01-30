@@ -36,6 +36,14 @@ export function formatDate(date: string,
     return dateFormatter.format(dateToFormat);
 }
 
+export function camelToLabel(camel: string) {
+    const regex = /[A-Z]+/g;
+    return camel[0].toLocaleUpperCase() + camel.slice(1).replaceAll(regex, ' $&');
+
+    // use with 
+    // Object.getOwnPropertyNames(object1).forEach(x => console.log(camelToLabel(x)));
+}
+
 export function weekOfYearSince(
     weekOfDate: Date,
     sinceDate: Date = new Date(1999, 3, 1),

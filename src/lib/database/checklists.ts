@@ -1,6 +1,6 @@
 import prisma from '$lib/prisma'
 import { isDate } from 'util/types';
-import type { specimenSearch, countySpecimen } from '$lib/types';
+import type { SpeciesSearchParams, CountySpecimen } from '$lib/types';
 import { getCountySpecimens } from './counties';
 
 export async function getChecklist(checklistId: number) {
@@ -31,12 +31,12 @@ export async function getChecklists() {
 	return checklists;
 }
 
-export async function getChecklistsFiltered(filter: specimenSearch): Promise<countySpecimen[]> {
+export async function getChecklistsFiltered(filter: SpeciesSearchParams): Promise<CountySpecimen[]> {
 
 	console.log('filter', filter);
 
 	// result is distinc, consider numbers later
-	const countySpecimens: countySpecimen[] = await prisma.$queryRaw<countySpecimen[]>`
+	const CountySpecimens: CountySpecimen[] = await prisma.$queryRaw<CountySpecimen[]>`
 select distinct
 c.id countyId,
 c.name county,
@@ -57,7 +57,7 @@ inner join checklist l on o.checklistid = l.checklistid`;
 	let useSpecimens = (filter && (filter.specimenIds && filter.specimenIds.length));
 	let useCounties = (filter && (filter.countyIds && filter.countyIds.length));
 
-	return countySpecimens.filter((cs: any) =>
+	return CountySpecimens.filter((cs: any) =>
 		(useSpecimens ? filter.specimenIds.includes(cs.checklistId) : true) &&
 		(useCounties ? filter.countyIds.includes(cs.countyId) : true) &&
 		(filter.dateStart ? new Date(cs.recordDate) >= filter.dateStart : true) &&

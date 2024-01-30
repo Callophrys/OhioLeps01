@@ -135,9 +135,7 @@
     let w: any;
 
     //console.log(data.siteRecordDates);
-    const allYears = Array.from(data.siteRecordDates).map((y) =>
-        new Date(y.recordDate).getFullYear()
-    );
+    const allYears = Array.from(data.siteRecordDates).map((y) => new Date(y.recordDate).getFullYear());
     const uniqueYears = [...new Set(allYears)].sort((a, b) => a - b);
 
     const trackedWeeks: dateTracking[] = Array.from(data.siteRecordDates)
@@ -149,9 +147,7 @@
         }))
         .sort((a, b) => (a.year > b.year ? 1 : a.week - b.week));
 
-    $: nextEnabled =
-        trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteId) <
-        trackedWeeks.length - 1;
+    $: nextEnabled = trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteId) < trackedWeeks.length - 1;
     console.log('nextEnabled', nextEnabled);
     $: prevEnabled = trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteId) > 0;
     console.log('prevEnabled', prevEnabled);
@@ -173,7 +169,7 @@
 <DoubledContainer basisLeft="basis-2/5" basisRight="basis-3/5">
     <svelte:fragment slot="leftHead">
         <h2 class="flex flex-row justify-between pb-2">
-            <div>{data.siteDate.site.siteName}</div>
+            <div>{data.siteDate.siteName}</div>
             <div>
                 Record Date: {formatDate(recordDate.toISOString(), 'medium', undefined)}
             </div>
@@ -183,9 +179,7 @@
             <div>
                 year: {data.siteDate.year}&nbsp;&nbsp;week: {data.siteDate.week}
             </div>
-            <div class="text-warning-600 text-wrap my-auto">
-                Per data entry 'year' and 'week' fields
-            </div>
+            <div class="text-warning-600 text-wrap my-auto">Per data entry 'year' and 'week' fields</div>
         </div>
         <!-- Year and week dropdowns -->
         <div class="flex flex-row space-x-2 pb-2">
@@ -205,18 +199,12 @@
             <div>
                 {#if y}<select class="select w-36" bind:value={w} on:change={handleClick}>
                         {#each y.children as dateTrackingItem}
-                            <option value={dateTrackingItem.siteDateId}
-                                >{dateTrackingItem.week} - {formatDate(
-                                    dateTrackingItem.recordDate.toISOString()
-                                )}</option
-                            >
+                            <option value={dateTrackingItem.siteDateId}>{dateTrackingItem.week} - {formatDate(dateTrackingItem.recordDate.toISOString())}</option>
                         {/each}
                     </select>{/if}
             </div>
 
-            <div class="text-warning-600 text-wrap my-auto">
-                Calculated from 'record date' field
-            </div>
+            <div class="text-warning-600 text-wrap my-auto">Calculated from 'record date' field</div>
         </div>
         <hr />
     </svelte:fragment>
@@ -231,21 +219,13 @@
                     <div class="pl-4 flex flex-row">
                         <span class="basis-20 text-nowrap text-right">Start Time:</span>
                         <span class="pl-2 w-24 text-right">
-                            {formatDate(
-                                new Date(data.siteDate.startTime).toISOString(),
-                                undefined,
-                                'short'
-                            )}
+                            {formatDate(new Date(data.siteDate.startTime).toISOString(), undefined, 'short')}
                         </span>
                     </div>
                     <div class="pl-4 flex flex-row">
                         <span class="basis-20 text-nowrap text-right">End Time:</span>
                         <span class="pl-2 w-24 text-right">
-                            {formatDate(
-                                new Date(data.siteDate.endTime).toISOString(),
-                                undefined,
-                                'short'
-                            )}
+                            {formatDate(new Date(data.siteDate.endTime).toISOString(), undefined, 'short')}
                         </span>
                     </div>
                 </svelte:fragment>
@@ -255,37 +235,19 @@
                     <div class="flex space-x-4">
                         <span class="my-auto">Temperature</span>
                         <div class="scale-75 origin-right">
-                            <RadioGroup
-                                name="toggle-naming-group"
-                                active="variant-filled-primary"
-                                hover="hover:variant-soft-primary"
-                            >
-                                <RadioItem
-                                    on:click={handleRadioGroupClick}
-                                    bind:group={useFarenheit}
-                                    name="toggle-naming"
-                                    value={1}>&deg;F</RadioItem
-                                >
-                                <RadioItem
-                                    on:click={handleRadioGroupClick}
-                                    bind:group={useFarenheit}
-                                    name="toggle-naming"
-                                    value={0}>&degC</RadioItem
-                                >
+                            <RadioGroup name="toggle-naming-group" active="variant-filled-primary" hover="hover:variant-soft-primary">
+                                <RadioItem on:click={handleRadioGroupClick} bind:group={useFarenheit} name="toggle-naming" value={1}>&deg;F</RadioItem>
+                                <RadioItem on:click={handleRadioGroupClick} bind:group={useFarenheit} name="toggle-naming" value={0}>&degC</RadioItem>
                             </RadioGroup>
                         </div>
                     </div>
                 </svelte:fragment>
                 <svelte:fragment slot="content">
                     <div class="pl-4">
-                        Start Temp: {useFarenheit
-                            ? data.siteDate.startTemp
-                            : convertFtoC(data.siteDate.startTemp)}
+                        Start Temp: {useFarenheit ? data.siteDate.startTemp : convertFtoC(data.siteDate.startTemp)}
                     </div>
                     <div class="pl-4">
-                        End Temp: {useFarenheit
-                            ? data.siteDate.endTemp
-                            : convertFtoC(data.siteDate.endTemp)}
+                        End Temp: {useFarenheit ? data.siteDate.endTemp : convertFtoC(data.siteDate.endTemp)}
                     </div></svelte:fragment
                 >
             </AccordionItem>
@@ -479,11 +441,7 @@
                         Created By: {data.siteDate.createdBy ?? ''}
                     </div>
                     <div class="pl-4">
-                        Created At: {formatDate(
-                            new Date(data.siteDate.createdAt).toISOString(),
-                            'medium',
-                            'medium'
-                        )}
+                        Created At: {formatDate(new Date(data.siteDate.createdAt).toISOString(), 'medium', 'medium')}
                     </div>
                     <div class="pl-4">
                         Updated By: {data.siteDate.updatedBy ?? ''}
@@ -516,8 +474,8 @@
         <div class="mt-2">
             {#each data.siteObservations as siteObservation}
                 <div class="card flex">
-                    <a href="/api/siteobservations/{siteObservation.siteObservationId}" class="flex space-x-2 pl-4 py-2 pr-2">
-                        <div class="w-56">{siteObservation.checklist.commonName}</div>
+                    <a href="/api/siteobservations/{siteObservation.siteObservationId}" class="flex space-x-2 p-2">
+                        <div class="w-56">🔎 {siteObservation.checklist.commonName}</div>
                         <div class="w-56">{siteObservation.checklist.scientificName}</div>
                         <div class="w-16">total: {siteObservation.total}</div>
                     </a>

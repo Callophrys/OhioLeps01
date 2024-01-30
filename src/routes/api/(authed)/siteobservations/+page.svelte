@@ -5,26 +5,23 @@
 
 <!-- siteObservations -->
 <StandardContainer>
-	<svelte:fragment slot="standardBody">
-    <div class="bg-red">SiteObservation Count: {data.siteObservations.length}</div>
-    <section>
-        <ul class="siteObservations">
-            {#each data.siteObservations as siteObservation}
+    <svelte:fragment slot="standardBody">
+        <div class="bg-red">SiteObservation Count: data.siteObservations.length</div>
+        <section>
+            <ul class="siteObservations">
+                #each data.siteObservations as siteObservation
                 <li class="">
-                    <a
-                        href="/api/siteobservations/{siteObservation.siteObservationId}"
-                        class="flex justify-start"
-                    >
+                    <a href="javascript:void(0)" class="flex justify-start">
                         <!--<span>{siteObservation.siteDate?.site?.siteName}</span>
                         <span>{siteObservation.siteDate.year}</span>
                         <span>{siteObservation.siteDate.week}</span>-->
-                        <span>{siteObservation.total ?? ''}</span>
-                        <span>{siteObservation.checklist.scientificName}</span>
-                        <span>{siteObservation.checklist.commonName}</span>
+                        <span>siteObservation.total ?? ''</span>
+                        <span>siteObservation.checklist.scientificName</span>
+                        <span>siteObservation.checklist.commonName</span>
                     </a>
                 </li>
-            {/each}
-        </ul>
-    </section>
+                /each
+            </ul>
+        </section>
     </svelte:fragment>
 </StandardContainer>

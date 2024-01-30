@@ -64,7 +64,7 @@
                                 </div>
                                 <div>{site.person}</div>
                                 <div class="text-wrap">
-                                    Last update: {formatDate(site.createdAt)}
+                                    Last update: {formatDate(new Date(site.createdAt).toISOString())}
                                 </div>
                             </div>
                         </div>

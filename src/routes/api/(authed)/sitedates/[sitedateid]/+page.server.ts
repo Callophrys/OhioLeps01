@@ -1,7 +1,6 @@
 import { getSiteDate, getSiteDateRecordDates } from '$lib/database/sitedates'
 import { getSiteObservationBySiteDate } from '$lib/database/siteobservations.js';
-import type { SiteDate } from '@prisma/client';
-import type { SiteObservation } from '@prisma/client';
+import type { SiteDateYear, SiteObservationChecklist } from '$lib/types.js';
 
 export async function load({ params }) {
 
@@ -14,14 +13,18 @@ export async function load({ params }) {
 		]);
 
 	const jsonD = JSON.stringify(siteDate);
-	const jsonResultD: SiteDate = JSON.parse(jsonD);
+	const jsonResultD: SiteDateYear = JSON.parse(jsonD);
 
 	const jsonYW = JSON.stringify(siteRecordDates?.site.siteDates);
 	const jsonResultYW: { siteDateId: number, recordDate: Date }[] = JSON.parse(jsonYW);
 
 	const jsonO = JSON.stringify(siteObservations);
-	const jsonResultO: SiteObservation[] = JSON.parse(jsonO);
+	const jsonResultO: SiteObservationChecklist[] = JSON.parse(jsonO);
 
-	return { siteDate: jsonResultD, siteRecordDates: jsonResultYW, siteObservations: jsonResultO }
+	return {
+		siteDate: jsonResultD,
+		siteRecordDates: jsonResultYW,
+		siteObservations: jsonResultO
+	}
 }
 
