@@ -1,9 +1,10 @@
-import type { State } from '@prisma/client'
+import type { State, Checklist, SiteObservation } from '@prisma/client'
 
 // Example: export type SomeNewName <T> = Partial<T> & { newMember: boolean }
 
 export type ChecklistCombinedName<T> = Partial<T> & { scientificName: string }
 export type CountyIsMonitored<T> = Partial<T> & { isMonitored: boolean, siteCount: number, state: State }
+export type SiteObservationChecklist = SiteObservation & { checklist: Checklist & { scientificName: string } } 
 
 export type specimenSearch = {
 	specimenIds: number[],

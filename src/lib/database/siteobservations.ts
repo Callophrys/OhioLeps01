@@ -1,20 +1,20 @@
 import prisma from '$lib/prisma'
 
-export async function getSiteObservations(siteDateId: number = 0, checklistId: number = 0) {
+export async function getSiteObservations(siteDateId: number = 0, checklistId: number = 0, siteId: number = 0) {
     if (siteDateId > 0) {
         if (checklistId > 0) {
-            return await getSiteObservationsBySiteDateAndChecklist(siteDateId, checklistId);
+            return await getSiteObservationBySiteDateAndChecklist(siteDateId, checklistId);
         } else {
-            return await getSiteObservationsBySiteDate(siteDateId);
+            return await getSiteObservationBySiteDate(siteDateId);
         }
     } else if (checklistId > 0) {
         return await getSiteObservationsByChecklist(checklistId);
     } else {
-        return await getSiteObservationsAll();
+        return await getSiteObservationsAll(siteId);
     }
 }
 
-export async function getSiteObservationsBySiteDate(siteDateId: number) {
+export async function getSiteObservationBySiteDate(siteDateId: number) {
     const siteObservations = await prisma.siteObservation.findMany({
         where: {
             siteDateId: siteDateId,
@@ -38,7 +38,7 @@ export async function getSiteObservationsByChecklist(checklistId: number) {
     return siteObservations;
 }
 
-export async function getSiteObservationsBySiteDateAndChecklist(siteDateId: number, checklistId: number) {
+export async function getSiteObservationBySiteDateAndChecklist(siteDateId: number, checklistId: number) {
     const siteObservations = await prisma.siteObservation.findMany({
         where: {
             siteDateId: siteDateId,
@@ -48,7 +48,28 @@ export async function getSiteObservationsBySiteDateAndChecklist(siteDateId: numb
     return siteObservations;
 }
 
-export async function getSiteObservationsAll() {
-    const siteObservations = await prisma.siteObservation.findMany();
+export async function getSiteObservationBySiteObservation(siteObservationId: number) {
+    const siteObservations = await prisma.siteObservation.findUnique({
+        where: {
+            siteObservationId: siteObservationId,
+        },
+        include: {
+            checklist: true,
+        },
+    });
+    return siteObservations;
+}
+
+export async function getSiteObservationsAll(siteId: number) {
+    const siteObservations = await prisma.siteObservation.findMany({
+        where: {
+            siteDate: {
+                siteId: siteId
+            }
+        },
+        include: {
+            siteDate: true
+        }
+    });
     return siteObservations;
 }

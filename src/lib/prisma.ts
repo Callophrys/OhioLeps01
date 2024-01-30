@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { Prisma } from '@prisma/client';
 import { scientificName } from '$lib/utils.js';
-import type { Checklist } from '@prisma/client';
+import type { Checklist, SiteObservation } from '@prisma/client';
 
 
 /*
@@ -40,29 +40,29 @@ const prisma = new PrismaClient().$extends({
         },
         siteObservation: {
             total: {
-                compute(o) {
-                    return Number(o.s1)
-                        + Number(o.s2)
-                        + Number(o.s3)
-                        + Number(o.s4)
-                        + Number(o.s5)
-                        + Number(o.s6)
-                        + Number(o.s7)
-                        + Number(o.s8)
-                        + Number(o.s9)
-                        + Number(o.s10)
-                        + Number(o.s11)
-                        + Number(o.s12)
-                        + Number(o.s13)
-                        + Number(o.s14)
-                        + Number(o.s15);
+                compute(o: SiteObservation) {
+                    return Number(o.section1)
+                        + Number(o.section2)
+                        + Number(o.section3)
+                        + Number(o.section4)
+                        + Number(o.section5)
+                        + Number(o.section6)
+                        + Number(o.section7)
+                        + Number(o.section8)
+                        + Number(o.section9)
+                        + Number(o.section10)
+                        + Number(o.section11)
+                        + Number(o.section12)
+                        + Number(o.section13)
+                        + Number(o.section14)
+                        + Number(o.section15);
                 }
             }
         },
         checklist: {
             scientificName: {
                 compute(checklist: Checklist): string {
-                    return scientificName(checklist.genus, checklist.species, checklist.subspecies ?? '');
+                    return scientificName(checklist.genus ?? '', checklist.species ?? '', checklist.subspecies ?? '');
                 }
             }
         }

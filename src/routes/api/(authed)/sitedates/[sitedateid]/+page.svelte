@@ -504,7 +504,7 @@
 
     <svelte:fragment slot="rightBody">
         <div class="flex flex-row justify-between mb-2">
-            <div class="">{data.siteDate.site.siteName}</div>
+            <div class="my-auto">{data.siteDate.site.siteName}</div>
             <div class="btn-group variant-soft scale-90 my-auto">
                 <button on:click={handleClickPrior}>◀</button>
                 <button class="w-24">Year: {recordYear}</button>
@@ -516,11 +516,11 @@
         <div class="mt-2">
             {#each data.siteObservations as siteObservation}
                 <div class="card flex">
-                    <div class="flex">
-                        <div class="w-52">{siteObservation.checklist.commonName}</div>
-                        <div class="w-52">{siteObservation.checklist.scientificName}</div>
+                    <a href="/api/siteobservations/{siteObservation.siteObservationId}" class="flex space-x-2 pl-4 py-2 pr-2">
+                        <div class="w-56">{siteObservation.checklist.commonName}</div>
+                        <div class="w-56">{siteObservation.checklist.scientificName}</div>
                         <div class="w-16">total: {siteObservation.total}</div>
-                    </div>
+                    </a>
                 </div>
             {/each}
         </div>

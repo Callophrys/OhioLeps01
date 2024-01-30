@@ -1,5 +1,5 @@
 import { getSiteDate, getSiteDateRecordDates } from '$lib/database/sitedates'
-import { getSiteObservationsBySiteDate } from '$lib/database/siteobservations.js';
+import { getSiteObservationBySiteDate } from '$lib/database/siteobservations.js';
 import type { SiteDate } from '@prisma/client';
 import type { SiteObservation } from '@prisma/client';
 
@@ -10,7 +10,7 @@ export async function load({ params }) {
 		await Promise.all([
 			getSiteDate(siteDateId),
 			getSiteDateRecordDates(siteDateId),
-			getSiteObservationsBySiteDate(siteDateId)
+			getSiteObservationBySiteDate(siteDateId)
 		]);
 
 	const jsonD = JSON.stringify(siteDate);
