@@ -123,8 +123,8 @@ model Site {
 model Checklist {
     checklistId Int @id @default(autoincrement())
     hodges String @default("A000") // or similar, note if another system, e.g. Patterson number
-    genus String? // @db.String(20) // doomed
-    species String? // @db.String(20) // doomed
+    genus String // @db.String(20) // doomed
+    species String // @db.String(20) // doomed
     subspecies String? // @db.String(16) // doomed
     commonName String? // @db.String(30)
     show Boolean

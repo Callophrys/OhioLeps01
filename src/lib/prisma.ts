@@ -1,5 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { Prisma } from '@prisma/client';
+import { scientificName } from '$lib/utils.js';
+import type { Checklist } from '@prisma/client';
 
 
 /*
@@ -59,8 +61,8 @@ const prisma = new PrismaClient().$extends({
         },
         checklist: {
             scientificName: {
-                compute(checklist): string {
-                    return checklist.genus + ' ' + checklist.species + (checklist.subspecies ? ' ' + checklist.subspecies : '');
+                compute(checklist: Checklist): string {
+                    return scientificName(checklist.genus, checklist.species, checklist.subspecies ?? '');
                 }
             }
         }

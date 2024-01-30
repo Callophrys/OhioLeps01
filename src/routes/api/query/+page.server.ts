@@ -5,12 +5,12 @@ import { redirect } from '@sveltejs/kit';
 import { json } from '@sveltejs/kit'
 import { getCounties } from '$lib/database/counties';
 import { getChecklists, getChecklistsFiltered } from '$lib/database/checklists';
-import type { specimenSearch } from '$lib/types';
+import type { ChecklistCombinedName, specimenSearch } from '$lib/types';
 import type { County } from '@prisma/client';
 import type { Checklist } from '@prisma/client';
 import type { countySpecimen } from '$lib/types';
-import { sep } from 'path';
 import { scientificName } from '$lib/utils.js';
+import { sep } from 'path';
 
 /*
 export async function load({ cookies, url }) {
@@ -47,7 +47,7 @@ export async function load() {
 	const jsonResultC: County[] = JSON.parse(jsonC);
 
 	const jsonS = JSON.stringify(speciesList);
-	const jsonResultS: Checklist[] = JSON.parse(jsonS);
+	const jsonResultS: ChecklistCombinedName<Checklist>[] = JSON.parse(jsonS);
 
 	return { counties: jsonResultC, speciesList: jsonResultS }
 }

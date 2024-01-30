@@ -4,10 +4,10 @@
     import SpeciesPicker from '$lib/components/query/SpeciesPicker.svelte';
     import TimeframePicker from '$lib/components/query/TimeframePicker.svelte';
     import DoubledContainer from '$lib/components/DoubledContainer.svelte';
-    import { scientificName } from '$lib/utils.js';
     import type { countySpecimen } from '$lib/types.js';
     import { enhance } from '$app/forms';
     import type { SubmitFunction } from '@sveltejs/kit';
+    //import { json } from 'stream/consumers';
 
     export let data;
     export let form;
@@ -42,6 +42,15 @@
                 distinctCounties[cs.county] = 1;
                 distinctSpecies[cs.checklistId] = 1;
             });
+            
+
+            console.log(form.checklists.length);
+            const z = form.checklists.map((y: countySpecimen) => JSON.stringify({ region: y.region, county: y.county, commonName: y.commonName, scientificName: y.scientificName }));
+            const a = [...new Set(z)];
+            console.log(a);
+            const b = a.map(x => JSON.parse(x) as countySpecimen);
+            console.log(b.length);
+            form.checklists = b;
         }
 
         /*
@@ -54,7 +63,6 @@
         console.log('distinctSpecies', Object.keys(distinctSpecies).length);
         */
     }
-
     /*
     console.log('data', data);
     console.log('form', form);
@@ -62,50 +70,87 @@
 
     type sortInfo = { col: string; ascending: boolean };
     const sortBy: sortInfo[] = [];
-    let dirIndicator: any = {
+    const dirIndicator: any = {
         region: '',
         county: '',
         commonName: '',
         scientificName: '',
     };
 
+    const dirIntensity: any = {
+        region: '',
+        county: '',
+        commonName: '',
+        scientificName: '',
+    }
+
+    const intensities: any = {
+        1: 'brightness-100',
+        2: 'brightness-90',
+        3: 'brightness-75',
+        4: 'brightness-50',
+    }
+
+    /*
+    brightness-110	filter: brightness(1.1);
+    brightness-125	filter: brightness(1.25);
+    brightness-150	filter: brightness(1.5);
+    */
+
+
+    let isSorting = false;
     $: resultSort = (e: any) => {
+    
+        if (isSorting) {
+            console.log('isSorting...');
+            return;
+        }
+
+        isSorting = true;
         if (form) {
             let column = e.currentTarget.name;
             console.log('column', column);
             console.log('sortBy 0', sortBy);
 
-            if (sortBy.length === 1 && sortBy[0].col === column) {
+            if (sortBy.length < 1) {
+                sortBy.push({ col: column, ascending: true });
+                dirIndicator[column] = 'table-sort-asc';
+            } else if (sortBy.length === 1 && sortBy[0].col === column) {
                 sortBy[0].ascending = !sortBy[0].ascending;
+                dirIndicator[column] = sortBy[0].ascending ? 'table-sort-asc' : 'table-sort-dsc';
             } else {
                 let idx = sortBy.findIndex((c: { col: string; ascending: boolean }) => c.col === column);
                 if (idx > -1) {
-                    console.log('sortBy 1', sortBy);
-                    let spliced = sortBy.splice(idx, 1)[0];
-                    console.log('spliced', spliced);
+                    const spliced = sortBy.splice(idx, 1)[0];
                     spliced.ascending = !spliced.ascending;
-                    sortBy.push(spliced);
                     dirIndicator[column] = spliced.ascending ? 'table-sort-asc' : 'table-sort-dsc';
-                    console.log('sortBy 2', sortBy);
+                    sortBy.push(spliced);
                 } else {
                     sortBy.push({ col: column, ascending: true });
                     dirIndicator[column] = 'table-sort-asc';
                 }
             }
 
+            let i = 1
+            sortBy.toReversed().forEach((s: sortInfo) => {
+                dirIntensity[s.col] = intensities[i];
+                ++i;
+            });
+            
+            console.log(sortBy);
+
             sortBy.forEach((s: sortInfo) => {
-                console.log(2, s.col);
-                let sortModifier = s.ascending ? 1 : -1;
-                const sort = (a: any, b: any) => (a.col < b.col ? -1 * sortModifier : a.col > b.col ? 1 * sortModifier : 0);
-                form?.checklists.sort(sort);
+                if (form) {
+                    let sortModifier = s.ascending ? 1 : -1;
+                    let sort = (a: any, b: any) => (a[s.col] < b[s.col] ? -1 * sortModifier : a[s.col] > b[s.col] ? 1 * sortModifier : 0);
+                    form.checklists.sort(sort);
+                }
             });
 
             form.checklists = form.checklists;
-            console.log('form', form?.checklists[2]);
-            console.log();
-            /*
-             */
         }
+        
+        isSorting = false;
     };
 </script>
 
@@ -133,10 +178,18 @@
         {:else if form?.success}
             <div class="w-[calc(100%_-_1em)] h-[calc(100%_-_5em)]">
                 <div class="flex">
-                    <button class="w-28 top-0 px-6 py-3 font-bold text-center variant-outline-surface rounded-tl {dirIndicator.region}" name="region" on:click={resultSort}>Region&nbsp;</button>
-                    <button class="w-28 top-0 px-6 py-3 font-bold text-center variant-outline-surface {dirIndicator.county}" name="county" on:click={resultSort}>County&nbsp</button>
-                    <button class="top-0 px-6 py-3 basis-[calc(45%_-_calc(0.45_*_224px))] font-bold text-center variant-outline-surface {dirIndicator.commonName}" name="commonName" on:click={resultSort}>Common Name&nbsp;</button>
-                    <button class="top-0 px-6 py-3 flex-auto font-bold text-center variant-outline-surface rounded-tr {dirIndicator.scientificName}" name="scientificName" on:click={resultSort}>Scientific Name&nbsp</button>
+                    <button class="w-28 top-0 px-6 py-3 font-bold text-center variant-outline-surface rounded-tl" name="region" on:click={resultSort}>
+                        Region&nbsp;<span class={`${dirIndicator.region} ${dirIntensity.region}`}></span>
+                    </button>
+                    <button class="w-28 top-0 px-6 py-3 font-bold text-center variant-outline-surface" name="county" on:click={resultSort}>
+                        County&nbsp<span class={`${dirIndicator.county} ${dirIntensity.county}`}></span>
+                    </button>
+                    <button class="top-0 px-6 py-3 basis-[calc(45%_-_calc(0.45_*_224px))] font-bold text-center variant-outline-surface" name="commonName" on:click={resultSort}>
+                        Common Name&nbsp;<span class={`${dirIndicator.commonName} ${dirIntensity.commonName}`}></span>
+                    </button>
+                    <button class="top-0 px-6 py-3 flex-auto font-bold text-center variant-outline-surface rounded-tr" name="scientificName" on:click={resultSort}>
+                        Scientific Name&nbsp<span class={`${dirIndicator.scientificName} ${dirIntensity.scientificName}`}></span>
+                    </button>
                 </div>
 
                 <div class="overflow-y-auto h-full">

@@ -13,15 +13,15 @@
         placement: 'bottom',
     };
 
-    export let speciesChecklist: Checklist[] = []; // ChecklistCombinedName<Checklist>[] = [];
-    export let initialUseAllSpeciesChoice: number = 1;
-    export let initialUseLatinChoice: number = 1;
+    export let speciesChecklist: ChecklistCombinedName<Checklist>[] = [];
+    export let initialUseAllSpeciesChoice = true;
+    export let initialUseLatinChoice = 1;
 
     let speciesChecked: number[] = [];
     let i: number;
 
     let namingSort: string; // L or C + N or A or D
-    let useAllSpecies: number;
+    let useAllSpecies: boolean;
     let useLatin: number;
     let capturedSpecies: number[] = [];
 
@@ -36,7 +36,7 @@
     let sortIconCommon: string = '';
     let sortIconLatin: string = '';
 
-    function GetSortedSpecies(isLatin: bool) {
+    function GetSortedSpecies(isLatin: boolean) {
 
         if ((sortOrderCommon | sortOrderLatin) === SORTORDER.NONE) {
             return;
@@ -46,7 +46,7 @@
 
             let sortDir = sortOrderLatin === SORTORDER.ASC ? 1 : -1;
 
-            speciesChecklist.sort((a: Checklist, b: Checklist) => {
+            speciesChecklist.sort((a: ChecklistCombinedName<Checklist>, b: ChecklistCombinedName<Checklist>) => {
                 if (a.scientificName > b.scientificName) return 1 * sortDir;
                 if (a.scientificName < b.scientificName) return -1 * sortDir;
                 return 0;
@@ -56,7 +56,7 @@
 
             let sortDir = sortOrderCommon === SORTORDER.ASC ? 1 : -1;
 
-            speciesChecklist.sort((a: Checklist, b: Checklist) => {
+            speciesChecklist.sort((a: ChecklistCombinedName<Checklist>, b: ChecklistCombinedName<Checklist>) => {
                 if ((a.commonName ?? a.scientificName) > (b.commonName ?? b.scientificName)) return 1 * sortDir;
                 if ((a.commonName ?? a.scientificName) < (b.commonName ?? b.scientificName)) return -1 * sortDir;
                 return 0;
@@ -176,7 +176,7 @@
 
         let y: string = localStorage?.useAllSpeciesChoice;
         if (y && y.length) {
-            useAllSpecies = parseInt(y);
+            useAllSpecies = parseInt(y) === 1 ? true : false;
         } else {
             useAllSpecies = initialUseAllSpeciesChoice;
         }
@@ -189,7 +189,7 @@
         }
 
         if (useAllSpecies) {
-            speciesChecked = speciesChecklist.map((c) => c.checklistId);
+            speciesChecked = speciesChecklist.map((c) => c.checklistId ?? 0);
         } else {
             let z: string = localStorage?.useCapturedSpecies;
             if (z) {

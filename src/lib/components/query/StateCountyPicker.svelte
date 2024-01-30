@@ -44,13 +44,10 @@
         console.log('captureAllCounties', captureAllCounties);
 
         let y: string = localStorage?.useSelectAllCounties;
-        console.log('1 selectedall', y);
         if (y && y.length) {
             selectAllCounties = y === 'true';
-            console.log('2 selectedall', y);
         } else {
             selectAllCounties = true;
-            console.log('3 selectedall', y);
         }
 
         let x: string = localStorage?.useHideUnmonitoredChoice;
@@ -60,18 +57,14 @@
             hideUnmonitoredCounties = initialHideUnmonitoredChoice;
         }
 
-        console.log('4 all Selected', allSelected, selectAllCounties);
-        console.log('5 all Selected', allSelected, selectAllCounties);
         if (selectAllCounties) {
             countyIds = counties.filter((c) => c.sites.length > 0).map((c) => c.id) as number[];
         } else {
             countyIds = captureAllCounties;
         }
-        console.log('6 all Selected', allSelected, selectAllCounties);
     });
 
     afterUpdate(() => {
-        console.log('7 all Selected', allSelected, selectAllCounties);
         localStorage.setItem(
             'useCaptureAllCounties',
             countyIds.map((c: number) => c.toString()).join(',')
