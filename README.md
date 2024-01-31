@@ -331,6 +331,13 @@ https://vercel.com/docs/beginner-sveltekit/data-binding-and-event-handling
 ### 1/12/2024
 http://wedgefoundation.org/publications_paypal.asp
 🌎
+🔐
+🔏
+🔒
+🔓
+🔑
+↺
+↻
 ➜
 ✐
 ✎

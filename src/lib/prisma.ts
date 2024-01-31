@@ -39,8 +39,8 @@ const prisma = new PrismaClient().$extends({
             },
             siteName: {
                 needs: { site: true },
-                compute(siteDate): string {
-                    return site.siteName;
+                compute(siteDate) {
+                    return siteDate.site.siteName;
                 }
             }
         },

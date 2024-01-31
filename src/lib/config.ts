@@ -1,5 +1,7 @@
 import { dev } from '$app/environment';
 
+export const modeDebug = true;
+
 export const owner: string = 'Ohio Lepidopterists &copy;1995';
 //export const title: string = 'Butterfly Monitoring Database';
 export const title: string = 'Learn Svelte(kit), Vite, TailwindCSS, SkeletonUI and Prisma';

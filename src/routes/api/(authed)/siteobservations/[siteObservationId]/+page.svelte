@@ -1,14 +1,69 @@
 <script lang="ts">
     import { formatDate } from '$lib/utils';
     import StandardContainer from '$lib/components/StandardContainer.svelte';
+    import { modeDebug } from '$lib/config.js'
     export let data;
     //console.log(data);
+    let key = modeDebug ? `${data.siteObservation.siteObservationId.toString()}. ` : '';
 </script>
 
 <StandardContainer>
     <svelte:fragment slot="standardBody">
+        <div class="text-blue-600">
+
+            <h3>Date entry</h3>
+            <div class="pl-4">
+                <button type="button" class="">
+                    Edit this record
+                    <span>✎</span>
+                </button>
+                <button type="button" class="">
+                    Saved/Complete
+                    <span>✔</span>
+                </button>
+                <button type="button" class="">
+                    Add new species observations
+                    <span class="text-green-900 dark:text-green-200">✚</span>
+                </button>
+                <button type="button" class="">
+                    Delete
+                    <span>❌</span>
+                </button><!--User can only delete own-->
+                <button type="button" class="">
+                    Undo
+                    <span class="font-extrabold text-amber-700 dark:text-amber-400">↺</span>
+                </button><!--User can only delete own-->
+                <button type="button" class="">
+                    Redo
+                    <span class="font-extrabold text-amber-700 dark:text-amber-400">↻</span>
+                </button><!--User can only delete own-->
+            </div>
+
+            <h3>Reviewer</h3>
+            <div class="pl-4">
+                <button type="button" class="">Needs review<span class="text-warning-600">❔</span></button>
+                <button type="button" class=""><span>🔒</span></button>
+            </div>
+
+            <h3>Admin</h3>
+            <div class="pl-4">
+                <button type="button" class="">Unlock<span>🔑</span></button>
+                <button type="button" class="">Locked<span>🔐</span></button>
+                <button type="button" class="">Unlock<span> 🔓 </span></button>
+                <button type="button" class="">Delete<span>❌</span></button><!--Deletes is mearly a status change and audit entry -->
+            </div>
+
+            <h3>Misc</h3>
+            <div class="pl-4">
+                <button type="button" class=""><span> 🔏 </span></button>
+                <button type="button" class="">View all<span>🌎</span></button><!--Show listing view-->
+                <button type="button" class=""><span>❗</span></button>
+                <button type="button" class=""><span>❕</span></button>
+                <button type="button" class=""><span>❓</span></button>
+            </div>
+        </div>
         <div>
-            <div class="font-bold">{data.siteObservation.checklist.scientificName}</div>
+            <div class="font-bold">{key}{data.siteObservation.checklist.scientificName}</div>
             <div class="flex flex-row space-x-4">
                 <div>Hodges: {data.siteObservation.hodges}</div>
                 <div>Id Code: {data.siteObservation.idCode}</div>

@@ -219,13 +219,13 @@
                     <div class="pl-4 flex flex-row">
                         <span class="basis-20 text-nowrap text-right">Start Time:</span>
                         <span class="pl-2 w-24 text-right">
-                            {formatDate(new Date(data.siteDate.startTime).toISOString(), undefined, 'short')}
+                            {data.siteDate.startTime ? formatDate(new Date(data.siteDate.startTime).toISOString(), undefined, 'short') : ''}
                         </span>
                     </div>
                     <div class="pl-4 flex flex-row">
                         <span class="basis-20 text-nowrap text-right">End Time:</span>
                         <span class="pl-2 w-24 text-right">
-                            {formatDate(new Date(data.siteDate.endTime).toISOString(), undefined, 'short')}
+                            {data.siteDate.endTime ? formatDate(new Date(data.siteDate.endTime).toISOString(), undefined, 'short') : ''}
                         </span>
                     </div>
                 </svelte:fragment>
@@ -462,7 +462,7 @@
 
     <svelte:fragment slot="rightBody">
         <div class="flex flex-row justify-between mb-2">
-            <div class="my-auto">{data.siteDate.site.siteName}</div>
+            <div class="my-auto">{data.siteDate.siteName}</div>
             <div class="btn-group variant-soft scale-90 my-auto">
                 <button on:click={handleClickPrior}>◀</button>
                 <button class="w-24">Year: {recordYear}</button>
