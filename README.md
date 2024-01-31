@@ -217,6 +217,7 @@ use JS to comment out HTML elements. Its hackky but works:
 for nvim lang server issue, install:
 pnpm i -g vscode-langservers-extractedo
 
+```SQL
 #### MySql stuff
 select table_name, table_rows from INFORMATION_SCHEMA.TABLES where table_schema = 'ohioleps';
 show create table site;
@@ -237,21 +238,33 @@ SELECT COUNT(*) CT FROM region;
 SELECT COUNT(*) CT FROM county;
 SELECT COUNT(*) CT FROM continent;
 
+SELECT EXISTS (
+SELECT * FROM information_schema.tables
+WHERE table_schema = 'ohioleps' AND table_name = 'county')
 
-#### Squash migrations
+-- Squash migrations
+DELIMITER //
+CREATE PROCEDURE IF NOT EXISTS RemoveOhLeps()
+BEGIN
 
-ALTER TABLE county           DROP FOREIGN KEY County_regionId_fkey;
-ALTER TABLE county           DROP FOREIGN KEY County_stateId_fkey;
-ALTER TABLE region           DROP FOREIGN KEY Region_stateId_fkey;
-ALTER TABLE sitedate         DROP FOREIGN KEY SiteDate_siteId_fkey;
+IF (SELECT EXISTS (
+SELECT * FROM information_schema.tables
+WHERE table_schema = 'ohioleps' AND table_name = 'county')) THEN
+BEGIN
+  ALTER TABLE county               DROP FOREIGN KEY County_regionId_fkey;
+  ALTER TABLE county               DROP FOREIGN KEY County_stateId_fkey;
+END IF;
+
+ALTER TABLE region               DROP FOREIGN KEY Region_stateId_fkey;
+ALTER TABLE sitedate             DROP FOREIGN KEY SiteDate_siteId_fkey;
 ALTER TABLE siteDateObservation  DROP FOREIGN KEY SiteDateObservation_checklistId_fkey;
 ALTER TABLE siteDateObservation  DROP FOREIGN KEY SiteDateObservation_siteDateId_fkey;
-ALTER TABLE sitestatus       DROP FOREIGN KEY SiteStatus_siteId_fkey;
-ALTER TABLE sitestatus       DROP FOREIGN KEY SiteStatus_statusCodeId_fkey;
-ALTER TABLE site             DROP FOREIGN KEY Site_countyId_fkey;
-ALTER TABLE state            DROP FOREIGN KEY State_countryId_fkey;
-ALTER TABLE taxonomy         DROP FOREIGN KEY Taxonomy_baseTaxonId_fkey;
-ALTER TABLE user             DROP FOREIGN KEY User_roleId_fkey;
+ALTER TABLE sitestatus           DROP FOREIGN KEY SiteStatus_siteId_fkey;
+ALTER TABLE sitestatus           DROP FOREIGN KEY SiteStatus_statusCodeId_fkey;
+ALTER TABLE site                 DROP FOREIGN KEY Site_countyId_fkey;
+ALTER TABLE state                DROP FOREIGN KEY State_countryId_fkey;
+ALTER TABLE taxonomy             DROP FOREIGN KEY Taxonomy_baseTaxonId_fkey;
+ALTER TABLE user                 DROP FOREIGN KEY User_roleId_fkey;
 
 DROP TABLE IF EXISTS _prisma_migrations;
 DROP TABLE IF EXISTS nameaddress;
@@ -269,6 +282,11 @@ DROP TABLE IF EXISTS region;
 DROP TABLE IF EXISTS state;
 DROP TABLE IF EXISTS country;
 DROP TABLE IF EXISTS continent;
+
+END //
+DELIMITER ;
+
+```
 
 npx prisma migrate dev --name initial_migration
 npx prisma migrate dev --name <date + letter or number>

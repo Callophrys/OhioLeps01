@@ -5,7 +5,7 @@
     import type { PopupSettings } from '@skeletonlabs/skeleton';
     import { page } from '$app/stores';
     import { enhance } from '$app/forms';
-    import { isEmpty, camelToLabel } from '$lib/utils';
+    import { isEmpty, camelToFriendly } from '$lib/utils';
     export let data;
     export let form;
 </script>

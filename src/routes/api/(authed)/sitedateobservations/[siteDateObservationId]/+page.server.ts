@@ -1,4 +1,4 @@
-import { getSiteDateObservationBySiteDateObservation } from '$lib/database/siteDateObservations.js';
+import { getSiteDateObservationBySiteDateObservation } from '$lib/database/sitedateobservations.js';
 import type { SiteDateObservationChecklist } from '$lib/types.js';
 
 export async function load({ params }) {

@@ -1,6 +1,6 @@
 <script lang="ts">
     import StandardContainer from '$lib/components/StandardContainer.svelte';
-    export let data;
+    //export let data;
 </script>
 
 <!-- siteDateObservations -->

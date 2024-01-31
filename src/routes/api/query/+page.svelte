@@ -217,8 +217,8 @@
                 <div class="flex h-12 xl:h-6">
                     <div class="w-28 pl-4">{[...new Set(form.checklists.map((x) => x.region))].length}</div>
                     <div class="w-28 pl-4">{[...new Set(form.checklists.map((x) => x.county))].length}</div>
-                    <div class="basis-[calc(45%_-_calc(0.45_*_224px))] pl-4">{[...new Set(form.checklists.map((x) => x.checklistId))].length}</div>
-                    <div class="flex-auto">[Totals of each distinct]</div>
+                    <div class="basis-[calc(45%_-_calc(0.45_*_224px))] pl-4">{[...new Set(form.checklists.map((x) => x.commonName))].length}</div>
+                    <div class="flex-auto">Totals</div>
                 </div>
             </div>
         {/if}

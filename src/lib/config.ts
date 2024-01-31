@@ -25,6 +25,6 @@ export const monitorSeason = {
         day: 1
     }
 }
-export const initialDateRangeChoice = 1;
-export const initialHideUnmonitedChoice = 1;
-export const initialUseLatinChoice = 1;
+export const initialDateRangeChoice = true;
+export const initialHideUnmonitedChoice = true;
+export const initialUseLatinChoice = true;
