@@ -230,6 +230,8 @@ SELECT COUNT(*) CT FROM siteDateObservation;
 SELECT COUNT(*) CT FROM sitestatus;
 SELECT COUNT(*) CT FROM statuscode;
 SELECT COUNT(*) CT FROM taxonomy;
+SELECT COUNT(*) CT FROM organization;
+SELECT COUNT(*) CT FROM appConfig;
 SELECT COUNT(*) CT FROM user;
 SELECT COUNT(*) CT FROM role;
 SELECT COUNT(*) CT FROM country;

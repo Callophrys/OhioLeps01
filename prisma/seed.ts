@@ -12,7 +12,6 @@ import seedTaxonomy from "./seed.taxonomy";
 import seedNameAddress from './seed.nameaddress';
 
 /*
-*/
 await seedStates();
 await seedStatusCode();
 await seedSite();
@@ -22,36 +21,33 @@ await seedChecklist();
 await seedSiteDateObservation();
 await seedTaxonomy();
 await seedNameAddress();
-await updateRoles();
+*/
+let orgId: number = await updateOrganizations();
+await updateRoles(orgId);
 /*
 */
 
-let templateOganizationId: number;
-let mainOrganizationId: number;
 
-async function updateOrganizations() {
+async function updateOrganizations(): number {
   console.log('Creating Organizations');
 
-  let organization = await db.organization.create({
+  const tt = await db.organization.create({
     data: {
       name: 'TEMPLATE'
     }
   });
 
-  templateOganizationId = organization.id;
+  let templateOrganizationId = tt.id;
 
-  organization = await db.organization.create({
+  const ll = await db.organization.create({
     data: {
       name: 'Ohio Lepidopterists'
     }
   });
 
-  mainOrganizationId = organization.id;
-}
+  let mainOrganizationId = ll.id;
 
-async function updateAppConfigs() {
   console.log('Creating App Configs');
-
   await db.appConfig.createMany({
     data: [
       { configName: 'modeDebug', configType: 'boolean', configValue: 'true', organizationId: templateOrganizationId },
@@ -64,7 +60,7 @@ async function updateAppConfigs() {
       { configName: 'showFooter', configType: 'boolean', configValue: 'false', organizationId: templateOrganizationId },
       { configName: 'showAvatar', configType: 'boolean', configValue: 'false', organizationId: templateOrganizationId },
       { configName: 'showStateProvince', configType: 'boolean', configValue: 'false', organizationId: templateOrganizationId },
-      { configName: 'monitorStartYear', configType: 'number', configValue: 1995, organizationId: templateOrganizationId },
+      { configName: 'monitorStartYear', configType: 'number', configValue: '1995', organizationId: templateOrganizationId },
       { configName: 'monitorSeason', configType: 'string', configValue: '{"start":{"year":1995,"month":4,"day":1},"end":{"year":9999,"month":10,"day":1}}', organizationId: templateOrganizationId },
       { configName: 'initialDateRangeChoice', configType: 'boolean', configValue: 'true', organizationId: templateOrganizationId },
       { configName: 'initialHideUnmonitedChoice', configType: 'boolean', configValue: 'true', organizationId: templateOrganizationId },
@@ -84,17 +80,19 @@ async function updateAppConfigs() {
       { configName: 'showFooter', configType: 'boolean', configValue: 'false', organizationId: mainOrganizationId },
       { configName: 'showAvatar', configType: 'boolean', configValue: 'false', organizationId: mainOrganizationId },
       { configName: 'showStateProvince', configType: 'boolean', configValue: 'false', organizationId: mainOrganizationId },
-      { configName: 'monitorStartYear', configType: 'number', configValue: 1995, organizationId: mainOrganizationId },
+      { configName: 'monitorStartYear', configType: 'number', configValue: '1995', organizationId: mainOrganizationId },
       { configName: 'monitorSeason', configType: 'string', configValue: '{"start":{"year":1995,"month":4,"day":1},"end":{"year":9999,"month":10,"day":1}}', organizationId: mainOrganizationId },
       { configName: 'initialDateRangeChoice', configType: 'boolean', configValue: 'true', organizationId: mainOrganizationId },
       { configName: 'initialHideUnmonitedChoice', configType: 'boolean', configValue: 'true', organizationId: mainOrganizationId },
       { configName: 'initialUseLatinChoice', configType: 'boolean', configValue: 'true', organizationId: mainOrganizationId },
     ]
   });
+
+  return mainOrganizationId;
 }
 
 // Consider making role into ENUM
-async function updateRoles() {
+async function updateRoles(orgId: number) {
   console.log('Creating Roles and Users');
 
   await db.role.create({
@@ -106,7 +104,7 @@ async function updateRoles() {
           username: "stella",
           passwordHash: "$2b$10$bjXz/irXJrUh8gvG8fidZepQN0BrN2/d2R2RshizCHYSI.FP74s8G",
           userAuthToken: "dc1c44da-fa33-4fb7-82cc-b5baa7522c4d",
-          organizationId: mainOrganizationId
+          organizationId: orgId
         }
       }
     }
@@ -121,7 +119,7 @@ async function updateRoles() {
           username: "snell",
           passwordHash: "$2b$10$iAIf7B4I9aUy9ZklbY.yy.GuJ0U3HjpttqEMiHb5zwvoMsYOqDXFy",
           userAuthToken: "70e2e703-06d9-4ebc-bc39-889d85f9db4d",
-          organizationId: mainOrganizationId
+          organizationId: orgId
         }]
       }
     },
@@ -136,7 +134,7 @@ async function updateRoles() {
           username: "nate",
           passwordHash: "$2b$10$09GTBhmT0rC41GOoOvgw6.oGTbMEKZaxQ3spCEwRnmXjc6jxusoEC",
           userAuthToken: "10b4f4bc-8a3d-4df4-8112-98eea730fc24",
-          organizationId: mainOrganizationId
+          organizationId: orgId
         }]
       }
     },

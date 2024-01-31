@@ -87,8 +87,8 @@ model Organization {
 	updatedBy String?
 	updatedAt DateTime?
     
-    appConfigs AppConfig[]
-    users User[]
+    appConfigs AppConfig[] @relation("ConfigOfOrganization")
+    users User[]           @relation("UserOfOrganization")
 }
 
 // Could make this an enum
