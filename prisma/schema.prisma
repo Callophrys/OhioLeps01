@@ -45,17 +45,50 @@ model Taxonomy {
     @@index([taxonType, latinName])
 }
 
+model AppConfig {
+    id Int @id @default(autoincrement())
+    configName String
+    configType String
+    configValue String
+
+	createdBy String @default("")
+	createdAt DateTime @default(now())
+	updatedBy String?
+	updatedAt DateTime?
+
+    organizationId String 
+    organization Organization @relation("ConfigOfOrganization", fields: [organizationId], references: [id])
+}
+
 model User {
-  id            String @id @default(uuid())
-  username      String @unique
-  passwordHash  String
-  userAuthToken String @unique
+    id            String @id @default(uuid())
+    username      String @unique
+    passwordHash  String
+    userAuthToken String @unique
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
+	createdBy String @default("")
+	createdAt DateTime @default(now())
+	updatedBy String?
+	updatedAt DateTime?
 
-  role   Role @relation(fields: [roleId], references: [id])
-  roleId Int
+    roleId Int
+    role   Role @relation(fields: [roleId], references: [id])
+
+    organizationId String
+    organization Organization @relation("UserOfOrganization", fields: [organizationId], references: [id])
+}
+
+model Organization {
+    id String @id @default(uuid())
+    name String @unique
+
+	createdBy String @default("")
+	createdAt DateTime @default(now())
+	updatedBy String?
+	updatedAt DateTime?
+    
+    appConfigs AppConfig[]
+    users User[]
 }
 
 // Could make this an enum
