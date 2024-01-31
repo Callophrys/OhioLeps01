@@ -3,29 +3,34 @@
     import StandardContainer from '$lib/components/StandardContainer.svelte';
     import * as config from '$lib/config';
     import { camelToFriendly } from '$lib/utils';
+    import type { AppConfig } from '@prisma/client';
+
+    export let data;
+    console.log(data.appConfigs);
+
     $: configEntries = new Map(Object.entries(config));
     $: console.log(configEntries);
 
-    function getControl(key: string, value: any) {
-        console.log(key, value);
-        if (typeof value === 'string') {
-            if (key.toLocaleLowerCase() === 'description') {
-                return `<textarea id=${key} name=${key} rows="3" cols="50" class="resize p-1 rounded-md variant-filled">${value}</textarea>`;
+    function getControl(config: AppConfig) {
+        console.log(config);
+        if (config.configType === 'string') {
+            if (config.configName.toLocaleLowerCase() === 'description') {
+                return `<textarea id=${config.configName} name=${config.configName} rows="3" cols="50" class="resize p-1 rounded-md variant-filled">${config.configValue}</textarea>`;
             } else {
-                return `<input id=${key} name=${key} type="text" class="p-1 rounded-md variant-filled" value=${value} />`;
+                return `<input id=${config.configName} name=${config.configName} type="text" class="p-1 rounded-md variant-filled" value=${config.configValue} />`;
             }
         }
 
-        if (typeof value === 'number') {
-            return `<input id=${key} name=${key} type="number" class="p-1 rounded-md variant-filled" value=${value} />`;
+        if (config.configType === 'number') {
+            return `<input id=${config.configName} name=${config.configName} type="number" class="p-1 rounded-md variant-filled" value=${config.configValue} />`;
         }
 
-        if (typeof value === 'boolean') {
-            return `<input id=${key} name=${key} type="checkbox" class="p-1 rounded-md variant-filled" checked=${value} />`;
+        if (config.configType === 'boolean') {
+            return `<input id=${config.configName} name=${config.configName} type="checkbox" class="p-1 rounded-md variant-filled" checked=${config.configValue} />`;
         }
 
-        if (typeof value === 'object') {
-            return `<pre class="hover:cursor-not-allowed">${JSON.stringify(value)}</pre>`;
+        if (config.configType === 'object') {
+            return `<pre class="hover:cursor-not-allowed">${config.configValue}</pre>`;
         }
 
         return undefined;
@@ -43,11 +48,11 @@
     <svelte:fragment slot="standardBody">
         <form>
             <div class="flex flex-col space-y-2">
-                {#each configEntries as [key, value]}
+                {#each data.appConfigs as config}
                     <div class="flex space-x-2">
-                        <div class="w-56">{camelToFriendly(key)}</div>
-                        <div class="w-20">({typeof value})</div>
-                        <div class="w-fit">{@html getControl(key, value)}</div>
+                        <div class="w-56">{camelToFriendly(config.configName)}</div>
+                        <div class="w-20">({config.configType})</div>
+                        <div class="w-fit">{@html getControl(config)}</div>
                     </div>
                 {/each}
             </div>

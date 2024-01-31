@@ -1,5 +1,6 @@
 import { redirect } from '@sveltejs/kit'
 import type { PageServerLoad } from './$types'
+import { getAppConfigs, getTemplateAppConfigs } from '$lib/database/appconfig';
 
 export const load: PageServerLoad = async ({ locals }) => {
   // redirect user if not logged in
@@ -8,4 +9,7 @@ export const load: PageServerLoad = async ({ locals }) => {
     // TODO: figure out why this always goes to "/" when something else is hard-coded or passed in
     throw redirect(302, '/');
   }
+
+  const appConfigs = await getAppConfigs('Ohio Lepidopterists');
+  return { appConfigs }
 }
