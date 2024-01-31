@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { Prisma } from '@prisma/client';
 import { scientificName } from '$lib/utils.js';
-import type { Checklist, SiteObservation, SiteDate } from '@prisma/client';
+import type { Checklist, SiteDateObservation, SiteDate } from '@prisma/client';
 
 
 /*
@@ -44,9 +44,9 @@ const prisma = new PrismaClient().$extends({
                 }
             }
         },
-        siteObservation: {
+        siteDateObservation: {
             total: {
-                compute(o: SiteObservation) {
+                compute(o: SiteDateObservation) {
                     return Number(o.section1)
                         + Number(o.section2)
                         + Number(o.section3)

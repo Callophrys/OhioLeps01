@@ -1,6 +1,6 @@
 import type {
 	County, State, Checklist, Region,
-	Site, SiteDate, SiteObservation, Taxonomy
+	Site, SiteDate, SiteDateObservation, Taxonomy
 } from '@prisma/client'
 
 // Example: export type SomeNewName <T> = Partial<T> & { newMember: boolean }
@@ -8,7 +8,7 @@ import type {
 export type ChecklistScientificName = Checklist & { scientificName: string }
 export type CountyMonitored = County & { isMonitored: boolean, siteCount: number, state: State }
 export type CountyComplete = CountyMonitored & { region: Region, sites: Site[] }
-export type SiteObservationChecklist = SiteObservation & {
+export type SiteDateObservationChecklist = SiteDateObservation & {
 	checklist: ChecklistScientificName,
 	total: number
 }

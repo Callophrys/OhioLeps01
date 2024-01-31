@@ -175,10 +175,10 @@ mysql> select * from checklist where hodges is null;
 ```
 
 ```
-update siteObservation o join checklist k on o.hodges = k.hodges
+update siteDateObservation o join checklist k on o.hodges = k.hodges
    set o.checklistId = k.checklistId
 
-update siteObservation o join siteDate d on o.seqId = d.seqId
+update siteDateObservation o join siteDate d on o.seqId = d.seqId
    set o.siteDateId = d.siteDateId
 ```
 ### Node.js way to get json from mdb
@@ -225,7 +225,7 @@ SELECT COUNT(*) CT FROM nameaddress;
 SELECT COUNT(*) CT FROM checklist;
 SELECT COUNT(*) CT FROM site;
 SELECT COUNT(*) CT FROM sitedate;
-SELECT COUNT(*) CT FROM siteobservation;
+SELECT COUNT(*) CT FROM siteDateObservation;
 SELECT COUNT(*) CT FROM sitestatus;
 SELECT COUNT(*) CT FROM statuscode;
 SELECT COUNT(*) CT FROM taxonomy;
@@ -244,8 +244,8 @@ ALTER TABLE county           DROP FOREIGN KEY County_regionId_fkey;
 ALTER TABLE county           DROP FOREIGN KEY County_stateId_fkey;
 ALTER TABLE region           DROP FOREIGN KEY Region_stateId_fkey;
 ALTER TABLE sitedate         DROP FOREIGN KEY SiteDate_siteId_fkey;
-ALTER TABLE siteobservation  DROP FOREIGN KEY SiteObservation_checklistId_fkey;
-ALTER TABLE siteobservation  DROP FOREIGN KEY SiteObservation_siteDateId_fkey;
+ALTER TABLE siteDateObservation  DROP FOREIGN KEY SiteDateObservation_checklistId_fkey;
+ALTER TABLE siteDateObservation  DROP FOREIGN KEY SiteDateObservation_siteDateId_fkey;
 ALTER TABLE sitestatus       DROP FOREIGN KEY SiteStatus_siteId_fkey;
 ALTER TABLE sitestatus       DROP FOREIGN KEY SiteStatus_statusCodeId_fkey;
 ALTER TABLE site             DROP FOREIGN KEY Site_countyId_fkey;
@@ -258,7 +258,7 @@ DROP TABLE IF EXISTS nameaddress;
 DROP TABLE IF EXISTS checklist;
 DROP TABLE IF EXISTS site;
 DROP TABLE IF EXISTS sitedate;
-DROP TABLE IF EXISTS siteobservation;
+DROP TABLE IF EXISTS siteDateObservation;
 DROP TABLE IF EXISTS sitestatus;
 DROP TABLE IF EXISTS statuscode;
 DROP TABLE IF EXISTS taxonomy;
@@ -418,7 +418,7 @@ from county c
 inner join region r on c.regionId = r.id
 inner join site s on s.countyId = c.id
 inner join sitedate d on s.siteid = d.siteid
-inner join siteobservation o on d.sitedateid = o.sitedateid
+inner join siteDateObservation o on d.sitedateid = o.sitedateid
 inner join checklist l on o.checklistid = l.checklistid
 where c.name = 'greene';
 
@@ -430,7 +430,7 @@ from county c
 inner join region r on c.regionId = r.id
 inner join site s on s.countyId = c.id
 inner join sitedate d on s.siteid = d.siteid
-inner join siteobservation o on d.sitedateid = o.sitedateid
+inner join siteDateObservation o on d.sitedateid = o.sitedateid
 inner join checklist l on o.checklistid = l.checklistid;
 
 

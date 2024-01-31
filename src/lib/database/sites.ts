@@ -89,7 +89,7 @@ export async function addSite(site: any) {
 // Hard delete, we prob need the history and support for undos and auditing and so on.
 export async function removeSite(siteId: number) {
   console.log('/lib/api/entry/sites.ts > removeSite');
-  await prisma.siteObservation.deleteMany({
+  await prisma.siteDateObservation.deleteMany({
     where: {
       siteDateId: siteId // is this right?
     }

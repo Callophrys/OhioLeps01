@@ -150,16 +150,16 @@ model Checklist {
     //@@unique([hodges])
 
     // Child Relation
-    siteObservations SiteObservation[]
+    siteDateObservations SiteDateObservation[]
 
     // Parent Relation
     taxonId Int?
     taxon   Taxonomy? @relation("ChecklistOfTaxon", fields: [taxonId], references: [id])
 }
 
-model SiteObservation {
-    siteObservationId Int @id @default(autoincrement())
-    // ** use siteObservationId as real key now - and later just drop 'seqId Int?'
+model SiteDateObservation {
+    siteDateObservationId Int @id @default(autoincrement())
+    // ** use siteDateObservationId as real key now - and later just drop 'seqId Int?'
     seqId Int?
     hodges String?
     idCode String? // @db.String(1)  // in { how id'ed:  O observ, N net, P photo, C collected }
@@ -301,7 +301,7 @@ model SiteDate {
     // provided by load: siteId Int //@default(0)
 
     // Child Relation
-    siteObservations SiteObservation[]
+    siteDateObservations SiteDateObservation[]
 
     @@index([siteId])
 }

@@ -4,7 +4,7 @@
     import { modeDebug } from '$lib/config.js'
     export let data;
     //console.log(data);
-    let key = modeDebug ? `${data.siteObservation.siteObservationId.toString()}. ` : '';
+    let key = modeDebug ? `${data.siteDateObservation.siteDateObservationId.toString()}. ` : '';
 </script>
 
 <StandardContainer>
@@ -63,87 +63,87 @@
             </div>
         </div>
         <div>
-            <div class="font-bold">{key}{data.siteObservation.checklist.scientificName}</div>
+            <div class="font-bold">{key}{data.siteDateObservation.checklist.scientificName}</div>
             <div class="flex flex-row space-x-4">
-                <div>Hodges: {data.siteObservation.hodges}</div>
-                <div>Id Code: {data.siteObservation.idCode}</div>
+                <div>Hodges: {data.siteDateObservation.hodges}</div>
+                <div>Id Code: {data.siteDateObservation.idCode}</div>
             </div>
             <hr />
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
                 <div class="flex flex-row space-x-2">
                     <div class="w-24 text-right">Section 1:</div>
-                    <div class="w-7">{@html data.siteObservation.section1 ?? '&varnothing;'}</div>
+                    <div class="w-7">{@html data.siteDateObservation.section1 ?? '&varnothing;'}</div>
                 </div>
                 <div class="flex flex-row space-x-2">
                     <div class="w-24 text-right">Section 2:</div>
-                    <div class="w-7">{@html data.siteObservation.section2 ?? '&varnothing;'}</div>
+                    <div class="w-7">{@html data.siteDateObservation.section2 ?? '&varnothing;'}</div>
                 </div>
                 <div class="flex flex-row space-x-2">
                     <div class="w-24 text-right">Section 3:</div>
-                    <div class="w-7">{@html data.siteObservation.section3 ?? '&varnothing;'}</div>
+                    <div class="w-7">{@html data.siteDateObservation.section3 ?? '&varnothing;'}</div>
                 </div>
                 <div class="flex flex-row space-x-2">
                     <div class="w-24 text-right">Section 4:</div>
-                    <div class="w-7">{@html data.siteObservation.section4 ?? '&varnothing;'}</div>
+                    <div class="w-7">{@html data.siteDateObservation.section4 ?? '&varnothing;'}</div>
                 </div>
                 <div class="flex flex-row space-x-2">
                     <div class="w-24 text-right">Section 5:</div>
-                    <div class="w-7">{@html data.siteObservation.section5 ?? '&varnothing;'}</div>
+                    <div class="w-7">{@html data.siteDateObservation.section5 ?? '&varnothing;'}</div>
                 </div>
                 <div class="flex flex-row space-x-2">
                     <div class="w-24 text-right">Section 6:</div>
-                    <div class="w-7">{@html data.siteObservation.section6 ?? '&varnothing;'}</div>
+                    <div class="w-7">{@html data.siteDateObservation.section6 ?? '&varnothing;'}</div>
                 </div>
                 <div class="flex flex-row space-x-2">
                     <div class="w-24 text-right">Section 7:</div>
-                    <div class="w-7">{@html data.siteObservation.section7 ?? '&varnothing;'}</div>
+                    <div class="w-7">{@html data.siteDateObservation.section7 ?? '&varnothing;'}</div>
                 </div>
                 <div class="flex flex-row space-x-2">
                     <div class="w-24 text-right">Section 8:</div>
-                    <div class="w-7">{@html data.siteObservation.section8 ?? '&varnothing;'}</div>
+                    <div class="w-7">{@html data.siteDateObservation.section8 ?? '&varnothing;'}</div>
                 </div>
                 <div class="flex flex-row space-x-2">
                     <div class="w-24 text-right">Section 9:</div>
-                    <div class="w-7">{@html data.siteObservation.section9 ?? '&varnothing;'}</div>
+                    <div class="w-7">{@html data.siteDateObservation.section9 ?? '&varnothing;'}</div>
                 </div>
                 <div class="flex flex-row space-x-2">
                     <div class="w-24 text-right">Section 10:</div>
-                    <div class="w-7">{@html data.siteObservation.section10 ?? '&varnothing;'}</div>
+                    <div class="w-7">{@html data.siteDateObservation.section10 ?? '&varnothing;'}</div>
                 </div>
                 <div class="flex flex-row space-x-2">
                     <div class="w-24 text-right">Section 11:</div>
-                    <div class="w-7">{@html data.siteObservation.section11 ?? '&varnothing;'}</div>
+                    <div class="w-7">{@html data.siteDateObservation.section11 ?? '&varnothing;'}</div>
                 </div>
                 <div class="flex flex-row space-x-2">
                     <div class="w-24 text-right">Section 12:</div>
-                    <div class="w-7">{@html data.siteObservation.section12 ?? '&varnothing;'}</div>
+                    <div class="w-7">{@html data.siteDateObservation.section12 ?? '&varnothing;'}</div>
                 </div>
                 <div class="flex flex-row space-x-2">
                     <div class="w-24 text-right">Section 13:</div>
-                    <div class="w-7">{@html data.siteObservation.section13 ?? '&varnothing;'}</div>
+                    <div class="w-7">{@html data.siteDateObservation.section13 ?? '&varnothing;'}</div>
                 </div>
                 <div class="flex flex-row space-x-2">
                     <div class="w-24 text-right">Section 14:</div>
-                    <div class="w-7">{@html data.siteObservation.section14 ?? '&varnothing;'}</div>
+                    <div class="w-7">{@html data.siteDateObservation.section14 ?? '&varnothing;'}</div>
                 </div>
                 <div class="flex flex-row space-x-2">
                     <div class="w-24 text-right">Section 15:</div>
-                    <div class="w-7">{@html data.siteObservation.section15 ?? '&varnothing;'}</div>
+                    <div class="w-7">{@html data.siteDateObservation.section15 ?? '&varnothing;'}</div>
                 </div>
             </div>
             <hr />
             <div class="flex flex-row flex-wrap justify-between">
                 <div class="flex flex-col basis-56">
-                    <div>Created At: {formatDate(new Date(data.siteObservation.createdAt).toISOString(), undefined, 'short')}</div>
-                    <div class="">Created By: {data.siteObservation.createdBy}</div>
+                    <div>Created At: {formatDate(new Date(data.siteDateObservation.createdAt).toISOString(), undefined, 'short')}</div>
+                    <div class="">Created By: {data.siteDateObservation.createdBy}</div>
                 </div>
                 <div class="flex flex-col basis-56">
-                    <div>Updated At: {data.siteObservation.updatedAt ? formatDate(new Date(data.siteObservation.updatedAt).toISOString(), undefined, 'short') : ''}</div>
-                    <div class="">Updated By: {data.siteObservation.updatedBy ?? ''}</div>
+                    <div>Updated At: {data.siteDateObservation.updatedAt ? formatDate(new Date(data.siteDateObservation.updatedAt).toISOString(), undefined, 'short') : ''}</div>
+                    <div class="">Updated By: {data.siteDateObservation.updatedBy ?? ''}</div>
                 </div>
                 <div class="flex flex-col basis-56">
-                    <div>Confirm At: {data.siteObservation.confirmAt ? formatDate(new Date(data.siteObservation.confirmAt).toISOString()) : ''}</div>
-                    <div class="">Confirm By: {data.siteObservation.confirmBy ?? ''}</div>
+                    <div>Confirm At: {data.siteDateObservation.confirmAt ? formatDate(new Date(data.siteDateObservation.confirmAt).toISOString()) : ''}</div>
+                    <div class="">Confirm By: {data.siteDateObservation.confirmBy ?? ''}</div>
                 </div>
             </div>
         </div>

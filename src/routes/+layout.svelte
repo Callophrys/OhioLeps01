@@ -118,7 +118,7 @@
                     <li><a href="/api/nameaddresses">Name-Address</a></li>
                     <!--
                     <li class="indent-4"><a href="/api/sitedates">Year/Week Dates</a></li>
-                    <li class="indent-8"><a href="/api/siteobservations">Observations</a></li>
+                    <li class="indent-8"><a href="/api/siteDateObservations">Observations</a></li>
                     -->
                 {/if}
                 <li><a href="/api/ohio">Ohio</a></li>

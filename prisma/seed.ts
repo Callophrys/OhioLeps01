@@ -7,7 +7,7 @@ import seedSite from './seed.site';
 import seedSiteStatus from './seed.sitestatus';
 import seedSiteDate from './seed.sitedate';
 import seedChecklist from './seed.checklist';
-import seedSiteObservation from './seed.siteobservation';
+import seedSiteDateObservation from './seed.sitedateobservation';
 import seedTaxonomy from "./seed.taxonomy";
 import seedNameAddress from './seed.nameaddress';
 
@@ -19,16 +19,11 @@ await seedSite();
 await seedSiteStatus();
 await seedSiteDate();
 await seedChecklist();
-await seedSiteObservation();
+await seedSiteDateObservation();
 await seedTaxonomy();
 await seedNameAddress();
 await updateRoles();
 /*
-*/
-/*
- * these are done in the seeding call
-await updateSiteObservationForSiteDate();
-await updateSiteObservationForChecklist();
 */
 
 // Consider making role into ENUM
@@ -77,20 +72,6 @@ async function updateRoles() {
     },
   });
   console.log('  done creating Roles and Users');
-}
-
-async function updateSiteObservationForChecklist() {
-  let result = await db.$executeRaw`
-    update siteObservation o join checklist k on o.hodges = k.hodges
-      set o.checklistId = k.checklistId`;
-  console.log("Updated " + result + " siteObservation records for relation to checklist.")
-}
-
-async function updateSiteObservationForSiteDate() {
-  let result = await db.$executeRaw`
-    update siteObservation o join siteDate d on o.seqId = d.seqId
-      set o.siteDateId = d.siteDateId`;
-  console.log("Updated " + result + " siteObservation records for relation to siteDate.")
 }
 
 /*

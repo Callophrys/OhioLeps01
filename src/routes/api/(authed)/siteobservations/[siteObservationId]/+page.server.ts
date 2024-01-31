@@ -1,9 +1,9 @@
-import { getSiteObservationBySiteObservation } from '$lib/database/siteobservations.js';
-import type { SiteObservationChecklist } from '$lib/types.js';
+import { getSiteDateObservationBySiteDateObservation } from '$lib/database/siteDateObservations.js';
+import type { SiteDateObservationChecklist } from '$lib/types.js';
 
 export async function load({ params }) {
-	const siteObservation = await getSiteObservationBySiteObservation(Number(params.siteObservationId)) as SiteObservationChecklist;
-	const json = JSON.stringify(siteObservation);
-	const jsonResult: SiteObservationChecklist = JSON.parse(json);
-	return { siteObservation: jsonResult }
+	const siteDateObservation = await getSiteDateObservationBySiteDateObservation(Number(params.siteDateObservationId)) as SiteDateObservationChecklist;
+	const json = JSON.stringify(siteDateObservation);
+	const jsonResult: SiteDateObservationChecklist = JSON.parse(json);
+	return { siteDateObservation: jsonResult }
 }

@@ -51,7 +51,7 @@ from county c
 inner join region r on c.regionId = r.id
 inner join site s on s.countyId = c.id
 inner join sitedate d on s.siteid = d.siteid
-inner join siteobservation o on d.sitedateid = o.sitedateid
+inner join siteDateObservation o on d.sitedateid = o.sitedateid
 inner join checklist l on o.checklistid = l.checklistid`;
 
 	let useSpecimens = (filter && (filter.specimenIds && filter.specimenIds.length));

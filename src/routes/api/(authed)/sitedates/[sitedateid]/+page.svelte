@@ -163,7 +163,7 @@
     //console.log(uniqueYears);
     //console.log(trackedWeeks);
 
-    //console.log(data.siteObservations[0]);
+    //console.log(data.siteDateObservations[0]);
 </script>
 
 <DoubledContainer basisLeft="basis-2/5" basisRight="basis-3/5">
@@ -472,12 +472,12 @@
         </div>
         <hr />
         <div class="mt-2">
-            {#each data.siteObservations as siteObservation}
+            {#each data.siteDateObservations as siteDateObservation}
                 <div class="card flex">
-                    <a href="/api/siteobservations/{siteObservation.siteObservationId}" class="flex space-x-2 p-2">
-                        <div class="w-56">🔎 {siteObservation.checklist.commonName}</div>
-                        <div class="w-56">{siteObservation.checklist.scientificName}</div>
-                        <div class="w-16">total: {siteObservation.total}</div>
+                    <a href="/api/siteDateObservations/{siteDateObservation.siteDateObservationId}" class="flex space-x-2 p-2">
+                        <div class="w-56">🔎 {siteDateObservation.checklist.commonName}</div>
+                        <div class="w-56">{siteDateObservation.checklist.scientificName}</div>
+                        <div class="w-16">total: {siteDateObservation.total}</div>
                     </a>
                 </div>
             {/each}

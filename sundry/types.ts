@@ -85,11 +85,11 @@ export type CheckList = {
     tmp_TotalCount: number,
     tmp_HighCount: number,
     
-    siteObservations: SiteObservation[]
+    siteDateObservations: SiteDateObservation[]
 }
 
-export type SiteObservation = {
-    siteObservationId: number,
+export type SiteDateObservation = {
+    siteDateObservationId: number,
     seqId: number, // deprecated
     checkListId: string,
     id: string,
@@ -190,7 +190,7 @@ export type SiteDate = {
     fieldNotes: string,
     dateChg: string,
 
-    siteObservations: SiteObservation[],
+    siteDateObservations: SiteDateObservation[],
 
     site: Site,
     siteId: number
