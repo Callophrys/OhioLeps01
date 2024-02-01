@@ -6,8 +6,7 @@
     import type { AppConfig } from '@prisma/client';
 
     export let data;
-    //console.log(data.appConfigs);
-
+    //$: console.log(data.appConfigs);
     //$: configEntries = new Map(Object.entries(config));
     //$: console.log(configEntries);
 
@@ -15,18 +14,19 @@
         //console.log(config);
         if (config.configType === 'string') {
             if (config.configName.toLocaleLowerCase() === 'description') {
-                return `<textarea id=${config.configName} name=${config.configName} rows="3" cols="50" class="resize p-1 rounded-md variant-filled">${config.configValue}</textarea>`;
+                return `<textarea id=${config.id + '_' + config.configName} name=${config.id + '_' + config.configName} rows="3" cols="50" class="resize p-1 rounded-md variant-filled">${config.configValue}</textarea>`;
             } else {
-                return `<input id=${config.configName} name=${config.configName} type="text" class="p-1 rounded-md variant-filled" value=${config.configValue} />`;
+                console.log(config.configValue);
+                return `<input id=${config.id + '_' + config.configName} name=${config.id + '_' + config.configName} type="text" class="p-1 rounded-md variant-filled" value=${config.configValue} />`;
             }
         }
 
         if (config.configType === 'number') {
-            return `<input id=${config.configName} name=${config.configName} type="number" class="p-1 rounded-md variant-filled" value=${config.configValue} />`;
+            return `<input id=${config.id + '_' + config.configName} name=${config.id + '_' + config.configName} type="number" class="p-1 rounded-md variant-filled" value=${config.configValue} />`;
         }
 
         if (config.configType === 'boolean') {
-            return `<input id=${config.configName} name=${config.configName} type="checkbox" class="p-1 rounded-md variant-filled" ${config.configValue === 'true' ? 'checked' : ''} />`;
+            return `<input id=${config.id + '_' + config.configName} name=${config.id + '_' + config.configName} type="checkbox" class="p-1 rounded-md variant-filled" ${config.configValue === 'true' ? 'checked' : ''} />`;
         }
 
         if (config.configType === 'object') {
@@ -59,11 +59,11 @@
         </form>
     </svelte:fragment>
     <svelte:fragment slot="standardTail">
-    <div class="text-center flex">
-        <div class="flex flex-cols justify-between space-x-4 max-w-2xl mx-auto">
-            <button type="submit" form="appConfigs" class="btn w-32 variant-filled">Save</button>
-            <button type="submit" form="appConfigs" class="btn w-32 variant-filled">Reset All</button>
+        <div class="text-center flex">
+            <div class="flex flex-cols justify-between space-x-4 max-w-2xl mx-auto">
+                <button type="submit" form="appConfigs" class="btn w-32 variant-filled">Save</button>
+                <button type="submit" form="appConfigs" class="btn w-32 variant-filled">Reset All</button>
+            </div>
         </div>
-    </div>
     </svelte:fragment>
 </StandardContainer>

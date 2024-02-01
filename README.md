@@ -557,3 +557,9 @@ xl	1280px	@media (min-width: 1280px) { ... }
 2xl	1536px	@media (min-width: 1536px) { ... }
 ```
 
+```
+git config --global pull.rebase true
+git config --global fetch.prune true
+git config --global diff.colorMoved zebra
+```
+

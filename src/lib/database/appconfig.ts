@@ -20,7 +20,7 @@ export async function getAppConfigByName(name: string, organizationId: string) {
     return appConfig;
 }
 
-export async function getAppConfigsById(organizationId: string) {
+export async function getAppConfigsByOrgId(organizationId: string) {
     const appConfigs = await prisma.appConfig.findMany({
         where: {
             organizationId: organizationId
@@ -30,7 +30,7 @@ export async function getAppConfigsById(organizationId: string) {
     return appConfigs;
 }
 
-export async function getAppConfigsByName(organizationName: string) {
+export async function getAppConfigsByOrgName(organizationName: string) {
     const appConfigs = await prisma.appConfig.findMany({
         where: {
             organization: {
@@ -56,15 +56,7 @@ export async function getTemplateAppConfig(configName: string) {
 }
 
 export async function getTemplateAppConfigs() {
-    const appConfigs = await prisma.appConfig.findMany({
-        where: {
-            organization: {
-                name: 'TEMPLATE'
-            }
-        }
-    })
-
-    return appConfigs;
+    return await getAppConfigsByOrgName('TEMPLATE');
 }
 
 export async function updateAppConfig(appConfig: AppConfig) {
@@ -78,7 +70,7 @@ export async function updateAppConfig(appConfig: AppConfig) {
             configValue: appConfig.configValue
         }
     });
-    
+
     return updatedAppConfig;
 }
 
@@ -102,7 +94,7 @@ export async function resetAppConfig(appConfig: AppConfig) {
 
 export async function resetAllAppConfigs(organizationId: string) {
     const promises: Promise<AppConfig>[] = [];
-    (await getAppConfigsById(organizationId)).forEach(c => promises.push(resetAppConfig(c)));
+    (await getAppConfigsByOrgId(organizationId)).forEach(c => promises.push(resetAppConfig(c)));
     return await Promise.all(promises);
 }
 

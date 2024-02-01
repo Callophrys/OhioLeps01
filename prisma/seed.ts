@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client"
+import { Organization, PrismaClient } from "@prisma/client"
 const db = new PrismaClient()
 
 import seedStates from "./seed.state";
@@ -27,7 +27,7 @@ await updateRoles(organization);
 /*
 */
 
-async function updateOrganizations() {
+async function updateOrganizations(): Promise<Organization> {
   console.log('Creating Organizations');
 
   const tt = await db.organization.create({
@@ -86,10 +86,12 @@ async function updateOrganizations() {
       { configName: 'initialUseLatinChoice', configType: 'boolean', configValue: 'true', organizationId: mainOrganizationId },
     ]
   });
+
+  return ll;
 }
 
 // Consider making role into ENUM
-async function updateRoles(organizationId) {
+async function updateRoles(organization: Organization) {
   console.log('Creating Roles and Users');
 
   await db.role.create({
@@ -101,7 +103,7 @@ async function updateRoles(organizationId) {
           username: "stella",
           passwordHash: "$2b$10$bjXz/irXJrUh8gvG8fidZepQN0BrN2/d2R2RshizCHYSI.FP74s8G",
           userAuthToken: "dc1c44da-fa33-4fb7-82cc-b5baa7522c4d",
-          organizationId: organizationId
+          organizationId: organization.id
         }
       }
     }
@@ -116,7 +118,7 @@ async function updateRoles(organizationId) {
           username: "snell",
           passwordHash: "$2b$10$iAIf7B4I9aUy9ZklbY.yy.GuJ0U3HjpttqEMiHb5zwvoMsYOqDXFy",
           userAuthToken: "70e2e703-06d9-4ebc-bc39-889d85f9db4d",
-          organizationId: organizationId
+          organizationId: organization.id
         }]
       }
     },
@@ -131,7 +133,7 @@ async function updateRoles(organizationId) {
           username: "nate",
           passwordHash: "$2b$10$09GTBhmT0rC41GOoOvgw6.oGTbMEKZaxQ3spCEwRnmXjc6jxusoEC",
           userAuthToken: "10b4f4bc-8a3d-4df4-8112-98eea730fc24",
-          organizationId: organizationId
+          organizationId: organization.id
         }]
       }
     },
