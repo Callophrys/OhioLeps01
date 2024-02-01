@@ -58,6 +58,8 @@ model AppConfig {
 
     organizationId String 
     organization Organization @relation("ConfigOfOrganization", fields: [organizationId], references: [id])
+
+    @@unique([configName, organizationId])
 }
 
 model User {

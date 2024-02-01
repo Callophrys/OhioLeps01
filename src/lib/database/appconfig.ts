@@ -1,4 +1,5 @@
 import prisma from '$lib/prisma';
+import type { AppConfig } from '@prisma/client';
 
 export async function getAppConfigById(appConfigId: number) {
     const appConfig = await prisma.appConfig.findUnique({
@@ -10,20 +11,43 @@ export async function getAppConfigById(appConfigId: number) {
 }
 
 export async function getAppConfigByName(name: string, organizationId: string) {
-    const appConfig = await prisma.appConfig.findUnique({
+    const appConfig = await prisma.appConfig.findFirst({
         where: {
-            name: name,
+            configName: name,
             organizationId: organizationId,
         }
     })
     return appConfig;
 }
 
-export async function getAppConfigs(organizationName: string) {
+export async function getAppConfigsById(organizationId: string) {
+    const appConfigs = await prisma.appConfig.findMany({
+        where: {
+            organizationId: organizationId
+        }
+    })
+
+    return appConfigs;
+}
+
+export async function getAppConfigsByName(organizationName: string) {
     const appConfigs = await prisma.appConfig.findMany({
         where: {
             organization: {
                 name: organizationName
+            }
+        }
+    })
+
+    return appConfigs;
+}
+
+export async function getTemplateAppConfig(configName: string) {
+    const appConfigs = await prisma.appConfig.findFirst({
+        where: {
+            configName: configName,
+            organization: {
+                name: 'TEMPLATE'
             }
         }
     })
@@ -42,3 +66,43 @@ export async function getTemplateAppConfigs() {
 
     return appConfigs;
 }
+
+export async function updateAppConfig(appConfig: AppConfig) {
+    const updatedAppConfig = await prisma.appConfig.update({
+        where: {
+            id: appConfig.id
+        },
+        data: {
+            configName: appConfig.configName,
+            configType: appConfig.configType,
+            configValue: appConfig.configValue
+        }
+    });
+    
+    return updatedAppConfig;
+}
+
+export async function updateAllAppConfigs(appConfigs: AppConfig[]) {
+    const promises: Promise<AppConfig>[] = [];
+    appConfigs.forEach(p => promises.push(updateAppConfig(p)));
+    return await Promise.all(promises);
+}
+
+export async function resetAppConfig(appConfig: AppConfig) {
+    return await getTemplateAppConfig(appConfig.configName)
+        .then(config => prisma.appConfig.update({
+            where: {
+                id: appConfig.id
+            },
+            data: {
+                configValue: config?.configValue
+            }
+        }));
+}
+
+export async function resetAllAppConfigs(organizationId: string) {
+    const promises: Promise<AppConfig>[] = [];
+    (await getAppConfigsById(organizationId)).forEach(c => promises.push(resetAppConfig(c)));
+    return await Promise.all(promises);
+}
+

@@ -80,7 +80,7 @@ async function updateOrganizations(): number {
       { configName: 'showAvatar', configType: 'boolean', configValue: 'false', organizationId: mainOrganizationId },
       { configName: 'showStateProvince', configType: 'boolean', configValue: 'false', organizationId: mainOrganizationId },
       { configName: 'monitorStartYear', configType: 'number', configValue: '1995', organizationId: mainOrganizationId },
-      { configName: 'monitorSeason', configType: '', configValue: '{"start":{"year":1995,"month":4,"day":1},"end":{"year":9999,"month":10,"day":1}}', organizationId: mainOrganizationId },
+      { configName: 'monitorSeason', configType: 'object', configValue: '{"start":{"year":1995,"month":4,"day":1},"end":{"year":9999,"month":10,"day":1}}', organizationId: mainOrganizationId },
       { configName: 'initialDateRangeChoice', configType: 'boolean', configValue: 'true', organizationId: mainOrganizationId },
       { configName: 'initialHideUnmonitedChoice', configType: 'boolean', configValue: 'true', organizationId: mainOrganizationId },
       { configName: 'initialUseLatinChoice', configType: 'boolean', configValue: 'true', organizationId: mainOrganizationId },

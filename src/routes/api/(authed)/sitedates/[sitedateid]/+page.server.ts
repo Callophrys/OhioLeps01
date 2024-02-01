@@ -1,5 +1,5 @@
 import { getSiteDate, getSiteDateRecordDates } from '$lib/database/sitedates'
-import { getSiteDateObservationBySiteDate } from '$lib/database/siteDateObservations.js';
+import { getSiteDateObservationBySiteDate } from '$lib/database/sitedateobservations.js';
 import type { SiteDateYear, SiteDateObservationChecklist } from '$lib/types.js';
 
 export async function load({ params }) {
