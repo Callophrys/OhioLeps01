@@ -1,6 +1,7 @@
 import { redirect } from '@sveltejs/kit'
 import type { PageServerLoad } from './$types'
-import { getAppConfigsByName, getTemplateAppConfigs } from '$lib/database/appconfig';
+import { getAppConfigsById, updateAllAppConfigs, getTemplateAppConfigs } from '$lib/database/appconfig';
+import type { AppConfig } from '@prisma/client';
 
 export const load: PageServerLoad = async ({ locals }) => {
   // redirect user if not logged in
@@ -10,21 +11,21 @@ export const load: PageServerLoad = async ({ locals }) => {
     throw redirect(302, '/');
   }
 
-  const appConfigs = await getAppConfigsByName('Ohio Lepidopterists');
+  const appConfigs = await getAppConfigsById(locals.user.organizationId);
   return { appConfigs }
 }
 
 export const actions = {
 
 	updateAppConfigs: async ({ request, locals }) => {
-		console.log('udpateAppConfigs from /api/admin/+page.server.ts');
-		const formData = await request.formData();
-    //console.log(formData);
-    console.log(locals);
-    return { success: true }
+	console.log('udpateAppConfigs from /api/admin/+page.server.ts');
+	const formData = await request.formData();
+    console.log(formData);
+	
+    //console.log(locals);
+	//updateAllAppConfigs(ff);
+
     
-		//const formData = await request.formData();
-		//let siteId: number = Number(formData.get('siteId') ?? 0);
 		//const site = await getSite(siteId);
 
 		//return { success: true, data: site }

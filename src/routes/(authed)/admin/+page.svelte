@@ -46,7 +46,7 @@
         <hr />
     </svelte:fragment>
     <svelte:fragment slot="standardBody">
-        <form method="POST" action="?/updateAppConfigs" id="appConfigs">
+        <form method="POST" action="?/updateAppConfigs" id="appConfigs" name="appConfigs">
             <div class="flex flex-col space-y-2">
                 {#each data.appConfigs as config}
                     <div class="flex space-x-2">

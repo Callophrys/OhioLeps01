@@ -22,12 +22,12 @@ await seedChecklist();
 await seedSiteDateObservation();
 await seedTaxonomy();
 await seedNameAddress();
-let orgId: number = await updateOrganizations();
-await updateRoles(orgId);
+let organization = await updateOrganizations();
+await updateRoles(organization);
 /*
 */
 
-async function updateOrganizations(): number {
+async function updateOrganizations() {
   console.log('Creating Organizations');
 
   const tt = await db.organization.create({
@@ -72,7 +72,7 @@ async function updateOrganizations(): number {
       { configName: 'modeDebug', configType: 'boolean', configValue: 'true', organizationId: mainOrganizationId },
       { configName: 'owner', configType: 'string', configValue: 'Ohio Lepidopterists &copy;1995', organizationId: mainOrganizationId },
       { configName: 'title', configType: 'string', configValue: 'Learn Svelte(kit), Vite, TailwindCSS, SkeletonUI and Prisma', organizationId: mainOrganizationId },
-      { configName: 'description', configType: 'string', configValue: "Ohio Lepidopterists' Long-Term Monitering of Ohio Butterflies", organizationId: mainOrganizationId },
+      { configName: 'description', configType: 'string', configValue: "Ohio Lepidopterists' Long-Term Monitoring of Ohio Butterflies", organizationId: mainOrganizationId },
       { configName: 'url', configType: 'string', configValue: 'http://localhost:5173/', organizationId: mainOrganizationId },
       { configName: 'showAnimatedIcon', configType: 'boolean', configValue: 'false', organizationId: mainOrganizationId },
       { configName: 'showAppBar', configType: 'boolean', configValue: 'true', organizationId: mainOrganizationId },
@@ -86,12 +86,10 @@ async function updateOrganizations(): number {
       { configName: 'initialUseLatinChoice', configType: 'boolean', configValue: 'true', organizationId: mainOrganizationId },
     ]
   });
-
-  return mainOrganizationId;
 }
 
 // Consider making role into ENUM
-async function updateRoles(orgId: number) {
+async function updateRoles(organizationId) {
   console.log('Creating Roles and Users');
 
   await db.role.create({
@@ -103,7 +101,7 @@ async function updateRoles(orgId: number) {
           username: "stella",
           passwordHash: "$2b$10$bjXz/irXJrUh8gvG8fidZepQN0BrN2/d2R2RshizCHYSI.FP74s8G",
           userAuthToken: "dc1c44da-fa33-4fb7-82cc-b5baa7522c4d",
-          organizationId: orgId
+          organizationId: organizationId
         }
       }
     }
@@ -118,7 +116,7 @@ async function updateRoles(orgId: number) {
           username: "snell",
           passwordHash: "$2b$10$iAIf7B4I9aUy9ZklbY.yy.GuJ0U3HjpttqEMiHb5zwvoMsYOqDXFy",
           userAuthToken: "70e2e703-06d9-4ebc-bc39-889d85f9db4d",
-          organizationId: orgId
+          organizationId: organizationId
         }]
       }
     },
@@ -133,7 +131,7 @@ async function updateRoles(orgId: number) {
           username: "nate",
           passwordHash: "$2b$10$09GTBhmT0rC41GOoOvgw6.oGTbMEKZaxQ3spCEwRnmXjc6jxusoEC",
           userAuthToken: "10b4f4bc-8a3d-4df4-8112-98eea730fc24",
-          organizationId: orgId
+          organizationId: organizationId
         }]
       }
     },
