@@ -1,6 +1,6 @@
 import { redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
-import { getAppConfigsByOrgId, updateAllAppConfigs, getTemplateAppConfigs } from '$lib/database/appconfig';
+import { getAppConfigsByOrgId, updateAllAppConfigs, getTemplateAppConfigs, resetAllAppConfigs } from '$lib/database/appconfig';
 import type { AppConfigFormKeyChecked } from '$lib/types';
 
 export const load: PageServerLoad = async ({ locals }) => {
@@ -22,9 +22,9 @@ export const load: PageServerLoad = async ({ locals }) => {
 export const actions = {
 
 	updateAppConfigs: async ({ request, locals }) => {
-		console.log('udpateAppConfigs from /api/admin/+page.server.ts');
+		console.log('updateAppConfigs from /api/admin/+page.server.ts');
 		const formData = await request.formData();
-		//console.log(formData);
+		console.log(formData);
 		const candidates: any = {};
 		for (const p of formData)
 			candidates[p[0].slice(0, p[0].indexOf('_'))] = p[1];
@@ -51,11 +51,11 @@ export const actions = {
 				updateConfigs.push(c);
 			}
 		});
-		console.log(locals.user?.id + ':', updateConfigs);
+		//console.log(locals.user?.id + ':', updateConfigs);
 		//console.log(candidates);
 
 		//console.log(locals);
-		//updateAllAppConfigs(ff);
+		updateAllAppConfigs(appConfigs);
 
 
 		//const site = await getSite(siteId);
@@ -63,16 +63,14 @@ export const actions = {
 		//return { success: true, data: site }
 	},
 
-	resetAppConfigs: async ({ request }) => {
+	resetAppConfigs: async ({ locals }) => {
 		console.log('resetAppConfigs from /api/admin/+page.server.ts');
-		const formData = await request.formData();
-		console.log(formData);
-		return { success: true }
 
-		const siteId = Number(formData.get('siteId') ?? 0);
-		console.log('siteId:', siteId);
-		//await removeSite(siteId);
-		return { success: true }
+		const appConfigs = await resetAllAppConfigs(locals.user.organizationId) as AppConfigFormKeyChecked[];
+
+		const json = JSON.stringify(appConfigs);
+		const jsonResult: AppConfigFormKeyChecked[] = JSON.parse(json);
+		return { appConfigs: jsonResult }
 	}
 }
 

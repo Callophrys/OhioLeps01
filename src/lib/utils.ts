@@ -40,7 +40,7 @@ export function camelToFriendly(camel: string) {
     const regex = /[A-Z]+/g;
     return camel[0].toLocaleUpperCase() + camel.slice(1).replaceAll(regex, ' $&');
 
-    // use with 
+    // use with
     // Object.getOwnPropertyNames(object1).forEach(x => console.log(camelToFriendly(x)));
 }
 
@@ -62,3 +62,20 @@ export function isEmpty(obj: object): boolean {
 export function scientificName(genus: string, species: string, subSpecies: string) {
     return `${genus.charAt(0).toLocaleUpperCase() + genus.slice(1).toLocaleLowerCase()} ${species.toLocaleLowerCase()}${subSpecies ? ' ' + subSpecies.toLocaleLowerCase() : ''}`;
 }
+
+export function toBool(value: any) {
+    if (typeof value === 'undefined') return false;
+    let val = String(value);
+    switch (val) {
+        case 'false': return false;
+        case 'true': return true;
+        case 'on': return true;
+        case '0': return false;
+        case '1': return true;
+        case '-1': return true;
+        default: return false;
+    }
+}
+
+
+

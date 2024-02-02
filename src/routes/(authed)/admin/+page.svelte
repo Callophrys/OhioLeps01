@@ -10,14 +10,13 @@
     //$: console.log(data.appConfigs);
     //$: configEntries = new Map(Object.entries(config));
     //$: console.log(configEntries);
+    /*
     const candidates: any = {};
     for (const p of data.appConfigs)
         candidates[p.configName] = { 'configValue': p.configValue, 'changed': false, 'class': '' }
 
     $: console.log(candidates);
-    /*
     */
-
 </script>
 
 <StandardContainer>
@@ -38,8 +37,8 @@
     <svelte:fragment slot="standardTail">
         <div class="text-center flex">
             <div class="flex flex-cols justify-between space-x-4 max-w-2xl mx-auto">
-                <button type="submit" form="appConfigs" class="btn w-32 variant-filled">Save</button>
-                <button type="submit" form="appConfigs" class="btn w-32 variant-filled">Reset All</button>
+                <button type="submit" form="appConfigs" class="btn w-32 variant-filled" formaction="?/updateAppConfigs">Save</button>
+                <button type="submit" form="appConfigs" class="btn w-32 variant-filled" formaction="?/resetAppConfigs">Reset All</button>
             </div>
         </div>
     </svelte:fragment>

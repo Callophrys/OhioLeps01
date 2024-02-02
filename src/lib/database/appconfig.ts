@@ -93,6 +93,7 @@ export async function resetAppConfig(appConfig: AppConfig) {
 }
 
 export async function resetAllAppConfigs(organizationId: string) {
+    throw 'need to get template values to set the ref org values with';
     const promises: Promise<AppConfig>[] = [];
     (await getAppConfigsByOrgId(organizationId)).forEach(c => promises.push(resetAppConfig(c)));
     return await Promise.all(promises);
