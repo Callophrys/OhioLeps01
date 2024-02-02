@@ -1,7 +1,7 @@
-import { redirect } from '@sveltejs/kit'
-import type { PageServerLoad } from './$types'
+import { redirect } from '@sveltejs/kit';
+import type { PageServerLoad } from './$types';
 import { getAppConfigsByOrgId, updateAllAppConfigs, getTemplateAppConfigs } from '$lib/database/appconfig';
-import type { AppConfig } from '@prisma/client';
+import type { AppConfigChecked } from '$lib/types';
 
 export const load: PageServerLoad = async ({ locals }) => {
 	// redirect user if not logged in
@@ -11,8 +11,12 @@ export const load: PageServerLoad = async ({ locals }) => {
 		throw redirect(302, '/');
 	}
 
-	const appConfigs = await getAppConfigsByOrgId(locals.user.organizationId);
-	return { appConfigs }
+	const appConfigs =
+		await getAppConfigsByOrgId(locals.user.organizationId) as AppConfigChecked[];
+
+	const json = JSON.stringify(appConfigs);
+	const jsonResult: AppConfigChecked[] = JSON.parse(json);
+	return { appConfigs: jsonResult }
 }
 
 export const actions = {
@@ -20,13 +24,13 @@ export const actions = {
 	updateAppConfigs: async ({ request, locals }) => {
 		console.log('udpateAppConfigs from /api/admin/+page.server.ts');
 		const formData = await request.formData();
-		console.log(formData);
+		//console.log(formData);
 		const candidates: any = {};
 		for (const p of formData)
 			candidates[p[0].slice(0, p[0].indexOf('_'))] = p[1];
 
-		const appConfigs = await getAppConfigsByOrgId(locals.user.organizationId);
-		const updateConfigs: AppConfig[] = [];
+		const appConfigs = await getAppConfigsByOrgId(locals.user.organizationId) as AppConfigChecked[];
+		const updateConfigs: AppConfigChecked[] = [];
 		appConfigs.forEach(c => {
 			if (c.configType === 'boolean') {
 				if (typeof candidates[c.id] === 'undefined') {
@@ -41,13 +45,13 @@ export const actions = {
 					updateConfigs.push(c);
 				}
 			} else if (c.configType !== 'object' && c.configValue !== candidates[c.id]) {
-				console.log(c.configValue, candidates[c.id]);
+				//console.log(c.configValue, candidates[c.id]);
 				//console.log('a');
 				c.configValue = '* ' + candidates[c.id];
 				updateConfigs.push(c);
 			}
 		});
-		//console.log(updateConfigs);
+		console.log(locals.user?.id + ':', updateConfigs);
 		//console.log(candidates);
 
 		//console.log(locals);

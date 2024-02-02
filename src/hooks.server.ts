@@ -14,12 +14,13 @@ export const handle: Handle = (async ({ event, resolve }) => {
 	// find the user based on the session
 	const user = await prisma.user.findUnique({
 		where: { userAuthToken: session },
-		select: { username: true, role: true, organizationId: true },
+		select: { id: true, username: true, role: true, organizationId: true },
 	});
 
 	// if `user` exists set `events.local`
 	if (user) {
 		event.locals.user = {
+			id: user.organizationId,
 			name: user.username,
 			role: user.role.name,
 			organizationId: user.organizationId

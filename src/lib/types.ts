@@ -1,10 +1,11 @@
-import type {
+import type { AppConfig,
 	County, State, Checklist, Region,
 	Site, SiteDate, SiteDateObservation, Taxonomy
 } from '@prisma/client'
 
 // Example: export type SomeNewName <T> = Partial<T> & { newMember: boolean }
 
+export type AppConfigChecked = AppConfig & { checked: boolean }
 export type ChecklistScientificName = Checklist & { scientificName: string }
 export type CountyMonitored = County & { isMonitored: boolean, siteCount: number, state: State }
 export type CountyComplete = CountyMonitored & { region: Region, sites: Site[] }

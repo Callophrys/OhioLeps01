@@ -2,7 +2,6 @@ import { fail } from '@sveltejs/kit';
 import { browser } from '$app/environment';
 import { redirect } from '@sveltejs/kit';
 //import { getChecklists } from '$lib/api/checklists.js';
-import { json } from '@sveltejs/kit'
 import { getCounties } from '$lib/database/counties';
 import { getChecklists, getChecklistsFiltered } from '$lib/database/checklists';
 import type { ChecklistScientificName, SpeciesSearchParams } from '$lib/types';
@@ -47,7 +46,7 @@ export async function load() {
 	const jsonResultC: County[] = JSON.parse(jsonC);
 
 	const jsonS = JSON.stringify(speciesList);
-	const jsonResultS: ChecklistScientificName<Checklist>[] = JSON.parse(jsonS);
+	const jsonResultS: ChecklistScientificName[] = JSON.parse(jsonS) as ChecklistScientificName[];
 
 	return { counties: jsonResultC, speciesList: jsonResultS }
 }

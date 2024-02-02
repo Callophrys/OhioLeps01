@@ -7,7 +7,7 @@
     import { SlideToggle } from '@skeletonlabs/skeleton';
     import { afterUpdate, onMount, getContext } from 'svelte';
 
-    let speciesChecklist: ChecklistScientificName<Checklist>[] = getContext('speciesList');
+    let speciesChecklist: ChecklistScientificName[] = getContext('speciesList');
 
     export let initialUseAllSpeciesChoice = true;
     export let initialUseLatinChoice = 1;
@@ -45,7 +45,7 @@
         if (isLatin) {
             let sortDir = sortOrderLatin === SORTORDER.ASC ? 1 : -1;
 
-            speciesChecklist.sort((a: ChecklistScientificName<Checklist>, b: ChecklistScientificName<Checklist>) => {
+            speciesChecklist.sort((a: ChecklistScientificName, b: ChecklistScientificName) => {
                 if (a.scientificName > b.scientificName) return 1 * sortDir;
                 if (a.scientificName < b.scientificName) return -1 * sortDir;
                 return 0;
@@ -53,7 +53,7 @@
         } else {
             let sortDir = sortOrderCommon === SORTORDER.ASC ? 1 : -1;
 
-            speciesChecklist.sort((a: ChecklistScientificName<Checklist>, b: ChecklistScientificName<Checklist>) => {
+            speciesChecklist.sort((a: ChecklistScientificName, b: ChecklistScientificName) => {
                 if ((a.commonName ?? a.scientificName) > (b.commonName ?? b.scientificName)) return 1 * sortDir;
                 if ((a.commonName ?? a.scientificName) < (b.commonName ?? b.scientificName)) return -1 * sortDir;
                 return 0;

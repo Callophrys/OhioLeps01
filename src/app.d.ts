@@ -9,6 +9,7 @@ declare global {
 		// interface Platform {}
     interface Locals {
       user: {
+        id: string
         name: string
         role: string
         organizationId: string

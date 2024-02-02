@@ -1,40 +1,23 @@
 <script lang="ts">
     import { page } from '$app/stores';
     import StandardContainer from '$lib/components/StandardContainer.svelte';
-    import * as config from '$lib/config';
-    import { camelToFriendly } from '$lib/utils';
-    import type { AppConfig } from '@prisma/client';
+    import AppConfigControl from '$lib/components/AppConfigControl.svelte';
+    import { setContext } from 'svelte';
 
     export let data;
+    setContext('appConfigs', data.appConfigs);
+
     //$: console.log(data.appConfigs);
     //$: configEntries = new Map(Object.entries(config));
     //$: console.log(configEntries);
+    /*
+    const candidates: any = {};
+    for (const p of data.appConfigs)
+        candidates[p.configName] = { 'configValue': p.configValue, 'changed': false }
 
-    function getControl(config: AppConfig) {
-        //console.log(config);
-        if (config.configType === 'string') {
-            if (config.configName.toLocaleLowerCase() === 'description') {
-                return `<textarea id=${config.id + '_' + config.configName} name=${config.id + '_' + config.configName} rows="3" cols="50" class="resize p-1 rounded-md variant-filled">${config.configValue}</textarea>`;
-            } else {
-                console.log(config.configValue);
-                return `<input id=${config.id + '_' + config.configName} name=${config.id + '_' + config.configName} type="text" class="p-1 rounded-md variant-filled" value=${config.configValue} />`;
-            }
-        }
+    $: console.log(candidates);
+    */
 
-        if (config.configType === 'number') {
-            return `<input id=${config.id + '_' + config.configName} name=${config.id + '_' + config.configName} type="number" class="p-1 rounded-md variant-filled" value=${config.configValue} />`;
-        }
-
-        if (config.configType === 'boolean') {
-            return `<input id=${config.id + '_' + config.configName} name=${config.id + '_' + config.configName} type="checkbox" class="p-1 rounded-md variant-filled" ${config.configValue === 'true' ? 'checked' : ''} />`;
-        }
-
-        if (config.configType === 'object') {
-            return `<pre class="hover:cursor-not-allowed">${config.configValue}</pre>`;
-        }
-
-        return undefined;
-    }
 </script>
 
 <StandardContainer>
@@ -48,13 +31,7 @@
     <svelte:fragment slot="standardBody">
         <form method="POST" action="?/updateAppConfigs" id="appConfigs" name="appConfigs">
             <div class="flex flex-col space-y-2">
-                {#each data.appConfigs as config}
-                    <div class="flex space-x-2">
-                        <div class="w-56">{camelToFriendly(config.configName)}</div>
-                        <div class="w-20">({config.configType})</div>
-                        <div class="w-fit">{@html getControl(config)}</div>
-                    </div>
-                {/each}
+                <AppConfigControl />
             </div>
         </form>
     </svelte:fragment>

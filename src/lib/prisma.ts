@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { Prisma } from '@prisma/client';
 import { scientificName } from '$lib/utils.js';
-import type { Checklist, SiteDateObservation, SiteDate } from '@prisma/client';
+import type { AppConfig, Checklist, SiteDateObservation, SiteDate } from '@prisma/client';
 
 
 /*
@@ -69,6 +69,13 @@ const prisma = new PrismaClient().$extends({
             scientificName: {
                 compute(checklist: Checklist): string {
                     return scientificName(checklist.genus ?? '', checklist.species ?? '', checklist.subspecies ?? '');
+                }
+            }
+        },
+        appConfig: {
+            checked: {
+                compute(appConfig: AppConfig): boolean {
+                    return appConfig.configType === 'boolean' ? appConfig.configValue === 'true' : false;
                 }
             }
         }
