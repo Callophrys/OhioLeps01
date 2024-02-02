@@ -5,7 +5,7 @@ import type { AppConfig,
 
 // Example: export type SomeNewName <T> = Partial<T> & { newMember: boolean }
 
-export type AppConfigChecked = AppConfig & { checked: boolean }
+export type AppConfigFormKeyChecked = AppConfig & { checked: boolean, formKey: string }
 export type ChecklistScientificName = Checklist & { scientificName: string }
 export type CountyMonitored = County & { isMonitored: boolean, siteCount: number, state: State }
 export type CountyComplete = CountyMonitored & { region: Region, sites: Site[] }

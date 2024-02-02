@@ -1,7 +1,7 @@
 import { redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import { getAppConfigsByOrgId, updateAllAppConfigs, getTemplateAppConfigs } from '$lib/database/appconfig';
-import type { AppConfigChecked } from '$lib/types';
+import type { AppConfigFormKeyChecked } from '$lib/types';
 
 export const load: PageServerLoad = async ({ locals }) => {
 	// redirect user if not logged in
@@ -12,10 +12,10 @@ export const load: PageServerLoad = async ({ locals }) => {
 	}
 
 	const appConfigs =
-		await getAppConfigsByOrgId(locals.user.organizationId) as AppConfigChecked[];
+		await getAppConfigsByOrgId(locals.user.organizationId) as AppConfigFormKeyChecked[];
 
 	const json = JSON.stringify(appConfigs);
-	const jsonResult: AppConfigChecked[] = JSON.parse(json);
+	const jsonResult: AppConfigFormKeyChecked[] = JSON.parse(json);
 	return { appConfigs: jsonResult }
 }
 
@@ -29,8 +29,8 @@ export const actions = {
 		for (const p of formData)
 			candidates[p[0].slice(0, p[0].indexOf('_'))] = p[1];
 
-		const appConfigs = await getAppConfigsByOrgId(locals.user.organizationId) as AppConfigChecked[];
-		const updateConfigs: AppConfigChecked[] = [];
+		const appConfigs = await getAppConfigsByOrgId(locals.user.organizationId) as AppConfigFormKeyChecked[];
+		const updateConfigs: AppConfigFormKeyChecked[] = [];
 		appConfigs.forEach(c => {
 			if (c.configType === 'boolean') {
 				if (typeof candidates[c.id] === 'undefined') {

@@ -10,12 +10,12 @@
     //$: console.log(data.appConfigs);
     //$: configEntries = new Map(Object.entries(config));
     //$: console.log(configEntries);
-    /*
     const candidates: any = {};
     for (const p of data.appConfigs)
-        candidates[p.configName] = { 'configValue': p.configValue, 'changed': false }
+        candidates[p.configName] = { 'configValue': p.configValue, 'changed': false, 'class': '' }
 
     $: console.log(candidates);
+    /*
     */
 
 </script>

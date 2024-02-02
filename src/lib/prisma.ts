@@ -77,6 +77,11 @@ const prisma = new PrismaClient().$extends({
                 compute(appConfig: AppConfig): boolean {
                     return appConfig.configType === 'boolean' ? appConfig.configValue === 'true' : false;
                 }
+            },
+            formKey: {
+                compute(appConfig: AppConfig): string {
+                    return appConfig.id + '_' + appConfig.configName;
+                }
             }
         }
     }
