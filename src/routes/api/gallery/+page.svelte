@@ -23,74 +23,65 @@
     import GA9144 from '$lib/assets/gallery/DSCF9144.jpg';
     import GA9151 from '$lib/assets/gallery/DSCF9151.jpg';
     import GA9335 from '$lib/assets/gallery/DSCF9335.jpg';
+    import { onMount } from 'svelte';
 
     let elemCarousel: HTMLDivElement;
-    const unsplashIds = [
-        GA0994,
-        GA1819,
-        GA1898,
-        GA1972,
-        GA1997,
-        GA2546,
-        GA5402,
-        GA5439,
-        GA5465,
-        GA5469,
-        GA5552,
-        GA5887,
-        GA5890,
-        GA6506,
-        GA6727,
-        GA6983,
-        GA8126,
-        GA9144,
-        GA9151,
-        GA9335];
-    
+    const unsplashIds = [GA0994, GA1819, GA1898, GA1972, GA1997, GA2546, GA5402, GA5439, GA5465, GA5469, GA5552, GA5887, GA5890, GA6506, GA6727, GA6983, GA8126, GA9144, GA9151, GA9335];
+    console.log(unsplashIds);
+
+    let isDown = false;
+    let startX: number;
+    let scrollLeft: number;
+
+    /*
+    onMount(() => {
+        const slider = document.getElementById('image-scrollbar');
+        console.log('slider', slider);
+
+        if (slider) {
+            slider.addEventListener('mousedown', (e) => {
+                console.log('md');
+                console.log(e);
+                isDown = true;
+                slider.classList.add('active');
+                startX = e.pageX - slider.offsetLeft;
+                scrollLeft = slider.scrollLeft;
+            });
+            slider.addEventListener('mouseleave', () => {
+                console.log('ml');
+                isDown = false;
+                slider.classList.remove('active');
+            });
+            slider.addEventListener('mouseup', () => {
+                console.log('mu');
+                isDown = false;
+                slider.classList.remove('active');
+            });
+            slider.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                //console.log('mm');
+                const x = e.pageX - slider.offsetLeft;
+                const walk = (x - startX) * 3; //scroll-fast
+                slider.scrollLeft = scrollLeft - walk;
+                console.log(walk);
+            });
+        }
+    });
+    */
+
     $: heightAdjust = (config.showAppBar ? 128 : 0) + (config.showFooter ? 16 : 0);
-
-/*
-const slider = document.querySelector('.items');
-let isDown = false;
-let startX;
-let scrollLeft;
-
-slider.addEventListener('mousedown', (e) => {
-  isDown = true;
-  slider.classList.add('active');
-  startX = e.pageX - slider.offsetLeft;
-  scrollLeft = slider.scrollLeft;
-});
-slider.addEventListener('mouseleave', () => {
-  isDown = false;
-  slider.classList.remove('active');
-});
-slider.addEventListener('mouseup', () => {
-  isDown = false;
-  slider.classList.remove('active');
-});
-slider.addEventListener('mousemove', (e) => {
-  if(!isDown) return;
-  e.preventDefault();
-  const x = e.pageX - slider.offsetLeft;
-  const walk = (x - startX) * 3; //scroll-fast
-  slider.scrollLeft = scrollLeft - walk;
-  console.log(walk);
-});
-*/
-
 </script>
 
+<div class="h-[calc(100%_-_144px)] p-4 mb-2 grid grid-cols-[auto_1fr_auto] gap-4 items-center">
+    <Display bind:elemCarousel urls={unsplashIds} />
+</div>
 
-        <div class="h-[calc(100%_-_144px)] p-4 mb-2 grid grid-cols-[auto_1fr_auto] gap-4 items-center">
-            <Display bind:elemCarousel urls={unsplashIds}/>
-        </div>
+<div id="image-scrollbar" class="card h-36 p-4 flex gap-4 scroll-smooth overflow-x-auto overflow-y-hidden">
+    <Scrollbar bind:elemCarousel urls={unsplashIds} />
+</div>
 
-        <div class="card h-36 p-4 flex gap-4 scroll-smooth overflow-x-auto overflow-y-hidden">
-            <Scrollbar bind:elemCarousel urls={unsplashIds}/>
-        </div>
-
-    <!--div style="height: calc(100% - {heightAdjust});" class="gallery h-[calc(100%_-_{heightAdjust}px)] p-8">
+<!--div style="height: calc(100% - {heightAdjust});" class="gallery h-[calc(100%_-_{heightAdjust}px)] p-8">
     </div-->
 <!--div class="h-svh">
 </div-->

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { carouselThumbnail } from "./carousel";
+    import { carouselThumbnail } from './carousel';
     export let urls: string[];
     export let elemCarousel: HTMLDivElement;
     //$: console.log(urls);
@@ -13,7 +13,9 @@
             bg-center
             bg-cover
             bg-no-repeat
-            bg-transparent"
+            bg-transparent
+            active:hover:cursor-grab"
         style:background-image="url('{url}')"
-        on:click={() => carouselThumbnail(elemCarousel, i)} />
+        on:click={() => carouselThumbnail(elemCarousel, i)}>&nbsp;</button
+    >
 {/each}
