@@ -346,6 +346,9 @@ pnpm add -g pnpm  # updates package.json only
 npm add -g pnpm   # updates actual pnpm but does it do the package.json update?
 ** seems i have to do both
 
+After pnpm update and probably prisma update:
+npx prisma generate
+
 https://vercel.com/docs/beginner-sveltekit/data-binding-and-event-handling
 
 ### 1/12/2024

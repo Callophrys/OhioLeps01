@@ -67,7 +67,6 @@ export const actions = {
 		console.log('resetAppConfigs from /api/admin/+page.server.ts');
 
 		const appConfigs = await resetAllAppConfigs(locals.user.organizationId) as AppConfigFormKeyChecked[];
-
 		const json = JSON.stringify(appConfigs);
 		const jsonResult: AppConfigFormKeyChecked[] = JSON.parse(json);
 		return { appConfigs: jsonResult }
