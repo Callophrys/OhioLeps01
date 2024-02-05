@@ -35,19 +35,19 @@ export const actions = {
 			if (c.configType === 'boolean') {
 				if (typeof candidates[c.id] === 'undefined') {
 					if (c.configValue === 'true') {
-						//console.log('b1');
-						c.configValue = '* false';
+						console.log(c.configName, c.configType, c.configValue, c.checked);
+						c.configValue = 'false';
 						updateConfigs.push(c);
 					}
 				} else if (c.configValue === 'false' && candidates[c.id] === 'on') {
 					//console.log('b2');
-					c.configValue = '* true';
+					c.configValue = 'true';
 					updateConfigs.push(c);
 				}
 			} else if (c.configType !== 'object' && c.configValue !== candidates[c.id]) {
 				//console.log(c.configValue, candidates[c.id]);
 				//console.log('a');
-				c.configValue = '* ' + candidates[c.id];
+				c.configValue = candidates[c.id];
 				updateConfigs.push(c);
 			}
 		});

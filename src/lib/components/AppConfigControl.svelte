@@ -65,7 +65,7 @@
             {:else if appConfig.configType === 'number'}
                 <input id={appConfig.formKey} name={appConfig.formKey} type="number" class="p-1 rounded-md variant-filled {candidates[appConfig.formKey].class}" bind:value={appConfig.configValue} />
             {:else if appConfig.configType === 'boolean'}
-                <div>hi</div>
+                <input id={appConfig.formKey} name={appConfig.formKey} type="checkbox" bind:checked={appConfig.checked} />
             {:else if appConfig.configType === 'object'}
                 <pre class="hover:cursor-not-allowed">{appConfig.configValue}</pre>
             {/if}
