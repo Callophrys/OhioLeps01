@@ -71,7 +71,7 @@
             {/if}
 
             {#if candidates[appConfig.formKey]?.changed}
-                <div class="text-amber-300 pl-2 text-sm">Modified <span class="text-lg">↺</span></div>
+                <div class="dark:text-amber-300 text-amber-700 pl-2 text-sm">Modified <span class="text-lg">↺</span></div>
             {/if}
         </div>
     </label>

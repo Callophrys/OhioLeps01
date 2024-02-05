@@ -36,6 +36,9 @@
 </div>
 
 <style>
+    /* Calc and 100vh do not work as an
+     * arbitrary valued Tailwind class.
+     * Calc and 100% does work */
     .container.has-footer {
         height: calc(100vh - 144px);
     }

@@ -563,3 +563,8 @@ git config --global fetch.prune true
 git config --global diff.colorMoved zebra
 ```
 
+-- 2 ways to cast
+```javascript
+(<NodeListOf<HTMLScriptElement>>document.getElementsByName(id))[0];
+const script = document.getElementsByName("script")[0] as HTMLScriptElement;
+```

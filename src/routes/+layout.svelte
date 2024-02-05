@@ -15,7 +15,10 @@
     import { enhance } from '$app/forms';
 </script>
 
-<AppShell slotSidebarLeft="bg-surface-500/5 w-56 p-4" slotPageFooter="text-center text-xs">
+<AppShell
+    slotSidebarLeft="bg-surface-500/5 w-56 p-4"
+    slotPageContent="overflow-hidden"
+    slotPageFooter="text-center text-xs">
     <svelte:fragment slot="header">
         {#if config.showAppBar}
             <AppBar>
@@ -123,6 +126,7 @@
                 {/if}
                 <li><a href="/api/ohio">Ohio</a></li>
                 <li><a href="/api/taxonomy">Butterflies of North America</a></li>
+                <li><a href="/api/gallery">Gallery</a></li>
             </ul>
         </nav>
     </svelte:fragment>
