@@ -1,6 +1,5 @@
 <script lang="ts">
     import * as config from '$lib/config';
-    import type { CssClasses } from '@skeletonlabs/skeleton';
     import Display from '$lib/components/gallery/Display.svelte';
     import Scrollbar from '$lib/components/gallery/Scrollbar.svelte';
     import GA0994 from '$lib/assets/gallery/DSCF0994.jpg';
@@ -23,83 +22,37 @@
     import GA9144 from '$lib/assets/gallery/DSCF9144.jpg';
     import GA9151 from '$lib/assets/gallery/DSCF9151.jpg';
     import GA9335 from '$lib/assets/gallery/DSCF9335.jpg';
-    import { onMount } from 'svelte';
-    import { slide } from 'svelte/transition';
-
-    let elemCarousel: HTMLDivElement;
-    const unsplashIds = [GA0994, GA1819, GA1898, GA1972, GA1997, GA2546, GA5402, GA5439, GA5465, GA5469, GA5552, GA5887, GA5890, GA6506, GA6727, GA6983, GA8126, GA9144, GA9151, GA9335];
-    console.log(unsplashIds);
-
-    let isDown = false;
-    let startX: number;
-    let scrollLeft: number;
-
-
-    /*
-    onMount(() => {
-        console.log('slider', slider);
-
-        if (slider) {
-            slider.addEventListener('mousedown', (e) => {
-                console.log('md');
-                console.log(e);
-                isDown = true;
-                slider.classList.add('active');
-                startX = e.pageX - slider.offsetLeft;
-                scrollLeft = slider.scrollLeft;
-            });
-            slider.addEventListener('mouseleave', () => {
-                console.log('ml');
-                isDown = false;
-                slider.classList.remove('active');
-            });
-            slider.addEventListener('mouseup', () => {
-                console.log('mu');
-                isDown = false;
-                slider.classList.remove('active');
-            });
-            slider.addEventListener('mousemove', (e) => {
-                if (!isDown) return;
-                e.preventDefault();
-                //console.log('mm');
-                const x = e.pageX - slider.offsetLeft;
-                const walk = (x - startX) * 3; //scroll-fast
-                slider.scrollLeft = scrollLeft - walk;
-                console.log(walk);
-            });
-        }
-    });
-    */
 
     $: heightAdjust = (config.showAppBar ? 128 : 0) + (config.showFooter ? 16 : 0);
 
-    // another try at draging the scrollbar
+    let elemCarousel: HTMLDivElement;
+    const unsplashIds = [GA0994, GA1819, GA1898, GA1972, GA1997, GA2546, GA5402, GA5439, GA5465, GA5469, GA5552, GA5887, GA5890, GA6506, GA6727, GA6983, GA8126, GA9144, GA9151, GA9335];
+    //console.log(unsplashIds);
 
-    let slider: HTMLElement | null;
+    let startX: number;
+    let scrollLeft: number;
+    let slider: HTMLDivElement;
+    let dragging = false;
 
-    onMount(() => {
-        slider = document.getElementById('image-scrollbar'); // as HTMLElement;
-    });
+    function start(e: any) {
+        console.log('start', slider);
+        dragging = true;
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+    }
 
-        let dragging = false;
+    function stop() {
+        console.log('stop');
+        dragging = false;
+    }
 
-        function start() {
-            console.log('start');
-            dragging = true
+    function moveComponent(e: any) {
+        if (dragging) {
+            e.preventDefault();
+            //console.log('moveComponent');
+            slider.scrollLeft = scrollLeft - (e.movementX - startX);
         }
-
-        function stop() {
-            console.log('stop');
-            dragging = false
-        }
-
-        function moveComponent(event: any) {
-            if ( dragging && slider ) {
-                console.log('moveComponent');
-                event.preventDefault();
-                slider.scrollLeft = scrollLeft - event.movementX;
-            }
-        }
+    }
 </script>
 
 <div class="h-[calc(100%_-_144px)] p-4 mb-2 grid grid-cols-[auto_1fr_auto] gap-4 items-center">
@@ -107,12 +60,7 @@
 </div>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-<div
-    id="image-scrollbar"
-    class="card h-36 p-4 flex gap-4 scroll-smooth overflow-x-auto overflow-y-hidden"
-    on:mouseup={stop}
-    on:mousemove={moveComponent}
-    on:mousedown={start} >
+<div id="image-scrollbar" bind:this={slider} class="card h-36 p-4 flex gap-4 scroll-smooth overflow-x-auto overflow-y-hidden hover:cursor-grab active:hover:cursor-grabbing" on:mouseup={stop} on:mouseleave={stop} on:mousemove={moveComponent} on:mousedown={start}>
     <Scrollbar bind:elemCarousel urls={unsplashIds} />
 </div>
 

@@ -1,7 +1,11 @@
-import type { Handle } from '@sveltejs/kit'
-import prisma from '$lib/prisma'
+import type { Handle } from '@sveltejs/kit';
+import prisma from '$lib/prisma';
+import * as config from '$lib/config';
+import * as appConfigs from '$lib/database/appconfig';
+import type { AppConfig } from '@prisma/client';
 
 export const handle: Handle = (async ({ event, resolve }) => {
+
 
 	// get cookies from browser
 	const session = event.cookies.get('session')
@@ -25,6 +29,16 @@ export const handle: Handle = (async ({ event, resolve }) => {
 			role: user.role.name,
 			organizationId: user.organizationId
 		}
+		event.locals.appConfigs = await appConfigs.getAppConfigsByOrgName(user.organizationId);
+		if (event.locals.appConfigs === undefined || event.locals.appConfigs.length === 0) {
+			event.locals.appConfigs = await appConfigs.getAppConfigsByOrgName(config.defaultOrganization);
+		}
+	} else {
+		event.locals.appConfigs = await appConfigs.getAppConfigsByOrgName(config.defaultOrganization);
+	}
+
+	if (event.locals.appConfigs === undefined || event.locals.appConfigs.length === 0) {
+		event.locals.appConfigs = await appConfigs.getTemplateAppConfigs();
 	}
 
 	// load page as normal

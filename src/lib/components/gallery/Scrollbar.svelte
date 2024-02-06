@@ -3,7 +3,6 @@
     export let urls: string[];
     export let elemCarousel: HTMLDivElement;
     //$: console.log(urls);
-    
 </script>
 
 {#each urls as url, i}
@@ -15,8 +14,11 @@
             bg-cover
             bg-no-repeat
             bg-transparent
-            active:hover:cursor-grab"
+            hover:cursor-grab
+            active:hover:cursor-grabbing"
         style:background-image="url('{url}')"
-        on:click={() => carouselThumbnail(elemCarousel, i)}>&nbsp;</button
+        on:click={() => carouselThumbnail(elemCarousel, i)}
     >
+        &nbsp;
+    </button>
 {/each}

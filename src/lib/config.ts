@@ -1,4 +1,6 @@
 import { dev } from '$app/environment';
+export const defaultOrganization = 'Ohio Lepidoperists';
+/* -------------------------------------------------------------------------- */
 
 export const modeDebug = true;
 
