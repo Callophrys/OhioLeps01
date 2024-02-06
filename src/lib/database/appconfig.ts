@@ -96,10 +96,19 @@ export async function resetAllAppConfigs(organizationId: string) {
     const resetValues = (await getAppConfigsByOrgName('TEMPLATE')).map((c: AppConfig) => ({ 'configName': c.configName, 'configValue': c.configValue }));
     //throw 'need to get template values to set the ref org values with';
     const promises: Promise<AppConfig>[] = [];
+    const currConfigs = await getAppConfigsByOrgId(organizationId);
+    currConfigs.forEach(c => {
+        //console.log('>>', c, 'curr', resetValues.find((r: any) => r.configName === c.configName)?.configValue ?? '');
+        c.configValue = resetValues.find((r: any) => r.configName === c.configName)?.configValue ?? '';
+        promises.push(resetAppConfig(c));
+    })
+    return {};
+    /*
     (await getAppConfigsByOrgId(organizationId)).forEach(c => {
         c.configValue = resetValues.find((r: any) => r.configName === c.configName)?.configValue ?? '';
         promises.push(resetAppConfig(c));
     });
+    */
     return await Promise.all(promises);
 }
 

@@ -1,3 +1,5 @@
+export let imageIndex: number;
+
 export function carouselLeft(elemCarousel: Element): void {
     const x =
         elemCarousel.scrollLeft === 0
@@ -16,7 +18,7 @@ export function carouselRight(elemCarousel: Element): void {
 
 export function carouselThumbnail(elemCarousel: Element, index: number) {
 
-
+    imageIndex = index;
     elemCarousel.scroll(elemCarousel.clientWidth * index, 0);
 
     /*

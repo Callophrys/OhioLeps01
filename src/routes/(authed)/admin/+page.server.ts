@@ -2,6 +2,7 @@ import { redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import { getAppConfigsByOrgId, updateAllAppConfigs, getTemplateAppConfigs, resetAllAppConfigs } from '$lib/database/appconfig';
 import type { AppConfigFormKeyChecked } from '$lib/types';
+import { updated } from '$app/stores';
 
 export const load: PageServerLoad = async ({ locals }) => {
 	// redirect user if not logged in
@@ -51,16 +52,12 @@ export const actions = {
 				updateConfigs.push(c);
 			}
 		});
-		//console.log(locals.user?.id + ':', updateConfigs);
-		//console.log(candidates);
 
-		//console.log(locals);
-		updateAllAppConfigs(appConfigs);
+		const updatedConfigs = await updateAllAppConfigs(appConfigs);
+		const json = JSON.stringify(updatedConfigs);
+		const jsonResult: AppConfigFormKeyChecked[] = JSON.parse(json);
 
-
-		//const site = await getSite(siteId);
-
-		//return { success: true, data: site }
+		return { success: true, appConfigs: jsonResult }
 	},
 
 	resetAppConfigs: async ({ locals }) => {

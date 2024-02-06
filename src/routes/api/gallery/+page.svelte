@@ -24,6 +24,7 @@
     import GA9151 from '$lib/assets/gallery/DSCF9151.jpg';
     import GA9335 from '$lib/assets/gallery/DSCF9335.jpg';
     import { onMount } from 'svelte';
+    import { slide } from 'svelte/transition';
 
     let elemCarousel: HTMLDivElement;
     const unsplashIds = [GA0994, GA1819, GA1898, GA1972, GA1997, GA2546, GA5402, GA5439, GA5465, GA5469, GA5552, GA5887, GA5890, GA6506, GA6727, GA6983, GA8126, GA9144, GA9151, GA9335];
@@ -33,9 +34,9 @@
     let startX: number;
     let scrollLeft: number;
 
+
     /*
     onMount(() => {
-        const slider = document.getElementById('image-scrollbar');
         console.log('slider', slider);
 
         if (slider) {
@@ -71,13 +72,47 @@
     */
 
     $: heightAdjust = (config.showAppBar ? 128 : 0) + (config.showFooter ? 16 : 0);
+
+    // another try at draging the scrollbar
+
+    let slider: HTMLElement | null;
+
+    onMount(() => {
+        slider = document.getElementById('image-scrollbar'); // as HTMLElement;
+    });
+
+        let dragging = false;
+
+        function start() {
+            console.log('start');
+            dragging = true
+        }
+
+        function stop() {
+            console.log('stop');
+            dragging = false
+        }
+
+        function moveComponent(event: any) {
+            if ( dragging && slider ) {
+                console.log('moveComponent');
+                event.preventDefault();
+                slider.scrollLeft = scrollLeft - event.movementX;
+            }
+        }
 </script>
 
 <div class="h-[calc(100%_-_144px)] p-4 mb-2 grid grid-cols-[auto_1fr_auto] gap-4 items-center">
     <Display bind:elemCarousel urls={unsplashIds} />
 </div>
 
-<div id="image-scrollbar" class="card h-36 p-4 flex gap-4 scroll-smooth overflow-x-auto overflow-y-hidden">
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<div
+    id="image-scrollbar"
+    class="card h-36 p-4 flex gap-4 scroll-smooth overflow-x-auto overflow-y-hidden"
+    on:mouseup={stop}
+    on:mousemove={moveComponent}
+    on:mousedown={start} >
     <Scrollbar bind:elemCarousel urls={unsplashIds} />
 </div>
 

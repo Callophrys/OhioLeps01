@@ -3,6 +3,7 @@
     export let urls: string[];
     export let elemCarousel: HTMLDivElement;
     //$: console.log(urls);
+    
 </script>
 
 {#each urls as url, i}
