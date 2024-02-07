@@ -23,10 +23,25 @@
     import GA9151 from '$lib/assets/gallery/DSCF9151.jpg';
     import GA9335 from '$lib/assets/gallery/DSCF9335.jpg';
 
+    import GA1858 from '$lib/assets/gallery/DSCF1858.jpg';
+    import GA2164 from '$lib/assets/gallery/DSCF2164.jpg';
+    import GA5084 from '$lib/assets/gallery/DSCF5084.jpg';
+    import GA5323 from '$lib/assets/gallery/DSCF5323.jpg';
+    import GA5443 from '$lib/assets/gallery/DSCF5443.jpg';
+    import GA5472 from '$lib/assets/gallery/DSCF5472.jpg';
+    import GA5473 from '$lib/assets/gallery/DSCF5473.jpg';
+    import GA5521 from '$lib/assets/gallery/DSCF5521.jpg';
+    import GA5527 from '$lib/assets/gallery/DSCF5527.jpg';
+
     $: heightAdjust = (config.showAppBar ? 128 : 0) + (config.showFooter ? 16 : 0);
+    let imageIndex: number;
 
     let elemCarousel: HTMLDivElement;
-    const unsplashIds = [GA0994, GA1819, GA1898, GA1972, GA1997, GA2546, GA5402, GA5439, GA5465, GA5469, GA5552, GA5887, GA5890, GA6506, GA6727, GA6983, GA8126, GA9144, GA9151, GA9335];
+    const unsplashIds = [GA0994, GA1819, GA1898, GA1972, GA1997
+        , GA2546, GA5402, GA5439, GA5465, GA5469, GA5552, GA5887
+        , GA5890, GA6506, GA6727, GA6983, GA8126, GA9144, GA9151, GA9335
+        , GA1858 , GA2164 , GA5084 , GA5323 , GA5443 , GA5472
+        , GA5473 , GA5521 , GA5527];
     //console.log(unsplashIds);
 
     let startX: number;
@@ -35,33 +50,34 @@
     let dragging = false;
 
     function start(e: any) {
-        console.log('start', slider);
         dragging = true;
-        startX = e.pageX - slider.offsetLeft;
+        //startX = e.pageX - slider.offsetLeft;
+        startX = e.pageX;
         scrollLeft = slider.scrollLeft;
+        console.log('start x', startX, 'slider.scrollLeft', slider.scrollLeft);
     }
 
     function stop() {
-        console.log('stop');
+        console.log('stop x', startX, 'slider.scrollLeft', slider.scrollLeft);
         dragging = false;
     }
 
     function moveComponent(e: any) {
         if (dragging) {
             e.preventDefault();
-            //console.log('moveComponent');
+            console.log('moveComponent x', startX, 'slider.scrollLeft', slider.scrollLeft);
             slider.scrollLeft = scrollLeft - (e.movementX - startX);
         }
     }
 </script>
 
 <div class="h-[calc(100%_-_144px)] p-4 mb-2 grid grid-cols-[auto_1fr_auto] gap-4 items-center">
-    <Display bind:elemCarousel urls={unsplashIds} />
+    <Display bind:elemCarousel bind:imageIndex urls={unsplashIds} />
 </div>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <div id="image-scrollbar" bind:this={slider} class="card h-36 p-4 flex gap-4 scroll-smooth overflow-x-auto overflow-y-hidden hover:cursor-grab active:hover:cursor-grabbing" on:mouseup={stop} on:mouseleave={stop} on:mousemove={moveComponent} on:mousedown={start}>
-    <Scrollbar bind:elemCarousel urls={unsplashIds} />
+    <Scrollbar bind:elemCarousel bind:imageIndex urls={unsplashIds} />
 </div>
 
 <!--div style="height: calc(100% - {heightAdjust});" class="gallery h-[calc(100%_-_{heightAdjust}px)] p-8">
