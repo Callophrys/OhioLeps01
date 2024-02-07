@@ -22,7 +22,6 @@
     import GA9144 from '$lib/assets/gallery/DSCF9144.jpg';
     import GA9151 from '$lib/assets/gallery/DSCF9151.jpg';
     import GA9335 from '$lib/assets/gallery/DSCF9335.jpg';
-
     import GA1858 from '$lib/assets/gallery/DSCF1858.jpg';
     import GA2164 from '$lib/assets/gallery/DSCF2164.jpg';
     import GA5084 from '$lib/assets/gallery/DSCF5084.jpg';
@@ -37,36 +36,35 @@
     let imageIndex: number;
 
     let elemCarousel: HTMLDivElement;
-    const unsplashIds = [GA0994, GA1819, GA1898, GA1972, GA1997
-        , GA2546, GA5402, GA5439, GA5465, GA5469, GA5552, GA5887
-        , GA5890, GA6506, GA6727, GA6983, GA8126, GA9144, GA9151, GA9335
-        , GA1858 , GA2164 , GA5084 , GA5323 , GA5443 , GA5472
-        , GA5473 , GA5521 , GA5527];
+    const unsplashIds = [GA0994, GA1819, GA1898, GA1972, GA1997, GA2546, GA5402, GA5439, GA5465, GA5469, GA5552, GA5887, GA5890, GA6506, GA6727, GA6983, GA8126, GA9144, GA9151, GA9335, GA1858, GA2164, GA5084, GA5323, GA5443, GA5472, GA5473, GA5521, GA5527];
     //console.log(unsplashIds);
 
     let startX: number;
-    let scrollLeft: number;
+    let startSliderLeft: number;
+    let draggedBy: number;
     let slider: HTMLDivElement;
     let dragging = false;
 
     function start(e: any) {
+        console.log(e);
         dragging = true;
-        //startX = e.pageX - slider.offsetLeft;
+        startSliderLeft = slider.scrollLeft; // - slider.offsetLeft;
         startX = e.pageX;
-        scrollLeft = slider.scrollLeft;
-        console.log('start x', startX, 'slider.scrollLeft', slider.scrollLeft);
+        console.log('start x', e.pageX, 'slider.scrollLeft', slider.scrollLeft, 'slider.offsetLeft', slider.offsetLeft);
     }
 
-    function stop() {
-        console.log('stop x', startX, 'slider.scrollLeft', slider.scrollLeft);
+    function stop(e: any) {
+        console.log('start x', startX, 'stop x', e.pageX, 'slider.scrollLeft', slider.scrollLeft, 'moved', startX - e.pageX, 'movementX', e.movementX);
         dragging = false;
     }
 
     function moveComponent(e: any) {
         if (dragging) {
             e.preventDefault();
-            console.log('moveComponent x', startX, 'slider.scrollLeft', slider.scrollLeft);
-            slider.scrollLeft = scrollLeft - (e.movementX - startX);
+            console.log('moved to', e.pageX, 'movementX', e.movementX, 'slider.scrollLeft', slider.scrollLeft, 'delta', e.pageX - startX);
+            setTimeout(() => {
+                slider.scrollLeft = startSliderLeft - (e.pageX - startX);
+            }, 0);
         }
     }
 </script>
