@@ -45,3 +45,9 @@ export type TaxonomyComplete = Taxonomy & {
 		baseTaxon: Taxonomy // Not complete
 	}
 }
+
+export enum SORTORDER {
+	NONE = 0,
+	ASC = 1,
+	DSC = 2,
+}

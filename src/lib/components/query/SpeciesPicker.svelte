@@ -6,6 +6,7 @@
     import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
     import { SlideToggle } from '@skeletonlabs/skeleton';
     import { afterUpdate, onMount, getContext } from 'svelte';
+    import { SORTORDER } from '$lib/types.js';
 
     let speciesChecklist: ChecklistScientificName[] = getContext('speciesList');
 
@@ -25,12 +26,6 @@
     let useAllSpecies: boolean;
     let useLatin: number;
     let capturedSpecies: number[] = [];
-
-    enum SORTORDER {
-        NONE = 0,
-        ASC = 1,
-        DSC = 2,
-    }
 
     let sortOrderCommon: SORTORDER = SORTORDER.NONE;
     let sortOrderLatin: SORTORDER = SORTORDER.NONE;
