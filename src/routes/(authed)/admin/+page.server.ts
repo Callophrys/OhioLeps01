@@ -2,7 +2,6 @@ import { redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import { getAppConfigsByOrgId, updateAllAppConfigs, getTemplateAppConfigs, resetAllAppConfigs } from '$lib/database/appconfig';
 import type { AppConfigFormKeyChecked } from '$lib/types';
-import { updated } from '$app/stores';
 
 export const load: PageServerLoad = async ({ locals }) => {
 	// redirect user if not logged in

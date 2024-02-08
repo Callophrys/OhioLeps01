@@ -1,7 +1,9 @@
 <script lang="ts">
     import * as config from '$lib/config';
+
     import Display from '$lib/components/gallery/Display.svelte';
     import Scrollbar from '$lib/components/gallery/Scrollbar.svelte';
+
     import GA0994 from '$lib/assets/gallery/DSCF0994.jpg';
     import GA1819 from '$lib/assets/gallery/DSCF1819.jpg';
     import GA1898 from '$lib/assets/gallery/DSCF1898.jpg';
@@ -41,7 +43,6 @@
 
     let startX: number;
     let startSliderLeft: number;
-    let draggedBy: number;
     let slider: HTMLDivElement;
     let dragging = false;
 

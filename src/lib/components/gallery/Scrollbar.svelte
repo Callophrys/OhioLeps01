@@ -5,19 +5,17 @@
     //$: console.log(urls);
 
     function carouselThumbnail(index: number) {
-
         imageIndex = index;
         elemCarousel.scroll(elemCarousel.clientWidth * index, 0);
 
         /*
-         * TODO: use this to remove long range scrolls.
-         * Just support smooth on single foward-back moves
-         *
-         * Ideal would be a smooth transition from current
-         * to new while skipping those in between
-         * 
-        // Change scroll behavior
-        elemCarousel.setAttribute("style", "scroll-behavior: auto;");
+         * TODO: smooth out scrolling, make real time mouse move,
+         * condition tranitions and even scolling more than swipe path
+         * per speed of motion
+         * /
+
+        // TODO: see if following is helpful anywhere
+        //
 
         // Timeout ensures styles are applied before scrolling
         setTimeout(function () {
@@ -31,9 +29,7 @@
         }, 0)
         
         */
-
     }
-
 </script>
 
 {#each urls as url, i}
