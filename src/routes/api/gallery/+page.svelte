@@ -75,17 +75,7 @@
 </div>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-<div id="image-scrollbar" bind:this={slider} class="card h-36 p-4 flex gap-4 scroll-smooth overflow-x-auto overflow-y-hidden hover:cursor-grab active:hover:cursor-grabbing" on:mouseup={stop} on:mouseleave={stop} on:mousemove={moveComponent} on:mousedown={start}>
+<div id="image-scrollbar" bind:this={slider} grabbable="true" class="card h-36 p-4 flex gap-4 scroll-smooth overflow-x-auto overflow-y-hidden hover:cursor-grab active:hover:cursor-grabbing" on:mouseup={stop} on:mouseleave={stop} on:mousemove={moveComponent} on:mousedown={start}>
     <Scrollbar bind:elemCarousel bind:imageIndex urls={unsplashIds} />
 </div>
 
-<!--div style="height: calc(100% - {heightAdjust});" class="gallery h-[calc(100%_-_{heightAdjust}px)] p-8">
-    </div-->
-<!--div class="h-svh">
-</div-->
-
-<!--style>
-    .gallery {
-        height: calc(100% - 128px);
-    }
-</style-->

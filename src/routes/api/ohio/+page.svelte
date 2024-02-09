@@ -1,9 +1,25 @@
 <script lang="ts">
     import DoubledContainer from '$lib/components/DoubledContainer.svelte';
     import { onMount } from 'svelte';
+    
+    /*
+    import { imageModules } from '$lib/gallery';
+    const galleryUrls: string[] = [];
+    for (const path in imageModules) {
+      imageModules[path]().then((mod: any) => {
+        console.log(path, mod)
+        galleryUrls.push(path);
+      });
+    }
+    <ul>
+    {#each galleryUrls as asset}
+       <li></li>{asset}</li>   
+    {/each}
+    </ul>
+    */
 
     export let data;
-    console.log('data\n', data.CountySpecimens);
+    //console.log('data\n', data.CountySpecimens);
 
     let isMouseDown = false;
 
@@ -276,15 +292,11 @@
     </svelte:fragment>
     <svelte:fragment slot="rightBody">
         <div class="grid grid-cols-2">
-            <div>
-                <ul id="selected-counties-list" class="list ml-4" />
-            </div>
-            <div>
-                <ul id="species-in-selection-list" class="list ml-4" />
-            </div>
+            <ul id="selected-counties-list" class="list ml-4" />
+            <ul id="species-in-selection-list" class="list ml-4" />
         </div>
     </svelte:fragment>
-    <svelte:fragment slot="right-tail"><div class="text-xs text-secondary-500 mb-[-1em]">* No monitored sites / no species observed</div></svelte:fragment>
+    <svelte:fragment slot="rightTail"><div class="text-xs text-secondary-500 mb-[-1em]">* No monitored sites / no species observed</div></svelte:fragment>
 </DoubledContainer>
 <div class="hidden polygon-select" />
 
