@@ -1,33 +1,28 @@
 <script lang="ts">
-    import type { CssClasses } from '@skeletonlabs/skeleton';
     export let urls: string[];
     export let elemCarousel: HTMLDivElement;
     export let imageIndex: number = 0;
 
     //console.log(urls);
 
-<<<<<<< HEAD
     enum ZOOM_DIR {
         SHRINK = -1,
         ENLARGE = 1,
     }
 
-    const cBaseCarousel = 'image-box h-full snap-x snap-mandatory scroll-smooth flex overflow-x-auto overflow-y-hidden';
     const ZOOMCURSORIN = 'hover:cursor-zoom-in'; // '-'
     const ZOOMCURSOROUT = 'hover:cursor-zoom-out'; // '+'
     const ZOOM_BY_WHEEL_SPEED = 0.1;
     const ZOOM_BY_CLICK_SPEED = 0.5;
 
+    const cBaseCarousel = 'image-box h-full min-h-full snap-x snap-mandatory scroll-smooth flex overflow-x-auto overflow-y-hidden active:cursor-grab active:hover:cursor-grab';
     let clickZoomDirection = ZOOM_DIR.ENLARGE;
     let zoom = 1;
     let zoomingCursor = ZOOMCURSORIN;
 
     $: classesCarousel = `${cBaseCarousel} ${zoomingCursor}`;
 
-    function carouselLeft(): void {
-=======
     function carouselLeft() {
->>>>>>> eb4a268 (Explore vite's glob methods for media)
         const x =
             elemCarousel.scrollLeft === 0
                 ? elemCarousel.clientWidth * elemCarousel.childElementCount // loop to last
@@ -43,7 +38,6 @@
         elemCarousel.scroll(x, 0);
     }
 
-<<<<<<< HEAD
     function isDoubled(img: HTMLImageElement) {
         return img.naturalWidth >= (2 * img.width * 19) / 20 || img.naturalHeight >= (2 * img.height * 19) / 20;
     }
@@ -52,30 +46,11 @@
         return img.naturalWidth <= elemCarousel.clientWidth && img.naturalHeight <= elemCarousel.clientHeight;
     }
 
-    function wheelZoom(e: any) {
-=======
-    let zoom = 1;
-    const ZOOM_SPEED = 0.1;
-
-    function handleMouseDown(e: MouseEvent) {}
-
-    function wheelMouseDown (e: any) {
-        if (e.shiftKey) {
-            const imageTarget = elemCarousel.querySelectorAll('img')[imageIndex];
-
-            /* Also set classList for img to contain zoom-pos or zoom-neg,
-             * if missing then zoom-pos if not yet at max ELSE zoom-neg  */
-            if (true /* over target image AND not yet at some max size */) {
-                (imageTarget as HTMLElement).style.transform = `scale(${(zoom += ZOOM_SPEED)})`;
-            } else if (true /* over target image AND still above min size */) {
-                (imageTarget as HTMLElement).style.transform = `scale(${(zoom -= ZOOM_SPEED)})`;
-            }
-        }
-    };
+    function mouseDown(e: any) {
+    }
 
     function wheelZoom (e: any) {
->>>>>>> eb4a268 (Explore vite's glob methods for media)
-        debugger;
+        //debugger;
         e.preventDefault();
         const imageTarget = elemCarousel.querySelectorAll('img')[imageIndex];
         console.log(imageTarget);
@@ -94,7 +69,7 @@
     }
 
     function clickZoom(e: any) {
-        debugger;
+        //debugger;
         e.preventDefault();
         const imageTarget = elemCarousel.querySelectorAll('img')[imageIndex];
         if (clickZoomDirection === ZOOM_DIR.SHRINK) {

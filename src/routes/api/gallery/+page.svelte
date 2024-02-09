@@ -34,7 +34,9 @@
     import GA5521 from '$lib/assets/gallery/DSCF5521.jpg';
     import GA5527 from '$lib/assets/gallery/DSCF5527.jpg';
 
-    $: heightAdjust = (config.showAppBar ? 128 : 0) + (config.showFooter ? 16 : 0);
+    import LEP01 from '$lib/assets/lep01.svg';
+
+    //$: heightAdjust = (config.showAppBar ? 128 : 0) + (config.showFooter ? 16 : 0);
     let imageIndex: number;
 
     let elemCarousel: HTMLDivElement;
@@ -78,4 +80,3 @@
 <div id="image-scrollbar" bind:this={slider} grabbable="true" class="card h-36 p-4 flex gap-4 scroll-smooth overflow-x-auto overflow-y-hidden hover:cursor-grab active:hover:cursor-grabbing" on:mouseup={stop} on:mouseleave={stop} on:mousemove={moveComponent} on:mousedown={start}>
     <Scrollbar bind:elemCarousel bind:imageIndex urls={unsplashIds} />
 </div>
-
