@@ -1,4 +1,6 @@
 <script lang="ts">
+    import type { CssClasses } from '@skeletonlabs/skeleton';
+    //import LEP01 from '$lib/assets/lep01.svg';
     export let urls: string[];
     export let elemCarousel: HTMLDivElement;
     export let imageIndex: number = 0;
@@ -15,10 +17,10 @@
     const ZOOM_BY_WHEEL_SPEED = 0.1;
     const ZOOM_BY_CLICK_SPEED = 0.5;
 
-    const cBaseCarousel = 'image-box h-full min-h-full snap-x snap-mandatory scroll-smooth flex overflow-x-auto overflow-y-hidden active:cursor-grab active:hover:cursor-grab';
+    const cBaseCarousel = 'image-box bg-surface-300 dark:bg-surface-700 h-full min-h-full snap-x snap-mandatory scroll-smooth flex overflow-x-auto overflow-y-hidden active:cursor-grab active:hover:cursor-grab';
     let clickZoomDirection = ZOOM_DIR.ENLARGE;
     let zoom = 1;
-    let zoomingCursor = ZOOMCURSORIN;
+    let zoomingCursor: CssClasses = ZOOMCURSORIN;
 
     $: classesCarousel = `${cBaseCarousel} ${zoomingCursor}`;
 
@@ -130,7 +132,7 @@
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<div bind:this={elemCarousel} on:wheel={wheelZoom} on:click={clickZoom} class={classesCarousel}>
+<div bind:this={elemCarousel} on:wheel={wheelZoom} on:click={clickZoom} class={classesCarousel} >
     {#each urls as url, i}
         <img class="snap-center object-cover min-w-full rounded-container-token" src={url} alt={url} loading="lazy" />
     {/each}

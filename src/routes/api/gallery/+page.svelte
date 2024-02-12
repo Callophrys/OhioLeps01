@@ -1,8 +1,10 @@
 <script lang="ts">
-    import * as config from '$lib/config';
 
     import Display from '$lib/components/gallery/Display.svelte';
     import Scrollbar from '$lib/components/gallery/Scrollbar.svelte';
+
+    const displayPaneClasses = "h-[calc(100%_-_144px)] p-4 mb-2 grid grid-cols-[auto_1fr_auto] gap-4 items-center";
+    const scrollPaneClasses = "card h-36 p-4 flex gap-4 scroll-smooth overflow-x-auto overflow-y-hidden hover:cursor-grab active:hover:cursor-grabbing";
 
     import GA0994 from '$lib/assets/gallery/DSCF0994.jpg';
     import GA1819 from '$lib/assets/gallery/DSCF1819.jpg';
@@ -33,8 +35,6 @@
     import GA5473 from '$lib/assets/gallery/DSCF5473.jpg';
     import GA5521 from '$lib/assets/gallery/DSCF5521.jpg';
     import GA5527 from '$lib/assets/gallery/DSCF5527.jpg';
-
-    import LEP01 from '$lib/assets/lep01.svg';
 
     //$: heightAdjust = (config.showAppBar ? 128 : 0) + (config.showFooter ? 16 : 0);
     let imageIndex: number;
@@ -72,11 +72,11 @@
     }
 </script>
 
-<div class="h-[calc(100%_-_144px)] p-4 mb-2 grid grid-cols-[auto_1fr_auto] gap-4 items-center">
+<div class={displayPaneClasses}>
     <Display bind:elemCarousel bind:imageIndex urls={unsplashIds} />
 </div>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-<div id="image-scrollbar" bind:this={slider} grabbable="true" class="card h-36 p-4 flex gap-4 scroll-smooth overflow-x-auto overflow-y-hidden hover:cursor-grab active:hover:cursor-grabbing" on:mouseup={stop} on:mouseleave={stop} on:mousemove={moveComponent} on:mousedown={start}>
+<div id="image-scrollbar" bind:this={slider} grabbable="true" class={scrollPaneClasses} on:mouseup={stop} on:mouseleave={stop} on:mousemove={moveComponent} on:mousedown={start}>
     <Scrollbar bind:elemCarousel bind:imageIndex urls={unsplashIds} />
 </div>
