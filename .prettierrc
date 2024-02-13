@@ -1,5 +1,6 @@
 {
 	"arrowParens": "always",
+	"bracketSameLine": true,
 	"bracketSpacing": true,
 	"printWidth": 400,
 	"singleQuote": true,

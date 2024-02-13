@@ -1,9 +1,29 @@
-import type { AppConfig,
+import type {
+	AppConfig,
 	County, State, Checklist, Region,
 	Site, SiteDate, SiteDateObservation, Taxonomy
 } from '@prisma/client'
 
-// Example: export type SomeNewName <T> = Partial<T> & { newMember: boolean }
+export enum Role {
+	USER = 'USER', // can browse data and run reports, delete own unsigned data
+	ENTRY = 'ENTRY', // can enter observation data, can download data
+	LEAD = 'LEAD', // can edit,add,delete root information.
+	// E.g.sites and checklists.Can
+	//review and sign off 'lock' the data.
+	// can unlock own data locks.  Can upload data.
+	ADMIN = 'ADMIN', // Can edit anything, manage user issues, restore deleted or lost data, chase audit trails
+}
+
+export enum SORTORDER {
+	NONE = 0,
+	ASC = 1,
+	DSC = 2,
+}
+
+export enum ZOOM_DIR {
+	SHRINK = -1,
+	ENLARGE = 1,
+}
 
 export type AppConfigFormKeyChecked = AppConfig & { checked: boolean, formKey: string }
 export type ChecklistScientificName = Checklist & { scientificName: string }
@@ -15,6 +35,7 @@ export type SiteDateObservationChecklist = SiteDateObservation & {
 }
 export type SiteDateYear = SiteDate & { siteName: string, year: number }
 export type SiteCounty = Site & { county: County }
+export type SiteCountySiteDates = Site & { county: County, siteDates: SiteDateYear[] }
 
 export type SpeciesSearchParams = {
 	specimenIds: number[],
@@ -44,10 +65,4 @@ export type TaxonomyComplete = Taxonomy & {
 	baseTaxon: Taxonomy & { // Not complete
 		baseTaxon: Taxonomy // Not complete
 	}
-}
-
-export enum SORTORDER {
-	NONE = 0,
-	ASC = 1,
-	DSC = 2,
 }

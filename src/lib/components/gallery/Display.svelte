@@ -1,16 +1,13 @@
 <script lang="ts">
     import type { CssClasses } from '@skeletonlabs/skeleton';
+    import { ZOOM_DIR } from '$lib/types';
     //import LEP01 from '$lib/assets/lep01.svg';
+    const displayPaneClasses = 'h-[calc(100%_-_144px)] p-4 mb-2 grid grid-cols-[auto_1fr_auto] gap-4 items-center';
     export let urls: string[];
     export let elemCarousel: HTMLDivElement;
     export let imageIndex: number = 0;
 
     //console.log(urls);
-
-    enum ZOOM_DIR {
-        SHRINK = -1,
-        ENLARGE = 1,
-    }
 
     const ZOOMCURSORIN = 'hover:cursor-zoom-in'; // '-'
     const ZOOMCURSOROUT = 'hover:cursor-zoom-out'; // '+'
@@ -48,10 +45,7 @@
         return img.naturalWidth <= elemCarousel.clientWidth && img.naturalHeight <= elemCarousel.clientHeight;
     }
 
-    function mouseDown(e: any) {
-    }
-
-    function wheelZoom (e: any) {
+    function wheelZoom(e: any) {
         //debugger;
         e.preventDefault();
         const imageTarget = elemCarousel.querySelectorAll('img')[imageIndex];
@@ -126,21 +120,23 @@
     }
 </script>
 
-<button type="button" class="btn-icon variant-filled" on:click={carouselLeft}>
-    <span class="mr-1">◀</span>
-</button>
+<div class={displayPaneClasses}>
+    <button type="button" class="btn-icon variant-filled" on:click={carouselLeft}>
+        <span class="mr-1">◀</span>
+    </button>
 
-<!-- svelte-ignore a11y-no-static-element-interactions -->
-<!-- svelte-ignore a11y-click-events-have-key-events -->
-<div bind:this={elemCarousel} on:wheel={wheelZoom} on:click={clickZoom} class={classesCarousel} >
-    {#each urls as url, i}
-        <img class="snap-center object-cover min-w-full rounded-container-token" src={url} alt={url} loading="lazy" />
-    {/each}
+    <!-- svelte-ignore a11y-no-static-element-interactions -->
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <div bind:this={elemCarousel} on:wheel={wheelZoom} on:click={clickZoom} class={classesCarousel}>
+        {#each urls as url, i}
+            <img class="snap-center object-cover min-w-full rounded-container-token" src={url} alt={url} loading="lazy" />
+        {/each}
+    </div>
+
+    <button type="button" class="btn-icon variant-filled" on:click={carouselRight}>
+        <span class="ml-1">▶</span>
+    </button>
 </div>
-
-<button type="button" class="btn-icon variant-filled" on:click={carouselRight}>
-    <span class="ml-1">▶</span>
-</button>
 
 <style>
     img {

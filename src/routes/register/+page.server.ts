@@ -1,21 +1,9 @@
 import { fail, redirect } from '@sveltejs/kit';
 import type { Action, Actions, PageServerLoad } from './$types';
 import bcrypt from 'bcrypt';
-import * as config from '$lib/config'
+import { Role } from '$lib/types';
 import { getOrganizationByName } from '$lib/database/organizations';
 import prisma from '$lib/prisma';
-
-// using an enum for user roles to avoid typos
-// if you're not using TypeScript use an object
-enum Role {
-  USER = 'USER', // can browse data and run reports, delete own unsigned data
-  ENTRY = 'ENTRY', // can enter observation data, can download data
-  LEAD = 'LEAD', // can edit,add,delete root information.
-                 // E.g.sites and checklists.Can
-                 //review and sign off 'lock' the data.
-                 // can unlock own data locks.  Can upload data.
-  ADMIN = 'ADMIN', // Can edit anything, manage user issues, restore deleted or lost data, chase audit trails
-}
 
 export const load: PageServerLoad = async ({ locals }) => {
   console.log('register: ', locals);
@@ -30,23 +18,22 @@ const register: Action = async ({ request }) => {
   const username = data.get('username')
   const password = data.get('password')
 
-  if (
-    typeof username !== 'string' ||
+  if (typeof username !== 'string' ||
     typeof password !== 'string' ||
     !username ||
-    !password
-  ) {
+    !password) {
+
     return fail(400, { invalid: true })
   }
 
   const user = await prisma.user.findUnique({
     where: { username },
-  })
+  });
 
   if (user) {
     return fail(400, { user: true })
   }
-  
+
   const organization = await getOrganizationByName('Ohio Lepidopterists');
 
   await prisma.user.create({

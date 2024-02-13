@@ -1,6 +1,6 @@
 import { error } from '@sveltejs/kit'
 import { getSite } from '$lib/database/sites'
-import type { Site } from '@prisma/client';
+import type { SiteCountySiteDates } from '$lib/types.js';
 
 export async function load({ params }) {
   console.log('Load from /api/sites/{slug}/+page.server.ts');
@@ -13,7 +13,7 @@ export async function load({ params }) {
   }
 
   const json = JSON.stringify(site);
-  const jsonResult: Site = JSON.parse(json);
+  const jsonResult: SiteCountySiteDates = JSON.parse(json);
   //console.log('site', jsonResult);
   return { site: jsonResult }
 }

@@ -1,7 +1,8 @@
 <script lang="ts">
+    import SitePicker from '$lib/components/SitePicker.svelte';
+    import CountyPicker from '$lib/components/CountyPicker.svelte';
     import StandardContainer from '$lib/components/StandardContainer.svelte';
     import { createEventDispatcher } from 'svelte';
-    import { formatDate } from '$lib/utils';
     import { goto } from '$app/navigation';
     import { ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
     import { popup } from '@skeletonlabs/skeleton';
@@ -42,12 +43,7 @@
         <div class="card w-48 shadow-xl py-2" data-popup="popupComboboxSiteDate">
             <ListBox rounded="rounded-none">
                 {#each data.site.siteDates as siteDate}
-                    <ListBoxItem
-                        bind:group={comboboxValueSiteDate}
-                        on:click={handleClick}
-                        name="medium"
-                        value={siteDate.siteDateId}
-                    >
+                    <ListBoxItem bind:group={comboboxValueSiteDate} on:click={handleClick} name="medium" value={siteDate.siteDateId}>
                         {siteDate.year} - week {siteDate.week}
                     </ListBoxItem>
                 {/each}
@@ -57,33 +53,64 @@
 
         <div class="flex flex-row justify-between">
             <div class="basis-1/3 my-auto">
-                {data.site.siteName}, {data.site.county.name} County
+                <!--
+                    TODO: Make this change the site by alphabetical
+                          Need to filter Observations where observations must indicate as such
+                          If limit is reached then move loudly to next county's worth of sites
+
+                          Any change here should advance the downstream pickers and the
+                          current data - as long as there is no unchanged data - Prompt
+                          user about this
+                -->
+                <SitePicker currentSite={data.site}>
+                    <svelte:fragment slot="label">Site:</svelte:fragment>
+                </SitePicker>
             </div>
+            <!--
+                TODO: Convert to ObservationPicker picker (or YearWeekPicker)
+                      If limit is reached then move loudly to next year's worth of weeks
+                      and then even more loudly to next site 
+
+                      Should the last week of last year advance to another site? 
+                      Or should there be a prompt about creating a new year-week record?
+
+                      Any change here should advance the downstream pickers and the
+                      current data - as long as there is no unchanged data - Prompt
+                      user about this
+            -->
             <div class="basis-1/3 flex flex-row justify-center space-x-4">
                 <div class="w-1/2 text-right my-auto">Observations (year/week)</div>
                 <div class="w-1/2">
-                    <button
-                        class="btn variant-soft w-40 justify-between"
-                        use:popup={popupComboboxSiteDate}
-                    >
-                        <span class="capitalize"
-                            >{comboboxValueSiteDate
-                                ? `${comboboxValueSiteDate.toString().slice(0, 4)} week ${
-                                      comboboxValueSiteDate % 100
-                                  }`
-                                : 'Year week'}</span
-                        >
+                    <button class="btn variant-soft w-40 justify-between" use:popup={popupComboboxSiteDate}>
+                        <span class="capitalize">{comboboxValueSiteDate ? `${comboboxValueSiteDate.toString().slice(0, 4)} week ${comboboxValueSiteDate % 100}` : 'Year week'}</span>
                         <span>↓</span>
                     </button>
                 </div>
             </div>
             <div class="basis-1/3 my-auto text-right">
-                <div class="btn-group variant-soft scale-90 my-auto">
-                    <button>◀</button>
-                    <button class="w-24">County</button>
-                    <button>▶</button>
-                </div>
+                <!--
+                    TODO: Make this change the County by alphabetical
+                          Need to filter Sites where sites must indicate as such
+                          If limit is reached then move loudly to next regions's worth of sites - if region is present
+                          Maybe create some option for user to ignore this
+
+                          Any change here should advance the downstream pickers and the
+                          current data - as long as there is no unchanged data - Prompt
+                          user about this
+                -->
+                <CountyPicker currentCounty={data.site.county}>
+                    <svelte:fragment slot="label">County:</svelte:fragment>
+                </CountyPicker>
             </div>
+            <!--
+                TODO: Add Region picker
+                      Need to filter Counties where counties must indicate as such
+                      Maybe make region and admin level option
+
+                      Any change here should advance the downstream pickers and the
+                      current data - as long as there is no unchanged data - Prompt
+                      user about this
+            -->
         </div>
     </svelte:fragment>
 

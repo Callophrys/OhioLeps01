@@ -19,13 +19,14 @@
     };
 
     const candidates: any = {};
-    for (const p of appConfigs)
+    for (const p of appConfigs) {
         candidates[p.formKey] = {
             configValue: p.configValue,
             changed: false,
             class: '',
             checked: p.checked,
         } as candidate;
+    }
     //console.log('c', candidates);
 
     afterUpdate(() => {

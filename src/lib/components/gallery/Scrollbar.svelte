@@ -2,40 +2,53 @@
     export let urls: string[];
     export let elemCarousel: HTMLDivElement;
     export let imageIndex: number = 0;
+
+    const scrollPaneClasses = 'card h-36 p-4 flex gap-4 scroll-smooth overflow-x-auto overflow-y-hidden hover:cursor-grab active:hover:cursor-grabbing';
+
+    let startX: number;
+    let startSliderLeft: number;
+    let slider: HTMLDivElement;
+    let dragging = false;
+
     //$: console.log(urls);
 
     function carouselThumbnail(index: number) {
-        imageIndex = index;
-        elemCarousel.scroll(elemCarousel.clientWidth * index, 0);
-
-        /*
-         * TODO: smooth out scrolling, make real time mouse move,
-         * condition tranitions and even scolling more than swipe path
-         * per speed of motion
-         * /
-
-        // TODO: see if following is helpful anywhere
-        //
-
-        // Timeout ensures styles are applied before scrolling
-        setTimeout(function () {
+        if (!dragging) {
+            imageIndex = index;
             elemCarousel.scroll(elemCarousel.clientWidth * index, 0);
-            //window.scrollBy(0, -2000);
+        }
+    }
 
-            // Reset to CSS defaults.
-            //elemCarousel.removeAttribute("style");
-            elemCarousel.setAttribute("style", "scroll-behavior: smooth;");
+    function start(e: any) {
+        console.log(e);
+        dragging = true;
+        startSliderLeft = slider.scrollLeft; // - slider.offsetLeft;
+        startX = e.pageX;
+        console.log('mousedown -> startX', e.pageX, 'slider.scrollLeft', slider.scrollLeft, 'slider.offsetLeft', slider.offsetLeft);
+    }
 
-        }, 0)
-        
-        */
+    function stop(e: any) {
+        console.log('mouseup -> startX', startX, 'stop x', e.pageX, 'slider.scrollLeft', slider.scrollLeft, 'moved', startX - e.pageX, 'movementX', e.movementX);
+        dragging = false;
+    }
+
+    function moveComponent(e: any) {
+        if (dragging) {
+            e.preventDefault();
+            console.log('mousemove -> startX', e.pageX, 'movementX', e.movementX, 'slider.scrollLeft', slider.scrollLeft, 'delta', e.pageX - startX);
+            setTimeout(() => {
+                slider.scrollLeft = startSliderLeft - (e.pageX - startX);
+            }, 0);
+        }
     }
 </script>
 
-{#each urls as url, i}
-    <button
-        type="button"
-        class="size-24
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<div id="image-scrollbar" bind:this={slider} draggable="true" class={scrollPaneClasses} on:mouseup={stop} on:mouseleave={stop} on:mousemove={moveComponent} on:mousedown={start}>
+    {#each urls as url, i}
+        <button
+            type="button"
+            class="size-24
             min-w-24
             bg-center
             bg-cover
@@ -43,9 +56,9 @@
             bg-transparent
             hover:cursor-grab
             active:hover:cursor-grabbing"
-        style:background-image="url('{url}')"
-        on:click={() => carouselThumbnail(i)}
-    >
-        &nbsp;
-    </button>
-{/each}
+            style:background-image="url('{url}')"
+            on:click={() => carouselThumbnail(i)}>
+            &nbsp;
+        </button>
+    {/each}
+</div>
