@@ -44,6 +44,7 @@ export function camelToFriendly(camel: string) {
     // Object.getOwnPropertyNames(object1).forEach(x => console.log(camelToFriendly(x)));
 }
 
+// Do not forget month is 0 to 11
 export function weekOfYearSince(
     weekOfDate: Date,
     sinceDate: Date = new Date(1999, 3, 1),

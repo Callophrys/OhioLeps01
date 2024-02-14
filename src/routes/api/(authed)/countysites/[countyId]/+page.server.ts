@@ -4,7 +4,7 @@ import { redirect } from '@sveltejs/kit';
 import type { Site, County } from '@prisma/client';
 import type { SiteCounty } from '$lib/types.js';
 import { getSitesByCounty, getSites } from '$lib/database/sites.js';
-import { getCounties } from '$lib/database/counties.js';
+import { getCountiesExpanded } from '$lib/database/counties.js';
 
 export async function load({ cookies, url, params }) {
 
@@ -18,12 +18,12 @@ export async function load({ cookies, url, params }) {
 	const [sites, counties] = (countyId === -1) ?
 		await Promise.all([
 			getSites(null),
-			getCounties()
+			getCountiesExpanded()
 		])
 		:
 		await Promise.all([
 			getSitesByCounty(countyId),
-			getCounties()
+			getCountiesExpanded()
 		]);
 
 	const jsonS = JSON.stringify(sites);

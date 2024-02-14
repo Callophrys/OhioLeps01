@@ -1,5 +1,10 @@
 import prisma from "$lib/prisma"
 
+/**
+ * Obtain site details including county, yearly statuses, and observation dates
+ * @param siteId 
+ * @returns 
+ */
 export async function getSite(siteId: number) {
   console.log('/lib/api/entry/sites.ts > getSite', siteId);
 
@@ -10,7 +15,10 @@ export async function getSite(siteId: number) {
     include: {
       county: {
         select: {
+          id: true,
           name: true,
+          regionId: true,
+          stateId: true
         }
       },
       siteStatuses: {
@@ -42,16 +50,16 @@ export async function getSitesByCounty(countyId: number) {
   return sites;
 }
 
-export async function getSites(idList: number[]|null) {
+export async function getSites(idList: number[] | null) {
   console.log('/lib/api/entry/sites.ts > getSites');
-  
+
   let whereClause = idList && idList.length ? {
     id: { in: idList }
   } : true;
 
   const sites = await prisma.site.findMany({
     where: {
-      ...(idList && idList.length ? {siteId: { in: idList }} : {})
+      ...(idList && idList.length ? { siteId: { in: idList } } : {})
     },
     include: {
       county: {

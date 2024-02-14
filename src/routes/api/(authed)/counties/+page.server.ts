@@ -1,7 +1,7 @@
 import { fail } from '@sveltejs/kit';
 import { browser } from '$app/environment';
 import { redirect } from '@sveltejs/kit';
-import { getCounties } from '$lib/database/counties.js';
+import { getCountiesExpanded } from '$lib/database/counties.js';
 import type { County } from '@prisma/client';
 import type { CountyComplete } from '$lib/types';
 
@@ -12,7 +12,7 @@ export async function load({ cookies, url }) {
 		throw redirect(303, `/login?redirectTo=${url.pathname}`);
 	}
 
-	const counties = await getCounties();
+	const counties = await getCountiesExpanded();
 	const json = JSON.stringify(counties);
 	const jsonResult: CountyComplete[] = JSON.parse(json);
 	return { counties: jsonResult };

@@ -1,22 +1,15 @@
 <script lang="ts">
-    import SitePicker from '$lib/components/SitePicker.svelte';
-    import CountyPicker from '$lib/components/CountyPicker.svelte';
+    import SitePicker from '$lib/components/datanavigation/SitePicker.svelte';
+    import CountyPicker from '$lib/components/datanavigation/CountyPicker.svelte';
+    import SiteDatePicker from '$lib/components/datanavigation/SiteDatePicker.svelte';
     import StandardContainer from '$lib/components/StandardContainer.svelte';
-    import { createEventDispatcher } from 'svelte';
+    //import { createEventDispatcher } from 'svelte';
     import { goto } from '$app/navigation';
-    import { ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
-    import { popup } from '@skeletonlabs/skeleton';
-    import type { PopupSettings } from '@skeletonlabs/skeleton';
+    import { setContext } from 'svelte';
+
     export let data;
-
-    let comboboxValueSiteDate: number;
-
-    const popupComboboxSiteDate: PopupSettings = {
-        event: 'click',
-        target: 'popupComboboxSiteDate',
-        placement: 'bottom',
-        closeQuery: '.listbox-item',
-    };
+    setContext('counties', data.counties);
+    //console.log(data.site.county);
 
     function handleClick(event: any) {
         event.preventDefault();
@@ -25,9 +18,8 @@
         }
     }
 
-    const dispatch = createEventDispatcher();
-    const submit = () => dispatch('submit');
-    let obsValue: number;
+    //const dispatch = createEventDispatcher();
+    //const submit = () => dispatch('submit');
 
     // TODO
     // bind the selected listboxtime
@@ -40,6 +32,7 @@
 
 <StandardContainer>
     <svelte:fragment slot="standardHead">
+        <!--
         <div class="card w-48 shadow-xl py-2" data-popup="popupComboboxSiteDate">
             <ListBox rounded="rounded-none">
                 {#each data.site.siteDates as siteDate}
@@ -50,6 +43,7 @@
             </ListBox>
             <div class="arrow bg-surface-100-800-token" />
         </div>
+        -->
 
         <div class="flex flex-row justify-between">
             <div class="basis-1/3 my-auto">
@@ -79,6 +73,11 @@
                       user about this
             -->
             <div class="basis-1/3 flex flex-row justify-center space-x-4">
+                <SiteDatePicker siteCountySiteDates={data.site}>
+                    <svelte:fragment slot="heading">Observations</svelte:fragment>
+                </SiteDatePicker>
+
+                <!--
                 <div class="w-1/2 text-right my-auto">Observations (year/week)</div>
                 <div class="w-1/2">
                     <button class="btn variant-soft w-40 justify-between" use:popup={popupComboboxSiteDate}>
@@ -86,6 +85,7 @@
                         <span>↓</span>
                     </button>
                 </div>
+                -->
             </div>
             <div class="basis-1/3 my-auto text-right">
                 <!--

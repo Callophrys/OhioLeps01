@@ -66,3 +66,5 @@ export type TaxonomyComplete = Taxonomy & {
 		baseTaxon: Taxonomy // Not complete
 	}
 }
+
+export type SiteRecordDate = { siteDateId: number, recordDate: Date }

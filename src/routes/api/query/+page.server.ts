@@ -2,7 +2,7 @@ import { fail } from '@sveltejs/kit';
 import { browser } from '$app/environment';
 import { redirect } from '@sveltejs/kit';
 //import { getChecklists } from '$lib/api/checklists.js';
-import { getCounties } from '$lib/database/counties';
+import { getCountiesExpanded } from '$lib/database/counties';
 import { getChecklists, getChecklistsFiltered } from '$lib/database/checklists';
 import type { ChecklistScientificName, SpeciesSearchParams } from '$lib/types';
 import type { County } from '@prisma/client';
@@ -38,7 +38,7 @@ export async function load({ cookies, url }) {
 export async function load() {
 	const [counties, speciesList] =
 		await Promise.all([
-			getCounties(),
+			getCountiesExpanded(),
 			getChecklists()
 		]);
 

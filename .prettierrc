@@ -4,6 +4,7 @@
 	"bracketSpacing": true,
 	"printWidth": 400,
 	"singleQuote": true,
+	"indentStyle": "space",
 	"tabWidth": 4,
 	"trailingComma": "es5",
 	"useTabs": false,

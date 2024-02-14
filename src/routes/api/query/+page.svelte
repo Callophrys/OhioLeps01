@@ -168,9 +168,9 @@
     <svelte:fragment slot="leftBody">
         <div>
             <form method="POST" class="p-4 space-y-2" action="?/query" use:enhance={runSearch}>
-                <StateCountyPicker initialHideUnmonitoredChoice={config.initialHideUnmonitedChoice} />
-                <SpeciesPicker initialUseLatinChoice={config.initialUseLatinChoice} />
-                <TimeframePicker initialDateRangeChoice={config.initialDateRangeChoice} />
+                <StateCountyPicker initialHideUnmonitoredChoice={Number(config.initialHideUnmonitedChoice)} />
+                <SpeciesPicker initialUseLatinChoice={Number(config.initialUseLatinChoice)} />
+                <TimeframePicker initialDateRangeChoice={Number(config.initialDateRangeChoice)} />
                 <hr />
                 <div class="flex">
                     <button disabled={loading} class="btn variant-filled disabled:bg-secondary-500 [&>span]:disabled:animate-spin w-auto justify-between mx-auto" type="submit">
@@ -181,6 +181,9 @@
         </div>
     </svelte:fragment>
 
+    <!--
+        TODO: Revisit skeleton tables with the newer table support per https://www.skeleton.dev/docs/ssd
+    -->
     <svelte:fragment slot="rightBody">
         {#if loading}
             <div class="w-full h-full pl-4 pt-2 animate-pulse variant-filled-surface hover:cursor-wait">Loading...</div>

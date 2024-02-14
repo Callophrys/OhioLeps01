@@ -4,6 +4,26 @@ export async function getCounties() {
   // filtering for OH by default
   const counties = await prisma.county.findMany({
 
+    where: {
+      state: {
+        abbreviation: 'OH',
+      }
+    },
+
+    orderBy: [
+      {
+        name: 'asc',
+      },
+    ]
+  });
+
+  return counties;
+}
+
+export async function getCountiesExpanded() {
+  // filtering for OH by default
+  const counties = await prisma.county.findMany({
+
     include: {
       region: true,
       sites: true,

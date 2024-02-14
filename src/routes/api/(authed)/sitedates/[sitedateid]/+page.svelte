@@ -5,7 +5,6 @@
     import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
     import { goto } from '$app/navigation';
     import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
-    export let data;
 
     export let initialUseFarenheit: number = 0;
     export let accA = true;
@@ -190,8 +189,7 @@
                             value={{
                                 id: year,
                                 children: [...trackedWeeks.filter((z) => z.year === year)],
-                            }}>{year}</option
-                        >
+                            }}>{year}</option>
                     {/each}
                 </select>
             </div>
@@ -248,8 +246,7 @@
                     </div>
                     <div class="pl-4">
                         End Temp: {useFarenheit ? data.siteDate.endTemp : convertFtoC(data.siteDate.endTemp)}
-                    </div></svelte:fragment
-                >
+                    </div></svelte:fragment>
             </AccordionItem>
             <AccordionItem bind:open={optAccC}>
                 <svelte:fragment slot="summary">Cloud cover (&percnt;)</svelte:fragment>
@@ -259,8 +256,7 @@
                     </div>
                     <div class="pl-4">
                         End Clouds: {data.siteDate.endClouds}
-                    </div></svelte:fragment
-                >
+                    </div></svelte:fragment>
             </AccordionItem>
             <AccordionItem bind:open={optAccD}>
                 <svelte:fragment slot="summary">Wind</svelte:fragment>
@@ -276,8 +272,7 @@
                     </div>
                     <div class="pl-4">
                         End Wind MPH: {data.siteDate.endWindMPH}
-                    </div></svelte:fragment
-                >
+                    </div></svelte:fragment>
             </AccordionItem>
             <AccordionItem bind:open={optAccE}>
                 <svelte:fragment slot="summary">Weather</svelte:fragment>
@@ -391,8 +386,7 @@
                     </div>
                     <div class="pl-4">
                         lEsec15: {data.siteDate.lEsec15}
-                    </div></svelte:fragment
-                >
+                    </div></svelte:fragment>
             </AccordionItem>
             <AccordionItem bind:open={optAccG}>
                 <svelte:fragment slot="summary">Larva</svelte:fragment>
@@ -408,8 +402,7 @@
                     </div>
                     <div class="pl-4">
                         Larva Ob D: {data.siteDate.larvaObD ?? ''}
-                    </div></svelte:fragment
-                >
+                    </div></svelte:fragment>
             </AccordionItem>
             <AccordionItem bind:open={optAccH}>
                 <svelte:fragment slot="summary">Energy/blooming</svelte:fragment>
@@ -428,8 +421,7 @@
                     </div>
                     <div class="pl-4">
                         Flowers in Bloom: {data.siteDate.flowersInBloom ?? ''}
-                    </div></svelte:fragment
-                >
+                    </div></svelte:fragment>
             </AccordionItem>
             <div class="pl-4">
                 Field Notes: {data.siteDate.fieldNotes ?? ''}
@@ -454,8 +446,7 @@
                     </div>
                     <div class="pl-4">
                         Confirm At: {data.siteDate.confirmAt ?? ''}
-                    </div></svelte:fragment
-                >
+                    </div></svelte:fragment>
             </AccordionItem>
         </Accordion>
     </svelte:fragment>
