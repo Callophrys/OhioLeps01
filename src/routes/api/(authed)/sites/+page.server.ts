@@ -12,7 +12,7 @@ export async function load({ cookies, url }) {
 		throw redirect(303, `/login?redirectTo=${url.pathname}`);
 	}
 
-	const sites = await getSites();
+	const sites = await getSites(null);
 	const json = JSON.stringify(sites);
 	const jsonResult: Site[] = JSON.parse(json);
 	return { sites: jsonResult }

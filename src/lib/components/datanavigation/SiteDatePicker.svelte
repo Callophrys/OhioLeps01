@@ -1,10 +1,16 @@
 <script lang="ts">
-    import type { SiteDate } from '@prisma/client';
-    import { weekOfYearSince } from '$lib/utils';
+    import { goto } from '$app/navigation';
     import { popup } from '@skeletonlabs/skeleton';
     import type { PopupSettings } from '@skeletonlabs/skeleton';
-    import { goto } from '$app/navigation';
-    import type { SiteRecordDate, SiteCountySiteDates } from '$lib/types.js';
+    import { ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
+    import { getContext } from 'svelte';
+    import type { SiteDateYear } from '$lib/types.js';
+    import { weekOfYearSince } from '$lib/utils';
+
+    export let currentSiteId: number = -1;
+    const siteDates: SiteDateYear[] = getContext('siteDates') ?? [];
+
+    console.log(siteDates);
 
     type dateTracking = {
         siteDateId: number;
@@ -18,33 +24,21 @@
         children: dateTracking[];
     };
 
-    export let siteCountySiteDates: SiteCountySiteDates;
-    let currentSiteDateId: number;
+    const siteDateYears = [...new Set(siteDates.map((x) => x.year))];
+    const weeksOfYear: any = {};
+    siteDateYears.forEach((yr) => (weeksOfYear[yr] = [...new Set(siteDates.filter((x) => x.year === yr).map((y) => y.week))]));
+    console.log(weeksOfYear);
 
-    $: currentSiteDate = siteCountySiteDates.siteDates.find((x) => {
-        x.siteDateId === currentSiteDateId;
-    });
-    $: siteRecordDates = siteCountySiteDates.siteDates;
-    $: siteDateYears = [
-        ...new Set(
-            siteCountySiteDates.siteDates.map((x) => {
-                x.year;
-            })
-        ),
-    ];
-    $: siteDateWeeks = [
-        ...new Set(
-            siteCountySiteDates.siteDates.map((x) => {
-                x.week;
-            })
-        ),
-    ];
+    $: currentSite = siteDates.find((x) => x.siteId === currentSiteId);
+    console.log(currentSite);
 
-    $: trackedWeeks = Array.from(siteRecordDates)
-        .map<dateTracking>((w) => ({
+    $: siteDateWeeks = currentSite ? weeksOfYear[currentSite.year] : [];
+
+    $: trackedWeeks = Array.from(siteDates)
+        .map<dateTracking>((w: SiteDateYear) => ({
             siteDateId: w.siteDateId,
             year: w.year,
-            week: weekOfYearSince(new Date(w.recordDate)),
+            week: w.recordDate ? weekOfYearSince(new Date(w.recordDate)) : -1,
             recordDate: w.recordDate,
         }))
         .sort((a, b) => (a.year > b.year ? 1 : a.week - b.week));
@@ -54,10 +48,14 @@
     $: prevEnabled = trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteId) > 0;
     console.log('prevEnabled', prevEnabled);
 
-    $: recordDate = currentSiteDate?.recordDate;
-    $: recordYear = currentSiteDate?.year;
-    $: recordWeek = currentSiteDate ? weekOfYearSince(currentSiteDate.recordDate) : -1;
-    $: recordSiteId = currentSiteDate?.siteDateId;
+    $: recordYear = currentSite?.year;
+    $: recordWeek = 33; // currentSite && currentSite.recordDate ? weekOfYearSince(currentSite.recordDate) : -1;
+    $: recordSiteId = currentSite?.siteDateId;
+
+    $: {
+        console.log(currentSiteId, currentSite, recordYear, recordWeek, recordSiteId);
+        console.log(siteDateYears, siteDateWeeks);
+    }
 
     const popupSiteDateYears: PopupSettings = {
         event: 'focus-click',
@@ -102,23 +100,27 @@
 
 <div class="btn-group variant-soft scale-90 my-auto">
     <button class="!px-2" on:click={handleClickPrior}>◀</button>
-    <button class="w-24" use:popup={popupSiteDateYears}>Year: {recordYear}<span>↓</span></button>
-    <button class="w-24" use:popup={popupSiteDateWeeks}>Week: {recordWeek}<span>↓</span></button>
+    <button class="w-24" use:popup={popupSiteDateYears}>{recordYear}<span>↓</span></button>
+    <button class="w-24" use:popup={popupSiteDateWeeks}>{recordWeek}<span>↓</span></button>
     <button class="!px-2" on:click={handleClickNext}>▶</button>
 </div>
 
 <div data-popup="popupComboboxSiteDateYears">
-    <div class="card w-48 shadow-xl py-2">
-        {#each siteDateYears as year}
-            <div>{year}</div>
-        {/each}
+    <div class="card w-48 shadow-xl py-2 overflow-y-auto" style="max-height: calc(100vh - 272px);">
+        <ListBox rounded="rounded-none">
+            {#each siteDateYears as year}
+                <ListBoxItem group="dogs" name="years" value={year}>{year}</ListBoxItem>
+            {/each}
+        </ListBox>
     </div>
 </div>
 
 <div data-popup="popupComboboxSiteDateWeeks">
-    <div class="card w-48 shadow-xl py-2">
-        {#each siteDateWeeks as week}
-            <div>{week}</div>
-        {/each}
+    <div class="card w-48 shadow-xl py-2 overflow-y-auto" style="max-height: calc(100vh - 272px);">
+        <ListBox rounded="rounded-none">
+            {#each siteDateWeeks as week}
+                <ListBoxItem group="cows" name="weeks" value={week}>{week}</ListBoxItem>
+            {/each}
+        </ListBox>
     </div>
 </div>

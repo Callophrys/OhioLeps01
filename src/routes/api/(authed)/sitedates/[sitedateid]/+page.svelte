@@ -6,6 +6,8 @@
     import { goto } from '$app/navigation';
     import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
 
+    export let data;
+
     export let initialUseFarenheit: number = 0;
     export let accA = true;
     export let accB = false;

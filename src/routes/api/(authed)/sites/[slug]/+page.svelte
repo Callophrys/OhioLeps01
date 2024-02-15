@@ -8,6 +8,8 @@
     import { setContext } from 'svelte';
 
     export let data;
+
+    setContext('siteDates', data.site.siteDates);
     setContext('counties', data.counties);
     //console.log(data.site.county);
 
@@ -73,8 +75,8 @@
                       user about this
             -->
             <div class="basis-1/3 flex flex-row justify-center space-x-4">
-                <SiteDatePicker siteCountySiteDates={data.site}>
-                    <svelte:fragment slot="heading">Observations</svelte:fragment>
+                <SiteDatePicker bind:currentSiteId={data.site.siteId}>
+                    <svelte:fragment slot="heading">Observations:</svelte:fragment>
                 </SiteDatePicker>
 
                 <!--

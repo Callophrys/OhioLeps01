@@ -15,10 +15,8 @@
     import { enhance } from '$app/forms';
 </script>
 
-<AppShell
-    slotSidebarLeft="bg-surface-500/5 w-56 p-4"
-    slotPageContent="overflow-hidden"
-    slotPageFooter="text-center text-xs">
+<!--TODO: Add hamburger and menu modal on medium and under media -->
+<AppShell slotSidebarLeft="bg-surface-500/5 w-0 lg:w-56 p-4 hidden lg:block" slotPageContent="overflow-hidden" slotPageFooter="text-center text-xs">
     <svelte:fragment slot="header">
         {#if config.showAppBar}
             <AppBar>
@@ -107,7 +105,7 @@
     </svelte:fragment>
 
     <svelte:fragment slot="sidebarLeft">
-        <nav class="list-nav">
+        <nav>
             <ul>
                 <li><a href="/">Home</a></li>
                 {#if $page.data.user}
@@ -119,14 +117,20 @@
                     <li><a href="/api/countypanes">County Panes</a></li>
                     <li><a href="/api/sites">Sites</a></li>
                     <li><a href="/api/nameaddresses">Name-Address</a></li>
-                    <!--
-                    <li class="indent-4"><a href="/api/sitedates">Year/Week Dates</a></li>
-                    <li class="indent-8"><a href="/api/siteDateObservations">Observations</a></li>
-                    -->
                 {/if}
                 <li><a href="/api/ohio">Ohio</a></li>
                 <li><a href="/api/taxonomy">Butterflies of North America</a></li>
-                <li><a href="/api/gallery">Gallery</a></li>
+                <li>
+                    Gallery
+                    <ul>
+                        <li><a href="/api/gallery/butterfly">Butterflies</a></li>
+                        <li><a href="/api/gallery/moth">Moths</a></li>
+                        <li><a href="/api/gallery/other">Other</a></li>
+                        {#if $page.data.user}
+                            <li><a href="/api/gallery/user">User</a></li>
+                        {/if}
+                    </ul>
+                </li>
             </ul>
         </nav>
     </svelte:fragment>

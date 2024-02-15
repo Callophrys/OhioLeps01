@@ -1,10 +1,8 @@
 <script lang="ts">
     import type { County } from '@prisma/client';
     import { popup } from '@skeletonlabs/skeleton';
-    import { SlideToggle } from '@skeletonlabs/skeleton';
     import { ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
     import type { PopupSettings } from '@skeletonlabs/skeleton';
-    import type { SiteCountySiteDates } from '$lib/types.js';
     import { getContext } from 'svelte';
 
     export let currentCounty: County;
@@ -73,7 +71,7 @@
 </div>
 
 <div data-popup="popupCounties">
-    <div class="card w-48 shadow-xl py-2">
+    <div class="card w-48 shadow-xl py-2 overflow-y-auto" style="max-height: calc(100vh - 272px);">
         <!--TODO: Either make this scrollable or switch to another control -->
         <!--TODO: If staying with listbox this must close out right after clicking -->
         <ListBox rounded="rounded-none">
