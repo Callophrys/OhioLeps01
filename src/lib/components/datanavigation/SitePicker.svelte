@@ -22,7 +22,7 @@
 {/if}
 <div class="btn-group variant-soft scale-90 my-auto">
     <button class="!px-2">◀</button>
-    <button class="min-w-32 max-w-54" use:popup={popupSites}>
+    <button class="w-54" use:popup={popupSites}>
         <span class="h-full text-nowrap overflow-hidden text-ellipsis">
             {currentSite.siteName}
         </span>

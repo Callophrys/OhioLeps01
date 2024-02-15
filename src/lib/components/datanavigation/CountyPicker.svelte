@@ -63,7 +63,7 @@
 <div class="btn-group variant-soft scale-90 my-auto">
     <!--TODO: Still breaks and/or locks up when arrowing to Adams county -->
     <button class="!px-2" on:click={countyPrior}>◀</button>
-    <button class="min-w-24 max-w-36" use:popup={popupCounties}>
+    <button class="w-44" use:popup={popupCounties}>
         <span class="h-full text-nowrap overflow-hidden text-ellipsis">
             {currentCounty.name}
         </span>
