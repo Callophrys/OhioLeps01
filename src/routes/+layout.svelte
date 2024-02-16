@@ -1,22 +1,56 @@
 <script lang="ts">
     import '../app.css';
-    import * as config from '$lib/config';
-    import { AppShell, AppBar, Avatar, LightSwitch } from '@skeletonlabs/skeleton';
+    //import * as config from '$lib/config';
+    import { AppShell, AppBar, Avatar, LightSwitch, type CssClasses } from '@skeletonlabs/skeleton';
     import { computePosition, autoUpdate, offset, shift, flip, arrow } from '@floating-ui/dom';
     import { storePopup } from '@skeletonlabs/skeleton';
-
-    storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
-
+    import { setContext } from 'svelte';
+    import type { User, AppConfig } from '@prisma/client';
+    import { onMount } from 'svelte';
     import Help from '$lib/components/appbar/Help.svelte';
     import Themer from '$lib/components/appbar/Themer.svelte';
     import Fluttering from '$lib/components/appbar/Fluttering.svelte';
 
     import { page } from '$app/stores';
     import { enhance } from '$app/forms';
+
+    export let data: { user: User; configs: AppConfig[] };
+
+    storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
+    setContext('configs', data.configs);
+    const config: any = {};
+
+    onMount(() => {
+        Array.from(data.configs).forEach((c) => {
+            if (c.configType === 'boolean') {
+                config[c.configName] = c.configValue === 'true';
+            } else if (c.configType === 'number') {
+                config[c.configName] = Number(c.configValue);
+            } else if (c.configType === 'object') {
+                config[c.configName] = JSON.parse(c.configValue);
+            } else {
+                config[c.configName] = c.configValue;
+            }
+        });
+        console.log(config);
+    });
+
+    const cSidebarClasses = 'w-60 h-screen bg-indigo-700 fixed top-0 -left-48 z-10 duration-700 opacity-25';
+    let xSidebarClasses: CssClasses = '';
+    $: sidebarClasses = `${cSidebarClasses} ${xSidebarClasses}`;
+
+    const cSidebarButtonClasses = "pb-4 border-4 border-white border-solid rounded-full size-14 fixed left-0 duration-500 rotate-0 pointer bg-pink-700 text-center before:text-white before:text-5xl before:content-['+']";
+    let xSidebarButtonClasses: CssClasses = '';
+    $: sidebarButtonClasses = `${cSidebarButtonClasses} ${xSidebarButtonClasses}`;
+
+    function sliderClick() {
+        xSidebarClasses = xSidebarClasses ? '' : 'translate-x-56';
+        xSidebarButtonClasses = xSidebarButtonClasses ? '' : "translate-x-5 rotate-180 before:content-['-']";
+    }
+
 </script>
 
-<!--TODO: Add hamburger and menu modal on medium and under media -->
-<AppShell slotSidebarLeft="bg-surface-500/5 w-0 lg:w-56 p-4 hidden lg:block" slotPageContent="overflow-hidden" slotPageFooter="text-center text-xs">
+<AppShell slotSidebarLeft="bg-surface-500/5 w-0 md:w-44 lg:w-56 p-4 hidden md:block" slotPageContent="overflow-hidden" slotPageFooter="text-center text-xs">
     <svelte:fragment slot="header">
         {#if config.showAppBar}
             <AppBar>
@@ -122,17 +156,20 @@
                 <li><a href="/api/taxonomy">Butterflies of North America</a></li>
                 <li>
                     Gallery
-                    <ul>
-                        <li><a href="/api/gallery/butterfly">Butterflies</a></li>
-                        <li><a href="/api/gallery/moth">Moths</a></li>
-                        <li><a href="/api/gallery/other">Other</a></li>
+                    <ul class="nav-list">
+                        <li><a href="/api/gallery/butterfly"><span class="badge">Butterflies</span></a></li>
+                        <li><a href="/api/gallery/moth"><span class="badge">Moths</span></a></li>
+                        <li><a href="/api/gallery/other"><span class="badge">Other</span></a></li>
                         {#if $page.data.user}
-                            <li><a href="/api/gallery/user">User</a></li>
+                            <li><a href="/api/gallery/user"><span class="badge">User</span></a></li>
                         {/if}
                     </ul>
                 </li>
             </ul>
         </nav>
+        <div class={sidebarClasses}>
+            <button on:click={sliderClick} class="flex"><span class={sidebarButtonClasses}/></button>
+        </div>
     </svelte:fragment>
 
     <!-- (sidebarRight) -->

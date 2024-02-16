@@ -17,6 +17,7 @@
         event: 'focus-click',
         target: 'popupCounties',
         placement: 'bottom',
+        state: (e: Record<string, boolean>) => console.log(e),
     };
 
     function countyPrior(e: any) {
@@ -55,19 +56,23 @@
     }
 </script>
 
-{#if $$slots.label}
-    <slot name="label" />
-{/if}
-<div class="btn-group variant-soft scale-90 my-auto">
-    <!--TODO: Still breaks and/or locks up when arrowing to Adams county -->
-    <button class="!px-2" on:click={countyPrior}>◀</button>
-    <button class="w-44" use:popup={popupCounties}>
-        <span class="h-full text-nowrap overflow-hidden text-ellipsis">
-            {currentCounty.name}
-        </span>
-        <span>↓</span>
-    </button>
-    <button class="!px-2" on:click={countyNext}>▶</button>
+<div class="flex flex-col lg:flex-row gap-0 md:gap-1 lg:gap-2">
+    {#if $$slots.heading}
+        <div class="my-auto">
+            <slot name="heading" />
+        </div>
+    {/if}
+    <div class="btn-group variant-soft my-auto">
+        <!--TODO: Still breaks and/or locks up when arrowing to Adams county -->
+        <button class="!px-2" on:click={countyPrior}>◀</button>
+        <button class="w-44" use:popup={popupCounties}>
+            <span class="w-full text-left text-nowrap overflow-hidden text-ellipsis">
+                {currentCounty.name}
+            </span>
+            <span class="flex-auto">↓</span>
+        </button>
+        <button class="!px-2" on:click={countyNext}>▶</button>
+    </div>
 </div>
 
 <div data-popup="popupCounties">

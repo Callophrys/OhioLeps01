@@ -17,18 +17,22 @@
     <span>↓</span>
 </button>
 -->
-{#if $$slots.label}
-    <slot name="label" />
-{/if}
-<div class="btn-group variant-soft scale-90 my-auto">
-    <button class="!px-2">◀</button>
-    <button class="w-54" use:popup={popupSites}>
-        <span class="h-full text-nowrap overflow-hidden text-ellipsis">
-            {currentSite.siteName}
-        </span>
-        <span>↓</span>
-    </button>
-    <button class="!px-2">▶</button>
+<div class="flex flex-col lg:flex-row gap-0 md:gap-1 lg:gap-2">
+    {#if $$slots.heading}
+        <div class="my-auto">
+            <slot name="heading" />
+        </div>
+    {/if}
+    <div class="btn-group variant-soft my-auto">
+        <button class="!px-2">◀</button>
+        <button class="w-54" use:popup={popupSites}>
+            <span class="h-full text-nowrap overflow-hidden text-ellipsis">
+                {currentSite.siteName}
+            </span>
+            <span>↓</span>
+        </button>
+        <button class="!px-2">▶</button>
+    </div>
 </div>
 
 <div data-popup="popupSites">

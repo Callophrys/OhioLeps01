@@ -1,6 +1,7 @@
 import { dev } from '$app/environment';
 //import { getAppConfigsByOrgName } from './database/appconfig';
 
+/* Only setting still required, all others should come from db */
 export const defaultOrganization = 'Ohio Lepidoperists';
 /* -------------------------------------------------------------------------- */
 

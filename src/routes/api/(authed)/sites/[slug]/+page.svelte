@@ -34,22 +34,18 @@
 
 <StandardContainer>
     <svelte:fragment slot="standardHead">
-        <!--
-        <div class="card w-48 shadow-xl py-2" data-popup="popupComboboxSiteDate">
-            <ListBox rounded="rounded-none">
-                {#each data.site.siteDates as siteDate}
-                    <ListBoxItem bind:group={comboboxValueSiteDate} on:click={handleClick} name="medium" value={siteDate.siteDateId}>
-                        {siteDate.year} - week {siteDate.week}
-                    </ListBoxItem>
-                {/each}
-            </ListBox>
-            <div class="arrow bg-surface-100-800-token" />
+        <div class="flex flex-row justify-between gap-1 md:gap-2">
+            <SitePicker currentSite={data.site}>
+                <svelte:fragment slot="heading">Site:</svelte:fragment>
+            </SitePicker>
+            <SiteDatePicker bind:currentSiteId={data.site.siteId}>
+                <svelte:fragment slot="heading">Observations:</svelte:fragment>
+            </SiteDatePicker>
+            <CountyPicker currentCounty={data.site.county}>
+                <svelte:fragment slot="heading">County:</svelte:fragment>
+            </CountyPicker>
         </div>
-        -->
-
-        <div class="flex flex-row justify-between">
-            <div class="basis-1/3 my-auto">
-                <!--
+        <!--
                     TODO: Make this change the site by alphabetical
                           Need to filter Observations where observations must indicate as such
                           If limit is reached then move loudly to next county's worth of sites
@@ -58,11 +54,7 @@
                           current data - as long as there is no unchanged data - Prompt
                           user about this
                 -->
-                <SitePicker currentSite={data.site}>
-                    <svelte:fragment slot="label">Site:</svelte:fragment>
-                </SitePicker>
-            </div>
-            <!--
+        <!--
                 TODO: Convert to ObservationPicker picker (or YearWeekPicker)
                       If limit is reached then move loudly to next year's worth of weeks
                       and then even more loudly to next site 
@@ -74,12 +66,7 @@
                       current data - as long as there is no unchanged data - Prompt
                       user about this
             -->
-            <div class="basis-1/3 flex flex-row justify-center space-x-4">
-                <SiteDatePicker bind:currentSiteId={data.site.siteId}>
-                    <svelte:fragment slot="heading">Observations:</svelte:fragment>
-                </SiteDatePicker>
-
-                <!--
+        <!--
                 <div class="w-1/2 text-right my-auto">Observations (year/week)</div>
                 <div class="w-1/2">
                     <button class="btn variant-soft w-40 justify-between" use:popup={popupComboboxSiteDate}>
@@ -88,9 +75,7 @@
                     </button>
                 </div>
                 -->
-            </div>
-            <div class="basis-1/3 my-auto text-right">
-                <!--
+        <!--
                     TODO: Make this change the County by alphabetical
                           Need to filter Sites where sites must indicate as such
                           If limit is reached then move loudly to next regions's worth of sites - if region is present
@@ -100,11 +85,7 @@
                           current data - as long as there is no unchanged data - Prompt
                           user about this
                 -->
-                <CountyPicker currentCounty={data.site.county}>
-                    <svelte:fragment slot="label">County:</svelte:fragment>
-                </CountyPicker>
-            </div>
-            <!--
+        <!--
                 TODO: Add Region picker
                       Need to filter Counties where counties must indicate as such
                       Maybe make region and admin level option
@@ -113,7 +94,12 @@
                       current data - as long as there is no unchanged data - Prompt
                       user about this
             -->
+        <!--div class="basis-1/3 my-auto">
         </div>
+        <div class="basis-1/3 flex flex-row justify-center space-x-4">
+        </div>
+        <div class="basis-1/3 my-auto text-right">
+        </div-->
     </svelte:fragment>
 
     <svelte:fragment slot="standardBody">
