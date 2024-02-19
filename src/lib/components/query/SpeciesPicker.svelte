@@ -1,6 +1,5 @@
 <script lang="ts">
     import type { ChecklistScientificName } from '$lib/types';
-    import type { Checklist } from '@prisma/client';
     import { popup } from '@skeletonlabs/skeleton';
     import type { PopupSettings } from '@skeletonlabs/skeleton';
     import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';

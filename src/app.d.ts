@@ -1,7 +1,6 @@
 // See https://kit.svelte.dev/docs/types#app
 
 import type { defaultOrganization } from "$lib/config"
-import type { AppConfig } from "@prisma/client"
 
 // for information about these interfaces
 declare global {
@@ -18,7 +17,7 @@ declare global {
         role: string
         organizationId: string
       },
-      appConfigs: AppConfig[]
+      config: {}
     }
   }
 }

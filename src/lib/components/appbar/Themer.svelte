@@ -14,18 +14,7 @@
         closeQuery: '.listbox-item',
     };
 
-    let themes: string[] = [
-        'skeleton',
-        'rocket',
-        'modern',
-        'crimson',
-        'wintry',
-        'seafoam',
-        'vintage',
-        'sahara',
-        'hamlindigo',
-        'gold-nouveau',
-    ];
+    let themes: string[] = ['skeleton', 'rocket', 'modern', 'crimson', 'wintry', 'seafoam', 'vintage', 'sahara', 'hamlindigo', 'gold-nouveau'];
 
     function setTheme(themeName: string) {
         document.body.setAttribute('data-theme', themeName);
@@ -59,12 +48,7 @@
         <hr />
         <ListBox rounded="rounded-none" class="capitalize">
             {#each themes as theme}
-                <ListBoxItem
-                    bind:group={comboboxValue}
-                    name="medium"
-                    on:click={handleClick}
-                    value={theme}>{theme.replace('-', ' ')}</ListBoxItem
-                >
+                <ListBoxItem bind:group={comboboxValue} name="medium" on:click={handleClick} value={theme}>{theme.replace('-', ' ')}</ListBoxItem>
             {/each}
         </ListBox>
     </div>

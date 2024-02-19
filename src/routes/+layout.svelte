@@ -3,35 +3,15 @@
     import { AppShell, AppBar, Avatar, LightSwitch, type CssClasses } from '@skeletonlabs/skeleton';
     import { computePosition, autoUpdate, offset, shift, flip, arrow } from '@floating-ui/dom';
     import { storePopup } from '@skeletonlabs/skeleton';
-    import type { User, AppConfig } from '@prisma/client';
     import Help from '$lib/components/appbar/Help.svelte';
     import Themer from '$lib/components/appbar/Themer.svelte';
     import Fluttering from '$lib/components/appbar/Fluttering.svelte';
-    import { onMount } from 'svelte';
-    import { setContext } from 'svelte';
-    import { page } from '$app/stores';
     import { enhance } from '$app/forms';
+    import { page } from '$app/stores';
 
-    export let data: { user: User; configs: any[] };
+    let config: any = $page.data.config ?? {};
 
     storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
-
-    const config: any = {};
-    onMount(() => {
-        Array.from(data?.configs ?? []).forEach((c: any) => {
-            if (c.configType === 'boolean') {
-                config[c.configName] = c.configValue === 'true';
-            } else if (c.configType === 'number') {
-                config[c.configName] = Number(c.configValue);
-            } else if (c.configType === 'object') {
-                config[c.configName] = JSON.parse(c.configValue);
-            } else {
-                config[c.configName] = c.configValue;
-            }
-        });
-
-        setContext('config', config);
-    });
 
     const cSidebarClasses = 'w-60 h-screen bg-indigo-700 fixed top-0 -left-48 z-10 duration-700 opacity-25';
     let xSidebarClasses: CssClasses = '';

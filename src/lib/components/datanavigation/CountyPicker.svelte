@@ -5,6 +5,12 @@
     import type { PopupSettings } from '@skeletonlabs/skeleton';
     import { getContext } from 'svelte';
 
+    /*
+    TODO: Figure out why select 2 counties causes left-right to think
+          those are the only available counties to cycle through.
+
+    */
+
     export let currentCounty: County;
 
     $: currentCounty = currentCounty;

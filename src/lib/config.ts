@@ -32,7 +32,7 @@ export let monitorSeason = {
 };
 
 export let initialDateRangeChoice = true;
-export let initialHideUnmonitedChoice = true;
+export let initialHideUnmonitoredChoice = true;
 export let initialUseLatinChoice = true;
 
 
@@ -57,7 +57,7 @@ if (appConfigs) {
     showStateProvince = configLookup['showStateProvince'];
     monitorStartYear = configLookup['monitorStartYear'];
     initialDateRangeChoice = configLookup['initialDateRangeChoice'];
-    initialHideUnmonitedChoice = configLookup['initialHideUnmonitedChoice'];
+    initialHideUnmonitoredChoice = configLookup['initialHideUnmonitoredChoice'];
     initialUseLatinChoice = configLookup['initialUseLatinChoice'];
     //monitorSeason = JSON.parse(configLookup['monitorSeason']);
 }

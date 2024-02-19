@@ -1,7 +1,7 @@
 <script lang="ts">
     import DoubledContainer from '$lib/components/DoubledContainer.svelte';
     import { onMount } from 'svelte';
-    
+
     /*
     import { imageModules } from '$lib/gallery';
     const galleryUrls: string[] = [];
@@ -245,8 +245,7 @@
                 <polygon
                     class="region4"
                     id="svg_oh_washington"
-                    points="251,256 247,250 246,250 244,250 239,256 238,258 237,264 230,264 229,265 228,269 226,270 226,264 219,264 219,261 218,262 218,260 216,260 216,247 218,247 218,243 222,244 223,244 226,244 226,240 225,240 225,239 224,236 225,234 235,234 243,234 243,228 245,228 245,230 247,230 247,231 249,231 249,232 252,232 252,233 257,233 257,231 259,231 259,234 260,234 260,233 275,233 275,237 271,241 269,243 265,247 264,249 262,250 261,251 258,252 254,255 251,256"
-                />
+                    points="251,256 247,250 246,250 244,250 239,256 238,258 237,264 230,264 229,265 228,269 226,270 226,264 219,264 219,261 218,262 218,260 216,260 216,247 218,247 218,243 222,244 223,244 226,244 226,240 225,240 225,239 224,236 225,234 235,234 243,234 243,228 245,228 245,230 247,230 247,231 249,231 249,232 252,232 252,233 257,233 257,231 259,231 259,234 260,234 260,233 275,233 275,237 271,241 269,243 265,247 264,249 262,250 261,251 258,252 254,255 251,256" />
 
                 <polygon class="region5" id="svg_oh_adams" points="87,329 86,330 84,331 82,329 84,293 88,292 105,289 110,289 111,290 114,292 114,331 113,332 112,332 111,331 110,329 107,327 101,326 97,324 95,323 89,325 88,326 87,329" />
                 <polygon class="region5" id="svg_oh_auglaize" points="67,148 59,148 59,153 58,153 34,153 34,163 27,163 27,165 26,164 26,134 30,133 42,133 42,136 50,136 50,137 66,137 67,148" />
@@ -296,7 +295,7 @@
             <ul id="species-in-selection-list" class="list ml-4" />
         </div>
     </svelte:fragment>
-    <svelte:fragment slot="rightTail"><div class="text-xs text-secondary-500 mb-[-1em]">* No monitored sites / no species observed</div></svelte:fragment>
+    <svelte:fragment slot="rightTail"><div class="text-xs text-secondary-500 mb-[-1em]">* Not monitored / no species observed</div></svelte:fragment>
 </DoubledContainer>
 <div class="hidden polygon-select" />
 

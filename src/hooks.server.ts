@@ -1,10 +1,9 @@
 import type { Handle } from '@sveltejs/kit';
 import prisma from '$lib/prisma';
-import * as config from '$lib/config';
-import * as appConfigs from '$lib/database/appconfig';
+import { defaultOrganization } from '$lib/config';
+import { getAppConfigsByOrgId, getAppConfigsByOrgName, getTemplateAppConfigs } from '$lib/database/appconfig';
 
 export const handle: Handle = (async ({ event, resolve }) => {
-
 
 	// get cookies from browser
 	const session = event.cookies.get('session')
@@ -20,26 +19,51 @@ export const handle: Handle = (async ({ event, resolve }) => {
 		select: { id: true, username: true, role: true, organizationId: true },
 	});
 
+	let appConfigs: any[] | null = null;
+
 	// if `user` exists set `events.local`
 	if (user) {
+
 		event.locals.user = {
-			id: user.organizationId,
+			id: user.id,
 			name: user.username,
 			role: user.role.name,
 			organizationId: user.organizationId
 		}
-		event.locals.appConfigs = await appConfigs.getAppConfigsByOrgName(user.organizationId);
-		if (event.locals.appConfigs === undefined || event.locals.appConfigs.length === 0) {
-			event.locals.appConfigs = await appConfigs.getAppConfigsByOrgName(config.defaultOrganization);
-		}
-	} else {
-		event.locals.appConfigs = await appConfigs.getAppConfigsByOrgName(config.defaultOrganization);
+
+		appConfigs = await getAppConfigsByOrgId(user.organizationId);
+		console.log('appConfigs by user organizationId', user, appConfigs, 'fin');
 	}
 
-	if (event.locals.appConfigs === undefined || event.locals.appConfigs.length === 0) {
-		event.locals.appConfigs = await appConfigs.getTemplateAppConfigs();
+	if (appConfigs === null || appConfigs.length === 0) {
+		appConfigs = await getAppConfigsByOrgName(defaultOrganization);
+		console.log(`appConfigs by defaultOrganzition (${defaultOrganization})`, appConfigs);
 	}
+
+	if (appConfigs === null || appConfigs.length === 0) {
+		appConfigs = await getTemplateAppConfigs();
+		console.log('appConfigs of TEMPLATE', appConfigs);
+	}
+
+	if (appConfigs) {
+		let config: any = {};
+		Array.from(appConfigs ?? []).forEach((c: any) => {
+			if (c.configType === 'boolean') {
+				config[c.configName] = c.configValue === 'true';
+			} else if (c.configType === 'number') {
+				config[c.configName] = Number(c.configValue);
+			} else if (c.configType === 'object') {
+				config[c.configName] = JSON.parse(c.configValue);
+			} else {
+				config[c.configName] = c.configValue;
+			}
+		});
+		event.locals.appConfigs = appConfigs;
+		event.locals.config = config;
+	}
+
 
 	// load page as normal
 	return await resolve(event)
+
 }) satisfies Handle;

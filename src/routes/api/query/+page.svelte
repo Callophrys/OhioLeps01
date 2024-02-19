@@ -7,15 +7,14 @@
     import { enhance } from '$app/forms';
     import type { SubmitFunction } from '@sveltejs/kit';
     import { setContext } from 'svelte';
-    //import { json } from 'stream/consumers';
+    import { page } from '$app/stores';
 
     export let data;
     export let form;
 
+    let config: any = $page.data.config ?? {};
     setContext('counties', data.counties);
     setContext('speciesList', data.speciesList);
-    import { getContext } from 'svelte';
-    const config: any = getContext('config');
 
     let loading = false;
 
@@ -67,6 +66,7 @@
         console.log('distinctSpecies', Object.keys(distinctSpecies).length);
         */
     }
+
     /*
     console.log('data', data);
     console.log('form', form);
@@ -169,7 +169,7 @@
     <svelte:fragment slot="leftBody">
         <div>
             <form method="POST" class="p-4 space-y-2" action="?/query" use:enhance={runSearch}>
-                <StateCountyPicker initialHideUnmonitoredChoice={Number(config.initialHideUnmonitedChoice)} />
+                <StateCountyPicker initialHideUnmonitoredChoice={Number(config.initialHideUnmonitoredChoice)} />
                 <SpeciesPicker initialUseLatinChoice={Number(config.initialUseLatinChoice)} />
                 <TimeframePicker initialDateRangeChoice={Number(config.initialDateRangeChoice)} />
                 <hr />
