@@ -11,6 +11,7 @@
 
     setContext('siteDates', data.site.siteDates);
     setContext('counties', data.counties);
+    setContext('sites', data.sites);
     //console.log(data.site.county);
 
     function handleClick(event: any) {

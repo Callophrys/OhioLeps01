@@ -2,7 +2,6 @@ import type { Handle } from '@sveltejs/kit';
 import prisma from '$lib/prisma';
 import * as config from '$lib/config';
 import * as appConfigs from '$lib/database/appconfig';
-import type { AppConfig } from '@prisma/client';
 
 export const handle: Handle = (async ({ event, resolve }) => {
 

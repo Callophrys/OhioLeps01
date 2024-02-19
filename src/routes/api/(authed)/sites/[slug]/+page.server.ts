@@ -1,16 +1,17 @@
 import { error } from '@sveltejs/kit'
-import { getSite } from '$lib/database/sites'
+import { getSite, getSites } from '$lib/database/sites'
 import { getCounties } from '$lib/database/counties.js';
 import type { SiteCountySiteDates } from '$lib/types.js';
-import type { County } from '@prisma/client';
+import type { County, Site } from '@prisma/client';
 
 export async function load({ params }) {
   console.log('Load from /api/sites/{slug}/+page.server.ts');
   //console.log('params', params);
   //
-  const [site, counties] = await Promise.all([
+  const [site, counties, sites] = await Promise.all([
     getSite(Number(params.slug)),
-    getCounties()
+    getCounties(),
+    getSites(null)
   ]);
 
   if (!site) {
@@ -23,6 +24,9 @@ export async function load({ params }) {
   const jsonC = JSON.stringify(counties);
   const jsonResultC: County[] = JSON.parse(jsonC);
 
+  const jsonS = JSON.stringify(sites);
+  const jsonResultS: Site[] = JSON.parse(jsonS);
+
   //console.log('site', jsonResult);
-  return { site: jsonResult, counties: jsonResultC }
+  return { site: jsonResult, counties: jsonResultC, sites: jsonResultS }
 }

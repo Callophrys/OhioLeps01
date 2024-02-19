@@ -1,6 +1,5 @@
 <script lang="ts">
     import '../app.css';
-    //import * as config from '$lib/config';
     import { AppShell, AppBar, Avatar, LightSwitch, type CssClasses } from '@skeletonlabs/skeleton';
     import { computePosition, autoUpdate, offset, shift, flip, arrow } from '@floating-ui/dom';
     import { storePopup } from '@skeletonlabs/skeleton';
@@ -18,20 +17,21 @@
     storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
 
     const config: any = {};
-    Array.from(data.configs).forEach((c: any) => {
+    onMount(() => {
+        Array.from(data?.configs ?? []).forEach((c: any) => {
+            if (c.configType === 'boolean') {
+                config[c.configName] = c.configValue === 'true';
+            } else if (c.configType === 'number') {
+                config[c.configName] = Number(c.configValue);
+            } else if (c.configType === 'object') {
+                config[c.configName] = JSON.parse(c.configValue);
+            } else {
+                config[c.configName] = c.configValue;
+            }
+        });
 
-        if (c.configType === 'boolean') {
-            config[c.configName] = c.configValue === 'true';
-        } else if (c.configType === 'number') {
-            config[c.configName] = Number(c.configValue);
-        } else if (c.configType === 'object') {
-            config[c.configName] = JSON.parse(c.configValue);
-        } else {
-            config[c.configName] = c.configValue;
-        }
+        setContext('config', config);
     });
-
-    setContext('config', config);
 
     const cSidebarClasses = 'w-60 h-screen bg-indigo-700 fixed top-0 -left-48 z-10 duration-700 opacity-25';
     let xSidebarClasses: CssClasses = '';
@@ -45,7 +45,6 @@
         xSidebarClasses = xSidebarClasses ? '' : 'translate-x-56';
         xSidebarButtonClasses = xSidebarButtonClasses ? '' : "translate-x-5 rotate-180 before:content-['-']";
     }
-    
 </script>
 
 <AppShell slotSidebarLeft="bg-surface-500/5 w-0 md:w-44 lg:w-56 p-4 hidden md:block" slotPageContent="overflow-hidden" slotPageFooter="text-center text-xs">
@@ -166,7 +165,7 @@
             </ul>
         </nav>
         <div class={sidebarClasses}>
-            <button on:click={sliderClick} class="flex"><span class={sidebarButtonClasses}/></button>
+            <button on:click={sliderClick} class="flex"><span class={sidebarButtonClasses} /></button>
         </div>
     </svelte:fragment>
 
