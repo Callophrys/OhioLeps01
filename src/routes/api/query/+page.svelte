@@ -1,5 +1,4 @@
 <script lang="ts">
-    import * as config from '$lib/config';
     import StateCountyPicker from '$lib/components/query/StateCountyPicker.svelte';
     import SpeciesPicker from '$lib/components/query/SpeciesPicker.svelte';
     import TimeframePicker from '$lib/components/query/TimeframePicker.svelte';
@@ -15,6 +14,8 @@
 
     setContext('counties', data.counties);
     setContext('speciesList', data.speciesList);
+    import { getContext } from 'svelte';
+    const config: any = getContext('config');
 
     let loading = false;
 

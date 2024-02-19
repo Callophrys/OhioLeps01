@@ -32,6 +32,9 @@
     import GA5521 from '$lib/assets/gallery/DSCF5521.jpg';
     import GA5527 from '$lib/assets/gallery/DSCF5527.jpg';
 
+    import { getContext } from 'svelte';
+    const config: any = getContext('config');
+
     //$: heightAdjust = (config.showAppBar ? 128 : 0) + (config.showFooter ? 16 : 0);
     let imageIndex: number;
 
