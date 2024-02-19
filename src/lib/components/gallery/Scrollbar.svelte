@@ -10,12 +10,11 @@
     let slider: HTMLDivElement;
     let dragging = false;
 
-    //$: console.log(urls);
-
     function carouselThumbnail(index: number) {
         if (!dragging) {
             imageIndex = index;
             elemCarousel.scroll(elemCarousel.clientWidth * index, 0);
+            console.log('Index:', imageIndex, 'image:', urls[imageIndex]);
         }
     }
 
@@ -24,18 +23,18 @@
         dragging = true;
         startSliderLeft = slider.scrollLeft; // - slider.offsetLeft;
         startX = e.pageX;
-        console.log('mousedown -> startX', e.pageX, 'slider.scrollLeft', slider.scrollLeft, 'slider.offsetLeft', slider.offsetLeft);
+        //console.log('mousedown -> startX', e.pageX, 'slider.scrollLeft', slider.scrollLeft, 'slider.offsetLeft', slider.offsetLeft);
     }
 
     function stop(e: any) {
-        console.log('mouseup -> startX', startX, 'stop x', e.pageX, 'slider.scrollLeft', slider.scrollLeft, 'moved', startX - e.pageX, 'movementX', e.movementX);
+        //console.log('mouseup -> startX', startX, 'stop x', e.pageX, 'slider.scrollLeft', slider.scrollLeft, 'moved', startX - e.pageX, 'movementX', e.movementX);
         dragging = false;
     }
 
     function moveComponent(e: any) {
         if (dragging) {
             e.preventDefault();
-            console.log('mousemove -> startX', e.pageX, 'movementX', e.movementX, 'slider.scrollLeft', slider.scrollLeft, 'delta', e.pageX - startX);
+            //console.log('mousemove -> startX', e.pageX, 'movementX', e.movementX, 'slider.scrollLeft', slider.scrollLeft, 'delta', e.pageX - startX);
             setTimeout(() => {
                 slider.scrollLeft = startSliderLeft - (e.pageX - startX);
             }, 0);
@@ -44,7 +43,7 @@
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-<div id="image-scrollbar" bind:this={slider} draggable="true" class={scrollPaneClasses} on:mouseup={stop} on:mouseleave={stop} on:mousemove={moveComponent} on:mousedown={start}>
+<div id="image-scrollbar" bind:this={slider} draggable="true" class={scrollPaneClasses} on:mouseup={stop} on:mouseleave={stop} on:mousemove={moveComponent} on:mousedown={start} on:load={() => (imageIndex = 0)}>
     {#each urls as url, i}
         <button
             type="button"

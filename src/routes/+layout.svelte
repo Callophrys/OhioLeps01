@@ -134,8 +134,8 @@
                 <li>
                     Gallery
                     <ul class="nav-list">
-                        <li><a href="/api/gallery/butterfly"><span class="badge">Butterflies</span></a></li>
-                        <li><a href="/api/gallery/moth"><span class="badge">Moths</span></a></li>
+                        <li><a href="/api/gallery/butterflies"><span class="badge">Butterflies</span></a></li>
+                        <li><a href="/api/gallery/moths"><span class="badge">Moths</span></a></li>
                         <li><a href="/api/gallery/other"><span class="badge">Other</span></a></li>
                         {#if $page.data.user}
                             <li><a href="/api/gallery/user"><span class="badge">User</span></a></li>

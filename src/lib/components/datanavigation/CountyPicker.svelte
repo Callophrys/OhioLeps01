@@ -8,7 +8,6 @@
     /*
     TODO: Figure out why select 2 counties causes left-right to think
           those are the only available counties to cycle through.
-
     */
 
     export let currentCounty: County;
@@ -69,7 +68,7 @@
         </div>
     {/if}
     <div class="btn-group variant-soft my-auto">
-        <!--TODO: Still breaks and/or locks up when arrowing to Adams county -->
+        <!--TODO: Still breaks and/or locks up when arrowing to Adams county, also select 2 get stuck to only the 2 on next-prev -->
         <button class="!px-2" on:click={countyPrior}>◀</button>
         <button class="w-44" use:popup={popupCounties}>
             <span class="w-full text-left text-nowrap overflow-hidden text-ellipsis">
@@ -83,8 +82,7 @@
 
 <div data-popup="popupCounties">
     <div class="card w-48 shadow-xl py-2 overflow-y-auto" style="max-height: calc(100vh - 272px);">
-        <!--TODO: Either make this scrollable or switch to another control -->
-        <!--TODO: If staying with listbox this must close out right after clicking -->
+        <!--TODO: this must close out right after clicking -->
         <ListBox rounded="rounded-none">
             {#each allCounties as county}
                 <ListBoxItem bind:group={currentCounty.id} name="medium" on:change={countySelect} value={county.id} class="capitalize">{county.name}</ListBoxItem>
