@@ -1,6 +1,6 @@
 <script lang="ts">
     import '../app.css';
-    import { AppShell, AppBar, Avatar, LightSwitch, type CssClasses } from '@skeletonlabs/skeleton';
+    import { AppShell, AppBar, Avatar, LightSwitch } from '@skeletonlabs/skeleton';
     import { computePosition, autoUpdate, offset, shift, flip, arrow } from '@floating-ui/dom';
     import { storePopup } from '@skeletonlabs/skeleton';
     import Help from '$lib/components/appbar/Help.svelte';
@@ -14,23 +14,16 @@
 
     storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
 
-    const cSidebarClasses = 'bg-surface-500/5 w-60 h-screen p-4 -left-56 md:left-0 fixed md:block z-10 duration-700';
-    let xSidebarClasses: CssClasses = '';
-    $: sidebarClasses = `${cSidebarClasses} ${xSidebarClasses}`;
-
-    let isHovering = false;
-    function menuHover() {
-        if (!isHovering) {
-            xSidebarClasses = xSidebarClasses ? '' : 'translate-x-56 md:translate-x-0';
-            isHovering = true;
-        }
-    }
-
+    const cNavBarClasses = 'w-60';
+    const cSidebarClassesBase = 'variant-filled w-60 h-full top-0 p-4 -left-56 fixed z-10 duration-700';
+    const cSidebarClassesMedium = 'md:bg-surface-500/5 md:text-current md:h-screen md:top-auto md:left-0 md:static';
+    const cSidebarClassesHover = 'hover:translate-x-56 hover:md:translate-x-0';
+    const cSidebarClasses = `${cSidebarClassesBase} ${cSidebarClassesMedium} ${cSidebarClassesHover}`;
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <!-- svelte-ignore a11y-mouse-events-have-key-events -->
-<AppShell slotSidebarLeft={sidebarClasses} slotPageContent="overflow-hidden" slotPageFooter="text-center text-xs">
+<AppShell slotSidebarLeft={cSidebarClasses} slotPageContent="overflow-hidden" slotPageFooter="text-center text-xs">
     <svelte:fragment slot="header">
         {#if config.showAppBar}
             <AppBar>
@@ -83,7 +76,7 @@
     </svelte:fragment>
 
     <svelte:fragment slot="sidebarLeft">
-        <SiteNavigation navBarClasses="w-60" on:mouseover={menuHover} on:mouseleave={() => isHovering = false} />
+        <SiteNavigation navBarClasses={cNavBarClasses} />
     </svelte:fragment>
 
     <!-- (sidebarRight) -->
