@@ -31,6 +31,10 @@ import GA6727 from '$lib/assets/gallery/moths/DSCF6727.jpg';
 import GA6983 from '$lib/assets/gallery/moths/DSCF6983.jpg';
 import GA9151 from '$lib/assets/gallery/moths/DSCF9151.jpg';
 
+import GA0206 from '$lib/assets/gallery/other/DSCF0206.jpg';
+import GA0222 from '$lib/assets/gallery/other/DSCF0222.jpg';
+import GA0189 from '$lib/assets/gallery/other/DSCF0189.jpg';
+
 /** @type {import('./$types').PageLoad} */
 export function load({ params }) {
     const unsplashIds: string[] = [];
@@ -40,6 +44,7 @@ export function load({ params }) {
     } else if (params.slug === 'moths') {
         unsplashIds.push(GA0994, GA5402, GA5439, GA5465, GA5469, GA5552, GA5887, GA5890, GA6506, GA6727, GA6983, GA2164, GA5323, GA5443, GA5472, GA5473, GA5521, GA5527, GA9151);
     } else if (params.slug === 'other') {
+        unsplashIds.push(GA0206, GA0222, GA0189);
     } else if (params.slug === 'user') {
     } else if (params.slug === '*') {
         unsplashIds.push(GA0994, GA1819, GA1898, GA1972, GA1997, GA2546, GA5402, GA5439, GA5465, GA5469, GA5552, GA5887, GA5890, GA6506, GA6727, GA6983, GA8126, GA9144, GA9151, GA9335, GA1858, GA2164, GA5084, GA5323, GA5443, GA5472, GA5473, GA5521, GA5527);

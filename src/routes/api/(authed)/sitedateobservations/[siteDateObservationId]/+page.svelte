@@ -13,27 +13,27 @@
 
             <h3>Date entry</h3>
             <div class="pl-4">
-                <button type="button" class="">
+                <button type="button" class="underline pb-2">
                     Edit this record
                     <span>✎</span>
                 </button>
-                <button type="button" class="">
+                <button type="button" class="underline pb-2">
                     Saved/Complete
                     <span>✔</span>
                 </button>
-                <button type="button" class="">
+                <button type="button" class="underline pb-2">
                     Add new species observations
                     <span class="text-green-900 dark:text-green-200">✚</span>
                 </button>
-                <button type="button" class="">
+                <button type="button" class="underline pb-2">
                     Delete
                     <span>❌</span>
                 </button><!--User can only delete own-->
-                <button type="button" class="">
+                <button type="button" class="underline pb-2">
                     Undo
                     <span class="font-extrabold text-amber-700 dark:text-amber-400">↺</span>
                 </button><!--User can only delete own-->
-                <button type="button" class="">
+                <button type="button" class="underline pb-2">
                     Redo
                     <span class="font-extrabold text-amber-700 dark:text-amber-400">↻</span>
                 </button><!--User can only delete own-->
@@ -41,27 +41,28 @@
 
             <h3>Reviewer</h3>
             <div class="pl-4">
-                <button type="button" class="">Needs review<span class="text-warning-600">❔</span></button>
-                <button type="button" class=""><span>🔒</span></button>
+                <button type="button" class="underline pb-2">Needs review<span class="text-warning-600">❔</span></button>
+                <button type="button" class="underline pb-2"><span>🔒</span></button>
             </div>
 
             <h3>Admin</h3>
             <div class="pl-4">
-                <button type="button" class="">Unlock<span>🔑</span></button>
-                <button type="button" class="">Locked<span>🔐</span></button>
-                <button type="button" class="">Unlock<span> 🔓 </span></button>
-                <button type="button" class="">Delete<span>❌</span></button><!--Deletes is mearly a status change and audit entry -->
+                <button type="button" class="underline pb-2">Unlock<span>🔑</span></button>
+                <button type="button" class="underline pb-2">Locked<span>🔐</span></button>
+                <button type="button" class="underline pb-2">Unlock<span> 🔓 </span></button>
+                <button type="button" class="underline pb-2">Delete<span>❌</span></button><!--Deletes is mearly a status change and audit entry -->
             </div>
 
             <h3>Misc</h3>
             <div class="pl-4">
-                <button type="button" class=""><span> 🔏 </span></button>
-                <button type="button" class="">View all<span>🌎</span></button><!--Show listing view-->
-                <button type="button" class=""><span>❗</span></button>
-                <button type="button" class=""><span>❕</span></button>
-                <button type="button" class=""><span>❓</span></button>
+                <button type="button" class="underline pb-2"><span> 🔏 </span></button>
+                <button type="button" class="underline pb-2">View all<span>🌎</span></button><!--Show listing view-->
+                <button type="button" class="underline pb-2"><span>❗</span></button>
+                <button type="button" class="underline pb-2"><span>❕</span></button>
+                <button type="button" class="underline pb-2"><span>❓</span></button>
             </div>
         </div>
+
         <div>
             <div class="font-bold">{key}{data.siteDateObservation.checklist.scientificName}</div>
             <div class="flex flex-row space-x-4">

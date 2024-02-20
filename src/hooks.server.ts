@@ -58,7 +58,6 @@ export const handle: Handle = (async ({ event, resolve }) => {
 				config[c.configName] = c.configValue;
 			}
 		});
-		event.locals.appConfigs = appConfigs;
 		event.locals.config = config;
 	}
 
