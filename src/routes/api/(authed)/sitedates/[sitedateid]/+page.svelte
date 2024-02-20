@@ -6,6 +6,7 @@
     import { goto } from '$app/navigation';
     import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
     import type { dateTracking, dateTrackingSet } from '$lib/types.js';
+    import { isNullOrWhiteSpace } from '$lib/utils.js';
 
     export let data;
 
@@ -457,7 +458,14 @@
             {#each data.siteDateObservations as siteDateObservation}
                 <div class="card flex">
                     <a href="/api/sitedateobservations/{siteDateObservation.siteDateObservationId}" class="flex space-x-2 p-2">
-                        <div class="w-56">🔎 {siteDateObservation.checklist.commonName}</div>
+                        <div class="w-4">
+                            {#if isNullOrWhiteSpace(siteDateObservation.confirmBy)}
+                                🔎
+                            {:else}
+                                <span class="text-success-800-100-token">✔</span>
+                            {/if}
+                        </div>
+                        <div class="w-56">{siteDateObservation.checklist.commonName}</div>
                         <div class="w-56">{siteDateObservation.checklist.scientificName}</div>
                         <div class="w-16">total: {siteDateObservation.total}</div>
                     </a>

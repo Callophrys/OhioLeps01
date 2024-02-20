@@ -88,6 +88,22 @@ export function isEmpty(obj: object): boolean {
     return true;
 }
 
+/**
+ * @param val
+ * @returns Boolean to indicate if val is a primative or not
+ * @description If val is undefined let it the exception occur
+ */
+export function isPrimative(val: any): boolean {
+    if (val === null) return true;
+    if (typeof val === 'object' || typeof val === 'function') return false;
+    return true;
+}
+
+export function isNullOrWhiteSpace(token: string | null): boolean {
+    if (token === null) return true;
+    return token.toString().trim().length === 0;
+}
+
 export function scientificName(genus: string, species: string, subSpecies: string) {
     return `${genus.charAt(0).toLocaleUpperCase() + genus.slice(1).toLocaleLowerCase()} ${species.toLocaleLowerCase()}${subSpecies ? ' ' + subSpecies.toLocaleLowerCase() : ''}`;
 }
