@@ -3,7 +3,8 @@
     import SpeciesPicker from '$lib/components/query/SpeciesPicker.svelte';
     import TimeframePicker from '$lib/components/query/TimeframePicker.svelte';
     import DoubledContainer from '$lib/components/DoubledContainer.svelte';
-    import type { CountySpecimen } from '$lib/types.js';
+    import type { CountySpecimen } from '$lib/types';
+    import { sortByStringProperty } from '$lib/utils';
     import { enhance } from '$app/forms';
     import type { SubmitFunction } from '@sveltejs/kit';
     import { setContext } from 'svelte';
@@ -152,9 +153,7 @@
 
             sortBy.forEach((s: sortInfo) => {
                 if (form) {
-                    let sortModifier = s.ascending ? 1 : -1;
-                    let sort = (a: any, b: any) => (a[s.col] < b[s.col] ? -1 * sortModifier : a[s.col] > b[s.col] ? 1 * sortModifier : 0);
-                    form.checklists.sort(sort);
+                    sortByStringProperty(form.checklists, 'col', s.ascending);
                 }
             });
 

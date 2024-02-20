@@ -36,22 +36,26 @@
             return;
         }
 
+        let sortDir = 1;
+
+        const compareScientificName = (a: ChecklistScientificName, b: ChecklistScientificName) => {
+            if (a.scientificName > b.scientificName) return 1 * sortDir;
+            if (a.scientificName < b.scientificName) return -1 * sortDir;
+            return 0;
+        };
+
+        const compareCommonNameFirst = (a: ChecklistScientificName, b: ChecklistScientificName) => {
+            if ((a.commonName ?? a.scientificName) > (b.commonName ?? b.scientificName)) return 1 * sortDir;
+            if ((a.commonName ?? a.scientificName) < (b.commonName ?? b.scientificName)) return -1 * sortDir;
+            return 0;
+        };
+
         if (isLatin) {
-            let sortDir = sortOrderLatin === SORTORDER.ASC ? 1 : -1;
-
-            speciesChecklist.sort((a: ChecklistScientificName, b: ChecklistScientificName) => {
-                if (a.scientificName > b.scientificName) return 1 * sortDir;
-                if (a.scientificName < b.scientificName) return -1 * sortDir;
-                return 0;
-            });
+            sortDir = sortOrderLatin === SORTORDER.ASC ? 1 : -1;
+            speciesChecklist.sort(compareScientificName);
         } else {
-            let sortDir = sortOrderCommon === SORTORDER.ASC ? 1 : -1;
-
-            speciesChecklist.sort((a: ChecklistScientificName, b: ChecklistScientificName) => {
-                if ((a.commonName ?? a.scientificName) > (b.commonName ?? b.scientificName)) return 1 * sortDir;
-                if ((a.commonName ?? a.scientificName) < (b.commonName ?? b.scientificName)) return -1 * sortDir;
-                return 0;
-            });
+            sortDir = sortOrderCommon === SORTORDER.ASC ? 1 : -1;
+            speciesChecklist.sort(compareCommonNameFirst);
         }
     }
 

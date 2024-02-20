@@ -1,10 +1,11 @@
 <script lang="ts">
     import DoubledContainer from '$lib/components/DoubledContainer.svelte';
-    import { formatDate, weekOfYearSince, convertFtoC } from '$lib/utils';
+    import { compareNumeric, compareYearWeek, formatDate, weekOfYearSince, convertFtoC } from '$lib/utils';
     import { afterUpdate, onMount } from 'svelte';
     import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
     import { goto } from '$app/navigation';
     import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
+    import type { dateTracking, dateTrackingSet } from '$lib/types.js';
 
     export let data;
 
@@ -19,18 +20,6 @@
     export let accH = false;
     export let accI = false;
     export let accJ = false;
-
-    type dateTracking = {
-        siteDateId: number;
-        year: number;
-        week: number;
-        recordDate: Date;
-    };
-
-    type dateTrackingSet = {
-        id: number;
-        children: dateTracking[];
-    };
 
     onMount(() => {
         let x: string = localStorage?.useFarenheit;
@@ -137,7 +126,7 @@
 
     //console.log(data.siteRecordDates);
     const allYears = Array.from(data.siteRecordDates).map((y) => new Date(y.recordDate).getFullYear());
-    const uniqueYears = [...new Set(allYears)].sort((a, b) => a - b);
+    const uniqueYears = [...new Set(allYears)].sort(compareNumeric);
 
     const trackedWeeks: dateTracking[] = Array.from(data.siteRecordDates)
         .map<dateTracking>((w) => ({
@@ -146,7 +135,7 @@
             week: weekOfYearSince(new Date(w.recordDate)),
             recordDate: new Date(w.recordDate),
         }))
-        .sort((a, b) => (a.year > b.year ? 1 : a.week - b.week));
+        .sort(compareYearWeek);
 
     $: nextEnabled = trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteId) < trackedWeeks.length - 1;
     console.log('nextEnabled', nextEnabled);

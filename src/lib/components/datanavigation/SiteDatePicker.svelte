@@ -4,25 +4,13 @@
     import type { PopupSettings } from '@skeletonlabs/skeleton';
     import { ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
     import { getContext } from 'svelte';
-    import type { SiteDateYear } from '$lib/types.js';
-    import { weekOfYearSince } from '$lib/utils';
+    import type { dateTracking, SiteDateYear } from '$lib/types.js';
+    import { compareYearWeek, weekOfYearSince } from '$lib/utils';
 
     export let currentSiteId: number = -1;
     const siteDates: SiteDateYear[] = getContext('siteDates') ?? [];
 
     console.log(siteDates);
-
-    type dateTracking = {
-        siteDateId: number;
-        year: number;
-        week: number;
-        recordDate: Date;
-    };
-
-    type dateTrackingSet = {
-        id: number;
-        children: dateTracking[];
-    };
 
     const siteDateYears = [...new Set(siteDates.map((x) => x.year))];
     const weeksOfYear: any = {};
@@ -41,7 +29,7 @@
             week: w.recordDate ? weekOfYearSince(new Date(w.recordDate)) : -1,
             recordDate: w.recordDate,
         }))
-        .sort((a, b) => (a.year > b.year ? 1 : a.week - b.week));
+        .sort(compareYearWeek);
 
     $: nextEnabled = trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteId) < trackedWeeks.length - 1;
     console.log('nextEnabled', nextEnabled);

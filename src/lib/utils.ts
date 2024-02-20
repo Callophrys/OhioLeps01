@@ -1,3 +1,5 @@
+import type { dateTracking } from '$lib/types.js';
+
 type DateStyle = Intl.DateTimeFormatOptions['dateStyle'];
 type TimeStyle = Intl.DateTimeFormatOptions['timeStyle'];
 type TimeZone = Intl.DateTimeFormatOptions['timeZone'];
@@ -43,6 +45,32 @@ export function camelToFriendly(camel: string) {
     // use with
     // Object.getOwnPropertyNames(object1).forEach(x => console.log(camelToFriendly(x)));
 }
+
+export function compareNumeric(a: number, b: number) {
+    return a - b;
+}
+
+export function compareYearWeek(a: dateTracking, b: dateTracking) {
+    return a.year > b.year ? 1 : a.week - b.week;
+}
+
+//export const sortByNumericProperty = <K extends string, T extends Record<K, any>>(
+export const sortByNumericProperty = (
+    items: any[],
+    propertyName: string,
+    ascending: boolean | null = true
+) => items.sort((a, b) => (a[propertyName] - b[propertyName]) * (ascending ? 1 : -1));
+
+//export const sortByStringProperty = <K extends string, T extends Record<K, any>>(
+export const sortByStringProperty = (
+    items: any[],
+    propertyName: string,
+    ascending: boolean | null = true
+) => items.sort((a, b) => {
+    if (a[propertyName] > b[propertyName]) return 1 * (ascending ? 1 : -1);
+    if (a[propertyName] < b[propertyName]) return -1 * (ascending ? 1 : -1);
+    return 0;
+});
 
 // Do not forget month is 0 to 11
 export function weekOfYearSince(

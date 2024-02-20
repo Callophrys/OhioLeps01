@@ -68,3 +68,15 @@ export type TaxonomyComplete = Taxonomy & {
 }
 
 export type SiteRecordDate = { siteDateId: number, recordDate: Date }
+
+export type dateTracking = {
+	siteDateId: number;
+	year: number;
+	week: number;
+	recordDate: Date;
+};
+
+export type dateTrackingSet = {
+	id: number;
+	children: dateTracking[];
+};
