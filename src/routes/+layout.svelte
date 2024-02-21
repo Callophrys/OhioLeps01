@@ -1,6 +1,7 @@
 <script lang="ts">
     import '../app.css';
     import { AppShell, AppBar, Avatar, LightSwitch } from '@skeletonlabs/skeleton';
+    import { initializeStores, Modal } from '@skeletonlabs/skeleton';
     import { computePosition, autoUpdate, offset, shift, flip, arrow } from '@floating-ui/dom';
     import { storePopup } from '@skeletonlabs/skeleton';
     import Help from '$lib/components/appbar/Help.svelte';
@@ -19,7 +20,12 @@
     const cSidebarClassesMedium = 'md:bg-surface-500/5 md:text-current md:h-screen md:top-auto md:left-0 md:static';
     const cSidebarClassesHover = 'hover:translate-x-56 hover:md:translate-x-0';
     const cSidebarClasses = `${cSidebarClassesBase} ${cSidebarClassesMedium} ${cSidebarClassesHover}`;
+
+    initializeStores();
+
 </script>
+
+<Modal />
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <!-- svelte-ignore a11y-mouse-events-have-key-events -->

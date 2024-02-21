@@ -73,11 +73,11 @@ model User {
 	updatedBy String?
 	updatedAt DateTime?
 
-    roleId Int
-    role   Role @relation(fields: [roleId], references: [id])
+    roleId Int?
+    role   Role? @relation(fields: [roleId], references: [id])
 
-    organizationId String
-    organization Organization @relation("UserOfOrganization", fields: [organizationId], references: [id])
+    organizationId String?
+    organization Organization? @relation("UserOfOrganization", fields: [organizationId], references: [id])
 }
 
 model Organization {

@@ -97,36 +97,6 @@ async function updateRoles(organization: Organization) {
   await db.role.create({
     data: {
       id: 1,
-      name: 'USER', // view all data and reports
-      users: {
-        create: {
-          username: "stella",
-          passwordHash: "$2b$10$bjXz/irXJrUh8gvG8fidZepQN0BrN2/d2R2RshizCHYSI.FP74s8G",
-          userAuthToken: "dc1c44da-fa33-4fb7-82cc-b5baa7522c4d",
-          organizationId: organization.id
-        }
-      }
-    }
-  });
-
-  await db.role.create({
-    data: {
-      id: 2,
-      name: 'ENTRY', // edit new data and unconfirmed data; view reports
-      users: {
-        create: [{
-          username: "snell",
-          passwordHash: "$2b$10$iAIf7B4I9aUy9ZklbY.yy.GuJ0U3HjpttqEMiHb5zwvoMsYOqDXFy",
-          userAuthToken: "70e2e703-06d9-4ebc-bc39-889d85f9db4d",
-          organizationId: organization.id
-        }]
-      }
-    },
-  });
-
-  await db.role.create({
-    data: {
-      id: 3,
       name: 'ADMIN', // view and edit anything, e.g. data AND lists AND historic; confirm, e.g. sign off, on new data
       users: {
         create: [{
@@ -138,6 +108,53 @@ async function updateRoles(organization: Organization) {
       }
     },
   });
+
+  await db.role.create({
+    data: {
+      id: 2,
+      name: 'USER', // view all data and reports
+      users: {
+        create: {
+          username: "user",
+          passwordHash: "$2b$10$bjXz/irXJrUh8gvG8fidZepQN0BrN2/d2R2RshizCHYSI.FP74s8G",
+          userAuthToken: "dc1c44da-fa33-4fb7-82cc-b5baa7522c4d",
+          organizationId: organization.id
+        }
+      }
+    }
+  });
+
+  await db.role.create({
+    data: {
+      id: 3,
+      name: 'ENTRY', // edit new data and unconfirmed data; view reports
+      users: {
+        create: [{
+          username: "entry",
+          passwordHash: "$2b$10$iAIf7B4I9aUy9ZklbY.yy.GuJ0U3HjpttqEMiHb5zwvoMsYOqDXFy",
+          userAuthToken: "70e2e703-06d9-4ebc-bc39-889d85f9db4d",
+          organizationId: organization.id
+        }]
+      }
+    },
+  });
+
+  // Review and confirm data is valid; Can unlock own confirmations; View reports
+  await db.role.create({
+    data: {
+      id: 4,
+      name: 'REVIEWER',
+      users: {
+        create: [{
+          username: "reviewer", // password snell
+          passwordHash: "$2b$10$iAIf7B4I9aUy9ZklbY.yy.GuJ0U3HjpttqEMiHb5zwvoMsYOqDXFy",
+          userAuthToken: "70e2e703-06d9-4ebc-bc39-889d85f9db4d",
+          organizationId: organization.id
+        }]
+      }
+    },
+  });
+
   console.log('  done creating Roles and Users');
 }
 

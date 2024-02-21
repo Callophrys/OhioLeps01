@@ -2,9 +2,57 @@
     import { formatDate } from '$lib/utils';
     import StandardContainer from '$lib/components/StandardContainer.svelte';
     import { modeDebug } from '$lib/config.js'
+    import { getModalStore } from '@skeletonlabs/skeleton';
+    import { type ModalSettings } from '@skeletonlabs/skeleton';
+    import { page } from '$app/stores';
+			
+    const modalStore = getModalStore();
+			
     export let data;
     //console.log(data);
     let key = modeDebug ? `${data.siteDateObservation.siteDateObservationId.toString()}. ` : '';
+    
+    const modal: ModalSettings = {
+        type: 'prompt',
+        // Data
+        title: 'Enter Name',
+        body: 'Provide your first name in the field below.',
+        // Populates the input value and attributes
+        value: 'Skeleton',
+        valueAttr: { type: 'text', minlength: 3, maxlength: 10, required: true },
+        // Returns the updated response value
+        response: (r: string) => console.log('response:', r),
+    };
+
+    const modalReviewerLock: ModalSettings = {
+        type: 'prompt',
+        // Data
+        title: 'Confirm record was reviewed.',
+        body: 'Provide any notes in the field below.',
+        // Populates the input value and attributes
+        value: 'Skeleton',
+        valueAttr: { type: 'text', minlength: 3, maxlength: 10, required: true },
+        // Returns the updated response value
+        response: (r: string) => console.log('response:', r),
+    };
+
+    const modalReviewerUnlock: ModalSettings = {
+        type: 'prompt',
+        // Data
+        title: 'Unlock record',
+        body: 'Provide reason for unlocking this previously reviewed data.',
+        // Populates the input value and attributes
+        value: 'Skeleton',
+        valueAttr: { type: 'text', minlength: 3, maxlength: 10, required: true },
+        // Returns the updated response value
+        response: (r: string) => console.log('response:', r),
+    };
+
+    const handleModal = (e: any) => modalStore.trigger(modal);
+    const handleReviewerLock = (e: any) => modalStore.trigger(modalReviewerLock);
+    const handleReviewerUnlock = (e: any) => modalStore.trigger(modalReviewerUnlock);
+
+
 </script>
 
 <StandardContainer>
@@ -39,30 +87,41 @@
                 </button><!--User can only delete own-->
             </div>
 
+        {#if $page.data.user}
             <h3>Reviewer</h3>
             <div class="pl-4">
-                <button type="button" class="underline pb-2">Needs review<span class="text-warning-600">❔</span></button>
-                <button type="button" class="underline pb-2"><span>🔒</span></button>
+            {#if $page.data.user.role === 'ADMIN'}
+                {#if data.siteDateObservation.confirmBy}
+                <button type="button" class="btn variant-filled-surface pb-2" on:click={handleReviewerUnlock}>Unlock<span class="pl-2">🔑</span></button>
+                {:else}
+                <button type="button" class="btn variant-filled-surface pb-2" on:click={handleReviewerLock}>Locked<span class="pl-2">🔒</span></button>
+                {/if}
+            {:else}
+            <button type="button" class="btn variant-filled-surface pb-2 disabled"><span>🌎</span><span>Needs review</span></button>
+            {/if}
             </div>
+        {/if}
+
 
             <h3>Admin</h3>
             <div class="pl-4">
-                <button type="button" class="underline pb-2">Unlock<span>🔑</span></button>
-                <button type="button" class="underline pb-2">Locked<span>🔐</span></button>
-                <button type="button" class="underline pb-2">Unlock<span> 🔓 </span></button>
-                <button type="button" class="underline pb-2">Delete<span>❌</span></button><!--Deletes is mearly a status change and audit entry -->
+                <button type="button" class="btn variant-filled-surface pb-2">Unlock<span class="pl-2">🔑</span></button>
+                <button type="button" class="btn variant-filled-surface pb-2">Locked<span class="pl-2">🔐</span></button>
+                <button type="button" class="btn variant-filled-surface pb-2">Unlock<span class="pl-2"> 🔓 </span></button>
+                <button type="button" class="btn variant-filled-surface pb-2">Delete<span class="pl-2">❌</span></button><!--Deletes is mearly a status change and audit entry -->
             </div>
 
             <h3>Misc</h3>
             <div class="pl-4">
-                <button type="button" class="underline pb-2"><span> 🔏 </span></button>
-                <button type="button" class="underline pb-2">View all<span>🌎</span></button><!--Show listing view-->
-                <button type="button" class="underline pb-2"><span>❗</span></button>
-                <button type="button" class="underline pb-2"><span>❕</span></button>
-                <button type="button" class="underline pb-2"><span>❓</span></button>
+                <button type="button" class="btn variant-filled-surface pb-2"><span class="pl-2"> 🔏 </span></button>
+                <button type="button" class="btn variant-filled-surface pb-2">View all<span class="pl-2">🌎</span></button><!--Show listing view-->
+                <button type="button" class="btn variant-filled-surface pb-2"><span class="pl-2">❗</span></button>
+                <button type="button" class="btn variant-filled-surface pb-2"><span class="pl-2">❕</span></button>
+                <button type="button" class="btn variant-filled-surface pb-2"><span class="pl-2">❓</span></button>
             </div>
         </div>
 
+        <!-- DATA -->
         <div>
             <div class="font-bold">{key}{data.siteDateObservation.checklist.scientificName}</div>
             <div class="flex flex-row space-x-4">
