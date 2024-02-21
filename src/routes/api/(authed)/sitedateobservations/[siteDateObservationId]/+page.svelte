@@ -1,5 +1,10 @@
+<!--
+TODO: https://dev.to/theether0/sveltekit-changes-form-actions-and-progressive-enhancement-31h9
+TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  - see ActionData and keeping form data
+
+-->
 <script lang="ts">
-    import { formatDate } from '$lib/utils';
+    import { formatDate, isNullOrWhiteSpace } from '$lib/utils';
     import StandardContainer from '$lib/components/StandardContainer.svelte';
     import { modeDebug } from '$lib/config.js';
     import { getModalStore } from '@skeletonlabs/skeleton';
@@ -12,43 +17,35 @@
     //console.log(data);
     let key = modeDebug ? `${data.siteDateObservation.siteDateObservationId.toString()}. ` : '';
 
-    const modal: ModalSettings = {
-        type: 'prompt',
-        // Data
-        title: 'Enter Name',
-        body: 'Provide your first name in the field below.',
-        // Populates the input value and attributes
-        value: 'Skeleton',
-        valueAttr: { type: 'text', minlength: 3, maxlength: 10, required: true },
-        // Returns the updated response value
-        response: (r: string) => console.log('response:', r),
-    };
-
     const modalReviewerLock: ModalSettings = {
         type: 'prompt',
         // Data
-        title: 'Confirm record was reviewed.',
+        title: 'Review and lock.',
         body: 'Provide any notes in the field below.',
         // Populates the input value and attributes
-        value: 'Skeleton',
-        valueAttr: { type: 'text', minlength: 3, maxlength: 10, required: true },
+        value: 'Data has been reviewed and is valid.',
+        valueAttr: { type: 'text', minlength: 0, maxlength: 128, required: true },
         // Returns the updated response value
-        response: (r: string) => console.log('response:', r),
+        //response: (r: string) => console.log('response:', r),
+        response: (r: any) => {
+            const f = new FormData();
+            f.append('siteObservationId', data.siteDateObservation.siteDateObservationId.toString());
+            f.append('confirm', String(true));
+        },
     };
 
     const modalReviewerUnlock: ModalSettings = {
         type: 'prompt',
         // Data
         title: 'Unlock record',
-        body: 'Provide reason for unlocking this previously reviewed data.',
+        body: 'Provide reason for unlocking previously reviewed data.',
         // Populates the input value and attributes
-        value: 'Skeleton',
-        valueAttr: { type: 'text', minlength: 3, maxlength: 10, required: true },
+        value: 'Unlocking data for revision.',
+        valueAttr: { type: 'text', minlength: 0, maxlength: 128, required: true },
         // Returns the updated response value
         response: (r: string) => console.log('response:', r),
     };
 
-    const handleModal = (e: any) => modalStore.trigger(modal);
     const handleReviewerLock = (e: any) => modalStore.trigger(modalReviewerLock);
     const handleReviewerUnlock = (e: any) => modalStore.trigger(modalReviewerUnlock);
 </script>
@@ -88,7 +85,9 @@
                 <h3>Reviewer</h3>
                 <div class="pl-4">
                     {#if $page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'REVIEWER'}
-                        {#if data.siteDateObservation.confirmBy}
+                        {#if isNullOrWhiteSpace(data.siteDateObservation.confirmBy)}
+                            <button type="button" class="btn variant-filled-surface pb-2" on:click={handleReviewerLock}>Unreviewed<span class="pl-2">🌎</span></button>
+                        {:else if data.siteDateObservation.confirmed}
                             <button type="button" class="btn variant-filled-surface pb-2" on:click={handleReviewerUnlock}>Unlock<span class="pl-2">🔑</span></button>
                         {:else}
                             <button type="button" class="btn variant-filled-surface pb-2" on:click={handleReviewerLock}>Locked<span class="pl-2">🔒</span></button>

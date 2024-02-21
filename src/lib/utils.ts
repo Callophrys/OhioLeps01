@@ -99,7 +99,8 @@ export function isPrimative(val: any): boolean {
     return true;
 }
 
-export function isNullOrWhiteSpace(token: string | null): boolean {
+export function isNullOrWhiteSpace(token?: string | null): boolean {
+    if (typeof token === 'undefined') return true;
     if (token === null) return true;
     return token.toString().trim().length === 0;
 }
