@@ -90,7 +90,7 @@
         {#if $page.data.user}
             <h3>Reviewer</h3>
             <div class="pl-4">
-            {#if $page.data.user.role === 'ADMIN'}
+            {#if $page.data.user.role === 'ADMIN' || $page.data.user.role === 'REVIEWER' && data.siteDateObservation.confirmBy === $page.data.user.}
                 {#if data.siteDateObservation.confirmBy}
                 <button type="button" class="btn variant-filled-surface pb-2" on:click={handleReviewerUnlock}>Unlock<span class="pl-2">🔑</span></button>
                 {:else}
