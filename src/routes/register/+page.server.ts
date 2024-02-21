@@ -3,6 +3,7 @@ import type { Action, Actions, PageServerLoad } from './$types';
 import bcrypt from 'bcrypt';
 import { Role } from '$lib/types';
 import { getOrganizationByName } from '$lib/database/organizations';
+import { defaultOrganization } from '$lib/config';
 import prisma from '$lib/prisma';
 
 export const load: PageServerLoad = async ({ locals }) => {
@@ -17,6 +18,7 @@ const register: Action = async ({ request }) => {
   const data = await request.formData()
   const username = data.get('username')
   const password = data.get('password')
+  //console.log(data);
 
   if (typeof username !== 'string' ||
     typeof password !== 'string' ||
@@ -34,7 +36,8 @@ const register: Action = async ({ request }) => {
     return fail(400, { user: true })
   }
 
-  const organization = await getOrganizationByName('Ohio Lepidopterists');
+  const organization = await getOrganizationByName(defaultOrganization);
+  console.log(organization);
 
   await prisma.user.create({
     data: {

@@ -13,7 +13,7 @@
 <StandardContainer>
     <svelte:fragment slot="standardHead">
         <div class="">
-            {#if $page.data?.user?.role === 'ADMIN' && typeof form === 'object' && !isEmpty(form?.data)}
+            {#if ($page.data?.user?.role === 'ADMIN' || $page.data?.user?.role === 'SUPER') && typeof form === 'object' && !isEmpty(form?.data)}
                 <span>Site X of {data.sites?.length}: {form?.data?.siteName} </span>
                 <button type="submit"> ➜ Next site</button>
 
@@ -224,8 +224,7 @@
                                     event: 'hover',
                                     target: 'loopExample-' + i,
                                     placement: 'right',
-                                }}
-                            >
+                                }}>
                                 <h3>{site.siteName}</h3>
                                 <div>
                                     {site.siteAddress ?? ''}{#if site.siteCityStateZip}

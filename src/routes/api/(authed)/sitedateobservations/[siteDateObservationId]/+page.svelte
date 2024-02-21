@@ -1,17 +1,17 @@
 <script lang="ts">
     import { formatDate } from '$lib/utils';
     import StandardContainer from '$lib/components/StandardContainer.svelte';
-    import { modeDebug } from '$lib/config.js'
+    import { modeDebug } from '$lib/config.js';
     import { getModalStore } from '@skeletonlabs/skeleton';
     import { type ModalSettings } from '@skeletonlabs/skeleton';
     import { page } from '$app/stores';
-			
+
     const modalStore = getModalStore();
-			
+
     export let data;
     //console.log(data);
     let key = modeDebug ? `${data.siteDateObservation.siteDateObservationId.toString()}. ` : '';
-    
+
     const modal: ModalSettings = {
         type: 'prompt',
         // Data
@@ -51,14 +51,11 @@
     const handleModal = (e: any) => modalStore.trigger(modal);
     const handleReviewerLock = (e: any) => modalStore.trigger(modalReviewerLock);
     const handleReviewerUnlock = (e: any) => modalStore.trigger(modalReviewerUnlock);
-
-
 </script>
 
 <StandardContainer>
     <svelte:fragment slot="standardBody">
         <div class="text-blue-600">
-
             <h3>Date entry</h3>
             <div class="pl-4">
                 <button type="button" class="underline pb-2">
@@ -87,21 +84,22 @@
                 </button><!--User can only delete own-->
             </div>
 
-        {#if $page.data.user}
-            <h3>Reviewer</h3>
-            <div class="pl-4">
-            {#if $page.data.user.role === 'ADMIN' || $page.data.user.role === 'REVIEWER' && data.siteDateObservation.confirmBy === $page.data.user.}
-                {#if data.siteDateObservation.confirmBy}
-                <button type="button" class="btn variant-filled-surface pb-2" on:click={handleReviewerUnlock}>Unlock<span class="pl-2">🔑</span></button>
-                {:else}
-                <button type="button" class="btn variant-filled-surface pb-2" on:click={handleReviewerLock}>Locked<span class="pl-2">🔒</span></button>
-                {/if}
-            {:else}
-            <button type="button" class="btn variant-filled-surface pb-2 disabled"><span>🌎</span><span>Needs review</span></button>
+            {#if $page.data.user}
+                <h3>Reviewer</h3>
+                <div class="pl-4">
+                    {#if $page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'REVIEWER'}
+                        {#if data.siteDateObservation.confirmBy}
+                            <button type="button" class="btn variant-filled-surface pb-2" on:click={handleReviewerUnlock}>Unlock<span class="pl-2">🔑</span></button>
+                        {:else}
+                            <button type="button" class="btn variant-filled-surface pb-2" on:click={handleReviewerLock}>Locked<span class="pl-2">🔒</span></button>
+                        {/if}
+                    {:else}
+                        <button type="button" class="btn variant-filled-surface pb-2 disabled">
+                            <span>🌎</span><span>Needs review</span>
+                        </button>
+                    {/if}
+                </div>
             {/if}
-            </div>
-        {/if}
-
 
             <h3>Admin</h3>
             <div class="pl-4">

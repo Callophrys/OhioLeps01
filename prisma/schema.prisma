@@ -63,17 +63,33 @@ model AppConfig {
 }
 
 model User {
-    id            String @id @default(uuid())
-    username      String @unique
-    passwordHash  String
-    userAuthToken String @unique
+    id              String   @id @default(uuid())
+    username        String   @unique  // emailAddress
+    firstName       String
+    lastName        String
+    passwordHash    String
+    userAuthToken   String   @unique
 
-	createdBy String @default("")
+    disabled        Boolean  @default(false)
+    disabledReason  String?
+    passwordRetries Int      @default(0) // e.g. disable account on 3, or turn on delay-until-retry feature
+    delayedRetries  Int      @default(0) // if 3 times inside 3 days then disable account; Report to admins with user and IP and maybe headers too
+    passwordExpires DateTime?
+    
+// maxLoginRetries', configType: 'number', configValue: '12', organizationId: templateOrganizationId },
+// attemptsBeforeDelay', configType: 'number', configValue: '3', organizationId: templateOrganizationId },
+// loginDelayTime', configType: 'number', configValue: '90', organizationId: templateOrganizationId },
+// maxLoginFailures', configType: 'number', configValue: '30', organizationId: templateOrganizationId },
+// maxLoginFailuresDays', configType: 'number', configValue: '30', organizationId: templateOrganizationId },
+// maxLoginDelays', configType: 'number', configValue: '3', organizationId: templateOrganizationId },
+// maxLoginDelaysDays', configType: 'number', configValue: '3', organizationId: templateOrganizationId },
+
+    createdBy String @default("")
 	createdAt DateTime @default(now())
 	updatedBy String?
 	updatedAt DateTime?
 
-    roleId Int?
+    roleId String?
     role   Role? @relation(fields: [roleId], references: [id])
 
     organizationId String?
@@ -95,9 +111,9 @@ model Organization {
 
 // Could make this an enum
 model Role {
-  id   Int    @id @default(autoincrement())
-  name String @unique
-  users User[]
+    id    String @id @default(uuid())
+    name  String @unique
+    users User[]
 }
 
 model Site {
@@ -214,6 +230,8 @@ model SiteDateObservation {
     section14 Int?
     section15 Int?
     mark String? // @db.String(50)
+    deleted Boolean @default(false)
+    confirmed Boolean @default(false)
 	createdBy String @default("") // must be user id or something
 	createdAt DateTime @default(now())
 	updatedBy String?

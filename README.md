@@ -249,24 +249,32 @@ DELIMITER //
 CREATE PROCEDURE IF NOT EXISTS RemoveOhLeps()
 BEGIN
 
+-- Show create
+SHOW CREATE TABLE user
+
 IF (SELECT EXISTS (
 SELECT * FROM information_schema.tables
 WHERE table_schema = 'ohioleps' AND table_name = 'county')) THEN
 BEGIN
-  ALTER TABLE county               DROP FOREIGN KEY County_regionId_fkey;
-  ALTER TABLE county               DROP FOREIGN KEY County_stateId_fkey;
 END IF;
 
-ALTER TABLE region               DROP FOREIGN KEY Region_stateId_fkey;
-ALTER TABLE sitedate             DROP FOREIGN KEY SiteDate_siteId_fkey;
 ALTER TABLE siteDateObservation  DROP FOREIGN KEY SiteDateObservation_checklistId_fkey;
 ALTER TABLE siteDateObservation  DROP FOREIGN KEY SiteDateObservation_siteDateId_fkey;
 ALTER TABLE sitestatus           DROP FOREIGN KEY SiteStatus_siteId_fkey;
 ALTER TABLE sitestatus           DROP FOREIGN KEY SiteStatus_statusCodeId_fkey;
+ALTER TABLE sitedate             DROP FOREIGN KEY SiteDate_siteId_fkey;
 ALTER TABLE site                 DROP FOREIGN KEY Site_countyId_fkey;
+ALTER TABLE site                 DROP FOREIGN KEY Site_stateId_fkey;
+ALTER TABLE county               DROP FOREIGN KEY County_regionId_fkey;
+ALTER TABLE county               DROP FOREIGN KEY County_stateId_fkey;
+ALTER TABLE region               DROP FOREIGN KEY Region_stateId_fkey;
 ALTER TABLE state                DROP FOREIGN KEY State_countryId_fkey;
+ALTER TABLE country              DROP FOREIGN KEY Country_continentId_fkey;
+ALTER TABLE checklist            DROP FOREIGN KEY Checklist_taxonId_fkey;
 ALTER TABLE taxonomy             DROP FOREIGN KEY Taxonomy_baseTaxonId_fkey;
 ALTER TABLE user                 DROP FOREIGN KEY User_roleId_fkey;
+ALTER TABLE user                 DROP FOREIGN KEY User_organizationId_fkey;
+ALTER TABLE appconfig            DROP FOREIGN KEY AppConfig_organizationId_fkey;
 
 DROP TABLE IF EXISTS _prisma_migrations;
 DROP TABLE IF EXISTS nameaddress;
@@ -573,3 +581,48 @@ git config --global diff.colorMoved zebra
 (<NodeListOf<HTMLScriptElement>>document.getElementsByName(id))[0];
 const script = document.getElementsByName("script")[0] as HTMLScriptElement;
 ```
+
+# 2/21/2024
+Update prisma
+npm i --save-dev prisma@latest
+npm i @prisma/client@latest
+...and npm ERR! Cannot read properties of null (reading 'edgesOut')
+
+npm ERR! A complete log of this run can be found in: C:\Users\ndonat\AppData\Local\npm-cache\_logs\2024-02-21T14_06_57_607Z-debug-0.log
+
+Update node, Clear vs clean?
+npm cache clear --force
+npm cache clean --force
+choco upgrade nodejs.install
+
+
+
+   2    38:29.526 pnpm run dev -- --open
+   3        2.306 npx prisma migrate dev --name 20240221A
+   4       19.222 npx prisma db seed -- --environment development
+   5        2.907 pnpm i --save-dev prisma@latest
+   6        0.571 pnpm i @prisma@latest
+   7        1.488 npm i @prisma@latest
+   8     2:08.494 npm i --save-dev prisma@latest
+   9     1:08.399 npm install prisma@latest
+  10        1.251 pnpm install help
+  11        0.971 pnpm remove help
+  12        0.313 pnpm help
+  13       29.524 pnpm update @latest
+  14        2.171 npm cache clear --force
+  15     2:01.357 npm install prisma@latest
+  16        0.021 node -v
+  17        0.095 n
+  18        1.419 npm cache clear --force
+  19        0.937 npm cache clean --force
+  20        8.746 choco upgrade nodejs.install
+  21        6.127 pnpm update @latest
+  22       38.561 npm update @latest
+  23        6.239 pnpm update @latest
+  24        2.365 pnpm update @typescript-eslint/parser@7.0.2
+  25        1.322 pnpm update @typescript-eslint/eslint-plugin@7.0.2
+  26        0.962 pnpm update @typescript-eslint/parser@7.0.2
+  27       16.604 pnpm update @latest
+  28        0.608 pnpm install
+  29       35.607 pnpm run dev -- --open
+  30        1.899 npx prisma generate

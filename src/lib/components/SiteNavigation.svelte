@@ -10,7 +10,7 @@
     <ul>
         <li><a href="/" class="hover:variant-filled-surface focus:variant-soft-primary rounded-l-full outline-none block -ml-2 pl-2">Home</a></li>
         {#if $page.data.user}
-            {#if $page.data.user.role === 'ADMIN'}
+            {#if $page.data.user.role === 'ADMIN' || $page.data.user.role === 'ADMIN'}
                 <li><a href="/admin" class="hover:variant-filled-surface focus:variant-soft-primary rounded-l-full outline-none block -ml-2 pl-2">Admin</a></li>
             {/if}
             <li><a href="/api/checklists" class="hover:variant-filled-surface focus:variant-soft-primary rounded-l-full outline-none block -ml-2 pl-2">Checklists</a></li>

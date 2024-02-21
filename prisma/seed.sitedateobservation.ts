@@ -4,10 +4,12 @@ const db = new PrismaClient()
 
 export default async function () {
     console.log('Creating siteDateObservation records');
+
     const [checklists, siteDates] = await Promise.all([
         db.checklist.findMany(),
         db.siteDate.findMany()
     ]);
+
     const checklistLookup = Object.assign({}, ...checklists.map((c: any) => ({ [c.hodges]: c.checklistId })));
     const siteDateLookup = Object.assign({}, ...siteDates.map((s: any) => ({ [s.seqId]: s.siteDateId })));
     //console.log(checklistLookup);

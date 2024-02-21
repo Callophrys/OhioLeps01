@@ -11,7 +11,9 @@ export enum Role {
 	// E.g.sites and checklists.Can
 	//review and sign off 'lock' the data.
 	// can unlock own data locks.  Can upload data.
-	ADMIN = 'ADMIN', // Can edit anything, manage user issues, restore deleted or lost data, chase audit trails
+	SUPER = 'SUPER', // Can edit anything, manage user issues, restore deleted or lost data, chase audit trails
+	ADMIN = 'ADMIN', // 
+	REVIEWER = 'REVIEWER',
 }
 
 export enum SORTORDER {
