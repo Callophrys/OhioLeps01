@@ -105,6 +105,23 @@ export function isNullOrWhiteSpace(token?: string | null): boolean {
     return token.toString().trim().length === 0;
 }
 
+export function roleNameLong(roleName: string): string {
+    switch (roleName) {
+        case 'SUPER':
+            return 'Super user';
+        case 'ADMIN':
+            return 'Administrator';
+        case 'REVIEWER':
+            return 'Reviewer';
+        case 'ENTRY':
+            return 'Entry';
+        case 'USER':
+            return 'User';
+        default:
+            return 'Unknown';
+    }
+}
+
 export function scientificName(genus: string, species: string, subSpecies: string) {
     return `${genus.charAt(0).toLocaleUpperCase() + genus.slice(1).toLocaleLowerCase()} ${species.toLocaleLowerCase()}${subSpecies ? ' ' + subSpecies.toLocaleLowerCase() : ''}`;
 }

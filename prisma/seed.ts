@@ -150,6 +150,14 @@ async function updateRoles(organization: Organization) {
           passwordHash: "$2b$10$VN2pirOBvSfrOBL42kqzSOkmEF0Ib9O0x4NIdrD1umXq7b1bQmafe",
           userAuthToken: "958fa8b0-61a2-4a61-9801-8516df1a7914",
           organizationId: organization.id
+        },
+        {
+          username: "nate",
+          firstName: "Mortimer",
+          lastName: "Snerd",
+          passwordHash: "$2b$10$09GTBhmT0rC41GOoOvgw6.oGTbMEKZaxQ3spCEwRnmXjc6jxusoEC",
+          userAuthToken: "10b4f4bc-8a3d-4df4-8112-98eea730fc24",
+          organizationId: organization.id
         }]
       }
     },
@@ -160,11 +168,19 @@ async function updateRoles(organization: Organization) {
       name: 'ADMIN',
       users: {
         create: [{
-          username: "admin",
-          firstName: "Admin",
-          lastName: "Person",
-          passwordHash: "$2b$10$DM2lV0aubsQ4hejId4KcK.t0S04MEy0wDsbhYcmDCFqHN.Y4wo156",
-          userAuthToken: "4a961ba9-8ef9-4cb1-ba1b-da6273bc6fd3",
+          username: "admin1",
+          firstName: "First",
+          lastName: "Admin",
+          passwordHash: "$2b$10$/10FU9HawFQRclgobUUvieBzjFPEcgPHnxj6vFQXppZlCA.GllNSi",
+          userAuthToken: "d7659c42-d646-4a66-b1c3-17b4bac9104c",
+          organizationId: organization.id
+        },
+        {
+          username: "admin2",
+          firstName: "Second",
+          lastName: "Admin",
+          passwordHash: "$2b$10$7E1py4B1Z/92b91WwvyyH.paGvSXu3woJyP39dchA0au4nzi.Zp6q",
+          userAuthToken: "04a530dc-a87a-4309-a2f4-51d2733b9c14",
           organizationId: organization.id
         }]
       }
@@ -175,14 +191,22 @@ async function updateRoles(organization: Organization) {
     data: {
       name: 'USER', // view all data and reports
       users: {
-        create: {
-          username: "user",
-          firstName: "User",
-          lastName: "Person",
-          passwordHash: "$2b$10$wQjU6kog6V88e2/PdTNtFeSNJtXajLyfCRdB1is5afqU0XAEul/h2",
-          userAuthToken: "00af2745-316f-45f1-a7a4-743b4064e798",
+        create: [{
+          username: "user1",
+          firstName: "First",
+          lastName: "User",
+          passwordHash: "$2b$10$56GJhxPT4DjabrILVNuTyOhuiy9getA/XcTzMa3dkbK7mNZngk1Ie",
+          userAuthToken: "65bd36a0-93bc-462a-ad94-563fa09a5d9e",
           organizationId: organization.id
-        }
+        },
+        {
+          username: "user2",
+          firstName: "Second",
+          lastName: "User",
+          passwordHash: "$2b$10$EGaoT8pcITEpMpOi3L57.O6sxs.3.7Tzo/U/Ui6WhofIKRzy/i21a",
+          userAuthToken: "0d696358-3d55-4c61-ae8b-2c0a87ff848a",
+          organizationId: organization.id
+        }]
       }
     }
   });
@@ -194,11 +218,19 @@ async function updateRoles(organization: Organization) {
       name: 'ENTRY',
       users: {
         create: [{
-          username: "entry",
-          firstName: "Entry",
-          lastName: "Person",
-          passwordHash: "$2b$10$Yeujo.WcyvQX/5PW/eKYS.2OqoRKPcbXF8aVyyD7f8s6I64TZJ56S",
-          userAuthToken: "8926adca-f09d-4f8c-a884-190707bf3037",
+          username: "entry1",
+          firstName: "First",
+          lastName: "Entry",
+          passwordHash: "$2b$10$LXMmdw48Q73UftCVFCmtm.oLRDQeO6hhdXXt.e3c3wXenSBATn95O",
+          userAuthToken: "6544d888-ac88-43f1-bfb9-b028d677d028",
+          organizationId: organization.id
+        },
+        {
+          username: "entry2",
+          firstName: "Second",
+          lastName: "Entry",
+          passwordHash: "$2b$10$R3dg.kcIX6R9bMeTlwQ4texkjFMz.sdukrABksoRnIhGzQSSEjYb6",
+          userAuthToken: "a2bb619d-541f-4310-8e68-75ee7f9fd516",
           organizationId: organization.id
         }]
       }
@@ -211,28 +243,24 @@ async function updateRoles(organization: Organization) {
       name: 'REVIEWER',
       users: {
         create: [{
-          username: "reviewer",
-          firstName: "Reviewer",
-          lastName: "Person",
-          passwordHash: "$2b$10$Pk7GN1mKdSHHuU6hSGgBTuxzEPvliTfEDd1xbARKOLPRt8FC3eVL.",
-          userAuthToken: "30a1611b-77be-4b93-9a1a-7034f8560749",
+          username: "reviewer1",
+          firstName: "First",
+          lastName: "Reviewer",
+          passwordHash: "$2b$10$.WNNr6C6eeqcDzNX4HLsEOMWXsu0MAAGQya1wWLnl5Vi0n3Ct1jqe",
+          userAuthToken: "ea94fcd5-41c9-4541-8baa-7dd8734ee72d",
+          organizationId: organization.id
+        },
+        {
+          username: "reviewer2",
+          firstName: "Second",
+          lastName: "Reviewer",
+          passwordHash: "$2b$10$7QJ786uW3jnDSslxwswNs.NikiI9VKoq2fC0jPHo0oIN/EADJjJf2",
+          userAuthToken: "81aeae4b-b02c-4948-8ecf-26084d7dbc3d",
           organizationId: organization.id
         }]
       }
     },
   });
-
-  await db.user.create({
-    data: {
-      username: "nate",
-      firstName: "Mortimer",
-      lastName: "Snerd",
-      passwordHash: "$2b$10$09GTBhmT0rC41GOoOvgw6.oGTbMEKZaxQ3spCEwRnmXjc6jxusoEC",
-      userAuthToken: "10b4f4bc-8a3d-4df4-8112-98eea730fc24",
-      roleId: rr.id,
-      organizationId: organization.id
-    }
-  })
 
   console.log('  done creating Roles and Users');
 }

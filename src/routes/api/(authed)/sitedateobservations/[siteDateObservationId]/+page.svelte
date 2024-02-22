@@ -4,16 +4,21 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 
 -->
 <script lang="ts">
-    import { formatDate, isNullOrWhiteSpace } from '$lib/utils';
+    import { formatDate, roleNameLong } from '$lib/utils';
     import StandardContainer from '$lib/components/StandardContainer.svelte';
     import { modeDebug } from '$lib/config.js';
     import { getModalStore } from '@skeletonlabs/skeleton';
     import { type ModalSettings } from '@skeletonlabs/skeleton';
     import { page } from '$app/stores';
+    import { enhance } from '$app/forms';
 
     const modalStore = getModalStore();
 
     export let data;
+    export let form;
+
+    export let formReview: HTMLFormElement;
+
     //console.log(data);
     let key = modeDebug ? `${data.siteDateObservation.siteDateObservationId.toString()}. ` : '';
 
@@ -26,11 +31,11 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
         value: 'Data has been reviewed and is valid.',
         valueAttr: { type: 'text', minlength: 0, maxlength: 128, required: true },
         // Returns the updated response value
-        //response: (r: string) => console.log('response:', r),
         response: (r: any) => {
-            const f = new FormData();
-            f.append('siteObservationId', data.siteDateObservation.siteDateObservationId.toString());
-            f.append('confirm', String(true));
+            console.log('response:', r);
+            if (r) {
+                formReview.submit();
+            }
         },
     };
 
@@ -43,7 +48,12 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
         value: 'Unlocking data for revision.',
         valueAttr: { type: 'text', minlength: 0, maxlength: 128, required: true },
         // Returns the updated response value
-        response: (r: string) => console.log('response:', r),
+        response: (r: string) => {
+            console.log('response:', r);
+            if (r) {
+                formReview.submit();
+            }
+        },
     };
 
     const handleReviewerLock = (e: any) => modalStore.trigger(modalReviewerLock);
@@ -53,69 +63,68 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 <StandardContainer>
     <svelte:fragment slot="standardBody">
         <div class="text-blue-600">
-            <h3>Date entry</h3>
             <div class="pl-4">
-                <button type="button" class="underline pb-2">
-                    Edit this record
-                    <span>✎</span>
+                <button type="button" class="btn variant-filled-surface pb-2">
+                    Edit
+                    <span class="pl-2">✎</span>
                 </button>
-                <button type="button" class="underline pb-2">
+                <button type="button" class="btn variant-filled-surface pb-2">
                     Saved/Complete
-                    <span>✔</span>
+                    <span class="pl-2">✔</span>
                 </button>
-                <button type="button" class="underline pb-2">
-                    Add new species observations
-                    <span class="text-green-900 dark:text-green-200">✚</span>
+                <button type="button" class="btn variant-filled-surface pb-2">
+                    Add species
+                    <span class="pl-2 text-green-900 dark:text-green-200">✚</span>
                 </button>
-                <button type="button" class="underline pb-2">
-                    Delete
-                    <span>❌</span>
-                </button><!--User can only delete own-->
-                <button type="button" class="underline pb-2">
-                    Undo
-                    <span class="font-extrabold text-amber-700 dark:text-amber-400">↺</span>
-                </button><!--User can only delete own-->
-                <button type="button" class="underline pb-2">
-                    Redo
-                    <span class="font-extrabold text-amber-700 dark:text-amber-400">↻</span>
-                </button><!--User can only delete own-->
+                <!-- UNDO/REDO undo last action, edit or delete done by entry or reviewer - of course permissions matter -->
+                <!-- TODO toggle undo and redo on same control -->
+                <button type="button" disabled class="group btn variant-filled-surface pb-2">
+                    Undo/Redo
+                    <span class="pl-2 font-extrabold text-amber-700 dark:text-amber-400 group-disabled:text-inherit !group-disabled:font-extrabold">↺</span>
+                    <!--<span class="font-extrabold text-amber-700 dark:text-amber-400">↻</span>-->
+                </button>
             </div>
 
             {#if $page.data.user}
-                <h3>Reviewer</h3>
+                <h3>{`${roleNameLong($page.data.user.role)}: ${$page.data.user.lastFirst}`}</h3>
+            {/if}
+            <form name="review" method="POST" action="?/updateSiteObservationReviewStatus" use:enhance bind:this={formReview}>
                 <div class="pl-4">
-                    {#if $page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'REVIEWER'}
-                        {#if isNullOrWhiteSpace(data.siteDateObservation.confirmBy)}
-                            <button type="button" class="btn variant-filled-surface pb-2" on:click={handleReviewerLock}>Unreviewed<span class="pl-2">🌎</span></button>
-                        {:else if data.siteDateObservation.confirmed}
-                            <button type="button" class="btn variant-filled-surface pb-2" on:click={handleReviewerUnlock}>Unlock<span class="pl-2">🔑</span></button>
+                    <!-- LOCK/UNLOCK Mark data as reviewed, aka valid and locked; Can unlock -->
+                    {#if $page.data.user && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'REVIEWER')}
+                        {#if $page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || ($page.data.user.role === 'REVIEWER' && (!data.siteDateObservation.confirmBy || data.siteDateObservation.confirmBy === $page.data.user.id))}
+                            {#if !data.siteDateObservation.confirmBy}
+                                <input hidden name="confirm" value="true" />
+                                <button type="button" class="btn variant-filled-surface pb-2" on:click={handleReviewerLock}>Review<span class="pl-2">🌎</span></button>
+                            {:else if data.siteDateObservation.confirmed}
+                                <input hidden name="confirm" value="false" />
+                                <button type="button" class="btn variant-filled-surface pb-2" on:click={handleReviewerUnlock}>Unlock<span class="pl-2"></span></button>
+                            {:else}
+                                <input hidden name="confirm" value="true" />
+                                <button type="button" class="btn variant-filled-surface pb-2" on:click={handleReviewerLock}>Lock<span class="pl-2">🔒</span></button>
+                            {/if}
                         {:else}
-                            <button type="button" class="btn variant-filled-surface pb-2" on:click={handleReviewerLock}>Locked<span class="pl-2">🔒</span></button>
+                            <button type="button" class="btn variant-filled-surface pb-2 disabled">
+                                {#if !data.siteDateObservation.confirmBy}
+                                    <div>Needs review <span class="pl-2">🌎</span></div>
+                                {:else if data.siteDateObservation.confirmed}
+                                    <div>Locked<span class="pl-2">🔐</span></div>
+                                {:else}
+                                    <div>Unlocked<span class="pl-2">🔓</span></div>
+                                {/if}
+                            </button>
                         {/if}
-                    {:else}
-                        <button type="button" class="btn variant-filled-surface pb-2 disabled">
-                            <span>🌎</span><span>Needs review</span>
-                        </button>
+                    {/if}
+                    <!-- DELETE record; Just marks it deleted so not removed from database -->
+                    {#if $page.data.user && !data.siteDateObservation.confirmed && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || ($page.data.user.role === 'ENTRY' && (data.siteDateObservation.createdBy === $page.data.user.id || data.siteDateObservation.updatedBy === $page.data.user.id)))}
+                        <button type="button" class="btn variant-filled-surface pb-2">Delete<span class="pl-2">❌</span></button><!--Deletes is mearly a status change and audit entry -->
                     {/if}
                 </div>
+                <input hidden name="siteDateObservationId" value={data.siteDateObservation.siteDateObservationId} />
+            </form>
+            {#if form?.success}
+                <div class="text-success-900-50-token">Successful {@html form.siteDateObservation.confirmed ? 'LOCK 🔐' : 'UNLOCK 🔓'} of record.</div>
             {/if}
-
-            <h3>Admin</h3>
-            <div class="pl-4">
-                <button type="button" class="btn variant-filled-surface pb-2">Unlock<span class="pl-2">🔑</span></button>
-                <button type="button" class="btn variant-filled-surface pb-2">Locked<span class="pl-2">🔐</span></button>
-                <button type="button" class="btn variant-filled-surface pb-2">Unlock<span class="pl-2"> 🔓 </span></button>
-                <button type="button" class="btn variant-filled-surface pb-2">Delete<span class="pl-2">❌</span></button><!--Deletes is mearly a status change and audit entry -->
-            </div>
-
-            <h3>Misc</h3>
-            <div class="pl-4">
-                <button type="button" class="btn variant-filled-surface pb-2"><span class="pl-2"> 🔏 </span></button>
-                <button type="button" class="btn variant-filled-surface pb-2">View all<span class="pl-2">🌎</span></button><!--Show listing view-->
-                <button type="button" class="btn variant-filled-surface pb-2"><span class="pl-2">❗</span></button>
-                <button type="button" class="btn variant-filled-surface pb-2"><span class="pl-2">❕</span></button>
-                <button type="button" class="btn variant-filled-surface pb-2"><span class="pl-2">❓</span></button>
-            </div>
         </div>
 
         <!-- DATA -->
@@ -188,18 +197,20 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                     <div class="w-7">{@html data.siteDateObservation.section15 ?? '&varnothing;'}</div>
                 </div>
             </div>
+
+            <!-- audit summary -->
             <hr />
             <div class="flex flex-row flex-wrap justify-between">
                 <div class="flex flex-col basis-56">
-                    <div>Created At: {formatDate(new Date(data.siteDateObservation.createdAt).toISOString(), undefined, 'short')}</div>
+                    <div>Created At: {formatDate(new Date(data.siteDateObservation.createdAt).toISOString(), 'short', 'short')}</div>
                     <div class="">Created By: {data.siteDateObservation.createdBy}</div>
                 </div>
                 <div class="flex flex-col basis-56">
-                    <div>Updated At: {data.siteDateObservation.updatedAt ? formatDate(new Date(data.siteDateObservation.updatedAt).toISOString(), undefined, 'short') : ''}</div>
+                    <div>Updated At: {data.siteDateObservation.updatedAt ? formatDate(new Date(data.siteDateObservation.updatedAt).toISOString(), 'short', 'short') : ''}</div>
                     <div class="">Updated By: {data.siteDateObservation.updatedBy ?? ''}</div>
                 </div>
                 <div class="flex flex-col basis-56">
-                    <div>Confirm At: {data.siteDateObservation.confirmAt ? formatDate(new Date(data.siteDateObservation.confirmAt).toISOString()) : ''}</div>
+                    <div>Confirm At: {data.siteDateObservation.confirmAt ? formatDate(new Date(data.siteDateObservation.confirmAt).toISOString(), 'short', 'short') : ''}</div>
                     <div class="">Confirm By: {data.siteDateObservation.confirmBy ?? ''}</div>
                 </div>
             </div>

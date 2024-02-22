@@ -41,10 +41,11 @@
 
 <div data-popup="popupCombobox">
     <div class="card w-36 shadow-xl py-2">
-        <div class="content-center flex justify-between px-2 pb-1">
-            <div>Mode</div>
+        <!-- svelte-ignore a11y-label-has-associated-control -->
+        <label class="content-center flex justify-between px-2 pb-1">
+            <span class="my-auto pl-2">Mode</span>
             <LightSwitch />
-        </div>
+        </label>
         <hr />
         <ListBox rounded="rounded-none" class="capitalize">
             {#each themes as theme}

@@ -1,7 +1,7 @@
 import type {
 	AppConfig,
 	County, State, Checklist, Region,
-	Site, SiteDate, SiteDateObservation, Taxonomy
+	Site, SiteDate, SiteDateObservation, Taxonomy, User
 } from '@prisma/client'
 
 export enum Role {

@@ -16,7 +16,14 @@ export const handle: Handle = (async ({ event, resolve }) => {
 	// find the user based on the session
 	const user = await prisma.user.findUnique({
 		where: { userAuthToken: session },
-		select: { id: true, username: true, role: true, organizationId: true },
+		select: {
+			id: true,
+			username: true,
+			firstName: true,
+			lastName: true,
+			role: true,
+			organizationId: true
+		},
 	});
 
 	let appConfigs: any[] | null = null;
@@ -27,22 +34,24 @@ export const handle: Handle = (async ({ event, resolve }) => {
 		event.locals.user = {
 			id: user.id,
 			name: user.username,
-			role: user.role.name,
-			organizationId: user.organizationId
+			firstLast: user.firstName + ' ' + user.lastName,
+			lastFirst: user.lastName + ', ' + user.firstName,
+			role: user.role?.name ?? '',
+			organizationId: user.organizationId ?? ''
 		}
 
-		appConfigs = await getAppConfigsByOrgId(user.organizationId);
-		console.log('appConfigs by user organizationId', user, appConfigs, 'fin');
+		appConfigs = await getAppConfigsByOrgId(user.organizationId ?? '');
+		//console.log('appConfigs by user organizationId', user, appConfigs, 'fin');
 	}
 
 	if (appConfigs === null || appConfigs.length === 0) {
 		appConfigs = await getAppConfigsByOrgName(defaultOrganization);
-		console.log(`appConfigs by defaultOrganzition (${defaultOrganization})`, appConfigs);
+		//console.log(`appConfigs by defaultOrganzition (${defaultOrganization})`, appConfigs);
 	}
 
 	if (appConfigs === null || appConfigs.length === 0) {
 		appConfigs = await getTemplateAppConfigs();
-		console.log('appConfigs of TEMPLATE', appConfigs);
+		//console.log('appConfigs of TEMPLATE', appConfigs);
 	}
 
 	if (appConfigs) {

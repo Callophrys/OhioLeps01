@@ -1,7 +1,6 @@
 import { PrismaClient } from '@prisma/client';
-import { Prisma } from '@prisma/client';
 import { scientificName } from '$lib/utils.js';
-import type { AppConfig, Checklist, SiteDateObservation, SiteDate } from '@prisma/client';
+import type { AppConfig, Checklist, SiteDateObservation, SiteDate, User } from '@prisma/client';
 
 
 /*
@@ -81,6 +80,18 @@ const prisma = new PrismaClient().$extends({
             formKey: {
                 compute(appConfig: AppConfig): string {
                     return appConfig.id + '_' + appConfig.configName;
+                }
+            }
+        },
+        user: {
+            firstLast: {
+                compute(user: User): string {
+                    return user.firstName + ' ' + user.lastName;
+                }
+            },
+            lastFirst: {
+                compute(user: User): string {
+                    return user.lastName + ', ' + user.firstName;
                 }
             }
         }

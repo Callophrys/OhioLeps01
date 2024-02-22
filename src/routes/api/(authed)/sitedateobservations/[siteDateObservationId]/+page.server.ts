@@ -11,8 +11,15 @@ export async function load({ params }) {
 export const actions = {
 	updateSiteObservationReviewStatus: async ({ request, locals }) => {
 		const formData: any = await request.formData();
-		console.log(formData);
-		const siteDateObservation = await updateSiteObservationReviewStatus(formData.siteDateObservationId, formData.confirm, locals.user.id) as SiteDateObservationChecklist;
+		//console.log(formData);
+
+		const siteDateObservationId = Number(formData.get('siteDateObservationId'));
+		const confirm = formData.get('confirm') === 'true';
+		const userId = locals.user.id;
+
+		const siteDateObservation =
+			await updateSiteObservationReviewStatus(siteDateObservationId, confirm, userId) as SiteDateObservationChecklist;
+
 		const json = JSON.stringify(siteDateObservation);
 		const jsonResult: SiteDateObservationChecklist = JSON.parse(json);
 		return { success: true, siteDateObservation: jsonResult }

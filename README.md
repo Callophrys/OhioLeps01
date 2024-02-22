@@ -626,3 +626,15 @@ choco upgrade nodejs.install
   28        0.608 pnpm install
   29       35.607 pnpm run dev -- --open
   30        1.899 npx prisma generate
+                    
+    # 2/22/2024
+    
+                    use:enhance={({ formReview, data, cancel }) => {
+                        // `form` is the `<form>` element
+                        // `data` is its `FormData` object response from action
+                        // `cancel()` will prevent the submission
+
+                        return async ({ result }) => {
+                            // `result` is an `ActionResult` object
+                        };
+                    }}

@@ -28,11 +28,12 @@
 
 <div data-popup="popupComboboxHelp">
     <div class="card w-48 shadow-xl py-2">
-        <div class="content-center flex justify-between px-2 pb-1">
-            <div class="pl-2">Show Tooltips</div>
+        <!-- svelte-ignore a11y-label-has-associated-control -->
+        <label class="content flex justify-between px-2 pb-1">
+            <span class="my-auto pl-2">Show Tooltips</span>
             <!-- toggle hide instead of show -->
             <SlideToggle name="medium" size="sm" />
-        </div>
+        </label>
 
         <hr />
 
