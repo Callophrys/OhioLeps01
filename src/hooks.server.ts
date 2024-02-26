@@ -7,9 +7,35 @@ export const handle: Handle = (async ({ event, resolve }) => {
 
 	// get cookies from browser
 	const session = event.cookies.get('session')
+	let appConfigs: any[] | null = null;
 
 	if (!session) {
+
 		// if there is no session load page as normal
+		appConfigs = await getAppConfigsByOrgName(defaultOrganization);
+		console.log(`appConfigs by defaultOrganzition (${defaultOrganization})`, appConfigs);
+
+		if (appConfigs === null || appConfigs.length === 0) {
+			appConfigs = await getTemplateAppConfigs();
+			//console.log('appConfigs of TEMPLATE', appConfigs);
+		}
+
+		if (appConfigs) {
+			let config: any = {};
+			Array.from(appConfigs ?? []).forEach((c: any) => {
+				if (c.configType === 'boolean') {
+					config[c.configName] = c.configValue === 'true';
+				} else if (c.configType === 'number') {
+					config[c.configName] = Number(c.configValue);
+				} else if (c.configType === 'object') {
+					config[c.configName] = JSON.parse(c.configValue);
+				} else {
+					config[c.configName] = c.configValue;
+				}
+			});
+			event.locals.config = config;
+		}
+
 		return await resolve(event)
 	}
 
@@ -25,8 +51,6 @@ export const handle: Handle = (async ({ event, resolve }) => {
 			organizationId: true
 		},
 	});
-
-	let appConfigs: any[] | null = null;
 
 	// if `user` exists set `events.local`
 	if (user) {
@@ -46,7 +70,7 @@ export const handle: Handle = (async ({ event, resolve }) => {
 
 	if (appConfigs === null || appConfigs.length === 0) {
 		appConfigs = await getAppConfigsByOrgName(defaultOrganization);
-		//console.log(`appConfigs by defaultOrganzition (${defaultOrganization})`, appConfigs);
+		console.log(`appConfigs by defaultOrganzition (${defaultOrganization})`, appConfigs);
 	}
 
 	if (appConfigs === null || appConfigs.length === 0) {

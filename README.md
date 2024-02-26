@@ -611,15 +611,15 @@ choco upgrade nodejs.install
   13       29.524 pnpm update @latest
   14        2.171 npm cache clear --force
   15     2:01.357 npm install prisma@latest
-  16        0.021 node -v
-  17        0.095 n
+  16
+  17
   18        1.419 npm cache clear --force
   19        0.937 npm cache clean --force
   20        8.746 choco upgrade nodejs.install
-  21        6.127 pnpm update @latest
+  21
   22       38.561 npm update @latest
   23        6.239 pnpm update @latest
-  24        2.365 pnpm update @typescript-eslint/parser@7.0.2
+  24
   25        1.322 pnpm update @typescript-eslint/eslint-plugin@7.0.2
   26        0.962 pnpm update @typescript-eslint/parser@7.0.2
   27       16.604 pnpm update @latest

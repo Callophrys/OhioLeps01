@@ -45,6 +45,16 @@ async function updateOrganizations(): Promise<Organization> {
   });
 
   let mainOrganizationId = ll.id;
+  
+  const uu = await db.organization.create({
+    data: {
+      name: 'Unauthenticated'
+    }
+  });
+
+  let unauthOrganizationId = uu.id;
+  
+  
 
   console.log('Creating App Configs');
   await db.appConfig.createMany({
@@ -124,6 +134,24 @@ async function updateOrganizations(): Promise<Organization> {
       { configName: 'maxLoginFailuresDays', configType: 'number', configValue: '30', organizationId: mainOrganizationId },
       { configName: 'maxLoginDelays', configType: 'number', configValue: '3', organizationId: mainOrganizationId },
       { configName: 'maxLoginDelaysDays', configType: 'number', configValue: '3', organizationId: mainOrganizationId },
+    ]
+  });
+
+  await db.appConfig.createMany({
+    data: [
+      { configName: 'modeDebug', configType: 'boolean', configValue: 'true', organizationId: unauthOrganizationId },
+      { configName: 'owner', configType: 'string', configValue: '', organizationId: unauthOrganizationId },
+      { configName: 'title', configType: 'string', configValue: '', organizationId: unauthOrganizationId },
+      { configName: 'description', configType: 'string', configValue: '', organizationId: unauthOrganizationId },
+      { configName: 'url', configType: 'string', configValue: 'http://localhost:5173/', organizationId: unauthOrganizationId },
+      { configName: 'showAnimatedIcon', configType: 'boolean', configValue: 'false', organizationId: unauthOrganizationId },
+      { configName: 'showAppBar', configType: 'boolean', configValue: 'true', organizationId: unauthOrganizationId },
+      { configName: 'showFooter', configType: 'boolean', configValue: 'false', organizationId: unauthOrganizationId },
+      { configName: 'showAvatar', configType: 'boolean', configValue: 'false', organizationId: unauthOrganizationId },
+      { configName: 'showStateProvince', configType: 'boolean', configValue: 'false', organizationId: unauthOrganizationId },
+      { configName: 'initialDateRangeChoice', configType: 'boolean', configValue: 'true', organizationId: unauthOrganizationId },
+      { configName: 'initialHideUnmonitoredChoice', configType: 'boolean', configValue: 'true', organizationId: unauthOrganizationId },
+      { configName: 'initialUseLatinChoice', configType: 'boolean', configValue: 'true', organizationId: unauthOrganizationId },
     ]
   });
 

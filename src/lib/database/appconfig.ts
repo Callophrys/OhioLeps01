@@ -55,6 +55,10 @@ export async function getTemplateAppConfig(configName: string) {
     return appConfigs;
 }
 
+export async function getUnauthenticatedAppConfigs() {
+    return await getAppConfigsByOrgName('UNAUTHENTICATED');
+}
+
 export async function getTemplateAppConfigs() {
     return await getAppConfigsByOrgName('TEMPLATE');
 }

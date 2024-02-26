@@ -51,10 +51,14 @@ model AppConfig {
     configType String
     configValue String
 
-	createdBy String @default("")
 	createdAt DateTime @default(now())
-	updatedBy String?
 	updatedAt DateTime?
+
+    // User relations
+	createdBy User? @relation("CreateUserOfAppConfig", fields: [createdById], references: [id])
+	createdById String? // Probably should never be null
+	updatedBy User? @relation("UpdateUserOfAppConfig", fields: [updatedById], references: [id])
+	updatedById String?
 
     organizationId String 
     organization Organization @relation("ConfigOfOrganization", fields: [organizationId], references: [id])
@@ -76,34 +80,76 @@ model User {
     delayedRetries  Int      @default(0) // if 3 times inside 3 days then disable account; Report to admins with user and IP and maybe headers too
     passwordExpires DateTime?
     
-// maxLoginRetries', configType: 'number', configValue: '12', organizationId: templateOrganizationId },
-// attemptsBeforeDelay', configType: 'number', configValue: '3', organizationId: templateOrganizationId },
-// loginDelayTime', configType: 'number', configValue: '90', organizationId: templateOrganizationId },
-// maxLoginFailures', configType: 'number', configValue: '30', organizationId: templateOrganizationId },
-// maxLoginFailuresDays', configType: 'number', configValue: '30', organizationId: templateOrganizationId },
-// maxLoginDelays', configType: 'number', configValue: '3', organizationId: templateOrganizationId },
-// maxLoginDelaysDays', configType: 'number', configValue: '3', organizationId: templateOrganizationId },
+// maxLoginRetries', configType: 'number', configValue: '12', organizationId: templateOrganizationId ,
+// attemptsBeforeDelay', configType: 'number', configValue: '3', organizationId: templateOrganizationId ,
+// loginDelayTime', configType: 'number', configValue: '90', organizationId: templateOrganizationId ,
+// maxLoginFailures', configType: 'number', configValue: '30', organizationId: templateOrganizationId ,
+// maxLoginFailuresDays', configType: 'number', configValue: '30', organizationId: templateOrganizationId ,
+// maxLoginDelays', configType: 'number', configValue: '3', organizationId: templateOrganizationId ,
+// maxLoginDelaysDays', configType: 'number', configValue: '3', organizationId: templateOrganizationId ,
 
-    createdBy String @default("")
 	createdAt DateTime @default(now())
-	updatedBy String?
 	updatedAt DateTime?
+
+    // User relations
+	createdBy User? @relation("CreateUserOfUser", fields: [createdById], references: [id])
+	createdById String? // Probably should never be null
+	updatedBy User? @relation("UpdateUserOfUser", fields: [updatedById], references: [id])
+	updatedById String?
 
     roleId String?
     role   Role? @relation(fields: [roleId], references: [id])
 
     organizationId String?
     organization Organization? @relation("UserOfOrganization", fields: [organizationId], references: [id])
+
+    // Audit Relations
+    //
+
+    // Other users
+    userCreatorOf User[] @relation("CreateUserOfUser")
+    userUpdatorOf User[] @relation("UpdateUserOfUser")
+
+    // Organization
+    organizationCreatorOf Organization[] @relation("CreateUserOfOrganization")
+    organizationUpdatorOf Organization[] @relation("UpdateUserOfOrganization")
+
+    // AppConfigs
+    appConfigCreatorOf AppConfig[] @relation("CreateUserOfAppConfig")
+    appConfigUpdatorOf AppConfig[] @relation("UpdateUserOfAppConfig")
+    
+    // NameAddress
+    nameAddressCreatorOf NameAddress[] @relation("CreateUserOfNameAddress")
+    nameAddressUpdatorOf NameAddress[] @relation("UpdateUserOfNameAddress")
+    
+    // Site
+    siteCreatorOf Site[] @relation("CreateUserOfSite")
+    siteUpdatorOf Site[] @relation("UpdateUserOfSite")
+
+    // SiteDate
+    siteDateCreatorOf SiteDate[] @relation("CreateUserOfSiteDate")
+    siteDateUpdatorOf SiteDate[] @relation("UpdateUserOfSiteDate")
+    siteDateConfirmOf SiteDate[] @relation("ConfirmUserOfSiteDate")
+
+    // SiteDateObservation
+    siteDateObservationCreatorOf SiteDateObservation[] @relation("CreateUserOfSiteDateObservation")
+    siteDateObservationUpdatorOf SiteDateObservation[] @relation("UpdateUserOfSiteDateObservation")
+    siteDateObservationConfirmOf SiteDateObservation[] @relation("ConfirmUserOfSiteDateObservation")
 }
 
 model Organization {
     id String @id @default(uuid())
     name String @unique
 
-	createdBy String @default("")
+    // Audit
 	createdAt DateTime @default(now())
-	updatedBy String?
 	updatedAt DateTime?
+
+    // User relations
+	createdBy User? @relation("CreateUserOfOrganization", fields: [createdById], references: [id])
+	createdById String? // Probably should never be null
+	updatedBy User? @relation("UpdateUserOfOrganization", fields: [updatedById], references: [id])
+	updatedById String?
     
     appConfigs AppConfig[] @relation("ConfigOfOrganization")
     users User[]           @relation("UserOfOrganization")
@@ -150,10 +196,16 @@ model Site {
     s2002 Int @default(5)
     s2003 Int @default(5)
     s2004 Int @default(5)
-	createdBy String @default("") // must be user id or something
+
+    // Audit
 	createdAt DateTime @default(now())
-	updatedBy String?
 	updatedAt DateTime?
+
+    // User relations
+	createdBy User? @relation("CreateUserOfSite", fields: [createdById], references: [id])
+	createdById String? // Probably should never be null
+	updatedBy User? @relation("UpdateUserOfSite", fields: [updatedById], references: [id])
+	updatedById String?
 
     // Parent Relation
     countyId Int
@@ -230,22 +282,29 @@ model SiteDateObservation {
     section14 Int?
     section15 Int?
     mark String? // @db.String(50)
+
     deleted Boolean @default(false)
     confirmed Boolean @default(false)
-	createdBy String @default("") // must be user id or something
-	createdAt DateTime @default(now())
-	updatedBy String?
+
+	createdAt DateTime?
 	updatedAt DateTime?
-	confirmBy String?
 	confirmAt DateTime?
+
+    // User relations
+	createdBy User? @relation("CreateUserOfSiteDateObservation", fields: [createdById], references: [id])
+	createdById String? // Probably should never be null
+	updatedBy User? @relation("UpdateUserOfSiteDateObservation", fields: [updatedById], references: [id])
+	updatedById String?
+	confirmBy User? @relation("ConfirmUserOfSiteDateObservation", fields: [confirmById], references: [id])
+	confirmById String?
 
     // Parent Relation
     checklist Checklist? @relation(fields: [checklistId], references: [checklistId])
-    checklistId Int? //@default(0) // new so need SQL to get this
+    checklistId Int? // Probably should never be null
 
     // Parent Relation
     siteDate SiteDate? @relation(fields: [siteDateId], references: [siteDateId])
-    siteDateId Int? //@default(0) // new so need SQL to get this
+    siteDateId Int? // Probably should never be null
 
     //@@index([checklistId]); // error on run
     //@@index([siteDateId]);  // error on run
@@ -342,12 +401,21 @@ model SiteDate {
     energySource4 String? // @db.String(25)
     flowersInBloom String? // @db.String(150)
     fieldNotes String? // @db.String(100)
-	createdBy String @default("") // must be user id or something
-	createdAt DateTime @default(now())
-	updatedBy String?
+
+    // Audit
+    deleted Boolean @default(false)
+    confirmed Boolean @default(false)
+	createdAt DateTime?
 	updatedAt DateTime?
-	confirmBy String?
 	confirmAt DateTime?
+
+    // User relations
+	createdBy User? @relation("CreateUserOfSiteDate", fields: [createdById], references: [id])
+	createdById String? // Probably should never be null
+	updatedBy User? @relation("UpdateUserOfSiteDate", fields: [updatedById], references: [id])
+	updatedById String?
+	confirmBy User? @relation("ConfirmUserOfSiteDate", fields: [confirmById], references: [id])
+	confirmById String?
 
     // Parent Relation
     site Site @relation(fields: [siteId], references: [siteId])
@@ -376,10 +444,16 @@ model NameAddress {
 	emailAddress String?
 	notes String?
 	notes2 String?
-	createdBy String @default("")
-	createdAt DateTime @default(now())
-	updatedBy String?
+
+    // Audit
+	createdAt DateTime?
 	updatedAt DateTime?
+
+    // User relations
+	createdBy User? @relation("CreateUserOfNameAddress", fields: [createdById], references: [id])
+	createdById String? // Probably should never be null
+	updatedBy User? @relation("UpdateUserOfNameAddress", fields: [updatedById], references: [id])
+	updatedById String?
 }
 
 model Continent {
@@ -398,7 +472,7 @@ model Country {
 
     // Parent Relation
     continentId Int
-    continent Continent@relation("ContinentOfCountry", fields: [continentId], references: [id])
+    continent Continent @relation("ContinentOfCountry", fields: [continentId], references: [id])
 
     // Child Relation
     states State[] @relation("CountryOfState")

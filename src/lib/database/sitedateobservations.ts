@@ -55,6 +55,9 @@ export async function getSiteDateObservationBySiteDateObservation(siteDateObserv
         },
         include: {
             checklist: true,
+            createdBy: true,
+            updatedBy: true,
+            confirmBy: true,
         },
     });
     return siteDateObservations;
@@ -74,7 +77,7 @@ export async function getSiteDateObservationsAll(siteId: number) {
     return siteDateObservations;
 }
 
-export async function updateSiteObservationReviewStatus(siteDateObservationId: number, confirm: boolean, userId: string) {
+export async function reviewSiteDateObservation(siteDateObservationId: number, confirm: boolean, userId: string) {
     const siteDateObservation = await prisma.siteDateObservation.update({
         where: {
             siteDateObservationId: siteDateObservationId
@@ -82,7 +85,7 @@ export async function updateSiteObservationReviewStatus(siteDateObservationId: n
         data: {
             confirmed: confirm,
             confirmAt: new Date().toISOString(),
-            confirmBy: userId
+            confirmById: userId
         }
     });
     return siteDateObservation;

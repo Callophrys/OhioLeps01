@@ -33,7 +33,10 @@ export type CountyMonitored = County & { isMonitored: boolean, siteCount: number
 export type CountyComplete = CountyMonitored & { region: Region, sites: Site[] }
 export type SiteDateObservationChecklist = SiteDateObservation & {
 	checklist: ChecklistScientificName,
-	total: number
+	total: number,
+	createdBy: User,
+	updatedBy: User,
+	confirmBy: User
 }
 export type SiteDateYear = SiteDate & { siteName: string, year: number }
 export type SiteCounty = Site & { county: County }
