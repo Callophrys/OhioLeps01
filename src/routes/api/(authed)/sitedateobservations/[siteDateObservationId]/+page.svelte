@@ -175,9 +175,11 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
             </div>
         </div>
         <div class="text-blue-600">
-            {#if form?.success}
-                <div class="text-success-900-50-token">Successful {@html form.siteDateObservation?.confirmed ? 'LOCK 🔐' : 'UNLOCK 🔓'} of record.</div>
-            {/if}
+            <div class="text-success-900-50-token h-6">
+                {#if form?.success}
+                    Successful {@html form.siteDateObservation?.confirmed ? 'LOCK 🔐' : 'UNLOCK 🔓'} of record.
+                {/if}
+            </div>
         </div>
 
         <div>
@@ -190,6 +192,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
             <hr />
             {#if isEditing}
                 <form name="save" method="POST" action="?/saveSiteDateObservation" use:enhance bind:this={formSave}>
+                    <input type="hidden" name="siteDateObservationId" value={data.siteDateObservation.siteDateObservationId} />
                     <div class={cDataClasses}>
                         {#each foo as section}
                             <div class={cDatumClasses}>
@@ -219,7 +222,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
             <hr />
             <div class="flex flex-row flex-wrap justify-between">
                 <div class="flex flex-col basis-60">
-                    <div>Created At: {formatDate(new Date(data.siteDateObservation.createdAt).toISOString(), 'short', 'short')}</div>
+                    <div>Created At: {data.siteDateObservation.createdAt ? formatDate(new Date(data.siteDateObservation.createdAt).toISOString(), 'short', 'short') : ''}</div>
                     <div class="">Created By: {data.siteDateObservation.createdBy?.lastFirst ?? ''}</div>
                 </div>
                 <div class="flex flex-col basis-60">
