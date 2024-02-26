@@ -2,8 +2,9 @@
     import { getContext } from 'svelte';
     import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
     import type { CountyMonitored } from '$lib/types';
+    import type { CssClasses } from '@skeletonlabs/skeleton';
 
-    export let countyGroup: HTMLElement;
+    export let vButtonGroupClasses: CssClasses = '';
 
     enum MonitorStatus {
         ALL = 0,
@@ -12,23 +13,20 @@
     }
 
     let counties: CountyMonitored[] = getContext('counties');
-    let showUnmonitored: number;
+    let showUnmonitored = MonitorStatus.ALL;
 
     function handleShowClick(e: any) {
         const val = Number(e.target.value);
-        console.log(val, e.target.name);
+        //console.log(val, e.target.name);
         switch (val) {
             case MonitorStatus.MONITORED:
-                countyGroup.classList.toggle('hide-monitored', false);
-                countyGroup.classList.toggle('hide-unmonitored', true);
+                vButtonGroupClasses = 'group hide-unmonitored';
                 break;
             case MonitorStatus.UNMONITORED:
-                countyGroup.classList.toggle('hide-monitored', true);
-                countyGroup.classList.toggle('hide-unmonitored', false);
+                vButtonGroupClasses = 'group hide-monitored';
                 break;
             default:
-                countyGroup.classList.toggle('hide-monitored', false);
-                countyGroup.classList.toggle('hide-unmonitored', false);
+                vButtonGroupClasses = '';
         }
         return true;
     }

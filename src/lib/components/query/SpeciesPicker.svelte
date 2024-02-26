@@ -21,7 +21,7 @@
     let speciesChecked: number[] = [];
     let i: number;
 
-    let namingSort: string; // L or C + N or A or D
+    //let namingSort: string; // L or C + N or A or D
     let useAllSpecies: boolean;
     let useLatin: number;
     let capturedSpecies: number[] = [];
