@@ -629,12 +629,39 @@ choco upgrade nodejs.install
                     
     # 2/22/2024
     
-                    use:enhance={({ formReview, data, cancel }) => {
-                        // `form` is the `<form>` element
-                        // `data` is its `FormData` object response from action
-                        // `cancel()` will prevent the submission
+```Typescript
+use:enhance={({ formReview, data, cancel }) => {
+// `form` is the `<form>` element
+// `data` is its `FormData` object response from action
+// `cancel()` will prevent the submission
 
-                        return async ({ result }) => {
-                            // `result` is an `ActionResult` object
-                        };
-                    }}
+return async ({ result }) => {
+    // `result` is an `ActionResult` object
+};
+}}
+```
+
+
+# 2/26/2024
+```Javascript
+const foo = {x1: "bat", x2: "cat", x3: "dog", x4: "emu"}
+console.log(foo);
+//{ x1: "bat", x2: "cat", x3: "dog", x4: "emu" }
+console.log(Object.entries(foo));
+//[{ x1: "bat" }, { x2: "cat" }, { x3: "dog" }, { x4: "emu" }]
+console.log(Object.entries(foo).map(([k,v]) => ({[k]: v })));
+//{ x1: "bat", x2: "cat", x3: "dog", x4: "emu" }
+
+
+const bar = Object
+	.entries(foo)
+	.map(([k,v]) => ({[k]: v }))
+	.filter((z) => Object.entries(z)[0][0].startsWith('x'));
+console.log(bar);
+
+// and back
+const res = {};
+bar.forEach((kvp) => {const x = Object.entries(kvp); res[x[0][0]]=x[0][1]});
+console.log(res);
+```
+

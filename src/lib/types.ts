@@ -31,12 +31,13 @@ export type AppConfigFormKeyChecked = AppConfig & { checked: boolean, formKey: s
 export type ChecklistScientificName = Checklist & { scientificName: string }
 export type CountyMonitored = County & { isMonitored: boolean, siteCount: number, state: State }
 export type CountyComplete = CountyMonitored & { region: Region, sites: Site[] }
+export type UserComplete = User & { firstLast: string, lastFirst: string }
 export type SiteDateObservationChecklist = SiteDateObservation & {
 	checklist: ChecklistScientificName,
 	total: number,
-	createdBy: User,
-	updatedBy: User,
-	confirmBy: User
+	createdBy: UserComplete,
+	updatedBy: UserComplete,
+	confirmBy: UserComplete
 }
 export type SiteDateYear = SiteDate & { siteName: string, year: number }
 export type SiteCounty = Site & { county: County }
