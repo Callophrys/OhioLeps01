@@ -12,13 +12,8 @@
         UNMONITORED = 2,
     }
 
-    let counties: CountyMonitored[] = getContext('counties');
-    let showUnmonitored = MonitorStatus.ALL;
-
-    function handleShowClick(e: any) {
-        const val = Number(e.target.value);
-        //console.log(val, e.target.name);
-        switch (val) {
+    function filterCountyGroups(newValue: MonitorStatus) {
+        switch (newValue) {
             case MonitorStatus.MONITORED:
                 vButtonGroupClasses = 'group hide-unmonitored';
                 break;
@@ -30,6 +25,15 @@
         }
         return true;
     }
+
+    function handleShowClick(e: any) {
+        filterCountyGroups(Number(e.target.value));
+    }
+    
+    let counties: CountyMonitored[] = getContext('counties');
+    let showUnmonitored = MonitorStatus.MONITORED;
+    filterCountyGroups(showUnmonitored);
+
 </script>
 
 <div class="my-auto">Counties with monitored sites: {counties.filter((c) => c.isMonitored).length}</div>

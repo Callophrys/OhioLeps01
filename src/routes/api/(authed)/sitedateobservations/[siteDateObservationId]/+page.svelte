@@ -20,6 +20,8 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 
     export let data;
     export let form;
+    
+    if (form) console.log('form>>', form);
 
     export let formSave: HTMLFormElement;
     export let formUndo: HTMLFormElement;
@@ -97,31 +99,39 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                 <h3>{`${roleNameLong($page.data.user.role)}: ${$page.data.user.lastFirst}`}</h3>
             {/if}
 
-            <div class="px-4 flex flex-auto justify-between">
+            <div class="px-4 flex flex-auto justify-between gap-2">
                 <div class="flex flex-row justify-start gap-2">
                     {#if $page.data.user && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'ENTRY' || $page.data.user.role === 'REVIEWER')}
                         {#if !isEditing}
-                            <button type="button" class="btn variant-soft-surface pb-2" on:click={() => (isEditing = true)}>
-                                Edit
-                                <span class="pl-2">✎</span>
-                            </button>
+                            {#if data.siteDateObservation.confirmed}
+                                <button type="button" class="btn w-20 md:w-24 h-8 sm:h-10 md:h-11 variant-soft-surface pb-2" disabled>
+                                    Edit
+                                    <span class="pl-2">✎</span>
+                                </button>
+                            {:else}
+                                <button type="button" class="btn w-20 md:w-24 h-8 sm:h-10 md:h-11 variant-soft-surface pb-2" on:click={() => (isEditing = true)}>
+                                    Edit
+                                    <span class="pl-2">✎</span>
+                                </button>
+                            {/if}
                         {:else}
-                            <button type="button" class="btn variant-soft-success pb-2" on:click={() => formSave.submit()}>
+                            <button type="button" class="btn w-20 md:w-24 h-8 sm:h-10 md:h-11 variant-soft-success pb-2" on:click={() => formSave.submit()}>
                                 Save
                                 <span class="pl-2">✔</span>
                             </button>
 
+                            <!-- TODO: Make undo-redo work, maybe go with left-right group button -->
                             <form name="undo" method="POST" action="?/undoRedoSiteDateObservation" use:enhance bind:this={formUndo}>
                                 <!-- UNDO/REDO undo last action, edit or delete done by entry or reviewer - of course permissions matter -->
                                 <!-- TODO toggle undo and redo on same control -->
-                                <button type="button" disabled class="group btn variant-soft-surface pb-2">
+                                <button type="button" disabled class="group btn w-32 md:w-36 h-8 sm:h-10 md:h-11 variant-soft-surface pb-2">
                                     Undo/Redo
                                     <span class="pl-2 font-extrabold text-amber-700 dark:text-amber-400 group-disabled:text-inherit !group-disabled:font-extrabold">↺</span>
                                     <!--<span class="font-extrabold text-amber-700 dark:text-amber-400">↻</span>-->
                                 </button>
                             </form>
 
-                            <button type="button" class="btn variant-soft-error pb-2" on:click={() => (isEditing = false)}>
+                            <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-soft-error pb-2" on:click={() => (isEditing = false)}>
                                 Cancel
                                 <span class="pl-2">↺</span>
                             </button>
@@ -134,16 +144,16 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                             {#if $page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || ($page.data.user.role === 'REVIEWER' && (!data.siteDateObservation.confirmBy || data.siteDateObservation.confirmBy === $page.data.user.id))}
                                 {#if isNullOrWhiteSpace(data.siteDateObservation.confirmBy?.id)}
                                     <input hidden name="confirm" value="true" />
-                                    <button type="button" class="btn variant-filled-surface pb-2" on:click={() => modalStore.trigger(modalReviewerLock)}>Review<span class="pl-2">🌎</span></button>
+                                    <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" on:click={() => modalStore.trigger(modalReviewerLock)}>Review<span class="pl-2">🌎</span></button>
                                 {:else if !data.siteDateObservation.confirmed}
                                     <input hidden name="confirm" value="true" />
-                                    <button type="button" class="btn variant-filled-surface pb-2" on:click={() => modalStore.trigger(modalReviewerLock)}>Lock<span class="pl-2"></span></button>
+                                    <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" on:click={() => modalStore.trigger(modalReviewerLock)}>Lock<span class="pl-2">🔒</span></button>
                                 {:else}
                                     <input hidden name="confirm" value="false" />
-                                    <button type="button" class="btn variant-filled-surface pb-2" on:click={() => modalStore.trigger(modalReviewerUnlock)}>Unlock<span class="pl-2">🔒</span></button>
+                                    <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" on:click={() => modalStore.trigger(modalReviewerUnlock)}>Unlock<span class="pl-2">🔑</span></button>
                                 {/if}
                             {:else}
-                                <button type="button" class="btn variant-filled-surface pb-2 disabled">
+                                <button type="button" class="btn w-20 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2 disabled">
                                     {#if typeof data.siteDateObservation.confirmBy !== 'object'}
                                         <div>Needs review <span class="pl-2">🌎</span></div>
                                     {:else if data.siteDateObservation.confirmed}
@@ -157,19 +167,21 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                         <input hidden name="siteDateObservationId" value={data.siteDateObservation.siteDateObservationId} />
                     </form>
 
+                    <!-- TODO: Make delete work -->
                     <form name="delete" method="POST" action="?/deleteSiteDateObservation" use:enhance bind:this={formDelete}>
                         <!-- DELETE record; Just marks it deleted so not removed from database -->
                         {#if $page.data.user && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || (!data.siteDateObservation.confirmed && $page.data.user.role === 'ENTRY' && (data.siteDateObservation.createdBy.id === $page.data.user.id || data.siteDateObservation.updatedBy.id === $page.data.user.id)))}
-                            <button type="button" class="btn variant-filled-surface pb-2" on:click={() => modalStore.trigger(modalDelete)}>Delete<span class="pl-2">❌</span></button><!--Deletes is mearly a status change and audit entry -->
+                            <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" on:click={() => modalStore.trigger(modalDelete)}>Delete<span class="pl-2">❌</span></button><!--Deletes is mearly a status change and audit entry -->
                         {/if}
                         <input hidden name="siteDateObservationId" value={data.siteDateObservation.siteDateObservationId} />
                     </form>
                 </div>
 
+                <!-- TODO: Make add/create work -->
                 <form name="add" method="POST" action="?/addSiteDateObservation" use:enhance bind:this={formAdd}>
-                    <button type="button" class="btn variant-filled-surface pb-2">
+                    <button type="button" class="btn w-36 md:w-40 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2">
                         Add species
-                        <span class="pl-2 text-green-900 dark:text-green-200">✚</span>
+                        <span class="pl-2 text-green-900 dark:text-green-200 text-2xl">✚</span>
                     </button>
                 </form>
             </div>
@@ -177,7 +189,13 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
         <div class="text-blue-600">
             <div class="text-success-900-50-token h-6">
                 {#if form?.success}
-                    Successful {@html form.siteDateObservation?.confirmed ? 'LOCK 🔐' : 'UNLOCK 🔓'} of record.
+                    {#if form.action === 'save'}
+                        Successful update ✔.
+                    {:else if form.action === 'review'}
+                        Successful {@html form.siteDateObservation?.confirmed ? 'LOCK 🔐' : 'UNLOCK 🔓'} of record.
+                    {:else if form.action === 'delete'}
+                        Successful delete 💥.
+                    {/if}
                 {/if}
             </div>
         </div>
@@ -191,6 +209,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
             </div>
             <hr />
             {#if isEditing}
+                <!-- TODO: Indicate when data has changed -->
                 <form name="save" method="POST" action="?/saveSiteDateObservation" use:enhance bind:this={formSave}>
                     <input type="hidden" name="siteDateObservationId" value={data.siteDateObservation.siteDateObservationId} />
                     <div class={cDataClasses}>
@@ -206,6 +225,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                     </div>
                 </form>
             {:else}
+                <!-- TODO: Consider indicator to show newly updated data -->
                 <div class={cDataClasses}>
                     {#each foo as section}
                         <div class={cDatumClasses}>
