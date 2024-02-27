@@ -11,6 +11,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     import { type ModalSettings } from '@skeletonlabs/skeleton';
     import { page } from '$app/stores';
     import { enhance } from '$app/forms';
+    import { getSiteDateObservationBySiteDate } from '$lib/database/sitedateobservations.js';
 
     const modalStore = getModalStore();
     const cSectionClasses = 'flex flex-row space-x-2';
@@ -20,7 +21,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 
     export let data;
     export let form;
-    
+
     if (form) console.log('form>>', form);
 
     export let formSave: HTMLFormElement;
@@ -37,6 +38,9 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     //console.log(data);
     let key = modeDebug ? `(int. id: ${data.siteDateObservation.siteDateObservationId.toString()}) ` : '';
     let isEditing = false;
+
+    let showRecentEdits = true;
+    let showDeletedData = false;
 
     const modalReviewerLock: ModalSettings = {
         type: 'prompt',
@@ -89,171 +93,212 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
         },
     };
 
-    console.log(data.siteDateObservation?.confirmed, data.siteDateObservation?.confirmBy?.lastName ?? '<null>');
+    //console.log(data.siteDateObservation?.confirmed, data.siteDateObservation?.confirmBy?.lastName ?? '<null>');
 </script>
 
 <StandardContainer>
     <svelte:fragment slot="standardBody">
-        <div class="text-blue-600">
-            {#if $page.data.user}
-                <h3>{`${roleNameLong($page.data.user.role)}: ${$page.data.user.lastFirst}`}</h3>
-            {/if}
-
-            <div class="px-4 flex flex-auto justify-between gap-2">
-                <div class="flex flex-row justify-start gap-2">
-                    {#if $page.data.user && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'ENTRY' || $page.data.user.role === 'REVIEWER')}
-                        {#if !isEditing}
-                            {#if data.siteDateObservation.confirmed}
-                                <button type="button" class="btn w-20 md:w-24 h-8 sm:h-10 md:h-11 variant-soft-surface pb-2" disabled>
-                                    Edit
-                                    <span class="pl-2">✎</span>
-                                </button>
-                            {:else}
-                                <button type="button" class="btn w-20 md:w-24 h-8 sm:h-10 md:h-11 variant-soft-surface pb-2" on:click={() => (isEditing = true)}>
-                                    Edit
-                                    <span class="pl-2">✎</span>
-                                </button>
-                            {/if}
+        {#if $page.data.user}
+            <div class="pr-4">
+                <div class="flex flex-row justify-between pb-2 text-surface-600-300-token">
+                    <div>{`${roleNameLong($page.data.user.role)}: ${$page.data.user.lastFirst}`}</div>
+                    <div class="flex flex-row space-x-2 text-sm">
+                        <label class="flex items-center space-x-2" title="Highlight recently added/updated data">
+                            <p>Recently updated</p>
+                            <input class="checkbox" type="checkbox" bind:checked={showRecentEdits} />
+                        </label>
+                        {#if $page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'REVIEWER' || $page.data.user.role === 'ENTRY'}
+                            <label class="flex items-center space-x-2" title="Display deleted data">
+                                <p>Deleted data</p>
+                                <input class="checkbox" type="checkbox" bind:checked={showDeletedData} />
+                            </label>
                         {:else}
-                            <button type="button" class="btn w-20 md:w-24 h-8 sm:h-10 md:h-11 variant-soft-success pb-2" on:click={() => formSave.submit()}>
-                                Save
-                                <span class="pl-2">✔</span>
-                            </button>
-
-                            <!-- TODO: Make undo-redo work, maybe go with left-right group button -->
-                            <form name="undo" method="POST" action="?/undoRedoSiteDateObservation" use:enhance bind:this={formUndo}>
-                                <!-- UNDO/REDO undo last action, edit or delete done by entry or reviewer - of course permissions matter -->
-                                <!-- TODO toggle undo and redo on same control -->
-                                <button type="button" disabled class="group btn w-32 md:w-36 h-8 sm:h-10 md:h-11 variant-soft-surface pb-2">
-                                    Undo/Redo
-                                    <span class="pl-2 font-extrabold text-amber-700 dark:text-amber-400 group-disabled:text-inherit !group-disabled:font-extrabold">↺</span>
-                                    <!--<span class="font-extrabold text-amber-700 dark:text-amber-400">↻</span>-->
-                                </button>
-                            </form>
-
-                            <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-soft-error pb-2" on:click={() => (isEditing = false)}>
-                                Cancel
-                                <span class="pl-2">↺</span>
-                            </button>
+                            <label class="flex items-center space-x-2" title="Display my deleted data">
+                                <p>My deleted data</p>
+                                <input class="checkbox" type="checkbox" bind:checked={showDeletedData} />
+                            </label>
                         {/if}
-                    {/if}
+                    </div>
+                </div>
 
-                    <form name="review" method="POST" action="?/reviewSiteDateObservation" use:enhance bind:this={formReview}>
-                        <!-- LOCK/UNLOCK Mark data as reviewed, aka valid and locked; Can unlock -->
-                        {#if $page.data.user && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'REVIEWER')}
-                            {#if $page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || ($page.data.user.role === 'REVIEWER' && (!data.siteDateObservation.confirmBy || data.siteDateObservation.confirmBy === $page.data.user.id))}
-                                {#if isNullOrWhiteSpace(data.siteDateObservation.confirmBy?.id)}
-                                    <input hidden name="confirm" value="true" />
-                                    <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" on:click={() => modalStore.trigger(modalReviewerLock)}>Review<span class="pl-2">🌎</span></button>
-                                {:else if !data.siteDateObservation.confirmed}
-                                    <input hidden name="confirm" value="true" />
-                                    <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" on:click={() => modalStore.trigger(modalReviewerLock)}>Lock<span class="pl-2">🔒</span></button>
+                <div class="px-4 flex flex-auto justify-between gap-2">
+                    <div class="flex flex-row justify-start gap-2">
+                        {#if $page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'ENTRY' || $page.data.user.role === 'REVIEWER'}
+                            {#if !isEditing}
+                                {#if data.siteDateObservation.confirmed}
+                                    <button type="button" class="btn w-20 md:w-24 h-8 sm:h-10 md:h-11 variant-soft-surface pb-2" disabled>
+                                        Edit
+                                        <span class="pl-2">✎</span>
+                                    </button>
                                 {:else}
-                                    <input hidden name="confirm" value="false" />
-                                    <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" on:click={() => modalStore.trigger(modalReviewerUnlock)}>Unlock<span class="pl-2">🔑</span></button>
+                                    <button type="button" class="btn w-20 md:w-24 h-8 sm:h-10 md:h-11 variant-soft-surface pb-2" on:click={() => (isEditing = true)}>
+                                        Edit
+                                        <span class="pl-2">✎</span>
+                                    </button>
                                 {/if}
                             {:else}
-                                <button type="button" class="btn w-20 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2 disabled">
-                                    {#if typeof data.siteDateObservation.confirmBy !== 'object'}
-                                        <div>Needs review <span class="pl-2">🌎</span></div>
-                                    {:else if data.siteDateObservation.confirmed}
-                                        <div>Locked<span class="pl-2">🔐</span></div>
-                                    {:else}
-                                        <div>Unlocked<span class="pl-2">🔓</span></div>
-                                    {/if}
+                                <button type="button" class="btn w-20 md:w-24 h-8 sm:h-10 md:h-11 variant-soft-success pb-2" on:click={() => formSave.submit()}>
+                                    Save
+                                    <span class="pl-2">✔</span>
+                                </button>
+
+                                <!-- TODO: Make undo-redo work, maybe go with left-right group button -->
+                                <form name="undo" method="POST" action="?/undoRedoSiteDateObservation" use:enhance bind:this={formUndo}>
+                                    <!-- UNDO/REDO undo last action, edit or delete done by entry or reviewer - of course permissions matter -->
+                                    <!-- TODO toggle undo and redo on same control -->
+                                    <div class="btn-group variant-soft">
+                                        <button disabled>
+                                            <span class="pr-2 font-extrabold text-amber-700 dark:text-amber-400 group-disabled:text-inherit !group-disabled:font-extrabold">↺</span>
+                                            Undo
+                                        </button>
+                                        <button disabled>
+                                            Redo
+                                            <span class="pl-2 font-extrabold text-amber-700 dark:text-amber-400 group-disabled:text-inherit !group-disabled:font-extrabold">↻</span>
+                                        </button>
+                                    </div>
+                                </form>
+
+                                <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-soft-error pb-2" on:click={() => (isEditing = false)}>
+                                    Cancel
+                                    <span class="pl-2">↺</span>
                                 </button>
                             {/if}
                         {/if}
-                        <input hidden name="siteDateObservationId" value={data.siteDateObservation.siteDateObservationId} />
-                    </form>
 
-                    <!-- TODO: Make delete work -->
-                    <form name="delete" method="POST" action="?/deleteSiteDateObservation" use:enhance bind:this={formDelete}>
-                        <!-- DELETE record; Just marks it deleted so not removed from database -->
-                        {#if $page.data.user && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || (!data.siteDateObservation.confirmed && $page.data.user.role === 'ENTRY' && (data.siteDateObservation.createdBy.id === $page.data.user.id || data.siteDateObservation.updatedBy.id === $page.data.user.id)))}
-                            <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" on:click={() => modalStore.trigger(modalDelete)}>Delete<span class="pl-2">❌</span></button><!--Deletes is mearly a status change and audit entry -->
+                        {#if !isEditing}
+                            <form name="review" method="POST" action="?/reviewSiteDateObservation" use:enhance bind:this={formReview}>
+                                <!-- LOCK/UNLOCK Mark data as reviewed, aka valid and locked; Can unlock -->
+                                {#if $page.data.user && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'REVIEWER')}
+                                    {#if $page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || ($page.data.user.role === 'REVIEWER' && (!data.siteDateObservation.confirmBy || data.siteDateObservation.confirmBy === $page.data.user.id))}
+                                        {#if isNullOrWhiteSpace(data.siteDateObservation.confirmBy?.id)}
+                                            <input hidden name="confirm" value="true" />
+                                            <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" on:click={() => modalStore.trigger(modalReviewerLock)}>Review<span class="pl-2">🌎</span></button>
+                                        {:else if !data.siteDateObservation.confirmed}
+                                            <input hidden name="confirm" value="true" />
+                                            <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" on:click={() => modalStore.trigger(modalReviewerLock)}>Lock<span class="pl-2">🔒</span></button>
+                                        {:else}
+                                            <input hidden name="confirm" value="false" />
+                                            <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" on:click={() => modalStore.trigger(modalReviewerUnlock)}>Unlock<span class="pl-2">🔑</span></button>
+                                        {/if}
+                                    {:else}
+                                        <button type="button" class="btn w-20 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2 disabled">
+                                            {#if typeof data.siteDateObservation.confirmBy !== 'object'}
+                                                <div>Needs review <span class="pl-2">🌎</span></div>
+                                            {:else if data.siteDateObservation.confirmed}
+                                                <div>Locked<span class="pl-2">🔐</span></div>
+                                            {:else}
+                                                <div>Unlocked<span class="pl-2">🔓</span></div>
+                                            {/if}
+                                        </button>
+                                    {/if}
+                                {/if}
+                                <input hidden name="siteDateObservationId" value={data.siteDateObservation.siteDateObservationId} />
+                            </form>
+
+                            <!-- TODO: Make delete work -->
+                            <form name="delete" method="POST" action="?/deleteSiteDateObservation" use:enhance bind:this={formDelete}>
+                                <!-- DELETE record; Just marks it deleted so not removed from database -->
+                                {#if $page.data.user && !data.siteDateObservation.confirmed && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || ($page.data.user.role === 'ENTRY' && (data.siteDateObservation.createdBy.id === $page.data.user.id || data.siteDateObservation.updatedBy.id === $page.data.user.id)))}
+                                    <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" on:click={() => modalStore.trigger(modalDelete)}>Delete<span class="pl-2">❌</span></button><!--Deletes is mearly a status change and audit entry -->
+                                {/if}
+                                <input hidden name="siteDateObservationId" value={data.siteDateObservation.siteDateObservationId} />
+                                <input hidden name="siteDateId" value={data.siteDateObservation.siteDateId} />
+                                <input hidden name="checklistId" value={data.siteDateObservation.checklistId} />
+                                <input hidden name="useLatin" value={true} />
+                            </form>
                         {/if}
-                        <input hidden name="siteDateObservationId" value={data.siteDateObservation.siteDateObservationId} />
+                    </div>
+
+                    <!-- TODO: Make add/create work -->
+                    <form name="add" method="POST" action="?/addSiteDateObservation" use:enhance bind:this={formAdd}>
+                        <button type="button" class="btn w-36 md:w-40 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2">
+                            Add species
+                            <span class="pl-2 text-green-900 dark:text-green-200 text-2xl">✚</span>
+                        </button>
                     </form>
                 </div>
 
-                <!-- TODO: Make add/create work -->
-                <form name="add" method="POST" action="?/addSiteDateObservation" use:enhance bind:this={formAdd}>
-                    <button type="button" class="btn w-36 md:w-40 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2">
-                        Add species
-                        <span class="pl-2 text-green-900 dark:text-green-200 text-2xl">✚</span>
-                    </button>
-                </form>
-            </div>
-        </div>
-        <div class="text-blue-600">
-            <div class="text-success-900-50-token h-6">
-                {#if form?.success}
-                    {#if form.action === 'save'}
-                        Successful update ✔.
-                    {:else if form.action === 'review'}
-                        Successful {@html form.siteDateObservation?.confirmed ? 'LOCK 🔐' : 'UNLOCK 🔓'} of record.
-                    {:else if form.action === 'delete'}
-                        Successful delete 💥.
+                <div class="text-success-900-50-token h-6">
+                    {#if form?.success}
+                        {#if form.action === 'save'}
+                            Successful update ✔.
+                        {:else if form.action === 'review'}
+                            Successful {@html form.siteDateObservation?.confirmed ? 'LOCK 🔐' : 'UNLOCK 🔓'} of record.
+                        {:else if form.action === 'delete'}
+                            Successful delete 💥.
+                        {/if}
                     {/if}
-                {/if}
-            </div>
-        </div>
+                </div>
 
-        <div>
-            <!-- DATA -->
-            <div class="font-bold">{key}{data.siteDateObservation.checklist.scientificName}</div>
-            <div class="flex flex-row space-x-4">
-                <div>Hodges: {data.siteDateObservation.hodges}</div>
-                <div>Id Code: {data.siteDateObservation.idCode}</div>
-            </div>
-            <hr />
-            {#if isEditing}
-                <!-- TODO: Indicate when data has changed -->
-                <form name="save" method="POST" action="?/saveSiteDateObservation" use:enhance bind:this={formSave}>
-                    <input type="hidden" name="siteDateObservationId" value={data.siteDateObservation.siteDateObservationId} />
-                    <div class={cDataClasses}>
+                <!-- START Data controls group -->
+                <!-- DATA Heading -->
+                <div class="flex flex-row justify-between font-bold">
+                    <div>
+                        {data.siteDateObservation.checklist.scientificName}
+                    </div>
+                    <div>
+                        {data.siteDateObservation.checklist.commonName}
+                    </div>
+                </div>
+                <div class="flex flex-row space-x-4">
+                    <div>Hodges: {data.siteDateObservation.hodges}</div>
+                    <div>Id Code: {data.siteDateObservation.idCode}</div>
+                </div>
+
+                <hr />
+
+                <!-- DATA Details -->
+                {#if isEditing}
+                    <!-- TODO: Indicate when data has changed -->
+                    <form name="save" method="POST" action="?/saveSiteDateObservation" use:enhance bind:this={formSave}>
+                        <input type="hidden" name="siteDateObservationId" value={data.siteDateObservation.siteDateObservationId} />
+                        <div class={cDataClasses}>
+                            {#each foo as section}
+                                <div class={cDatumClasses}>
+                                    <label class={cSectionClasses}>
+                                        <span class={cSectionSpanClasses}>{section.label}:</span>
+                                        <input type="text" name={section.name} value={section.value ?? ''} class="w-8 text-center" />
+                                        <input type="hidden" name={`${section.name}_orig`} value={section.value ?? ''} />
+                                    </label>
+                                </div>
+                            {/each}
+                        </div>
+                    </form>
+                {:else}
+                    <!-- TODO: Consider indicator to show newly updated data -->
+                    <div class={`${cDataClasses} ${data.siteDateObservation.deleted ? 'variant-ghost-error' : ''}`}>
                         {#each foo as section}
-                            <div class={cDatumClasses}>
-                                <label class={cSectionClasses}>
-                                    <span class={cSectionSpanClasses}>{section.label}:</span>
-                                    <input type="text" name={section.name} value={section.value ?? ''} class="w-8 text-center" />
-                                    <input type="hidden" name={`${section.name}_orig`} value={section.value ?? ''} />
-                                </label>
+                            <div class={`${cDatumClasses} bg-variant-ghost-error`}>
+                                <div class={cSectionClasses}>
+                                    <div class={cSectionSpanClasses}>{section.label}:</div>
+                                    <div class="w-8">{@html section.value ?? '&varnothing;'}</div>
+                                </div>
                             </div>
                         {/each}
                     </div>
-                </form>
-            {:else}
-                <!-- TODO: Consider indicator to show newly updated data -->
-                <div class={cDataClasses}>
-                    {#each foo as section}
-                        <div class={cDatumClasses}>
-                            <div class={cSectionClasses}>
-                                <div class={cSectionSpanClasses}>{section.label}:</div>
-                                <div class="w-8">{@html section.value ?? '&varnothing;'}</div>
-                            </div>
-                        </div>
-                    {/each}
-                </div>
-            {/if}
+                {/if}
 
-            <!-- AUDIT Summary -->
-            <hr />
-            <div class="flex flex-row flex-wrap justify-between">
-                <div class="flex flex-col basis-60">
-                    <div>Created At: {data.siteDateObservation.createdAt ? formatDate(new Date(data.siteDateObservation.createdAt).toISOString(), 'short', 'short') : ''}</div>
-                    <div class="">Created By: {data.siteDateObservation.createdBy?.lastFirst ?? ''}</div>
+                <hr />
+
+                <!-- AUDIT Summary -->
+                <div class="flex flex-row flex-wrap justify-between">
+                    <div class="flex flex-col basis-60">
+                        <div>Created At: {data.siteDateObservation.createdAt ? formatDate(new Date(data.siteDateObservation.createdAt).toISOString(), 'short', 'short') : ''}</div>
+                        <div class="">Created By: {data.siteDateObservation.createdBy?.lastFirst ?? ''}</div>
+                    </div>
+                    <div class="flex flex-col basis-60">
+                        <div>Updated At: {data.siteDateObservation.updatedAt ? formatDate(new Date(data.siteDateObservation.updatedAt).toISOString(), 'short', 'short') : ''}</div>
+                        <div class="">Updated By: {data.siteDateObservation.updatedBy?.lastFirst ?? ''}</div>
+                    </div>
+                    <div class="flex flex-col basis-60">
+                        <div>Confirm At: {data.siteDateObservation.confirmAt ? formatDate(new Date(data.siteDateObservation.confirmAt).toISOString(), 'short', 'short') : ''}</div>
+                        <div class="">Confirm By: {data.siteDateObservation.confirmBy?.lastFirst ?? ''}</div>
+                    </div>
                 </div>
-                <div class="flex flex-col basis-60">
-                    <div>Updated At: {data.siteDateObservation.updatedAt ? formatDate(new Date(data.siteDateObservation.updatedAt).toISOString(), 'short', 'short') : ''}</div>
-                    <div class="">Updated By: {data.siteDateObservation.updatedBy?.lastFirst ?? ''}</div>
-                </div>
-                <div class="flex flex-col basis-60">
-                    <div>Confirm At: {data.siteDateObservation.confirmAt ? formatDate(new Date(data.siteDateObservation.confirmAt).toISOString(), 'short', 'short') : ''}</div>
-                    <div class="">Confirm By: {data.siteDateObservation.confirmBy?.lastFirst ?? ''}</div>
-                </div>
+
+                <div class={`${data.siteDateObservation.deleted ? 'variant-ghost-error' : ''}`}></div>
+                <!-- END Data controls group -->
             </div>
-        </div>
+        {/if}
     </svelte:fragment>
 </StandardContainer>

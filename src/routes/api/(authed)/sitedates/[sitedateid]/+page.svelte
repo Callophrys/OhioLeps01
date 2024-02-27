@@ -422,19 +422,19 @@
                 <svelte:fragment slot="summary">Change history</svelte:fragment>
                 <svelte:fragment slot="content">
                     <div class="pl-4">
-                        Created By: {data.siteDate.createdBy ?? ''}
+                        Created By: {data.siteDate.createdBy.lastFirst ?? ''}
                     </div>
                     <div class="pl-4">
-                        Created At: {formatDate(new Date(data.siteDate.createdAt).toISOString(), 'medium', 'medium')}
+                        Created At: {data.siteDate.createdAt ? formatDate(new Date(data.siteDate.createdAt).toISOString(), 'medium', 'medium') : ''}
                     </div>
                     <div class="pl-4">
-                        Updated By: {data.siteDate.updatedBy ?? ''}
+                        Updated By: {data.siteDate.updatedBy.lastFirst ?? ''}
                     </div>
                     <div class="pl-4">
                         Updated At: {data.siteDate.updatedAt ?? ''}
                     </div>
                     <div class="pl-4">
-                        Confirm By: {data.siteDate.confirmBy ?? ''}
+                        Confirm By: {data.siteDate.confirmBy.lastFirst ?? ''}
                     </div>
                     <div class="pl-4">
                         Confirm At: {data.siteDate.confirmAt ?? ''}
@@ -456,16 +456,16 @@
         <hr />
         <div class="mt-2">
             {#each data.siteDateObservations as siteDateObservation}
-                <div class="card flex">
+                <div class={`card flex ${siteDateObservation.deleted ? 'variant-ghost-error' : ''}`}>
                     <a href="/api/sitedateobservations/{siteDateObservation.siteDateObservationId}" class="flex space-x-2 p-2">
                         <div class="w-4">
-                            {#if isNullOrWhiteSpace(siteDateObservation.confirmBy)}
-                                🔎
-                            {:else}
+                            {#if siteDateObservation.confirmed}
                                 <span class="text-success-800-100-token">✔</span>
+                            {:else}
+                                🔎
                             {/if}
                         </div>
-                        <div class="w-56">{siteDateObservation.checklist.commonName}</div>
+                        <div class="w-56">{siteDateObservation.checklist.commonName ?? ''}</div>
                         <div class="w-56">{siteDateObservation.checklist.scientificName}</div>
                         <div class="w-16">total: {siteDateObservation.total}</div>
                     </a>

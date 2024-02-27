@@ -39,7 +39,13 @@ export type SiteDateObservationChecklist = SiteDateObservation & {
 	updatedBy: UserComplete,
 	confirmBy: UserComplete
 }
-export type SiteDateYear = SiteDate & { siteName: string, year: number }
+export type SiteDateYear = SiteDate & {
+	siteName: string,
+	year: number,
+	createdBy: UserComplete,
+	updatedBy: UserComplete,
+	confirmBy: UserComplete
+}
 export type SiteCounty = Site & { county: County }
 export type SiteCountySiteDates = Site & { county: County, siteDates: SiteDateYear[] }
 

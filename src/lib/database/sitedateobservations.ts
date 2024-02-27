@@ -86,6 +86,72 @@ export async function createSiteDateObservation(siteDateObservation: SiteDateObs
     return createdSiteDateObservation;
 }
 
+export async function deleteSiteDateObservation(siteDateObservationId: number, deleteState: boolean, userId: string) {
+    return await prisma.siteDateObservation.update({
+        where: {
+            siteDateObservationId: siteDateObservationId
+        },
+        data: {
+            deleted: deleteState,
+            updatedAt: new Date().toISOString(),
+            updatedById: userId
+        }
+    });
+}
+
+async function siteDateObservationBySiteDateChecklist(siteDateId: number, checklistId: number | null) {
+    const siteDateObservation = await prisma.siteDateObservation.findFirst({
+        where: {
+            siteDateId: siteDateId,
+            checklistId: checklistId
+        },
+        include: {
+            checklist: true
+        }
+    })
+    return siteDateObservation;
+}
+
+export async function nextOrLastSiteDateObservationByCommon(siteDateId: number, currentChecklistId: number | null) {
+    const sss = "select lead(c.checklistId) over (order by c.commonname) checklistId from siteDateObservation o inner join checklist c on c.checklistid = o.checklistid where o.siteDateId = " + siteDateId;
+    const result = await prisma.$queryRaw<number>`${sss}`;
+    console.log('result***', result);
+
+    const siteDateObservation = siteDateObservationBySiteDateChecklist(siteDateId, result);
+    return siteDateObservation;
+}
+
+export async function nextOrLastSiteDateObservationByLatin(siteDateId: number, currentChecklistId: number) {
+
+    const obj = await prisma.$queryRaw<number[]>`select coalesce(z.checklistIdTgt, z.checklistId) result from (select o.siteDateObservationId, o.checklistId, lead(c.checklistId) over (order by c.commonname) checklistIdTgt from siteDateObservation o inner join checklist c on c.checklistid = o.checklistid where o.siteDateId = ${siteDateId}) z where z.checklistId = ${currentChecklistId}`;
+    console.log('result***', obj);
+    const foo = obj?.shift();
+    //const result = typeof foo === 'undefined' ? null : foo;
+    const { result } = foo;
+    const targetChecklistId: number | null = Number(result);
+
+    const siteDateObservation = siteDateObservationBySiteDateChecklist(siteDateId, targetChecklistId);
+    return siteDateObservation;
+}
+
+export async function prevOrFirstSiteDateObservationByCommon(siteDateId: number, currentChecklistId: number) {
+    const sss = "select lag(c.checklistId) over (order by c.commonname) checklistId from siteDateObservation o inner join checklist c on c.checklistid = o.checklistid where o.siteDateId = " + siteDateId;
+    const result = await prisma.$queryRaw<number>`${sss}`;
+    console.log('result***', result);
+
+    const siteDateObservation = siteDateObservationBySiteDateChecklist(siteDateId, result);
+    return siteDateObservation;
+}
+
+export async function prevOrFirstSiteDateObservationByLatin(siteDateId: number, currentChecklistId: number) {
+    const sss = "select lag(c.checklistId) over (order by c.genus, c.species, c.subspecies) checklistId from siteDateObservation o inner join checklist c on c.checklistid = o.checklistid where o.siteDateId = " + siteDateId;
+    const result = await prisma.$queryRaw<number>`${sss}`;
+    console.log('result***', result);
+
+    const siteDateObservation = siteDateObservationBySiteDateChecklist(siteDateId, result);
+    return siteDateObservation;
+}
+
 export async function reviewSiteDateObservation(siteDateObservationId: number, confirm: boolean, userId: string) {
     const siteDateObservation = await prisma.siteDateObservation.update({
         where: {
