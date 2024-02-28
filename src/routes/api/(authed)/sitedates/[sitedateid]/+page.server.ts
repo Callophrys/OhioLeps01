@@ -1,29 +1,37 @@
-import { getSiteDate, getSiteDateRecordDates } from '$lib/database/sitedates'
+import { getSites } from '$lib/database/sites.js';
+import { getSiteDate, getSiteDateSiteDates } from '$lib/database/sitedates'
 import { getSiteDateObservationBySiteDate } from '$lib/database/sitedateobservations.js';
-import type { SiteDateYear, SiteDateObservationChecklist } from '$lib/types.js';
+import type { SiteDateYear, SiteDateObservationChecklist, SiteCounty } from '$lib/types.js';
 
 export async function load({ params }) {
 
 	let siteDateId = Number(params.sitedateid);
-	const [siteDate, siteRecordDates, siteDateObservations] =
+	const [siteDate, sites, siteDates, siteDateObservations] =
 		await Promise.all([
 			getSiteDate(siteDateId),
-			getSiteDateRecordDates(siteDateId),
+			getSites(null),
+			getSiteDateSiteDates(siteDateId),
 			getSiteDateObservationBySiteDate(siteDateId)
 		]);
+		
+	console.log('sites', sites);
 
 	const jsonD = JSON.stringify(siteDate);
 	const jsonResultD: SiteDateYear = JSON.parse(jsonD);
 
-	const jsonYW = JSON.stringify(siteRecordDates?.site.siteDates);
-	const jsonResultYW: { siteDateId: number, recordDate: Date }[] = JSON.parse(jsonYW);
+	const jsonS = JSON.stringify(sites);
+	const jsonResultS: SiteCounty[] = JSON.parse(jsonS);
+
+	const jsonYW = JSON.stringify(siteDates);
+	const jsonResultYW: SiteDateYear[] = JSON.parse(jsonYW);
 
 	const jsonO = JSON.stringify(siteDateObservations);
 	const jsonResultO: SiteDateObservationChecklist[] = JSON.parse(jsonO);
 
 	return {
 		siteDate: jsonResultD,
-		siteRecordDates: jsonResultYW,
+		sites: jsonResultS,
+		siteDates: jsonResultYW,
 		siteDateObservations: jsonResultO
 	}
 }

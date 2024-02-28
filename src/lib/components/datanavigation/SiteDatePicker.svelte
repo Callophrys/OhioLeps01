@@ -8,17 +8,18 @@
     import { compareYearWeek, weekOfYearSince } from '$lib/utils';
 
     export let currentSiteId: number = -1;
-    const siteDates: SiteDateYear[] = getContext('siteDates') ?? [];
+    export let currentSiteDateId: number = -1;
 
-    console.log(siteDates);
+    const siteDates: SiteDateYear[] = getContext('siteDates') ?? [];
+    console.log('SiteDatePicker:siteDates', siteDates);
 
     const siteDateYears = [...new Set(siteDates.map((x) => x.year))];
     const weeksOfYear: any = {};
     siteDateYears.forEach((yr) => (weeksOfYear[yr] = [...new Set(siteDates.filter((x) => x.year === yr).map((y) => y.week))]));
-    console.log(weeksOfYear);
+    console.log('SiteDatePicker:weeksOfYear', weeksOfYear);
 
     $: currentSite = siteDates.find((x) => x.siteId === currentSiteId);
-    console.log(currentSite);
+    console.log('SiteDatePicker:currentSite', currentSite);
 
     $: siteDateWeeks = currentSite ? weeksOfYear[currentSite.year] : [];
 

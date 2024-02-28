@@ -11,16 +11,23 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     import { type ModalSettings } from '@skeletonlabs/skeleton';
     import { page } from '$app/stores';
     import { enhance } from '$app/forms';
-    import { getSiteDateObservationBySiteDate } from '$lib/database/sitedateobservations.js';
-
+    import SitePicker from '$lib/components/datanavigation/SitePicker.svelte';
+    import SiteDatePicker from '$lib/components/datanavigation/SiteDatePicker.svelte';
+    import { setContext } from 'svelte';
+    
     const modalStore = getModalStore();
+
     const cSectionClasses = 'flex flex-row space-x-2';
     const cSectionSpanClasses = 'w-24';
     const cDataClasses = 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1 md:gap-2';
     const cDatumClasses = 'flex flex-row space-x-2';
 
+
     export let data;
     export let form;
+
+    setContext('sites', data.sites);
+    setContext('siteDates', data.siteDates);
 
     if (form) console.log('form>>', form);
 
@@ -78,15 +85,24 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 
     const modalDelete: ModalSettings = {
         type: 'prompt',
-        // Data
-        title: 'Delete observations',
-        body: 'Provide reason for deleting observations for this species for the date.',
-        // Populates the input value and attributes
+        title: 'Delete observation',
+        body: 'Provide reason for deleting the observation.',
         value: 'Deleting data due to...',
         valueAttr: { type: 'text', minlength: 0, maxlength: 256, required: true },
-        // Returns the updated response value
         response: (r: string) => {
-            console.log('response:', r);
+            if (r) {
+                formDelete.submit();
+            }
+        },
+    };
+
+    const modalUndelete: ModalSettings = {
+        type: 'prompt',
+        title: 'Undelete observation',
+        body: 'Beware that undeleting any record could create conflicts and unpredictable behavior if a valid replacement record currently exists.',
+        value: 'Undeleting data due to...',
+        valueAttr: { type: 'text', minlength: 0, maxlength: 256, required: true },
+        response: (r: string) => {
             if (r) {
                 formDelete.submit();
             }
@@ -100,8 +116,14 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     <svelte:fragment slot="standardBody">
         {#if $page.data.user}
             <div class="pr-4">
+                <!-- Header and options -->
                 <div class="flex flex-row justify-between pb-2 text-surface-600-300-token">
-                    <div>{`${roleNameLong($page.data.user.role)}: ${$page.data.user.lastFirst}`}</div>
+                    <div class="flex space-x-2">
+                        <!--div>{data.siteDateObservation.siteDate.site.siteName}</div-->
+                        <SitePicker currentSite={data.siteDateObservation.siteDate.site} />
+                        <SiteDatePicker currentSiteId={data.siteDateObservation.siteDate.siteId} />
+                        <div title={roleNameLong($page.data.user.role)}>{$page.data.user.lastFirst}</div>
+                    </div>
                     <div class="flex flex-row space-x-2 text-sm">
                         <label class="flex items-center space-x-2" title="Highlight recently added/updated data">
                             <p>Recently updated</p>
@@ -121,6 +143,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                     </div>
                 </div>
 
+                <!-- Main controls -->
                 <div class="px-4 flex flex-auto justify-between gap-2">
                     <div class="flex flex-row justify-start gap-2">
                         {#if $page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'ENTRY' || $page.data.user.role === 'REVIEWER'}
@@ -166,6 +189,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                         {/if}
 
                         {#if !isEditing}
+                            <!-- REVIEW Actions -->
                             <form name="review" method="POST" action="?/reviewSiteDateObservation" use:enhance bind:this={formReview}>
                                 <!-- LOCK/UNLOCK Mark data as reviewed, aka valid and locked; Can unlock -->
                                 {#if $page.data.user && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'REVIEWER')}
@@ -195,17 +219,32 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                                 <input hidden name="siteDateObservationId" value={data.siteDateObservation.siteDateObservationId} />
                             </form>
 
-                            <!-- TODO: Make delete work -->
-                            <form name="delete" method="POST" action="?/deleteSiteDateObservation" use:enhance bind:this={formDelete}>
-                                <!-- DELETE record; Just marks it deleted so not removed from database -->
-                                {#if $page.data.user && !data.siteDateObservation.confirmed && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || ($page.data.user.role === 'ENTRY' && (data.siteDateObservation.createdBy.id === $page.data.user.id || data.siteDateObservation.updatedBy.id === $page.data.user.id)))}
-                                    <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" on:click={() => modalStore.trigger(modalDelete)}>Delete<span class="pl-2">❌</span></button><!--Deletes is mearly a status change and audit entry -->
-                                {/if}
-                                <input hidden name="siteDateObservationId" value={data.siteDateObservation.siteDateObservationId} />
-                                <input hidden name="siteDateId" value={data.siteDateObservation.siteDateId} />
-                                <input hidden name="checklistId" value={data.siteDateObservation.checklistId} />
-                                <input hidden name="useLatin" value={true} />
-                            </form>
+                            <!-- A. DELETE Actions -->
+                            {#if !data.siteDateObservation.confirmed && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || ($page.data.user.role === 'ENTRY' && (data.siteDateObservation.createdBy.id === $page.data.user.id || data.siteDateObservation.updatedBy.id === $page.data.user.id)))}
+                                <form name="delete" method="POST" action="?/deleteSiteDateObservation" use:enhance bind:this={formDelete}>
+                                    {#if !data.siteDateObservation.deleted}
+                                        <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" on:click={() => modalStore.trigger(modalDelete)}>Delete<span class="pl-2">❌</span></button>
+                                        <input hidden name="deleteOn" value={true} />
+                                    {:else}
+                                        <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" on:click={() => modalStore.trigger(modalUndelete)}>Undelete<span class="pl-2">↺</span></button>
+                                        <input hidden name="deleteOn" value={false} />
+                                    {/if}
+                                    <input hidden name="siteDateObservationId" value={data.siteDateObservation.siteDateObservationId} />
+                                    <input hidden name="siteDateId" value={data.siteDateObservation.siteDateId} />
+                                    <input hidden name="checklistId" value={data.siteDateObservation.checklistId} />
+                                    <input hidden name="useLatinSort" value={true} />
+                                    <input hidden name="sortDirection" value="asc" />
+                                    <input hidden name="advanceRecord" value={true} />
+                                </form>
+                            {/if}
+                        <!-- B. DELETE Actions - Am editing but just show disabled buttons if super or admin -->
+                        {:else if $page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN'}
+                            <!-- TODO: Neither disabled button shows when expected -->
+                            {#if !data.siteDateObservation.deleted}
+                                <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" disabled>Delete<span class="pl-2">❌</span></button>
+                            {:else}
+                                <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" disabled>Undelete<span class="pl-2">↺</span></button>
+                            {/if}
                         {/if}
                     </div>
 
@@ -218,6 +257,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                     </form>
                 </div>
 
+                <!-- Action messages -->
                 <div class="text-success-900-50-token h-6">
                     {#if form?.success}
                         {#if form.action === 'save'}
@@ -226,77 +266,82 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                             Successful {@html form.siteDateObservation?.confirmed ? 'LOCK 🔐' : 'UNLOCK 🔓'} of record.
                         {:else if form.action === 'delete'}
                             Successful delete 💥.
+                        {:else if form.action === 'undelete'}
+                            Successful undelete ✔.
                         {/if}
                     {/if}
                 </div>
 
                 <!-- START Data controls group -->
-                <!-- DATA Heading -->
-                <div class="flex flex-row justify-between font-bold">
-                    <div>
-                        {data.siteDateObservation.checklist.scientificName}
-                    </div>
-                    <div>
-                        {data.siteDateObservation.checklist.commonName}
-                    </div>
-                </div>
-                <div class="flex flex-row space-x-4">
-                    <div>Hodges: {data.siteDateObservation.hodges}</div>
-                    <div>Id Code: {data.siteDateObservation.idCode}</div>
-                </div>
+                <div class={`${data.siteDateObservation.deleted ? 'line-through variant-ghost-error' : ''}`}>
 
-                <hr />
+                    <!-- DATA Heading -->
+                    <div class="flex flex-row justify-between font-bold">
+                        <div>
+                            {data.siteDateObservation.checklist.scientificName}
+                        </div>
+                        <div>
+                            {data.siteDateObservation.checklist.commonName}
+                        </div>
+                    </div>
+                    <div class="flex flex-row space-x-4">
+                        <div>Hodges: {data.siteDateObservation.hodges}</div>
+                        <!-- TODO: Make Id Code editable -->
+                        <div>Id Code: {data.siteDateObservation.idCode}</div>
+                    </div>
 
-                <!-- DATA Details -->
-                {#if isEditing}
-                    <!-- TODO: Indicate when data has changed -->
-                    <form name="save" method="POST" action="?/saveSiteDateObservation" use:enhance bind:this={formSave}>
-                        <input type="hidden" name="siteDateObservationId" value={data.siteDateObservation.siteDateObservationId} />
+                    <hr />
+
+                    <!-- DATA Details -->
+                    {#if isEditing}
+                        <!-- TODO: Indicate when data has changed -->
+                        <form name="save" method="POST" action="?/saveSiteDateObservation" use:enhance bind:this={formSave}>
+                            <input type="hidden" name="siteDateObservationId" value={data.siteDateObservation.siteDateObservationId} />
+                            <div class={cDataClasses}>
+                                {#each foo as section}
+                                    <div class={cDatumClasses}>
+                                        <label class={cSectionClasses}>
+                                            <span class={cSectionSpanClasses}>{section.label}:</span>
+                                            <input type="text" name={section.name} value={section.value ?? ''} class="w-8 text-center" />
+                                            <input type="hidden" name={`${section.name}_orig`} value={section.value ?? ''} />
+                                        </label>
+                                    </div>
+                                {/each}
+                            </div>
+                        </form>
+                    {:else}
+                        <!-- TODO: Consider indicator to show newly updated data -->
                         <div class={cDataClasses}>
                             {#each foo as section}
                                 <div class={cDatumClasses}>
-                                    <label class={cSectionClasses}>
-                                        <span class={cSectionSpanClasses}>{section.label}:</span>
-                                        <input type="text" name={section.name} value={section.value ?? ''} class="w-8 text-center" />
-                                        <input type="hidden" name={`${section.name}_orig`} value={section.value ?? ''} />
-                                    </label>
+                                    <div class={cSectionClasses}>
+                                        <div class={cSectionSpanClasses}>{section.label}:</div>
+                                        <div class="w-8">{@html section.value ?? '&varnothing;'}</div>
+                                    </div>
                                 </div>
                             {/each}
                         </div>
-                    </form>
-                {:else}
-                    <!-- TODO: Consider indicator to show newly updated data -->
-                    <div class={`${cDataClasses} ${data.siteDateObservation.deleted ? 'variant-ghost-error' : ''}`}>
-                        {#each foo as section}
-                            <div class={`${cDatumClasses} bg-variant-ghost-error`}>
-                                <div class={cSectionClasses}>
-                                    <div class={cSectionSpanClasses}>{section.label}:</div>
-                                    <div class="w-8">{@html section.value ?? '&varnothing;'}</div>
-                                </div>
-                            </div>
-                        {/each}
-                    </div>
-                {/if}
+                    {/if}
 
-                <hr />
+                    <hr />
 
-                <!-- AUDIT Summary -->
-                <div class="flex flex-row flex-wrap justify-between">
-                    <div class="flex flex-col basis-60">
-                        <div>Created At: {data.siteDateObservation.createdAt ? formatDate(new Date(data.siteDateObservation.createdAt).toISOString(), 'short', 'short') : ''}</div>
-                        <div class="">Created By: {data.siteDateObservation.createdBy?.lastFirst ?? ''}</div>
+                    <!-- AUDIT Summary -->
+                    <div class="flex flex-row flex-wrap justify-between">
+                        <div class="flex flex-col basis-60">
+                            <div>Created At: {data.siteDateObservation.createdAt ? formatDate(new Date(data.siteDateObservation.createdAt).toISOString(), 'short', 'short') : ''}</div>
+                            <div class="">Created By: {data.siteDateObservation.createdBy?.lastFirst ?? ''}</div>
+                        </div>
+                        <div class="flex flex-col basis-60">
+                            <div>Updated At: {data.siteDateObservation.updatedAt ? formatDate(new Date(data.siteDateObservation.updatedAt).toISOString(), 'short', 'short') : ''}</div>
+                            <div class="">Updated By: {data.siteDateObservation.updatedBy?.lastFirst ?? ''}</div>
+                        </div>
+                        <div class="flex flex-col basis-60">
+                            <div>Confirm At: {data.siteDateObservation.confirmAt ? formatDate(new Date(data.siteDateObservation.confirmAt).toISOString(), 'short', 'short') : ''}</div>
+                            <div class="">Confirm By: {data.siteDateObservation.confirmBy?.lastFirst ?? ''}</div>
+                        </div>
                     </div>
-                    <div class="flex flex-col basis-60">
-                        <div>Updated At: {data.siteDateObservation.updatedAt ? formatDate(new Date(data.siteDateObservation.updatedAt).toISOString(), 'short', 'short') : ''}</div>
-                        <div class="">Updated By: {data.siteDateObservation.updatedBy?.lastFirst ?? ''}</div>
-                    </div>
-                    <div class="flex flex-col basis-60">
-                        <div>Confirm At: {data.siteDateObservation.confirmAt ? formatDate(new Date(data.siteDateObservation.confirmAt).toISOString(), 'short', 'short') : ''}</div>
-                        <div class="">Confirm By: {data.siteDateObservation.confirmBy?.lastFirst ?? ''}</div>
-                    </div>
+
                 </div>
-
-                <div class={`${data.siteDateObservation.deleted ? 'variant-ghost-error' : ''}`}></div>
                 <!-- END Data controls group -->
             </div>
         {/if}

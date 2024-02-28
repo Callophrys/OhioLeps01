@@ -24,6 +24,11 @@ export async function getSiteDateObservationBySiteDate(siteDateId: number) {
         include: {
             checklist: true
         },
+        orderBy: [
+            { checklist: { genus: 'asc' } },
+            { checklist: { species: 'asc' } },
+            { checklist: { subspecies: { sort: 'asc', nulls: 'first' } } },
+        ]
     });
     return siteDateObservations;
 }
@@ -60,6 +65,11 @@ export async function getSiteDateObservationBySiteDateObservation(siteDateObserv
             createdBy: true,
             updatedBy: true,
             confirmBy: true,
+            siteDate: {
+                select: {
+                    site: true
+                }
+            }
         },
     });
     return siteDateObservations;

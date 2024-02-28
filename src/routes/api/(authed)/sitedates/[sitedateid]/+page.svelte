@@ -6,9 +6,12 @@
     import { goto } from '$app/navigation';
     import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
     import type { dateTracking, dateTrackingSet } from '$lib/types.js';
+    import { setContext } from 'svelte';
     import { isNullOrWhiteSpace } from '$lib/utils.js';
 
     export let data;
+    setContext('sites', data.sites);
+    setContext('siteDates', data.siteDates);
 
     export let initialUseFarenheit: number = 0;
     export let accA = true;
@@ -125,11 +128,11 @@
     let y: dateTrackingSet;
     let w: any;
 
-    //console.log(data.siteRecordDates);
-    const allYears = Array.from(data.siteRecordDates).map((y) => new Date(y.recordDate).getFullYear());
+    //console.log(data.siteDateSiteDates);
+    const allYears = Array.from(data.siteDates).map((y) => new Date(y.recordDate).getFullYear());
     const uniqueYears = [...new Set(allYears)].sort(compareNumeric);
 
-    const trackedWeeks: dateTracking[] = Array.from(data.siteRecordDates)
+    const trackedWeeks: dateTracking[] = Array.from(data.siteDates)
         .map<dateTracking>((w) => ({
             siteDateId: w.siteDateId,
             year: new Date(w.recordDate).getFullYear(),
@@ -456,8 +459,8 @@
         <hr />
         <div class="mt-2">
             {#each data.siteDateObservations as siteDateObservation}
-                <div class={`card flex ${siteDateObservation.deleted ? 'variant-ghost-error' : ''}`}>
-                    <a href="/api/sitedateobservations/{siteDateObservation.siteDateObservationId}" class="flex space-x-2 p-2">
+                <div class={`card flex ${siteDateObservation.deleted ? 'line-through variant-ghost-error' : ''}`}>
+                    <a href="/api/sitedateobservations/{siteDateObservation.siteDateObservationId}/{data.siteDate.siteId}" class="flex space-x-2 p-2">
                         <div class="w-4">
                             {#if siteDateObservation.confirmed}
                                 <span class="text-success-800-100-token">✔</span>

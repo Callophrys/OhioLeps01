@@ -1,18 +1,31 @@
 import {
 	getSiteDateObservationBySiteDateObservation, createSiteDateObservation,
 	reviewSiteDateObservation, updateSiteDateObservation, deleteSiteDateObservation,
-	nextOrLastSiteDateObservationByCommon, nextOrLastSiteDateObservationByLatin
-}
-	from '$lib/database/sitedateobservations.js';
-import type { SiteDateObservationChecklist } from '$lib/types.js';
+	nextOrLastSiteDateObservationByCommon, nextOrLastSiteDateObservationByLatin, prevOrFirstSiteDateObservationByLatin
+} from '$lib/database/sitedateobservations.js';
+import { getSites } from '$lib/database/sites.js';
+import { getSiteDates } from '$lib/database/sitedates.js';
 import { isNullOrWhiteSpace } from '$lib/utils.js';
-import type { SiteDateObservation } from '@prisma/client';
+import type { SiteDateObservationChecklist, SiteCounty, SiteDateYear } from '$lib/types.js';
 
 export async function load({ params }) {
-	const siteDateObservation = await getSiteDateObservationBySiteDateObservation(Number(params.siteDateObservationId)) as SiteDateObservationChecklist;
-	const json = JSON.stringify(siteDateObservation);
-	const jsonResult: SiteDateObservationChecklist = JSON.parse(json);
-	return { siteDateObservation: jsonResult }
+	console.log('.....', params);
+	const [siteDateObservation, sites, siteDates] = await Promise.all([
+		getSiteDateObservationBySiteDateObservation(Number(params.siteDateObservationId)),
+		getSites(null),
+		getSiteDates(Number(params.siteId))
+	]);
+
+	const jsonO = JSON.stringify(siteDateObservation);
+	const jsonResultO: SiteDateObservationChecklist = JSON.parse(jsonO);
+
+	const jsonS = JSON.stringify(sites);
+	const jsonResultS: SiteCounty[] = JSON.parse(jsonS);
+
+	const jsonD = JSON.stringify(siteDates);
+	const jsonResultD: SiteDateYear[] = JSON.parse(jsonD);
+
+	return { siteDateObservation: jsonResultO, sites: jsonResultS, siteDates: jsonResultD }
 }
 
 export const actions = {
@@ -22,7 +35,7 @@ export const actions = {
 		//console.log(formData);
 
 		const siteDateObservationId = Number(formData.get('siteDateObservationId'));
-		const originalSdo = await getSiteDateObservationBySiteDateObservation(siteDateObservationId) as SiteDateObservation;
+		const originalSdo = await getSiteDateObservationBySiteDateObservation(siteDateObservationId);
 		const userId = locals.user.id;
 
 		if (originalSdo && userId) {
@@ -100,24 +113,46 @@ export const actions = {
 		const formData: any = await request.formData();
 		//console.log(formData);
 
+		const deleteOn = formData.get('deleteOn') === 'true';
 		const siteDateObservationId = Number(formData.get('siteDateObservationId'));
 		const siteDateId = Number(formData.get('siteDateId'));
 		const checklistId = Number(formData.get('checklistId'));
-		const useLatin = Boolean(formData.get('useLatin'));
+		const useLatinSort = Boolean(formData.get('useLatinSort'));
+		const sortDirection = formData.get('sortDirection');
+		const advanceRecord = Boolean(formData.get('advanceRecord'));
 		const userId = locals.user.id;
 
-		const doit: any[] = [deleteSiteDateObservation(siteDateObservationId, true, userId)];
-		if (useLatin) {
-			doit.push(nextOrLastSiteDateObservationByLatin(siteDateId, checklistId));
+		const doit: any[] = [deleteSiteDateObservation(siteDateObservationId, deleteOn, userId)];
+
+		if (advanceRecord) {
+			if (useLatinSort) {
+				if (sortDirection === 'asc') {
+					doit.push(nextOrLastSiteDateObservationByLatin(siteDateId, checklistId));
+				} else {
+					doit.push(prevOrFirstSiteDateObservationByLatin(siteDateId, checklistId));
+				}
+			} else {
+				if (sortDirection === 'asc') {
+					doit.push(nextOrLastSiteDateObservationByCommon(siteDateId, checklistId));
+				} else {
+					doit.push(prevOrFirstSiteDateObservationByLatin(siteDateId, checklistId));
+				}
+			}
+
+			// Advance to next or previous record based on latin or common name sort per above
+			const [, sdo] = await Promise.all(doit);
+			const json = JSON.stringify(sdo);
+			const jsonResult: SiteDateObservationChecklist = JSON.parse(json);
+			return { action: (deleteOn ? 'delete' : 'undelete'), success: true, siteDateObservation: jsonResult }
+
 		} else {
-			doit.push(nextOrLastSiteDateObservationByCommon(siteDateId, checklistId));
+
+			// Stay on deleted record
+			const dc = await Promise.all(doit);
+			const json = JSON.stringify(dc);
+			const jsonResult: SiteDateObservationChecklist = JSON.parse(json);
+			return { action: (deleteOn ? 'delete' : 'undelete'), success: true, siteDateObservation: jsonResult }
 		}
-
-		const [dc, sdo] = await Promise.all(doit);
-
-		const json = JSON.stringify(sdo);
-		const jsonResult: SiteDateObservationChecklist = JSON.parse(json);
-		return { action: 'delete', success: true, siteDateObservation: jsonResult }
 	},
 
 	addSiteDateObservation: async ({ request, locals }) => {

@@ -9,10 +9,9 @@
 
     export let data;
 
-    setContext('siteDates', data.site.siteDates);
     setContext('counties', data.counties);
     setContext('sites', data.sites);
-    //console.log(data.site.county);
+    setContext('siteDates', data.site.siteDates);
 
     function handleClick(event: any) {
         event.preventDefault();

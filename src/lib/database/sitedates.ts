@@ -18,7 +18,25 @@ export async function getSiteDate(siteDateId: number) {
 	return siteDate;
 }
 
-export async function getSiteDates() {
+export async function getSiteDates(siteId: number) {
+	const siteDates = await prisma.siteDate.findMany({
+		where: {
+			siteId: siteId
+		},
+		orderBy: [
+			{
+				recordDate: 'asc'
+			},
+			{
+				week: 'asc',
+			},
+		]
+	});
+
+	return siteDates;
+}
+
+export async function getSiteDatesAll() {
 	const siteDates = await prisma.siteDate.findMany({
 		include: {
 			site: true
@@ -39,25 +57,20 @@ export async function getSiteDates() {
 	return siteDates;
 }
 
-export async function getSiteDateRecordDates(siteDateId: number) {
+export async function getSiteDateSiteDates(siteDateId: number) {
 
-	const recordDates = await prisma.siteDate.findUnique({
+	const siteDateSiteDates = await prisma.siteDate.findUnique({
 		where: {
 			siteDateId: siteDateId,
 		},
 		select: {
 			site: {
 				select: {
-					siteDates: {
-						select: {
-							siteDateId: true,
-							recordDate: true
-						}
-					}
+					siteDates: true
 				}
 			}
 		}
 	});
 
-	return recordDates;
+	return siteDateSiteDates?.site.siteDates;
 }
