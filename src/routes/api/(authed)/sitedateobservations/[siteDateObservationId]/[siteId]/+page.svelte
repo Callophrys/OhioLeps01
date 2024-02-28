@@ -14,14 +14,13 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     import SitePicker from '$lib/components/datanavigation/SitePicker.svelte';
     import SiteDatePicker from '$lib/components/datanavigation/SiteDatePicker.svelte';
     import { setContext } from 'svelte';
-    
+
     const modalStore = getModalStore();
 
     const cSectionClasses = 'flex flex-row space-x-2';
     const cSectionSpanClasses = 'w-24';
     const cDataClasses = 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1 md:gap-2';
     const cDatumClasses = 'flex flex-row space-x-2';
-
 
     export let data;
     export let form;
@@ -121,8 +120,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                     <div class="flex space-x-2">
                         <!--div>{data.siteDateObservation.siteDate.site.siteName}</div-->
                         <SitePicker currentSite={data.siteDateObservation.siteDate.site} />
-                        <SiteDatePicker currentSiteId={data.siteDateObservation.siteDate.siteId} />
-                        <div title={roleNameLong($page.data.user.role)}>{$page.data.user.lastFirst}</div>
+                        <SiteDatePicker currentSiteId={data.siteDateObservation.siteDate.siteId} currentSiteDateId={data.siteDateObservation.siteDateId ?? -1} />
                     </div>
                     <div class="flex flex-row space-x-2 text-sm">
                         <label class="flex items-center space-x-2" title="Highlight recently added/updated data">
@@ -237,7 +235,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                                     <input hidden name="advanceRecord" value={true} />
                                 </form>
                             {/if}
-                        <!-- B. DELETE Actions - Am editing but just show disabled buttons if super or admin -->
+                            <!-- B. DELETE Actions - Am editing but just show disabled buttons if super or admin -->
                         {:else if $page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN'}
                             <!-- TODO: Neither disabled button shows when expected -->
                             {#if !data.siteDateObservation.deleted}
@@ -274,7 +272,6 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 
                 <!-- START Data controls group -->
                 <div class={`${data.siteDateObservation.deleted ? 'line-through variant-ghost-error' : ''}`}>
-
                     <!-- DATA Heading -->
                     <div class="flex flex-row justify-between font-bold">
                         <div>
@@ -340,7 +337,6 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                             <div class="">Confirm By: {data.siteDateObservation.confirmBy?.lastFirst ?? ''}</div>
                         </div>
                     </div>
-
                 </div>
                 <!-- END Data controls group -->
             </div>

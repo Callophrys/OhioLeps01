@@ -20,6 +20,8 @@
         }
     }
 
+    $: currentSiteDateId = data.site.siteDates.length ? data.site.siteDates[0].siteDateId : -1;
+
     //const dispatch = createEventDispatcher();
     //const submit = () => dispatch('submit');
 
@@ -38,7 +40,7 @@
             <SitePicker currentSite={data.site}>
                 <svelte:fragment slot="heading">Site:</svelte:fragment>
             </SitePicker>
-            <SiteDatePicker bind:currentSiteId={data.site.siteId}>
+            <SiteDatePicker bind:currentSiteId={data.site.siteId} bind:currentSiteDateId>
                 <svelte:fragment slot="heading">Observations:</svelte:fragment>
             </SiteDatePicker>
             <CountyPicker currentCounty={data.site.county}>

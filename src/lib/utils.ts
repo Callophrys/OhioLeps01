@@ -78,6 +78,7 @@ export function weekOfYearSince(
     sinceDate: Date = new Date(1999, 3, 1),
     useSameYear: boolean = true
 ): number {
+    //console.log(typeof weekOfDate, weekOfDate);
     if (useSameYear) sinceDate.setFullYear(weekOfDate.getFullYear());
     let daysPassed = (weekOfDate.getTime() - sinceDate.getTime()) / 24 / 60 / 60 / 1000;
     return 1 + Math.floor(daysPassed / 7);

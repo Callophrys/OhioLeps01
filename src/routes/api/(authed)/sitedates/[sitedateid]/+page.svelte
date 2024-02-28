@@ -7,6 +7,7 @@
     import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
     import type { dateTracking, dateTrackingSet } from '$lib/types.js';
     import { setContext } from 'svelte';
+    import SiteDatePicker from '$lib/components/datanavigation/SiteDatePicker.svelte';
     import { isNullOrWhiteSpace } from '$lib/utils.js';
 
     export let data;
@@ -138,6 +139,7 @@
             year: new Date(w.recordDate).getFullYear(),
             week: weekOfYearSince(new Date(w.recordDate)),
             recordDate: new Date(w.recordDate),
+            fDate: formatDate(new Date(w.recordDate).toISOString()),
         }))
         .sort(compareYearWeek);
 
@@ -456,6 +458,12 @@
                 <button on:click={handleClickNext}>▶</button>
             </div>
         </div>
+
+        <div class="bg-amber-500 flex flex-row justify-start">
+            <SiteDatePicker bind:currentSiteId={data.siteDate.siteId} bind:currentSiteDateId={data.siteDate.siteDateId} buttonLeft="!px-2" buttonRight="!px-2" showWeekWithDate={true} />
+            This is temporary
+        </div>
+
         <hr />
         <div class="mt-2">
             {#each data.siteDateObservations as siteDateObservation}
