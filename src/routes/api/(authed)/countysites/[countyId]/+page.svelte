@@ -3,6 +3,7 @@
     import StandardContainer from '$lib/components/StandardContainer.svelte';
     import { formatDate } from '$lib/utils.js';
     import type { County } from '@prisma/client';
+    import { page } from '$app/stores';
     export let data;
 
     function handleSiteSelect(e: any) {
@@ -34,9 +35,9 @@
         <div class="flex flex-row justify-between">
             <div class="flex">
                 <div class="my-auto">All sites in county: {county.name}</div>
-                <button type="button" class="btn"
-                    ><span class="text-success-400">✚</span>&nbsp;Add new site</button
-                >
+                {#if $page.data?.user && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN')}
+                    <button type="button" class="btn"><span class="text-success-400">✚</span>&nbsp;Add new site</button>
+                {/if}
             </div>
             <div>
                 <select class="select" bind:value={countyId} on:change={handleSiteSelect}>
@@ -53,9 +54,7 @@
             <div class="flex flex-wrap gap-2">
                 {#each data.sites as site, i}
                     <a href="/api/sites/{site.siteId}">
-                        <div
-                            class="card relative grid w-56 h-32 p-0 m-0 text-wrap hover:variant-soft"
-                        >
+                        <div class="card relative grid w-56 h-32 p-0 m-0 text-wrap hover:variant-soft">
                             <div class="absolute top-2 left-2">🔍</div>
                             <div class="px-2 pt-2 w-full text-center">
                                 <h3>{site.siteName}</h3>

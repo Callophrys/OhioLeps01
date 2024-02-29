@@ -406,9 +406,7 @@ Character	Numerical Code	Name of Character
 ∅   &varnothing; empty set or null symbol
 
 
-TODO: Deal with created|updated + By|At later
 TODO: Figure out edit history
-TODO: Figure out general auditing
 
 ### 1/15/2024
 

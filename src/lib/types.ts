@@ -87,7 +87,6 @@ export type dateTracking = {
 	siteDateId: number,
 	year: number,
 	week: number,
-	recordDate: Date,
 	fDate: string;
 };
 

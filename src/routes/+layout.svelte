@@ -4,12 +4,12 @@
     import { initializeStores, Modal } from '@skeletonlabs/skeleton';
     import { computePosition, autoUpdate, offset, shift, flip, arrow } from '@floating-ui/dom';
     import { storePopup } from '@skeletonlabs/skeleton';
+    import { enhance } from '$app/forms';
+    import { page } from '$app/stores';
     import Help from '$lib/components/appbar/Help.svelte';
     import Themer from '$lib/components/appbar/Themer.svelte';
     import SiteNavigation from '$lib/components/SiteNavigation.svelte';
     import Fluttering from '$lib/components/appbar/Fluttering.svelte';
-    import { enhance } from '$app/forms';
-    import { page } from '$app/stores';
 
     let config: any = $page.data.config ?? {};
 
@@ -24,6 +24,22 @@
     initializeStores();
 
 </script>
+
+<svelte:head>
+    {#if config.modeDebug}
+	<title>Testing</title>
+	<link rel="icon" href="favicon.png" />
+    {:else}
+	<title>Ohio Lepidopterists</title>
+	<link rel="icon" href="logo_med_transp.gif" />
+    {/if}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description"
+        content="Promoting interest in butterflies, skippers and moths, the Ohio Lepidopterists of Ohio encourage conservation of wildlife, as well as cooperation and understanding among all lepidopterists in appreciation of Lepidoptera.">
+    <meta name="keywords"
+        content="butterflies, skippers, moths, Tiger, Viceroy, Swallowtail, Luna, Buckeye, Metalmark, Monarch, Spangled Fritillary, Spicebush, Satyr, Nymph, Parshall, Wiedmann">
+</svelte:head>
 
 <Modal />
 

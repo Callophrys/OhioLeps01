@@ -6,6 +6,7 @@
     import { page } from '$app/stores';
     import { enhance } from '$app/forms';
     import { isEmpty, camelToFriendly } from '$lib/utils';
+
     export let data;
     export let form;
 </script>
@@ -13,7 +14,7 @@
 <StandardContainer>
     <svelte:fragment slot="standardHead">
         <div class="">
-            {#if ($page.data?.user?.role === 'ADMIN' || $page.data?.user?.role === 'SUPER') && typeof form === 'object' && !isEmpty(form?.data)}
+            {#if ($page.data.user?.role === 'ADMIN' || $page.data.user?.role === 'SUPER') && typeof form === 'object' && !isEmpty(form?.data)}
                 <span>Site X of {data.sites?.length}: {form?.data?.siteName} </span>
                 <button type="submit"> ➜ Next site</button>
 
