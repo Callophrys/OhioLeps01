@@ -189,6 +189,8 @@
             <div class="w-full h-full pl-4 pt-2 animate-pulse variant-filled-surface hover:cursor-wait">Loading...</div>
         {:else if form?.success}
             <div class="w-[calc(100%_-_1em)] h-full">
+
+                <!-- Header-Sort Controls -->
                 <div class="flex h-[4.75em]">
                     <button class="w-28 top-0 px-6 py-3 font-bold text-center variant-outline-surface rounded-tl" name="region" on:click={resultSort}>
                         Region&nbsp;<span class={`${dirIndicator.region} ${dirIntensity.region}`}></span>
@@ -204,6 +206,7 @@
                     </button>
                 </div>
 
+                <!-- Results -->
                 <div class="overflow-y-auto h-[calc(100%_-_120px)] xl:h-[calc(100%_-_96px)]">
                     {#each form.checklists as checklist, i}
                         <div class="flex">
@@ -217,11 +220,15 @@
 
                 <hr />
 
+                <!-- Tallies -->
                 <div class="flex h-12 xl:h-6">
                     <div class="w-28 pl-4">{[...new Set(form.checklists.map((x) => x.region))].length}</div>
                     <div class="w-28 pl-4">{[...new Set(form.checklists.map((x) => x.county))].length}</div>
                     <div class="basis-[calc(45%_-_calc(0.45_*_224px))] pl-4">{[...new Set(form.checklists.map((x) => x.commonName))].length}</div>
-                    <div class="flex-auto">Totals</div>
+                    <div class="basis-[calc(45%_-_calc(0.45_*_224px))] pl-4 flex flex-row justify-between">
+                        <div class="">{[...new Set(form.checklists.map((x) => x.commonName))].length}</div>
+                        <div class="">↤ Totals</div>
+                    </div>
                 </div>
             </div>
         {/if}
