@@ -16,8 +16,8 @@
     storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
 
     const cNavBarClasses = 'w-60';
-    const cSidebarClassesBase = 'variant-filled w-60 h-full top-0 p-4 -left-56 fixed z-10 duration-700';
-    const cSidebarClassesMedium = 'md:bg-surface-500/5 md:text-current md:h-screen md:top-auto md:left-0 md:static';
+    const cSidebarClassesBase = 'variant-filled-surface w-60 h-full top-0 p-4 -left-56 fixed z-10 duration-700';
+    const cSidebarClassesMedium = 'md:bg-surface-100-800-token md:text-current md:h-screen md:top-auto md:left-0 md:static';
     const cSidebarClassesHover = 'hover:translate-x-56 hover:md:translate-x-0';
     const cSidebarClasses = `${cSidebarClassesBase} ${cSidebarClassesMedium} ${cSidebarClassesHover}`;
 
@@ -94,6 +94,9 @@
                     </div>
                 </svelte:fragment>
             </AppBar>
+            <div class="absolute right-14 top-24">Smile time!!!</div>
+        {:else}
+            <div class="absolute right-14 top-2">Smile time!!!</div>
         {/if}
     </svelte:fragment>
 

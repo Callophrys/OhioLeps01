@@ -112,7 +112,8 @@
     */
 
     let isSorting = false;
-    $: resultSort = (e: any) => {
+    function resultSort (e: any) {
+
         if (isSorting) {
             console.log('isSorting...');
             return;
@@ -149,10 +150,11 @@
                 ++i;
             });
 
-            console.log(sortBy);
+            console.log('rev sortBy', sortBy);
 
             sortBy.forEach((s: sortInfo) => {
                 if (form) {
+                    console.log('sort>>>');
                     sortByStringProperty(form.checklists, 'col', s.ascending);
                 }
             });
@@ -161,7 +163,7 @@
         }
 
         isSorting = false;
-    };
+    }
 </script>
 
 <DoubledContainer rightBodyClasses={loading ? 'overflow-hidden pr-4' : 'overflow-hidden'}>

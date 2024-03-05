@@ -13,6 +13,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     import { enhance } from '$app/forms';
     import SitePicker from '$lib/components/datanavigation/SitePicker.svelte';
     import SiteDatePicker from '$lib/components/datanavigation/SiteDatePicker.svelte';
+    import DataOptions from '$lib/components/DataOptions.svelte';
     import { setContext } from 'svelte';
 
     const modalStore = getModalStore();
@@ -111,6 +112,8 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     //console.log(data.siteDateObservation?.confirmed, data.siteDateObservation?.confirmBy?.lastName ?? '<null>');
 </script>
 
+<DataOptions bind:showRecentEdits bind:showDeletedData />
+
 <StandardContainer>
     <svelte:fragment slot="standardBody">
         {#if $page.data.user}
@@ -123,6 +126,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                         <SiteDatePicker currentSiteId={data.siteDateObservation.siteDate.siteId} currentSiteDateId={data.siteDateObservation.siteDateId ?? -1} />
                     </div>
                     <div class="flex flex-row space-x-2 text-sm">
+                        <!--
                         <label class="flex items-center space-x-2" title="Highlight recently added/updated data">
                             <p>Recently updated</p>
                             <input class="checkbox" type="checkbox" bind:checked={showRecentEdits} />
@@ -138,6 +142,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                                 <input class="checkbox" type="checkbox" bind:checked={showDeletedData} />
                             </label>
                         {/if}
+-->
                     </div>
                 </div>
 
