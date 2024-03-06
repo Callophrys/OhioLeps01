@@ -65,8 +65,6 @@
         localStorage.setItem('optAccJ', optAccJ.toString());
     });
 
-    $: foo = optAccB;
-
     function handleRadioGroupClick(event: any) {
         var ooo = document.getElementById('ftoc');
         console.log('was here', ooo?.getAttribute('open'));
@@ -87,7 +85,7 @@
 
     function handleClick(event: any) {
         event.preventDefault();
-        //console.log('/api/sitedates/' + event.currentTarget.value);
+        console.log('/api/sitedates/' + event.currentTarget.value);
         if (event.currentTarget?.value) {
             goto('/api/sitedates/' + event.currentTarget.value);
         }
@@ -170,13 +168,16 @@
                 Record Date: {formatDate(recordDate.toISOString(), 'medium', undefined)}
             </div>
         </h2>
+
         <hr />
+
         <div class="flex flex-row justify-between space-x-2">
             <div>
                 year: {data.siteDate.year}&nbsp;&nbsp;week: {data.siteDate.week}
             </div>
             <div class="text-warning-600 text-wrap my-auto">Per data entry 'year' and 'week' fields</div>
         </div>
+
         <!-- Year and week dropdowns -->
         <div class="flex flex-row space-x-2 pb-2">
             <div>
@@ -192,15 +193,18 @@
             </div>
 
             <div>
-                {#if y}<select class="select w-36" bind:value={w} on:change={handleClick}>
+                {#if y}
+                    <select class="select w-36" bind:value={w} on:change={handleClick}>
                         {#each y.children as dateTrackingItem}
                             <option value={dateTrackingItem.siteDateId}>{dateTrackingItem.week} - {formatDate(dateTrackingItem.recordDate.toISOString())}</option>
                         {/each}
-                    </select>{/if}
+                    </select>
+                {/if}
             </div>
 
             <div class="text-warning-600 text-wrap my-auto">Calculated from 'record date' field</div>
         </div>
+
         <hr />
     </svelte:fragment>
     <svelte:fragment slot="leftBody">

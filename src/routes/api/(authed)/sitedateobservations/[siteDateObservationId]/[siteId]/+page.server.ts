@@ -1,19 +1,21 @@
 import {
 	getSiteDateObservationBySiteDateObservation, createSiteDateObservation,
 	reviewSiteDateObservation, updateSiteDateObservation, deleteSiteDateObservation,
-	nextOrLastSiteDateObservationByCommon, nextOrLastSiteDateObservationByLatin, prevOrFirstSiteDateObservationByLatin
+	nextOrLastSiteDateObservationByCommon, nextOrLastSiteDateObservationByLatin, prevOrFirstSiteDateObservationByLatin,
 } from '$lib/database/sitedateobservations.js';
+import { getChecklistsBySiteDateId } from '$lib/database/checklists.js';
 import { getSites } from '$lib/database/sites.js';
 import { getSiteDates } from '$lib/database/sitedates.js';
 import { isNullOrWhiteSpace } from '$lib/utils.js';
-import type { SiteDateObservationChecklist, SiteCounty, SiteDateYear } from '$lib/types.js';
+import type { SiteDateObservationChecklist, SiteCounty, SiteDateYear, ChecklistScientificName } from '$lib/types.js';
 
 export async function load({ params }) {
 	console.log('.....', params);
-	const [siteDateObservation, sites, siteDates] = await Promise.all([
+	const [siteDateObservation, sites, siteDates,] = await Promise.all([
 		getSiteDateObservationBySiteDateObservation(Number(params.siteDateObservationId)),
 		getSites(null),
-		getSiteDates(Number(params.siteId))
+		getSiteDates(Number(params.siteId)),
+		//getChecklistsBySiteDateId(Number(params.siteDateId))
 	]);
 
 	const jsonO = JSON.stringify(siteDateObservation);

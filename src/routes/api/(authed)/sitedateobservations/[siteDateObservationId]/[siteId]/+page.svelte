@@ -11,9 +11,10 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     import { type ModalSettings } from '@skeletonlabs/skeleton';
     import { page } from '$app/stores';
     import { enhance } from '$app/forms';
+    import DataOptions from '$lib/components/datanavigation/DataOptions.svelte';
     import SitePicker from '$lib/components/datanavigation/SitePicker.svelte';
     import SiteDatePicker from '$lib/components/datanavigation/SiteDatePicker.svelte';
-    import DataOptions from '$lib/components/DataOptions.svelte';
+    import SpeciesPicker from '$lib/components/datanavigation/SpeciesPicker.svelte';
     import { setContext } from 'svelte';
 
     const modalStore = getModalStore();
@@ -110,6 +111,12 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     };
 
     //console.log(data.siteDateObservation?.confirmed, data.siteDateObservation?.confirmBy?.lastName ?? '<null>');
+    let total = data.siteDateObservation.total;
+
+    const handleChange = (e: any) => {
+        total = Array.from(formSave.querySelectorAll('[type=text]')).reduce((t: number, o: any) => t + (isNaN(o.value) ? 0 : Number(o.value)), 0);
+        return true;
+    };
 </script>
 
 <DataOptions bind:showRecentEdits bind:showDeletedData />
@@ -121,28 +128,9 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                 <!-- Header and options -->
                 <div class="flex flex-row justify-between pb-2 text-surface-600-300-token">
                     <div class="flex space-x-2">
-                        <!--div>{data.siteDateObservation.siteDate.site.siteName}</div-->
                         <SitePicker currentSite={data.siteDateObservation.siteDate.site} />
                         <SiteDatePicker currentSiteId={data.siteDateObservation.siteDate.siteId} currentSiteDateId={data.siteDateObservation.siteDateId ?? -1} />
-                    </div>
-                    <div class="flex flex-row space-x-2 text-sm">
-                        <!--
-                        <label class="flex items-center space-x-2" title="Highlight recently added/updated data">
-                            <p>Recently updated</p>
-                            <input class="checkbox" type="checkbox" bind:checked={showRecentEdits} />
-                        </label>
-                        {#if $page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'REVIEWER' || $page.data.user.role === 'ENTRY'}
-                            <label class="flex items-center space-x-2" title="Display deleted data">
-                                <p>Deleted data</p>
-                                <input class="checkbox" type="checkbox" bind:checked={showDeletedData} />
-                            </label>
-                        {:else}
-                            <label class="flex items-center space-x-2" title="Display my deleted data">
-                                <p>My deleted data</p>
-                                <input class="checkbox" type="checkbox" bind:checked={showDeletedData} />
-                            </label>
-                        {/if}
--->
+                        <SpeciesPicker />
                     </div>
                 </div>
 
@@ -290,7 +278,9 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                         <div>Hodges: {data.siteDateObservation.hodges}</div>
                         <!-- TODO: Make Id Code editable -->
                         <div>Id Code: {data.siteDateObservation.idCode}</div>
+                        <div class={`${total !== data.siteDateObservation.total ? 'text-amber-700 dark:text-amber-400' : ''}`}>(Total: {total})</div>
                     </div>
+                    <!-- LOOKAT: https://stackoverflow.com/questions/77420975/svelte-store-calculate-total-value-of-items-in-array-of-objects -->
 
                     <hr />
 
@@ -304,7 +294,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                                     <div class={cDatumClasses}>
                                         <label class={cSectionClasses}>
                                             <span class={cSectionSpanClasses}>{section.label}:</span>
-                                            <input type="text" name={section.name} value={section.value ?? ''} class="w-8 text-center" />
+                                            <input type="text" name={section.name} value={section.value ?? ''} class="w-8 text-center text-black" on:input={handleChange} />
                                             <input type="hidden" name={`${section.name}_orig`} value={section.value ?? ''} />
                                         </label>
                                     </div>

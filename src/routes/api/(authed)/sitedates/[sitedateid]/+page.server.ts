@@ -4,6 +4,7 @@ import { getSiteDateObservationBySiteDate } from '$lib/database/sitedateobservat
 import type { SiteDateYear, SiteDateObservationChecklist, SiteCounty } from '$lib/types.js';
 
 export async function load({ params }) {
+	console.log('sitedates - params', params);
 
 	let siteDateId = Number(params.sitedateid);
 	const [siteDate, sites, siteDates, siteDateObservations] =
@@ -13,8 +14,8 @@ export async function load({ params }) {
 			getSiteDateSiteDates(siteDateId),
 			getSiteDateObservationBySiteDate(siteDateId)
 		]);
-		
-	console.log('sites', sites);
+
+	//console.log('sites', sites);
 
 	const jsonD = JSON.stringify(siteDate);
 	const jsonResultD: SiteDateYear = JSON.parse(jsonD);

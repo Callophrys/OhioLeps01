@@ -5,7 +5,7 @@
     export let showDeletedData = false;
 </script>
 
-<div class="flex flex-row space-x-2 text-sm">
+<div class="flex flex-row space-x-2 text-sm fixed top-[134px] right-10">
     <label class="flex items-center space-x-2" title="Highlight recently added/updated data">
         <p>Recently updated</p>
         <input class="checkbox" type="checkbox" bind:checked={showRecentEdits} />
