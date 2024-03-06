@@ -22,23 +22,20 @@
     const cSidebarClasses = `${cSidebarClassesBase} ${cSidebarClassesMedium} ${cSidebarClassesHover}`;
 
     initializeStores();
-
 </script>
 
 <svelte:head>
     {#if config.modeDebug}
-	<title>Testing</title>
-	<link rel="icon" href="favicon.png" />
+        <title>Testing</title>
+        <link rel="icon" href="favicon.png" />
     {:else}
-	<title>Ohio Lepidopterists</title>
-	<link rel="icon" href="logo_med_transp.gif" />
+        <title>Ohio Lepidopterists</title>
+        <link rel="icon" href="logo_med_transp.gif" />
     {/if}
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description"
-        content="Promoting interest in butterflies, skippers and moths, the Ohio Lepidopterists of Ohio encourage conservation of wildlife, as well as cooperation and understanding among all lepidopterists in appreciation of Lepidoptera.">
-    <meta name="keywords"
-        content="butterflies, skippers, moths, Tiger, Viceroy, Swallowtail, Luna, Buckeye, Metalmark, Monarch, Spangled Fritillary, Spicebush, Satyr, Nymph, Parshall, Wiedmann">
+    <meta name="description" content="Promoting interest in butterflies, skippers and moths, the Ohio Lepidopterists of Ohio encourage conservation of wildlife, as well as cooperation and understanding among all lepidopterists in appreciation of Lepidoptera." />
+    <meta name="keywords" content="butterflies, skippers, moths, Tiger, Viceroy, Swallowtail, Luna, Buckeye, Metalmark, Monarch, Spangled Fritillary, Spicebush, Satyr, Nymph, Parshall, Wiedmann" />
 </svelte:head>
 
 <Modal />
@@ -94,9 +91,6 @@
                     </div>
                 </svelte:fragment>
             </AppBar>
-            <div class="absolute right-14 top-24">Smile time!!!</div>
-        {:else}
-            <div class="absolute right-14 top-2">Smile time!!!</div>
         {/if}
     </svelte:fragment>
 

@@ -20,7 +20,7 @@
 <!-- Counties -->
 <StandardContainer>
     <svelte:fragment slot="standardHead">
-        <div class="bg-red flex flex-row space-x-4 justify-between">
+        <div class="bg-red flex flex-row justify-between">
             <CountySort bind:counties />
             <CountyFilter bind:vButtonGroupClasses />
         </div>

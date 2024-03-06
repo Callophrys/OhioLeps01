@@ -347,4 +347,6 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
             </div>
         {/if}
     </svelte:fragment>
+    <div class="absolute right-14 top-24">Smile time!!!</div>
+    <div class="absolute right-14 top-2">Smile time!!!</div>
 </StandardContainer>
