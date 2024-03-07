@@ -69,6 +69,7 @@
             siteDateId: w.siteDateId,
             year: w.year,
             week: w.recordDate ? weekOfYearSince(new Date(w.recordDate)) : -1,
+            recordDate: new Date(w.recordDate),
             fDate: w.recordDate ? formatDate(new Date(w.recordDate).toISOString()) : '',
         }))
         .sort(compareYearWeek);
@@ -105,12 +106,14 @@
         event: 'focus-click',
         target: 'popupComboboxSiteDateYears',
         placement: 'bottom',
+        closeQuery: '.listbox-item'
     };
 
     const popupSiteDateWeeks: PopupSettings = {
         event: 'focus-click',
         target: 'popupComboboxSiteDateWeeks',
         placement: 'bottom',
+        closeQuery: '.listbox-item'
     };
 
     function handleClick(event: any) {
@@ -146,7 +149,7 @@
     $: classesSuffixWeek = `${cSuffixWeek} ${suffixWeek} ${$$props.class ?? ''}`;
 </script>
 
-<div class="flex flex-col lg:flex-row gap-0 md:gap-1 lg:gap-2">
+<div class="block lg:flex lg:flex-row gap-0 md:gap-1 lg:gap-2">
     {#if $$slots.heading}
         <div class="my-auto">
             <slot name="heading" />

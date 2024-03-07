@@ -5,7 +5,11 @@
     import { getContext } from 'svelte';
     import type { PopupSettings } from '@skeletonlabs/skeleton';
     import type { CssClasses } from '@skeletonlabs/skeleton';
-    import type { ChecklistScientificName } from '$lib/types';
+    import type { SiteDateObservationChecklist } from '$lib/types';
+    
+    export let currentSpecies: SiteDateObservationChecklist;
+    
+    $: currentSpecies = currentSpecies;
 
     // Properties
     /** Show down arrow with year and week labels to indicate dropdown.  Default: true */
@@ -16,9 +20,9 @@
     export let controlBody: CssClasses = '';
     export let buttonLeft: CssClasses = '';
     export let buttonRight: CssClasses = '';
-    export let buttonYear: CssClasses = dropdownPointers ? ($$slots.prefixYear ? 'w-28' : 'w-20') : $$slots.prefixYear ? 'w-24' : 'w-16';
-    export let prefixYear: CssClasses = '';
-    export let suffixYear: CssClasses = dropdownPointers ? "before:content-['↓']" : '';
+    export let buttonSpecies: CssClasses = 'w-32 md:w-44 lg:w-56 xl:w-64 truncate'; // dropdownPointers ? ($$slots.prefixSiteDateObservation ? 'w-28' : 'w-20') : $$slots.prefixSiteDateObservation ? 'w-24' : 'w-16';
+    export let prefixSiteDateObservation: CssClasses = '';
+    export let suffixSiteDateObservation: CssClasses = dropdownPointers ? "before:content-['↓']" : '';
     /** */
     ///export let spacing: CssClasses = 'space-y-1';
 
@@ -30,62 +34,58 @@
     const cControlBody = 'btn-group variant-soft my-auto';
     const cButtonLeft = '';
     const cButtonRight = '';
-    const cButtonYear = '';
-    const cPrefixYear = '';
-    const cSuffixYear = '';
+    const cButtonSpecies = '';
+    const cPrefixSiteDateObservation = '';
+    const cSuffixSiteDateObservation = '';
 
-    const popupSiteDateYears: PopupSettings = {
+    const popupSiteDateObservations: PopupSettings = {
         event: 'focus-click',
-        target: 'popupComboboxSiteDateYears',
+        target: 'popupComboboxSiteDateObservations',
         placement: 'bottom',
+        closeQuery: '.listbox-item'
     };
 
-    function handleClick(event: any) {
-        /*
-        if (event.currentTarget?.value) {
-            goto('/api/sitedates/' + trackedWeeksObject[recordWeek].siteDateId);
+    function handleClick(e: any) {
+        if (e.currentTarget?.value) {
+            goto(`/api/sitedateobservations/${e.currentTarget.value}/${currentSpecies.siteDate.site.siteId}`);
         }
-        */
     }
 
     function handleClickPrior(event: any) {
-        /*
-        let idx = trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteDateId);
+        let idx = siteDateObservations.findIndex((o: SiteDateObservationChecklist) => {o.siteDateObservationId === currentSpecies.siteDateObservationId});
         if (idx > 0) {
-            goto('/api/sitedates/' + trackedWeeks[idx - 1].siteDateId);
+            goto(`/api/sitedateobservations/${siteDateObservations[idx - 1].siteDateObservationId}/${currentSpecies.siteDate.site.siteId}`);
         }
-        */
     }
 
     function handleClickNext(event: any) {
-        /*
-        let idx = trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteDateId);
-        if (idx < trackedWeeks.length - 1) {
-            goto('/api/sitedates/' + trackedWeeks[idx + 1].siteDateId);
+        let idx = siteDateObservations.findIndex((o: SiteDateObservationChecklist) => {o.siteDateObservationId === currentSpecies.siteDateObservationId});
+        console.log('x:', currentSpecies.siteDateObservationId, 'idx:', idx, 'sdo', siteDateObservations);
+        if (idx > -1 && idx < siteDateObservations.length - 1) {
+            goto(`/api/sitedateobservations/${siteDateObservations[idx - 1].siteDateObservationId}/${currentSpecies.siteDate.site.siteId}`);
         }
-        */
     }
 
-    const siteDates: ChecklistScientificName[] = getContext('siteDates') ?? [];
-    const siteDateYears = [...new Set(siteDates.map((x) => x.year))];
+    const siteDateObservations: SiteDateObservationChecklist[] = getContext('siteDateObservations') ?? [];
+    const sdoCommon = [...new Set(siteDateObservations.map((x: SiteDateObservationChecklist) => ({ siteDateObservationId: x.siteDateObservationId, commonName: x.checklist.commonName})))];
+    const sdoLatin = [...new Set(siteDateObservations.map((x: SiteDateObservationChecklist) => ({ siteDateObservationId: x.siteDateObservationId, commonName: x.checklist.scientificName})))];
 
     let nextEnabled: boolean;
     let prevEnabled: boolean;
-
-    let recordSiteDateId: number;
-
-    let recordYear: number;
 
     // Reactive styles
     $: classesControlBody = `${cControlBody} ${controlBody} ${$$props.class ?? ''}`;
     $: classesButtonLeft = `${cButtonLeft} ${buttonLeft} ${$$props.class ?? ''}`;
     $: classesButtonRight = `${cButtonRight} ${buttonRight} ${$$props.class ?? ''}`;
-    $: classesButtonYear = `${cButtonYear} ${buttonYear} ${$$props.class ?? ''}`;
-    $: classesPrefixYear = `${cPrefixYear} ${prefixYear} ${$$props.class ?? ''}`;
-    $: classesSuffixYear = `${cSuffixYear} ${suffixYear} ${$$props.class ?? ''}`;
+    $: classesButtonSpecies = `${cButtonSpecies} ${buttonSpecies} ${$$props.class ?? ''}`;
+    $: classesPrefixSiteDateObservation = `${cPrefixSiteDateObservation} ${prefixSiteDateObservation} ${$$props.class ?? ''}`;
+    $: classesSuffixSiteDateObservation = `${cSuffixSiteDateObservation} ${suffixSiteDateObservation} ${$$props.class ?? ''}`;
+    $: {
+        console.log(currentSpecies);
+    }
 </script>
 
-<div class="flex flex-col lg:flex-row gap-0 md:gap-1 lg:gap-2">
+<div class="block lg:flex lg:flex-row gap-0 md:gap-1 lg:gap-2">
     {#if $$slots.heading}
         <div class="my-auto">
             <slot name="heading" />
@@ -94,19 +94,19 @@
 
     <div class={classesControlBody} aria-labelledby={labelledby}>
         <button type="button" class={classesButtonLeft} on:click={handleClickPrior}>◀</button>
-        <button type="button" class={classesButtonYear} use:popup={popupSiteDateYears}>
-            {#if $$slots.prefixYear}<span class={classesPrefixYear}><slot name="prefixYear" /></span>{/if}
-            <span>{recordYear}</span>
-            <span class={classesSuffixYear} />
+        <button type="button" class={classesButtonSpecies} use:popup={popupSiteDateObservations} title={currentSpecies.checklist.commonName}>
+            {#if $$slots.prefixSiteDateObservation}<span class={classesPrefixSiteDateObservation}><slot name="prefixSiteDateObservation" /></span>{/if}
+            <span class="truncate">{currentSpecies.checklist.commonName}</span>
+            <span class={classesSuffixSiteDateObservation} />
         </button>
         <button type="button" class={classesButtonRight} on:click={handleClickNext}>▶</button>
     </div>
 
-    <div data-popup="popupComboboxSiteDateYears">
+    <div data-popup="popupComboboxSiteDateObservations">
         <div class="card w-48 shadow-xl py-2 overflow-y-auto" style="max-height: calc(100vh - 272px);">
             <ListBox rounded="rounded-none" labelledby="Years for site">
-                {#each siteDateYears as year}
-                    <ListBoxItem group="dogs" name="years" value={year}>{year}</ListBoxItem>
+                {#each sdoCommon as sdo}
+                    <ListBoxItem bind:group={currentSpecies.siteDateObservationId} name="years" value={sdo.siteDateObservationId} on:click={handleClick}>{sdo.commonName}</ListBoxItem>
                 {/each}
             </ListBox>
         </div>

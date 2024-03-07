@@ -14,6 +14,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     import DataOptions from '$lib/components/datanavigation/DataOptions.svelte';
     import SitePicker from '$lib/components/datanavigation/SitePicker.svelte';
     import SiteDatePicker from '$lib/components/datanavigation/SiteDatePicker.svelte';
+    //import type { SiteDateObservationChecklist } from '$lib/types.js';
     import SpeciesPicker from '$lib/components/datanavigation/SpeciesPicker.svelte';
     import { setContext } from 'svelte';
 
@@ -29,6 +30,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 
     setContext('sites', data.sites);
     setContext('siteDates', data.siteDates);
+    setContext('siteDateObservations', data.siteDateObservations);
 
     if (form) console.log('form>>', form);
 
@@ -126,12 +128,11 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
         {#if $page.data.user}
             <div class="pr-4">
                 <!-- Header and options -->
-                <div class="flex flex-row justify-between pb-2 text-surface-600-300-token">
-                    <div class="flex space-x-2">
-                        <SitePicker currentSite={data.siteDateObservation.siteDate.site} />
-                        <SiteDatePicker currentSiteId={data.siteDateObservation.siteDate.siteId} currentSiteDateId={data.siteDateObservation.siteDateId ?? -1} />
-                        <SpeciesPicker />
-                    </div>
+                <!-- TODO: make this flex better for responsive sizings -->
+                <div class="flex flex-col lg:flex-row lg:justify-start gap-1 lg:gap-2 pb-2 text-surface-600-300-token">
+                    <SitePicker currentSite={data.siteDateObservation.siteDate.site} />
+                    <SiteDatePicker currentSiteId={data.siteDateObservation.siteDate.siteId} currentSiteDateId={data.siteDateObservation.siteDateId ?? -1} />
+                    <SpeciesPicker currentSpecies={data.siteDateObservation} />
                 </div>
 
                 <!-- Main controls -->
@@ -239,13 +240,22 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                         {/if}
                     </div>
 
-                    <!-- TODO: Make add/create work -->
-                    <form name="add" method="POST" action="?/addSiteDateObservation" use:enhance bind:this={formAdd}>
-                        <button type="button" class="btn w-36 md:w-40 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2">
-                            Add species
-                            <span class="pl-2 text-green-900 dark:text-green-200 text-2xl">✚</span>
-                        </button>
-                    </form>
+                    <div class="flex flex-row gap-2">
+                        <div>
+                            <button type="button" class="btn w-36 md:w-40 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2">
+                                View all species
+                                <span class="pl-2 text-green-900 dark:text-green-200 text-2xl">🔎</span>
+                            </button>
+                        </div>
+
+                        <!-- TODO: Make add/create work -->
+                        <form name="add" method="POST" action="?/addSiteDateObservation" use:enhance bind:this={formAdd}>
+                            <button type="button" class="btn w-36 md:w-40 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2">
+                                Add species
+                                <span class="pl-2 text-green-900 dark:text-green-200 text-2xl">✚</span>
+                            </button>
+                        </form>
+                    </div>
                 </div>
 
                 <!-- Action messages -->

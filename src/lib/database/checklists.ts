@@ -31,6 +31,38 @@ export async function getChecklists() {
 	return checklists;
 }
 
+export async function getChecklistsBySiteDateObsId(id: number) {
+	const checklists = await prisma.checklist.findMany({
+		select: {
+			siteDateObservations: {
+				where: {
+					siteDateObservationId: id
+				},
+				select: {
+					siteDate: {
+						where: {
+							siteDateId
+						}
+					}
+				}
+			}
+		},
+		orderBy: [
+			{
+				genus: 'asc',
+			},
+			{
+				species: 'asc',
+			},
+			{
+				subspecies: { sort: 'asc', nulls: 'first' }
+			},
+		]
+	});
+
+	return checklists;
+}
+
 export async function getChecklistsBySiteDateId(siteDateId: number) {
 	const checklists = await prisma.checklist.findMany({
 		select: {

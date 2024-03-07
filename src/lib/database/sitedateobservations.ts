@@ -5,9 +5,9 @@ import type { SiteDateObservation } from '@prisma/client';
 export async function getSiteDateObservations(siteDateId: number = 0, checklistId: number = 0, siteId: number = 0) {
     if (siteDateId > 0) {
         if (checklistId > 0) {
-            return await getSiteDateObservationBySiteDateAndChecklist(siteDateId, checklistId);
+            return await getSiteDateObservationsBySiteDateAndChecklist(siteDateId, checklistId);
         } else {
-            return await getSiteDateObservationBySiteDate(siteDateId);
+            return await getSiteDateObservationsBySiteDate(siteDateId);
         }
     } else if (checklistId > 0) {
         return await getSiteDateObservationsByChecklist(checklistId);
@@ -16,7 +16,7 @@ export async function getSiteDateObservations(siteDateId: number = 0, checklistI
     }
 }
 
-export async function getSiteDateObservationBySiteDate(siteDateId: number) {
+export async function getSiteDateObservationsBySiteDate(siteDateId: number) {
     const siteDateObservations = await prisma.siteDateObservation.findMany({
         where: {
             siteDateId: siteDateId,
@@ -45,7 +45,7 @@ export async function getSiteDateObservationsByChecklist(checklistId: number) {
     return siteDateObservations;
 }
 
-export async function getSiteDateObservationBySiteDateAndChecklist(siteDateId: number, checklistId: number) {
+export async function getSiteDateObservationsBySiteDateAndChecklist(siteDateId: number, checklistId: number) {
     const siteDateObservations = await prisma.siteDateObservation.findMany({
         where: {
             siteDateId: siteDateId,
@@ -56,7 +56,7 @@ export async function getSiteDateObservationBySiteDateAndChecklist(siteDateId: n
 }
 
 export async function getSiteDateObservationBySiteDateObservation(siteDateObservationId: number) {
-    const siteDateObservations = await prisma.siteDateObservation.findUnique({
+    const siteDateObservation = await prisma.siteDateObservation.findUnique({
         where: {
             siteDateObservationId: siteDateObservationId,
         },
@@ -72,7 +72,7 @@ export async function getSiteDateObservationBySiteDateObservation(siteDateObserv
             }
         },
     });
-    return siteDateObservations;
+    return siteDateObservation;
 }
 
 export async function getSiteDateObservationsAll(siteId: number) {

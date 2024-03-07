@@ -17,6 +17,7 @@
         event: 'focus-click',
         target: 'popupSites',
         placement: 'bottom',
+        closeQuery: '.listbox-item'
     };
 
     function siteSelect(e: any) {
@@ -40,7 +41,7 @@
 </button>
 -->
 <!-- TODO: add help tooltip to show this is filtered and maybe an option of all and/or unfiltered -->
-<div class="flex flex-col lg:flex-row gap-0 md:gap-1 lg:gap-2">
+<div class="block lg:flex lg:flex-row gap-0 md:gap-1 lg:gap-2">
     {#if $$slots.heading}
         <div class="my-auto">
             <slot name="heading" />
@@ -48,8 +49,8 @@
     {/if}
     <div class="btn-group variant-soft my-auto">
         <button class="!px-2">◀</button>
-        <button class="w-54" use:popup={popupSites}>
-            <span class="h-full text-nowrap overflow-hidden text-ellipsis">
+        <button class="w-32 md:w-44 lg:w-56 xl:w-64" use:popup={popupSites} title={currentSite.siteName}>
+            <span class="h-full truncate">
                 {currentSite.siteName}
             </span>
             <span>↓</span>

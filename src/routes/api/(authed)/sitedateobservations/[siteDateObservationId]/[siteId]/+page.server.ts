@@ -1,21 +1,20 @@
 import {
-	getSiteDateObservationBySiteDateObservation, createSiteDateObservation,
+	getSiteDateObservationBySiteDateObservation, getSiteDateObservationsBySiteDate,
 	reviewSiteDateObservation, updateSiteDateObservation, deleteSiteDateObservation,
 	nextOrLastSiteDateObservationByCommon, nextOrLastSiteDateObservationByLatin, prevOrFirstSiteDateObservationByLatin,
 } from '$lib/database/sitedateobservations.js';
-import { getChecklistsBySiteDateId } from '$lib/database/checklists.js';
 import { getSites } from '$lib/database/sites.js';
 import { getSiteDates } from '$lib/database/sitedates.js';
 import { isNullOrWhiteSpace } from '$lib/utils.js';
 import type { SiteDateObservationChecklist, SiteCounty, SiteDateYear, ChecklistScientificName } from '$lib/types.js';
 
+// params: siteDateObservationId and siteId
 export async function load({ params }) {
 	console.log('.....', params);
 	const [siteDateObservation, sites, siteDates,] = await Promise.all([
 		getSiteDateObservationBySiteDateObservation(Number(params.siteDateObservationId)),
 		getSites(null),
-		getSiteDates(Number(params.siteId)),
-		//getChecklistsBySiteDateId(Number(params.siteDateId))
+		getSiteDates(Number(params.siteId))
 	]);
 
 	const jsonO = JSON.stringify(siteDateObservation);
@@ -27,7 +26,29 @@ export async function load({ params }) {
 	const jsonD = JSON.stringify(siteDates);
 	const jsonResultD: SiteDateYear[] = JSON.parse(jsonD);
 
-	return { siteDateObservation: jsonResultO, sites: jsonResultS, siteDates: jsonResultD }
+	if (siteDateObservation?.siteDateId) {
+
+		const siteDateObservations = await getSiteDateObservationsBySiteDate(siteDateObservation?.siteDateId);
+		const jsonC = JSON.stringify(siteDateObservations);
+		const jsonResultC: SiteDateObservationChecklist[] = JSON.parse(jsonC);
+		
+		console.log('sdo > ', siteDateObservation);
+		//console.log('sdo > ', siteDateObservations);
+
+		return {
+			siteDateObservation: jsonResultO,
+			sites: jsonResultS,
+			siteDates: jsonResultD,
+			siteDateObservations: jsonResultC
+		}
+	}
+
+	return {
+		siteDateObservation: jsonResultO,
+		sites: jsonResultS,
+		siteDates: jsonResultD,
+		siteDateObservations: []
+	}
 }
 
 export const actions = {

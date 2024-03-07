@@ -1,6 +1,6 @@
 import { getSites } from '$lib/database/sites.js';
 import { getSiteDate, getSiteDateSiteDates } from '$lib/database/sitedates'
-import { getSiteDateObservationBySiteDate } from '$lib/database/sitedateobservations.js';
+import { getSiteDateObservationsBySiteDate } from '$lib/database/sitedateobservations.js';
 import type { SiteDateYear, SiteDateObservationChecklist, SiteCounty } from '$lib/types.js';
 
 export async function load({ params }) {
@@ -12,7 +12,7 @@ export async function load({ params }) {
 			getSiteDate(siteDateId),
 			getSites(null),
 			getSiteDateSiteDates(siteDateId),
-			getSiteDateObservationBySiteDate(siteDateId)
+			getSiteDateObservationsBySiteDate(siteDateId)
 		]);
 
 	//console.log('sites', sites);
