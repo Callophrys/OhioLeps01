@@ -48,6 +48,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     //console.log(data);
     let key = modeDebug ? `(int. id: ${data.siteDateObservation.siteDateObservationId.toString()}) ` : '';
     let isEditing = false;
+    let isAdding = false;
 
     let showRecentEdits = true;
     let showDeletedData = false;
@@ -250,9 +251,10 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 
                         <!-- TODO: Make add/create work -->
                         <form name="add" method="POST" action="?/addSiteDateObservation" use:enhance bind:this={formAdd}>
-                            <button type="button" class="btn w-36 md:w-40 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2">
-                                Add species
-                                <span class="pl-2 text-green-900 dark:text-green-200 text-2xl">✚</span>
+                            <button type="button" class="btn w-36 md:w-40 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" on:click={() => (isAdding = !isAdding)}>
+                                <input class="checkbox" type="checkbox" checked={isAdding} />
+                                <span>Add species</span>
+                                <span class="text-green-900 dark:text-green-200 text-2xl before:content-['✚']" />
                             </button>
                         </form>
                     </div>

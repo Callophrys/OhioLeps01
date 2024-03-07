@@ -7,10 +7,11 @@ import { getSites } from '$lib/database/sites.js';
 import { getSiteDates } from '$lib/database/sitedates.js';
 import { isNullOrWhiteSpace } from '$lib/utils.js';
 import type { SiteDateObservationChecklist, SiteCounty, SiteDateYear, ChecklistScientificName } from '$lib/types.js';
+import type { Actions } from '@sveltejs/kit';
 
 // params: siteDateObservationId and siteId
 export async function load({ params }) {
-	console.log('.....', params);
+	//console.log('.....', params);
 	const [siteDateObservation, sites, siteDates,] = await Promise.all([
 		getSiteDateObservationBySiteDateObservation(Number(params.siteDateObservationId)),
 		getSites(null),
@@ -31,9 +32,9 @@ export async function load({ params }) {
 		const siteDateObservations = await getSiteDateObservationsBySiteDate(siteDateObservation?.siteDateId);
 		const jsonC = JSON.stringify(siteDateObservations);
 		const jsonResultC: SiteDateObservationChecklist[] = JSON.parse(jsonC);
-		
-		console.log('sdo > ', siteDateObservation);
-		//console.log('sdo > ', siteDateObservations);
+
+		//console.log('sdo > ', siteDateObservation);
+		//console.log('sdoS > ', siteDateObservations);
 
 		return {
 			siteDateObservation: jsonResultO,
@@ -51,7 +52,7 @@ export async function load({ params }) {
 	}
 }
 
-export const actions = {
+export const actions: Actions = {
 	saveSiteDateObservation: async ({ request, locals }) => {
 		//console.log('aaa');
 		const formData: any = await request.formData();

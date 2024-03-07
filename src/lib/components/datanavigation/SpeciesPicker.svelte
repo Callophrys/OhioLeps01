@@ -6,14 +6,28 @@
     import type { PopupSettings } from '@skeletonlabs/skeleton';
     import type { CssClasses } from '@skeletonlabs/skeleton';
     import type { SiteDateObservationChecklist } from '$lib/types';
+    import { sortByStringProperty } from '$lib/utils';
     
+    /** SiteDateObservationChecklist object for current data */
     export let currentSpecies: SiteDateObservationChecklist;
-    
-    $: currentSpecies = currentSpecies;
 
-    // Properties
     /** Show down arrow with year and week labels to indicate dropdown.  Default: true */
     export let dropdownPointers: boolean = true;
+
+    const siteDateObservations: SiteDateObservationChecklist[] = getContext('siteDateObservations') ?? [];
+    
+    // Properties
+    const sdoCommon = [...new Set(siteDateObservations.map((x: SiteDateObservationChecklist) => ({
+        siteDateObservationId: x.siteDateObservationId, name: x.checklist.commonName
+    })))];
+    sortByStringProperty(sdoCommon, 'name', true);
+
+    const sdoLatin = [...new Set(siteDateObservations.map((x: SiteDateObservationChecklist) => ({ siteDateObservationId: x.siteDateObservationId, name: x.checklist.scientificName})))];
+    sortByStringProperty(sdoLatin, 'name', true);
+
+    // Nav control enable/disable configs
+    let enabledNext: boolean;
+    let enabledPrev: boolean;
 
     // Properties (styles)
     /** */
@@ -52,26 +66,19 @@
     }
 
     function handleClickPrior(event: any) {
-        let idx = siteDateObservations.findIndex((o: SiteDateObservationChecklist) => {o.siteDateObservationId === currentSpecies.siteDateObservationId});
+        let idx = sdoCommon.findIndex(o => o.siteDateObservationId === currentSpecies.siteDateObservationId);
         if (idx > 0) {
-            goto(`/api/sitedateobservations/${siteDateObservations[idx - 1].siteDateObservationId}/${currentSpecies.siteDate.site.siteId}`);
+            goto(`/api/sitedateobservations/${sdoCommon[idx - 1].siteDateObservationId}/${currentSpecies.siteDate.site.siteId}`);
         }
     }
 
     function handleClickNext(event: any) {
-        let idx = siteDateObservations.findIndex((o: SiteDateObservationChecklist) => {o.siteDateObservationId === currentSpecies.siteDateObservationId});
-        console.log('x:', currentSpecies.siteDateObservationId, 'idx:', idx, 'sdo', siteDateObservations);
-        if (idx > -1 && idx < siteDateObservations.length - 1) {
-            goto(`/api/sitedateobservations/${siteDateObservations[idx - 1].siteDateObservationId}/${currentSpecies.siteDate.site.siteId}`);
+        let idx = sdoCommon.findIndex(o => o.siteDateObservationId === currentSpecies.siteDateObservationId);
+        //console.log('x:', currentSpecies.siteDateObservationId, 'idx:', idx, 'sdo', sdoCommon);
+        if (idx > -1 && idx < sdoCommon.length - 1) {
+            goto(`/api/sitedateobservations/${sdoCommon[idx + 1].siteDateObservationId}/${currentSpecies.siteDate.site.siteId}`);
         }
     }
-
-    const siteDateObservations: SiteDateObservationChecklist[] = getContext('siteDateObservations') ?? [];
-    const sdoCommon = [...new Set(siteDateObservations.map((x: SiteDateObservationChecklist) => ({ siteDateObservationId: x.siteDateObservationId, commonName: x.checklist.commonName})))];
-    const sdoLatin = [...new Set(siteDateObservations.map((x: SiteDateObservationChecklist) => ({ siteDateObservationId: x.siteDateObservationId, commonName: x.checklist.scientificName})))];
-
-    let nextEnabled: boolean;
-    let prevEnabled: boolean;
 
     // Reactive styles
     $: classesControlBody = `${cControlBody} ${controlBody} ${$$props.class ?? ''}`;
@@ -80,9 +87,20 @@
     $: classesButtonSpecies = `${cButtonSpecies} ${buttonSpecies} ${$$props.class ?? ''}`;
     $: classesPrefixSiteDateObservation = `${cPrefixSiteDateObservation} ${prefixSiteDateObservation} ${$$props.class ?? ''}`;
     $: classesSuffixSiteDateObservation = `${cSuffixSiteDateObservation} ${suffixSiteDateObservation} ${$$props.class ?? ''}`;
+
+    // reactive for data - don't think this is needed for anything anymore
+    // Does this actually obviated the need for onMount?
+    $: currentSpecies = currentSpecies;
+
+    // reactive for nav controls - is one time so could just be onMount
     $: {
-        console.log(currentSpecies);
+        let currentIndex = sdoCommon.findIndex(o => o.siteDateObservationId === currentSpecies.siteDateObservationId);
+        enabledNext = currentIndex > -1 && currentIndex < sdoCommon.length - 1;
+        enabledPrev = currentIndex > 0;
+
+        //console.log(currentSpecies);
     }
+
 </script>
 
 <div class="block lg:flex lg:flex-row gap-0 md:gap-1 lg:gap-2">
@@ -93,20 +111,31 @@
     {/if}
 
     <div class={classesControlBody} aria-labelledby={labelledby}>
-        <button type="button" class={classesButtonLeft} on:click={handleClickPrior}>◀</button>
-        <button type="button" class={classesButtonSpecies} use:popup={popupSiteDateObservations} title={currentSpecies.checklist.commonName}>
+        <button type="button" class={classesButtonLeft} on:click={handleClickPrior} disabled={enabledPrev ? '' : 'disabled'}>◀</button>
+        <button type="button" class={classesButtonSpecies}
+            use:popup={popupSiteDateObservations}
+            title={currentSpecies.checklist.commonName}
+            on:keydown={(e) => {
+                if (e.code === DOM_VK_DOWN || e.code === DOM_VK_RETURN) {
+                    return handleClickNext(e);
+                } else if (e.code === DOM_VK_UP) {
+                    return handleClickPrior(e);
+                } else {
+                    return true;
+                }
+            }}>
             {#if $$slots.prefixSiteDateObservation}<span class={classesPrefixSiteDateObservation}><slot name="prefixSiteDateObservation" /></span>{/if}
             <span class="truncate">{currentSpecies.checklist.commonName}</span>
             <span class={classesSuffixSiteDateObservation} />
         </button>
-        <button type="button" class={classesButtonRight} on:click={handleClickNext}>▶</button>
+        <button type="button" class={classesButtonRight} on:click={handleClickNext} disabled={enabledNext ? '' : 'disabled'}>▶</button>
     </div>
 
     <div data-popup="popupComboboxSiteDateObservations">
         <div class="card w-48 shadow-xl py-2 overflow-y-auto" style="max-height: calc(100vh - 272px);">
             <ListBox rounded="rounded-none" labelledby="Years for site">
                 {#each sdoCommon as sdo}
-                    <ListBoxItem bind:group={currentSpecies.siteDateObservationId} name="years" value={sdo.siteDateObservationId} on:click={handleClick}>{sdo.commonName}</ListBoxItem>
+                    <ListBoxItem bind:group={currentSpecies.siteDateObservationId} name="years" value={sdo.siteDateObservationId} on:click={handleClick}>{sdo.name}</ListBoxItem>
                 {/each}
             </ListBox>
         </div>
