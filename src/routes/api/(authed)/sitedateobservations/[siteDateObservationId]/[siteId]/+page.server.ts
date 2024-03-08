@@ -8,14 +8,24 @@ import { getSiteDates } from '$lib/database/sitedates.js';
 import { isNullOrWhiteSpace } from '$lib/utils.js';
 import type { SiteDateObservationChecklist, SiteCounty, SiteDateYear, ChecklistScientificName } from '$lib/types.js';
 import type { Actions } from '@sveltejs/kit';
+import { getChecklistsBySiteId, getChecklists } from '$lib/database/checklists.js';
 
 // params: siteDateObservationId and siteId
 export async function load({ params }) {
 	//console.log('.....', params);
+
+	let siteId = Number(params.siteId);
+	
+	// need 3 lists of checklists
+	// 1. all seen by this current siteDateObs
+	// 2. all seen by the site of this siteDateObs
+	// 3. all possible
+	
+	// Get current siteDateObs, list of sites, and list of siteDates
 	const [siteDateObservation, sites, siteDates,] = await Promise.all([
 		getSiteDateObservationBySiteDateObservation(Number(params.siteDateObservationId)),
 		getSites(null),
-		getSiteDates(Number(params.siteId))
+		getSiteDates(siteId)
 	]);
 
 	const jsonO = JSON.stringify(siteDateObservation);
@@ -29,9 +39,23 @@ export async function load({ params }) {
 
 	if (siteDateObservation?.siteDateId) {
 
-		const siteDateObservations = await getSiteDateObservationsBySiteDate(siteDateObservation?.siteDateId);
+		const [siteDateObservations, checklistsForSite, checklistsAll,] = await Promise.all([
+			getSiteDateObservationsBySiteDate(siteDateObservation?.siteDateId),
+			getChecklistsBySiteId(siteId),
+			getChecklists()
+		]);
+
+		// 1. SiteDateObservations by current siteDate - this gets all checklist species for this siteDate
 		const jsonC = JSON.stringify(siteDateObservations);
 		const jsonResultC: SiteDateObservationChecklist[] = JSON.parse(jsonC);
+		
+		// 2. All checklists for site overall
+		const jsonT = JSON.stringify(checklistsForSite);
+		const jsonResultT: SiteDateObservationChecklist[] = JSON.parse(jsonT);
+
+		// 3. All checklist items
+		const jsonA = JSON.stringify(checklistsAll);
+		const jsonResultA: SiteDateObservationChecklist[] = JSON.parse(jsonA);
 
 		//console.log('sdo > ', siteDateObservation);
 		//console.log('sdoS > ', siteDateObservations);
@@ -40,7 +64,9 @@ export async function load({ params }) {
 			siteDateObservation: jsonResultO,
 			sites: jsonResultS,
 			siteDates: jsonResultD,
-			siteDateObservations: jsonResultC
+			checklistsSiteDateObs: jsonResultC,
+			checklistsSite: jsonResultT,
+			checklistsAll: jsonResultA
 		}
 	}
 
@@ -48,7 +74,9 @@ export async function load({ params }) {
 		siteDateObservation: jsonResultO,
 		sites: jsonResultS,
 		siteDates: jsonResultD,
-		siteDateObservations: []
+		checklistsSiteDateObs: [],
+		checklistsSite: [],
+		checklistsAll: []
 	}
 }
 

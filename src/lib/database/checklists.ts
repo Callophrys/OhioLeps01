@@ -2,6 +2,7 @@ import prisma from '$lib/prisma'
 import { isDate } from 'util/types';
 import type { SpeciesSearchParams, CountySpecimen } from '$lib/types';
 import { getCountySpecimens } from './counties';
+import type { Checklist } from '@prisma/client';
 
 export async function getChecklist(checklistId: number) {
 	const checklist = await prisma.checklist.findUnique({
@@ -39,11 +40,7 @@ export async function getChecklistsBySiteDateObsId(id: number) {
 					siteDateObservationId: id
 				},
 				select: {
-					siteDate: {
-						where: {
-							siteDateId
-						}
-					}
+					siteDate: true
 				}
 			}
 		},
@@ -91,33 +88,35 @@ export async function getChecklistsBySiteDateId(siteDateId: number) {
 	return checklists;
 }
 
-/* TODO: Assure this returns a distinct set */
-export async function getChecklistsBySiteId(siteId: number) {
-	const checklists = await prisma.checklist.findMany({
-		select: {
-			siteDateObservations: {
-				select: {
-					siteDate: {
-						where: {
-							siteId: siteId
-						}
-					},
-				},
-			}
-		},
-		orderBy: [
-			{
-				genus: 'asc',
-			},
-			{
-				species: 'asc',
-			},
-			{
-				subspecies: { sort: 'asc', nulls: 'first' }
-			},
-		]
-	});
-
+export async function getChecklistsBySiteId(siteId: number): Promise<Checklist[]> {
+	const checklists: Checklist[] = await prisma.$queryRaw<Checklist[]>`
+		select checklistId
+		, hodges
+		, genus
+		, species
+		, subspecies
+		, commonName
+		, \`show\`
+		, kind
+		, revised
+		, author
+		, year
+		, referenceCount
+		, countyCount
+		, endangered
+		, synonym
+		, family
+		, gCKey
+		, grp
+		, tmp_SitesReporting
+		, tmp_TotalCount
+		, tmp_HighCount
+		, taxonId
+		from checklist where checklistid in (
+			select o.checklistid
+			from sitedate d
+			inner join sitedateobservation o on o.siteDateId = d.siteDateId
+			where d.siteId = ${siteId})`;
 	return checklists;
 }
 

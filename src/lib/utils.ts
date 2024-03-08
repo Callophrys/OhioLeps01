@@ -141,5 +141,8 @@ export function toBool(value: any) {
     }
 }
 
-
+export const setDifferenceByProp = (a: any, b: any, prop: string) => new Set([...a].filter(x => !b.some((z: any) => z[prop] === x[prop])));
+export const setDifference = (a: any, b: any) => new Set([...a].filter(x => !b.has(x)));
+export const setIntersection = (a: any, b: any) => new Set([...a].filter(x => b.has(x)));
+export const setUnion = (a: any, b: any) => new Set([...a, ...b]);
 

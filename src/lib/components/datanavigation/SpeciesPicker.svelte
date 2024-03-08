@@ -6,7 +6,7 @@
     import type { PopupSettings } from '@skeletonlabs/skeleton';
     import type { CssClasses } from '@skeletonlabs/skeleton';
     import type { SiteDateObservationChecklist } from '$lib/types';
-    import { sortByStringProperty } from '$lib/utils';
+    import { sortByStringProperty, setDifferenceByProp } from '$lib/utils';
     
     /** SiteDateObservationChecklist object for current data */
     export let currentSpecies: SiteDateObservationChecklist;
@@ -14,15 +14,35 @@
     /** Show down arrow with year and week labels to indicate dropdown.  Default: true */
     export let dropdownPointers: boolean = true;
 
-    const siteDateObservations: SiteDateObservationChecklist[] = getContext('siteDateObservations') ?? [];
-    
-    // Properties
-    const sdoCommon = [...new Set(siteDateObservations.map((x: SiteDateObservationChecklist) => ({
-        siteDateObservationId: x.siteDateObservationId, name: x.checklist.commonName
+    const checklistsSiteDateObs: SiteDateObservationChecklist[] = getContext('checklistsSiteDateObs') ?? [];
+    const checklistsSite: any[] = getContext('checklistsSite') ?? [];
+    const checklistsAll: any[] = getContext('checklistsAll') ?? [];
+
+    const sdoA = [...new Set(checklistsSiteDateObs.map((x: SiteDateObservationChecklist) => ({
+        checklistId: x.checklistId, name: x.checklist.commonName
     })))];
+    const sdoB = [...new Set(checklistsSite.map((x: any) => ({
+        checklistId: x.checklistId, name: x.commonName
+    })))];
+    const sdoC = [...new Set(checklistsAll.map((x: any) => ({
+        checklistId: x.checklistId, name: x.commonName
+    })))];
+    
+    console.log('sdoA >>', sdoA);
+    console.log('sdoB >>', sdoB);
+    console.log('sdoC >>', sdoC);
+
+    const availableSeenBefore = setDifferenceByProp(sdoB, sdoA, 'checklistId');
+    const availableAllOthers = setDifferenceByProp(sdoC, sdoB, 'checklistId');
+
+    console.log('availableSeenBefore >>', availableSeenBefore);
+    console.log('availableAllOthers >>', availableAllOthers);
+
+    // Properties
+    const sdoCommon = [...new Set(checklistsSiteDateObs.map((x: SiteDateObservationChecklist) => ({ siteDateObservationId: x.siteDateObservationId, name: x.checklist.commonName })))];
     sortByStringProperty(sdoCommon, 'name', true);
 
-    const sdoLatin = [...new Set(siteDateObservations.map((x: SiteDateObservationChecklist) => ({ siteDateObservationId: x.siteDateObservationId, name: x.checklist.scientificName})))];
+    const sdoLatin = [...new Set(checklistsSiteDateObs.map((x: SiteDateObservationChecklist) => ({ siteDateObservationId: x.siteDateObservationId, name: x.checklist.scientificName})))];
     sortByStringProperty(sdoLatin, 'name', true);
 
     // Nav control enable/disable configs
@@ -116,9 +136,9 @@
             use:popup={popupSiteDateObservations}
             title={currentSpecies.checklist.commonName}
             on:keydown={(e) => {
-                if (e.code === DOM_VK_DOWN || e.code === DOM_VK_RETURN) {
+                if (e.key === 'ArrowDown' || e.key === 'Enter') {
                     return handleClickNext(e);
-                } else if (e.code === DOM_VK_UP) {
+                } else if (e.key === 'ArrowUp') {
                     return handleClickPrior(e);
                 } else {
                     return true;

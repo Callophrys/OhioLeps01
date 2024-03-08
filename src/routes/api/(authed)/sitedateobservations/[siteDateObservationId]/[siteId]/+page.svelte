@@ -2,6 +2,10 @@
 TODO: https://dev.to/theether0/sveltekit-changes-form-actions-and-progressive-enhancement-31h9
 TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  - see ActionData and keeping form data
 
+var x = new Set(["a","b","c","t"]);
+var y = new Set(["d","a","t","e","g"]);
+var z = y.difference(x) // [ "d", "e", "g" ]
+
 -->
 <script lang="ts">
     import { formatDate, isNullOrWhiteSpace, roleNameLong } from '$lib/utils';
@@ -17,6 +21,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     //import type { SiteDateObservationChecklist } from '$lib/types.js';
     import SpeciesPicker from '$lib/components/datanavigation/SpeciesPicker.svelte';
     import { setContext } from 'svelte';
+    import { onMount } from 'svelte';
 
     const modalStore = getModalStore();
 
@@ -30,15 +35,17 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 
     setContext('sites', data.sites);
     setContext('siteDates', data.siteDates);
-    setContext('siteDateObservations', data.siteDateObservations);
+    setContext('checklistsSiteDateObs', data.checklistsSiteDateObs);
+    setContext('checklistsSite', data.checklistsSite);
+    setContext('checklistsAll', data.checklistsAll);
 
     if (form) console.log('form>>', form);
 
-    export let formSave: HTMLFormElement;
-    export let formUndo: HTMLFormElement;
-    export let formReview: HTMLFormElement;
-    export let formDelete: HTMLFormElement;
-    export let formAdd: HTMLFormElement;
+    let formAdd: HTMLFormElement;
+    let formEdit: HTMLFormElement;
+    let formReview: HTMLFormElement;
+    let formDelete: HTMLFormElement;
+    let formUndo: HTMLFormElement;
 
     const foo = Object.entries(data.siteDateObservation)
         .filter((x) => x[0].startsWith('section'))
@@ -46,7 +53,6 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     //console.log(foo);
 
     //console.log(data);
-    let key = modeDebug ? `(int. id: ${data.siteDateObservation.siteDateObservationId.toString()}) ` : '';
     let isEditing = false;
     let isAdding = false;
 
@@ -113,13 +119,26 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
         },
     };
 
-    //console.log(data.siteDateObservation?.confirmed, data.siteDateObservation?.confirmBy?.lastName ?? '<null>');
-    let total = data.siteDateObservation.total;
-
-    const handleChange = (e: any) => {
-        total = Array.from(formSave.querySelectorAll('[type=text]')).reduce((t: number, o: any) => t + (isNaN(o.value) ? 0 : Number(o.value)), 0);
+    const handleChange = () => {
+        total = getTotal();
         return true;
     };
+
+    const clearCounts = () => {
+        return Array.from(formAdd.querySelectorAll('[type=text]')).forEach((c: any) => c.value = '');
+    }
+
+    const sumCounts = (frm: Element) => {
+        return Array.from(frm.querySelectorAll('[type=text]')).reduce((t: number, o: any) => t + (isNaN(o.value) ? 0 : Number(o.value)), 0);
+    }
+
+    const getTotal = () => {
+        return isAdding ? sumCounts(formAdd) : (isEditing ? sumCounts(formEdit) : data.siteDateObservation.total);
+    }
+
+    $: total = getTotal();
+    //$: currentSidteDateObservation = data.siteDateObservation;
+
 </script>
 
 <DataOptions bind:showRecentEdits bind:showDeletedData />
@@ -153,7 +172,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                                     </button>
                                 {/if}
                             {:else}
-                                <button type="button" class="btn w-20 md:w-24 h-8 sm:h-10 md:h-11 variant-soft-success pb-2" on:click={() => formSave.submit()}>
+                                <button type="button" class="btn w-20 md:w-24 h-8 sm:h-10 md:h-11 variant-soft-success pb-2" on:click={() => formEdit.submit()}>
                                     Save
                                     <span class="pl-2">✔</span>
                                 </button>
@@ -243,20 +262,18 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 
                     <div class="flex flex-row gap-2">
                         <div>
-                            <button type="button" class="btn w-36 md:w-40 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2">
+                            <button type="button" class="btn w-44 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2">
                                 View all species
                                 <span class="pl-2 text-green-900 dark:text-green-200 text-2xl">🔎</span>
                             </button>
                         </div>
 
                         <!-- TODO: Make add/create work -->
-                        <form name="add" method="POST" action="?/addSiteDateObservation" use:enhance bind:this={formAdd}>
-                            <button type="button" class="btn w-36 md:w-40 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" on:click={() => (isAdding = !isAdding)}>
-                                <input class="checkbox" type="checkbox" checked={isAdding} />
-                                <span>Add species</span>
-                                <span class="text-green-900 dark:text-green-200 text-2xl before:content-['✚']" />
-                            </button>
-                        </form>
+                        <button type="button" class="btn w-44 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" on:click={() => isAdding = !isAdding}>
+                            <input class="checkbox" type="checkbox" checked={isAdding} />
+                            <span>Add species</span>
+                            <span class="text-green-900 dark:text-green-200 text-2xl before:content-['✚']" />
+                        </button>
                     </div>
                 </div>
 
@@ -287,10 +304,17 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                         </div>
                     </div>
                     <div class="flex flex-row space-x-4">
-                        <div>Hodges: {data.siteDateObservation.hodges}</div>
-                        <!-- TODO: Make Id Code editable -->
-                        <div>Id Code: {data.siteDateObservation.idCode}</div>
-                        <div class={`${total !== data.siteDateObservation.total ? 'text-amber-700 dark:text-amber-400' : ''}`}>(Total: {total})</div>
+                        {#if isAdding}
+                            <!-- TODO: Update on some kind of selector -->
+                            <div class="w-32">Hodges: </div>
+                            <!-- TODO: Make Id Code editable -->
+                            <div class="w-24">Id Code: </div>
+                            <div class="w-28 text-amber-700 dark:text-amber-400">(Total: {total})</div>
+                        {:else}
+                            <div class="w-32">Hodges: {data.siteDateObservation.hodges}</div>
+                            <div class="w-24">Id Code: {data.siteDateObservation.idCode}</div>
+                            <div class={`w-28 ${total !== data.siteDateObservation.total ? 'text-amber-700 dark:text-amber-400' : ''}`}>(Total: {total})</div>
+                        {/if}
                     </div>
                     <!-- LOOKAT: https://stackoverflow.com/questions/77420975/svelte-store-calculate-total-value-of-items-in-array-of-objects -->
 
@@ -299,15 +323,28 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                     <!-- DATA Details -->
                     {#if isEditing}
                         <!-- TODO: Indicate when data has changed -->
-                        <form name="save" method="POST" action="?/saveSiteDateObservation" use:enhance bind:this={formSave}>
+                        <form name="edit" method="POST" action="?/saveSiteDateObservation" use:enhance bind:this={formEdit}>
                             <input type="hidden" name="siteDateObservationId" value={data.siteDateObservation.siteDateObservationId} />
                             <div class={cDataClasses}>
                                 {#each foo as section}
                                     <div class={cDatumClasses}>
                                         <label class={cSectionClasses}>
                                             <span class={cSectionSpanClasses}>{section.label}:</span>
-                                            <input type="text" name={section.name} value={section.value ?? ''} class="w-8 text-center text-black" on:input={handleChange} />
+                                            <input type="text" name={section.name} value={section.value ?? ''} class="w-8 text-center text-black" on:input={() => total = getTotal()} />
                                             <input type="hidden" name={`${section.name}_orig`} value={section.value ?? ''} />
+                                        </label>
+                                    </div>
+                                {/each}
+                            </div>
+                        </form>
+                    {:else if isAdding}
+                        <form name="add" method="POST" action="?/addSiteDateObservation" use:enhance bind:this={formAdd}>
+                            <div class={cDataClasses}>
+                                {#each foo as section}
+                                    <div class={cDatumClasses}>
+                                        <label class={cSectionClasses}>
+                                            <span class={cSectionSpanClasses}>{section.label}:</span>
+                                            <input type="text" name={section.name} class="w-8 text-center text-black" on:input={handleChange} />
                                         </label>
                                     </div>
                                 {/each}
@@ -332,16 +369,16 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                     <!-- AUDIT Summary -->
                     <div class="flex flex-row flex-wrap justify-between">
                         <div class="flex flex-col basis-60">
-                            <div>Created At: {data.siteDateObservation.createdAt ? formatDate(new Date(data.siteDateObservation.createdAt).toISOString(), 'short', 'short') : ''}</div>
-                            <div class="">Created By: {data.siteDateObservation.createdBy?.lastFirst ?? ''}</div>
+                            <div>Created At: {!isAdding && data.siteDateObservation.createdAt ? formatDate(new Date(data.siteDateObservation.createdAt).toISOString(), 'short', 'short') : ''}</div>
+                            <div class="">Created By: {!isAdding ? (data.siteDateObservation.createdBy?.lastFirst ?? '') : $page.data.user.lastFirst}</div>
                         </div>
                         <div class="flex flex-col basis-60">
-                            <div>Updated At: {data.siteDateObservation.updatedAt ? formatDate(new Date(data.siteDateObservation.updatedAt).toISOString(), 'short', 'short') : ''}</div>
-                            <div class="">Updated By: {data.siteDateObservation.updatedBy?.lastFirst ?? ''}</div>
+                            <div>Updated At: {!isAdding && data.siteDateObservation.updatedAt ? formatDate(new Date(data.siteDateObservation.updatedAt).toISOString(), 'short', 'short') : ''}</div>
+                            <div class="">Updated By: {!isAdding ? (data.siteDateObservation.updatedBy?.lastFirst ?? '') : ''}</div>
                         </div>
                         <div class="flex flex-col basis-60">
-                            <div>Confirm At: {data.siteDateObservation.confirmAt ? formatDate(new Date(data.siteDateObservation.confirmAt).toISOString(), 'short', 'short') : ''}</div>
-                            <div class="">Confirm By: {data.siteDateObservation.confirmBy?.lastFirst ?? ''}</div>
+                            <div>Confirm At: {!isAdding && data.siteDateObservation.confirmAt ? formatDate(new Date(data.siteDateObservation.confirmAt).toISOString(), 'short', 'short') : ''}</div>
+                            <div class="">Confirm By: {!isAdding ? (data.siteDateObservation.confirmBy?.lastFirst ?? '') : ''}</div>
                         </div>
                     </div>
                 </div>

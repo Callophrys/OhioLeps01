@@ -10,7 +10,6 @@
     import Themer from '$lib/components/appbar/Themer.svelte';
     import SiteNavigation from '$lib/components/SiteNavigation.svelte';
     import Fluttering from '$lib/components/appbar/Fluttering.svelte';
-    import { assets } from '$app/paths';
 
     let config: any = $page.data.config ?? {};
 
@@ -28,10 +27,8 @@
 <svelte:head>
     {#if config.modeDebug}
         <title>Testing</title>
-        <link rel="icon" href="%sveltekit.assets%/favicon.png" />
     {:else}
         <title>Ohio Lepidopterists</title>
-        <link rel="icon" href="%sveltekit.assets%/logo_med_transp.gif" />
     {/if}
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
