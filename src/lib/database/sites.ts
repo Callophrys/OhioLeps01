@@ -22,10 +22,9 @@ export async function getSite(siteId: number) {
         }
       },
       siteStatuses: {
-        select: {
-          year: true,
+        include: {
           statusCode: true
-        }
+        },
       },
       siteDates: true
     },

@@ -1,7 +1,7 @@
 import { error } from '@sveltejs/kit'
 import { getSite, getSites } from '$lib/database/sites'
 import { getCounties } from '$lib/database/counties.js';
-import type { SiteCountySiteDates } from '$lib/types.js';
+import type { SiteCountyStatuses } from '$lib/types.js';
 import type { County, Site } from '@prisma/client';
 
 export async function load({ params }: any) {
@@ -19,7 +19,7 @@ throw error(404, 'Site not found')
 }
 
 const json = JSON.stringify(site);
-const jsonResult: SiteCountySiteDates = JSON.parse(json);
+const jsonResult: SiteCountyStatuses = JSON.parse(json);
 
 const jsonC = JSON.stringify(counties);
 const jsonResultC: County[] = JSON.parse(jsonC);

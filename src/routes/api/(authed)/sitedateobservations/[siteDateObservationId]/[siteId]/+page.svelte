@@ -18,7 +18,7 @@ var z = y.difference(x) // [ "d", "e", "g" ]
     import DataOptions from '$lib/components/datanavigation/DataOptions.svelte';
     import SitePicker from '$lib/components/datanavigation/SitePicker.svelte';
     import SiteDatePicker from '$lib/components/datanavigation/SiteDatePicker.svelte';
-    //import type { SiteDateObservationChecklist } from '$lib/types.js';
+    import type { SiteDateObservationChecklist } from '$lib/types.js';
     import SpeciesPicker from '$lib/components/datanavigation/SpeciesPicker.svelte';
     import { setContext } from 'svelte';
     import { onMount } from 'svelte';
@@ -46,11 +46,6 @@ var z = y.difference(x) // [ "d", "e", "g" ]
     let formReview: HTMLFormElement;
     let formDelete: HTMLFormElement;
     let formUndo: HTMLFormElement;
-
-    const foo = Object.entries(data.siteDateObservation)
-        .filter((x) => x[0].startsWith('section'))
-        .map(([k, v]) => ({ label: `${k.substring(0, 1).toLocaleUpperCase()}${k.substring(1, 7)} ${k.substring(7)}`, name: k, value: v }));
-    //console.log(foo);
 
     //console.log(data);
     let isEditing = false;
@@ -129,7 +124,7 @@ var z = y.difference(x) // [ "d", "e", "g" ]
     }
 
     const sumCounts = (frm: Element) => {
-        return Array.from(frm.querySelectorAll('[type=text]')).reduce((t: number, o: any) => t + (isNaN(o.value) ? 0 : Number(o.value)), 0);
+        return (typeof document !== 'undefined') ? Array.from(frm.querySelectorAll('[type=text]')).reduce((t: number, o: any) => t + (isNaN(o.value) ? 0 : Number(o.value)), 0) : 0;
     }
 
     const getTotal = () => {
@@ -137,7 +132,14 @@ var z = y.difference(x) // [ "d", "e", "g" ]
     }
 
     $: total = getTotal();
-    //$: currentSidteDateObservation = data.siteDateObservation;
+    $: currentSiteDateObservation = data.siteDateObservation as SiteDateObservationChecklist;
+    //$: rxTotal = isAdding ? sumCounts(formAdd) : (isEditing ? sumCounts(formEdit) : currentSiteDateObservation.total);
+
+    $: foo = Object.entries(currentSiteDateObservation)
+        .filter((x) => x[0].startsWith('section'))
+        .map(([k, v]) => ({ label: `${k.substring(0, 1).toLocaleUpperCase()}${k.substring(1, 7)} ${k.substring(7)}`, name: k, value: v }));
+    //console.log(foo);
+
 
 </script>
 
@@ -152,7 +154,7 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                 <div class="flex flex-col lg:flex-row lg:justify-start gap-1 lg:gap-2 pb-2 text-surface-600-300-token">
                     <SitePicker currentSite={data.siteDateObservation.siteDate.site} />
                     <SiteDatePicker currentSiteId={data.siteDateObservation.siteDate.siteId} currentSiteDateId={data.siteDateObservation.siteDateId ?? -1} />
-                    <SpeciesPicker currentSpecies={data.siteDateObservation} />
+                    <SpeciesPicker currentSdoChecklistItem={currentSiteDateObservation} />
                 </div>
 
                 <!-- Main controls -->
@@ -309,11 +311,15 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                             <div class="w-32">Hodges: </div>
                             <!-- TODO: Make Id Code editable -->
                             <div class="w-24">Id Code: </div>
-                            <div class="w-28 text-amber-700 dark:text-amber-400">(Total: {total})</div>
+                            <div class="w-28 text-amber-700 dark:text-amber-400">(Total: {getTotal()})</div>
+                        {:else if isEditing && getTotal() !== currentSiteDateObservation.total}
+                            <div class="w-32">Hodges: {currentSiteDateObservation.hodges}</div>
+                            <div class="w-24">Id Code: {currentSiteDateObservation.idCode}</div>
+                            <div class="w-28 text-amber-700 dark:text-amber-400">(Total: {getTotal()})</div>
                         {:else}
-                            <div class="w-32">Hodges: {data.siteDateObservation.hodges}</div>
-                            <div class="w-24">Id Code: {data.siteDateObservation.idCode}</div>
-                            <div class={`w-28 ${total !== data.siteDateObservation.total ? 'text-amber-700 dark:text-amber-400' : ''}`}>(Total: {total})</div>
+                            <div class="w-32">Hodges: {currentSiteDateObservation.hodges}</div>
+                            <div class="w-24">Id Code: {currentSiteDateObservation.idCode}</div>
+                            <div class="w-28">(Total: {currentSiteDateObservation.total})</div>
                         {/if}
                     </div>
                     <!-- LOOKAT: https://stackoverflow.com/questions/77420975/svelte-store-calculate-total-value-of-items-in-array-of-objects -->

@@ -8,11 +8,14 @@
     import type { dateTracking, dateTrackingSet } from '$lib/types.js';
     import { setContext } from 'svelte';
     import SiteDatePicker from '$lib/components/datanavigation/SiteDatePicker.svelte';
-    import { isNullOrWhiteSpace } from '$lib/utils.js';
+    import DataOptions from '$lib/components/datanavigation/DataOptions.svelte';
 
     export let data;
     setContext('sites', data.sites);
     setContext('siteDates', data.siteDates);
+
+
+    const cClassesObservation = 'card flex';
 
     export let initialUseFarenheit: number = 0;
     export let accA = true;
@@ -49,6 +52,7 @@
         optAccI = x && x.length ? x === 'true' : accI;
         x = localStorage?.optAccJ;
         optAccJ = x && x.length ? x === 'true' : accJ;
+
     });
 
     afterUpdate(() => {
@@ -127,6 +131,9 @@
     let y: dateTrackingSet;
     let w: any;
 
+    let showRecentEdits = true;
+    let showDeletedData = false;
+
     //console.log(data.siteDateSiteDates);
     const allYears = Array.from(data.siteDates).map((y) => new Date(y.recordDate).getFullYear());
     const uniqueYears = [...new Set(allYears)].sort(compareNumeric);
@@ -159,6 +166,8 @@
 
     //console.log(data.siteDateObservations[0]);
 </script>
+
+<DataOptions bind:showRecentEdits bind:showDeletedData />
 
 <DoubledContainer basisLeft="basis-2/5" basisRight="basis-3/5">
     <svelte:fragment slot="leftHead">
@@ -470,7 +479,18 @@
         <hr />
         <div class="mt-2">
             {#each data.siteDateObservations as siteDateObservation}
-                <div class={`card flex ${siteDateObservation.deleted ? 'line-through variant-ghost-error' : ''}`}>
+                <div class={`
+                    ${(() => {
+                        let classes = '';
+                        if (siteDateObservation.deleted) {
+                            classes += showDeletedData ? (cClassesObservation + ' line-through variant-ghost-error') : 'hidden';
+                        } else if (showRecentEdits && siteDateObservation.updatedAt) {
+                            let x = new Date();
+                            x = new Date(x.getUTCFullYear(), x.getUTCMonth(), x.getUTCDate() - 10);
+                            classes += new Date(siteDateObservation.updatedAt).getTime() > x.getTime() ? (cClassesObservation + ' variant-ghost-tertiary') : '';
+                        }
+                        return classes;
+                    })()}`}>
                     <a href="/api/sitedateobservations/{siteDateObservation.siteDateObservationId}/{data.siteDate.siteId}" class="flex space-x-2 p-2">
                         <div class="w-4">
                             {#if siteDateObservation.confirmed}

@@ -1,7 +1,7 @@
 import type {
 	AppConfig,
 	County, State, Checklist, Region,
-	Site, SiteDate, SiteDateObservation, Taxonomy, User
+	Site, SiteDate, SiteDateObservation, Taxonomy, User, SiteStatus, StatusCode
 } from '@prisma/client'
 
 export enum Role {
@@ -50,6 +50,8 @@ export type SiteDateYear = SiteDate & {
 }
 export type SiteCounty = Site & { county: County }
 export type SiteCountySiteDates = Site & { county: County, siteDates: SiteDateYear[] }
+export type SiteStatusCode = SiteStatus & { statusCode: StatusCode }
+export type SiteCountyStatuses = Site & { county: County, siteStatuses: SiteStatusCode[] }
 
 export type SpeciesSearchParams = {
 	specimenIds: number[],

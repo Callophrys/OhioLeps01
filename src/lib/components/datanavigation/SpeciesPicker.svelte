@@ -9,7 +9,7 @@
     import { sortByStringProperty, setDifferenceByProp } from '$lib/utils';
     
     /** SiteDateObservationChecklist object for current data */
-    export let currentSpecies: SiteDateObservationChecklist;
+    export let currentSdoChecklistItem: SiteDateObservationChecklist;
 
     /** Show down arrow with year and week labels to indicate dropdown.  Default: true */
     export let dropdownPointers: boolean = true;
@@ -33,10 +33,10 @@
     console.log('sdoC >>', sdoC);
 
     const availableSeenBefore = setDifferenceByProp(sdoB, sdoA, 'checklistId');
-    const availableAllOthers = setDifferenceByProp(sdoC, sdoB, 'checklistId');
+    const availableAllPossible = setDifferenceByProp(sdoC, sdoB, 'checklistId');
 
     console.log('availableSeenBefore >>', availableSeenBefore);
-    console.log('availableAllOthers >>', availableAllOthers);
+    console.log('availableAllPossible >>', availableAllPossible);
 
     // Properties
     const sdoCommon = [...new Set(checklistsSiteDateObs.map((x: SiteDateObservationChecklist) => ({ siteDateObservationId: x.siteDateObservationId, name: x.checklist.commonName })))];
@@ -81,22 +81,22 @@
 
     function handleClick(e: any) {
         if (e.currentTarget?.value) {
-            goto(`/api/sitedateobservations/${e.currentTarget.value}/${currentSpecies.siteDate.site.siteId}`);
+            goto(`/api/sitedateobservations/${e.currentTarget.value}/${currentSdoChecklistItem.siteDate.site.siteId}`);
         }
     }
 
     function handleClickPrior(event: any) {
-        let idx = sdoCommon.findIndex(o => o.siteDateObservationId === currentSpecies.siteDateObservationId);
+        let idx = sdoCommon.findIndex(o => o.siteDateObservationId === currentSdoChecklistItem.siteDateObservationId);
         if (idx > 0) {
-            goto(`/api/sitedateobservations/${sdoCommon[idx - 1].siteDateObservationId}/${currentSpecies.siteDate.site.siteId}`);
+            goto(`/api/sitedateobservations/${sdoCommon[idx - 1].siteDateObservationId}/${currentSdoChecklistItem.siteDate.site.siteId}`);
         }
     }
 
     function handleClickNext(event: any) {
-        let idx = sdoCommon.findIndex(o => o.siteDateObservationId === currentSpecies.siteDateObservationId);
-        //console.log('x:', currentSpecies.siteDateObservationId, 'idx:', idx, 'sdo', sdoCommon);
+        let idx = sdoCommon.findIndex(o => o.siteDateObservationId === currentSdoChecklistItem.siteDateObservationId);
+        console.log('x:', currentSdoChecklistItem.siteDateObservationId, 'idx:', idx, 'sdo', sdoCommon);
         if (idx > -1 && idx < sdoCommon.length - 1) {
-            goto(`/api/sitedateobservations/${sdoCommon[idx + 1].siteDateObservationId}/${currentSpecies.siteDate.site.siteId}`);
+            goto(`/api/sitedateobservations/${sdoCommon[idx + 1].siteDateObservationId}/${currentSdoChecklistItem.siteDate.site.siteId}`);
         }
     }
 
@@ -110,15 +110,15 @@
 
     // reactive for data - don't think this is needed for anything anymore
     // Does this actually obviated the need for onMount?
-    $: currentSpecies = currentSpecies;
+    $: currentSdoChecklistItem = currentSdoChecklistItem;
 
     // reactive for nav controls - is one time so could just be onMount
     $: {
-        let currentIndex = sdoCommon.findIndex(o => o.siteDateObservationId === currentSpecies.siteDateObservationId);
+        let currentIndex = sdoCommon.findIndex(o => o.siteDateObservationId === currentSdoChecklistItem.siteDateObservationId);
         enabledNext = currentIndex > -1 && currentIndex < sdoCommon.length - 1;
         enabledPrev = currentIndex > 0;
 
-        //console.log(currentSpecies);
+        //console.log(currentSdoChecklistItem);
     }
 
 </script>
@@ -131,10 +131,10 @@
     {/if}
 
     <div class={classesControlBody} aria-labelledby={labelledby}>
-        <button type="button" class={classesButtonLeft} on:click={handleClickPrior} disabled={enabledPrev ? '' : 'disabled'}>◀</button>
+        <button type="button" class={classesButtonLeft} on:click={handleClickPrior} disabled={!enabledPrev}>◀</button>
         <button type="button" class={classesButtonSpecies}
             use:popup={popupSiteDateObservations}
-            title={currentSpecies.checklist.commonName}
+            title={currentSdoChecklistItem.checklist.commonName}
             on:keydown={(e) => {
                 if (e.key === 'ArrowDown' || e.key === 'Enter') {
                     return handleClickNext(e);
@@ -145,17 +145,17 @@
                 }
             }}>
             {#if $$slots.prefixSiteDateObservation}<span class={classesPrefixSiteDateObservation}><slot name="prefixSiteDateObservation" /></span>{/if}
-            <span class="truncate">{currentSpecies.checklist.commonName}</span>
+            <span class="truncate">{currentSdoChecklistItem.checklist.commonName}</span>
             <span class={classesSuffixSiteDateObservation} />
         </button>
-        <button type="button" class={classesButtonRight} on:click={handleClickNext} disabled={enabledNext ? '' : 'disabled'}>▶</button>
+        <button type="button" class={classesButtonRight} on:click={handleClickNext} disabled={!enabledNext}>▶</button>
     </div>
 
     <div data-popup="popupComboboxSiteDateObservations">
         <div class="card w-48 shadow-xl py-2 overflow-y-auto" style="max-height: calc(100vh - 272px);">
             <ListBox rounded="rounded-none" labelledby="Years for site">
                 {#each sdoCommon as sdo}
-                    <ListBoxItem bind:group={currentSpecies.siteDateObservationId} name="years" value={sdo.siteDateObservationId} on:click={handleClick}>{sdo.name}</ListBoxItem>
+                    <ListBoxItem bind:group={currentSdoChecklistItem.siteDateObservationId} name="years" value={sdo.siteDateObservationId} on:click={handleClick}>{sdo.name}</ListBoxItem>
                 {/each}
             </ListBox>
         </div>
