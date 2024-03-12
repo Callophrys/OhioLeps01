@@ -21,7 +21,6 @@ var z = y.difference(x) // [ "d", "e", "g" ]
     import type { SiteDateObservationChecklist } from '$lib/types.js';
     import SpeciesPicker from '$lib/components/datanavigation/SpeciesPicker.svelte';
     import { setContext } from 'svelte';
-    import { onMount } from 'svelte';
 
     const modalStore = getModalStore();
 
@@ -29,6 +28,9 @@ var z = y.difference(x) // [ "d", "e", "g" ]
     const cSectionSpanClasses = 'w-24';
     const cDataClasses = 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1 md:gap-2';
     const cDatumClasses = 'flex flex-row space-x-2';
+    const cButtonStandard = "btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2";
+    const cButtonSuccess = "btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-soft-success pb-2";
+    const cButtonCancel = "btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-soft-error pb-2";
 
     export let data;
     export let form;
@@ -124,7 +126,8 @@ var z = y.difference(x) // [ "d", "e", "g" ]
     }
 
     const sumCounts = (frm: Element) => {
-        return (typeof document !== 'undefined') ? Array.from(frm.querySelectorAll('[type=text]')).reduce((t: number, o: any) => t + (isNaN(o.value) ? 0 : Number(o.value)), 0) : 0;
+        if (typeof document === 'undefined' && typeof frm === 'undefined') return false;
+        return (document && frm) ? Array.from(frm.querySelectorAll('[type=text]')).reduce((t: number, o: any) => t + (isNaN(o.value) ? 0 : Number(o.value)), 0) : 0;
     }
 
     const getTotal = () => {
@@ -154,27 +157,35 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                 <div class="flex flex-col lg:flex-row lg:justify-start gap-1 lg:gap-2 pb-2 text-surface-600-300-token">
                     <SitePicker currentSite={data.siteDateObservation.siteDate.site} />
                     <SiteDatePicker currentSiteId={data.siteDateObservation.siteDate.siteId} currentSiteDateId={data.siteDateObservation.siteDateId ?? -1} />
-                    <SpeciesPicker currentSdoChecklistItem={currentSiteDateObservation} />
+                    <SpeciesPicker
+                        currentSdoChecklistItem={currentSiteDateObservation}
+                        isAdding={isAdding}
+                        isEditing={isEditing} />
                 </div>
 
                 <!-- Main controls -->
                 <div class="px-4 flex flex-auto justify-between gap-2">
                     <div class="flex flex-row justify-start gap-2">
                         {#if $page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'ENTRY' || $page.data.user.role === 'REVIEWER'}
-                            {#if !isEditing}
+                            {#if isAdding}
+                                <button type="button" class={cButtonStandard} disabled>
+                                    Edit
+                                    <span class="pl-2">✎</span>
+                                </button>
+                            {:else if !isEditing}
                                 {#if data.siteDateObservation.confirmed}
-                                    <button type="button" class="btn w-20 md:w-24 h-8 sm:h-10 md:h-11 variant-soft-surface pb-2" disabled>
+                                    <button type="button" class={cButtonStandard} disabled>
                                         Edit
                                         <span class="pl-2">✎</span>
                                     </button>
                                 {:else}
-                                    <button type="button" class="btn w-20 md:w-24 h-8 sm:h-10 md:h-11 variant-soft-surface pb-2" on:click={() => (isEditing = true)}>
+                                    <button type="button" class={cButtonStandard} on:click={() => (isEditing = true)}>
                                         Edit
                                         <span class="pl-2">✎</span>
                                     </button>
                                 {/if}
                             {:else}
-                                <button type="button" class="btn w-20 md:w-24 h-8 sm:h-10 md:h-11 variant-soft-success pb-2" on:click={() => formEdit.submit()}>
+                                <button type="button" class={cButtonSuccess} on:click={() => formEdit?.submit()}>
                                     Save
                                     <span class="pl-2">✔</span>
                                 </button>
@@ -195,14 +206,17 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                                     </div>
                                 </form>
 
-                                <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-soft-error pb-2" on:click={() => (isEditing = false)}>
+                                <button type="button" class={cButtonCancel} on:click={() => (isEditing = false)}>
                                     Cancel
-                                    <span class="pl-2">↺</span>
+                                    <span class="pl-2 text-red-700 dark:text-red-600 text-2xl">↺</span>
                                 </button>
                             {/if}
                         {/if}
 
-                        {#if !isEditing}
+                        {#if isAdding}
+                            <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" disabled>Review<span class="pl-2">🌎</span></button>
+                            <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" disabled>Delete<span class="pl-2">❌</span></button>
+                        {:else if !isEditing}
                             <!-- REVIEW Actions -->
                             <form name="review" method="POST" action="?/reviewSiteDateObservation" use:enhance bind:this={formReview}>
                                 <!-- LOCK/UNLOCK Mark data as reviewed, aka valid and locked; Can unlock -->
@@ -210,16 +224,16 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                                     {#if $page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || ($page.data.user.role === 'REVIEWER' && (!data.siteDateObservation.confirmBy || data.siteDateObservation.confirmBy === $page.data.user.id))}
                                         {#if isNullOrWhiteSpace(data.siteDateObservation.confirmBy?.id)}
                                             <input hidden name="confirm" value="true" />
-                                            <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" on:click={() => modalStore.trigger(modalReviewerLock)}>Review<span class="pl-2">🌎</span></button>
+                                            <button type="button" class={cButtonStandard} on:click={() => modalStore.trigger(modalReviewerLock)}>Review<span class="pl-2">🌎</span></button>
                                         {:else if !data.siteDateObservation.confirmed}
                                             <input hidden name="confirm" value="true" />
-                                            <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" on:click={() => modalStore.trigger(modalReviewerLock)}>Lock<span class="pl-2">🔒</span></button>
+                                            <button type="button" class={cButtonStandard} on:click={() => modalStore.trigger(modalReviewerLock)}>Lock<span class="pl-2">🔒</span></button>
                                         {:else}
                                             <input hidden name="confirm" value="false" />
-                                            <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" on:click={() => modalStore.trigger(modalReviewerUnlock)}>Unlock<span class="pl-2">🔑</span></button>
+                                            <button type="button" class={cButtonStandard} on:click={() => modalStore.trigger(modalReviewerUnlock)}>Unlock<span class="pl-2">🔑</span></button>
                                         {/if}
                                     {:else}
-                                        <button type="button" class="btn w-20 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2 disabled">
+                                        <button type="button" class={cButtonStandard} disabled>
                                             {#if typeof data.siteDateObservation.confirmBy !== 'object'}
                                                 <div>Needs review <span class="pl-2">🌎</span></div>
                                             {:else if data.siteDateObservation.confirmed}
@@ -237,10 +251,10 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                             {#if !data.siteDateObservation.confirmed && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || ($page.data.user.role === 'ENTRY' && (data.siteDateObservation.createdBy.id === $page.data.user.id || data.siteDateObservation.updatedBy.id === $page.data.user.id)))}
                                 <form name="delete" method="POST" action="?/deleteSiteDateObservation" use:enhance bind:this={formDelete}>
                                     {#if !data.siteDateObservation.deleted}
-                                        <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" on:click={() => modalStore.trigger(modalDelete)}>Delete<span class="pl-2">❌</span></button>
+                                        <button type="button" class={cButtonStandard} on:click={() => modalStore.trigger(modalDelete)}>Delete<span class="pl-2">❌</span></button>
                                         <input hidden name="deleteOn" value={true} />
                                     {:else}
-                                        <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" on:click={() => modalStore.trigger(modalUndelete)}>Undelete<span class="pl-2">↺</span></button>
+                                        <button type="button" class={cButtonStandard} on:click={() => modalStore.trigger(modalUndelete)}>Undelete<span class="pl-2">↺</span></button>
                                         <input hidden name="deleteOn" value={false} />
                                     {/if}
                                     <input hidden name="siteDateObservationId" value={data.siteDateObservation.siteDateObservationId} />
@@ -250,14 +264,6 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                                     <input hidden name="sortDirection" value="asc" />
                                     <input hidden name="advanceRecord" value={true} />
                                 </form>
-                            {/if}
-                            <!-- B. DELETE Actions - Am editing but just show disabled buttons if super or admin -->
-                        {:else if $page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN'}
-                            <!-- TODO: Neither disabled button shows when expected -->
-                            {#if !data.siteDateObservation.deleted}
-                                <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" disabled>Delete<span class="pl-2">❌</span></button>
-                            {:else}
-                                <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" disabled>Undelete<span class="pl-2">↺</span></button>
                             {/if}
                         {/if}
                     </div>
@@ -271,10 +277,15 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                         </div>
 
                         <!-- TODO: Make add/create work -->
-                        <button type="button" class="btn w-44 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" on:click={() => isAdding = !isAdding}>
+                        <button type="button" class="btn w-44 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" on:click={() => isAdding = !isAdding} disabled={isEditing || data.siteDateObservation.confirmed}>
                             <input class="checkbox" type="checkbox" checked={isAdding} />
-                            <span>Add species</span>
-                            <span class="text-green-900 dark:text-green-200 text-2xl before:content-['✚']" />
+                            {#if isAdding}
+                                <span>Cancel Add</span>
+                                <span class="pl-2 text-red-700 dark:text-red-600 text-2xl">↺</span>
+                            {:else}
+                                <span>Add species</span>
+                                <span class="text-green-900 dark:text-green-200 text-2xl before:content-['✚']" />
+                            {/if}
                         </button>
                     </div>
                 </div>

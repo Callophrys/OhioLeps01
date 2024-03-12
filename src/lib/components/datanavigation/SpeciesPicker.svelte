@@ -14,6 +14,9 @@
     /** Show down arrow with year and week labels to indicate dropdown.  Default: true */
     export let dropdownPointers: boolean = true;
 
+    export let isEditing: boolean = false;
+    export let isAdding: boolean = false;
+
     const checklistsSiteDateObs: SiteDateObservationChecklist[] = getContext('checklistsSiteDateObs') ?? [];
     const checklistsSite: any[] = getContext('checklistsSite') ?? [];
     const checklistsAll: any[] = getContext('checklistsAll') ?? [];
@@ -48,6 +51,7 @@
     // Nav control enable/disable configs
     let enabledNext: boolean;
     let enabledPrev: boolean;
+    let enabledDrop: boolean;
 
     // Properties (styles)
     /** */
@@ -115,9 +119,11 @@
     // reactive for nav controls - is one time so could just be onMount
     $: {
         let currentIndex = sdoCommon.findIndex(o => o.siteDateObservationId === currentSdoChecklistItem.siteDateObservationId);
-        enabledNext = currentIndex > -1 && currentIndex < sdoCommon.length - 1;
-        enabledPrev = currentIndex > 0;
+        enabledDrop = !isAdding && !isEditing;
+        enabledNext = !isAdding && !isEditing && currentIndex > -1 && currentIndex < sdoCommon.length - 1;
+        enabledPrev = !isAdding && !isEditing && currentIndex > 0;
 
+        console.log(enabledDrop, enabledNext, enabledPrev);
         //console.log(currentSdoChecklistItem);
     }
 
@@ -143,7 +149,8 @@
                 } else {
                     return true;
                 }
-            }}>
+            }}
+            disabled={!enabledDrop}>
             {#if $$slots.prefixSiteDateObservation}<span class={classesPrefixSiteDateObservation}><slot name="prefixSiteDateObservation" /></span>{/if}
             <span class="truncate">{currentSdoChecklistItem.checklist.commonName}</span>
             <span class={classesSuffixSiteDateObservation} />
