@@ -684,3 +684,24 @@ console.log(res);
 // Handlers
 // Methods
 // Reactives (functional)
+
+
+Hierarchical tables
+-------------------
+https://stackoverflow.com/questions/20215744/how-to-create-a-mysql-hierarchical-recursive-query
+
+with recursive cte (id, name, parent_id) as (
+  select     id,
+             name,
+             parent_id
+  from       products
+  where      parent_id = 19
+  union all
+  select     p.id,
+             p.name,
+             p.parent_id
+  from       products p
+  inner join cte
+          on p.parent_id = cte.id
+)
+select * from cte;
