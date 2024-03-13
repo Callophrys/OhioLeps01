@@ -1,4 +1,22 @@
 <script lang="ts">
+    /*-- Imports */
+    /*-- -- Data -- */
+    /*-- Exports */
+    /*-- Context */
+    /*-- -- Styling -- */
+    /*-- Properties (styles) */
+    /*-- Constants (styles) */
+    /*-- Reactives (styles) */
+    /*-- -- Coding -- */
+    /*-- Enums */
+    /*-- Constants (functional) */
+    /*-- Properties (functional) */
+    /*-- Variables and objects */
+    /*-- Run first stuff */
+    /*-- onMount, beforeNavigate, afterNavigate */
+    /*-- Handlers */
+    /*-- Methods */
+    /*-- Reactives (functional) */
     import { popup } from '@skeletonlabs/skeleton';
     import type { PopupSettings } from '@skeletonlabs/skeleton';
     import { ListBox, ListBoxItem, LightSwitch } from '@skeletonlabs/skeleton';

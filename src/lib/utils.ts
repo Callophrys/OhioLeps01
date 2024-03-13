@@ -146,3 +146,12 @@ export const setDifference = (a: any, b: any) => new Set([...a].filter(x => !b.h
 export const setIntersection = (a: any, b: any) => new Set([...a].filter(x => b.has(x)));
 export const setUnion = (a: any, b: any) => new Set([...a, ...b]);
 
+
+export function getTaxonIndent(taxonType: string) {
+    if (taxonType === 'SF') return 'indent-4';
+    if (taxonType === 'G') return 'indent-8';
+    if (taxonType === 'S') return 'indent-16';
+    if (taxonType === 'SS') return 'indent-20';
+    return '';
+}
+

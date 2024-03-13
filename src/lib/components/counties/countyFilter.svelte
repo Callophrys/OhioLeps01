@@ -1,34 +1,56 @@
 <script lang="ts">
+    /*-- Imports */
     import { getContext } from 'svelte';
     import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
     import type { CountyMonitored } from '$lib/types';
     import type { CssClasses } from '@skeletonlabs/skeleton';
-    import exp from 'constants';
 
+    /*-- -- Data -- */
+    /*-- Exports */
     export let vButtonGroupClasses: CssClasses = '';
 
-    // Properties (styles)
-    /** */
+    /*-- Context */
+    let counties: CountyMonitored[] = getContext('counties');
+
+    /*-- -- Styling -- */
+    /*-- Properties (styles) */
     export let elementEins: CssClasses = 'pr-2';
     export let elementZwei: CssClasses = '';
     export let elementDrei: CssClasses = '-mr-16';
 
-    // Constants (styles)
+    /*-- Constants (styles) */
     const cClassesElementEins = "my-auto before:content-['Monitored_counties:'] before:lg:content-['Counties_with_monitored_sites:']";
     const cClassesElementZwei = "my-auto text-right before:content-[''] sm:before:content-['Filter_by:'] lg:before:content-['Filter_by_monitor_status:']";
     const cClassesElementDrei = 'flex flex-row space-x-2';
 
-    // Reactive styles
+    /*-- Reactives (styles) */
     $: classesElementEins = `${cClassesElementEins} ${elementEins} ${$$props.class ?? ''}`;
     $: classesElementZwei = `${cClassesElementZwei} ${elementZwei} ${$$props.class ?? ''}`;
     $: classesElementDrei = `${cClassesElementDrei} ${elementDrei} ${$$props.class ?? ''}`;
 
+    /*-- -- Coding -- */
+    /*-- Enums */
     enum MonitorStatus {
         ALL = 0,
         MONITORED = 1,
         UNMONITORED = 2,
     }
 
+    /*-- Constants (functional) */
+    /*-- Properties (functional) */
+    /*-- Variables and objects */
+    let showUnmonitored = MonitorStatus.MONITORED;
+
+    /*-- Run first stuff */
+    filterCountyGroups(showUnmonitored);
+
+    /*-- onMount, beforeNavigate, afterNavigate */
+    /*-- Handlers */
+    function handleShowClick(e: any) {
+        filterCountyGroups(Number(e.target.value));
+    }
+
+    /*-- Methods */
     function filterCountyGroups(newValue: MonitorStatus) {
         switch (newValue) {
             case MonitorStatus.MONITORED:
@@ -43,13 +65,8 @@
         return true;
     }
 
-    function handleShowClick(e: any) {
-        filterCountyGroups(Number(e.target.value));
-    }
+    /*-- Reactives (functional) */
 
-    let counties: CountyMonitored[] = getContext('counties');
-    let showUnmonitored = MonitorStatus.MONITORED;
-    filterCountyGroups(showUnmonitored);
 </script>
 
 <div class={classesElementEins}>

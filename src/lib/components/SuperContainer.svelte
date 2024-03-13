@@ -1,13 +1,14 @@
 <script lang="ts">
-    // Imports
+    /*-- Imports */
     import { showAppBar, showFooter } from '$lib/config';
     import type { CssClasses } from '@skeletonlabs/skeleton';
 
-    // Exports
-    // Context
+    /*-- -- Data -- */
+    /*-- Exports */
+    /*-- Context */
 
-    // -- Styling --
-    // Properties (styles)
+    /*-- -- Styling -- */
+    /*-- Properties (styles) */
     export let basisLeft = 'basis-1/2';
     export let basisRight = 'basis-1/2';
 
@@ -19,7 +20,13 @@
     export let rightBodyClasses: CssClasses = 'overflow-y-auto';
     export let rightTailClasses: CssClasses = '';
 
-    // Constants (styles)
+    /*-- Variables (styles) */
+    // Should be 144 (with footer) or 128 but added 4px for just in case
+    // Should do this for show/hide avatar and for show/hide app bar
+    //let heightAdjust = 4 + (showAppBar ? 132 : 0) + (showFooter ? 16 : 0);
+    let configOuterBody: CssClasses = showFooter ? `container flex flex-row gap-8 px-8 pt-8 pb-4 has-footer` : `container flex flex-row gap-8 p-8`;
+
+    /*-- Constants (styles) */
     const cBaseCard = 'card py-4 pl-4 h-full flex flex-col space-y-2';
     //const cBaseLeftHead = '';
     const cBaseLeftBody = 'space-y-2 h-full';
@@ -28,7 +35,7 @@
     const cBaseRightBody = 'space-y-2 h-full';
     //const cBaseRightTail = '';
 
-    // Reactives (styles)
+    /*-- Reactives (styles) */
     $: classesOuterBody = `${configOuterBody}`;
 
     $: classesLeftCard = `${cBaseCard} ${basisLeft}`;
@@ -42,26 +49,9 @@
     $: classesRightBody = `${cBaseRightBody} ${rightBodyClasses}`;
     $: classesRightTail = `${rightTailClasses}`;
 
-    // -- Coding --
-    // Enums
-    // Constants (functional)
-    // Properties (functional)
-    // Variables and objects
-    // Run first stuff
-    // onMount, beforeNavigate, afterNavigate
-    // Handlers
-    // Methods
-    // Reactives (functional)
-
-    // Should be 144 (with footer) or 128 but added 4px for just in case
-    // Should do this for show/hide avatar and for show/hide app bar
-    //let heightAdjust = 4 + (showAppBar ? 132 : 0) + (showFooter ? 16 : 0);
-    let configOuterBody: CssClasses = showFooter ? `container flex flex-row gap-8 px-8 pt-8 pb-4 has-footer` : `container flex flex-row gap-8 p-8`;
-    //const configOuterBody = "container flex flex-row gap-8"
 </script>
 
 <div class={classesOuterBody}>
-
     <div class={classesLeftCard}>
         {#if $$slots.leftHead}
             <div class={classesLeftHead}>
@@ -97,7 +87,6 @@
             </div>
         {/if}
     </div>
-
 </div>
 
 <!--

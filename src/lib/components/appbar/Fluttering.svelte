@@ -1,145 +1,241 @@
 <script lang="ts">
+    /*-- Imports */
+    /*-- -- Data -- */
+    /*-- Exports */
+    /*-- Context */
+    /*-- -- Styling -- */
+    /*-- Properties (styles) */
+    /*-- Constants (styles) */
+    /*-- Reactives (styles) */
+    /*-- -- Coding -- */
+    /*-- Enums */
+    /*-- Constants (functional) */
+    /*-- Properties (functional) */
+    /*-- Variables and objects */
+    let fillColor = '#ff6699';
+    let interval: NodeJS.Timeout;
 
-let fillColor = "#ff6699";
+    /*-- Run first stuff */
+    /*-- onMount, beforeNavigate, afterNavigate */
+    /*-- Handlers */
+    /*-- Methods */
+    function getRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+    //<button onclick="changeColor()">Random Color Butterfly</button>
 
-function getRandomColor() {
-  const letters = "0123456789ABCDEF";
-  let color = "#";
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-}
-  //<button onclick="changeColor()">Random Color Butterfly</button>
+    function changeColor() {
+        fillColor = getRandomColor();
+    }
 
-function changeColor() {
-  fillColor = getRandomColor();
-}
-
-let interval: NodeJS.Timeout;
-$: {
-   clearInterval(interval);
-   interval = setInterval(changeColor, 10000)
-}
-
+    /*-- Reactives (functional) */
+    $: {
+        clearInterval(interval);
+        interval = setInterval(changeColor, 10000);
+    }
 
 </script>
 
 <!-- SVG modified from freepik.com -->
 <!-- [old ]<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve" xmlns:xml="http://www.w3.org/XML/1998/namespace" class="svg-defs">-->
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve" class="svg-defs">
-    <defs>	
-	<g id="shape-moth">
-	    <path id="main" style="fill:{fillColor};" d="M2.457,32.759c6.752,15.757,12.862,9.004,19.615,31.513
+    <defs>
+        <g id="shape-moth">
+            <path
+                id="main"
+                style="fill:{fillColor};"
+                d="M2.457,32.759c6.752,15.757,12.862,9.004,19.615,31.513
 						     c4.96,16.533,12.703,21.434,25.763,19.562c-8.291,5.666-11.245,14.512-2.29,30.097c10.611,18.467,29.262,32.338,38.587,34.268
 						     s19.615-6.431,21.866-18.328c2.251-11.898,3.216-13.185,11.255-50.485V66.202v-8.039c0,0-44.054-38.266-73.637-42.767
-						     C14.033,10.894-4.296,17.003,2.457,32.759z"/>
-	    <g id="gray">
-		<path style="opacity:0.25;fill:#231F20;" d="M117.253,66.202v-8.039c0,0-18.092-15.715-38.874-28.188
+						     C14.033,10.894-4.296,17.003,2.457,32.759z" />
+            <g id="gray">
+                <path
+                    style="opacity:0.25;fill:#231F20;"
+                    d="M117.253,66.202v-8.039c0,0-18.092-15.715-38.874-28.188
 							    c-0.713,0.005-1.426,0.019-2.138,0.05c-0.845,0.037-1.785,0.136-2.336,0.776c-1.082,1.255,0.241,3.104,1.484,4.2
 							    c-4.664-1.523-9.341-3.008-14.03-4.454c-1.262-0.389-2.927-0.643-3.646,0.465c-0.371,0.571-0.322,1.319-0.153,1.979
 							    c0.788,3.075,3.667,5.073,6.336,6.792c-5.27-1.066-10.64-1.636-16.017-1.699c1.343,2.093,3.594,3.397,5.774,4.592
 							    c4.539,2.487,9.149,4.844,13.822,7.068c-1.256,0.657-2.719,0.767-4.077,1.175c-1.358,0.408-2.751,1.292-3.027,2.682
 							    c-0.142,0.715,0.038,1.456,0.289,2.141c1.25,3.41,4.231,5.957,7.526,7.483s6.92,2.161,10.498,2.781
 							    c-4.233,0.646-8.466,1.291-12.698,1.936c-1.283,0.195-2.896,0.742-2.924,2.04c-0.013,0.59,0.345,1.123,0.742,1.56
-							    c3.252,3.581,8.933,3.011,13.693,2.153c6.792-1.224,13.584-2.448,20.377-3.672C109.057,67.539,117.253,66.202,117.253,66.202z"/>
-		<path style="opacity:0.25;fill:#231F20;" d="M112.228,67.787c-2.598-0.367-5.221,0.297-7.739,1.031
+							    c3.252,3.581,8.933,3.011,13.693,2.153c6.792-1.224,13.584-2.448,20.377-3.672C109.057,67.539,117.253,66.202,117.253,66.202z" />
+                <path
+                    style="opacity:0.25;fill:#231F20;"
+                    d="M112.228,67.787c-2.598-0.367-5.221,0.297-7.739,1.031
 							    c-7.427,2.165-14.659,4.994-21.583,8.444c-1.494,0.744-3.216,1.968-2.936,3.613c-1.226,3.942,15.291-3.223,22.495-6.209
 							    c-7.234,3.414-14.403,7.708-18.865,14.346c-0.658,0.979-1.243,2.321-0.531,3.262c0.523,0.691,1.508,0.802,2.375,0.781
 							    c6.148-0.141,11.579-3.836,16.54-7.471c-3.057,2.861-5.321,6.561-6.478,10.584c-0.418,1.455-0.608,3.244,0.496,4.279
 							    c1.373,1.287,3.636,0.439,5.126-0.711c2.406-1.856,4.297-4.375,5.408-7.204c-0.626,2.171-2.066,6.066-0.944,6.688
 							    c1.771,1.537,3.293-1.535,4.463-2.938c4.365-5.225,6.148-12.076,7.745-18.695c0.418-1.735,0.831-3.565,0.336-5.28
-							    C117.41,69.788,114.825,68.153,112.228,67.787z"/>
-	    </g>
-	    <g id="white">
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M22.137,40.268c-0.849,0-1.726,0.543-1.769,1.475
-							    c-0.037,0.815,0.565,1.768,1.475,1.768c0.849,0,1.727-0.542,1.769-1.475C23.648,41.22,23.047,40.268,22.137,40.268z"/>
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M24.262,24.568c-1.179,0-1.399,1.843-0.204,1.843
-							    C25.237,26.411,25.458,24.568,24.262,24.568z"/>
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M14.231,25.278c0.04-0.037,0.072-0.081,0.107-0.123
+							    C117.41,69.788,114.825,68.153,112.228,67.787z" />
+            </g>
+            <g id="white">
+                <path
+                    style="opacity:0.25;fill:#FFFFFF;"
+                    d="M22.137,40.268c-0.849,0-1.726,0.543-1.769,1.475
+							    c-0.037,0.815,0.565,1.768,1.475,1.768c0.849,0,1.727-0.542,1.769-1.475C23.648,41.22,23.047,40.268,22.137,40.268z" />
+                <path
+                    style="opacity:0.25;fill:#FFFFFF;"
+                    d="M24.262,24.568c-1.179,0-1.399,1.843-0.204,1.843
+							    C25.237,26.411,25.458,24.568,24.262,24.568z" />
+                <path
+                    style="opacity:0.25;fill:#FFFFFF;"
+                    d="M14.231,25.278c0.04-0.037,0.072-0.081,0.107-0.123
 							    c0.309-0.319,0.476-0.754,0.291-1.183c-0.003,0.003-0.005,0.005-0.008,0.008c-0.141-0.572-0.65-1.052-1.262-1.052
 							    c-0.448,0.315-0.896,0.631-1.344,0.947c-0.293,0.838,0.385,1.732,1.244,1.765c0.055,0.002,0.111-0.01,0.168-0.017
-							    c0.058,0.023,0.177-0.003,0.358-0.081C13.955,25.494,14.104,25.406,14.231,25.278z"/>
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M20.52,21.826c0.084-0.715-0.407-1.361-1.148-1.382
+							    c0.058,0.023,0.177-0.003,0.358-0.081C13.955,25.494,14.104,25.406,14.231,25.278z" />
+                <path
+                    style="opacity:0.25;fill:#FFFFFF;"
+                    d="M20.52,21.826c0.084-0.715-0.407-1.361-1.148-1.382
 							    c-0.707-0.021-1.308,0.59-1.226,1.314c0.005,0.047,0.01,0.095,0.016,0.142c0.146,1.277,2.176,1.467,2.337,0.1
-							    C20.506,21.942,20.513,21.884,20.52,21.826z"/>
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M15.237,34.119c-0.91,0-1.784,0.802-1.741,1.741c0.042,0.943,0.767,1.742,1.741,1.742
-							    c0.91,0,1.784-0.802,1.741-1.741C16.936,34.917,16.212,34.119,15.237,34.119z"/>
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M42.191,72.243c-2.578,0-2.182,3.992,0.384,3.992
-							    C45.153,76.234,44.757,72.243,42.191,72.243z"/>
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M44.656,29.401c-0.554,0-0.545,0.859,0.009,0.859S45.209,29.401,44.656,29.401z"/>
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M25.514,36.061c-1.595,0-1.91,2.492-0.295,2.492
-							    C26.814,38.553,27.129,36.061,25.514,36.061z"/>
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M33.376,61.474c-1.237,0-2.44,1.016-2.413,2.311c0.027,1.257,0.991,2.413,2.312,2.413
-							    c1.237,0,2.44-1.016,2.413-2.311C35.661,62.629,34.696,61.474,33.376,61.474z"/>
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M35.116,16.812c-1.552,0-1.267,2.404,0.277,2.404
-							    C36.945,19.215,36.66,16.812,35.116,16.812z"/>
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M77.376,51.331c2.442,0,1.936-3.77-0.477-3.77
-							    C74.458,47.561,74.963,51.331,77.376,51.331z"/>
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M48.942,50.548c-0.15-0.651-0.902-1.142-1.562-0.848
+							    C20.506,21.942,20.513,21.884,20.52,21.826z" />
+                <path
+                    style="opacity:0.25;fill:#FFFFFF;"
+                    d="M15.237,34.119c-0.91,0-1.784,0.802-1.741,1.741c0.042,0.943,0.767,1.742,1.741,1.742
+							    c0.91,0,1.784-0.802,1.741-1.741C16.936,34.917,16.212,34.119,15.237,34.119z" />
+                <path
+                    style="opacity:0.25;fill:#FFFFFF;"
+                    d="M42.191,72.243c-2.578,0-2.182,3.992,0.384,3.992
+							    C45.153,76.234,44.757,72.243,42.191,72.243z" />
+                <path style="opacity:0.25;fill:#FFFFFF;" d="M44.656,29.401c-0.554,0-0.545,0.859,0.009,0.859S45.209,29.401,44.656,29.401z" />
+                <path
+                    style="opacity:0.25;fill:#FFFFFF;"
+                    d="M25.514,36.061c-1.595,0-1.91,2.492-0.295,2.492
+							    C26.814,38.553,27.129,36.061,25.514,36.061z" />
+                <path
+                    style="opacity:0.25;fill:#FFFFFF;"
+                    d="M33.376,61.474c-1.237,0-2.44,1.016-2.413,2.311c0.027,1.257,0.991,2.413,2.312,2.413
+							    c1.237,0,2.44-1.016,2.413-2.311C35.661,62.629,34.696,61.474,33.376,61.474z" />
+                <path
+                    style="opacity:0.25;fill:#FFFFFF;"
+                    d="M35.116,16.812c-1.552,0-1.267,2.404,0.277,2.404
+							    C36.945,19.215,36.66,16.812,35.116,16.812z" />
+                <path
+                    style="opacity:0.25;fill:#FFFFFF;"
+                    d="M77.376,51.331c2.442,0,1.936-3.77-0.477-3.77
+							    C74.458,47.561,74.963,51.331,77.376,51.331z" />
+                <path
+                    style="opacity:0.25;fill:#FFFFFF;"
+                    d="M48.942,50.548c-0.15-0.651-0.902-1.142-1.562-0.848
 							    c-0.025,0.011-0.051,0.022-0.076,0.034c-0.979,0.437-0.932,1.75-0.107,2.144c-0.044-0.004-0.017,0.01,0.078,0.042
 							    c0.036,0.013,0.071,0.025,0.11,0.035c0.031,0.009,0.058,0.018,0.095,0.03c0.07,0.009,0.139,0.002,0.208,0.004
 							    c0.037,0,0.066,0.014,0.105,0.012c-0.018-0.004-0.03-0.007-0.047-0.01c0.054,0,0.108,0.008,0.163,0.003
-							    C48.624,51.952,49.095,51.211,48.942,50.548z"/>
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M101.91,58.289c0.253-0.486,0.505-0.972,0.758-1.458
+							    C48.624,51.952,49.095,51.211,48.942,50.548z" />
+                <path
+                    style="opacity:0.25;fill:#FFFFFF;"
+                    d="M101.91,58.289c0.253-0.486,0.505-0.972,0.758-1.458
 							    c0.034-0.763-0.689-1.408-1.424-1.402c-0.741,0.006-1.44,0.658-1.402,1.424c0.03,0.596,0.211,0.955,0.646,1.349
-							    C100.833,58.516,101.529,58.617,101.91,58.289z"/>
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M72.562,61.389c1.71,0,1.868-2.664,0.146-2.664
-							    C70.999,58.726,70.841,61.389,72.562,61.389z"/>
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M53.266,34.617c0.824,0,1.694-0.446,1.77-1.371c0.062-0.766-0.486-1.77-1.372-1.77
-							    c-0.824,0-1.694,0.446-1.77,1.371C51.832,33.613,52.38,34.617,53.266,34.617z"/>
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M71.696,72.52c0.085-0.071,0.17-0.143,0.255-0.214
+							    C100.833,58.516,101.529,58.617,101.91,58.289z" />
+                <path
+                    style="opacity:0.25;fill:#FFFFFF;"
+                    d="M72.562,61.389c1.71,0,1.868-2.664,0.146-2.664
+							    C70.999,58.726,70.841,61.389,72.562,61.389z" />
+                <path
+                    style="opacity:0.25;fill:#FFFFFF;"
+                    d="M53.266,34.617c0.824,0,1.694-0.446,1.77-1.371c0.062-0.766-0.486-1.77-1.372-1.77
+							    c-0.824,0-1.694,0.446-1.77,1.371C51.832,33.613,52.38,34.617,53.266,34.617z" />
+                <path
+                    style="opacity:0.25;fill:#FFFFFF;"
+                    d="M71.696,72.52c0.085-0.071,0.17-0.143,0.255-0.214
 							    c0.561-0.472,0.552-1.399,0.071-1.917c-0.443-0.478-1.453-0.644-1.917-0.071c-0.132,0.157-0.265,0.314-0.397,0.471
-							    c-0.421,0.5-0.216,1.346,0.241,1.731C70.459,72.952,71.178,72.955,71.696,72.52z"/>
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M32.988,54.343c0.024-0.008,0.048-0.017,0.072-0.024
+							    c-0.421,0.5-0.216,1.346,0.241,1.731C70.459,72.952,71.178,72.955,71.696,72.52z" />
+                <path
+                    style="opacity:0.25;fill:#FFFFFF;"
+                    d="M32.988,54.343c0.024-0.008,0.048-0.017,0.072-0.024
 							    c0.581-0.197,1.025-0.667,1.039-1.307c0.013-0.607-0.404-1.171-0.983-1.349c-0.05-0.015-0.1-0.03-0.149-0.045
-							    c-0.885-0.271-1.785,0.486-1.778,1.376C31.195,53.875,32.11,54.64,32.988,54.343z"/>
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M55.757,99.48c-0.062,0-0.069,0.097-0.007,0.097S55.82,99.48,55.757,99.48z"/>
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M68.578,103.393c1.381,0,2.629-1.404,2.498-2.771
-							    c-0.143-1.484-1.292-2.498-2.772-2.498c-1.381,0-2.629,1.404-2.498,2.771C65.948,102.377,67.097,103.393,68.578,103.393z"/>
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M97.476,104.439c-0.519,0-0.992,0.33-1.038,0.878
-							    c-0.041,0.485,0.356,1.038,0.878,1.038c0.519,0,0.992-0.33,1.038-0.879C98.395,104.992,97.997,104.439,97.476,104.439z"/>
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M77.346,122.857c-1.629,0-1.901,2.542-0.255,2.542
-							    C78.719,125.399,78.991,122.857,77.346,122.857z"/>
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M84.572,96.312c-1.757,0-1.841,2.734-0.077,2.734
-							    C86.252,99.047,86.336,96.312,84.572,96.312z"/>
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M83.437,132.299c0,0.205,0.011,0.285,0.164,0.428c0.06,0.056,0.183,0.063,0.247,0.009
-							    c0.139-0.12,0.175-0.196,0.175-0.379C84.022,131.981,83.437,131.921,83.437,132.299z"/>
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M80.15,134.337c-0.739,0-1.384,0.575-1.406,1.329
-							    c-0.021,0.725,0.587,1.406,1.329,1.406c0.739,0,1.384-0.576,1.406-1.33C81.5,135.018,80.893,134.337,80.15,134.337z"/>
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M82.279,94.513c0.062,0,0.069-0.097,0.007-0.097S82.217,94.513,82.279,94.513z"/>
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M89.774,137.776c-1.996,0-2.44,3.115-0.423,3.115
-							    C91.346,140.892,91.791,137.776,89.774,137.776z"/>
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M50.268,102.34c-2.577,0-2.182,3.991,0.384,3.991
-							    C53.23,106.331,52.834,102.34,50.268,102.34z"/>
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M102.567,87.297c-1.773,0-1.832,2.758-0.053,2.758
-							    C104.288,90.055,104.346,87.297,102.567,87.297z"/>
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M91.979,86.034c-1.742,0-1.851,2.712-0.101,2.712
-							    C93.621,88.746,93.73,86.034,91.979,86.034z"/>
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M100.904,128.99c-1.151,0-2.121,1.31-1.964,2.402c0.184,1.274,1.173,1.963,2.401,1.963
-							    c1.151,0,2.121-1.309,1.964-2.4C103.122,129.68,102.132,128.99,100.904,128.99z"/>
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M60.562,25.956c0.293-0.054,0.386-0.217,0.573-0.419
+							    c-0.885-0.271-1.785,0.486-1.778,1.376C31.195,53.875,32.11,54.64,32.988,54.343z" />
+                <path style="opacity:0.25;fill:#FFFFFF;" d="M55.757,99.48c-0.062,0-0.069,0.097-0.007,0.097S55.82,99.48,55.757,99.48z" />
+                <path
+                    style="opacity:0.25;fill:#FFFFFF;"
+                    d="M68.578,103.393c1.381,0,2.629-1.404,2.498-2.771
+							    c-0.143-1.484-1.292-2.498-2.772-2.498c-1.381,0-2.629,1.404-2.498,2.771C65.948,102.377,67.097,103.393,68.578,103.393z" />
+                <path
+                    style="opacity:0.25;fill:#FFFFFF;"
+                    d="M97.476,104.439c-0.519,0-0.992,0.33-1.038,0.878
+							    c-0.041,0.485,0.356,1.038,0.878,1.038c0.519,0,0.992-0.33,1.038-0.879C98.395,104.992,97.997,104.439,97.476,104.439z" />
+                <path
+                    style="opacity:0.25;fill:#FFFFFF;"
+                    d="M77.346,122.857c-1.629,0-1.901,2.542-0.255,2.542
+							    C78.719,125.399,78.991,122.857,77.346,122.857z" />
+                <path
+                    style="opacity:0.25;fill:#FFFFFF;"
+                    d="M84.572,96.312c-1.757,0-1.841,2.734-0.077,2.734
+							    C86.252,99.047,86.336,96.312,84.572,96.312z" />
+                <path
+                    style="opacity:0.25;fill:#FFFFFF;"
+                    d="M83.437,132.299c0,0.205,0.011,0.285,0.164,0.428c0.06,0.056,0.183,0.063,0.247,0.009
+							    c0.139-0.12,0.175-0.196,0.175-0.379C84.022,131.981,83.437,131.921,83.437,132.299z" />
+                <path
+                    style="opacity:0.25;fill:#FFFFFF;"
+                    d="M80.15,134.337c-0.739,0-1.384,0.575-1.406,1.329
+							    c-0.021,0.725,0.587,1.406,1.329,1.406c0.739,0,1.384-0.576,1.406-1.33C81.5,135.018,80.893,134.337,80.15,134.337z" />
+                <path style="opacity:0.25;fill:#FFFFFF;" d="M82.279,94.513c0.062,0,0.069-0.097,0.007-0.097S82.217,94.513,82.279,94.513z" />
+                <path
+                    style="opacity:0.25;fill:#FFFFFF;"
+                    d="M89.774,137.776c-1.996,0-2.44,3.115-0.423,3.115
+							    C91.346,140.892,91.791,137.776,89.774,137.776z" />
+                <path
+                    style="opacity:0.25;fill:#FFFFFF;"
+                    d="M50.268,102.34c-2.577,0-2.182,3.991,0.384,3.991
+							    C53.23,106.331,52.834,102.34,50.268,102.34z" />
+                <path
+                    style="opacity:0.25;fill:#FFFFFF;"
+                    d="M102.567,87.297c-1.773,0-1.832,2.758-0.053,2.758
+							    C104.288,90.055,104.346,87.297,102.567,87.297z" />
+                <path
+                    style="opacity:0.25;fill:#FFFFFF;"
+                    d="M91.979,86.034c-1.742,0-1.851,2.712-0.101,2.712
+							    C93.621,88.746,93.73,86.034,91.979,86.034z" />
+                <path
+                    style="opacity:0.25;fill:#FFFFFF;"
+                    d="M100.904,128.99c-1.151,0-2.121,1.31-1.964,2.402c0.184,1.274,1.173,1.963,2.401,1.963
+							    c1.151,0,2.121-1.309,1.964-2.4C103.122,129.68,102.132,128.99,100.904,128.99z" />
+                <path
+                    style="opacity:0.25;fill:#FFFFFF;"
+                    d="M60.562,25.956c0.293-0.054,0.386-0.217,0.573-0.419
 							    c-0.012-1.532-0.375-2.137-1.09-1.813c-0.129,0.038-0.243,0.106-0.34,0.204c-0.197,0.185-0.324,0.468-0.329,0.738
 							    c-0.002,0.112,0.027,0.219,0.061,0.324c-0.02,0.045,0.003,0.146,0.081,0.317c0.102,0.165,0.219,0.317,0.353,0.458
-							    C60.031,25.953,60.335,25.998,60.562,25.956z"/>
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M56.924,108.887c-2.75,0-3.264,4.301-0.475,4.301
-							    C59.199,113.188,59.713,108.887,56.924,108.887z"/>
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M53.242,59.583c-0.476,0-0.826,0.542-0.776,0.977c0.06,0.517,0.499,0.776,0.977,0.776
-							    c0.476,0,0.826-0.542,0.776-0.977C54.159,59.842,53.72,59.583,53.242,59.583z"/>
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M54.099,91.461c-0.221-0.949-1.727-1.088-1.975-0.074
+							    C60.031,25.953,60.335,25.998,60.562,25.956z" />
+                <path
+                    style="opacity:0.25;fill:#FFFFFF;"
+                    d="M56.924,108.887c-2.75,0-3.264,4.301-0.475,4.301
+							    C59.199,113.188,59.713,108.887,56.924,108.887z" />
+                <path
+                    style="opacity:0.25;fill:#FFFFFF;"
+                    d="M53.242,59.583c-0.476,0-0.826,0.542-0.776,0.977c0.06,0.517,0.499,0.776,0.977,0.776
+							    c0.476,0,0.826-0.542,0.776-0.977C54.159,59.842,53.72,59.583,53.242,59.583z" />
+                <path
+                    style="opacity:0.25;fill:#FFFFFF;"
+                    d="M54.099,91.461c-0.221-0.949-1.727-1.088-1.975-0.074
 							    c-0.011,0.045-0.022,0.09-0.033,0.135c-0.162,0.658,0.298,1.334,0.999,1.342c0.683,0.008,1.185-0.65,1.031-1.311
-							    C54.113,91.521,54.106,91.491,54.099,91.461z"/>
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M64.819,117.838c-3.99,0-4.358,6.216-0.343,6.216
-							    C68.466,124.054,68.834,117.838,64.819,117.838z"/>
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M69.296,111.33c-2.578,0-2.182,3.992,0.384,3.992
-							    C72.257,115.322,71.861,111.33,69.296,111.33z"/>
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M60.58,105.219c-1.366,0-1.376,2.126-0.004,2.126
-							    C61.941,107.345,61.952,105.219,60.58,105.219z"/>
-		<path style="opacity:0.25;fill:#FFFFFF;" d="M76.1,126.199c-0.632-0.469-1.275-0.611-2.06-0.611c-0.675,0-1.48,0.521-1.889,1.024
+							    C54.113,91.521,54.106,91.491,54.099,91.461z" />
+                <path
+                    style="opacity:0.25;fill:#FFFFFF;"
+                    d="M64.819,117.838c-3.99,0-4.358,6.216-0.343,6.216
+							    C68.466,124.054,68.834,117.838,64.819,117.838z" />
+                <path
+                    style="opacity:0.25;fill:#FFFFFF;"
+                    d="M69.296,111.33c-2.578,0-2.182,3.992,0.384,3.992
+							    C72.257,115.322,71.861,111.33,69.296,111.33z" />
+                <path
+                    style="opacity:0.25;fill:#FFFFFF;"
+                    d="M60.58,105.219c-1.366,0-1.376,2.126-0.004,2.126
+							    C61.941,107.345,61.952,105.219,60.58,105.219z" />
+                <path
+                    style="opacity:0.25;fill:#FFFFFF;"
+                    d="M76.1,126.199c-0.632-0.469-1.275-0.611-2.06-0.611c-0.675,0-1.48,0.521-1.889,1.024
 							    c-0.434,0.535-0.715,1.368-0.611,2.061c0.108,0.719,0.423,1.442,1.024,1.889c0.632,0.47,1.275,0.612,2.06,0.612
-							    c0.675,0,1.48-0.521,1.889-1.025c0.434-0.534,0.715-1.367,0.611-2.06C77.017,127.37,76.701,126.646,76.1,126.199z"/>
-	    </g>
-	    <path id="black" style="fill:#2A0E07;" d="M119.744,44.906c-0.432,0-0.834,0.038-1.212,0.105
+							    c0.675,0,1.48-0.521,1.889-1.025c0.434-0.534,0.715-1.367,0.611-2.06C77.017,127.37,76.701,126.646,76.1,126.199z" />
+            </g>
+            <path
+                id="black"
+                style="fill:#2A0E07;"
+                d="M119.744,44.906c-0.432,0-0.834,0.038-1.212,0.105
 						      C111.203,25.333,94.966,3.371,94.218,2.517c-0.767-0.877-1.425-3.234-2.521-2.302c-1.096,0.932,1.37,2.138,1.37,2.138
 						      S92.929,3.372,94,3.503c0,0,5.938,7.827,10.25,14.964c6.474,10.715,11.965,22.628,13.779,26.68
 						      c-3.596,0.985-4.503,5.059-3.919,8.202l-2.333-1.103C98.575,41.592,67.056,17.901,43.774,14.358
@@ -201,159 +297,158 @@ $: {
 						      c-0.117-0.374-0.172-0.742-0.198-1.108c4.904-11.366,9.504-22.899,13.757-34.546C109.845,102.563,109.636,105.278,109.489,107.959z
 						      M114.246,81.893C107.2,103.03,99,123.926,89.818,144.188c-0.26,0.211-0.542,0.398-0.858,0.546c-0.733,0.344-1.603,0.416-2.335,0.07
 						      c-1.352-0.639-1.526-2.199-1.474-3.557c0.042-1.106,0.165-2.175,0.368-3.22c13.18-19.612,21.321-42.033,28.834-64.154
-						      c0.141,0.504,0.364,1.033,0.713,1.581C115.066,75.455,112.771,78.854,114.246,81.893z"/>
-	</g>
-
+						      c0.141,0.504,0.364,1.033,0.713,1.581C115.066,75.455,112.771,78.854,114.246,81.893z" />
+        </g>
     </defs>
 </svg>
 
 <div class="butterfly_container">
     <var class="rotate3d">
         <figure class="butterfly">
-        <svg class="wing left" viewBox="0 0 119.744 148.477">
-            <use class="left" xlink:href="#shape-moth"></use>
-        </svg> 
-        <svg class="wing right" viewBox="0 0 119.744 148.477">
-            <use class="left" xlink:href="#shape-moth"></use>
-        </svg> 
+            <svg class="wing left" viewBox="0 0 119.744 148.477">
+                <use class="left" xlink:href="#shape-moth"></use>
+            </svg>
+            <svg class="wing right" viewBox="0 0 119.744 148.477">
+                <use class="left" xlink:href="#shape-moth"></use>
+            </svg>
         </figure>
     </var>
 </div>
 
 <style>
     /* Inspired by https://codepen.io/htgmanics/pen/nJwdl */
-@keyframes rotating {
-  0% {
-    -webkit-transform: rotate3d(0, 0, 0, 0deg);
-    -moz-transform: rotate3d(0, 0, 0, 0deg);
-    -ms-transform: rotate3d(0, 0, 0, 0deg);
-    -o-transform: rotate3d(0, 0, 0, 0deg);
-    transform: rotate3d(0, 0, 0, 0deg);
-  }
-  100% {
-    -webkit-transform: rotate3d(0, 1, 0, 720deg);
-    -moz-transform: rotate3d(0, 1, 0, 720deg);
-    -ms-transform: rotate3d(0, 1, 0, 720deg);
-    -o-transform: rotate3d(0, 1, 0, 720deg);
-    transform: rotate3d(0, 1, 0, 720deg);
-  }
-}
-@keyframes rotatingY {
-  100% {
-    -webkit-transform: rotateY(-360deg);
-    -moz-transform: rotateY(-360deg);
-    -ms-transform: rotateY(-360deg);
-    -o-transform: rotateY(-360deg);
-    transform: rotateY(-360deg);
-  }
-}
-@keyframes fluttering {
-  0%,
-  25%,
-  50%,
-  75%,
-  100% {
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-  10%,
-  60% {
-    -webkit-transform: translate3d(0, 150px, 0);
-    -moz-transform: translate3d(0, 150px, 0);
-    -ms-transform: translate3d(0, 150px, 0);
-    -o-transform: translate3d(0, 150px, 0);
-    transform: translate3d(0, 150px, 0);
-  }
-  30%,
-  80% {
-    -webkit-transform: translate3d(0, 50px, 0);
-    -moz-transform: translate3d(0, 50px, 0);
-    -ms-transform: translate3d(0, 50px, 0);
-    -o-transform: translate3d(0, 50px, 0);
-    transform: translate3d(0, 50px, 0);
-  }
-}
-@keyframes left-wing-flap {
-  0% {
-    -webkit-transform: translate3d(0, 0, 0) scaleX(1) rotate3d(0, 1, 0, 60deg);
-    -moz-transform: translate3d(0, 0, 0) scaleX(1) rotate3d(0, 1, 0, 60deg);
-    -ms-transform: translate3d(0, 0, 0) scaleX(1) rotate3d(0, 1, 0, 60deg);
-    -o-transform: translate3d(0, 0, 0) scaleX(1) rotate3d(0, 1, 0, 60deg);
-    transform: translate3d(0, 0, 0) scaleX(1) rotate3d(0, 1, 0, 60deg);
-  }
-  50% {
-    -webkit-transform: translate3d(0, 0, 0) scaleX(1) rotate3d(0, 1, 0, -70deg);
-    -moz-transform: translate3d(0, 0, 0) scaleX(1) rotate3d(0, 1, 0, -70deg);
-    -ms-transform: translate3d(0, 0, 0) scaleX(1) rotate3d(0, 1, 0, -70deg);
-    -o-transform: translate3d(0, 0, 0) scaleX(1) rotate3d(0, 1, 0, -70deg);
-    transform: translate3d(0, 0, 0) scaleX(1) rotate3d(0, 1, 0, -70deg);
-  }
-  100% {
-    -webkit-transform: translate3d(0, 0, 0) scaleX(1) rotate3d(0, 1, 0, 60deg);
-    -moz-transform: translate3d(0, 0, 0) scaleX(1) rotate3d(0, 1, 0, 60deg);
-    -ms-transform: translate3d(0, 0, 0) scaleX(1) rotate3d(0, 1, 0, 60deg);
-    -o-transform: translate3d(0, 0, 0) scaleX(1) rotate3d(0, 1, 0, 60deg);
-    transform: translate3d(0, 0, 0) scaleX(1) rotate3d(0, 1, 0, 60deg);
-  }
-}
-@keyframes right-wing-flap {
-  0% {
-    -webkit-transform: translate3d(0, 0, 0) scaleX(-1) rotate3d(0, 1, 0, 60deg);
-    -moz-transform: translate3d(0, 0, 0) scaleX(-1) rotate3d(0, 1, 0, 60deg);
-    -ms-transform: translate3d(0, 0, 0) scaleX(-1) rotate3d(0, 1, 0, 60deg);
-    -o-transform: translate3d(0, 0, 0) scaleX(-1) rotate3d(0, 1, 0, 60deg);
-    transform: translate3d(0, 0, 0) scaleX(-1) rotate3d(0, 1, 0, 60deg);
-  }
-  50% {
-    -webkit-transform: translate3d(0, 0, 0) scaleX(-1) rotate3d(0, 1, 0, -70deg);
-    -moz-transform: translate3d(0, 0, 0) scaleX(-1) rotate3d(0, 1, 0, -70deg);
-    -ms-transform: translate3d(0, 0, 0) scaleX(-1) rotate3d(0, 1, 0, -70deg);
-    -o-transform: translate3d(0, 0, 0) scaleX(-1) rotate3d(0, 1, 0, -70deg);
-    transform: translate3d(0, 0, 0) scaleX(-1) rotate3d(0, 1, 0, -70deg);
-  }
-  100% {
-    -webkit-transform: translate3d(0, 0, 0) scaleX(-1) rotate3d(0, 1, 0, 60deg);
-    -moz-transform: translate3d(0, 0, 0) scaleX(-1) rotate3d(0, 1, 0, 60deg);
-    -ms-transform: translate3d(0, 0, 0) scaleX(-1) rotate3d(0, 1, 0, 60deg);
-    -o-transform: translate3d(0, 0, 0) scaleX(-1) rotate3d(0, 1, 0, 60deg);
-    transform: translate3d(0, 0, 0) scaleX(-1) rotate3d(0, 1, 0, 60deg);
-  }
-}
+    @keyframes rotating {
+        0% {
+            -webkit-transform: rotate3d(0, 0, 0, 0deg);
+            -moz-transform: rotate3d(0, 0, 0, 0deg);
+            -ms-transform: rotate3d(0, 0, 0, 0deg);
+            -o-transform: rotate3d(0, 0, 0, 0deg);
+            transform: rotate3d(0, 0, 0, 0deg);
+        }
+        100% {
+            -webkit-transform: rotate3d(0, 1, 0, 720deg);
+            -moz-transform: rotate3d(0, 1, 0, 720deg);
+            -ms-transform: rotate3d(0, 1, 0, 720deg);
+            -o-transform: rotate3d(0, 1, 0, 720deg);
+            transform: rotate3d(0, 1, 0, 720deg);
+        }
+    }
+    @keyframes rotatingY {
+        100% {
+            -webkit-transform: rotateY(-360deg);
+            -moz-transform: rotateY(-360deg);
+            -ms-transform: rotateY(-360deg);
+            -o-transform: rotateY(-360deg);
+            transform: rotateY(-360deg);
+        }
+    }
+    @keyframes fluttering {
+        0%,
+        25%,
+        50%,
+        75%,
+        100% {
+            -webkit-transform: translate3d(0, 0, 0);
+            -moz-transform: translate3d(0, 0, 0);
+            -ms-transform: translate3d(0, 0, 0);
+            -o-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+        }
+        10%,
+        60% {
+            -webkit-transform: translate3d(0, 150px, 0);
+            -moz-transform: translate3d(0, 150px, 0);
+            -ms-transform: translate3d(0, 150px, 0);
+            -o-transform: translate3d(0, 150px, 0);
+            transform: translate3d(0, 150px, 0);
+        }
+        30%,
+        80% {
+            -webkit-transform: translate3d(0, 50px, 0);
+            -moz-transform: translate3d(0, 50px, 0);
+            -ms-transform: translate3d(0, 50px, 0);
+            -o-transform: translate3d(0, 50px, 0);
+            transform: translate3d(0, 50px, 0);
+        }
+    }
+    @keyframes left-wing-flap {
+        0% {
+            -webkit-transform: translate3d(0, 0, 0) scaleX(1) rotate3d(0, 1, 0, 60deg);
+            -moz-transform: translate3d(0, 0, 0) scaleX(1) rotate3d(0, 1, 0, 60deg);
+            -ms-transform: translate3d(0, 0, 0) scaleX(1) rotate3d(0, 1, 0, 60deg);
+            -o-transform: translate3d(0, 0, 0) scaleX(1) rotate3d(0, 1, 0, 60deg);
+            transform: translate3d(0, 0, 0) scaleX(1) rotate3d(0, 1, 0, 60deg);
+        }
+        50% {
+            -webkit-transform: translate3d(0, 0, 0) scaleX(1) rotate3d(0, 1, 0, -70deg);
+            -moz-transform: translate3d(0, 0, 0) scaleX(1) rotate3d(0, 1, 0, -70deg);
+            -ms-transform: translate3d(0, 0, 0) scaleX(1) rotate3d(0, 1, 0, -70deg);
+            -o-transform: translate3d(0, 0, 0) scaleX(1) rotate3d(0, 1, 0, -70deg);
+            transform: translate3d(0, 0, 0) scaleX(1) rotate3d(0, 1, 0, -70deg);
+        }
+        100% {
+            -webkit-transform: translate3d(0, 0, 0) scaleX(1) rotate3d(0, 1, 0, 60deg);
+            -moz-transform: translate3d(0, 0, 0) scaleX(1) rotate3d(0, 1, 0, 60deg);
+            -ms-transform: translate3d(0, 0, 0) scaleX(1) rotate3d(0, 1, 0, 60deg);
+            -o-transform: translate3d(0, 0, 0) scaleX(1) rotate3d(0, 1, 0, 60deg);
+            transform: translate3d(0, 0, 0) scaleX(1) rotate3d(0, 1, 0, 60deg);
+        }
+    }
+    @keyframes right-wing-flap {
+        0% {
+            -webkit-transform: translate3d(0, 0, 0) scaleX(-1) rotate3d(0, 1, 0, 60deg);
+            -moz-transform: translate3d(0, 0, 0) scaleX(-1) rotate3d(0, 1, 0, 60deg);
+            -ms-transform: translate3d(0, 0, 0) scaleX(-1) rotate3d(0, 1, 0, 60deg);
+            -o-transform: translate3d(0, 0, 0) scaleX(-1) rotate3d(0, 1, 0, 60deg);
+            transform: translate3d(0, 0, 0) scaleX(-1) rotate3d(0, 1, 0, 60deg);
+        }
+        50% {
+            -webkit-transform: translate3d(0, 0, 0) scaleX(-1) rotate3d(0, 1, 0, -70deg);
+            -moz-transform: translate3d(0, 0, 0) scaleX(-1) rotate3d(0, 1, 0, -70deg);
+            -ms-transform: translate3d(0, 0, 0) scaleX(-1) rotate3d(0, 1, 0, -70deg);
+            -o-transform: translate3d(0, 0, 0) scaleX(-1) rotate3d(0, 1, 0, -70deg);
+            transform: translate3d(0, 0, 0) scaleX(-1) rotate3d(0, 1, 0, -70deg);
+        }
+        100% {
+            -webkit-transform: translate3d(0, 0, 0) scaleX(-1) rotate3d(0, 1, 0, 60deg);
+            -moz-transform: translate3d(0, 0, 0) scaleX(-1) rotate3d(0, 1, 0, 60deg);
+            -ms-transform: translate3d(0, 0, 0) scaleX(-1) rotate3d(0, 1, 0, 60deg);
+            -o-transform: translate3d(0, 0, 0) scaleX(-1) rotate3d(0, 1, 0, 60deg);
+            transform: translate3d(0, 0, 0) scaleX(-1) rotate3d(0, 1, 0, 60deg);
+        }
+    }
 
-.butterfly_container {
-  width: 100px;
-  height: 100px;
-  -webkit-transform-style: preserve-3d;
-  -moz-transform-style: preserve-3d;
-  -ms-transform-style: preserve-3d;
-  -o-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-}
-.butterfly_container var {
-  position: absolute;
-  left: 0%;
-  top: 50%;
-  width: 100px;
-  height: 100px;
-  margin-left: -50px;
-  margin-top: -50px;
-  -webkit-transform-style: preserve-3d;
-  -moz-transform-style: preserve-3d;
-  -ms-transform-style: preserve-3d;
-  -o-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-}
-.butterfly_container var.rotate3d {
-  -webkit-transform: rotate3d(1, 0.5, 0, 50deg);
-  -moz-transform: rotate3d(1, 0.5, 0, 50deg);
-  -ms-transform: rotate3d(1, 0.5, 0, 50deg);
-  -o-transform: rotate3d(1, 0.5, 0, 50deg);
-  transform: rotate3d(1, 0.5, 0, 50deg);
-}
-/*
+    .butterfly_container {
+        width: 100px;
+        height: 100px;
+        -webkit-transform-style: preserve-3d;
+        -moz-transform-style: preserve-3d;
+        -ms-transform-style: preserve-3d;
+        -o-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+    }
+    .butterfly_container var {
+        position: absolute;
+        left: 0%;
+        top: 50%;
+        width: 100px;
+        height: 100px;
+        margin-left: -50px;
+        margin-top: -50px;
+        -webkit-transform-style: preserve-3d;
+        -moz-transform-style: preserve-3d;
+        -ms-transform-style: preserve-3d;
+        -o-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+    }
+    .butterfly_container var.rotate3d {
+        -webkit-transform: rotate3d(1, 0.5, 0, 50deg);
+        -moz-transform: rotate3d(1, 0.5, 0, 50deg);
+        -ms-transform: rotate3d(1, 0.5, 0, 50deg);
+        -o-transform: rotate3d(1, 0.5, 0, 50deg);
+        transform: rotate3d(1, 0.5, 0, 50deg);
+    }
+    /*
 .butterfly_container var.translate3d {
   -webkit-animation: fluttering 10s ease-in-out infinite;
   -moz-animation: fluttering 10s ease-in-out infinite;
@@ -362,90 +457,89 @@ $: {
   animation: fluttering 10s ease-in-out infinite;
 }
 */
-.butterfly_container figure.butterfly {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 100px;
-  height: 100px;
-  margin-left: -50px;
-  margin-top: -50px;
-  -webkit-transform-style: preserve-3d;
-  -moz-transform-style: preserve-3d;
-  -ms-transform-style: preserve-3d;
-  -o-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-  -webkit-transform-origin: 50% 50%;
-  -moz-transform-origin: 50% 50%;
-  -ms-transform-origin: 50% 50%;
-  -o-transform-origin: 50% 50%;
-  transform-origin: 50% 50%;
-}
-.butterfly_container figure.butterfly .wing {
-  position: absolute;
-  width: 50px;
-  height: 100px;
-  -webkit-transform-style: preserve-3d;
-  -moz-transform-style: preserve-3d;
-  -ms-transform-style: preserve-3d;
-  -o-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-  -webkit-transform-origin: 50% 50%;
-  -moz-transform-origin: 50% 50%;
-  -ms-transform-origin: 50% 50%;
-  -o-transform-origin: 50% 50%;
-  transform-origin: 50% 50%;
-  -webkit-transform: translate3d(0, 0, 0) rotate3d(1, 0.5, 0, 45deg);
-  -moz-transform: translate3d(0, 0, 0) rotate3d(1, 0.5, 0, 45deg);
-  -ms-transform: translate3d(0, 0, 0) rotate3d(1, 0.5, 0, 45deg);
-  -o-transform: translate3d(0, 0, 0) rotate3d(1, 0.5, 0, 45deg);
-  transform: translate3d(0, 0, 0) rotate3d(1, 0.5, 0, 45deg);
-}
-.butterfly_container figure.butterfly .wing.right {
-  -webkit-transform-origin: 50px 50px;
-  -moz-transform-origin: 50px 50px;
-  -ms-transform-origin: 50px 50px;
-  -o-transform-origin: 50px 50px;
-  transform-origin: 50px 50px;
-  -webkit-transform: translate3d(0px, 0, 0) scaleX(-1) rotate3d(0, 1, 0, 45deg);
-  -moz-transform: translate3d(0px, 0, 0) scaleX(-1) rotate3d(0, 1, 0, 45deg);
-  -ms-transform: translate3d(0px, 0, 0) scaleX(-1) rotate3d(0, 1, 0, 45deg);
-  -o-transform: translate3d(0px, 0, 0) scaleX(-1) rotate3d(0, 1, 0, 45deg);
-  transform: translate3d(0px, 0, 0) scaleX(-1) rotate3d(0, 1, 0, 45deg);
-  -webkit-animation: right-wing-flap 1s ease-in-out infinite;
-  -moz-animation: right-wing-flap 1s ease-in-out infinite;
-  -ms-animation: right-wing-flap 1s ease-in-out infinite;
-  -o-animation: right-wing-flap 1s ease-in-out infinite;
-  animation: right-wing-flap 1s ease-in-out infinite;
-  filter: FlipH;
-  -ms-filter: "FlipH";
-}
-.butterfly_container figure.butterfly .wing.left {
-  -webkit-transform-origin: 50px 50px;
-  -moz-transform-origin: 50px 50px;
-  -ms-transform-origin: 50px 50px;
-  -o-transform-origin: 50px 50px;
-  transform-origin: 50px 50px;
-  -webkit-animation: left-wing-flap 1s ease-in-out infinite;
-  -moz-animation: left-wing-flap 1s ease-in-out infinite;
-  -ms-animation: left-wing-flap 1s ease-in-out infinite;
-  -o-animation: left-wing-flap 1s ease-in-out infinite;
-  animation: left-wing-flap 1s ease-in-out infinite;
-}
-.butterfly_container figure.butterfly .wing use {
-  display: block;
-  -webkit-transform-style: preserve-3d;
-  -moz-transform-style: preserve-3d;
-  -ms-transform-style: preserve-3d;
-  -o-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-  fill: url(#image);
-}
+    .butterfly_container figure.butterfly {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 100px;
+        height: 100px;
+        margin-left: -50px;
+        margin-top: -50px;
+        -webkit-transform-style: preserve-3d;
+        -moz-transform-style: preserve-3d;
+        -ms-transform-style: preserve-3d;
+        -o-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        -webkit-transform-origin: 50% 50%;
+        -moz-transform-origin: 50% 50%;
+        -ms-transform-origin: 50% 50%;
+        -o-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+    }
+    .butterfly_container figure.butterfly .wing {
+        position: absolute;
+        width: 50px;
+        height: 100px;
+        -webkit-transform-style: preserve-3d;
+        -moz-transform-style: preserve-3d;
+        -ms-transform-style: preserve-3d;
+        -o-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        -webkit-transform-origin: 50% 50%;
+        -moz-transform-origin: 50% 50%;
+        -ms-transform-origin: 50% 50%;
+        -o-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+        -webkit-transform: translate3d(0, 0, 0) rotate3d(1, 0.5, 0, 45deg);
+        -moz-transform: translate3d(0, 0, 0) rotate3d(1, 0.5, 0, 45deg);
+        -ms-transform: translate3d(0, 0, 0) rotate3d(1, 0.5, 0, 45deg);
+        -o-transform: translate3d(0, 0, 0) rotate3d(1, 0.5, 0, 45deg);
+        transform: translate3d(0, 0, 0) rotate3d(1, 0.5, 0, 45deg);
+    }
+    .butterfly_container figure.butterfly .wing.right {
+        -webkit-transform-origin: 50px 50px;
+        -moz-transform-origin: 50px 50px;
+        -ms-transform-origin: 50px 50px;
+        -o-transform-origin: 50px 50px;
+        transform-origin: 50px 50px;
+        -webkit-transform: translate3d(0px, 0, 0) scaleX(-1) rotate3d(0, 1, 0, 45deg);
+        -moz-transform: translate3d(0px, 0, 0) scaleX(-1) rotate3d(0, 1, 0, 45deg);
+        -ms-transform: translate3d(0px, 0, 0) scaleX(-1) rotate3d(0, 1, 0, 45deg);
+        -o-transform: translate3d(0px, 0, 0) scaleX(-1) rotate3d(0, 1, 0, 45deg);
+        transform: translate3d(0px, 0, 0) scaleX(-1) rotate3d(0, 1, 0, 45deg);
+        -webkit-animation: right-wing-flap 1s ease-in-out infinite;
+        -moz-animation: right-wing-flap 1s ease-in-out infinite;
+        -ms-animation: right-wing-flap 1s ease-in-out infinite;
+        -o-animation: right-wing-flap 1s ease-in-out infinite;
+        animation: right-wing-flap 1s ease-in-out infinite;
+        filter: FlipH;
+        -ms-filter: 'FlipH';
+    }
+    .butterfly_container figure.butterfly .wing.left {
+        -webkit-transform-origin: 50px 50px;
+        -moz-transform-origin: 50px 50px;
+        -ms-transform-origin: 50px 50px;
+        -o-transform-origin: 50px 50px;
+        transform-origin: 50px 50px;
+        -webkit-animation: left-wing-flap 1s ease-in-out infinite;
+        -moz-animation: left-wing-flap 1s ease-in-out infinite;
+        -ms-animation: left-wing-flap 1s ease-in-out infinite;
+        -o-animation: left-wing-flap 1s ease-in-out infinite;
+        animation: left-wing-flap 1s ease-in-out infinite;
+    }
+    .butterfly_container figure.butterfly .wing use {
+        display: block;
+        -webkit-transform-style: preserve-3d;
+        -moz-transform-style: preserve-3d;
+        -ms-transform-style: preserve-3d;
+        -o-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        fill: url(#image);
+    }
 
-.svg-defs {
-  position: absolute;
-  height: 0;
-  width: 0;
-}
-
+    .svg-defs {
+        position: absolute;
+        height: 0;
+        width: 0;
+    }
 </style>

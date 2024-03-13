@@ -1,8 +1,7 @@
 import { fail } from '@sveltejs/kit';
-import { browser } from '$app/environment';
 import { redirect } from '@sveltejs/kit';
 import { addSite, getSite, getSites, removeSite } from '$lib/database/sites.js';
-import type { Site } from '@prisma/client';
+import type { SiteCountyState } from '$lib/types';
 
 export async function load({ cookies, url }) {
 	console.log('Load from /api/sites/+page.server.ts');
@@ -14,7 +13,8 @@ export async function load({ cookies, url }) {
 
 	const sites = await getSites(null);
 	const json = JSON.stringify(sites);
-	const jsonResult: Site[] = JSON.parse(json);
+	const jsonResult: SiteCountyState[] = JSON.parse(json);
+
 	return { sites: jsonResult }
 }
 

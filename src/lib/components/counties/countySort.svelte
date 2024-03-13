@@ -1,37 +1,49 @@
 <script lang="ts">
+    /*-- Imports */
     import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
     import { SORTORDER, type CountyComplete } from '$lib/types.js';
     import type { CssClasses } from '@skeletonlabs/skeleton';
 
+    /*-- -- Data -- */
+    /*-- Exports */
     export let counties: CountyComplete[];
 
-    // Properties (styles)
-    /** */
+    /*-- Context */
+    /*-- -- Styling -- */
+    /*-- Properties (styles) */
     export let elementEins: CssClasses = 'pr-2';
     export let elementZwei: CssClasses = '-mr-9';
     export let elementDrei: CssClasses = '';
 
-    // Constants (styles)
+    /*-- Constants (styles) */
     const cClassesElementEins = "my-auto before:content-['Counties:'] before:lg:content-['County_count:']";
     const cClassesElementZwei = 'flex flex-row space-x-2';
     const cClassesElementDrei = "my-auto text-right before:content-[''] md:before:content-['Sort_by'] lg:before:content-['Sort_by_County/Region:']";
 
-    // Reactive styles
+    /*-- Reactives (styles) */
     $: classesElementEins = `${cClassesElementEins} ${elementEins} ${$$props.class ?? ''}`;
     $: classesElementZwei = `${cClassesElementZwei} ${elementZwei} ${$$props.class ?? ''}`;
     $: classesElementDrei = `${cClassesElementDrei} ${elementDrei} ${$$props.class ?? ''}`;
 
+    /*-- -- Coding -- */
+    /*-- Enums */
     enum GEOGRAPHIC {
         COUNTY = 0,
         REGION = 1,
     }
 
+    /*-- Constants (functional) */
+    /*-- Properties (functional) */
+    /*-- Variables and objects */
     let valueCountyRegion: number = GEOGRAPHIC.COUNTY;
     let sortOrderCounty: SORTORDER = SORTORDER.ASC;
     let sortOrderRegion: SORTORDER = SORTORDER.NONE;
     let sortIconCounty: string = 'table-sort-asc';
     let sortIconRegion: string = '';
 
+    /*-- Run first stuff */
+    /*-- onMount, beforeNavigate, afterNavigate */
+    /*-- Handlers */
     function handleSortClick(e: any) {
         console.log(valueCountyRegion, sortOrderCounty, sortOrderRegion, sortIconCounty, sortIconRegion);
 
@@ -86,6 +98,10 @@
         counties = counties;
         return true;
     }
+
+    /*-- Methods */
+    /*-- Reactives (functional) */
+
 </script>
 
 <div class={classesElementEins}>

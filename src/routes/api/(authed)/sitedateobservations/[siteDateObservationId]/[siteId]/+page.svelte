@@ -160,7 +160,9 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                     <SpeciesPicker
                         currentSdoChecklistItem={currentSiteDateObservation}
                         isAdding={isAdding}
-                        isEditing={isEditing} />
+                        isEditing={isEditing}
+                        showDeletedData={showDeletedData}
+                    />
                 </div>
 
                 <!-- Main controls -->
@@ -403,6 +405,5 @@ var z = y.difference(x) // [ "d", "e", "g" ]
             </div>
         {/if}
     </svelte:fragment>
-    <div class="absolute right-14 top-24">Smile time!!!</div>
-    <div class="absolute right-14 top-2">Smile time!!!</div>
+
 </StandardContainer>

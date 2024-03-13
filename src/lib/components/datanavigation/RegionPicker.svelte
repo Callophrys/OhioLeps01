@@ -1,14 +1,35 @@
 <script lang="ts">
+    /*-- Imports */
     import type { Region } from '@prisma/client';
     import { popup } from '@skeletonlabs/skeleton';
     import type { PopupSettings } from '@skeletonlabs/skeleton';
+
+    /*-- -- Data -- */
+    /*-- Exports */
     export let currentRegion: Region;
 
+    /*-- Context */
+    /*-- -- Styling -- */
+    /*-- Properties (styles) */
+    /*-- Constants (styles) */
+    /*-- Reactives (styles) */
+    /*-- -- Coding -- */
+    /*-- Enums */
+    /*-- Constants (functional) */
     const popupRegions: PopupSettings = {
         event: 'focus-click',
         target: 'popupRegions',
         placement: 'bottom',
     };
+
+    /*-- Properties (functional) */
+    /*-- Variables and objects */
+    /*-- Run first stuff */
+    /*-- onMount, beforeNavigate, afterNavigate */
+    /*-- Handlers */
+    /*-- Methods */
+    /*-- Reactives (functional) */
+
 </script>
 
 {#if $$slots.label}

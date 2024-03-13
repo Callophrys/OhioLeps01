@@ -13,15 +13,16 @@
 
     let config: any = $page.data.config ?? {};
 
-    storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
-
     const cNavBarClasses = 'w-60';
     const cSidebarClassesBase = 'variant-filled-surface w-60 h-full top-0 p-4 -left-56 fixed z-10 duration-700';
     const cSidebarClassesMedium = 'md:bg-surface-100-800-token md:text-current md:h-screen md:top-auto md:left-0 md:static';
     const cSidebarClassesHover = 'hover:translate-x-56 hover:md:translate-x-0';
     const cSidebarClasses = `${cSidebarClassesBase} ${cSidebarClassesMedium} ${cSidebarClassesHover}`;
 
+    storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
+
     initializeStores();
+
 </script>
 
 <svelte:head>
@@ -93,7 +94,7 @@
     </svelte:fragment>
 
     <svelte:fragment slot="sidebarLeft">
-        <SiteNavigation navBarClasses={cNavBarClasses} />
+        <SiteNavigation navBar={cNavBarClasses} />
     </svelte:fragment>
 
     <!-- (sidebarRight) -->

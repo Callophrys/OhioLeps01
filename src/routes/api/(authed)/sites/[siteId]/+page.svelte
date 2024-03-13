@@ -37,15 +37,16 @@
 <StandardContainer>
     <svelte:fragment slot="standardHead">
         <div class="flex flex-row justify-between gap-1 md:gap-2">
+            <CountyPicker currentCounty={data.site.county}>
+                <svelte:fragment slot="heading">County:</svelte:fragment>
+            </CountyPicker>
+            <!-- TODO: Filter sites to selected country -->
             <SitePicker currentSite={data.site}>
                 <svelte:fragment slot="heading">Site:</svelte:fragment>
             </SitePicker>
             <SiteDatePicker bind:currentSiteId={data.site.siteId} bind:currentSiteDateId>
                 <svelte:fragment slot="heading">Observations:</svelte:fragment>
             </SiteDatePicker>
-            <CountyPicker currentCounty={data.site.county}>
-                <svelte:fragment slot="heading">County:</svelte:fragment>
-            </CountyPicker>
         </div>
         <!--
                     TODO: Make this change the site by alphabetical

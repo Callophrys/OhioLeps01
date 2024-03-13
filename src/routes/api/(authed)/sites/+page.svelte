@@ -2,9 +2,9 @@
     import StandardContainer from '$lib/components/StandardContainer.svelte';
     import { formatDate } from '$lib/utils';
     import { popup } from '@skeletonlabs/skeleton';
-    import type { PopupSettings } from '@skeletonlabs/skeleton';
+    //import type { PopupSettings } from '@skeletonlabs/skeleton';
     import { page } from '$app/stores';
-    import { enhance } from '$app/forms';
+    //import { enhance } from '$app/forms';
     import { isEmpty, camelToFriendly } from '$lib/utils';
 
     export let data;
@@ -181,15 +181,17 @@
                         {#each data.sites as site, i}
                             <a href="/api/sites/{site.siteId}">
                                 <div class="card relative grid w-56 h-32 p-0 m-0 text-wrap hover:variant-soft">
-                                    <div class="absolute top-2 left-2">🔍</div>
                                     <div class="px-2 pt-2 w-full text-center">
-                                        <h3>{site.siteName}</h3>
+                                        <div class="flex flex-row justify-between">
+                                            <div class="">🔍</div>
+                                            <div class="w-full mr-4">{site.siteName}</div>
+                                        </div>
                                         <div>
                                             {site.county.state.name} - {site.county.name}
                                         </div>
                                         <div>{site.person}</div>
                                         <div class="text-wrap">
-                                            Last update: {formatDate(site.createdAt)}
+                                            Last update: {formatDate(site.updatedAt ?? site.createdAt)}
                                         </div>
                                     </div>
                                     <!--

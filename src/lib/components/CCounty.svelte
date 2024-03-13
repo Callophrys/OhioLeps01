@@ -1,7 +1,28 @@
 <script lang="ts">
+    /*-- Imports */
     import { goto } from '$app/navigation';
+
+    /*-- -- Data -- */
+    /*-- Exports */
     export let county: any;
     console.log(county);
+
+    /*-- Context */
+    /*-- -- Styling -- */
+    /*-- Properties (styles) */
+    /*-- Constants (styles) */
+    /*-- Reactives (styles) */
+    /*-- -- Coding -- */
+    /*-- Enums */
+    /*-- Constants (functional) */
+    /*-- Properties (functional) */
+    /*-- Variables and objects */
+    /*-- Run first stuff */
+    /*-- onMount, beforeNavigate, afterNavigate */
+    /*-- Handlers */
+    /*-- Methods */
+    /*-- Reactives (functional) */
+
 </script>
 
 <div class="p-2 rounded bg-slate-400 size-28">

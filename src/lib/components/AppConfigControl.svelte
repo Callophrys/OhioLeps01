@@ -1,16 +1,22 @@
 <script lang="ts">
+    /*-- Imports */
     import { camelToFriendly, toBool } from '$lib/utils';
     import type { AppConfigFormKeyChecked } from '$lib/types';
     import { getContext } from 'svelte';
     import { afterUpdate } from 'svelte';
 
+    /*-- -- Data -- */
+    /*-- Exports */
+    /*-- Context */
     let appConfigs: AppConfigFormKeyChecked[] = getContext('appConfigs');
     //console.log(appConfigs);
-    /*
-     *
-     * https://svelte.dev/repl/253ddd578806497b8b54c339490f8221?version=3.21.0
-     *
-     * */
+
+    /*-- -- Styling -- */
+    /*-- Properties (styles) */
+    /*-- Constants (styles) */
+    /*-- Reactives (styles) */
+    /*-- -- Coding -- */
+    /*-- Enums */
     type candidate = {
         configValue: string;
         changed: boolean;
@@ -18,7 +24,12 @@
         checked: boolean;
     };
 
+    /*-- Constants (functional) */
     const candidates: any = {};
+
+    /*-- Properties (functional) */
+    /*-- Variables and objects */
+    /*-- Run first stuff */
     for (const p of appConfigs) {
         candidates[p.formKey] = {
             configValue: p.configValue,
@@ -29,6 +40,7 @@
     }
     //console.log('c', candidates);
 
+    /*-- onMount, beforeNavigate, afterNavigate */
     afterUpdate(() => {
         appConfigs.forEach((c) => {
             if (c.configType === 'boolean') {
@@ -50,6 +62,18 @@
             }
         });
     });
+
+    /*-- Handlers */
+    /*-- Methods */
+    /*-- Reactives (functional) */
+    /*-- Other */
+
+    /*
+     *
+     * https://svelte.dev/repl/253ddd578806497b8b54c339490f8221?version=3.21.0
+     *
+     * */
+
 </script>
 
 {#each appConfigs as appConfig}

@@ -3,30 +3,18 @@
     https://github.com/skeletonlabs/skeleton/blob/master/packages/skeleton/src/lib/components/AppShell/AppShell.svelte
 -->
 <script lang="ts">
+    /*-- Imports */
     import { showAppBar, showFooter } from '$lib/config';
     import type { CssClasses } from '@skeletonlabs/skeleton';
 
+    /*-- -- Data -- */
+    /*-- Exports */
     export let basisLeft = 'basis-1/2';
     export let basisRight = 'basis-1/2';
 
-    // Should be 144 (with footer) or 128 but added 4px for just in case
-    // Should do this for show/hide avatar and for show/hide app bar
-    let heightAdjust = 4 + (showAppBar ? 132 : 0) + (showFooter ? 16 : 0);
-    let configOuterBody: CssClasses = showFooter
-        ? `container flex flex-row gap-8 px-8 pt-8 pb-4 has-footer`
-        : `container flex flex-row gap-8 p-8`;
-    /*
-    const configOuterBody = "container flex flex-row gap-8"
-    */
-
-    const cBaseCard = 'card py-4 pl-4 h-full flex flex-col space-y-2';
-    //const cBaseLeftHead = '';
-    const cBaseLeftBody = 'space-y-2 h-full';
-    //const cBaseLeftTail = '';
-    //const cBaseRightHead = '';
-    const cBaseRightBody = 'space-y-2 h-full';
-    //const cBaseRightTail = '';
-
+    /*-- Context */
+    /*-- -- Styling -- */
+    /*-- Properties (styles) */
     export let leftHeadClasses: CssClasses = 'pr-4';
     export let leftBodyClasses: CssClasses = 'overflow-y-auto';
     export let leftTailClasses: CssClasses = '';
@@ -35,6 +23,22 @@
     export let rightBodyClasses: CssClasses = 'overflow-y-auto';
     export let rightTailClasses: CssClasses = '';
 
+    /*-- Constants (styles) */
+    const cBaseCard = 'card py-4 pl-4 h-full flex flex-col space-y-2';
+    //const cBaseLeftHead = '';
+    const cBaseLeftBody = 'space-y-2 h-full';
+    //const cBaseLeftTail = '';
+    //const cBaseRightHead = '';
+    const cBaseRightBody = 'space-y-2 h-full';
+    //const cBaseRightTail = '';
+
+    /*-- Variables (styles) */
+    // Should be 144 (with footer) or 128 but added 4px for just in case
+    // Should do this for show/hide avatar and for show/hide app bar
+    //let heightAdjust = 4 + (showAppBar ? 132 : 0) + (showFooter ? 16 : 0);
+    let configOuterBody: CssClasses = showFooter ? `container flex flex-row gap-8 px-8 pt-8 pb-4 has-footer` : `container flex flex-row gap-8 p-8`;
+
+    /*-- Reactives (styles) */
     $: classesOuterBody = `${configOuterBody}`;
 
     $: classesLeftCard = `${cBaseCard} ${basisLeft}`;
@@ -47,6 +51,18 @@
     $: classesRightHead = `${rightHeadClasses}`;
     $: classesRightBody = `${cBaseRightBody} ${rightBodyClasses}`;
     $: classesRightTail = `${rightTailClasses}`;
+
+    /*-- -- Coding -- */
+    /*-- Enums */
+    /*-- Constants (functional) */
+    /*-- Properties (functional) */
+    /*-- Variables and objects */
+    /*-- Run first stuff */
+    /*-- onMount, beforeNavigate, afterNavigate */
+    /*-- Handlers */
+    /*-- Methods */
+    /*-- Reactives (functional) */
+
 </script>
 
 <div class={classesOuterBody}>

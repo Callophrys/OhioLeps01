@@ -1,4 +1,22 @@
 <script lang="ts">
+    /*-- Imports */
+    /*-- -- Data -- */
+    /*-- Exports */
+    /*-- Context */
+    /*-- -- Styling -- */
+    /*-- Properties (styles) */
+    /*-- Constants (styles) */
+    /*-- Reactives (styles) */
+    /*-- -- Coding -- */
+    /*-- Enums */
+    /*-- Constants (functional) */
+    /*-- Properties (functional) */
+    /*-- Variables and objects */
+    /*-- Run first stuff */
+    /*-- onMount, beforeNavigate, afterNavigate */
+    /*-- Handlers */
+    /*-- Methods */
+    /*-- Reactives (functional) */
     import type { CssClasses } from '@skeletonlabs/skeleton';
     import { ZOOM_DIR } from '$lib/types';
     //import LEP01 from '$lib/assets/lep01.svg';

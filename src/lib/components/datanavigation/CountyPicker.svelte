@@ -1,23 +1,27 @@
 <script lang="ts">
+    /*-- Imports */
     import type { County } from '@prisma/client';
     import { popup } from '@skeletonlabs/skeleton';
     import { ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
     import type { PopupSettings } from '@skeletonlabs/skeleton';
     import { getContext } from 'svelte';
 
-    /*
-    TODO: Figure out why select 2 counties causes left-right to think
-          those are the only available counties to cycle through.
-    */
-
+    /*-- -- Data -- */
+    /*-- Exports */
     export let currentCounty: County;
+    //console.log(currentCounty);
 
-    $: currentCounty = currentCounty;
-
+    /*-- Context */
     let allCounties: County[] = getContext('counties') ?? [];
-    console.log(allCounties);
-    console.log(currentCounty);
+    //console.log(allCounties);
 
+    /*-- -- Styling -- */
+    /*-- Properties (styles) */
+    /*-- Constants (styles) */
+    /*-- Reactives (styles) */
+    /*-- -- Coding -- */
+    /*-- Enums */
+    /*-- Constants (functional) */
     const popupCounties: PopupSettings = {
         event: 'focus-click',
         target: 'popupCounties',
@@ -25,7 +29,12 @@
         state: (e: Record<string, boolean>) => console.log(e),
     };
 
-    function countyPrior(e: any) {
+    /*-- Properties (functional) */
+    /*-- Variables and objects */
+    /*-- Run first stuff */
+    /*-- onMount, beforeNavigate, afterNavigate */
+    /*-- Handlers */
+    function countyPrior() {
         if (currentCounty.id !== allCounties[0].id) {
             let idx = allCounties.findIndex((c) => {
                 return c.id === currentCounty.id;
@@ -36,7 +45,7 @@
         }
     }
 
-    function countyNext(e: any) {
+    function countyNext() {
         if (currentCounty.id !== allCounties[allCounties.length - 1].id) {
             let idx = allCounties.findIndex((c) => {
                 return c.id === currentCounty.id;
@@ -52,6 +61,7 @@
         let idx = allCounties.findIndex((c) => {
             return c.id === parseInt(e.currentTarget.value);
         });
+
         if (idx > -1) {
             console.log('Found and setting to:', allCounties[idx]);
             currentCounty = allCounties[idx];
@@ -59,6 +69,16 @@
             console.log('Index not found');
         }
     }
+
+    /*-- Methods */
+    /*-- Reactives (functional) */
+    $: currentCounty = currentCounty;
+
+    /*
+    TODO: Figure out why select 2 counties causes left-right to think
+          those are the only available counties to cycle through.
+    */
+
 </script>
 
 <div class="flex flex-col lg:flex-row gap-0 md:gap-1 lg:gap-2">

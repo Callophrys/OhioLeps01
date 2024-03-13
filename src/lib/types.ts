@@ -29,8 +29,10 @@ export enum ZOOM_DIR {
 
 export type AppConfigFormKeyChecked = AppConfig & { checked: boolean, formKey: string }
 export type ChecklistScientificName = Checklist & { scientificName: string }
-export type CountyMonitored = County & { isMonitored: boolean, siteCount: number, state: State }
 export type CountyComplete = CountyMonitored & { region: Region, sites: Site[] }
+export type CountyMonitored = County & { isMonitored: boolean, siteCount: number, state: State }
+export type CountySites = County & { sites: Site[] }
+export type CountyState = County & { state: State }
 export type UserComplete = User & { firstLast: string, lastFirst: string }
 export type SiteDateSiteName = SiteDate & { site: Site }
 export type SiteDateObservationChecklist = SiteDateObservation & {
@@ -49,6 +51,7 @@ export type SiteDateYear = SiteDate & {
 	confirmBy: UserComplete
 }
 export type SiteCounty = Site & { county: County }
+export type SiteCountyState = Site & { county: CountyState }
 export type SiteCountySiteDates = Site & { county: County, siteDates: SiteDateYear[] }
 export type SiteStatusCode = SiteStatus & { statusCode: StatusCode }
 export type SiteCountyStatuses = Site & { county: County, siteStatuses: SiteStatusCode[] }

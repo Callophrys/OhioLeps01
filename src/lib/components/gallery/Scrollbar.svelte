@@ -1,4 +1,22 @@
 <script lang="ts">
+    /*-- Imports */
+    /*-- -- Data -- */
+    /*-- Exports */
+    /*-- Context */
+    /*-- -- Styling -- */
+    /*-- Properties (styles) */
+    /*-- Constants (styles) */
+    /*-- Reactives (styles) */
+    /*-- -- Coding -- */
+    /*-- Enums */
+    /*-- Constants (functional) */
+    /*-- Properties (functional) */
+    /*-- Variables and objects */
+    /*-- Run first stuff */
+    /*-- onMount, beforeNavigate, afterNavigate */
+    /*-- Handlers */
+    /*-- Methods */
+    /*-- Reactives (functional) */
     export let urls: string[];
     export let elemCarousel: HTMLDivElement;
     export let imageIndex: number = 0;

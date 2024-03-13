@@ -1,10 +1,11 @@
 <script lang="ts">
     import StandardContainer from '$lib/components/StandardContainer.svelte';
-    import { type Taxonomy } from '@prisma/client';
+    import type { TaxonomyComplete } from '$lib/types';
     import { onMount } from 'svelte';
+
     export let data;
 
-    function getScientificName(taxon: Taxonomy) {
+    function getScientificName(taxon: TaxonomyComplete) {
         if (taxon.taxonType !== 'S' && taxon.taxonType !== 'SS') return taxon.latinName;
 
         let scientificName = taxon.latinName;
@@ -28,14 +29,6 @@
         }
 
         return scientificName;
-    }
-
-    function getTaxonIndent(taxonType: string) {
-        if (taxonType === 'SF') return 'indent-4';
-        if (taxonType === 'G') return 'indent-8';
-        if (taxonType === 'S') return 'indent-16';
-        if (taxonType === 'SS') return 'indent-20';
-        return '';
     }
 
     import { TreeView, TreeViewItem, RecursiveTreeView } from '@skeletonlabs/skeleton';

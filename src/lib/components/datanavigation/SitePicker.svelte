@@ -1,26 +1,41 @@
 <script lang="ts">
+    /*-- Imports */
     import type { Site } from '@prisma/client';
     import { popup } from '@skeletonlabs/skeleton';
     import { ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
     import type { PopupSettings } from '@skeletonlabs/skeleton';
     import { getContext } from 'svelte';
 
+    /*-- -- Data -- */
+    /*-- Exports */
     export let currentSite: Site;
 
-    $: currentSite = currentSite;
-
-    let allSites: Site[] = getContext('sites') ?? [];
-    console.log(allSites);
-    console.log(currentSite);
-
+    /*-- Context */
+    /*-- -- Styling -- */
+    /*-- Properties (styles) */
+    /*-- Constants (styles) */
+    /*-- Reactives (styles) */
+    /*-- -- Coding -- */
+    /*-- Enums */
+    /*-- Constants (functional) */
     const popupSites: PopupSettings = {
         event: 'focus-click',
         target: 'popupSites',
         placement: 'bottom',
-        closeQuery: '.listbox-item'
+        closeQuery: '.listbox-item',
     };
 
-    function siteSelect(e: any) {
+    /*-- Properties (functional) */
+    /*-- Variables and objects */
+    let allSites: Site[] = getContext('sites') ?? [];
+    console.log(allSites);
+    console.log(currentSite);
+
+    /*-- Run first stuff */
+    /*-- onMount, beforeNavigate, afterNavigate */
+    /*-- Handlers */
+    /*-- Methods */
+    function handleSiteSelect(e: any) {
         console.log(e.currentTarget.value);
         let idx = allSites.findIndex((c) => {
             return c.siteId === parseInt(e.currentTarget.value);
@@ -32,6 +47,9 @@
             console.log('Index not found');
         }
     }
+
+    /*-- Reactives (functional) */
+    $: currentSite = currentSite;
 </script>
 
 <!--
@@ -63,7 +81,7 @@
     <div class="card w-48 shadow-xl py-2 overflow-y-auto" style="max-height: calc(100vh - 272px);">
         <ListBox rounded="rounded-none">
             {#each allSites as site}
-                <ListBoxItem bind:group={currentSite.siteId} name="medium" on:change={siteSelect} value={site.siteId} class="capitalize">{site.siteName}</ListBoxItem>
+                <ListBoxItem bind:group={currentSite.siteId} name="medium" on:change={handleSiteSelect} value={site.siteId} class="capitalize">{site.siteName}</ListBoxItem>
             {/each}
         </ListBox>
     </div>

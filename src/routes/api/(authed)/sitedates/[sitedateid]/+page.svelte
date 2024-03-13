@@ -95,20 +95,6 @@
         }
     }
 
-    function handleClickPrior(event: any) {
-        let idx = trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteId);
-        if (idx > 0) {
-            goto('/api/sitedates/' + trackedWeeks[idx - 1].siteDateId);
-        }
-    }
-
-    function handleClickNext(event: any) {
-        let idx = trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteId);
-        if (idx < trackedWeeks.length - 1) {
-            goto('/api/sitedates/' + trackedWeeks[idx + 1].siteDateId);
-        }
-    }
-
     let startTemp: string;
     let endTemp: string;
 
@@ -464,16 +450,19 @@
     <svelte:fragment slot="rightBody">
         <div class="flex flex-row justify-between mb-2">
             <div class="my-auto">{data.siteDate.siteName}</div>
-            <SiteDatePicker bind:currentSiteId={data.siteDate.siteId} bind:currentSiteDateId={data.siteDate.siteDateId} controlBody="scale-90" buttonLeft="!px-2" buttonRight="!px-2" dropdownShowDate={false} dropdownPointers={false}>
+            <SiteDatePicker
+                bind:currentSiteId={data.siteDate.siteId}
+                bind:currentSiteDateId={data.siteDate.siteDateId}
+                controlBody="scale-90"
+                buttonLeft="!px-2"
+                buttonRight="!px-2"
+                buttonYear="px-0 md:px-1 lg:px-2"
+                buttonWeek="px-0 md:px-1 lg:px-2"
+                dropdownShowDate={false}
+                dropdownPointers={false}>
                 <svelte:fragment slot="prefixYear">Year:</svelte:fragment>
                 <svelte:fragment slot="prefixWeek">Week:</svelte:fragment>
             </SiteDatePicker>
-            <div class="btn-group variant-soft scale-90 my-auto">
-                <button on:click={handleClickPrior}>◀</button>
-                <button class="w-24">Year: {recordYear}</button>
-                <button class="w-24">Week: {recordWeek}</button>
-                <button on:click={handleClickNext}>▶</button>
-            </div>
         </div>
 
         <hr />
@@ -487,7 +476,7 @@
                         } else if (showRecentEdits && siteDateObservation.updatedAt) {
                             let x = new Date();
                             x = new Date(x.getUTCFullYear(), x.getUTCMonth(), x.getUTCDate() - 10);
-                            classes += new Date(siteDateObservation.updatedAt).getTime() > x.getTime() ? (cClassesObservation + ' variant-ghost-tertiary') : '';
+                            classes += new Date(siteDateObservation.updatedAt).getTime() > x.getTime() ? (cClassesObservation + ' variant-ghost-warning') : '';
                         }
                         return classes;
                     })()}`}>

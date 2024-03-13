@@ -1,4 +1,5 @@
 <script lang="ts">
+    /*-- Imports */
     import { goto } from '$app/navigation';
     import { popup } from '@skeletonlabs/skeleton';
     import type { PopupSettings } from '@skeletonlabs/skeleton';
@@ -10,19 +11,20 @@
     import { onMount } from 'svelte';
 
     /* Had 2 slots: prefixYear and prefixWeek */
-
+    /*-- -- Data -- */
+    /*-- Exports */
     export let currentSiteId: number = -1;
     export let currentSiteDateId: number = -1;
     //console.log('SiteDatePicker:currentSiteId', currentSiteId, 'currentSiteDateId', currentSiteDateId);
 
-    // Properties
     /** Show down arrow with year and week labels to indicate dropdown.  Default: true */
     export let dropdownPointers: boolean = true;
     /** Includes date in weeks dropdown.  Default: false */
     export let dropdownShowDate: boolean = false;
 
-    // Properties (styles)
-    /** */
+    /*-- Context */
+    /*-- -- Styling -- */
+    /*-- Properties (styles) */
     export let controlBody: CssClasses = '';
     export let buttonLeft: CssClasses = '';
     export let buttonRight: CssClasses = '';
@@ -32,14 +34,12 @@
     export let prefixWeek: CssClasses = '';
     export let suffixYear: CssClasses = dropdownPointers ? "before:content-['↓']" : '';
     export let suffixWeek: CssClasses = dropdownPointers ? "before:content-['↓']" : '';
-    /** */
-    ///export let spacing: CssClasses = 'space-y-1';
 
     // Properties (a11y)
     /** Provide the ARIA labelledby value.  Default: "Select site-date" */
     export let labelledby = 'Select site-date';
 
-    // Constants (styles)
+    /*-- Constants (styles) */
     const cControlBody = 'btn-group variant-soft my-auto';
     const cButtonLeft = '';
     const cButtonRight = '';
@@ -50,6 +50,36 @@
     const cSuffixYear = '';
     const cSuffixWeek = '';
 
+    /*-- Reactives (styles) */
+    // Reactive styles
+    $: classesControlBody = `${cControlBody} ${controlBody} ${$$props.class ?? ''}`;
+    $: classesButtonLeft = `${cButtonLeft} ${buttonLeft} ${$$props.class ?? ''}`;
+    $: classesButtonRight = `${cButtonRight} ${buttonRight} ${$$props.class ?? ''}`;
+    $: classesButtonYear = `${cButtonYear} ${buttonYear} ${$$props.class ?? ''}`;
+    $: classesButtonWeek = `${cButtonWeek} ${buttonWeek} ${$$props.class ?? ''}`;
+    $: classesPrefixYear = `${cPrefixYear} ${prefixYear} ${$$props.class ?? ''}`;
+    $: classesPrefixWeek = `${cPrefixWeek} ${prefixWeek} ${$$props.class ?? ''}`;
+    $: classesSuffixYear = `${cSuffixYear} ${suffixYear} ${$$props.class ?? ''}`;
+    $: classesSuffixWeek = `${cSuffixWeek} ${suffixWeek} ${$$props.class ?? ''}`;
+
+    /*-- -- Coding -- */
+    /*-- Enums */
+    /*-- Constants (functional) */
+    const popupSiteDateYears: PopupSettings = {
+        event: 'focus-click',
+        target: 'popupComboboxSiteDateYears',
+        placement: 'bottom',
+        closeQuery: '.listbox-item',
+    };
+
+    const popupSiteDateWeeks: PopupSettings = {
+        event: 'focus-click',
+        target: 'popupComboboxSiteDateWeeks',
+        placement: 'bottom',
+        closeQuery: '.listbox-item',
+    };
+
+    /*-- Properties (functional) */
     // siteDate list for respective site via Context
     const siteDates: SiteDateYear[] = getContext('siteDates') ?? [];
     //console.log('SiteDatePicker:siteDates', siteDates);
@@ -79,6 +109,7 @@
     trackedWeeks.forEach((t: dateTracking) => (trackedWeeksObject[t.week] = t));
     console.log('trackedWeeksObject:', trackedWeeksObject);
 
+    /*-- Variables and objects */
     let nextEnabled: boolean;
     let prevEnabled: boolean;
 
@@ -87,6 +118,8 @@
     let recordYear: number;
     let recordWeek: number;
 
+    /*-- Run first stuff */
+    /*-- onMount, beforeNavigate, afterNavigate */
     onMount(() => {
         nextEnabled = trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteDateId) < trackedWeeks.length - 1;
         prevEnabled = trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteDateId) > 0;
@@ -102,20 +135,7 @@
         console.log(siteDateYears, siteDateWeeks);
     });
 
-    const popupSiteDateYears: PopupSettings = {
-        event: 'focus-click',
-        target: 'popupComboboxSiteDateYears',
-        placement: 'bottom',
-        closeQuery: '.listbox-item'
-    };
-
-    const popupSiteDateWeeks: PopupSettings = {
-        event: 'focus-click',
-        target: 'popupComboboxSiteDateWeeks',
-        placement: 'bottom',
-        closeQuery: '.listbox-item'
-    };
-
+    /*-- Handlers */
     function handleClick(event: any) {
         if (event.currentTarget?.value) {
             goto('/api/sitedates/' + trackedWeeksObject[recordWeek].siteDateId);
@@ -137,16 +157,8 @@
         }
     }
 
-    // Reactive styles
-    $: classesControlBody = `${cControlBody} ${controlBody} ${$$props.class ?? ''}`;
-    $: classesButtonLeft = `${cButtonLeft} ${buttonLeft} ${$$props.class ?? ''}`;
-    $: classesButtonRight = `${cButtonRight} ${buttonRight} ${$$props.class ?? ''}`;
-    $: classesButtonYear = `${cButtonYear} ${buttonYear} ${$$props.class ?? ''}`;
-    $: classesButtonWeek = `${cButtonWeek} ${buttonWeek} ${$$props.class ?? ''}`;
-    $: classesPrefixYear = `${cPrefixYear} ${prefixYear} ${$$props.class ?? ''}`;
-    $: classesPrefixWeek = `${cPrefixWeek} ${prefixWeek} ${$$props.class ?? ''}`;
-    $: classesSuffixYear = `${cSuffixYear} ${suffixYear} ${$$props.class ?? ''}`;
-    $: classesSuffixWeek = `${cSuffixWeek} ${suffixWeek} ${$$props.class ?? ''}`;
+    /*-- Methods */
+    /*-- Reactives (functional) */
 </script>
 
 <div class="block lg:flex lg:flex-row gap-0 md:gap-1 lg:gap-2">

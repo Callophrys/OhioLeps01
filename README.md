@@ -666,24 +666,26 @@ bar.forEach((kvp) => {const x = Object.entries(kvp); res[x[0][0]]=x[0][1]});
 console.log(res);
 ```
 # 3/12/2024
-// Imports
-// -- Data --
-// Exports
-// Context
-// -- Styling --
-// Properties (styles)
-// Constants (styles)
-// Reactives (styles)
-// -- Coding --
-// Enums
-// Constants (functional)
-// Properties (functional)
-// Variables and objects
-// Run first stuff
-// onMount, beforeNavigate, afterNavigate
-// Handlers
-// Methods
-// Reactives (functional)
+/*-- Imports */
+/*-- -- Data -- */
+/*-- Exports */
+/*-- Context */
+/*-- -- Styling -- */
+/*-- Properties (styles) */
+/*-- Constants (styles) */
+/*-- Variables (styles) */
+/*-- Reactives (styles) */
+/*-- -- Coding -- */
+/*-- Enums */
+/*-- Constants (functional) */
+/*-- Properties (functional) */
+/*-- Variables and objects */
+/*-- Run first stuff */
+/*-- onMount, beforeNavigate, afterNavigate */
+/*-- Handlers */
+/*-- Methods */
+/*-- Reactives (functional) */
+/*-- Other */
 
 
 Hierarchical tables

@@ -1,8 +1,27 @@
 <script lang="ts">
+    /*-- Imports */
     import { page } from '$app/stores';
 
+    /*-- -- Data -- */
+    /*-- Exports */
     export let showRecentEdits = true;
     export let showDeletedData = false;
+
+    /*-- Context */
+    /*-- -- Styling -- */
+    /*-- Properties (styles) */
+    /*-- Constants (styles) */
+    /*-- Reactives (styles) */
+    /*-- -- Coding -- */
+    /*-- Enums */
+    /*-- Constants (functional) */
+    /*-- Properties (functional) */
+    /*-- Variables and objects */
+    /*-- Run first stuff */
+    /*-- onMount, beforeNavigate, afterNavigate */
+    /*-- Handlers */
+    /*-- Methods */
+    /*-- Reactives (functional) */
 </script>
 
 <div class="flex flex-row space-x-2 text-sm fixed top-[134px] right-10">
