@@ -8,9 +8,9 @@ var z = y.difference(x) // [ "d", "e", "g" ]
 
 -->
 <script lang="ts">
-    import { formatDate, isNullOrWhiteSpace, roleNameLong } from '$lib/utils';
+    /*-- Imports */
+    import { formatDate, isNullOrWhiteSpace } from '$lib/utils';
     import StandardContainer from '$lib/components/StandardContainer.svelte';
-    import { modeDebug } from '$lib/config.js';
     import { getModalStore } from '@skeletonlabs/skeleton';
     import { type ModalSettings } from '@skeletonlabs/skeleton';
     import { page } from '$app/stores';
@@ -22,8 +22,21 @@ var z = y.difference(x) // [ "d", "e", "g" ]
     import SpeciesPicker from '$lib/components/datanavigation/SpeciesPicker.svelte';
     import { setContext } from 'svelte';
 
-    const modalStore = getModalStore();
+    /*-- -- Data -- */
+    /*-- Exports */
+    export let data;
+    export let form;
 
+    /*-- Context */
+    setContext('sites', data.sites);
+    setContext('siteDates', data.siteDates);
+    setContext('checklistsSiteDateObs', data.checklistsSiteDateObs);
+    setContext('checklistsSite', data.checklistsSite);
+    setContext('checklistsAll', data.checklistsAll);
+
+    /*-- -- Styling -- */
+    /*-- Properties (styles) */
+    /*-- Constants (styles) */
     const cSectionClasses = 'flex flex-row space-x-2';
     const cSectionSpanClasses = 'w-24';
     const cDataClasses = 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1 md:gap-2';
@@ -32,30 +45,11 @@ var z = y.difference(x) // [ "d", "e", "g" ]
     const cButtonSuccess = "btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-soft-success pb-2";
     const cButtonCancel = "btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-soft-error pb-2";
 
-    export let data;
-    export let form;
-
-    setContext('sites', data.sites);
-    setContext('siteDates', data.siteDates);
-    setContext('checklistsSiteDateObs', data.checklistsSiteDateObs);
-    setContext('checklistsSite', data.checklistsSite);
-    setContext('checklistsAll', data.checklistsAll);
-
-    if (form) console.log('form>>', form);
-
-    let formAdd: HTMLFormElement;
-    let formEdit: HTMLFormElement;
-    let formReview: HTMLFormElement;
-    let formDelete: HTMLFormElement;
-    let formUndo: HTMLFormElement;
-
-    //console.log(data);
-    let isEditing = false;
-    let isAdding = false;
-
-    let showRecentEdits = true;
-    let showDeletedData = false;
-
+    /*-- Variables (styles) */
+    /*-- Reactives (styles) */
+    /*-- -- Coding -- */
+    /*-- Enums */
+    /*-- Constants (functional) */
     const modalReviewerLock: ModalSettings = {
         type: 'prompt',
         // Data
@@ -116,11 +110,31 @@ var z = y.difference(x) // [ "d", "e", "g" ]
         },
     };
 
+    /*-- Properties (functional) */
+    let formAdd: HTMLFormElement;
+    let formEdit: HTMLFormElement;
+    let formReview: HTMLFormElement;
+    let formDelete: HTMLFormElement;
+    let formUndo: HTMLFormElement;
+
+    /*-- Variables and objects */
+    let isEditing = false;
+    let isAdding = false;
+
+    let showRecentEdits = true;
+    let showDeletedData = false;
+
+    /*-- Run first stuff */
+    const modalStore = getModalStore();
+
+    /*-- onMount, beforeNavigate, afterNavigate */
+    /*-- Handlers */
     const handleChange = () => {
         total = getTotal();
         return true;
     };
 
+    /*-- Methods */
     const clearCounts = () => {
         return Array.from(formAdd.querySelectorAll('[type=text]')).forEach((c: any) => c.value = '');
     }
@@ -134,15 +148,20 @@ var z = y.difference(x) // [ "d", "e", "g" ]
         return isAdding ? sumCounts(formAdd) : (isEditing ? sumCounts(formEdit) : data.siteDateObservation.total);
     }
 
+    /*-- Reactives (functional) */
     $: total = getTotal();
     $: currentSiteDateObservation = data.siteDateObservation as SiteDateObservationChecklist;
     //$: rxTotal = isAdding ? sumCounts(formAdd) : (isEditing ? sumCounts(formEdit) : currentSiteDateObservation.total);
 
-    $: foo = Object.entries(currentSiteDateObservation)
+    $: sdoSections = Object.entries(currentSiteDateObservation)
         .filter((x) => x[0].startsWith('section'))
         .map(([k, v]) => ({ label: `${k.substring(0, 1).toLocaleUpperCase()}${k.substring(1, 7)} ${k.substring(7)}`, name: k, value: v }));
-    //console.log(foo);
+    //console.log(sdoSections);
 
+    /*-- Other */
+
+    //if (form) console.log('form>>', form);
+    //console.log(data);
 
 </script>
 
@@ -158,7 +177,7 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                     <SitePicker currentSite={data.siteDateObservation.siteDate.site} />
                     <SiteDatePicker currentSiteId={data.siteDateObservation.siteDate.siteId} currentSiteDateId={data.siteDateObservation.siteDateId ?? -1} />
                     <SpeciesPicker
-                        currentSdoChecklistItem={currentSiteDateObservation}
+                        currentSdoChecklistItemId={currentSiteDateObservation.siteDateObservationId}
                         isAdding={isAdding}
                         isEditing={isEditing}
                         showDeletedData={showDeletedData}
@@ -345,7 +364,7 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                         <form name="edit" method="POST" action="?/saveSiteDateObservation" use:enhance bind:this={formEdit}>
                             <input type="hidden" name="siteDateObservationId" value={data.siteDateObservation.siteDateObservationId} />
                             <div class={cDataClasses}>
-                                {#each foo as section}
+                                {#each sdoSections as section}
                                     <div class={cDatumClasses}>
                                         <label class={cSectionClasses}>
                                             <span class={cSectionSpanClasses}>{section.label}:</span>
@@ -359,7 +378,7 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                     {:else if isAdding}
                         <form name="add" method="POST" action="?/addSiteDateObservation" use:enhance bind:this={formAdd}>
                             <div class={cDataClasses}>
-                                {#each foo as section}
+                                {#each sdoSections as section}
                                     <div class={cDatumClasses}>
                                         <label class={cSectionClasses}>
                                             <span class={cSectionSpanClasses}>{section.label}:</span>
@@ -372,7 +391,7 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                     {:else}
                         <!-- TODO: Consider indicator to show newly updated data -->
                         <div class={cDataClasses}>
-                            {#each foo as section}
+                            {#each sdoSections as section}
                                 <div class={cDatumClasses}>
                                     <div class={cSectionClasses}>
                                         <div class={cSectionSpanClasses}>{section.label}:</div>

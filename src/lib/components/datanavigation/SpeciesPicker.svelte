@@ -13,7 +13,8 @@
     /*-- Exports */
 
     /** SiteDateObservationChecklist object for current data */
-    export let currentSdoChecklistItem: SiteDateObservationChecklist;
+    export let currentSdoChecklistItemId: number | null;
+    //export let currentSdoChecklistItem: SiteDateObservationChecklist | null;
 
     /** Show down arrow with year and week labels to indicate dropdown.  Default: true */
     export let dropdownPointers: boolean = true;
@@ -59,6 +60,8 @@
 
     /*-- -- Coding -- */
     /*-- Enums */
+    type sdoSpeciesObject = { siteDateObservationId: number; name: string; deleted: boolean };
+
     /*-- Constants (functional) */
     const popupSdoSpecies: PopupSettings = {
         event: 'focus-click',
@@ -68,8 +71,9 @@
     };
 
     /*-- Properties (functional) */
-    const sdoCommon: { siteDateObservationId: number; name: string; deleted: boolean }[] = [];
-    const sdoLatin: { siteDateObservationId: number; name: string; deleted: boolean }[] = [];
+    const sdoCommon: sdoSpeciesObject[] = [];
+    const sdoLatin: sdoSpeciesObject[] = [];
+    let currentSdoChecklistItem: SiteDateObservationChecklist;
 
     /*-- Variables and objects */
 
@@ -107,16 +111,6 @@
 
     // reactive for nav controls - is one time so could just be onMount
     $: {
-        let currentIndex = sdoCommon.findIndex((o) => o.siteDateObservationId === currentSdoChecklistItem.siteDateObservationId);
-        enabledDrop = !isAdding && !isEditing;
-        enabledNext = !isAdding && !isEditing && currentIndex > -1 && currentIndex < sdoCommon.length - 1;
-        enabledPrev = !isAdding && !isEditing && currentIndex > 0;
-
-        console.log(enabledDrop, enabledNext, enabledPrev);
-        //console.log(currentSdoChecklistItem);
-    }
-
-    $: {
         sdoCommon.length = 0;
         sdoLatin.length = 0;
 
@@ -140,6 +134,31 @@
                 )
             );
         } else {
+
+            // When currentSdoChecklistItem is deleted try to get next successive sdo checklist item that is NOT deleted
+            // else get the next preceeding sdo checklist item that is NOT deleted.  If either fails then set to empty
+            // Since this would indicate all records in sdo are deleted.
+            if (currentSdoChecklistItem && currentSdoChecklistItem.deleted) {
+                let idSelected = currentSdoChecklistItem.siteDateObservationId;
+                let indexOfSelected: number = sdoCommon.findIndex((s: sdoSpeciesObject) => s.siteDateObservationId === idSelected);
+
+                const commonRight: sdoSpeciesObject | undefined = sdoCommon.find((s: sdoSpeciesObject, idx: number) => {idx > indexOfSelected && !s.deleted });
+                if (typeof commonRight !== 'undefined') {
+                    const tempSdo: SiteDateObservationChecklist = checklistsSiteDateObs.find((s: SiteDateObservationChecklist) => s.siteDateObservationId === commonRight.siteDateObservationId) as SiteDateObservationChecklist;
+                    currentSdoChecklistItemId = tempSdo.siteDateObservationId;
+                } else {
+
+                    const sdoCommonReversed = sdoCommon.toReversed();
+                    indexOfSelected = sdoCommonReversed.length - indexOfSelected - 1;
+                    const commonLeft: sdoSpeciesObject | undefined = sdoCommonReversed.find((s: sdoSpeciesObject, idx: number) => {idx > indexOfSelected && !s.deleted });
+                    if (typeof commonLeft !== 'undefined') {
+                        const tempSdo = checklistsSiteDateObs
+                            .find((s: SiteDateObservationChecklist) => s.siteDateObservationId === commonLeft.siteDateObservationId) as SiteDateObservationChecklist;
+                        currentSdoChecklistItemId = tempSdo.siteDateObservationId;
+                    }
+                }
+            }
+
             sdoCommon.push(
                 ...new Set(
                     checklistsSiteDateObs
@@ -168,6 +187,15 @@
         sortByStringProperty(sdoLatin, 'name', true);
     }
 
+    $: {
+        let currentIndex = sdoCommon.findIndex((o) => o.siteDateObservationId === currentSdoChecklistItemId);
+        enabledDrop = !isAdding && !isEditing;
+        enabledNext = !isAdding && !isEditing && currentIndex > -1 && currentIndex < sdoCommon.length - 1;
+        enabledPrev = !isAdding && !isEditing && currentIndex > 0;
+
+        console.log(enabledDrop, enabledNext, enabledPrev);
+        //console.log(currentSdoChecklistItem);
+    }
 
     /*-- Other */
     const sdoA = [
@@ -236,7 +264,7 @@
             }}
             disabled={!enabledDrop}>
             {#if $$slots.prefixSiteDateObservation}<span class={classesPrefixSiteDateObservation}><slot name="prefixSiteDateObservation" /></span>{/if}
-            <span class={`truncate ${currentSdoChecklistItem.deleted ? 'line-through' : ''}`}>{currentSdoChecklistItem.checklist.commonName}</span>
+            <span class={`truncate ${currentSdoChecklistItem.deleted ? 'line-through' : ''}`}>{currentSdoChecklistItem?.checklist.commonName}</span>
             <span class={classesSuffixSiteDateObservation} />
         </button>
         <button type="button" class={classesButtonRight} on:click={handleClickNext} disabled={!enabledNext}>▶</button>
