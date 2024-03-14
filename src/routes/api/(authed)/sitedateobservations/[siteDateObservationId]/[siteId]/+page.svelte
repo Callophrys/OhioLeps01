@@ -40,12 +40,12 @@ var z = y.difference(x) // [ "d", "e", "g" ]
     /*-- Constants (styles) */
     const cSectionClasses = 'flex flex-row space-x-2';
     const cSectionSpanClasses = 'w-24';
-    const cDataClasses = 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1 md:gap-2';
-    const cDatumClasses = 'flex flex-row space-x-2';
+    const cDataClasses    = 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1 md:gap-2';
+    const cDatumClasses   = 'flex flex-row space-x-2';
     const cButtonStandard = 'btn w-24 md:w-28 h-8 sm:h-10 md:h-11 pb-2 variant-filled-surface';
-    const cButtonSuccess = 'btn w-24 md:w-28 h-8 sm:h-10 md:h-11 pb-2 variant-soft-success';
-    const cButtonCancel = 'btn w-24 md:w-28 h-8 sm:h-10 md:h-11 pb-2 variant-soft-error';
-    const cButtonAddView = 'btn w-44         h-8 sm:h-10 md:h-11 pb-2 variant-filled-surface';
+    const cButtonSuccess  = 'btn w-24 md:w-28 h-8 sm:h-10 md:h-11 pb-2 variant-soft-success';
+    const cButtonCancel   = 'btn w-24 md:w-28 h-8 sm:h-10 md:h-11 pb-2 variant-soft-error';
+    const cButtonAddView  = 'btn w-44         h-8 sm:h-10 md:h-11 pb-2 variant-filled-surface';
 
     /*-- Variables (styles) */
     /*-- Reactives (styles) */
@@ -135,6 +135,7 @@ var z = y.difference(x) // [ "d", "e", "g" ]
     let formUndo: HTMLFormElement;
     let isEditing = false;
     let isAdding = false;
+    let isViewAll = false;
     let showRecentEdits = true;
     let showDeletedData = false;
 
@@ -154,6 +155,11 @@ var z = y.difference(x) // [ "d", "e", "g" ]
         x = localStorage?.showDeletedData;
         if (x && x.length) {
             showDeletedData = x === '1';
+        }
+
+        x = localStorage?.isViewAll;
+        if (x && x.length) {
+            isViewAll = x === '1';
         }
     });
 
@@ -187,10 +193,13 @@ var z = y.difference(x) // [ "d", "e", "g" ]
         .map(([k, v]) => ({ label: `${k.substring(0, 1).toLocaleUpperCase()}${k.substring(1, 7)} ${k.substring(7)}`, name: k, value: v }));
     //console.log(sdoSections);
 
+    $: availableObservations = data.checklistsSiteDateObs.filter((x: SiteDateObservationChecklist) => showDeletedData || !x.deleted);
+
     /*-- Other */
     afterUpdate(() => {
         localStorage.setItem('showRecentEdits', showRecentEdits ? '1' : '0');
         localStorage.setItem('showDeletedData', showDeletedData ? '1' : '0');
+        localStorage.setItem('isViewAll', isViewAll? '1' : '0');
     });
 
     //if (form) console.log('form>>', form);
@@ -336,16 +345,20 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                                     return true;
                                 }}
                                 disabled={isEditing || data.siteDateObservation.confirmed}>
-                                <input class="checkbox" type="checkbox" checked={isAdding} />
                                 <span>Add species</span>
                                 <span class="text-green-900 dark:text-green-200 text-2xl before:content-['✚']" />
                             </button>
                         {/if}
 
                         <div>
-                            <button type="button" class={cButtonAddView}>
-                                View all species
-                                <span class="pl-2 text-green-900 dark:text-green-200 text-2xl">🔎</span>
+                            <button
+                                type="button"
+                                class={cButtonAddView}
+                                on:click= {() => (isViewAll = !isViewAll)}
+                                title="View all species">
+                                <input class="checkbox" type="checkbox" checked={isViewAll} />
+                                <span>View all</span>
+                                <span class="!ml-0 text-green-900 dark:text-green-200 text-2xl">🔎</span>
                             </button>
                         </div>
                     </div>
@@ -367,99 +380,137 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                 </div>
 
                 <!-- START Data controls group -->
-                <div class={`${data.siteDateObservation.deleted ? 'line-through variant-ghost-error' : ''}`}>
-                    <!-- DATA Heading -->
-                    <div class="flex flex-row justify-between font-bold">
-                        <div>
-                            {data.siteDateObservation.checklist.scientificName}
-                        </div>
-                        <div>
-                            {data.siteDateObservation.checklist.commonName}
-                        </div>
-                    </div>
-                    <div class="flex flex-row space-x-4">
-                        {#if isAdding}
-                            <!-- TODO: Update on some kind of selector -->
-                            <div class="w-32">Hodges:</div>
-                            <!-- TODO: Make Id Code editable -->
-                            <div class="w-24">Id Code:</div>
-                            <div class="w-28 text-amber-700 dark:text-amber-400">(Total: {getTotal()})</div>
-                        {:else if isEditing && getTotal() !== currentSiteDateObservation.total}
-                            <div class="w-32">Hodges: {currentSiteDateObservation.hodges}</div>
-                            <div class="w-24">Id Code: {currentSiteDateObservation.idCode}</div>
-                            <div class="w-28 text-amber-700 dark:text-amber-400">(Total: {getTotal()})</div>
-                        {:else}
-                            <div class="w-32">Hodges: {currentSiteDateObservation.hodges}</div>
-                            <div class="w-24">Id Code: {currentSiteDateObservation.idCode}</div>
-                            <div class="w-28">(Total: {currentSiteDateObservation.total})</div>
-                        {/if}
-                    </div>
-                    <!-- LOOKAT: https://stackoverflow.com/questions/77420975/svelte-store-calculate-total-value-of-items-in-array-of-objects -->
+                {#if isViewAll}
 
                     <hr />
 
-                    <!-- DATA Details -->
-                    {#if isEditing}
-                        <!-- TODO: Indicate when data has changed -->
-                        <form name="edit" method="POST" action="?/saveSiteDateObservation" use:enhance bind:this={formEdit}>
-                            <input type="hidden" name="siteDateObservationId" value={data.siteDateObservation.siteDateObservationId} />
-                            <div class={cDataClasses}>
-                                {#each sdoSections as section}
-                                    <div class={cDatumClasses}>
-                                        <label class={cSectionClasses}>
-                                            <span class={cSectionSpanClasses}>{section.label}:</span>
-                                            <input type="text" name={section.name} value={section.value ?? ''} class="w-8 text-center text-black" on:input={() => (total = getTotal())} />
-                                            <input type="hidden" name={`${section.name}_orig`} value={section.value ?? ''} />
-                                        </label>
-                                    </div>
-                                {/each}
-                            </div>
-                        </form>
-                    {:else if isAdding}
-                        <form name="add" method="POST" action="?/addSiteDateObservation" use:enhance bind:this={formAdd}>
-                            <div class={cDataClasses}>
-                                {#each sdoSections as section}
-                                    <div class={cDatumClasses}>
-                                        <label class={cSectionClasses}>
-                                            <span class={cSectionSpanClasses}>{section.label}:</span>
-                                            <input type="text" name={section.name} class="w-8 text-center text-black" on:input={handleChange} />
-                                        </label>
-                                    </div>
-                                {/each}
-                            </div>
-                        </form>
-                    {:else}
-                        <!-- TODO: Consider indicator to show newly updated data -->
-                        <div class={cDataClasses}>
-                            {#each sdoSections as section}
-                                <div class={cDatumClasses}>
-                                    <div class={cSectionClasses}>
-                                        <div class={cSectionSpanClasses}>{section.label}:</div>
-                                        <div class="w-8">{@html section.value ?? '&varnothing;'}</div>
-                                    </div>
+                    {#each availableObservations as chkSdo}
+                    <div class={`${chkSdo.deleted ? 'line-through odd:variant-ghost-warning even:variant-ghost-error' : 'odd:bg-gray-200 odd:dark:bg-red-700'}`}>
+
+                        <div class="pl-4 flex flex-row">
+                            <div class="w-56 truncate">{chkSdo.checklist.commonName}</div>
+                            <div class="w-64">{chkSdo.checklist.scientificName}</div>
+                            <div class="w-20">{chkSdo.hodges}</div>
+                            <div class="w-16">{chkSdo.idCode}</div>
+                            <div class="w-28">(Total: {chkSdo.total})</div>
+                        </div>
+
+                        <div class="pl-8 flex flex-wrap">
+
+                            {#each Object.entries(chkSdo)
+                                .filter((x) => x[0].startsWith('section'))
+                                .map(([k, v]) => ({
+                                    label: `${k.substring(0, 1).toLocaleUpperCase()}${k.substring(1, 7)} ${k.substring(7)}`,
+                                    name: k,
+                                    value: v })) as section}
+
+                                <div class={cSectionClasses}>
+                                    <div class={cSectionSpanClasses}>{section.label}:</div>
+                                    <div class="w-8">{@html section.value ?? '&varnothing;'}</div>
                                 </div>
+
                             {/each}
                         </div>
-                    {/if}
+                        <hr />
+                    </div>
 
-                    <hr />
+                    {/each}
+                {:else}
 
-                    <!-- AUDIT Summary -->
-                    <div class="flex flex-row flex-wrap justify-between">
-                        <div class="flex flex-col basis-60">
-                            <div>Created At: {!isAdding && data.siteDateObservation.createdAt ? formatDate(new Date(data.siteDateObservation.createdAt).toISOString(), 'short', 'short') : ''}</div>
-                            <div class="">Created By: {!isAdding ? data.siteDateObservation.createdBy?.lastFirst ?? '' : $page.data.user.lastFirst}</div>
+                    <div class={`${data.siteDateObservation.deleted ? 'line-through variant-ghost-error' : ''}`}>
+                        <!-- DATA Heading -->
+                        <div class="flex flex-row justify-between font-bold">
+                            <div>
+                                {data.siteDateObservation.checklist.scientificName}
+                            </div>
+                            <div>
+                                {data.siteDateObservation.checklist.commonName}
+                            </div>
                         </div>
-                        <div class="flex flex-col basis-60">
-                            <div>Updated At: {!isAdding && data.siteDateObservation.updatedAt ? formatDate(new Date(data.siteDateObservation.updatedAt).toISOString(), 'short', 'short') : ''}</div>
-                            <div class="">Updated By: {!isAdding ? data.siteDateObservation.updatedBy?.lastFirst ?? '' : ''}</div>
+                        <div class="flex flex-row space-x-4">
+                            {#if isAdding}
+                                <!-- TODO: Update on some kind of selector -->
+                                <div class="w-32">Hodges:</div>
+                                <!-- TODO: Make Id Code editable -->
+                                <div class="w-24">Id Code:</div>
+                                <div class="w-28 text-amber-700 dark:text-amber-400">(Total: {getTotal()})</div>
+                            {:else if isEditing && getTotal() !== currentSiteDateObservation.total}
+                                <div class="w-32">Hodges: {currentSiteDateObservation.hodges}</div>
+                                <div class="w-24">Id Code: {currentSiteDateObservation.idCode}</div>
+                                <div class="w-28 text-amber-700 dark:text-amber-400">(Total: {getTotal()})</div>
+                            {:else}
+                                <div class="w-32">Hodges: {currentSiteDateObservation.hodges}</div>
+                                <div class="w-24">Id Code: {currentSiteDateObservation.idCode}</div>
+                                <div class="w-28">(Total: {currentSiteDateObservation.total})</div>
+                            {/if}
                         </div>
-                        <div class="flex flex-col basis-60">
-                            <div>Confirm At: {!isAdding && data.siteDateObservation.confirmAt ? formatDate(new Date(data.siteDateObservation.confirmAt).toISOString(), 'short', 'short') : ''}</div>
-                            <div class="">Confirm By: {!isAdding ? data.siteDateObservation.confirmBy?.lastFirst ?? '' : ''}</div>
+                        <!-- LOOKAT: https://stackoverflow.com/questions/77420975/svelte-store-calculate-total-value-of-items-in-array-of-objects -->
+
+                        <hr />
+
+                        <!-- DATA Details -->
+                        {#if isEditing}
+                            <!-- TODO: Indicate when data has changed -->
+                            <form name="edit" method="POST" action="?/saveSiteDateObservation" use:enhance bind:this={formEdit}>
+                                <input type="hidden" name="siteDateObservationId" value={data.siteDateObservation.siteDateObservationId} />
+                                <div class={cDataClasses}>
+                                    {#each sdoSections as section}
+                                        <div class={cDatumClasses}>
+                                            <label class={cSectionClasses}>
+                                                <span class={cSectionSpanClasses}>{section.label}:</span>
+                                                <input type="text" name={section.name} value={section.value ?? ''} class="w-8 text-center text-black" on:input={() => (total = getTotal())} />
+                                                <input type="hidden" name={`${section.name}_orig`} value={section.value ?? ''} />
+                                            </label>
+                                        </div>
+                                    {/each}
+                                </div>
+                            </form>
+                        {:else if isAdding}
+                            <form name="add" method="POST" action="?/addSiteDateObservation" use:enhance bind:this={formAdd}>
+                                <div class={cDataClasses}>
+                                    {#each sdoSections as section}
+                                        <div class={cDatumClasses}>
+                                            <label class={cSectionClasses}>
+                                                <span class={cSectionSpanClasses}>{section.label}:</span>
+                                                <input type="text" name={section.name} class="w-8 text-center text-black" on:input={handleChange} />
+                                            </label>
+                                        </div>
+                                    {/each}
+                                </div>
+                            </form>
+                        {:else}
+                            <!-- TODO: Consider indicator to show newly updated data -->
+                            <div class={cDataClasses}>
+                                {#each sdoSections as section}
+                                    <div class={cDatumClasses}>
+                                        <div class={cSectionClasses}>
+                                            <div class={cSectionSpanClasses}>{section.label}:</div>
+                                            <div class="w-8">{@html section.value ?? '&varnothing;'}</div>
+                                        </div>
+                                    </div>
+                                {/each}
+                            </div>
+                        {/if}
+
+                        <hr />
+
+                        <!-- AUDIT Summary -->
+                        <div class="flex flex-row flex-wrap justify-between">
+                            <div class="flex flex-col basis-60">
+                                <div>Created At: {!isAdding && data.siteDateObservation.createdAt ? formatDate(new Date(data.siteDateObservation.createdAt).toISOString(), 'short', 'short') : ''}</div>
+                                <div class="">Created By: {!isAdding ? data.siteDateObservation.createdBy?.lastFirst ?? '' : $page.data.user.lastFirst}</div>
+                            </div>
+                            <div class="flex flex-col basis-60">
+                                <div>Updated At: {!isAdding && data.siteDateObservation.updatedAt ? formatDate(new Date(data.siteDateObservation.updatedAt).toISOString(), 'short', 'short') : ''}</div>
+                                <div class="">Updated By: {!isAdding ? data.siteDateObservation.updatedBy?.lastFirst ?? '' : ''}</div>
+                            </div>
+                            <div class="flex flex-col basis-60">
+                                <div>Confirm At: {!isAdding && data.siteDateObservation.confirmAt ? formatDate(new Date(data.siteDateObservation.confirmAt).toISOString(), 'short', 'short') : ''}</div>
+                                <div class="">Confirm By: {!isAdding ? data.siteDateObservation.confirmBy?.lastFirst ?? '' : ''}</div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                {/if}
                 <!-- END Data controls group -->
             </div>
         {/if}
