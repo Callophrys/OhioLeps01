@@ -8,12 +8,14 @@
     import type { CssClasses } from '@skeletonlabs/skeleton';
     import type { SiteDateObservationChecklist } from '$lib/types';
     import { sortByStringProperty, setDifferenceByProp } from '$lib/utils';
+    import type { getSiteDateObservationsByChecklist } from '$lib/database/sitedateobservations';
 
     /*-- -- Data -- */
     /*-- Exports */
 
     /** SiteDateObservationChecklist object for current data */
     export let currentSdoChecklistItemId: number | null;
+    console.log('bbb>', currentSdoChecklistItemId);
     //export let currentSdoChecklistItem: SiteDateObservationChecklist | null;
 
     /** Show down arrow with year and week labels to indicate dropdown.  Default: true */
@@ -73,7 +75,7 @@
     /*-- Properties (functional) */
     const sdoCommon: sdoSpeciesObject[] = [];
     const sdoLatin: sdoSpeciesObject[] = [];
-    let currentSdoChecklistItem: SiteDateObservationChecklist;
+    let currentSdoChecklistItem: SiteDateObservationChecklist =  checklistsSiteDateObs.find(x => x.siteDateObservationId === currentSdoChecklistItemId) as SiteDateObservationChecklist;
 
     /*-- Variables and objects */
 
@@ -110,9 +112,12 @@
     /*-- Reactives (functional) */
 
     // reactive for nav controls - is one time so could just be onMount
+    sdoCommon.length = 0;
+    sdoLatin.length = 0;
+    console.log('ccc>', currentSdoChecklistItem);
+
     $: {
-        sdoCommon.length = 0;
-        sdoLatin.length = 0;
+
 
         if (showDeletedData) {
             sdoCommon.push(
@@ -195,6 +200,7 @@
 
         console.log(enabledDrop, enabledNext, enabledPrev);
         //console.log(currentSdoChecklistItem);
+        console.log('ddd>', currentSdoChecklistItem);
     }
 
     /*-- Other */
@@ -235,7 +241,7 @@
 
     // Does this actually obviated the need for onMount?
     // .... well maybe if an html element - user thing updates it
-    $: currentSdoChecklistItem = currentSdoChecklistItem;
+    $: currentSdoChecklistItem =  checklistsSiteDateObs.find(x => x.siteDateObservationId === currentSdoChecklistItemId) as SiteDateObservationChecklist;
 
 </script>
 
@@ -276,7 +282,7 @@
                 {#each sdoCommon as sdo}
                     <ListBoxItem
                         class={`${sdo.deleted ? (showDeletedData ? cDeleted : 'hidden') : ''}`}
-                        bind:group={currentSdoChecklistItem.siteDateObservationId}
+                        bind:group={currentSdoChecklistItemId}
                         name="species"
                         value={sdo.siteDateObservationId} on:click={handleClick}>{sdo.name}</ListBoxItem>
                 {/each}
