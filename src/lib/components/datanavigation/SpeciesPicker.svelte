@@ -89,14 +89,14 @@
     /*-- Handlers */
     function handleClick(e: any) {
         if (e.currentTarget?.value) {
-            goto(`/api/sitedateobservations/${e.currentTarget.value}/${currentSdoChecklistItem.siteDate.site.siteId}`);
+            goto(`/api/sitedateobservations/${e.currentTarget.value}/${currentSdoChecklistItem.siteDate.siteId}`);
         }
     }
 
     function handleClickPrior() {
         let idx = sdoCommon.findIndex((o) => o.siteDateObservationId === currentSdoChecklistItem.siteDateObservationId);
         if (idx > 0) {
-            goto(`/api/sitedateobservations/${sdoCommon[idx - 1].siteDateObservationId}/${currentSdoChecklistItem.siteDate.site.siteId}`);
+            goto(`/api/sitedateobservations/${sdoCommon[idx - 1].siteDateObservationId}/${currentSdoChecklistItem.siteDate.siteId}`);
         }
     }
 
@@ -104,7 +104,7 @@
         let idx = sdoCommon.findIndex((o) => o.siteDateObservationId === currentSdoChecklistItem.siteDateObservationId);
         console.log('x:', currentSdoChecklistItem.siteDateObservationId, 'idx:', idx, 'sdo', sdoCommon);
         if (idx > -1 && idx < sdoCommon.length - 1) {
-            goto(`/api/sitedateobservations/${sdoCommon[idx + 1].siteDateObservationId}/${currentSdoChecklistItem.siteDate.site.siteId}`);
+            goto(`/api/sitedateobservations/${sdoCommon[idx + 1].siteDateObservationId}/${currentSdoChecklistItem.siteDate.siteId}`);
         }
     }
 
@@ -112,14 +112,14 @@
     /*-- Reactives (functional) */
 
     // reactive for nav controls - is one time so could just be onMount
-    sdoCommon.length = 0;
-    sdoLatin.length = 0;
-    console.log('ccc>', currentSdoChecklistItem);
-
     $: {
 
+        sdoCommon.length = 0;
+        sdoLatin.length = 0;
+        console.log('ccc>', currentSdoChecklistItem);
 
         if (showDeletedData) {
+
             sdoCommon.push(
                 ...new Set(
                     checklistsSiteDateObs.map((x: SiteDateObservationChecklist) => ({
@@ -129,6 +129,7 @@
                     }))
                 )
             );
+
             sdoLatin.push(
                 ...new Set(
                     checklistsSiteDateObs.map((x: SiteDateObservationChecklist) => ({
@@ -138,31 +139,42 @@
                     }))
                 )
             );
+
         } else {
+
+            /*
 
             // When currentSdoChecklistItem is deleted try to get next successive sdo checklist item that is NOT deleted
             // else get the next preceeding sdo checklist item that is NOT deleted.  If either fails then set to empty
             // Since this would indicate all records in sdo are deleted.
             if (currentSdoChecklistItem && currentSdoChecklistItem.deleted) {
+
                 let idSelected = currentSdoChecklistItem.siteDateObservationId;
                 let indexOfSelected: number = sdoCommon.findIndex((s: sdoSpeciesObject) => s.siteDateObservationId === idSelected);
 
                 const commonRight: sdoSpeciesObject | undefined = sdoCommon.find((s: sdoSpeciesObject, idx: number) => {idx > indexOfSelected && !s.deleted });
+
                 if (typeof commonRight !== 'undefined') {
+
                     const tempSdo: SiteDateObservationChecklist = checklistsSiteDateObs.find((s: SiteDateObservationChecklist) => s.siteDateObservationId === commonRight.siteDateObservationId) as SiteDateObservationChecklist;
-                    currentSdoChecklistItemId = tempSdo.siteDateObservationId;
+                    //currentSdoChecklistItemId = tempSdo.siteDateObservationId;
+
                 } else {
 
                     const sdoCommonReversed = sdoCommon.toReversed();
                     indexOfSelected = sdoCommonReversed.length - indexOfSelected - 1;
                     const commonLeft: sdoSpeciesObject | undefined = sdoCommonReversed.find((s: sdoSpeciesObject, idx: number) => {idx > indexOfSelected && !s.deleted });
+
                     if (typeof commonLeft !== 'undefined') {
                         const tempSdo = checklistsSiteDateObs
                             .find((s: SiteDateObservationChecklist) => s.siteDateObservationId === commonLeft.siteDateObservationId) as SiteDateObservationChecklist;
-                        currentSdoChecklistItemId = tempSdo.siteDateObservationId;
+                        //currentSdoChecklistItemId = tempSdo.siteDateObservationId;
                     }
+
                 }
             }
+
+            */
 
             sdoCommon.push(
                 ...new Set(
@@ -175,6 +187,7 @@
                         }))
                 )
             );
+
             sdoLatin.push(
                 ...new Set(
                     checklistsSiteDateObs

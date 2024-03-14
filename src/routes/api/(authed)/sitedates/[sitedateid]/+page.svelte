@@ -11,6 +11,7 @@
     import DataOptions from '$lib/components/datanavigation/DataOptions.svelte';
 
     export let data;
+
     setContext('sites', data.sites);
     setContext('siteDates', data.siteDates);
 
@@ -53,20 +54,6 @@
         x = localStorage?.optAccJ;
         optAccJ = x && x.length ? x === 'true' : accJ;
 
-    });
-
-    afterUpdate(() => {
-        localStorage.setItem('useFarenheit', useFarenheit.toString());
-        localStorage.setItem('optAccA', optAccA.toString());
-        localStorage.setItem('optAccB', optAccB.toString());
-        localStorage.setItem('optAccC', optAccC.toString());
-        localStorage.setItem('optAccD', optAccD.toString());
-        localStorage.setItem('optAccE', optAccE.toString());
-        localStorage.setItem('optAccF', optAccF.toString());
-        localStorage.setItem('optAccG', optAccG.toString());
-        localStorage.setItem('optAccH', optAccH.toString());
-        localStorage.setItem('optAccI', optAccI.toString());
-        localStorage.setItem('optAccJ', optAccJ.toString());
     });
 
     function handleRadioGroupClick(event: any) {
@@ -120,6 +107,16 @@
     let showRecentEdits = true;
     let showDeletedData = false;
 
+    let x: string = localStorage?.showRecentEdits;
+    if (x && x.length) {
+        showRecentEdits = x === '1';
+    }
+
+    x = localStorage?.showDeletedData;
+    if (x && x.length) {
+        showDeletedData = x === '1';
+    }
+
     //console.log(data.siteDateSiteDates);
     const allYears = Array.from(data.siteDates).map((y) => new Date(y.recordDate).getFullYear());
     const uniqueYears = [...new Set(allYears)].sort(compareNumeric);
@@ -151,6 +148,25 @@
     //console.log(trackedWeeks);
 
     //console.log(data.siteDateObservations[0]);
+
+    /*-- Other */
+    afterUpdate(() => {
+        localStorage.setItem('useFarenheit', useFarenheit.toString());
+        localStorage.setItem('optAccA', optAccA.toString());
+        localStorage.setItem('optAccB', optAccB.toString());
+        localStorage.setItem('optAccC', optAccC.toString());
+        localStorage.setItem('optAccD', optAccD.toString());
+        localStorage.setItem('optAccE', optAccE.toString());
+        localStorage.setItem('optAccF', optAccF.toString());
+        localStorage.setItem('optAccG', optAccG.toString());
+        localStorage.setItem('optAccH', optAccH.toString());
+        localStorage.setItem('optAccI', optAccI.toString());
+        localStorage.setItem('optAccJ', optAccJ.toString());
+        localStorage.setItem('showRecentEdits', showRecentEdits ? '1' : '0');
+        localStorage.setItem('showDeletedData', showDeletedData ? '1' : '0');
+    });
+
+
 </script>
 
 <DataOptions bind:showRecentEdits bind:showDeletedData />

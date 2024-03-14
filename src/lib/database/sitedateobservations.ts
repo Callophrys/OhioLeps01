@@ -22,7 +22,8 @@ export async function getSiteDateObservationsBySiteDate(siteDateId: number) {
             siteDateId: siteDateId,
         },
         include: {
-            checklist: true
+            checklist: true,
+            siteDate: true,
         },
         orderBy: [
             { checklist: { genus: 'asc' } },
@@ -50,7 +51,11 @@ export async function getSiteDateObservationsBySiteDateAndChecklist(siteDateId: 
         where: {
             siteDateId: siteDateId,
             checklistId: checklistId,
-        }
+        },
+        include: {
+            checklist: true,
+            siteDate: true,
+        },
     });
     return siteDateObservations;
 }

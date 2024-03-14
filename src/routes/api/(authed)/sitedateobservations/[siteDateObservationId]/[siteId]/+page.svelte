@@ -21,6 +21,7 @@ var z = y.difference(x) // [ "d", "e", "g" ]
     import type { SiteDateObservationChecklist } from '$lib/types.js';
     import SpeciesPicker from '$lib/components/datanavigation/SpeciesPicker.svelte';
     import { setContext } from 'svelte';
+    import { afterUpdate } from 'svelte';
 
     /*-- -- Data -- */
     /*-- Exports */
@@ -124,6 +125,16 @@ var z = y.difference(x) // [ "d", "e", "g" ]
     let showRecentEdits = true;
     let showDeletedData = false;
 
+    let x: string = localStorage?.showRecentEdits;
+    if (x && x.length) {
+        showRecentEdits = x === '1';
+    }
+
+    x = localStorage?.showDeletedData;
+    if (x && x.length) {
+        showDeletedData = x === '1';
+    }
+
     /*-- Run first stuff */
     const modalStore = getModalStore();
 
@@ -159,6 +170,10 @@ var z = y.difference(x) // [ "d", "e", "g" ]
     //console.log(sdoSections);
 
     /*-- Other */
+    afterUpdate(() => {
+        localStorage.setItem('showRecentEdits', showRecentEdits ? '1' : '0');
+        localStorage.setItem('showDeletedData', showDeletedData ? '1' : '0');
+    });
 
     //if (form) console.log('form>>', form);
     //console.log(data);

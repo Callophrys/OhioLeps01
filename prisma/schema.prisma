@@ -410,17 +410,17 @@ model SiteDate {
     // Audit
     deleted Boolean @default(false)
     confirmed Boolean @default(false)
-	createdAt DateTime?
-	updatedAt DateTime?
-	confirmAt DateTime?
+    createdAt DateTime?
+    updatedAt DateTime?
+    confirmAt DateTime?
 
     // User relations
-	createdBy User? @relation("CreateUserOfSiteDate", fields: [createdById], references: [id])
-	createdById String? // Probably should never be null
-	updatedBy User? @relation("UpdateUserOfSiteDate", fields: [updatedById], references: [id])
-	updatedById String?
-	confirmBy User? @relation("ConfirmUserOfSiteDate", fields: [confirmById], references: [id])
-	confirmById String?
+    createdBy User? @relation("CreateUserOfSiteDate", fields: [createdById], references: [id])
+    createdById String? // Probably should never be null
+    updatedBy User? @relation("UpdateUserOfSiteDate", fields: [updatedById], references: [id])
+    updatedById String?
+    confirmBy User? @relation("ConfirmUserOfSiteDate", fields: [confirmById], references: [id])
+    confirmById String?
 
     // Parent Relation
     site Site @relation(fields: [siteId], references: [siteId])
@@ -442,23 +442,23 @@ model NameAddress {
     postNominal String? // MD, PhD, JD
     nameAddend String?  // "Naturalist", place, magazine, etc.
     organization String?
-	address String?
-	cityStateZip String?
-	phone String?
-	mobile String?
-	emailAddress String?
-	notes String?
-	notes2 String?
+    address String?
+    cityStateZip String?
+    phone String?
+    mobile String?
+    emailAddress String?
+    notes String?
+    notes2 String?
 
     // Audit
-	createdAt DateTime?
-	updatedAt DateTime?
+    createdAt DateTime?
+    updatedAt DateTime?
 
     // User relations
-	createdBy User? @relation("CreateUserOfNameAddress", fields: [createdById], references: [id])
-	createdById String? // Probably should never be null
-	updatedBy User? @relation("UpdateUserOfNameAddress", fields: [updatedById], references: [id])
-	updatedById String?
+    createdBy User? @relation("CreateUserOfNameAddress", fields: [createdById], references: [id])
+    createdById String? // Probably should never be null
+    updatedBy User? @relation("UpdateUserOfNameAddress", fields: [updatedById], references: [id])
+    updatedById String?
 }
 
 model Continent {
