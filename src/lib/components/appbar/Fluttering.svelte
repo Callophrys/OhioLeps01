@@ -16,7 +16,7 @@
     let interval: NodeJS.Timeout;
 
     /*-- Run first stuff */
-    /*-- onMount, beforeNavigate, afterNavigate */
+    /*-- onMount, beforeUpdate, afterUpdate */
     /*-- Handlers */
     /*-- Methods */
     function getRandomColor() {
@@ -38,7 +38,6 @@
         clearInterval(interval);
         interval = setInterval(changeColor, 10000);
     }
-
 </script>
 
 <!-- SVG modified from freepik.com -->

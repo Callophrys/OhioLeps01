@@ -1,23 +1,20 @@
 <script lang="ts">
+    /*-- Imports */
     import DoubledContainer from '$lib/components/DoubledContainer.svelte';
-    import { compareNumeric, compareYearWeek, formatDate, weekOfYearSince, convertFtoC } from '$lib/utils';
-    import { afterUpdate, onMount } from 'svelte';
     import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
-    import { goto } from '$app/navigation';
     import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
-    import type { dateTracking, dateTrackingSet } from '$lib/types.js';
+    import { afterUpdate, onMount } from 'svelte';
     import { setContext } from 'svelte';
-    import SiteDatePicker from '$lib/components/datanavigation/SiteDatePicker.svelte';
+    import { goto } from '$app/navigation';
+    import type { dateTracking, dateTrackingSet } from '$lib/types.js';
+    import { compareNumeric, compareYearWeek, formatDate, weekOfYearSince, convertFtoC } from '$lib/utils';
     import DataOptions from '$lib/components/datanavigation/DataOptions.svelte';
+    import SiteDatePicker from '$lib/components/datanavigation/SiteDatePicker.svelte';
 
+    /*-- -- Data -- */
     export let data;
 
-    setContext('sites', data.sites);
-    setContext('siteDates', data.siteDates);
-
-
-    const cClassesObservation = 'card flex';
-
+    /*-- Exports */
     export let initialUseFarenheit: number = 0;
     export let accA = true;
     export let accB = false;
@@ -30,57 +27,33 @@
     export let accI = false;
     export let accJ = false;
 
-    onMount(() => {
-        let x: string = localStorage?.useFarenheit;
-        useFarenheit = x && x.length ? parseInt(x) : initialUseFarenheit;
-        x = localStorage?.optAccA;
-        optAccA = x && x.length ? x === 'true' : accA;
-        x = localStorage?.optAccB;
-        optAccB = x && x.length ? x === 'true' : accB;
-        x = localStorage?.optAccC;
-        optAccC = x && x.length ? x === 'true' : accC;
-        x = localStorage?.optAccD;
-        optAccD = x && x.length ? x === 'true' : accD;
-        x = localStorage?.optAccE;
-        optAccE = x && x.length ? x === 'true' : accE;
-        x = localStorage?.optAccF;
-        optAccF = x && x.length ? x === 'true' : accF;
-        x = localStorage?.optAccG;
-        optAccG = x && x.length ? x === 'true' : accG;
-        x = localStorage?.optAccH;
-        optAccH = x && x.length ? x === 'true' : accH;
-        x = localStorage?.optAccI;
-        optAccI = x && x.length ? x === 'true' : accI;
-        x = localStorage?.optAccJ;
-        optAccJ = x && x.length ? x === 'true' : accJ;
+    /*-- Context */
+    setContext('sites', data.sites);
+    setContext('siteDates', data.siteDates);
 
-    });
+    /*-- -- Styling -- */
+    /*-- Properties (styles) */
+    /*-- Constants (styles) */
+    const cClassesObservation = 'card flex';
 
-    function handleRadioGroupClick(event: any) {
-        var ooo = document.getElementById('ftoc');
-        console.log('was here', ooo?.getAttribute('open'));
-        if (optAccB) {
-            optAccB = false;
-        }
-        return true;
-        /*
-        var ooo = document.getElementById('ftoc');
-        console.log('was here', ooo?.getAttribute('aria-expanded'));
-        if (ooo?.getAttribute('aria-expanded') === 'true') {
-            ooo.click();
-        } else {
-            return false;
-        }
-        */
-    }
+    /*-- Variables (styles) */
+    /*-- Reactives (styles) */
+    /*-- -- Coding -- */
+    /*-- Enums */
+    /*-- Constants (functional) */
+    const trackedWeeks: dateTracking[] = Array.from(data.siteDates)
+        .map<dateTracking>((w) => ({
+            siteDateId: w.siteDateId,
+            year: new Date(w.recordDate).getFullYear(),
+            week: weekOfYearSince(new Date(w.recordDate)),
+            recordDate: new Date(w.recordDate),
+            fDate: formatDate(new Date(w.recordDate).toISOString()),
+        }))
+        .sort(compareYearWeek);
 
-    function handleClick(event: any) {
-        event.preventDefault();
-        console.log('/api/sitedates/' + event.currentTarget.value);
-        if (event.currentTarget?.value) {
-            goto('/api/sitedates/' + event.currentTarget.value);
-        }
-    }
+    /*-- Properties (functional) */
+    const allYears = Array.from(data.siteDates).map((y) => new Date(y.recordDate).getFullYear());
+    const uniqueYears = [...new Set(allYears)].sort(compareNumeric);
 
     let startTemp: string;
     let endTemp: string;
@@ -107,30 +80,98 @@
     let showRecentEdits = true;
     let showDeletedData = false;
 
-    let x: string = localStorage?.showRecentEdits;
-    if (x && x.length) {
-        showRecentEdits = x === '1';
-    }
-
-    x = localStorage?.showDeletedData;
-    if (x && x.length) {
-        showDeletedData = x === '1';
-    }
-
+    /*-- Variables and objects */
+    /*-- Run first stuff */
     //console.log(data.siteDateSiteDates);
-    const allYears = Array.from(data.siteDates).map((y) => new Date(y.recordDate).getFullYear());
-    const uniqueYears = [...new Set(allYears)].sort(compareNumeric);
+    //console.log(uniqueYears);
+    //console.log(trackedWeeks);
 
-    const trackedWeeks: dateTracking[] = Array.from(data.siteDates)
-        .map<dateTracking>((w) => ({
-            siteDateId: w.siteDateId,
-            year: new Date(w.recordDate).getFullYear(),
-            week: weekOfYearSince(new Date(w.recordDate)),
-            recordDate: new Date(w.recordDate),
-            fDate: formatDate(new Date(w.recordDate).toISOString()),
-        }))
-        .sort(compareYearWeek);
+    //console.log(data.siteDateObservations[0]);
 
+    /*-- onMount, beforeUpdate, afterUpdate */
+    onMount(() => {
+        let x: string;
+
+        x = localStorage?.useFarenheit;
+        useFarenheit = x && x.length ? parseInt(x) : initialUseFarenheit;
+        x = localStorage?.optAccA;
+        optAccA = x && x.length ? x === 'true' : accA;
+        x = localStorage?.optAccB;
+        optAccB = x && x.length ? x === 'true' : accB;
+        x = localStorage?.optAccC;
+        optAccC = x && x.length ? x === 'true' : accC;
+        x = localStorage?.optAccD;
+        optAccD = x && x.length ? x === 'true' : accD;
+        x = localStorage?.optAccE;
+        optAccE = x && x.length ? x === 'true' : accE;
+        x = localStorage?.optAccF;
+        optAccF = x && x.length ? x === 'true' : accF;
+        x = localStorage?.optAccG;
+        optAccG = x && x.length ? x === 'true' : accG;
+        x = localStorage?.optAccH;
+        optAccH = x && x.length ? x === 'true' : accH;
+        x = localStorage?.optAccI;
+        optAccI = x && x.length ? x === 'true' : accI;
+        x = localStorage?.optAccJ;
+        optAccJ = x && x.length ? x === 'true' : accJ;
+
+        x = localStorage?.showRecentEdits;
+        if (x && x.length) {
+            showRecentEdits = x === '1';
+        }
+
+        x = localStorage?.showDeletedData;
+        if (x && x.length) {
+            showDeletedData = x === '1';
+        }
+    });
+
+    afterUpdate(() => {
+        localStorage.setItem('useFarenheit', useFarenheit.toString());
+        localStorage.setItem('optAccA', optAccA.toString());
+        localStorage.setItem('optAccB', optAccB.toString());
+        localStorage.setItem('optAccC', optAccC.toString());
+        localStorage.setItem('optAccD', optAccD.toString());
+        localStorage.setItem('optAccE', optAccE.toString());
+        localStorage.setItem('optAccF', optAccF.toString());
+        localStorage.setItem('optAccG', optAccG.toString());
+        localStorage.setItem('optAccH', optAccH.toString());
+        localStorage.setItem('optAccI', optAccI.toString());
+        localStorage.setItem('optAccJ', optAccJ.toString());
+
+        localStorage.setItem('showRecentEdits', showRecentEdits ? '1' : '0');
+        localStorage.setItem('showDeletedData', showDeletedData ? '1' : '0');
+    });
+
+    /*-- Handlers */
+    function handleRadioGroupClick() {
+        var ooo = document.getElementById('ftoc');
+        console.log('was here', ooo?.getAttribute('open'));
+        if (optAccB) {
+            optAccB = false;
+        }
+        return true;
+        /*
+        var ooo = document.getElementById('ftoc');
+        console.log('was here', ooo?.getAttribute('aria-expanded'));
+        if (ooo?.getAttribute('aria-expanded') === 'true') {
+            ooo.click();
+        } else {
+            return false;
+        }
+        */
+    }
+
+    function handleClick(event: any) {
+        event.preventDefault();
+        console.log('/api/sitedates/' + event.currentTarget.value);
+        if (event.currentTarget?.value) {
+            goto('/api/sitedates/' + event.currentTarget.value);
+        }
+    }
+
+    /*-- Methods */
+    /*-- Reactives (functional) */
     $: nextEnabled = trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteId) < trackedWeeks.length - 1;
     console.log('nextEnabled', nextEnabled);
     $: prevEnabled = trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteId) > 0;
@@ -144,29 +185,7 @@
     $: startTemp = String(data.siteDate.startTemp);
     $: endTemp = String(data.siteDate.endTemp);
 
-    //console.log(uniqueYears);
-    //console.log(trackedWeeks);
-
-    //console.log(data.siteDateObservations[0]);
-
     /*-- Other */
-    afterUpdate(() => {
-        localStorage.setItem('useFarenheit', useFarenheit.toString());
-        localStorage.setItem('optAccA', optAccA.toString());
-        localStorage.setItem('optAccB', optAccB.toString());
-        localStorage.setItem('optAccC', optAccC.toString());
-        localStorage.setItem('optAccD', optAccD.toString());
-        localStorage.setItem('optAccE', optAccE.toString());
-        localStorage.setItem('optAccF', optAccF.toString());
-        localStorage.setItem('optAccG', optAccG.toString());
-        localStorage.setItem('optAccH', optAccH.toString());
-        localStorage.setItem('optAccI', optAccI.toString());
-        localStorage.setItem('optAccJ', optAccJ.toString());
-        localStorage.setItem('showRecentEdits', showRecentEdits ? '1' : '0');
-        localStorage.setItem('showDeletedData', showDeletedData ? '1' : '0');
-    });
-
-
 </script>
 
 <DataOptions bind:showRecentEdits bind:showDeletedData />
@@ -466,16 +485,7 @@
     <svelte:fragment slot="rightBody">
         <div class="flex flex-row justify-between mb-2">
             <div class="my-auto">{data.siteDate.siteName}</div>
-            <SiteDatePicker
-                bind:currentSiteId={data.siteDate.siteId}
-                bind:currentSiteDateId={data.siteDate.siteDateId}
-                controlBody="scale-90"
-                buttonLeft="!px-2"
-                buttonRight="!px-2"
-                buttonYear="px-0 md:px-1 lg:px-2"
-                buttonWeek="px-0 md:px-1 lg:px-2"
-                dropdownShowDate={false}
-                dropdownPointers={false}>
+            <SiteDatePicker bind:currentSiteId={data.siteDate.siteId} bind:currentSiteDateId={data.siteDate.siteDateId} controlBody="scale-90" buttonLeft="!px-2" buttonRight="!px-2" buttonYear="px-0 md:px-1 lg:px-2" buttonWeek="px-0 md:px-1 lg:px-2" dropdownShowDate={false} dropdownPointers={false}>
                 <svelte:fragment slot="prefixYear">Year:</svelte:fragment>
                 <svelte:fragment slot="prefixWeek">Week:</svelte:fragment>
             </SiteDatePicker>
@@ -484,15 +494,16 @@
         <hr />
         <div class="mt-2">
             {#each data.siteDateObservations as siteDateObservation}
-                <div class={`
+                <div
+                    class={`
                     ${(() => {
                         let classes = '';
                         if (siteDateObservation.deleted) {
-                            classes += showDeletedData ? (cClassesObservation + ' line-through variant-ghost-error') : 'hidden';
+                            classes += showDeletedData ? cClassesObservation + ' line-through variant-ghost-error' : 'hidden';
                         } else if (showRecentEdits && siteDateObservation.updatedAt) {
                             let x = new Date();
                             x = new Date(x.getUTCFullYear(), x.getUTCMonth(), x.getUTCDate() - 10);
-                            classes += new Date(siteDateObservation.updatedAt).getTime() > x.getTime() ? (cClassesObservation + ' variant-ghost-warning') : '';
+                            classes += new Date(siteDateObservation.updatedAt).getTime() > x.getTime() ? cClassesObservation + ' variant-ghost-warning' : '';
                         }
                         return classes;
                     })()}`}>

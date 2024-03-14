@@ -18,11 +18,10 @@
     /*-- Properties (functional) */
     /*-- Variables and objects */
     /*-- Run first stuff */
-    /*-- onMount, beforeNavigate, afterNavigate */
+    /*-- onMount, beforeUpdate, afterUpdate */
     /*-- Handlers */
     /*-- Methods */
     /*-- Reactives (functional) */
-
 </script>
 
 <div class="p-2 rounded bg-slate-400 size-28">

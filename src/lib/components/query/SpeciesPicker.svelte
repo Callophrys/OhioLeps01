@@ -46,7 +46,7 @@
 
     /*-- Run first stuff */
 
-    /*-- onMount, beforeNavigate, afterNavigate */
+    /*-- onMount, beforeUpdate, afterUpdate */
     onMount(() => {
         let z: string = localStorage?.namingSort;
         console.log('Fetching namingSort:', z);

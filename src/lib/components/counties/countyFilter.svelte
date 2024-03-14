@@ -44,7 +44,7 @@
     /*-- Run first stuff */
     filterCountyGroups(showUnmonitored);
 
-    /*-- onMount, beforeNavigate, afterNavigate */
+    /*-- onMount, beforeUpdate, afterUpdate */
     /*-- Handlers */
     function handleShowClick(e: any) {
         filterCountyGroups(Number(e.target.value));
@@ -66,7 +66,6 @@
     }
 
     /*-- Reactives (functional) */
-
 </script>
 
 <div class={classesElementEins}>

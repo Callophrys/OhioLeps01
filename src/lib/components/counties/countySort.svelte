@@ -42,7 +42,7 @@
     let sortIconRegion: string = '';
 
     /*-- Run first stuff */
-    /*-- onMount, beforeNavigate, afterNavigate */
+    /*-- onMount, beforeUpdate, afterUpdate */
     /*-- Handlers */
     function handleSortClick(e: any) {
         console.log(valueCountyRegion, sortOrderCounty, sortOrderRegion, sortIconCounty, sortIconRegion);
@@ -101,7 +101,6 @@
 
     /*-- Methods */
     /*-- Reactives (functional) */
-
 </script>
 
 <div class={classesElementEins}>

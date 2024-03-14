@@ -63,9 +63,9 @@ export async function getSiteDateSiteDates(siteDateId: number) {
 		where: {
 			siteDateId: siteDateId,
 		},
-		select: {
+		include: {
 			site: {
-				select: {
+				include: {
 					siteDates: true
 				}
 			}

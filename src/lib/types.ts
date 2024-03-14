@@ -50,6 +50,14 @@ export type SiteDateYear = SiteDate & {
 	updatedBy: UserComplete,
 	confirmBy: UserComplete
 }
+export type SiteDateYearSiteDates = SiteDate & {
+	siteName: string,
+	year: number,
+	site: Site & { siteDates: SiteDate[]},
+	createdBy: UserComplete,
+	updatedBy: UserComplete,
+	confirmBy: UserComplete
+}
 export type SiteCounty = Site & { county: County }
 export type SiteCountyState = Site & { county: CountyState }
 export type SiteCountySiteDates = Site & { county: County, siteDates: SiteDateYear[] }

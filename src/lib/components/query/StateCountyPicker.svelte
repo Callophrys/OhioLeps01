@@ -38,7 +38,7 @@
     let captureAllCounties: number[];
 
     /*-- Run first stuff */
-    /*-- onMount, beforeNavigate, afterNavigate */
+    /*-- onMount, beforeUpdate, afterUpdate */
     onMount(() => {
         let z: string = localStorage?.useCaptureAllCounties;
         console.log('z', z);
@@ -89,7 +89,6 @@
     /*-- Methods */
     /*-- Reactives (functional) */
     $: allSelected = counties.filter((c) => c.sites.length > 0).length === countyIds.length;
-
 </script>
 
 <div class="flex items-center space-x-2">

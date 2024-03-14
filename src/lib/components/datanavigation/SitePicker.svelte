@@ -32,7 +32,7 @@
     console.log(currentSite);
 
     /*-- Run first stuff */
-    /*-- onMount, beforeNavigate, afterNavigate */
+    /*-- onMount, beforeUpdate, afterUpdate */
     /*-- Handlers */
     /*-- Methods */
     function handleSiteSelect(e: any) {

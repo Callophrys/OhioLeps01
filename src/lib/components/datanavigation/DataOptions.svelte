@@ -4,7 +4,7 @@
 
     /*-- -- Data -- */
     /*-- Exports */
-    export let showRecentEdits:boolean = true;
+    export let showRecentEdits: boolean = true;
     export let showDeletedData: boolean = false;
 
     /*-- Context */
@@ -18,12 +18,11 @@
     /*-- Properties (functional) */
     /*-- Variables and objects */
     /*-- Run first stuff */
-    /*-- onMount, beforeNavigate, afterNavigate */
+    /*-- onMount, beforeUpdate, afterUpdate */
     /*-- Handlers */
     /*-- Methods */
     /*-- Reactives (functional) */
     /*-- Other */
-
 </script>
 
 <div class="flex flex-row space-x-2 text-sm fixed top-[134px] right-10">

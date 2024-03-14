@@ -1,7 +1,7 @@
 import { getSites } from '$lib/database/sites.js';
 import { getSiteDate, getSiteDateSiteDates } from '$lib/database/sitedates'
 import { getSiteDateObservationsBySiteDate } from '$lib/database/sitedateobservations.js';
-import type { SiteDateYear, SiteDateObservationChecklist, SiteCounty } from '$lib/types.js';
+import type { SiteDateYear, SiteDateYearSiteDates, SiteDateObservationChecklist, SiteCounty } from '$lib/types.js';
 
 export async function load({ params }) {
 	console.log('sitedates - params', params);
@@ -24,7 +24,7 @@ export async function load({ params }) {
 	const jsonResultS: SiteCounty[] = JSON.parse(jsonS);
 
 	const jsonYW = JSON.stringify(siteDates);
-	const jsonResultYW: SiteDateYear[] = JSON.parse(jsonYW);
+	const jsonResultYW: SiteDateYearSiteDates[] = JSON.parse(jsonYW);
 
 	const jsonO = JSON.stringify(siteDateObservations);
 	const jsonResultO: SiteDateObservationChecklist[] = JSON.parse(jsonO);

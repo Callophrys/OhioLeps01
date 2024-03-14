@@ -40,7 +40,7 @@
     }
     //console.log('c', candidates);
 
-    /*-- onMount, beforeNavigate, afterNavigate */
+    /*-- onMount, beforeUpdate, afterUpdate */
     afterUpdate(() => {
         appConfigs.forEach((c) => {
             if (c.configType === 'boolean') {
@@ -73,7 +73,6 @@
      * https://svelte.dev/repl/253ddd578806497b8b54c339490f8221?version=3.21.0
      *
      * */
-
 </script>
 
 {#each appConfigs as appConfig}

@@ -32,7 +32,7 @@
     /*-- Properties (functional) */
     /*-- Variables and objects */
     /*-- Run first stuff */
-    /*-- onMount, beforeNavigate, afterNavigate */
+    /*-- onMount, beforeUpdate, afterUpdate */
     /*-- Handlers */
     function countyPrior() {
         if (currentCounty.id !== allCounties[0].id) {
@@ -78,7 +78,6 @@
     TODO: Figure out why select 2 counties causes left-right to think
           those are the only available counties to cycle through.
     */
-
 </script>
 
 <div class="flex flex-col lg:flex-row gap-0 md:gap-1 lg:gap-2">

@@ -7,9 +7,9 @@
     import { enhance } from '$app/forms';
     import { page } from '$app/stores';
     import Help from '$lib/components/appbar/Help.svelte';
+    import Fluttering from '$lib/components/appbar/Fluttering.svelte';
     import Themer from '$lib/components/appbar/Themer.svelte';
     import SiteNavigation from '$lib/components/SiteNavigation.svelte';
-    import Fluttering from '$lib/components/appbar/Fluttering.svelte';
 
     let config: any = $page.data.config ?? {};
 

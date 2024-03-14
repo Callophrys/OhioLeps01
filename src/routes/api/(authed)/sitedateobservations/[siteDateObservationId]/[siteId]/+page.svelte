@@ -21,7 +21,7 @@ var z = y.difference(x) // [ "d", "e", "g" ]
     import type { SiteDateObservationChecklist } from '$lib/types.js';
     import SpeciesPicker from '$lib/components/datanavigation/SpeciesPicker.svelte';
     import { setContext } from 'svelte';
-    import { afterUpdate } from 'svelte';
+    import { afterUpdate, onMount } from 'svelte';
 
     /*-- -- Data -- */
     /*-- Exports */
@@ -42,9 +42,10 @@ var z = y.difference(x) // [ "d", "e", "g" ]
     const cSectionSpanClasses = 'w-24';
     const cDataClasses = 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1 md:gap-2';
     const cDatumClasses = 'flex flex-row space-x-2';
-    const cButtonStandard = "btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2";
-    const cButtonSuccess = "btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-soft-success pb-2";
-    const cButtonCancel = "btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-soft-error pb-2";
+    const cButtonStandard = 'btn w-24 md:w-28 h-8 sm:h-10 md:h-11 pb-2 variant-filled-surface';
+    const cButtonSuccess = 'btn w-24 md:w-28 h-8 sm:h-10 md:h-11 pb-2 variant-soft-success';
+    const cButtonCancel = 'btn w-24 md:w-28 h-8 sm:h-10 md:h-11 pb-2 variant-soft-error';
+    const cButtonAddView = 'btn w-44         h-8 sm:h-10 md:h-11 pb-2 variant-filled-surface';
 
     /*-- Variables (styles) */
     /*-- Reactives (styles) */
@@ -111,34 +112,51 @@ var z = y.difference(x) // [ "d", "e", "g" ]
         },
     };
 
+    const modalAdd: ModalSettings = {
+        type: 'prompt',
+        title: 'Add new (sub)species observation',
+        body: 'Create new species record for this site and date.',
+        value: 'Add new species observation',
+        valueAttr: { type: 'text', minlength: 0, maxlength: 256, required: true },
+        buttonTextSubmit: 'Yes',
+        buttonTextConfirm: 'Bar',
+        response: (r: string) => {
+            if (r) {
+                isAdding = !isAdding;
+            }
+        },
+    };
+
     /*-- Properties (functional) */
     let formAdd: HTMLFormElement;
     let formEdit: HTMLFormElement;
     let formReview: HTMLFormElement;
     let formDelete: HTMLFormElement;
     let formUndo: HTMLFormElement;
-
-    /*-- Variables and objects */
     let isEditing = false;
     let isAdding = false;
-
     let showRecentEdits = true;
     let showDeletedData = false;
 
-    let x: string = localStorage?.showRecentEdits;
-    if (x && x.length) {
-        showRecentEdits = x === '1';
-    }
-
-    x = localStorage?.showDeletedData;
-    if (x && x.length) {
-        showDeletedData = x === '1';
-    }
+    /*-- Variables and objects */
+    let x: string;
 
     /*-- Run first stuff */
     const modalStore = getModalStore();
 
-    /*-- onMount, beforeNavigate, afterNavigate */
+    /*-- onMount, beforeUpdate, afterUpdate */
+    onMount(() => {
+        x = localStorage?.showRecentEdits;
+        if (x && x.length) {
+            showRecentEdits = x === '1';
+        }
+
+        x = localStorage?.showDeletedData;
+        if (x && x.length) {
+            showDeletedData = x === '1';
+        }
+    });
+
     /*-- Handlers */
     const handleChange = () => {
         total = getTotal();
@@ -147,17 +165,17 @@ var z = y.difference(x) // [ "d", "e", "g" ]
 
     /*-- Methods */
     const clearCounts = () => {
-        return Array.from(formAdd.querySelectorAll('[type=text]')).forEach((c: any) => c.value = '');
-    }
+        return Array.from(formAdd.querySelectorAll('[type=text]')).forEach((c: any) => (c.value = ''));
+    };
 
     const sumCounts = (frm: Element) => {
         if (typeof document === 'undefined' && typeof frm === 'undefined') return false;
-        return (document && frm) ? Array.from(frm.querySelectorAll('[type=text]')).reduce((t: number, o: any) => t + (isNaN(o.value) ? 0 : Number(o.value)), 0) : 0;
-    }
+        return document && frm ? Array.from(frm.querySelectorAll('[type=text]')).reduce((t: number, o: any) => t + (isNaN(o.value) ? 0 : Number(o.value)), 0) : 0;
+    };
 
     const getTotal = () => {
-        return isAdding ? sumCounts(formAdd) : (isEditing ? sumCounts(formEdit) : data.siteDateObservation.total);
-    }
+        return isAdding ? sumCounts(formAdd) : isEditing ? sumCounts(formEdit) : data.siteDateObservation.total;
+    };
 
     /*-- Reactives (functional) */
     $: total = getTotal();
@@ -177,7 +195,6 @@ var z = y.difference(x) // [ "d", "e", "g" ]
 
     //if (form) console.log('form>>', form);
     //console.log(data);
-
 </script>
 
 <DataOptions bind:showRecentEdits bind:showDeletedData />
@@ -191,12 +208,7 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                 <div class="flex flex-col lg:flex-row lg:justify-start gap-1 lg:gap-2 pb-2 text-surface-600-300-token">
                     <SitePicker currentSite={data.siteDateObservation.siteDate.site} />
                     <SiteDatePicker currentSiteId={data.siteDateObservation.siteDate.siteId} currentSiteDateId={data.siteDateObservation.siteDateId ?? -1} />
-                    <SpeciesPicker
-                        currentSdoChecklistItemId={currentSiteDateObservation.siteDateObservationId}
-                        isAdding={isAdding}
-                        isEditing={isEditing}
-                        showDeletedData={showDeletedData}
-                    />
+                    <SpeciesPicker currentSdoChecklistItemId={currentSiteDateObservation.siteDateObservationId} {isAdding} {isEditing} {showDeletedData} />
                 </div>
 
                 <!-- Main controls -->
@@ -223,7 +235,7 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                             {:else}
                                 <button type="button" class={cButtonSuccess} on:click={() => formEdit?.submit()}>
                                     Save
-                                    <span class="pl-2">✔</span>
+                                    <span class="pl-2">✎</span>
                                 </button>
 
                                 <!-- TODO: Make undo-redo work, maybe go with left-right group button -->
@@ -305,24 +317,37 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                     </div>
 
                     <div class="flex flex-row gap-2">
+                        {#if isAdding}
+                            <button type="button" class={cButtonStandard} on:click={() => formAdd?.submit()}>
+                                Save
+                                <span class="pl-2">✎</span>
+                            </button>
+
+                            <button type="button" class={cButtonAddView} on:click={() => (isAdding = !isAdding)} disabled={isEditing || data.siteDateObservation.confirmed}>
+                                <span>Cancel Add</span>
+                                <span class="pl-2 text-red-700 dark:text-red-600 text-2xl">↺</span>
+                            </button>
+                        {:else}
+                            <button
+                                type="button"
+                                class={cButtonAddView}
+                                on:click={() => {
+                                    modalStore.trigger(modalAdd);
+                                    return true;
+                                }}
+                                disabled={isEditing || data.siteDateObservation.confirmed}>
+                                <input class="checkbox" type="checkbox" checked={isAdding} />
+                                <span>Add species</span>
+                                <span class="text-green-900 dark:text-green-200 text-2xl before:content-['✚']" />
+                            </button>
+                        {/if}
+
                         <div>
-                            <button type="button" class="btn w-44 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2">
+                            <button type="button" class={cButtonAddView}>
                                 View all species
                                 <span class="pl-2 text-green-900 dark:text-green-200 text-2xl">🔎</span>
                             </button>
                         </div>
-
-                        <!-- TODO: Make add/create work -->
-                        <button type="button" class="btn w-44 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" on:click={() => isAdding = !isAdding} disabled={isEditing || data.siteDateObservation.confirmed}>
-                            <input class="checkbox" type="checkbox" checked={isAdding} />
-                            {#if isAdding}
-                                <span>Cancel Add</span>
-                                <span class="pl-2 text-red-700 dark:text-red-600 text-2xl">↺</span>
-                            {:else}
-                                <span>Add species</span>
-                                <span class="text-green-900 dark:text-green-200 text-2xl before:content-['✚']" />
-                            {/if}
-                        </button>
                     </div>
                 </div>
 
@@ -355,9 +380,9 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                     <div class="flex flex-row space-x-4">
                         {#if isAdding}
                             <!-- TODO: Update on some kind of selector -->
-                            <div class="w-32">Hodges: </div>
+                            <div class="w-32">Hodges:</div>
                             <!-- TODO: Make Id Code editable -->
-                            <div class="w-24">Id Code: </div>
+                            <div class="w-24">Id Code:</div>
                             <div class="w-28 text-amber-700 dark:text-amber-400">(Total: {getTotal()})</div>
                         {:else if isEditing && getTotal() !== currentSiteDateObservation.total}
                             <div class="w-32">Hodges: {currentSiteDateObservation.hodges}</div>
@@ -383,7 +408,7 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                                     <div class={cDatumClasses}>
                                         <label class={cSectionClasses}>
                                             <span class={cSectionSpanClasses}>{section.label}:</span>
-                                            <input type="text" name={section.name} value={section.value ?? ''} class="w-8 text-center text-black" on:input={() => total = getTotal()} />
+                                            <input type="text" name={section.name} value={section.value ?? ''} class="w-8 text-center text-black" on:input={() => (total = getTotal())} />
                                             <input type="hidden" name={`${section.name}_orig`} value={section.value ?? ''} />
                                         </label>
                                     </div>
@@ -423,15 +448,15 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                     <div class="flex flex-row flex-wrap justify-between">
                         <div class="flex flex-col basis-60">
                             <div>Created At: {!isAdding && data.siteDateObservation.createdAt ? formatDate(new Date(data.siteDateObservation.createdAt).toISOString(), 'short', 'short') : ''}</div>
-                            <div class="">Created By: {!isAdding ? (data.siteDateObservation.createdBy?.lastFirst ?? '') : $page.data.user.lastFirst}</div>
+                            <div class="">Created By: {!isAdding ? data.siteDateObservation.createdBy?.lastFirst ?? '' : $page.data.user.lastFirst}</div>
                         </div>
                         <div class="flex flex-col basis-60">
                             <div>Updated At: {!isAdding && data.siteDateObservation.updatedAt ? formatDate(new Date(data.siteDateObservation.updatedAt).toISOString(), 'short', 'short') : ''}</div>
-                            <div class="">Updated By: {!isAdding ? (data.siteDateObservation.updatedBy?.lastFirst ?? '') : ''}</div>
+                            <div class="">Updated By: {!isAdding ? data.siteDateObservation.updatedBy?.lastFirst ?? '' : ''}</div>
                         </div>
                         <div class="flex flex-col basis-60">
                             <div>Confirm At: {!isAdding && data.siteDateObservation.confirmAt ? formatDate(new Date(data.siteDateObservation.confirmAt).toISOString(), 'short', 'short') : ''}</div>
-                            <div class="">Confirm By: {!isAdding ? (data.siteDateObservation.confirmBy?.lastFirst ?? '') : ''}</div>
+                            <div class="">Confirm By: {!isAdding ? data.siteDateObservation.confirmBy?.lastFirst ?? '' : ''}</div>
                         </div>
                     </div>
                 </div>
@@ -439,5 +464,4 @@ var z = y.difference(x) // [ "d", "e", "g" ]
             </div>
         {/if}
     </svelte:fragment>
-
 </StandardContainer>

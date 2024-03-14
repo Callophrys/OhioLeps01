@@ -5,7 +5,7 @@
     import type { PopupSettings } from '@skeletonlabs/skeleton';
     import { ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
     import { getContext } from 'svelte';
-    import type { dateTracking, SiteDateYear } from '$lib/types.js';
+    import type { dateTracking, SiteDateYearSiteDates } from '$lib/types.js';
     import type { CssClasses } from '@skeletonlabs/skeleton';
     import { compareYearWeek, formatDate, weekOfYearSince } from '$lib/utils';
     import { onMount } from 'svelte';
@@ -23,6 +23,11 @@
     export let dropdownShowDate: boolean = false;
 
     /*-- Context */
+
+    // siteDate list for respective site via Context
+    const siteDates: SiteDateYearSiteDates[] = getContext('siteDates') ?? [];
+    //console.log('SiteDatePicker:siteDates', siteDates);
+
     /*-- -- Styling -- */
     /*-- Properties (styles) */
     export let controlBody: CssClasses = '';
@@ -80,9 +85,6 @@
     };
 
     /*-- Properties (functional) */
-    // siteDate list for respective site via Context
-    const siteDates: SiteDateYear[] = getContext('siteDates') ?? [];
-    //console.log('SiteDatePicker:siteDates', siteDates);
 
     const siteDateYears = [...new Set(siteDates.map((x) => x.year))];
     const weeksOfYear: any = {};
@@ -95,7 +97,7 @@
     const siteDateWeeks = currentSiteDate ? weeksOfYear[currentSiteDate.year] : [];
 
     const trackedWeeks = Array.from(siteDates)
-        .map<dateTracking>((w: SiteDateYear) => ({
+        .map<dateTracking>((w: SiteDateYearSiteDates) => ({
             siteDateId: w.siteDateId,
             year: w.year,
             week: w.recordDate ? weekOfYearSince(new Date(w.recordDate)) : -1,
@@ -119,7 +121,7 @@
     let recordWeek: number;
 
     /*-- Run first stuff */
-    /*-- onMount, beforeNavigate, afterNavigate */
+    /*-- onMount, beforeUpdate, afterUpdate */
     onMount(() => {
         nextEnabled = trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteDateId) < trackedWeeks.length - 1;
         prevEnabled = trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteDateId) > 0;
@@ -143,14 +145,14 @@
         }
     }
 
-    function handleClickPrior(event: any) {
+    function handleClickPrior() {
         let idx = trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteDateId);
         if (idx > 0) {
             goto('/api/sitedates/' + trackedWeeks[idx - 1].siteDateId);
         }
     }
 
-    function handleClickNext(event: any) {
+    function handleClickNext() {
         let idx = trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteDateId);
         if (idx < trackedWeeks.length - 1) {
             goto('/api/sitedates/' + trackedWeeks[idx + 1].siteDateId);
@@ -159,6 +161,7 @@
 
     /*-- Methods */
     /*-- Reactives (functional) */
+    /*-- Other */
 </script>
 
 <div class="block lg:flex lg:flex-row gap-0 md:gap-1 lg:gap-2">

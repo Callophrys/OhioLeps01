@@ -25,11 +25,10 @@
     /*-- Properties (functional) */
     /*-- Variables and objects */
     /*-- Run first stuff */
-    /*-- onMount, beforeNavigate, afterNavigate */
+    /*-- onMount, beforeUpdate, afterUpdate */
     /*-- Handlers */
     /*-- Methods */
     /*-- Reactives (functional) */
-
 </script>
 
 {#if $$slots.label}

@@ -75,7 +75,7 @@
     /*-- Properties (functional) */
     const sdoCommon: sdoSpeciesObject[] = [];
     const sdoLatin: sdoSpeciesObject[] = [];
-    let currentSdoChecklistItem: SiteDateObservationChecklist =  checklistsSiteDateObs.find(x => x.siteDateObservationId === currentSdoChecklistItemId) as SiteDateObservationChecklist;
+    let currentSdoChecklistItem: SiteDateObservationChecklist = checklistsSiteDateObs.find((x) => x.siteDateObservationId === currentSdoChecklistItemId) as SiteDateObservationChecklist;
 
     /*-- Variables and objects */
 
@@ -85,7 +85,7 @@
     let enabledDrop: boolean;
 
     /*-- Run first stuff */
-    /*-- onMount, beforeNavigate, afterNavigate */
+    /*-- onMount, beforeUpdate, afterUpdate */
     /*-- Handlers */
     function handleClick(e: any) {
         if (e.currentTarget?.value) {
@@ -113,13 +113,11 @@
 
     // reactive for nav controls - is one time so could just be onMount
     $: {
-
         sdoCommon.length = 0;
         sdoLatin.length = 0;
         console.log('ccc>', currentSdoChecklistItem);
 
         if (showDeletedData) {
-
             sdoCommon.push(
                 ...new Set(
                     checklistsSiteDateObs.map((x: SiteDateObservationChecklist) => ({
@@ -139,9 +137,7 @@
                     }))
                 )
             );
-
         } else {
-
             /*
 
             // When currentSdoChecklistItem is deleted try to get next successive sdo checklist item that is NOT deleted
@@ -254,8 +250,7 @@
 
     // Does this actually obviated the need for onMount?
     // .... well maybe if an html element - user thing updates it
-    $: currentSdoChecklistItem =  checklistsSiteDateObs.find(x => x.siteDateObservationId === currentSdoChecklistItemId) as SiteDateObservationChecklist;
-
+    $: currentSdoChecklistItem = checklistsSiteDateObs.find((x) => x.siteDateObservationId === currentSdoChecklistItemId) as SiteDateObservationChecklist;
 </script>
 
 <div class="block lg:flex lg:flex-row gap-0 md:gap-1 lg:gap-2">
@@ -293,14 +288,9 @@
         <div class="card w-48 shadow-xl py-2 overflow-y-auto" style="max-height: calc(100vh - 272px);">
             <ListBox rounded="rounded-none" labelledby="Species for site">
                 {#each sdoCommon as sdo}
-                    <ListBoxItem
-                        class={`${sdo.deleted ? (showDeletedData ? cDeleted : 'hidden') : ''}`}
-                        bind:group={currentSdoChecklistItemId}
-                        name="species"
-                        value={sdo.siteDateObservationId} on:click={handleClick}>{sdo.name}</ListBoxItem>
+                    <ListBoxItem class={`${sdo.deleted ? (showDeletedData ? cDeleted : 'hidden') : ''}`} bind:group={currentSdoChecklistItemId} name="species" value={sdo.siteDateObservationId} on:click={handleClick}>{sdo.name}</ListBoxItem>
                 {/each}
             </ListBox>
         </div>
     </div>
 </div>
-
