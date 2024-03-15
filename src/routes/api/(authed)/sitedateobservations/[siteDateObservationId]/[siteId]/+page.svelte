@@ -382,39 +382,82 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                 <!-- START Data controls group -->
                 {#if isViewAll}
 
-                    <hr />
+                    {#if isEditing}
 
-                    {#each availableObservations as chkSdo}
-                    <div class={`${chkSdo.deleted ? 'line-through odd:variant-ghost-warning even:variant-ghost-error' : 'odd:bg-gray-200 odd:dark:bg-red-700'}`}>
+                        <hr />
 
-                        <div class="pl-4 flex flex-row">
-                            <div class="w-56 truncate">{chkSdo.checklist.commonName}</div>
-                            <div class="w-64">{chkSdo.checklist.scientificName}</div>
-                            <div class="w-20">{chkSdo.hodges}</div>
-                            <div class="w-16">{chkSdo.idCode}</div>
-                            <div class="w-28">(Total: {chkSdo.total})</div>
-                        </div>
+                        {#each availableObservations as chkSdo}
 
-                        <div class="pl-8 flex flex-wrap">
+                            <div class={`${chkSdo.deleted ? 'line-through odd:variant-ghost-warning even:variant-ghost-error' : 'odd:bg-gray-200 odd:dark:bg-red-700'}`}>
 
-                            {#each Object.entries(chkSdo)
-                                .filter((x) => x[0].startsWith('section'))
-                                .map(([k, v]) => ({
-                                    label: `${k.substring(0, 1).toLocaleUpperCase()}${k.substring(1, 7)} ${k.substring(7)}`,
-                                    name: k,
-                                    value: v })) as section}
-
-                                <div class={cSectionClasses}>
-                                    <div class={cSectionSpanClasses}>{section.label}:</div>
-                                    <div class="w-8">{@html section.value ?? '&varnothing;'}</div>
+                                <div class="pl-4 flex flex-row">
+                                    <div class="w-56 truncate">{chkSdo.checklist.commonName}</div>
+                                    <div class="w-64">{chkSdo.checklist.scientificName}</div>
+                                    <div class="w-20">{chkSdo.hodges}</div>
+                                    <div class="w-16">{chkSdo.idCode}</div>
+                                    <div class="w-28">(Total: {chkSdo.total})</div>
                                 </div>
 
-                            {/each}
-                        </div>
-                        <hr />
-                    </div>
+                                <div class="pl-8 flex flex-wrap">
 
-                    {/each}
+                                    {#each Object.entries(chkSdo)
+                                        .filter((x) => x[0].startsWith('section'))
+                                        .map(([k, v]) => ({
+                                            label: `${k.substring(0, 1).toLocaleUpperCase()}${k.substring(1, 7)} ${k.substring(7)}`,
+                                            name: k,
+                                            value: v })) as section}
+
+                                        <div class={cSectionClasses}>
+                                            <div class={cSectionSpanClasses}>{section.label}:</div>
+                                            <div class="w-8">{@html section.value ?? '&varnothing;'}</div>
+                                        </div>
+
+                                    {/each}
+                                </div>
+                                <hr />
+                            </div>
+
+                        {/each}
+
+                    {:else}
+
+                        <hr />
+
+                        {#each availableObservations as chkSdo}
+
+                            <div class={`${chkSdo.deleted ? 'line-through odd:variant-ghost-warning even:variant-ghost-error' : 'odd:bg-gray-200 odd:dark:bg-red-700'}`}>
+
+                                <div class="pl-4 flex flex-row">
+                                    <div class="w-56 truncate">{chkSdo.checklist.commonName}</div>
+                                    <div class="w-64">{chkSdo.checklist.scientificName}</div>
+                                    <div class="w-20">{chkSdo.hodges}</div>
+                                    <div class="w-16">{chkSdo.idCode}</div>
+                                    <div class="w-28">(Total: {chkSdo.total})</div>
+                                </div>
+
+                                <div class="pl-8 flex flex-wrap">
+
+                                    {#each Object.entries(chkSdo)
+                                        .filter((x) => x[0].startsWith('section'))
+                                        .map(([k, v]) => ({
+                                            label: `${k.substring(0, 1).toLocaleUpperCase()}${k.substring(1, 7)} ${k.substring(7)}`,
+                                            name: k,
+                                            value: v })) as section}
+
+                                        <div class={cSectionClasses}>
+                                            <div class={cSectionSpanClasses}>{section.label}:</div>
+                                            <div class="w-8">{@html section.value ?? '&varnothing;'}</div>
+                                        </div>
+
+                                    {/each}
+                                </div>
+                                <hr />
+                            </div>
+
+                        {/each}
+
+                    {/if}
+
                 {:else}
 
                     <div class={`${data.siteDateObservation.deleted ? 'line-through variant-ghost-error' : ''}`}>
