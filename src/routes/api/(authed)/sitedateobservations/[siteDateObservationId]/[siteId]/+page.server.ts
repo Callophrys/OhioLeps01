@@ -84,7 +84,24 @@ export const actions: Actions = {
 	saveSiteDateObservation: async ({ request, locals }) => {
 		//console.log('aaa');
 		const formData: any = await request.formData();
-		//console.log(formData);
+		console.log(formData);
+
+		const ace: { name: string, value: string }[] = [];
+		Array.from(formData).forEach((x: any) => ace.push({ name: x[0], value: x[1]}));
+		console.log(ace);
+
+		const bar = ace.map((x: { name: string, value: string }) => x.name.substring(0, x.name.indexOf('_')));
+		console.log(bar);
+
+		const foo = [...new Set(bar)];
+		console.log(foo);
+
+		// for each foo - has anything changed? if yes then get all different fields and do a save
+		// O(2)
+		// make jive with stuff below
+
+		return { success: true }
+
 
 		const siteDateObservationId = Number(formData.get('siteDateObservationId'));
 		const originalSdo = await getSiteDateObservationBySiteDateObservation(siteDateObservationId);

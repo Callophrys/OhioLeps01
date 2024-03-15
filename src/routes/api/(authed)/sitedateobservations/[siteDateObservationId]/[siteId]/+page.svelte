@@ -394,6 +394,7 @@ var z = y.difference(x) // [ "d", "e", "g" ]
 
                     {#if isEditing}<!-- EDITING Multiple species observation recordings -->
 
+                        <form name="edit" method="POST" action="?/saveSiteDateObservation" use:enhance bind:this={formEdit}>
                         {#each availableObservations as chkSdo}
 
                             <div class={`${chkSdo.deleted ? 'line-through odd:variant-ghost-warning even:variant-ghost-error' : 'odd:bg-gray-200 odd:dark:bg-red-700'}`}>
@@ -475,6 +476,7 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                             </div>
 
                         {/each}
+                        </form>
 
                     {:else}<!-- VIEWING Multiple species observation recordings -->
 
