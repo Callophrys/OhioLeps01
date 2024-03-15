@@ -3,12 +3,17 @@
     import SpeciesPicker from '$lib/components/query/SpeciesPicker.svelte';
     import TimeframePicker from '$lib/components/query/TimeframePicker.svelte';
     import DoubledContainer from '$lib/components/DoubledContainer.svelte';
+<<<<<<< Updated upstream
     import type { CountySpecimen } from '$lib/types';
     import { sortByStringProperty } from '$lib/utils';
     import { enhance } from '$app/forms';
     import type { SubmitFunction } from '@sveltejs/kit';
     import { setContext } from 'svelte';
     import { page } from '$app/stores';
+=======
+    import { scientificName } from '$lib/utils.js';
+    import type { countySpecimen } from '$lib/types.js';
+>>>>>>> Stashed changes
 
     export let data;
     export let form;
@@ -238,6 +243,8 @@
 </DoubledContainer>
 
 <!--
+    //import { TreeView, TreeViewItem } from '@skeletonlabs/skeleton';
+....
         <TreeView>
             <TreeViewItem>
                 (item 1)

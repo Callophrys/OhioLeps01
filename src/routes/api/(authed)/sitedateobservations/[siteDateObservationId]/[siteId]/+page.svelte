@@ -216,8 +216,15 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                 <!-- TODO: make this flex better for responsive sizings -->
                 <div class="flex flex-col lg:flex-row lg:justify-start gap-1 lg:gap-2 pb-2 text-surface-600-300-token">
                     <SitePicker currentSite={data.siteDateObservation.siteDate.site} />
-                    <SiteDatePicker currentSiteId={data.siteDateObservation.siteDate.siteId} currentSiteDateId={data.siteDateObservation.siteDateId ?? -1} />
-                    <SpeciesPicker currentSdoChecklistItemId={currentSiteDateObservation.siteDateObservationId} {isAdding} {isEditing} {showDeletedData} />
+                    <SiteDatePicker
+                        currentSiteId={data.siteDateObservation.siteDate.siteId}
+                        currentSiteDateId={data.siteDateObservation.siteDateId ?? -1} />
+                    <SpeciesPicker
+                        currentSdoChecklistItemId={currentSiteDateObservation.siteDateObservationId}
+                        {isAdding}
+                        {isEditing}
+                        {isViewAll}
+                        {showDeletedData} />
                 </div>
 
                 <!-- Main controls -->
@@ -226,24 +233,24 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                         {#if $page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'ENTRY' || $page.data.user.role === 'REVIEWER'}
                             {#if isAdding}
                                 <button type="button" class={cButtonStandard} disabled>
-                                    Edit
+                                    {isViewAll ? 'Edit All' : 'Edit'}
                                     <span class="pl-2">✎</span>
                                 </button>
                             {:else if !isEditing}
                                 {#if data.siteDateObservation.confirmed}
                                     <button type="button" class={cButtonStandard} disabled>
-                                        Edit
+                                        {isViewAll ? 'Edit All' : 'Edit'}
                                         <span class="pl-2">✎</span>
                                     </button>
                                 {:else}
                                     <button type="button" class={cButtonStandard} on:click={() => (isEditing = true)}>
-                                        Edit
+                                        {isViewAll ? 'Edit All' : 'Edit'}
                                         <span class="pl-2">✎</span>
                                     </button>
                                 {/if}
                             {:else}
                                 <button type="button" class={cButtonSuccess} on:click={() => formEdit?.submit()}>
-                                    Save
+                                    {isViewAll ? 'Save All' : 'Save'}
                                     <span class="pl-2">✎</span>
                                 </button>
 
@@ -355,8 +362,9 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                                 type="button"
                                 class={cButtonAddView}
                                 on:click= {() => (isViewAll = !isViewAll)}
+                                disabled={isEditing || false}
                                 title="View all species">
-                                <input class="checkbox" type="checkbox" checked={isViewAll} />
+                                <input class="checkbox" type="checkbox" checked={isViewAll} disabled={isEditing || false} />
                                 <span>View all</span>
                                 <span class="!ml-0 text-green-900 dark:text-green-200 text-2xl">🔎</span>
                             </button>
@@ -380,22 +388,49 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                 </div>
 
                 <!-- START Data controls group -->
-                {#if isViewAll}
+                {#if isViewAll} <!-- Multiple species observation recordings -->
 
-                    {#if isEditing}
+                    <hr />
 
-                        <hr />
+                    {#if isEditing}<!-- EDITING Multiple species observation recordings -->
 
                         {#each availableObservations as chkSdo}
 
                             <div class={`${chkSdo.deleted ? 'line-through odd:variant-ghost-warning even:variant-ghost-error' : 'odd:bg-gray-200 odd:dark:bg-red-700'}`}>
 
-                                <div class="pl-4 flex flex-row">
+                                <div class="pl-1 flex flex-row">
+                                    <div class="w-6">{ chkSdo.deleted ? '❌' : (chkSdo.confirmed ? '🔐' : '🔓')}</div>
                                     <div class="w-56 truncate">{chkSdo.checklist.commonName}</div>
                                     <div class="w-64">{chkSdo.checklist.scientificName}</div>
-                                    <div class="w-20">{chkSdo.hodges}</div>
-                                    <div class="w-16">{chkSdo.idCode}</div>
-                                    <div class="w-28">(Total: {chkSdo.total})</div>
+                                    <div class="w-36">Hodges: {chkSdo.hodges}</div>
+
+                                    {#if chkSdo.deleted}
+                                        <div class="w-28 pr-2 pb-0.5">ID Code: {@html chkSdo.idCode ?? '&varnothing;'}</div>
+                                    {:else if chkSdo.confirmed}
+                                        <div class="w-28 pr-2 pb-0.5">
+                                            <div class={cSectionClasses}>
+                                                <span class={cSectionSpanClasses}>ID Code:</span>
+                                                <input
+                                                    type="text"
+                                                    class="w-8 text-center text-black"
+                                                    value={chkSdo.idCode}
+                                                    disabled />
+                                            </div>
+                                        </div>
+                                    {:else}
+                                        <div class="w-28 pr-2 pb-0.5">
+                                            <label class={cSectionClasses}>
+                                                <span class={cSectionSpanClasses}>ID Code:</span>
+                                                <input
+                                                    type="text"
+                                                    name={`${chkSdo.siteDateObservationId}_idcode`}
+                                                    class="w-8 text-center text-black"
+                                                    value={chkSdo.idCode} />
+                                            </label>
+                                            <input type="hidden" name={`${chkSdo.siteDateObservationId}_idcode_orig`} value={chkSdo.idCode} />
+                                        </div>
+                                    {/if}
+                                    <div class="w-36">(Total: {chkSdo.total})</div>
                                 </div>
 
                                 <div class="pl-8 flex flex-wrap">
@@ -407,10 +442,32 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                                             name: k,
                                             value: v })) as section}
 
-                                        <div class={cSectionClasses}>
-                                            <div class={cSectionSpanClasses}>{section.label}:</div>
-                                            <div class="w-8">{@html section.value ?? '&varnothing;'}</div>
-                                        </div>
+                                        {#if chkSdo.deleted}
+                                            <div class={cSectionClasses}>
+                                                <div class={cSectionSpanClasses}>{section.label}:</div>
+                                                <div class="w-8">{@html section.value ?? '&varnothing;'}</div>
+                                            </div>
+                                        {:else if chkSdo.confirmed}
+                                            <div class={cSectionClasses}>
+                                                <span class={cSectionSpanClasses}>{section.label}:</span>
+                                                <input
+                                                    type="text"
+                                                    value={section.value}
+                                                    class="w-8 mb-0.5 text-center text-black"
+                                                    disabled />
+                                            </div>
+                                        {:else}
+                                            <label class={cSectionClasses}>
+                                                <span class={cSectionSpanClasses}>{section.label}:</span>
+                                                <input
+                                                    type="text"
+                                                    name={`${chkSdo.siteDateObservationId}_${section.name}`}
+                                                    value={section.value}
+                                                    class="w-8 mb-0.5 text-center text-black"
+                                                    on:input={() => (total = getTotal())} />
+                                                <input type="hidden" name={`${chkSdo.siteDateObservationId}_${section.name}_orig`} value={section.value} />
+                                            </label>
+                                        {/if}
 
                                     {/each}
                                 </div>
@@ -419,23 +476,21 @@ var z = y.difference(x) // [ "d", "e", "g" ]
 
                         {/each}
 
-                    {:else}
-
-                        <hr />
+                    {:else}<!-- VIEWING Multiple species observation recordings -->
 
                         {#each availableObservations as chkSdo}
 
-                            <div class={`${chkSdo.deleted ? 'line-through odd:variant-ghost-warning even:variant-ghost-error' : 'odd:bg-gray-200 odd:dark:bg-red-700'}`}>
-
-                                <div class="pl-4 flex flex-row">
+                            <div class={`${chkSdo.deleted ? 'odd:variant-ghost-warning even:variant-ghost-error' : 'odd:bg-gray-200 odd:dark:bg-red-700'}`}>
+                                <div class={`pl-1 flex flex-row ${chkSdo.deleted ? '[&>:not(:first-of-type)]:line-through' : ''}`}>
+                                    <div class="w-6">{ chkSdo.deleted ? '❌' : (chkSdo.confirmed ? '🔐' : '🔓')}</div>
                                     <div class="w-56 truncate">{chkSdo.checklist.commonName}</div>
                                     <div class="w-64">{chkSdo.checklist.scientificName}</div>
-                                    <div class="w-20">{chkSdo.hodges}</div>
-                                    <div class="w-16">{chkSdo.idCode}</div>
-                                    <div class="w-28">(Total: {chkSdo.total})</div>
+                                    <div class="w-36">Hodges: {chkSdo.hodges}</div>
+                                    <div class="w-28 pr-2 pb-0.5">ID Code: {@html chkSdo.idCode ?? '&varnothing;'}</div>
+                                    <div class="w-36">(Total: {chkSdo.total})</div>
                                 </div>
 
-                                <div class="pl-8 flex flex-wrap">
+                                <div class={`pl-8 flex flex-wrap ${chkSdo.deleted ? 'line-through' : ''}`}>
 
                                     {#each Object.entries(chkSdo)
                                         .filter((x) => x[0].startsWith('section'))
@@ -458,7 +513,7 @@ var z = y.difference(x) // [ "d", "e", "g" ]
 
                     {/if}
 
-                {:else}
+                {:else} <!-- Single speices observation recordings -->
 
                     <div class={`${data.siteDateObservation.deleted ? 'line-through variant-ghost-error' : ''}`}>
                         <!-- DATA Heading -->
@@ -475,15 +530,25 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                                 <!-- TODO: Update on some kind of selector -->
                                 <div class="w-32">Hodges:</div>
                                 <!-- TODO: Make Id Code editable -->
-                                <div class="w-24">Id Code:</div>
+                                <div class="w-28">Id Code:</div>
                                 <div class="w-28 text-amber-700 dark:text-amber-400">(Total: {getTotal()})</div>
                             {:else if isEditing && getTotal() !== currentSiteDateObservation.total}
                                 <div class="w-32">Hodges: {currentSiteDateObservation.hodges}</div>
-                                <div class="w-24">Id Code: {currentSiteDateObservation.idCode}</div>
+                                <div class="w-28 pr-2 pb-0.5">
+                                    <label class={cSectionClasses}>
+                                        <span class={cSectionSpanClasses}>ID Code:</span>
+                                        <input
+                                            type="text"
+                                            name={`${currentSiteDateObservation.siteDateObservationId}_idcode`}
+                                            class="w-8 text-center text-black"
+                                            value={currentSiteDateObservation.idCode} />
+                                    </label>
+                                    <input type="hidden" name={`${currentSiteDateObservation.siteDateObservationId}_idcode_orig`} value={currentSiteDateObservation.idCode} />
+                                </div>
                                 <div class="w-28 text-amber-700 dark:text-amber-400">(Total: {getTotal()})</div>
                             {:else}
                                 <div class="w-32">Hodges: {currentSiteDateObservation.hodges}</div>
-                                <div class="w-24">Id Code: {currentSiteDateObservation.idCode}</div>
+                                <div class="w-28">Id Code: {@html currentSiteDateObservation.idCode ?? '&varnothing;'}</div>
                                 <div class="w-28">(Total: {currentSiteDateObservation.total})</div>
                             {/if}
                         </div>
@@ -495,14 +560,19 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                         {#if isEditing}
                             <!-- TODO: Indicate when data has changed -->
                             <form name="edit" method="POST" action="?/saveSiteDateObservation" use:enhance bind:this={formEdit}>
-                                <input type="hidden" name="siteDateObservationId" value={data.siteDateObservation.siteDateObservationId} />
+                                <input type="hidden" name={`${data.siteDateObservation.siteDateObservationId}_siteDateObservationId`} value={data.siteDateObservation.siteDateObservationId} />
                                 <div class={cDataClasses}>
                                     {#each sdoSections as section}
                                         <div class={cDatumClasses}>
                                             <label class={cSectionClasses}>
                                                 <span class={cSectionSpanClasses}>{section.label}:</span>
-                                                <input type="text" name={section.name} value={section.value ?? ''} class="w-8 text-center text-black" on:input={() => (total = getTotal())} />
-                                                <input type="hidden" name={`${section.name}_orig`} value={section.value ?? ''} />
+                                                <input
+                                                    type="text"
+                                                    name={`${data.siteDateObservation.siteDateObservationId}_${section.name}`}
+                                                    value={section.value}
+                                                    class="w-8 text-center text-black"
+                                                    on:input={() => (total = getTotal())} />
+                                                <input type="hidden" name={`${data.siteDateObservation.siteDateObservationId}_${section.name}_orig`} value={section.value} />
                                             </label>
                                         </div>
                                     {/each}

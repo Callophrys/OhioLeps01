@@ -24,6 +24,7 @@
     export let isAdding: boolean = false;
     export let isEditing: boolean = false;
     export let showDeletedData: boolean = false;
+    export let isViewAll: boolean = false;
 
     /*-- Context */
     const checklistsSiteDateObs: SiteDateObservationChecklist[] = getContext('checklistsSiteDateObs') ?? [];
@@ -203,9 +204,9 @@
 
     $: {
         let currentIndex = sdoCommon.findIndex((o) => o.siteDateObservationId === currentSdoChecklistItemId);
-        enabledDrop = !isAdding && !isEditing;
-        enabledNext = !isAdding && !isEditing && currentIndex > -1 && currentIndex < sdoCommon.length - 1;
-        enabledPrev = !isAdding && !isEditing && currentIndex > 0;
+        enabledDrop = !isAdding && !isEditing && !isViewAll
+        enabledNext = !isAdding && !isEditing && !isViewAll && currentIndex > -1 && currentIndex < sdoCommon.length - 1;
+        enabledPrev = !isAdding && !isEditing && !isViewAll && currentIndex > 0;
 
         console.log(enabledDrop, enabledNext, enabledPrev);
         //console.log(currentSdoChecklistItem);

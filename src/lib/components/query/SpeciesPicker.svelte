@@ -39,10 +39,39 @@
     let useLatin: number;
     let capturedSpecies: number[] = [];
 
+<<<<<<< Updated upstream
     let sortOrderCommon: SORTORDER = SORTORDER.NONE;
     let sortOrderLatin: SORTORDER = SORTORDER.NONE;
     let sortIconCommon: string = '';
     let sortIconLatin: string = '';
+=======
+    function SortSpecies(isScientific: boolean) {
+        console.log(speciesChecklist[0]);
+// TODO: handle flip flop of sort order
+        if (isScientific) {
+            console.log('useLatin', useLatin);
+            return speciesChecklist.toSorted((a: Checklist, b: Checklist) => {
+                if (a.scientificName < b.scientificName) return -1;
+                if (a.scientificName > b.scientificName) return 1;
+                if (a.commonName < b.commonName) return -1;
+                if (a.commonName > b.commonName) return 1;
+            });
+        } else {
+            console.log('useLatin', useLatin);
+            return speciesChecklist.toSorted((a: Checklist, b: Checklist) => {
+                if (a.commonName < b.commonName) return -1;
+                if (a.commonName > b.commonName) return 1;
+                if (a.scientificName < b.scientificName) return -1;
+                if (a.scientificName > b.scientificName) return 1;
+            });
+        }
+        /*
+        console.log('keys', Object.keys(speciesChecklist));
+        console.log('values', Object.values(speciesChecklist));
+        console.log('entries', Object.entries(speciesChecklist));
+        */
+    }
+>>>>>>> Stashed changes
 
     /*-- Run first stuff */
 
@@ -107,7 +136,11 @@
         }
 
         if (useAllSpecies) {
+<<<<<<< Updated upstream
             speciesChecked = speciesChecklist.map((c) => c.checklistId ?? 0);
+=======
+            speciesChecked = speciesChecklist.map((c) => c.checklistId);
+>>>>>>> Stashed changes
         } else {
             let z: string = localStorage?.useCapturedSpecies;
             if (z) {
@@ -122,7 +155,12 @@
         localStorage.setItem('useLatinChoice', useLatin ? '1' : '0');
         localStorage.setItem('namingSort', getSortSave());
         localStorage.setItem('useAllSpeciesChoice', useAllSpecies ? '1' : '0');
+<<<<<<< Updated upstream
         localStorage.setItem('useCapturedSpecies', speciesChecked.map((s) => s.toString()).join(','));
+=======
+        localStorage.setItem('useCapturedSpecies', speciesChecked.map((s) => s.toString()).join(',')
+        );
+>>>>>>> Stashed changes
     });
 
     /*-- Handlers */
@@ -238,8 +276,19 @@
 <div data-popup="popupComboboxSpecies">
     <div class="card w-64 shadow-xl p-2">
         <label class="flex justify-between space-x-2">
+<<<<<<< Updated upstream
             <span>{useAllSpecies ? 'Select all' : 'Unselect all'}</span>
             <SlideToggle name="toggle-all-species" size="sm" active="variant-filled-primary" bind:checked={useAllSpecies} on:click={toggleAllSpecies} /><input hidden />
+=======
+            <span>{useAllSpecies ? 'Unselect all' : 'Select all'}</span>
+            <SlideToggle
+                name="toggle-all-species"
+                size="sm"
+                active="variant-filled-primary"
+                bind:checked={useAllSpecies}
+                on:click={toggleAllSpecies}
+            /><input hidden />
+>>>>>>> Stashed changes
         </label>
 
         <span class="my-auto">Naming</span>

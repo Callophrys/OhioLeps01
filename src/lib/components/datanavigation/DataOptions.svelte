@@ -31,11 +31,11 @@
         <input class="checkbox" type="checkbox" bind:checked={showRecentEdits} />
     </label>
     {#if $page.data.user && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'REVIEWER' || $page.data.user.role === 'ENTRY')}
-        <label class="flex items-center space-x-2" title="Disply deleted data">
+        <label class="flex items-center space-x-2" title="Display deleted data">
             <p>Deleted data</p>
             <input class="checkbox" type="checkbox" bind:checked={showDeletedData} />
         </label>
-    {:else}
+    {:else}<!-- TODO: Show my deleted (or other actioned on) data is not supported at this time; Roadmapped; -->
         <label class="flex items-center space-x-2" title="Display my deleted data">
             <p>My deleted data</p>
             <input class="checkbox" type="checkbox" bind:checked={showDeletedData} />
