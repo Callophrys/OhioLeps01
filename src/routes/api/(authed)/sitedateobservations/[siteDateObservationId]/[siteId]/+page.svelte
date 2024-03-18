@@ -43,6 +43,7 @@ var z = y.difference(x) // [ "d", "e", "g" ]
     const cDataClasses    = 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1 md:gap-2';
     const cDatumClasses   = 'flex flex-row space-x-2';
     const cButtonStandard = 'btn w-24 md:w-28 h-8 sm:h-10 md:h-11 pb-2 variant-filled-surface';
+    const cButtonWider    = 'btn w-28 md:w-36 h-8 sm:h-10 md:h-11 pb-2 variant-filled-surface';
     const cButtonSuccess  = 'btn w-24 md:w-28 h-8 sm:h-10 md:h-11 pb-2 variant-soft-success';
     const cButtonCancel   = 'btn w-24 md:w-28 h-8 sm:h-10 md:h-11 pb-2 variant-soft-error';
     const cButtonAddView  = 'btn w-44         h-8 sm:h-10 md:h-11 pb-2 variant-filled-surface';
@@ -287,14 +288,57 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                                 {#if $page.data.user && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'REVIEWER')}
                                     {#if $page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || ($page.data.user.role === 'REVIEWER' && (!data.siteDateObservation.confirmBy || data.siteDateObservation.confirmBy === $page.data.user.id))}
                                         {#if isNullOrWhiteSpace(data.siteDateObservation.confirmBy?.id)}
-                                            <input hidden name="confirm" value="true" />
-                                            <button type="button" class={cButtonStandard} on:click={() => modalStore.trigger(modalReviewerLock)}>Review<span class="pl-2">🌎</span></button>
+                                            {#if isViewAll}
+                                                <input hidden name="confirm_lock_all" value="true" />
+                                                <button type="button" class={cButtonWider} on:click={() => modalStore.trigger(modalReviewerLock)}>
+                                                    Review All
+                                                    <span class="pl-2">🌎</span>
+                                                </button>
+                                                <input hidden name="confirm_unlock_all" value="true" />
+                                                <button type="button" class={cButtonWider} on:click={() => modalStore.trigger(modalReviewerLock)}>
+                                                    Unlock All
+                                                    <span class="pl-2">🔒</span>
+                                                </button>
+                                            {:else}
+                                                <input hidden name="confirm" value="true" />
+                                                <button type="button" class={cButtonWider} on:click={() => modalStore.trigger(modalReviewerLock)}>
+                                                    Review
+                                                    <span class="pl-2">🌎</span>
+                                                </button>
+                                            {/if}
                                         {:else if !data.siteDateObservation.confirmed}
-                                            <input hidden name="confirm" value="true" />
-                                            <button type="button" class={cButtonStandard} on:click={() => modalStore.trigger(modalReviewerLock)}>Lock<span class="pl-2">🔒</span></button>
+                                            {#if isViewAll}
+                                                <input hidden name="confirm_lock_all" value="true" />
+                                                <button type="button" class={cButtonWider} on:click={() => modalStore.trigger(modalReviewerLock)}>
+                                                    Lock All
+                                                    <span class="pl-2">🔒</span>
+                                                </button>
+                                                <input hidden name="confirm_unlock_all" value="true" />
+                                                <button type="button" class={cButtonWider} on:click={() => modalStore.trigger(modalReviewerLock)}>
+                                                    Unlock All
+                                                    <span class="pl-2">🔒</span>
+                                                </button>
+                                            {:else}
+                                                <input hidden name="confirm" value="true" />
+                                                <button type="button" class={cButtonWider} on:click={() => modalStore.trigger(modalReviewerLock)}>
+                                                    Lock
+                                                    <span class="pl-2">🔒</span>
+                                                </button>
+                                            {/if}
                                         {:else}
-                                            <input hidden name="confirm" value="false" />
-                                            <button type="button" class={cButtonStandard} on:click={() => modalStore.trigger(modalReviewerUnlock)}>Unlock<span class="pl-2">🔑</span></button>
+                                            {#if isViewAll}
+                                                <input hidden name="confirm_unlock_all" value="false" />
+                                                <button type="button" class={cButtonWider} on:click={() => modalStore.trigger(modalReviewerUnlock)}>
+                                                    Unlock All
+                                                    <span class="pl-2">🔑</span>
+                                                </button>
+                                            {:else}
+                                                <input hidden name="confirm" value="false" />
+                                                <button type="button" class={cButtonWider} on:click={() => modalStore.trigger(modalReviewerUnlock)}>
+                                                    Unlock
+                                                    <span class="pl-2">🔑</span>
+                                                </button>
+                                            {/if}
                                         {/if}
                                     {:else}
                                         <button type="button" class={cButtonStandard} disabled>

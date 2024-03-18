@@ -497,7 +497,7 @@
                 <div
                     class={`
                     ${(() => {
-                        let classes = '';
+                        let classes = 'hover:variant-soft-primary active:variant-filled-primary';
                         if (siteDateObservation.deleted) {
                             classes += showDeletedData ? cClassesObservation + ' line-through variant-ghost-error' : 'hidden';
                         } else if (showRecentEdits && siteDateObservation.updatedAt) {
