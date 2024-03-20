@@ -51,7 +51,7 @@ export function compareNumeric(a: number, b: number) {
 }
 
 export function compareYearWeek(a: dateTracking, b: dateTracking) {
-    return a.year > b.year ? 1 : a.week - b.week;
+    return compareNumeric(a.recordDate.getTime(), b.recordDate.getTime());
 }
 
 //export const sortByNumericProperty = <K extends string, T extends Record<K, any>>(

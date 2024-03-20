@@ -6,7 +6,7 @@
     import { afterUpdate, onMount } from 'svelte';
     import { setContext } from 'svelte';
     import { goto } from '$app/navigation';
-    import type { dateTracking, dateTrackingSet } from '$lib/types.js';
+    import type { SiteDateYear, SiteDateYearSiteDates, dateTracking, dateTrackingSet } from '$lib/types.js';
     import { compareNumeric, compareYearWeek, formatDate, weekOfYearSince, convertFtoC } from '$lib/utils';
     import DataOptions from '$lib/components/datanavigation/DataOptions.svelte';
     import SiteDatePicker from '$lib/components/datanavigation/SiteDatePicker.svelte';
@@ -52,6 +52,7 @@
         .sort(compareYearWeek);
 
     /*-- Properties (functional) */
+    let currentSiteDate: SiteDateYear = data.siteDate;
     const allYears = Array.from(data.siteDates).map((y) => new Date(y.recordDate).getFullYear());
     const uniqueYears = [...new Set(allYears)].sort(compareNumeric);
 
@@ -82,6 +83,7 @@
 
     /*-- Variables and objects */
     /*-- Run first stuff */
+    console.log('sd ##', data.siteDates);
     //console.log(data.siteDateSiteDates);
     //console.log(uniqueYears);
     //console.log(trackedWeeks);
@@ -172,10 +174,22 @@
 
     /*-- Methods */
     /*-- Reactives (functional) */
+    let currentSiteId = data.siteDate.siteId;
+    let currentSiteDateId = data.siteDate.siteDateId;
+
+    $: foocurrentSiteId = currentSiteId;
+    $: foocurrentSiteDateId = currentSiteDateId;
+
+    $: {
+        console.log('currentSiteId', currentSiteId, 'currentSiteDateId', currentSiteDateId);
+        console.log('foocurrentSiteId', foocurrentSiteId, 'foocurrentSiteDateId', foocurrentSiteDateId);
+        currentSiteDate = data.siteDates.find(x => x.siteDateId === foocurrentSiteDateId) ?? ({} as SiteDateYear);
+    }
+
     $: nextEnabled = trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteId) < trackedWeeks.length - 1;
-    console.log('nextEnabled', nextEnabled);
+    //console.log('nextEnabled', nextEnabled);
     $: prevEnabled = trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteId) > 0;
-    console.log('prevEnabled', prevEnabled);
+    //console.log('prevEnabled', prevEnabled);
 
     $: recordDate = new Date(data.siteDate.recordDate);
     $: recordYear = new Date(data.siteDate.recordDate).getFullYear();
@@ -485,7 +499,16 @@
     <svelte:fragment slot="rightBody">
         <div class="flex flex-row justify-between mb-2">
             <div class="my-auto">{data.siteDate.siteName}</div>
-            <SiteDatePicker bind:currentSiteId={data.siteDate.siteId} bind:currentSiteDateId={data.siteDate.siteDateId} controlBody="scale-90" buttonLeft="!px-2" buttonRight="!px-2" buttonYear="px-0 md:px-1 lg:px-2" buttonWeek="px-0 md:px-1 lg:px-2" dropdownShowDate={false} dropdownPointers={false}>
+            <SiteDatePicker
+                bind:currentSiteId
+                bind:currentSiteDateId
+                controlBody="scale-90"
+                buttonLeft="!px-2"
+                buttonRight="!px-2"
+                buttonYear="px-0 md:px-1 lg:px-2"
+                buttonWeek="px-0 md:px-1 lg:px-2"
+                dropdownShowDate={false}
+                dropdownPointers={false}>
                 <svelte:fragment slot="prefixYear">Year:</svelte:fragment>
                 <svelte:fragment slot="prefixWeek">Week:</svelte:fragment>
             </SiteDatePicker>
