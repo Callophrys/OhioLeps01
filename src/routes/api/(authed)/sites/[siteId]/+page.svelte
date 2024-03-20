@@ -20,6 +20,7 @@
         }
     }
 
+    $: currentSiteId = data.site.siteId;
     $: currentSiteDateId = data.site.siteDates.length ? data.site.siteDates[0].siteDateId : -1;
 
     //const dispatch = createEventDispatcher();
@@ -36,6 +37,7 @@
 
 <StandardContainer>
     <svelte:fragment slot="standardHead">
+
         <div class="flex flex-row justify-between gap-1 md:gap-2">
             <CountyPicker currentCounty={data.site.county}>
                 <svelte:fragment slot="heading">County:</svelte:fragment>
@@ -44,65 +46,63 @@
             <SitePicker currentSite={data.site}>
                 <svelte:fragment slot="heading">Site:</svelte:fragment>
             </SitePicker>
-            <SiteDatePicker bind:currentSiteId={data.site.siteId} bind:currentSiteDateId>
+            <SiteDatePicker
+                bind:currentSiteId
+                bind:currentSiteDateId>
                 <svelte:fragment slot="heading">Observations:</svelte:fragment>
             </SiteDatePicker>
         </div>
-        <!--
-                    TODO: Make this change the site by alphabetical
-                          Need to filter Observations where observations must indicate as such
-                          If limit is reached then move loudly to next county's worth of sites
 
-                          Any change here should advance the downstream pickers and the
-                          current data - as long as there is no unchanged data - Prompt
-                          user about this
-                -->
-        <!--
-                TODO: Convert to ObservationPicker picker (or YearWeekPicker)
-                      If limit is reached then move loudly to next year's worth of weeks
-                      and then even more loudly to next site 
+        <!-- TODO: Make this change the site by alphabetical -->
+        <!--       Need to filter Observations where observations must indicate as such -->
+        <!--       If limit is reached then move loudly to next county's worth of sites -->
+        <!---->
+        <!--       Any change here should advance the downstream pickers and the -->
+        <!--       current data - as long as there is no unchanged data - Prompt -->
+        <!--       user about this -->
 
-                      Should the last week of last year advance to another site? 
-                      Or should there be a prompt about creating a new year-week record?
+        <!-- TODO: Convert to ObservationPicker picker (or YearWeekPicker) -->
+        <!--       If limit is reached then move loudly to next year's worth of weeks -->
+        <!--       and then even more loudly to next site  -->
+        <!---->
+        <!--       Should the last week of last year advance to another site?  -->
+        <!--       Or should there be a prompt about creating a new year-week record? -->
+        <!---->
+        <!--       Any change here should advance the downstream pickers and the -->
+        <!--       current data - as long as there is no unchanged data - Prompt -->
+        <!--       user about this -->
 
-                      Any change here should advance the downstream pickers and the
-                      current data - as long as there is no unchanged data - Prompt
-                      user about this
-            -->
-        <!--
-                <div class="w-1/2 text-right my-auto">Observations (year/week)</div>
-                <div class="w-1/2">
-                    <button class="btn variant-soft w-40 justify-between" use:popup={popupComboboxSiteDate}>
-                        <span class="capitalize">{comboboxValueSiteDate ? `${comboboxValueSiteDate.toString().slice(0, 4)} week ${comboboxValueSiteDate % 100}` : 'Year week'}</span>
-                        <span>↓</span>
-                    </button>
-                </div>
-                -->
-        <!--
-                    TODO: Make this change the County by alphabetical
-                          Need to filter Sites where sites must indicate as such
-                          If limit is reached then move loudly to next regions's worth of sites - if region is present
-                          Maybe create some option for user to ignore this
+        <!-- <div class="w-1/2 text-right my-auto">Observations (year/week)</div> -->
+        <!-- <div class="w-1/2"> -->
+        <!--     <button class="btn variant-soft w-40 justify-between" use:popup={popupComboboxSiteDate}> -->
+        <!--         <span class="capitalize">{comboboxValueSiteDate ? `${comboboxValueSiteDate.toString().slice(0, 4)} week ${comboboxValueSiteDate % 100}` : 'Year week'}</span> -->
+        <!--         <span>↓</span> -->
+        <!--     </button> -->
+        <!-- </div> -->
 
-                          Any change here should advance the downstream pickers and the
-                          current data - as long as there is no unchanged data - Prompt
-                          user about this
-                -->
-        <!--
-                TODO: Add Region picker
-                      Need to filter Counties where counties must indicate as such
-                      Maybe make region and admin level option
+        <!-- TODO: Make this change the County by alphabetical -->
+        <!--       Need to filter Sites where sites must indicate as such -->
+        <!--       If limit is reached then move loudly to next regions's worth of sites - if region is present -->
+        <!--       Maybe create some option for user to ignore this -->
+        <!---->
+        <!--       Any change here should advance the downstream pickers and the -->
+        <!--       current data - as long as there is no unchanged data - Prompt -->
+        <!--       user about this -->
 
-                      Any change here should advance the downstream pickers and the
-                      current data - as long as there is no unchanged data - Prompt
-                      user about this
-            -->
-        <!--div class="basis-1/3 my-auto">
-        </div>
-        <div class="basis-1/3 flex flex-row justify-center space-x-4">
-        </div>
-        <div class="basis-1/3 my-auto text-right">
-        </div-->
+        <!-- TODO: Add Region picker -->
+        <!--       Need to filter Counties where counties must indicate as such -->
+        <!--       Maybe make region and admin level option -->
+        <!---->
+        <!--       Any change here should advance the downstream pickers and the -->
+        <!--       current data - as long as there is no unchanged data - Prompt -->
+        <!--       user about this -->
+     
+        <!-- <div class="basis-1/3 my-auto"> -->
+        <!-- </div> -->
+        <!-- <div class="basis-1/3 flex flex-row justify-center space-x-4"> -->
+        <!-- </div> -->
+        <!-- <div class="basis-1/3 my-auto text-right"> -->
+        <!-- </div> -->
     </svelte:fragment>
 
     <svelte:fragment slot="standardBody">

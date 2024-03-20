@@ -26,6 +26,7 @@
 
     // siteDate list for respective site via Context
     const siteDates: SiteDateYearSiteDates[] = getContext('siteDates') ?? [];
+    console.log('siteDates - 1:', siteDates);
     //console.log('SiteDatePicker:siteDates', siteDates);
 
     /*-- -- Styling -- */
@@ -85,18 +86,26 @@
     };
 
     /*-- Properties (functional) */
+    type SdoWeek = {
+        week: number,
+        siteDateId: number,
+        fDate: string
+    }
 
+    console.log('siteDates - 2:', siteDates);
     const theYears = [...new Set(siteDates.map((x) => x.year.toString()))];
+    console.log('theYears:', theYears);
     const yearsOfDate: any = {}
     theYears.forEach((yr: string) => {
         yearsOfDate[yr] = siteDates
             .filter((x: SiteDateYear) => x.year.toString() === yr)
-            .map((y: SiteDateYear) => ({
+            .map<SdoWeek>((y: SiteDateYear) => ({
                 week: y.week,
                 siteDateId: y.siteDateId,
                 fDate: y.recordDate ? formatDate(new Date(y.recordDate).toISOString()) : '',
             }));
     });
+    console.log('yearsOfDate:', yearsOfDate);
 
     const currentSiteDate = siteDates.find((x) => x.siteDateId === currentSiteDateId);
     //console.log('currentSiteDate:', currentSiteDate);
@@ -120,30 +129,53 @@
 
     let recordYear: string;
     let recordWeek: number;
+    $: rxRecordYear = recordYear;
 
     /*-- Run first stuff */
     /*-- onMount, beforeUpdate, afterUpdate */
     onMount(() => {
         nextEnabled = trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteDateId) < trackedWeeks.length - 1;
         prevEnabled = trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteDateId) > 0;
-        console.log('prevEnabled:', prevEnabled, 'nextEnabled:', nextEnabled);
+        //console.log('prevEnabled:', prevEnabled, 'nextEnabled:', nextEnabled);
 
         recordYear = currentSiteDate?.year.toString() ?? '1899';
         recordWeek = currentSiteDate?.recordDate ? weekOfYearSince(new Date(currentSiteDate.recordDate)) : -1;
-        console.log('recordYear:', recordYear, 'recordWeek:', recordWeek);
+        // console.log('recordYear:', recordYear, 'recordWeek:', recordWeek);
 
         recordSiteDateId = currentSiteDateId;
-        console.log('recordSiteDateId:', recordSiteDateId, currentSiteDateId);
-        console.log(currentSiteId, currentSiteDateId, currentSiteDate, recordYear, recordWeek, recordSiteDateId);
+        //console.log('recordSiteDateId:', recordSiteDateId, currentSiteDateId);
+        //console.log(currentSiteId, currentSiteDateId, currentSiteDate, recordYear, recordWeek, recordSiteDateId);
     });
 
     /*-- Handlers */
-    function handleSelect(event: any) {
-        goto('/api/sitedates/' + event.currentTarget.value);
+    function handleSelectYear(event: any) {
+        console.log(rxRecordYear, recordYear, event.currentTarget.value);
+        if (recordYear !== event.currentTarget.value.toString()) {
+            recordYear = event.currentTarget.value.toString();
+            let idx = trackedWeeks.findIndex((x) => x.year.toString() === recordYear);
+            console.log('Index in trackedWeeks', idx, trackedWeeks[idx]);
+            if (idx > 0) {
+                const tw = trackedWeeks[idx];
+                recordWeek = tw.week;
+                recordSiteDateId = tw.siteDateId;
+                goto('/api/sitedates/' + tw.siteDateId);
+            }
+        }
+    }
+
+    function handleSelectWeek(event: any) {
+        let idx = trackedWeeks.findIndex((x) => x.siteDateId === parseInt(event.currentTarget.value));
+        if (idx > 0) {
+            const tw = trackedWeeks[idx];
+            recordYear = tw.year.toString();
+            recordWeek = tw.week;
+            recordSiteDateId = tw.siteDateId;
+            goto('/api/sitedates/' + tw.siteDateId);
+        }
     }
 
     function handleClickPrior(event: any) {
-        let idx = trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteDateId);
+        let idx = trackedWeeks.findIndex((x) => x.siteDateId === recordSiteDateId);
         if (idx > 0) {
             const tw = trackedWeeks[idx - 1];
             recordYear = tw.year.toString();
@@ -154,7 +186,7 @@
     }
 
     function handleClickNext(event: any) {
-        let idx = trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteDateId);
+        let idx = trackedWeeks.findIndex((x) => x.siteDateId === recordSiteDateId);
         if (idx < trackedWeeks.length - 1) {
             const tw = trackedWeeks[idx + 1];
             recordYear = tw.year.toString();
@@ -168,7 +200,7 @@
     /*-- Reactives (functional) */
     /*-- Other */
 
-    console.log(yearsOfDate);
+    //console.log(yearsOfDate);
 </script>
 
 <div class="block lg:flex lg:flex-row gap-0 md:gap-1 lg:gap-2">
@@ -195,23 +227,25 @@
 
     <div data-popup="popupComboboxSiteDateYears">
         <div class="card w-48 shadow-xl py-2 overflow-y-auto" style="max-height: calc(100vh - 272px);">
-            <!-- <ListBox rounded="rounded-none" labelledby="Years for site"> -->
-            <!--     {#each theYears as year} -->
-            <!--         <!-- <ListBoxItem group="dogs" name="years" value={year}>{year}</ListBoxItem> --> -->
-            <!--     {/each} -->
-            <!-- </ListBox> -->
+            <ListBox rounded="rounded-none" labelledby="Years for site">
+                {#each theYears as year}
+                    <ListBoxItem bind:group={recordYear} name="years" on:change={handleSelectYear} value={year}>{year}</ListBoxItem>
+                {/each}
+            </ListBox>
         </div>
     </div>
 
     <div data-popup="popupComboboxSiteDateWeeks">
         <div class={`card shadow-xl py-2 overflow-y-auto ${dropdownShowDate ? 'w-44' : 'w-28'}`} style="max-height: calc(100vh - 272px);">
             <ListBox rounded="rounded-none" labelledby="Weeks in timeframe">
-                {#each Array.from(yearsOfDate['1999']) as week}
-                    <ListBoxItem bind:group={recordWeek} name="weeks" on:change={handleSelect} value={week.siteDateId}>
+            {#if yearsOfDate[recordYear]}
+                {#each yearsOfDate[recordYear] as week}
+                    <ListBoxItem bind:group={recordWeek} name="weeks" on:change={handleSelectWeek} value={week.siteDateId}>
                         {#if $$slots.prefixWeek}
                             <slot name="prefixWeek" />
                         {/if}{`${week.week}${dropdownShowDate ? ' - ' + week.fDate : ''}`}</ListBoxItem>
                 {/each}
+            {/if}
             </ListBox>
         </div>
     </div>

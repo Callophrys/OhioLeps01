@@ -177,15 +177,6 @@
     let currentSiteId = data.siteDate.siteId;
     let currentSiteDateId = data.siteDate.siteDateId;
 
-    $: foocurrentSiteId = currentSiteId;
-    $: foocurrentSiteDateId = currentSiteDateId;
-
-    $: {
-        console.log('currentSiteId', currentSiteId, 'currentSiteDateId', currentSiteDateId);
-        console.log('foocurrentSiteId', foocurrentSiteId, 'foocurrentSiteDateId', foocurrentSiteDateId);
-        currentSiteDate = data.siteDates.find(x => x.siteDateId === foocurrentSiteDateId) ?? ({} as SiteDateYear);
-    }
-
     $: nextEnabled = trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteId) < trackedWeeks.length - 1;
     //console.log('nextEnabled', nextEnabled);
     $: prevEnabled = trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteId) > 0;
