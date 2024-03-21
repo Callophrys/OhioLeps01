@@ -190,11 +190,6 @@ var z = y.difference(x) // [ "d", "e", "g" ]
     $: currentSiteDateObservation = data.siteDateObservation as SiteDateObservationChecklist;
     $: recordYear = new Date(currentSiteDateObservation.siteDate.recordDate).getFullYear();
     $: recordWeek = weekOfYearSince(new Date(currentSiteDateObservation.siteDate.recordDate));
-    $: {
-        console.log('c-sdo', currentSiteDateObservation);
-        console.log('recordYear', recordYear, 'recordWeek', recordWeek);
-    }
-    //$: rxTotal = isAdding ? sumCounts(formAdd) : (isEditing ? sumCounts(formEdit) : currentSiteDateObservation.total);
 
     $: sdoSections = Object.entries(currentSiteDateObservation)
         .filter((x) => x[0].startsWith('section'))

@@ -83,29 +83,55 @@ export async function load({ params }) {
 export const actions: Actions = {
 	saveSiteDateObservation: async ({ request, locals }) => {
 		//console.log('aaa');
-		const formData: any = await request.formData();
-		console.log(formData);
 
+		// Add form data
+		const formData: any = await request.formData();
+		//console.log(formData);
+
+		// Unique siteDateObservationIds as strings
+		const uqn: string[] = [...new Set(Array.from(formData).map((x: any) => {
+			let us = x[0].indexOf('_');
+			if (us < 0) return;
+			return x[0].substring(0, us);
+		}))];
+		//console.log(uqn);
+
+		// Array of all name value pairs
 		const ace: { name: string, value: string }[] = [];
 		Array.from(formData).forEach((x: any) => ace.push({ name: x[0], value: x[1]}));
-		console.log(ace);
+		//console.log(ace);
 
+		// Non-unique siteDateObservationIds as strings
 		const bar = ace.map((x: { name: string, value: string }) => x.name.substring(0, x.name.indexOf('_')));
-		console.log(bar);
+		//console.log(bar);
 
+		// Unique siteDateObservationIds as strings
 		const foo = [...new Set(bar)];
-		console.log(foo);
+		//console.log(foo);
 
 		// for each foo - has anything changed? if yes then get all different fields and do a save
 		// O(2)
 		// make jive with stuff below
 
-		return { success: true }
-
-
-		const siteDateObservationId = Number(formData.get('siteDateObservationId'));
-		const originalSdo = await getSiteDateObservationBySiteDateObservation(siteDateObservationId);
 		const userId = locals.user.id;
+
+		if (false) {
+			// const promises: Promise<string>[] = [];
+			// foo.forEach((x: string) => {
+			// 	const siteDateObservationId = Number(x);
+			// 	promises.push(
+			// 		getSiteDateObservationBySiteDateObservation(siteDateObservationId);
+			// 	);
+			// });
+			// return await Promise.all(promises);
+		} else {
+
+			const siteDateObservationId = Number(foo[0]);
+			const originalSdo = await getSiteDateObservationBySiteDateObservation(siteDateObservationId);
+
+			console.log('originalSdo', originalSdo);
+
+		}
 
 		if (originalSdo && userId) {
 
@@ -126,8 +152,8 @@ export const actions: Actions = {
 				return true;
 			});
 
-			//console.log('aaa - aaa', inboundEdits);
-			//console.log('bbb - bbb', inboundEditsCheck);
+			console.log('aaa - aaa', inboundEdits);
+			console.log('bbb - bbb', inboundEditsCheck);
 
 			/*
 			Object.keys(originalSdo).forEach((k: any) => {
@@ -158,6 +184,8 @@ export const actions: Actions = {
 
 			originalSdo.updatedById = userId;
 			originalSdo.updatedAt = new Date();
+
+			return { success: true }
 
 			const updatedSdo = await updateSiteDateObservation(originalSdo);
 			//console.log('aaa - aaa - aaa');
