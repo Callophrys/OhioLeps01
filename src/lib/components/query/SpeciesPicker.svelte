@@ -136,11 +136,7 @@
         }
 
         if (useAllSpecies) {
-<<<<<<< Updated upstream
             speciesChecked = speciesChecklist.map((c) => c.checklistId ?? 0);
-=======
-            speciesChecked = speciesChecklist.map((c) => c.checklistId);
->>>>>>> Stashed changes
         } else {
             let z: string = localStorage?.useCapturedSpecies;
             if (z) {
@@ -155,12 +151,7 @@
         localStorage.setItem('useLatinChoice', useLatin ? '1' : '0');
         localStorage.setItem('namingSort', getSortSave());
         localStorage.setItem('useAllSpeciesChoice', useAllSpecies ? '1' : '0');
-<<<<<<< Updated upstream
         localStorage.setItem('useCapturedSpecies', speciesChecked.map((s) => s.toString()).join(','));
-=======
-        localStorage.setItem('useCapturedSpecies', speciesChecked.map((s) => s.toString()).join(',')
-        );
->>>>>>> Stashed changes
     });
 
     /*-- Handlers */

@@ -150,16 +150,14 @@
     /*-- Handlers */
     function handleSelectYear(event: any) {
         console.log(rxRecordYear, recordYear, event.currentTarget.value);
-        if (recordYear !== event.currentTarget.value.toString()) {
-            recordYear = event.currentTarget.value.toString();
-            let idx = trackedWeeks.findIndex((x) => x.year.toString() === recordYear);
-            console.log('Index in trackedWeeks', idx, trackedWeeks[idx]);
-            if (idx > 0) {
-                const tw = trackedWeeks[idx];
-                recordWeek = tw.week;
-                recordSiteDateId = tw.siteDateId;
-                goto('/api/sitedates/' + tw.siteDateId);
-            }
+        recordYear = event.currentTarget.value.toString();
+        let idx = trackedWeeks.findIndex((x) => x.year.toString() === recordYear);
+        console.log('Index in trackedWeeks', idx, trackedWeeks[idx]);
+        if (idx > 0) {
+            const tw = trackedWeeks[idx];
+            recordWeek = tw.week;
+            recordSiteDateId = tw.siteDateId;
+            goto('/api/sitedates/' + tw.siteDateId);
         }
     }
 
