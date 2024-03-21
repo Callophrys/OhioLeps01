@@ -7,6 +7,7 @@
     import { SlideToggle } from '@skeletonlabs/skeleton';
     import { afterUpdate, onMount, getContext } from 'svelte';
     import { SORTORDER } from '$lib/types.js';
+    import type { Checklist } from '@prisma/client';
 
     /*-- -- Data -- */
     /*-- Exports */
@@ -39,12 +40,12 @@
     let useLatin: number;
     let capturedSpecies: number[] = [];
 
-<<<<<<< Updated upstream
     let sortOrderCommon: SORTORDER = SORTORDER.NONE;
     let sortOrderLatin: SORTORDER = SORTORDER.NONE;
     let sortIconCommon: string = '';
     let sortIconLatin: string = '';
-=======
+
+
     function SortSpecies(isScientific: boolean) {
         console.log(speciesChecklist[0]);
 // TODO: handle flip flop of sort order
@@ -71,7 +72,6 @@
         console.log('entries', Object.entries(speciesChecklist));
         */
     }
->>>>>>> Stashed changes
 
     /*-- Run first stuff */
 
@@ -267,11 +267,7 @@
 <div data-popup="popupComboboxSpecies">
     <div class="card w-64 shadow-xl p-2">
         <label class="flex justify-between space-x-2">
-<<<<<<< Updated upstream
             <span>{useAllSpecies ? 'Select all' : 'Unselect all'}</span>
-            <SlideToggle name="toggle-all-species" size="sm" active="variant-filled-primary" bind:checked={useAllSpecies} on:click={toggleAllSpecies} /><input hidden />
-=======
-            <span>{useAllSpecies ? 'Unselect all' : 'Select all'}</span>
             <SlideToggle
                 name="toggle-all-species"
                 size="sm"
@@ -279,7 +275,6 @@
                 bind:checked={useAllSpecies}
                 on:click={toggleAllSpecies}
             /><input hidden />
->>>>>>> Stashed changes
         </label>
 
         <span class="my-auto">Naming</span>

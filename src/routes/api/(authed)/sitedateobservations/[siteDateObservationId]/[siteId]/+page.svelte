@@ -9,13 +9,14 @@ var z = y.difference(x) // [ "d", "e", "g" ]
 -->
 <script lang="ts">
     /*-- Imports */
-    import { formatDate, isNullOrWhiteSpace } from '$lib/utils';
+    import { formatDate, isNullOrWhiteSpace, weekOfYearSince } from '$lib/utils';
     import StandardContainer from '$lib/components/StandardContainer.svelte';
     import { getModalStore } from '@skeletonlabs/skeleton';
     import { type ModalSettings } from '@skeletonlabs/skeleton';
     import { page } from '$app/stores';
     import { enhance } from '$app/forms';
     import DataOptions from '$lib/components/datanavigation/DataOptions.svelte';
+    import YearWeek from '$lib/components/datanavigation/YearWeek.svelte';
     import SitePicker from '$lib/components/datanavigation/SitePicker.svelte';
     import SiteDatePicker from '$lib/components/datanavigation/SiteDatePicker.svelte';
     import type { SiteDateObservationChecklist } from '$lib/types.js';
@@ -187,6 +188,12 @@ var z = y.difference(x) // [ "d", "e", "g" ]
     /*-- Reactives (functional) */
     $: total = getTotal();
     $: currentSiteDateObservation = data.siteDateObservation as SiteDateObservationChecklist;
+    $: recordYear = new Date(currentSiteDateObservation.siteDate.recordDate).getFullYear();
+    $: recordWeek = weekOfYearSince(new Date(currentSiteDateObservation.siteDate.recordDate));
+    $: {
+        console.log('c-sdo', currentSiteDateObservation);
+        console.log('recordYear', recordYear, 'recordWeek', recordWeek);
+    }
     //$: rxTotal = isAdding ? sumCounts(formAdd) : (isEditing ? sumCounts(formEdit) : currentSiteDateObservation.total);
 
     $: sdoSections = Object.entries(currentSiteDateObservation)
@@ -207,6 +214,9 @@ var z = y.difference(x) // [ "d", "e", "g" ]
     //console.log(data);
 </script>
 
+<YearWeek
+    year={new Date(data.siteDateObservation.siteDate.recordDate).getFullYear()}
+    week={weekOfYearSince(new Date(data.siteDateObservation.siteDate.recordDate))} />
 <DataOptions bind:showRecentEdits bind:showDeletedData />
 
 <StandardContainer>
@@ -216,7 +226,7 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                 <!-- Header and options -->
                 <!-- TODO: make this flex better for responsive sizings -->
                 <div class="flex flex-col lg:flex-row lg:justify-start gap-1 lg:gap-2 pb-2 text-surface-600-300-token">
-                    <SitePicker currentSite={data.siteDateObservation.siteDate.site} />
+                    <SitePicker currentSiteId={data.siteDateObservation.siteDate.siteId} />
                     <SiteDatePicker
                         currentSiteId={data.siteDateObservation.siteDate.siteId}
                         currentSiteDateId={data.siteDateObservation.siteDateId ?? -1} />

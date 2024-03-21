@@ -70,11 +70,7 @@ export async function getSiteDateObservationBySiteDateObservation(siteDateObserv
             createdBy: true,
             updatedBy: true,
             confirmBy: true,
-            siteDate: {
-                select: {
-                    site: true
-                }
-            }
+            siteDate: true
         },
     });
     return siteDateObservation;

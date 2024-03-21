@@ -8,7 +8,7 @@
 
     /*-- -- Data -- */
     /*-- Exports */
-    export let currentSite: Site;
+    export let currentSiteId: number;
 
     /*-- Context */
     /*-- -- Styling -- */
@@ -49,7 +49,7 @@
     }
 
     /*-- Reactives (functional) */
-    $: currentSite = currentSite;
+    $: currentSite = allSites.find(x => x.siteId === currentSiteId);
 </script>
 
 <!--

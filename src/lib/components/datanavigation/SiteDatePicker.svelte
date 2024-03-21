@@ -13,8 +13,7 @@
     /* Had 2 slots: prefixYear and prefixWeek */
     /*-- -- Data -- */
     /*-- Exports */
-    export let currentSiteId: number = -1;
-    export let currentSiteDateId: number = -1;
+    export let currentSiteDateId: number;
     //console.log('SiteDatePicker:currentSiteId', currentSiteId, 'currentSiteDateId', currentSiteDateId);
 
     /** Show down arrow with year and week labels to indicate dropdown.  Default: true */
@@ -26,7 +25,7 @@
 
     // siteDate list for respective site via Context
     const siteDates: SiteDateYearSiteDates[] = getContext('siteDates') ?? [];
-    console.log('siteDates - 1:', siteDates);
+    //console.log('siteDates - 1:', siteDates);
     //console.log('SiteDatePicker:siteDates', siteDates);
 
     /*-- -- Styling -- */
@@ -92,9 +91,11 @@
         fDate: string
     }
 
-    console.log('siteDates - 2:', siteDates);
+    //console.log('siteDates - 2:', siteDates);
+
     const theYears = [...new Set(siteDates.map((x) => x.year.toString()))];
-    console.log('theYears:', theYears);
+    //console.log('theYears:', theYears);
+
     const yearsOfDate: any = {}
     theYears.forEach((yr: string) => {
         yearsOfDate[yr] = siteDates
@@ -105,10 +106,7 @@
                 fDate: y.recordDate ? formatDate(new Date(y.recordDate).toISOString()) : '',
             }));
     });
-    console.log('yearsOfDate:', yearsOfDate);
-
-    const currentSiteDate = siteDates.find((x) => x.siteDateId === currentSiteDateId);
-    //console.log('currentSiteDate:', currentSiteDate);
+    //console.log('yearsOfDate:', yearsOfDate);
 
     const trackedWeeks = Array.from(siteDates)
         .map<dateTracking>((w: SiteDateYearSiteDates) => ({
@@ -122,83 +120,70 @@
     //console.log('trackedWeeks:', trackedWeeks);
 
     /*-- Variables and objects */
-    let nextEnabled: boolean;
-    let prevEnabled: boolean;
-
-    let recordSiteDateId: number;
-
+    let recordSiteDateId = currentSiteDateId;
     let recordYear: string;
     let recordWeek: number;
-    $: rxRecordYear = recordYear;
 
     /*-- Run first stuff */
     /*-- onMount, beforeUpdate, afterUpdate */
     onMount(() => {
-        nextEnabled = trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteDateId) < trackedWeeks.length - 1;
-        prevEnabled = trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteDateId) > 0;
-        //console.log('prevEnabled:', prevEnabled, 'nextEnabled:', nextEnabled);
-
-        recordYear = currentSiteDate?.year.toString() ?? '1899';
-        recordWeek = currentSiteDate?.recordDate ? weekOfYearSince(new Date(currentSiteDate.recordDate)) : -1;
-        // console.log('recordYear:', recordYear, 'recordWeek:', recordWeek);
-
-        recordSiteDateId = currentSiteDateId;
-        //console.log('recordSiteDateId:', recordSiteDateId, currentSiteDateId);
-        //console.log(currentSiteId, currentSiteDateId, currentSiteDate, recordYear, recordWeek, recordSiteDateId);
+        let tw = trackedWeeks.find(x => x.siteDateId === currentSiteDateId);
+        if (tw) {
+            recordYear = tw.year.toString();
+            recordWeek = tw.recordDate ? weekOfYearSince(new Date(tw.recordDate)) : -1;
+        }
     });
 
     /*-- Handlers */
     function handleSelectYear(event: any) {
-        console.log(rxRecordYear, recordYear, event.currentTarget.value);
-        recordYear = event.currentTarget.value.toString();
-        let idx = trackedWeeks.findIndex((x) => x.year.toString() === recordYear);
-        console.log('Index in trackedWeeks', idx, trackedWeeks[idx]);
-        if (idx > 0) {
-            const tw = trackedWeeks[idx];
-            recordWeek = tw.week;
-            recordSiteDateId = tw.siteDateId;
-            goto('/api/sitedates/' + tw.siteDateId);
+        let targetYear = event.currentTarget.value.toString();
+        let idx = trackedWeeks.findIndex(x => x.year.toString() === targetYear);
+        //console.log('yearDates', yearDates.slice(0, 2));
+
+        if (idx > -1) {
+            updatePerHandler(idx);
         }
     }
 
     function handleSelectWeek(event: any) {
         let idx = trackedWeeks.findIndex((x) => x.siteDateId === parseInt(event.currentTarget.value));
-        if (idx > 0) {
-            const tw = trackedWeeks[idx];
-            recordYear = tw.year.toString();
-            recordWeek = tw.week;
-            recordSiteDateId = tw.siteDateId;
-            goto('/api/sitedates/' + tw.siteDateId);
+        if (idx > -1) {
+            updatePerHandler(idx);
         }
     }
 
     function handleClickPrior(event: any) {
         let idx = trackedWeeks.findIndex((x) => x.siteDateId === recordSiteDateId);
         if (idx > 0) {
-            const tw = trackedWeeks[idx - 1];
-            recordYear = tw.year.toString();
-            recordWeek = tw.week;
-            recordSiteDateId = tw.siteDateId;
-            goto('/api/sitedates/' + tw.siteDateId);
+            updatePerHandler(idx - 1);
         }
     }
 
     function handleClickNext(event: any) {
         let idx = trackedWeeks.findIndex((x) => x.siteDateId === recordSiteDateId);
         if (idx < trackedWeeks.length - 1) {
-            const tw = trackedWeeks[idx + 1];
-            recordYear = tw.year.toString();
-            recordWeek = tw.week;
-            recordSiteDateId = tw.siteDateId;
-            goto('/api/sitedates/' + tw.siteDateId);
+            updatePerHandler(idx + 1);
         }
+    }
+
+    function updatePerHandler(idx: number) {
+        const tw = trackedWeeks[idx];
+        recordYear = tw.year.toString();
+        recordWeek = tw.week;
+        recordSiteDateId = tw.siteDateId;
+        goto('/api/sitedates/' + tw.siteDateId);
     }
 
     /*-- Methods */
     /*-- Reactives (functional) */
+    $: yearDates = yearsOfDate[recordYear];
+    $: trackedWeekIndex =  trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteDateId);
+    //$: trackedWeek =  trackedWeeks[trackedWeekIndex];
+    $: nextDisabled = trackedWeekIndex > trackedWeeks.length - 2;
+    $: prevDisabled = trackedWeekIndex < 1;
+
     /*-- Other */
 
-    //console.log(yearsOfDate);
 </script>
 
 <div class="block lg:flex lg:flex-row gap-0 md:gap-1 lg:gap-2">
@@ -209,7 +194,7 @@
     {/if}
 
     <div class={classesControlBody} aria-labelledby={labelledby}>
-        <button type="button" class={classesButtonLeft} on:click={handleClickPrior}>◀</button>
+        <button type="button" class={classesButtonLeft} on:click={handleClickPrior} disabled={prevDisabled}>◀</button>
         <button type="button" class={classesButtonYear} use:popup={popupSiteDateYears}>
             {#if $$slots.prefixYear}<span class={classesPrefixYear}><slot name="prefixYear" /></span>{/if}
             <span>{recordYear}</span>
@@ -220,31 +205,44 @@
             <span>{recordWeek}</span>
             <span class={classesSuffixWeek} />
         </button>
-        <button type="button" class={classesButtonRight} on:click={handleClickNext}>▶</button>
+        <button type="button" class={classesButtonRight} on:click={handleClickNext} disabled={nextDisabled}>▶</button>
     </div>
 
     <div data-popup="popupComboboxSiteDateYears">
         <div class="card w-48 shadow-xl py-2 overflow-y-auto" style="max-height: calc(100vh - 272px);">
             <ListBox rounded="rounded-none" labelledby="Years for site">
                 {#each theYears as year}
-                    <ListBoxItem bind:group={recordYear} name="years" on:change={handleSelectYear} value={year}>{year}</ListBoxItem>
+                    <ListBoxItem
+                        bind:group={recordYear}
+                        name="years"
+                        on:change={handleSelectYear}
+                        value={year}>
+                        {year}
+                    </ListBoxItem>
                 {/each}
             </ListBox>
         </div>
     </div>
 
     <div data-popup="popupComboboxSiteDateWeeks">
+        {#if yearDates}
         <div class={`card shadow-xl py-2 overflow-y-auto ${dropdownShowDate ? 'w-44' : 'w-28'}`} style="max-height: calc(100vh - 272px);">
             <ListBox rounded="rounded-none" labelledby="Weeks in timeframe">
-            {#if yearsOfDate[recordYear]}
-                {#each yearsOfDate[recordYear] as week}
-                    <ListBoxItem bind:group={recordWeek} name="weeks" on:change={handleSelectWeek} value={week.siteDateId}>
+                {#each yearDates as week}
+                    <ListBoxItem
+                        bind:group={recordSiteDateId}
+                        name="weeks"
+                        on:change={handleSelectWeek}
+                        value={week.siteDateId}>
+
                         {#if $$slots.prefixWeek}
                             <slot name="prefixWeek" />
-                        {/if}{`${week.week}${dropdownShowDate ? ' - ' + week.fDate : ''}`}</ListBoxItem>
+                        {/if}{`${week.week}${dropdownShowDate ? ' - ' + week.fDate : ''}`}
+
+                    </ListBoxItem>
                 {/each}
-            {/if}
             </ListBox>
         </div>
+        {/if}
     </div>
 </div>

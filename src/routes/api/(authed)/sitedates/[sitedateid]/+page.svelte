@@ -10,6 +10,7 @@
     import { compareNumeric, compareYearWeek, formatDate, weekOfYearSince, convertFtoC } from '$lib/utils';
     import DataOptions from '$lib/components/datanavigation/DataOptions.svelte';
     import SiteDatePicker from '$lib/components/datanavigation/SiteDatePicker.svelte';
+    import YearWeek from '$lib/components/datanavigation/YearWeek.svelte';
 
     /*-- -- Data -- */
     export let data;
@@ -52,7 +53,7 @@
         .sort(compareYearWeek);
 
     /*-- Properties (functional) */
-    let currentSiteDate: SiteDateYear = data.siteDate;
+    //let currentSiteDate: SiteDateYear = data.siteDate;
     const allYears = Array.from(data.siteDates).map((y) => new Date(y.recordDate).getFullYear());
     const uniqueYears = [...new Set(allYears)].sort(compareNumeric);
 
@@ -177,11 +178,6 @@
     let currentSiteId = data.siteDate.siteId;
     let currentSiteDateId = data.siteDate.siteDateId;
 
-    $: nextEnabled = trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteId) < trackedWeeks.length - 1;
-    //console.log('nextEnabled', nextEnabled);
-    $: prevEnabled = trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteId) > 0;
-    //console.log('prevEnabled', prevEnabled);
-
     $: recordDate = new Date(data.siteDate.recordDate);
     $: recordYear = new Date(data.siteDate.recordDate).getFullYear();
     $: recordWeek = weekOfYearSince(new Date(data.siteDate.recordDate));
@@ -193,55 +189,61 @@
     /*-- Other */
 </script>
 
-<DataOptions bind:showRecentEdits bind:showDeletedData />
+<YearWeek bind:year={recordYear} bind:week={recordWeek} />
+<DataOptions bind:showRecentEdits bind:showDeletedData={showDeletedData} />
 
 <DoubledContainer basisLeft="basis-2/5" basisRight="basis-3/5">
     <svelte:fragment slot="leftHead">
         <h2 class="flex flex-row justify-between pb-2">
             <div>{data.siteDate.siteName}</div>
             <div>
-                Record Date: {formatDate(recordDate.toISOString(), 'medium', undefined)}
+                Record Date: {formatDate(recordDate.toISOString(), 'short', undefined)}
             </div>
         </h2>
 
-        <hr />
-
-        <div class="flex flex-row justify-between space-x-2">
-            <div>
-                year: {data.siteDate.year}&nbsp;&nbsp;week: {data.siteDate.week}
-            </div>
-            <div class="text-warning-600 text-wrap my-auto">Per data entry 'year' and 'week' fields</div>
-        </div>
-
         <!-- Year and week dropdowns -->
-        <div class="flex flex-row space-x-2 pb-2">
+        <div class="flex flex-row space-x-2 pb-2 scale-90">
             <div>
-                <select class="select w-28" bind:value={y} on:blur={() => ([w] = y.children)}>
+                <select
+                    class="select w-28"
+                    bind:value={y}
+                    on:blur={() => ([w] = y.children)}>
+
                     {#each uniqueYears as year}
-                        <option
-                            value={{
-                                id: year,
-                                children: [...trackedWeeks.filter((z) => z.year === year)],
-                            }}>{year}</option>
+                        <option value={{
+                            id: year,
+                            children: [...trackedWeeks.filter((z) => z.year === year)],
+                        }}>
+                            {year}
+                        </option>
                     {/each}
+
                 </select>
             </div>
 
             <div>
                 {#if y}
-                    <select class="select w-36" bind:value={w} on:change={handleClick}>
+                    <select
+                        class="select w-36"
+                        bind:value={w}
+                        on:change={handleClick}
+                        title="Calculated from 'record date' field">
+            
                         {#each y.children as dateTrackingItem}
-                            <option value={dateTrackingItem.siteDateId}>{dateTrackingItem.week} - {formatDate(dateTrackingItem.recordDate.toISOString())}</option>
+                            <option value={dateTrackingItem.siteDateId}>
+                                {dateTrackingItem.week} - {formatDate(dateTrackingItem.recordDate.toISOString())}
+                            </option>
                         {/each}
+
                     </select>
                 {/if}
             </div>
 
-            <div class="text-warning-600 text-wrap my-auto">Calculated from 'record date' field</div>
         </div>
-
         <hr />
+
     </svelte:fragment>
+
     <svelte:fragment slot="leftBody">
         <div>
             recorder: {data.siteDate.recorder}
@@ -491,13 +493,12 @@
         <div class="flex flex-row justify-between mb-2">
             <div class="my-auto">{data.siteDate.siteName}</div>
             <SiteDatePicker
-                bind:currentSiteId
                 bind:currentSiteDateId
                 controlBody="scale-90"
                 buttonLeft="!px-2"
                 buttonRight="!px-2"
-                buttonYear="px-0 md:px-1 lg:px-2"
-                buttonWeek="px-0 md:px-1 lg:px-2"
+                buttonYear="w-28 px-0 md:px-1 lg:px-2"
+                buttonWeek="w-24 px-0 md:px-1 lg:px-2"
                 dropdownShowDate={false}
                 dropdownPointers={false}>
                 <svelte:fragment slot="prefixYear">Year:</svelte:fragment>

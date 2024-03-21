@@ -43,7 +43,7 @@
                 <svelte:fragment slot="heading">County:</svelte:fragment>
             </CountyPicker>
             <!-- TODO: Filter sites to selected country -->
-            <SitePicker currentSite={data.site}>
+            <SitePicker currentSiteId={currentSiteId}>
                 <svelte:fragment slot="heading">Site:</svelte:fragment>
             </SitePicker>
             <SiteDatePicker

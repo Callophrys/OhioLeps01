@@ -1,20 +1,14 @@
 <script lang="ts">
-    import StateCountyPicker from '$lib/components/query/StateCountyPicker.svelte';
-    import SpeciesPicker from '$lib/components/query/SpeciesPicker.svelte';
-    import TimeframePicker from '$lib/components/query/TimeframePicker.svelte';
     import DoubledContainer from '$lib/components/DoubledContainer.svelte';
-<<<<<<< Updated upstream
+    import SpeciesPicker from '$lib/components/query/SpeciesPicker.svelte';
+    import StateCountyPicker from '$lib/components/query/StateCountyPicker.svelte';
+    import TimeframePicker from '$lib/components/query/TimeframePicker.svelte';
     import type { CountySpecimen } from '$lib/types';
-    import { sortByStringProperty } from '$lib/utils';
-    import { enhance } from '$app/forms';
     import type { SubmitFunction } from '@sveltejs/kit';
-    import { setContext } from 'svelte';
+    import { enhance } from '$app/forms';
     import { page } from '$app/stores';
-=======
-    import { scientificName } from '$lib/utils.js';
-    import type { countySpecimen } from '$lib/types.js';
->>>>>>> Stashed changes
-
+    import { setContext } from 'svelte';
+    import { sortByStringProperty } from '$lib/utils';
     export let data;
     export let form;
 
