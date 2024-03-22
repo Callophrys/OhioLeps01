@@ -381,84 +381,84 @@
                 <svelte:fragment slot="summary">Larva food sources</svelte:fragment>
                 <svelte:fragment slot="content">
                     <div class="pl-4">
-                        lEsec1: {data.siteDate.lEsec1}
+                        lEsec1: {@html data.siteDate.lEsec1 ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        lEsec2: {data.siteDate.lEsec2}
+                        lEsec2: {@html data.siteDate.lEsec2 ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        lEsec3: {data.siteDate.lEsec3}
+                        lEsec3: {@html data.siteDate.lEsec3 ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        lEsec4: {data.siteDate.lEsec4}
+                        lEsec4: {@html data.siteDate.lEsec4 ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        lEsec5: {data.siteDate.lEsec5}
+                        lEsec5: {@html data.siteDate.lEsec5 ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        lEsec6: {data.siteDate.lEsec6}
+                        lEsec6: {@html data.siteDate.lEsec6 ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        lEsec7: {data.siteDate.lEsec7}
+                        lEsec7: {@html data.siteDate.lEsec7 ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        lEsec8: {data.siteDate.lEsec8}
+                        lEsec8: {@html data.siteDate.lEsec8 ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        lEsec9: {data.siteDate.lEsec9}
+                        lEsec9: {@html data.siteDate.lEsec9 ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        lEsec10: {data.siteDate.lEsec10}
+                        lEsec10: {@html data.siteDate.lEsec10 ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        lEsec11: {data.siteDate.lEsec11}
+                        lEsec11: {@html data.siteDate.lEsec11 ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        lEsec12: {data.siteDate.lEsec12}
+                        lEsec12: {@html data.siteDate.lEsec12 ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        lEsec13: {data.siteDate.lEsec13}
+                        lEsec13: {@html data.siteDate.lEsec13 ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        lEsec14: {data.siteDate.lEsec14}
+                        lEsec14: {@html data.siteDate.lEsec14 ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        lEsec15: {data.siteDate.lEsec15}
+                        lEsec15: {@html data.siteDate.lEsec15 ?? '&varnothing;'}
                     </div></svelte:fragment>
             </AccordionItem>
             <AccordionItem bind:open={optAccG}>
                 <svelte:fragment slot="summary">Larva</svelte:fragment>
                 <svelte:fragment slot="content">
                     <div class="pl-4">
-                        Larva Ob A: {data.siteDate.larvaObA ?? ''}
+                        Larva Ob A: {@html data.siteDate.larvaObA ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        Larva Ob B: {data.siteDate.larvaObB ?? ''}
+                        Larva Ob B: {@html data.siteDate.larvaObB ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        Larva Ob C: {data.siteDate.larvaObC ?? ''}
+                        Larva Ob C: {@html data.siteDate.larvaObC ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        Larva Ob D: {data.siteDate.larvaObD ?? ''}
+                        Larva Ob D: {@html data.siteDate.larvaObD ?? '&varnothing;'}
                     </div></svelte:fragment>
             </AccordionItem>
-            <AccordionItem bind:open={optAccH}>
+            <AccordionItem bind:open={@html optAccH}>
                 <svelte:fragment slot="summary">Energy/blooming</svelte:fragment>
                 <svelte:fragment slot="content">
                     <div class="pl-4">
-                        Energy Source 1: {data.siteDate.energySource1 ?? ''}
+                        Energy Source 1: {@html data.siteDate.energySource1 ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        Energy Source 2: {data.siteDate.energySource2 ?? ''}
+                        Energy Source 2: {@html data.siteDate.energySource2 ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        Energy Source 3: {data.siteDate.energySource3 ?? ''}
+                        Energy Source 3: {@html data.siteDate.energySource3 ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        Energy Source 4: {data.siteDate.energySource4 ?? ''}
+                        Energy Source 4: {@html data.siteDate.energySource4 ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        Flowers in Bloom: {data.siteDate.flowersInBloom ?? ''}
+                        Flowers in Bloom: {@html data.siteDate.flowersInBloom ?? '&varnothing;'}
                     </div></svelte:fragment>
             </AccordionItem>
             <div class="pl-4">
