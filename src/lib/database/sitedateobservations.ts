@@ -57,7 +57,18 @@ export async function getSiteDateObservationsBySiteDateAndChecklist(siteDateId: 
             siteDate: true,
         },
     });
+
     return siteDateObservations;
+}
+
+export async function getSiteDateObservation(siteDateObservationId: number) {
+    const siteDateObservation = await prisma.siteDateObservation.findUnique({
+        where: {
+            siteDateObservationId: siteDateObservationId,
+        },
+    });
+
+    return siteDateObservation;
 }
 
 export async function getSiteDateObservationBySiteDateObservation(siteDateObservationId: number) {
@@ -73,6 +84,7 @@ export async function getSiteDateObservationBySiteDateObservation(siteDateObserv
             siteDate: true
         },
     });
+
     return siteDateObservation;
 }
 

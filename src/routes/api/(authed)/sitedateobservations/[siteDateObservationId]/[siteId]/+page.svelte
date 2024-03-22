@@ -46,7 +46,7 @@ var z = y.difference(x) // [ "d", "e", "g" ]
     const cButtonStandard = 'btn w-24 md:w-28 h-8 sm:h-10 md:h-11 pb-2 variant-filled-surface';
     const cButtonWider    = 'btn w-28 md:w-36 h-8 sm:h-10 md:h-11 pb-2 variant-filled-surface';
     const cButtonSuccess  = 'btn w-24 md:w-28 h-8 sm:h-10 md:h-11 pb-2 variant-soft-success';
-    const cButtonCancel   = 'btn w-24 md:w-28 h-8 sm:h-10 md:h-11 pb-2 variant-soft-error';
+    const cButtonCancel   = 'btn w-24 md:w-28 h-8 sm:h-10 md:h-11 pb-2 variant-filled-error';
     const cButtonAddView  = 'btn w-44         h-8 sm:h-10 md:h-11 pb-2 variant-filled-surface';
 
     /*-- Variables (styles) */
@@ -255,7 +255,7 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                                     </button>
                                 {/if}
                             {:else}
-                                <button type="button" class={cButtonSuccess} on:click={() => formEdit?.submit()}>
+                                <button type="button" class={cButtonStandard} on:click={() => formEdit?.submit()}>
                                     {isViewAll ? 'Save All' : 'Save'}
                                     <span class="pl-2">✎</span>
                                 </button>
@@ -611,7 +611,7 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                         {#if isEditing}
                             <!-- TODO: Indicate when data has changed -->
                             <form name="edit" method="POST" action="?/saveSiteDateObservation" use:enhance bind:this={formEdit}>
-                                <input type="hidden" name={`${data.siteDateObservation.siteDateObservationId}_siteDateObservationId`} value={data.siteDateObservation.siteDateObservationId} />
+                                <!-- <input type="hidden" name={`${data.siteDateObservation.siteDateObservationId}_siteDateObservationId`} value={data.siteDateObservation.siteDateObservationId} /> -->
                                 <div class={cDataClasses}>
                                     {#each sdoSections as section}
                                         <div class={cDatumClasses}>

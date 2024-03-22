@@ -1,5 +1,7 @@
 import {
-	getSiteDateObservationBySiteDateObservation, getSiteDateObservationsBySiteDate,
+	getSiteDateObservation,
+	getSiteDateObservationBySiteDateObservation,
+	getSiteDateObservationsBySiteDate,
 	reviewSiteDateObservation, updateSiteDateObservation, deleteSiteDateObservation,
 	nextOrLastSiteDateObservationByCommon, nextOrLastSiteDateObservationByLatin, prevOrFirstSiteDateObservationByLatin,
 } from '$lib/database/sitedateobservations.js';
@@ -82,120 +84,105 @@ export async function load({ params }) {
 
 export const actions: Actions = {
 	saveSiteDateObservation: async ({ request, locals }) => {
+
+		const userId = locals.user.id;
+
+		const getDbData = async (sdoId: number): Promise<T> => {
+			const dbSdo: any = await getSiteDateObservation(sdoId);
+			return { sdoId: sdoId, sdo: dbSdo};
+			//return {[sdoId]: dbSdo};
+		}
+
 		//console.log('aaa');
 
 		// Add form data
 		const formData: any = await request.formData();
 		//console.log(formData);
 
-		// Unique siteDateObservationIds as strings
-		const uqn: string[] = [...new Set(Array.from(formData).map((x: any) => {
+		const sdoIds: number[] = [...new Set(Array.from(formData).map((x: any) => {
 			let us = x[0].indexOf('_');
-			if (us < 0) return;
-			return x[0].substring(0, us);
+			return Number(x[0].substring(0, us) ?? -1);
 		}))];
-		//console.log(uqn);
 
-		// Array of all name value pairs
-		const ace: { name: string, value: string }[] = [];
-		Array.from(formData).forEach((x: any) => ace.push({ name: x[0], value: x[1]}));
-		//console.log(ace);
+		const promises: Promise<any>[] = [];
+		sdoIds.forEach(sdoId => {
+			promises.push(getDbData(sdoId));
+		});
 
-		// Non-unique siteDateObservationIds as strings
-		const bar = ace.map((x: { name: string, value: string }) => x.name.substring(0, x.name.indexOf('_')));
-		//console.log(bar);
+		const dbData = await Promise.all(promises);
 
-		// Unique siteDateObservationIds as strings
-		const foo = [...new Set(bar)];
-		//console.log(foo);
+		const preparedData = {};
+		dbData.forEach(item => {
+			preparedData[item.sdoId] = ({
+				'db': item.sdo,
+				'edit': {},
+				'orig': {}
+			});
+		});
+		//console.log(preparedData);
 
-		// for each foo - has anything changed? if yes then get all different fields and do a save
-		// O(2)
-		// make jive with stuff below
+		Array.from(formData).forEach(([k, v]) => {
+			const parts = k.split('_');
+			preparedData[parts[0]][parts.length < 3 ? 'edit' : 'orig'][parts[1]] = v;
+		});
 
-		const userId = locals.user.id;
+		console.log(preparedData);
+		//console.log(dbData);
 
-		if (false) {
-			// const promises: Promise<string>[] = [];
-			// foo.forEach((x: string) => {
-			// 	const siteDateObservationId = Number(x);
-			// 	promises.push(
-			// 		getSiteDateObservationBySiteDateObservation(siteDateObservationId);
-			// 	);
-			// });
-			// return await Promise.all(promises);
-		} else {
+		promises.length = 0;
+		sdoIds.forEach(sdoId => {
+			const sdo = preparedData[sdoId].db;
+			let saveThis = false;
+			Object.entries(preparedData[sdoId].edit).forEach(([k, v]) => {
+				//console.log(`${sdoId} - k: ${k}, sdo[k]: ${sdo[k]}, v: '${v}', typeof(sdo[k]): ${typeof sdo[k]}, typeof(v): ${typeof v}`);
 
-			const siteDateObservationId = Number(foo[0]);
-			const originalSdo = await getSiteDateObservationBySiteDateObservation(siteDateObservationId);
+				// TODO: if _orig <> _db then throw
+				//       this indicates data has changed on the server
+				//       maybe find a better way then throw, e.g. return { action: 'save', sucess: false }
+				// { throw 'Data integrity error'; }
 
-			console.log('originalSdo', originalSdo);
-
-		}
-
-		if (originalSdo && userId) {
-
-			const inboundEdits: any = {};
-			const inboundEditsCheck: any = {};
-			Array.from(formData).forEach((d: any) => {
-				if (d[0].startsWith('section')) {
-					if (d[0].indexOf('_') < 0) {
-						//console.log('rrr>>', d);
-						let idx: string = d[0];
-						inboundEdits[idx] = isNullOrWhiteSpace(d[1]) ? null : Number(d[1]);
+				if (k.startsWith('section')) {
+					let vv = Number(v);
+					if (vv >= 0) {
+						if (sdo[k] == null && vv > 0) {
+							saveThis = true;
+							sdo[k] = vv;
+						} else if (sdo[k] != null && vv === 0) {
+							saveThis = true;
+							sdo[k] = null;
+						}
+					}
+				} else {
+					let vv = String(v);
+					if (typeof sdo[k] === 'undefined') {
+						if (vv.length > 0) {
+							saveThis = true;
+							sdo[k] = vv;
+						}
 					} else {
-						//console.log('sss>>', d);
-						let idx: string = d[0];
-						inboundEditsCheck[idx] = isNullOrWhiteSpace(d[1]) ? null : Number(d[1]);
+						if (sdo[k] !== vv) {
+							saveThis = true;
+							sdo[k] = null;
+						}
 					}
 				}
-				return true;
 			});
 
-			console.log('aaa - aaa', inboundEdits);
-			console.log('bbb - bbb', inboundEditsCheck);
+			if (saveThis) {
+				sdo.updatedById = userId;
+				sdo.updatedAt = new Date();
+				promises.push(updateSiteDateObservation(sdo));
+			}
+		});
 
-			/*
-			Object.keys(originalSdo).forEach((k: any) => {
-				if (k.startsWith('section')) {
-					originalSdo[k] = 3;
-				}
-			})
-			*/
+		// TODO: if promises is zero ...
+		const savedData = await Promise.all(promises);
+		//console.log(savedData);
 
-			//console.log('>>', originalSdo.section1, inboundEditsCheck.section1_orig, inboundEdits.section1);
-			if (originalSdo.section1 === inboundEditsCheck.section1_orig) { originalSdo.section1 = inboundEdits.section1; } else { throw 'Data integrity error'; }
-			if (originalSdo.section2 === inboundEditsCheck.section2_orig) { originalSdo.section2 = inboundEdits.section2; } else { throw 'Data integrity error'; }
-			if (originalSdo.section3 === inboundEditsCheck.section3_orig) { originalSdo.section3 = inboundEdits.section3; } else { throw 'Data integrity error'; }
-			if (originalSdo.section4 === inboundEditsCheck.section4_orig) { originalSdo.section4 = inboundEdits.section4; } else { throw 'Data integrity error'; }
-			if (originalSdo.section5 === inboundEditsCheck.section5_orig) { originalSdo.section5 = inboundEdits.section5; } else { throw 'Data integrity error'; }
-			if (originalSdo.section6 === inboundEditsCheck.section6_orig) { originalSdo.section6 = inboundEdits.section6; } else { throw 'Data integrity error'; }
-			if (originalSdo.section7 === inboundEditsCheck.section7_orig) { originalSdo.section7 = inboundEdits.section7; } else { throw 'Data integrity error'; }
-			if (originalSdo.section8 === inboundEditsCheck.section8_orig) { originalSdo.section8 = inboundEdits.section8; } else { throw 'Data integrity error'; }
-			if (originalSdo.section9 === inboundEditsCheck.section9_orig) { originalSdo.section9 = inboundEdits.section9; } else { throw 'Data integrity error'; }
-			if (originalSdo.section10 === inboundEditsCheck.section10_orig) { originalSdo.section10 = inboundEdits.section10; } else { throw 'Data integrity error'; }
-			if (originalSdo.section11 === inboundEditsCheck.section11_orig) { originalSdo.section11 = inboundEdits.section11; } else { throw 'Data integrity error'; }
-			if (originalSdo.section12 === inboundEditsCheck.section12_orig) { originalSdo.section12 = inboundEdits.section12; } else { throw 'Data integrity error'; }
-			if (originalSdo.section13 === inboundEditsCheck.section13_orig) { originalSdo.section13 = inboundEdits.section13; } else { throw 'Data integrity error'; }
-			if (originalSdo.section14 === inboundEditsCheck.section14_orig) { originalSdo.section14 = inboundEdits.section14; } else { throw 'Data integrity error'; }
-			if (originalSdo.section15 === inboundEditsCheck.section15_orig) { originalSdo.section15 = inboundEdits.section15; } else { throw 'Data integrity error'; }
-			/*
-			 */
+		// TODO: if any promise fails ... should rollback or at least report something
+		const savedData = await Promise.all(promises);
 
-			originalSdo.updatedById = userId;
-			originalSdo.updatedAt = new Date();
-
-			return { success: true }
-
-			const updatedSdo = await updateSiteDateObservation(originalSdo);
-			//console.log('aaa - aaa - aaa');
-
-			const json = JSON.stringify(updatedSdo);
-			const jsonResult: SiteDateObservationChecklist = JSON.parse(json);
-			return { action: 'save', success: true, siteDateObservation: jsonResult }
-		}
-
-		return { success: false }
+		return { action: 'save', success: true }
 	},
 
 	undoRedoSiteDateObservation: async ({ request, locals }) => {
