@@ -1,9 +1,8 @@
 <script lang="ts">
-    export let year: number;
-    export let week: number;
+    export let county: string;
+    export let site: string;
 </script>
 
 <div class="flex flex-row space-x-2 text-sm fixed top-[134px] pl-10">
-    Year: {year}&nbsp;&nbsp;Week: {week}
+    County: {county}&nbsp;&nbsp;Site: {site}
 </div>
-

@@ -317,63 +317,48 @@
                 <svelte:fragment slot="content">
                     <div class="pl-4">
                         Weather 1: {data.siteDate.w1}
-                        <span class="bg-slate-800">Weather @default(U)</span>
                     </div>
                     <div class="pl-4">
                         Weather 2: {data.siteDate.w2}
-                        <span class="bg-slate-800">Weather @default(U)</span>
                     </div>
                     <div class="pl-4">
                         Weather 3: {data.siteDate.w3}
-                        <span class="bg-slate-800">Weather @default(U)</span>
                     </div>
                     <div class="pl-4">
                         Weather 4: {data.siteDate.w4}
-                        <span class="bg-slate-800">Weather @default(U)</span>
                     </div>
                     <div class="pl-4">
                         Weather 5: {data.siteDate.w5}
-                        <span class="bg-slate-800">Weather @default(U)</span>
                     </div>
                     <div class="pl-4">
                         Weather 6: {data.siteDate.w6}
-                        <span class="bg-slate-800">Weather @default(U)</span>
                     </div>
                     <div class="pl-4">
                         Weather 7: {data.siteDate.w7}
-                        <span class="bg-slate-800">Weather @default(U)</span>
                     </div>
                     <div class="pl-4">
                         Weather 8: {data.siteDate.w8}
-                        <span class="bg-slate-800">Weather @default(U)</span>
                     </div>
                     <div class="pl-4">
                         Weather 9: {data.siteDate.w9}
-                        <span class="bg-slate-800">Weather @default(U)</span>
                     </div>
                     <div class="pl-4">
                         Weather 10: {data.siteDate.w10}
-                        <span class="bg-slate-800">Weather @default(U)</span>
                     </div>
                     <div class="pl-4">
                         Weather 11: {data.siteDate.w11}
-                        <span class="bg-slate-800">Weather @default(U)</span>
                     </div>
                     <div class="pl-4">
                         Weather 12: {data.siteDate.w12}
-                        <span class="bg-slate-800">Weather @default(U)</span>
                     </div>
                     <div class="pl-4">
                         Weather 13: {data.siteDate.w13}
-                        <span class="bg-slate-800">Weather @default(U)</span>
                     </div>
                     <div class="pl-4">
                         Weather 14: {data.siteDate.w14}
-                        <span class="bg-slate-800">Weather @default(U)</span>
                     </div>
                     <div class="pl-4">
                         Weather 15: {data.siteDate.w15}
-                        <span class="bg-slate-800">Weather @default(U)</span>
                     </div>
                 </svelte:fragment>
             </AccordionItem>
@@ -442,7 +427,7 @@
                         Larva Ob D: {@html data.siteDate.larvaObD ?? '&varnothing;'}
                     </div></svelte:fragment>
             </AccordionItem>
-            <AccordionItem bind:open={@html optAccH}>
+            <AccordionItem bind:open={optAccH}>
                 <svelte:fragment slot="summary">Energy/blooming</svelte:fragment>
                 <svelte:fragment slot="content">
                     <div class="pl-4">

@@ -3,6 +3,7 @@
     import CountyPicker from '$lib/components/datanavigation/CountyPicker.svelte';
     import SiteDatePicker from '$lib/components/datanavigation/SiteDatePicker.svelte';
     import StandardContainer from '$lib/components/StandardContainer.svelte';
+    import CountySite from '$lib/components/datanavigation/CountySite.svelte';
     //import { createEventDispatcher } from 'svelte';
     import { goto } from '$app/navigation';
     import { setContext } from 'svelte';
@@ -35,22 +36,18 @@
     // does bind selected go on the parent component?  See skeletonui for event stuff
 </script>
 
+<CountySite county={data.site.county.name} site={data.site.siteName} />
+
 <StandardContainer>
     <svelte:fragment slot="standardHead">
 
         <div class="flex flex-row justify-between gap-1 md:gap-2">
-            <CountyPicker currentCounty={data.site.county}>
-                <svelte:fragment slot="heading">County:</svelte:fragment>
-            </CountyPicker>
+            <CountyPicker currentCounty={data.site.county} />
             <!-- TODO: Filter sites to selected country -->
-            <SitePicker currentSiteId={currentSiteId}>
-                <svelte:fragment slot="heading">Site:</svelte:fragment>
-            </SitePicker>
+            <SitePicker currentSiteId={currentSiteId} />
             <SiteDatePicker
                 bind:currentSiteId
-                bind:currentSiteDateId>
-                <svelte:fragment slot="heading">Observations:</svelte:fragment>
-            </SiteDatePicker>
+                bind:currentSiteDateId />
         </div>
 
         <!-- TODO: Make this change the site by alphabetical -->
