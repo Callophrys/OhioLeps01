@@ -236,6 +236,8 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                 <!-- Main controls -->
                 <div class="px-4 flex flex-auto justify-between gap-2">
                     <div class="flex flex-row justify-start gap-2">
+
+                        <!-- EDIT(s) Action -->
                         {#if $page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'ENTRY' || $page.data.user.role === 'REVIEWER'}
                             {#if isAdding}
                                 <button type="button" class={cButtonStandard} disabled>
@@ -255,11 +257,13 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                                     </button>
                                 {/if}
                             {:else}
+                                <!-- SAVE UPDATE(s) Action -->
                                 <button type="button" class={cButtonStandard} on:click={() => formEdit?.submit()}>
                                     {isViewAll ? 'Save All' : 'Save'}
                                     <span class="pl-2">✎</span>
                                 </button>
 
+                                <!-- UNDO/REDO(s) Action -->
                                 <!-- TODO: Make undo-redo work, maybe go with left-right group button -->
                                 <form name="undo" method="POST" action="?/undoRedoSiteDateObservation" use:enhance bind:this={formUndo}>
                                     <!-- UNDO/REDO undo last action, edit or delete done by entry or reviewer - of course permissions matter -->
@@ -287,7 +291,8 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                             <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" disabled>Review<span class="pl-2">🌎</span></button>
                             <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" disabled>Delete<span class="pl-2">❌</span></button>
                         {:else if !isEditing}
-                            <!-- REVIEW Actions -->
+
+                            <!-- REVIEW(LOCK)/UNLOCK Actions -->
                             <form name="review" method="POST" action="?/reviewSiteDateObservation" use:enhance bind:this={formReview}>
                                 <!-- LOCK/UNLOCK Mark data as reviewed, aka valid and locked; Can unlock -->
                                 {#if $page.data.user && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'REVIEWER')}
@@ -360,7 +365,7 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                                 <input hidden name="siteDateObservationId" value={data.siteDateObservation.siteDateObservationId} />
                             </form>
 
-                            <!-- A. DELETE Actions -->
+                            <!-- DELETE Action(s) -->
                             {#if !data.siteDateObservation.confirmed && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || ($page.data.user.role === 'ENTRY' && (data.siteDateObservation.createdBy.id === $page.data.user.id || data.siteDateObservation.updatedBy.id === $page.data.user.id)))}
                                 <form name="delete" method="POST" action="?/deleteSiteDateObservation" use:enhance bind:this={formDelete}>
                                     {#if !data.siteDateObservation.deleted}
@@ -381,6 +386,7 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                         {/if}
                     </div>
 
+                    <!-- CREATE Action -->
                     <div class="flex flex-row gap-2">
                         {#if isAdding}
                             <button type="button" class={cButtonStandard} on:click={() => formAdd?.submit()}>
@@ -406,18 +412,17 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                             </button>
                         {/if}
 
-                        <div>
-                            <button
-                                type="button"
-                                class={cButtonAddView}
-                                on:click= {() => (isViewAll = !isViewAll)}
-                                disabled={isEditing || false}
-                                title="View all species">
-                                <input class="checkbox" type="checkbox" checked={isViewAll} disabled={isEditing || false} />
-                                <span>View all</span>
-                                <span class="!ml-0 text-green-900 dark:text-green-200 text-2xl">🔎</span>
-                            </button>
-                        </div>
+                        <!-- TOGGLE SHOW ALL/SINGLE Action -->
+                        <button
+                            type="button"
+                            class={cButtonAddView}
+                            on:click= {() => (isViewAll = !isViewAll)}
+                            disabled={isEditing || false}
+                            title="View all species">
+                            <input class="checkbox" type="checkbox" checked={isViewAll} disabled={isEditing || false} />
+                            <span>View all</span>
+                            <span class="!ml-0 text-green-900 dark:text-green-200 text-2xl">🔎</span>
+                        </button>
                     </div>
                 </div>
 

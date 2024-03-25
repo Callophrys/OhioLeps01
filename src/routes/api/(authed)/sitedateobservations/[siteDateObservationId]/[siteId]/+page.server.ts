@@ -175,12 +175,13 @@ export const actions: Actions = {
 			}
 		});
 
-		// TODO: if promises is zero ...
+        if (promises.length === 0) {
+            return { action: 'save', success: false, message: 'No changes to save'};
+        }
+
 		const savedData = await Promise.all(promises);
-		//console.log(savedData);
 
 		// TODO: if any promise fails ... should rollback or at least report something
-		const savedData = await Promise.all(promises);
 
 		return { action: 'save', success: true }
 	},

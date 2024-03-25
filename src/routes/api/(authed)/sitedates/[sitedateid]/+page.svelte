@@ -154,15 +154,6 @@
             optAccB = false;
         }
         return true;
-        /*
-        var ooo = document.getElementById('ftoc');
-        console.log('was here', ooo?.getAttribute('aria-expanded'));
-        if (ooo?.getAttribute('aria-expanded') === 'true') {
-            ooo.click();
-        } else {
-            return false;
-        }
-        */
     }
 
     function handleClick(event: any) {

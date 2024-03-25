@@ -10,7 +10,6 @@
     import { compareYearWeek, formatDate, weekOfYearSince } from '$lib/utils';
     import { onMount } from 'svelte';
 
-    /* Had 2 slots: prefixYear and prefixWeek */
     /*-- -- Data -- */
     /*-- Exports */
     export let currentSiteDateId: number;
@@ -56,7 +55,6 @@
     const cSuffixWeek = '';
 
     /*-- Reactives (styles) */
-    // Reactive styles
     $: classesControlBody = `${cControlBody} ${controlBody} ${$$props.class ?? ''}`;
     $: classesButtonLeft = `${cButtonLeft} ${buttonLeft} ${$$props.class ?? ''}`;
     $: classesButtonRight = `${cButtonRight} ${buttonRight} ${$$props.class ?? ''}`;
@@ -69,6 +67,12 @@
 
     /*-- -- Coding -- */
     /*-- Enums */
+    type SdoWeek = {
+        week: number,
+        siteDateId: number,
+        fDate: string
+    }
+
     /*-- Constants (functional) */
     const popupSiteDateYears: PopupSettings = {
         event: 'focus-click',
@@ -85,13 +89,6 @@
     };
 
     /*-- Properties (functional) */
-    type SdoWeek = {
-        week: number,
-        siteDateId: number,
-        fDate: string
-    }
-
-    //console.log('siteDates - 2:', siteDates);
 
     const theYears = [...new Set(siteDates.map((x) => x.year.toString()))];
     //console.log('theYears:', theYears);
