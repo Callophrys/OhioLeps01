@@ -99,7 +99,7 @@
             allCountiesIndex--;
             currentCountyId = allCounties[allCountiesIndex].id;
             console.log('handlePrev', 'currentCountyId (2)', currentCountyId);
-            allSitesIndex = allSites.findIndex((s) => s.countyId === currentCountyId);
+            allSitesIndex = allSites.findLastIndex((s) => s.countyId === currentCountyId);
             console.log('handlePrev', 'allSitesIndex', allSitesIndex);
             if (allSitesIndex > 0) {
                 currentSiteId = allSites[allSitesIndex].siteId;

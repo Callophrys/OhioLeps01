@@ -538,7 +538,7 @@ var z = y.difference(x) // [ "d", "e", "g" ]
 
                             <div class={`${chkSdo.deleted ? 'odd:variant-ghost-warning even:variant-ghost-error' : 'odd:bg-gray-200 odd:dark:bg-red-700'}`}>
                                 <div class={`pl-1 flex flex-row ${chkSdo.deleted ? '[&>:not(:first-of-type)]:line-through' : ''}`}>
-                                    <div class="w-6">{ chkSdo.deleted ? '❌' : (chkSdo.confirmed ? '🔐' : '🔓')}</div>
+                                    <div class="w-6">{ chkSdo.deleted ? '❌' : (chkSdo.confirmed ? '✔' : '✎')}</div>
                                     <div class="w-56 truncate">{chkSdo.checklist.commonName}</div>
                                     <div class="w-64">{chkSdo.checklist.scientificName}</div>
                                     <div class="w-36">Hodges: {chkSdo.hodges}</div>
