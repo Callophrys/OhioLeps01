@@ -42,7 +42,7 @@
     <svelte:fragment slot="standardHead">
 
         <div class="flex flex-row justify-between gap-1 md:gap-2">
-            <CountyPicker currentCounty={data.site.county} />
+            <CountyPicker currentCountyId={data.site.countyId} />
             <!-- TODO: Filter sites to selected country -->
             <SitePicker currentSiteId={currentSiteId} />
             <SiteDatePicker

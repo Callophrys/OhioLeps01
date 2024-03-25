@@ -77,7 +77,7 @@
             currentSite = allSites[allSitesIndex];
             goto('/api/sites/' + currentSite.siteId);
         } else {
-            console.log('Index not found');
+            console.log('Site index not found');
         }
     }
 
@@ -140,8 +140,7 @@
                     bind:group={currentSiteId}
                     name="sites"
                     on:change={handleSiteSelect}
-                    value={site.siteId}
-                    class="capitalize">
+                    value={site.siteId}>
 
                     {site.siteName}
 
