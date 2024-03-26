@@ -11,6 +11,7 @@
     /*-- -- Data -- */
     /*-- Exports */
     export let currentSiteId: number;
+    export let filterByCounty: boolean;
 
     /** Show down arrow with year and week labels to indicate dropdown.  Default: true */
     export let dropdownPointers: boolean = true;
@@ -36,7 +37,7 @@
     const cControlBody = 'btn-group variant-soft my-auto';
     const cButtonLeft = '';
     const cButtonRight = '';
-    const cButtonSite = "w-32 md:w-44 lg:w-56 xl:w-64";
+    const cButtonSite = 'w-32 md:w-44 lg:w-56 xl:w-64';
     const cPrefixSite = '';
     const cSuffixSite = '';
 
@@ -50,6 +51,12 @@
 
     /*-- -- Coding -- */
     /*-- Enums */
+    type SiteTracking = {
+        siteId: number;
+        countyId: number;
+        siteName: string;
+    };
+
     /*-- Constants (functional) */
     const popupSites: PopupSettings = {
         event: 'focus-click',
@@ -59,60 +66,75 @@
     };
 
     /*-- Properties (functional) */
+    const trackedSites: SiteTracking[] = [];
+
     /*-- Variables and objects */
-    let allSitesIndex = -1;
+    let trackedSitesIndex = allSites.findIndex((s: any) => s.siteId === currentSiteId);
 
     /*-- Run first stuff */
     /*-- onMount, beforeUpdate, afterUpdate */
     /*-- Handlers */
-    /*-- Methods */
     function handleSiteSelect(e: any) {
         console.log(e.currentTarget.value);
-        allSitesIndex = allSites.findIndex((c) => {
+        trackedSitesIndex = trackedSites.findIndex((c) => {
             return c.siteId === parseInt(e.currentTarget.value);
         });
 
-        if (allSitesIndex > -1) {
-            console.log('Found and setting to:', allSites[allSitesIndex]);
-            currentSite = allSites[allSitesIndex];
-            goto('/api/sites/' + currentSite.siteId);
+        if (trackedSitesIndex > -1) {
+            console.log('Found and setting to:', trackedSites[trackedSitesIndex]);
+            currentSiteId = trackedSites[trackedSitesIndex].siteId;
+            goto('/api/sites/' + currentSiteId);
         } else {
             console.log('Site index not found');
         }
     }
 
     function handleClickPrev(event: any) {
-        allSitesIndex = allSites.findIndex((s) => s.siteId === currentSiteId);
-        if (allSitesIndex > 0) {
-            allSitesIndex--;
-            currentSiteId = allSites[allSitesIndex].siteId;
+        trackedSitesIndex = trackedSites.findIndex((s) => s.siteId === currentSiteId);
+        if (trackedSitesIndex > 0) {
+            trackedSitesIndex--;
+            currentSiteId = trackedSites[trackedSitesIndex].siteId;
             goto('/api/sites/' + currentSiteId);
         }
     }
 
     function handleClickNext(event: any) {
-        allSitesIndex = allSites.findIndex((s) => s.siteId === currentSiteId);
-        if (allSitesIndex < allSites.length - 1) {
-            allSitesIndex++;
-            currentSiteId = allSites[allSitesIndex].siteId;
+        trackedSitesIndex = trackedSites.findIndex((s) => s.siteId === currentSiteId);
+        if (trackedSitesIndex < trackedSites.length - 1) {
+            trackedSitesIndex++;
+            currentSiteId = trackedSites[trackedSitesIndex].siteId;
             goto('/api/sites/' + currentSiteId);
         }
     }
 
-    /*-- Reactives (functional) */
-    $: currentSite = allSites.find(x => x.siteId === currentSiteId);
-    $: nextDisabled = allSitesIndex > allSites.length - 2;
-    $: prevDisabled = allSitesIndex < 1;
-    console.log(currentSite);
+    /*-- Methods */
+    function getTrackedSites(): SiteTracking[] {
+        return allSites
+            .filter((s: any) => s.countyId === currentCountyId)
+            .map((s: any) => ({ siteId: s.siteId, countyId: s.countyId, siteName: s.siteName }));
+    }
 
+    /*-- Reactives (functional) */
+    $: currentSite = allSites.find((x) => x.siteId === currentSiteId);
+    $: currentCountyId = filterByCounty ? currentSite?.countyId : -1;
+    $: prevDisabled = trackedSitesIndex < 1;
+    $: nextDisabled = trackedSitesIndex > trackedSites.length - 2;
+    $: {
+        console.log('currentCountyId', currentCountyId);
+        console.log('getTrackedSites', getTrackedSites());
+
+        if (filterByCounty) {
+            trackedSites.length = 0;
+            trackedSites.push(...getTrackedSites());
+        } else if (trackedSites.length !== allSites.length) {
+            trackedSites.length = 0;
+            trackedSites.push(...allSites);
+        }
+        console.log('trackedSites', trackedSites);
+    }
+    console.log(currentSite);
 </script>
 
-<!--
-<button class="btn variant-filled w-32 justify-between" use:popup={popupComboboxHelp}>
-    <span class="capitalize">Help</span>
-    <span>↓</span>
-</button>
--->
 <!-- TODO: add help tooltip to show this is filtered and maybe an option of all and/or unfiltered -->
 <div class="block lg:flex lg:flex-row gap-0 md:gap-1 lg:gap-2">
     {#if $$slots.heading}
@@ -121,29 +143,23 @@
         </div>
     {/if}
     <div class={classesControlBody} aria-labelledby={labelledby}>
-        <button type="button" class={classesButtonLeft} on:click={handleClickPrev} disabled={prevDisabled} >◀</button>
+        <button type="button" class={classesButtonLeft} on:click={handleClickPrev} disabled={prevDisabled}>◀</button>
         <button type="button" class={classesButtonSite} use:popup={popupSites} title={currentSite.siteName}>
             <span class="w-full text-left truncate overflow-hidden text-ellipsis">
                 {currentSite.siteName}
             </span>
             <span>↓</span>
         </button>
-        <button type="button" class={classesButtonRight} on:click={handleClickNext} disabled={nextDisabled} >▶</button>
+        <button type="button" class={classesButtonRight} on:click={handleClickNext} disabled={nextDisabled}>▶</button>
     </div>
 </div>
 
 <div data-popup="popupSites">
     <div class="card w-48 shadow-xl py-2 overflow-y-auto" style="max-height: calc(100vh - 272px);">
         <ListBox rounded="rounded-none">
-            {#each allSites as site}
-                <ListBoxItem
-                    bind:group={currentSiteId}
-                    name="sites"
-                    on:change={handleSiteSelect}
-                    value={site.siteId}>
-
+            {#each trackedSites as site}
+                <ListBoxItem bind:group={currentSiteId} name="sites" on:change={handleSiteSelect} value={site.siteId}>
                     {site.siteName}
-
                 </ListBoxItem>
             {/each}
         </ListBox>

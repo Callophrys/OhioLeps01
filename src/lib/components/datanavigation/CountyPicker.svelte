@@ -11,6 +11,7 @@
     /*-- -- Data -- */
     /*-- Exports */
     export let currentCountyId: number;
+    export let filterByCounty: boolean;
     console.log('currentCountyId', currentCountyId);
 
     /** Show down arrow with year and week labels to indicate dropdown.  Default: true */
@@ -38,7 +39,7 @@
     const cControlBody = 'btn-group variant-soft my-auto';
     const cButtonLeft = '';
     const cButtonRight = '';
-    const cButtonCounty = "w-32 md:w-44 lg:w-56 xl:w-64";
+    const cButtonCounty = 'w-32 md:w-44 lg:w-56 xl:w-64';
     const cPrefixCounty = '';
     const cSuffixCounty = '';
 
@@ -63,78 +64,63 @@
 
     /*-- Properties (functional) */
     /*-- Variables and objects */
-    let allCountiesIndex = -1;
-    let allSitesIndex = -1;
+    let allCountiesIndex: number;
+    let allSitesIndex: number;
 
     /*-- Run first stuff */
     /*-- onMount, beforeUpdate, afterUpdate */
     /*-- Handlers */
-    function handleSelect(e: any) {
-        console.log(e.currentTarget.value);
-        let countyId = parseInt(e.currentTarget.value);
-        if (countyId !== currentCountyId) {
+    function handleSelect() {
 
-            currentCounty = allCounties.find((c) => c.id === countyId);
+        allSitesIndex = trackedSites.findIndex((c) => {
+            return c.countyId === currentCountyId;
+        });
 
-            allSitesIndex = allSites.findIndex((c) => {
-                return c.countyId === countyId;
-            });
-
-            if (allSitesIndex > -1) {
-                if (currentSiteId !== allSites[allSitesIndex].siteId) {
-                    currentSite = allSites[allSitesIndex];
-                    goto('/api/sites/' + currentSite.siteId);
-                }
-            } else {
-                console.log('Site index not found')
-            }
+        if (allSitesIndex > -1 && currentSiteId !== allSites[allSitesIndex].siteId) {
+            goto('/api/sites/' + currentSite.siteId);
+        } else {
+            // TODO: apply temporary animate-pulse, this class is from tailwind
+            console.log('Site index not found');
         }
     }
 
-    function handlePrev(e: any) {
-        console.log('handlePrev', 'currentCountyId (1)', currentCountyId);
+    function handlePrev() {
         allCountiesIndex = allCounties.findIndex((c) => c.id === currentCountyId);
-        console.log('handlePrev', 'allCountiesIndex', allCountiesIndex);
         if (allCountiesIndex > 0) {
             allCountiesIndex--;
             currentCountyId = allCounties[allCountiesIndex].id;
-            console.log('handlePrev', 'currentCountyId (2)', currentCountyId);
-            allSitesIndex = allSites.findLastIndex((s) => s.countyId === currentCountyId);
-            console.log('handlePrev', 'allSitesIndex', allSitesIndex);
+            allSitesIndex = trackedSites.findLastIndex((s) => s.countyId === currentCountyId);
             if (allSitesIndex > 0) {
-                currentSiteId = allSites[allSitesIndex].siteId;
-                console.log('handlePrev', 'currentSiteId', currentSiteId);
+                currentSiteId = trackedSites[allSitesIndex].siteId;
                 goto('/api/sites/' + currentSiteId);
             }
         }
     }
 
     function handleNext() {
-        console.log('handleNext', 'currentCountyId (1)', currentCountyId);
         allCountiesIndex = allCounties.findIndex((c) => c.id === currentCountyId);
-        console.log('handleNext', 'allCountiesIndex', allCountiesIndex);
         if (allCountiesIndex < allCounties.length - 1) {
             allCountiesIndex++;
             currentCountyId = allCounties[allCountiesIndex].id;
-            console.log('handleNext', 'currentCountyId (2)', currentCountyId);
-            allSitesIndex = allSites.findIndex((s) => s.countyId === currentCountyId);
-            console.log('handleNext', 'allSitesIndex', allSitesIndex);
+            allSitesIndex = trackedSites.findIndex((s) => s.countyId === currentCountyId);
             if (allSitesIndex > 0) {
-                currentSiteId = allSites[allSitesIndex].siteId;
-                console.log('handleNext', 'currentSiteId', currentSiteId);
+                currentSiteId = trackedSites[allSitesIndex].siteId;
                 goto('/api/sites/' + currentSiteId);
             }
         }
     }
 
     /*-- Methods */
+
     /*-- Reactives (functional) */
-    $: currentCounty = allCounties.find(x => x.id === currentCountyId);
-    $: currentSite = allSites.find(x => x.countyId === currentCountyId);
+    $: trackedSites = filterByCounty ?
+        allSites.filter((s: any) => s.countyId === currentCountyId) :
+        allSites;
+    $: currentCounty = allCounties.find((x) => x.id === currentCountyId);
+    $: currentSite = trackedSites.find((x) => x.countyId === currentCountyId);
     $: currentSiteId = currentSite?.siteId;
     $: nextDisabled = allCountiesIndex > allCounties.length - 2;
     $: prevDisabled = allCountiesIndex < 1;
-    console.log("currentCounty", currentCounty);
 
 </script>
 
@@ -162,14 +148,8 @@
         <!--TODO: this must close out right after clicking -->
         <ListBox rounded="rounded-none">
             {#each allCounties as county}
-                <ListBoxItem
-                    bind:group={currentCountyId}
-                    name="counties"
-                    on:change={handleSelect}
-                    value={county.id}>
-
+                <ListBoxItem bind:group={currentCountyId} name="counties" on:change={handleSelect} value={county.id}>
                     {county.name}
-
                 </ListBoxItem>
             {/each}
         </ListBox>

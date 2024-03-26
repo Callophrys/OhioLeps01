@@ -175,7 +175,6 @@
     /*-- Reactives (functional) */
     $: yearDates = yearsOfDate[recordYear];
     $: trackedWeekIndex =  trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteDateId);
-    //$: trackedWeek =  trackedWeeks[trackedWeekIndex];
     $: nextDisabled = trackedWeekIndex > trackedWeeks.length - 2;
     $: prevDisabled = trackedWeekIndex < 1;
 

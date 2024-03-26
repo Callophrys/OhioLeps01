@@ -4,8 +4,6 @@
     import SiteDatePicker from '$lib/components/datanavigation/SiteDatePicker.svelte';
     import StandardContainer from '$lib/components/StandardContainer.svelte';
     import CountySite from '$lib/components/datanavigation/CountySite.svelte';
-    //import { createEventDispatcher } from 'svelte';
-    import { goto } from '$app/navigation';
     import { setContext } from 'svelte';
 
     export let data;
@@ -14,40 +12,21 @@
     setContext('sites', data.sites);
     setContext('siteDates', data.site.siteDates);
 
-    function handleClick(event: any) {
-        event.preventDefault();
-        if (event.currentTarget?.value) {
-            goto('/api/sitedates/' + event.currentTarget.value);
-        }
-    }
+    let filterByCounty: boolean = false;
 
     $: currentSiteId = data.site.siteId;
     $: currentSiteDateId = data.site.siteDates.length ? data.site.siteDates[0].siteDateId : -1;
-
-    //const dispatch = createEventDispatcher();
-    //const submit = () => dispatch('submit');
-
-    // TODO
-    // bind the selected listboxtime
-    // and/or use action
-    // https://svelte.dev/docs/element-directives#use-action
-    // actions:
-    // https://svelte.dev/docs/svelte-action
-    // does bind selected go on the parent component?  See skeletonui for event stuff
 </script>
 
-<CountySite county={data.site.county.name} site={data.site.siteName} />
+<CountySite county={data.site.county.name} site={data.site.siteName} bind:filterByCounty />
 
 <StandardContainer>
     <svelte:fragment slot="standardHead">
-
         <div class="flex flex-row justify-between gap-1 md:gap-2">
-            <CountyPicker currentCountyId={data.site.countyId} />
+            <CountyPicker currentCountyId={data.site.countyId} bind:filterByCounty />
             <!-- TODO: Filter sites to selected country -->
-            <SitePicker currentSiteId={currentSiteId} />
-            <SiteDatePicker
-                bind:currentSiteId
-                bind:currentSiteDateId />
+            <SitePicker {currentSiteId} bind:filterByCounty />
+            <SiteDatePicker bind:currentSiteId bind:currentSiteDateId />
         </div>
 
         <!-- TODO: Make this change the site by alphabetical -->
@@ -93,7 +72,7 @@
         <!--       Any change here should advance the downstream pickers and the -->
         <!--       current data - as long as there is no unchanged data - Prompt -->
         <!--       user about this -->
-     
+
         <!-- <div class="basis-1/3 my-auto"> -->
         <!-- </div> -->
         <!-- <div class="basis-1/3 flex flex-row justify-center space-x-4"> -->
@@ -130,9 +109,9 @@
                 <div>description: {data.site.description ?? ''}</div>
                 <div>Statuses</div>
                 <ul class="pl-4">
-                {#each data.site.siteStatuses as siteStatus}
-                    <li>{siteStatus.year}: {siteStatus.statusCode.description ?? ''}</li>
-                {/each}
+                    {#each data.site.siteStatuses as siteStatus}
+                        <li>{siteStatus.year}: {siteStatus.statusCode.description ?? ''}</li>
+                    {/each}
                 </ul>
                 <div>
                     createdAt: {data.site.createdAt ?? ''}
