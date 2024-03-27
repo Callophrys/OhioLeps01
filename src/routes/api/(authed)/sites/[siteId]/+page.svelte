@@ -14,6 +14,7 @@
 
     let filterByCounty: boolean = false;
 
+    $: currentCountyId = data.site.countyId;
     $: currentSiteId = data.site.siteId;
     $: currentSiteDateId = data.site.siteDates.length ? data.site.siteDates[0].siteDateId : -1;
 </script>
@@ -23,9 +24,9 @@
 <StandardContainer>
     <svelte:fragment slot="standardHead">
         <div class="flex flex-row justify-between gap-1 md:gap-2">
-            <CountyPicker currentCountyId={data.site.countyId} bind:filterByCounty />
+            <CountyPicker {currentCountyId} {filterByCounty} />
             <!-- TODO: Filter sites to selected country -->
-            <SitePicker {currentSiteId} bind:filterByCounty />
+            <SitePicker {currentSiteId} {filterByCounty} />
             <SiteDatePicker bind:currentSiteId bind:currentSiteDateId />
         </div>
 

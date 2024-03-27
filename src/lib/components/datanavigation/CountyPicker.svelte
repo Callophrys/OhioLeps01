@@ -64,47 +64,45 @@
 
     /*-- Properties (functional) */
     /*-- Variables and objects */
-    let allCountiesIndex: number;
-    let allSitesIndex: number;
+    let filteredSitesIndex: number;
 
     /*-- Run first stuff */
     /*-- onMount, beforeUpdate, afterUpdate */
     /*-- Handlers */
-    function handleSelect() {
 
-        allSitesIndex = trackedSites.findIndex((c) => {
+    // TODO: apply temporary animate-pulse to indicate site change or perhaps
+    //       the inability to change; this class is from tailwind
+
+    function handleSelect() {
+        filteredSitesIndex = filteredSites.findIndex((c: any) => {
             return c.countyId === currentCountyId;
         });
 
-        if (allSitesIndex > -1 && currentSiteId !== allSites[allSitesIndex].siteId) {
-            goto('/api/sites/' + currentSite.siteId);
-        } else {
-            // TODO: apply temporary animate-pulse, this class is from tailwind
-            console.log('Site index not found');
+        if (filteredSitesIndex > -1) {
+            currentSiteId = filteredSites[filteredSitesIndex].siteId;
+            goto('/api/sites/' + currentSiteId);
         }
     }
 
     function handlePrev() {
-        allCountiesIndex = allCounties.findIndex((c) => c.id === currentCountyId);
         if (allCountiesIndex > 0) {
             allCountiesIndex--;
             currentCountyId = allCounties[allCountiesIndex].id;
-            allSitesIndex = trackedSites.findLastIndex((s) => s.countyId === currentCountyId);
-            if (allSitesIndex > 0) {
-                currentSiteId = trackedSites[allSitesIndex].siteId;
+            filteredSitesIndex = filteredSites.findLastIndex((s: any) => s.countyId === currentCountyId);
+            if (filteredSitesIndex > 0) {
+                currentSiteId = filteredSites[filteredSitesIndex].siteId;
                 goto('/api/sites/' + currentSiteId);
             }
         }
     }
 
     function handleNext() {
-        allCountiesIndex = allCounties.findIndex((c) => c.id === currentCountyId);
         if (allCountiesIndex < allCounties.length - 1) {
             allCountiesIndex++;
             currentCountyId = allCounties[allCountiesIndex].id;
-            allSitesIndex = trackedSites.findIndex((s) => s.countyId === currentCountyId);
-            if (allSitesIndex > 0) {
-                currentSiteId = trackedSites[allSitesIndex].siteId;
+            filteredSitesIndex = filteredSites.findIndex((s) => s.countyId === currentCountyId);
+            if (filteredSitesIndex > 0) {
+                currentSiteId = filteredSites[filteredSitesIndex].siteId;
                 goto('/api/sites/' + currentSiteId);
             }
         }
@@ -113,15 +111,13 @@
     /*-- Methods */
 
     /*-- Reactives (functional) */
-    $: trackedSites = filterByCounty ?
-        allSites.filter((s: any) => s.countyId === currentCountyId) :
-        allSites;
+    $: filteredSites = filterByCounty ? allSites.filter((s: any) => s.countyId === currentCountyId) : allSites;
+    $: allCountiesIndex = allCounties.findIndex((c: any) => c.id === currentCountyId);
     $: currentCounty = allCounties.find((x) => x.id === currentCountyId);
-    $: currentSite = trackedSites.find((x) => x.countyId === currentCountyId);
+    $: currentSite = filteredSites.find((x: any) => x.countyId === currentCountyId);
     $: currentSiteId = currentSite?.siteId;
-    $: nextDisabled = allCountiesIndex > allCounties.length - 2;
     $: prevDisabled = allCountiesIndex < 1;
-
+    $: nextDisabled = allCountiesIndex > allCounties.length - 2;
 </script>
 
 <div class="flex flex-col lg:flex-row gap-0 md:gap-1 lg:gap-2">
@@ -131,7 +127,6 @@
         </div>
     {/if}
     <div class={classesControlBody} aria-labelledby={labelledby}>
-        <!--TODO: Still breaks and/or locks up when arrowing to Adams county, also select 2 get stuck to only the 2 on next-prev -->
         <button class={classesButtonLeft} on:click={handlePrev} disabled={prevDisabled}>◀</button>
         <button class="w-44" use:popup={popupCounties}>
             <span class="w-full text-left text-nowrap overflow-hidden text-ellipsis">
@@ -145,7 +140,6 @@
 
 <div data-popup="popupCounties">
     <div class="card w-48 shadow-xl py-2 overflow-y-auto" style="max-height: calc(100vh - 272px);">
-        <!--TODO: this must close out right after clicking -->
         <ListBox rounded="rounded-none">
             {#each allCounties as county}
                 <ListBoxItem bind:group={currentCountyId} name="counties" on:change={handleSelect} value={county.id}>
