@@ -41,13 +41,13 @@ var z = y.difference(x) // [ "d", "e", "g" ]
     /*-- Constants (styles) */
     const cSectionClasses = 'flex flex-row space-x-2';
     const cSectionSpanClasses = 'w-24';
-    const cDataClasses    = 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1 md:gap-2';
-    const cDatumClasses   = 'flex flex-row space-x-2';
+    const cDataClasses = 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1 md:gap-2';
+    const cDatumClasses = 'flex flex-row space-x-2';
     const cButtonStandard = 'btn w-24 md:w-28 h-8 sm:h-10 md:h-11 pb-2 variant-filled-surface';
-    const cButtonWider    = 'btn w-28 md:w-36 h-8 sm:h-10 md:h-11 pb-2 variant-filled-surface';
-    const cButtonSuccess  = 'btn w-24 md:w-28 h-8 sm:h-10 md:h-11 pb-2 variant-soft-success';
-    const cButtonCancel   = 'btn w-24 md:w-28 h-8 sm:h-10 md:h-11 pb-2 variant-filled-error';
-    const cButtonAddView  = 'btn w-44         h-8 sm:h-10 md:h-11 pb-2 variant-filled-surface';
+    const cButtonWider = 'btn w-28 md:w-36 h-8 sm:h-10 md:h-11 pb-2 variant-filled-surface';
+    const cButtonSuccess = 'btn w-24 md:w-28 h-8 sm:h-10 md:h-11 pb-2 variant-soft-success';
+    const cButtonCancel = 'btn w-24 md:w-28 h-8 sm:h-10 md:h-11 pb-2 variant-filled-error';
+    const cButtonAddView = 'btn w-44         h-8 sm:h-10 md:h-11 pb-2 variant-filled-surface';
 
     /*-- Variables (styles) */
     /*-- Reactives (styles) */
@@ -165,6 +165,12 @@ var z = y.difference(x) // [ "d", "e", "g" ]
         }
     });
 
+    afterUpdate(() => {
+        localStorage.setItem('showRecentEdits', showRecentEdits ? '1' : '0');
+        localStorage.setItem('showDeletedData', showDeletedData ? '1' : '0');
+        localStorage.setItem('isViewAll', isViewAll ? '1' : '0');
+    });
+
     /*-- Handlers */
     const handleChange = () => {
         total = getTotal();
@@ -199,19 +205,12 @@ var z = y.difference(x) // [ "d", "e", "g" ]
     $: availableObservations = data.checklistsSiteDateObs.filter((x: SiteDateObservationChecklist) => showDeletedData || !x.deleted);
 
     /*-- Other */
-    afterUpdate(() => {
-        localStorage.setItem('showRecentEdits', showRecentEdits ? '1' : '0');
-        localStorage.setItem('showDeletedData', showDeletedData ? '1' : '0');
-        localStorage.setItem('isViewAll', isViewAll? '1' : '0');
-    });
 
     //if (form) console.log('form>>', form);
     //console.log(data);
 </script>
 
-<YearWeek
-    year={new Date(data.siteDateObservation.siteDate.recordDate).getFullYear()}
-    week={weekOfYearSince(new Date(data.siteDateObservation.siteDate.recordDate))} />
+<YearWeek year={new Date(data.siteDateObservation.siteDate.recordDate).getFullYear()} week={weekOfYearSince(new Date(data.siteDateObservation.siteDate.recordDate))} />
 <DataOptions bind:showRecentEdits bind:showDeletedData />
 
 <StandardContainer>
@@ -222,21 +221,13 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                 <!-- TODO: make this flex better for responsive sizings -->
                 <div class="flex flex-col lg:flex-row lg:justify-start gap-1 lg:gap-2 pb-2 text-surface-600-300-token">
                     <SitePicker currentSiteId={data.siteDateObservation.siteDate.siteId} />
-                    <SiteDatePicker
-                        currentSiteId={data.siteDateObservation.siteDate.siteId}
-                        currentSiteDateId={data.siteDateObservation.siteDateId ?? -1} />
-                    <SpeciesPicker
-                        currentSdoChecklistItemId={currentSiteDateObservation.siteDateObservationId}
-                        {isAdding}
-                        {isEditing}
-                        {isViewAll}
-                        {showDeletedData} />
+                    <SiteDatePicker currentSiteId={data.siteDateObservation.siteDate.siteId} currentSiteDateId={data.siteDateObservation.siteDateId ?? -1} />
+                    <SpeciesPicker currentSdoChecklistItemId={currentSiteDateObservation.siteDateObservationId} {isAdding} {isEditing} {isViewAll} {showDeletedData} />
                 </div>
 
                 <!-- Main controls -->
                 <div class="px-4 flex flex-auto justify-between gap-2">
                     <div class="flex flex-row justify-start gap-2">
-
                         <!-- EDIT(s) Action -->
                         {#if $page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'ENTRY' || $page.data.user.role === 'REVIEWER'}
                             {#if isAdding}
@@ -291,7 +282,6 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                             <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" disabled>Review<span class="pl-2">🌎</span></button>
                             <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" disabled>Delete<span class="pl-2">❌</span></button>
                         {:else if !isEditing}
-
                             <!-- REVIEW(LOCK)/UNLOCK Actions -->
                             <form name="review" method="POST" action="?/reviewSiteDateObservation" use:enhance bind:this={formReview}>
                                 <!-- LOCK/UNLOCK Mark data as reviewed, aka valid and locked; Can unlock -->
@@ -335,20 +325,18 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                                                     <span class="pl-2">🔒</span>
                                                 </button>
                                             {/if}
+                                        {:else if isViewAll}
+                                            <input hidden name="confirm_unlock_all" value="false" />
+                                            <button type="button" class={cButtonWider} on:click={() => modalStore.trigger(modalReviewerUnlock)}>
+                                                Unlock All
+                                                <span class="pl-2">🔑</span>
+                                            </button>
                                         {:else}
-                                            {#if isViewAll}
-                                                <input hidden name="confirm_unlock_all" value="false" />
-                                                <button type="button" class={cButtonWider} on:click={() => modalStore.trigger(modalReviewerUnlock)}>
-                                                    Unlock All
-                                                    <span class="pl-2">🔑</span>
-                                                </button>
-                                            {:else}
-                                                <input hidden name="confirm" value="false" />
-                                                <button type="button" class={cButtonWider} on:click={() => modalStore.trigger(modalReviewerUnlock)}>
-                                                    Unlock
-                                                    <span class="pl-2">🔑</span>
-                                                </button>
-                                            {/if}
+                                            <input hidden name="confirm" value="false" />
+                                            <button type="button" class={cButtonWider} on:click={() => modalStore.trigger(modalReviewerUnlock)}>
+                                                Unlock
+                                                <span class="pl-2">🔑</span>
+                                            </button>
                                         {/if}
                                     {:else}
                                         <button type="button" class={cButtonStandard} disabled>
@@ -413,12 +401,7 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                         {/if}
 
                         <!-- TOGGLE SHOW ALL/SINGLE Action -->
-                        <button
-                            type="button"
-                            class={cButtonAddView}
-                            on:click= {() => (isViewAll = !isViewAll)}
-                            disabled={isEditing || false}
-                            title="View all species">
+                        <button type="button" class={cButtonAddView} on:click={() => (isViewAll = !isViewAll)} disabled={isEditing || false} title="View all species">
                             <input class="checkbox" type="checkbox" checked={isViewAll} disabled={isEditing || false} />
                             <span>View all</span>
                             <span class="!ml-0 text-green-900 dark:text-green-200 text-2xl">🔎</span>
@@ -442,103 +425,76 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                 </div>
 
                 <!-- START Data controls group -->
-                {#if isViewAll} <!-- Multiple species observation recordings -->
+                {#if isViewAll}
+                    <!-- Multiple species observation recordings -->
 
                     <hr />
 
                     {#if isEditing}<!-- EDITING Multiple species observation recordings -->
 
                         <form name="edit" method="POST" action="?/saveSiteDateObservation" use:enhance bind:this={formEdit}>
-                        {#each availableObservations as chkSdo}
-
-                            <div class={`${chkSdo.deleted ? 'line-through odd:variant-ghost-warning even:variant-ghost-error' : 'odd:bg-gray-200 odd:dark:bg-red-700'}`}>
-
-                                <div class="pl-1 flex flex-row">
-                                    <div class="w-6">{ chkSdo.deleted ? '❌' : (chkSdo.confirmed ? '🔐' : '🔓')}</div>
-                                    <div class="w-56 truncate">{chkSdo.checklist.commonName}</div>
-                                    <div class="w-64">{chkSdo.checklist.scientificName}</div>
-                                    <div class="w-36">Hodges: {chkSdo.hodges}</div>
-
-                                    {#if chkSdo.deleted}
-                                        <div class="w-28 pr-2 pb-0.5">ID Code: {@html chkSdo.idCode ?? '&varnothing;'}</div>
-                                    {:else if chkSdo.confirmed}
-                                        <div class="w-28 pr-2 pb-0.5">
-                                            <div class={cSectionClasses}>
-                                                <span class={cSectionSpanClasses}>ID Code:</span>
-                                                <input
-                                                    type="text"
-                                                    class="w-8 text-center text-black"
-                                                    value={chkSdo.idCode}
-                                                    disabled />
-                                            </div>
-                                        </div>
-                                    {:else}
-                                        <div class="w-28 pr-2 pb-0.5">
-                                            <label class={cSectionClasses}>
-                                                <span class={cSectionSpanClasses}>ID Code:</span>
-                                                <input
-                                                    type="text"
-                                                    name={`${chkSdo.siteDateObservationId}_idcode`}
-                                                    class="w-8 text-center text-black"
-                                                    value={chkSdo.idCode} />
-                                            </label>
-                                            <input type="hidden" name={`${chkSdo.siteDateObservationId}_idcode_orig`} value={chkSdo.idCode} />
-                                        </div>
-                                    {/if}
-                                    <div class="w-36">(Total: {chkSdo.total})</div>
-                                </div>
-
-                                <div class="pl-8 flex flex-wrap">
-
-                                    {#each Object.entries(chkSdo)
-                                        .filter((x) => x[0].startsWith('section'))
-                                        .map(([k, v]) => ({
-                                            label: `${k.substring(0, 1).toLocaleUpperCase()}${k.substring(1, 7)} ${k.substring(7)}`,
-                                            name: k,
-                                            value: v })) as section}
+                            {#each availableObservations as chkSdo}
+                                <div class={`${chkSdo.deleted ? 'line-through odd:variant-ghost-warning even:variant-ghost-error' : 'odd:bg-gray-200 odd:dark:bg-red-700'}`}>
+                                    <div class="pl-1 flex flex-row">
+                                        <div class="w-6">{chkSdo.deleted ? '❌' : chkSdo.confirmed ? '🔐' : '🔓'}</div>
+                                        <div class="w-56 truncate">{chkSdo.checklist.commonName}</div>
+                                        <div class="w-64">{chkSdo.checklist.scientificName}</div>
+                                        <div class="w-36">Hodges: {chkSdo.hodges}</div>
 
                                         {#if chkSdo.deleted}
-                                            <div class={cSectionClasses}>
-                                                <div class={cSectionSpanClasses}>{section.label}:</div>
-                                                <div class="w-8">{@html section.value ?? '&varnothing;'}</div>
-                                            </div>
+                                            <div class="w-28 pr-2 pb-0.5">ID Code: {@html chkSdo.idCode ?? '&varnothing;'}</div>
                                         {:else if chkSdo.confirmed}
-                                            <div class={cSectionClasses}>
-                                                <span class={cSectionSpanClasses}>{section.label}:</span>
-                                                <input
-                                                    type="text"
-                                                    value={section.value}
-                                                    class="w-8 mb-0.5 text-center text-black"
-                                                    disabled />
+                                            <div class="w-28 pr-2 pb-0.5">
+                                                <div class={cSectionClasses}>
+                                                    <span class={cSectionSpanClasses}>ID Code:</span>
+                                                    <input type="text" class="w-8 text-center text-black" value={chkSdo.idCode} disabled />
+                                                </div>
                                             </div>
                                         {:else}
-                                            <label class={cSectionClasses}>
-                                                <span class={cSectionSpanClasses}>{section.label}:</span>
-                                                <input
-                                                    type="text"
-                                                    name={`${chkSdo.siteDateObservationId}_${section.name}`}
-                                                    value={section.value}
-                                                    class="w-8 mb-0.5 text-center text-black"
-                                                    on:input={() => (total = getTotal())} />
-                                                <input type="hidden" name={`${chkSdo.siteDateObservationId}_${section.name}_orig`} value={section.value} />
-                                            </label>
+                                            <div class="w-28 pr-2 pb-0.5">
+                                                <label class={cSectionClasses}>
+                                                    <span class={cSectionSpanClasses}>ID Code:</span>
+                                                    <input type="text" name={`${chkSdo.siteDateObservationId}_idcode`} class="w-8 text-center text-black" value={chkSdo.idCode} />
+                                                </label>
+                                                <input type="hidden" name={`${chkSdo.siteDateObservationId}_idcode_orig`} value={chkSdo.idCode} />
+                                            </div>
                                         {/if}
+                                        <div class="w-36">(Total: {chkSdo.total})</div>
+                                    </div>
 
-                                    {/each}
+                                    <div class="pl-8 flex flex-wrap">
+                                        {#each Object.entries(chkSdo)
+                                            .filter((x) => x[0].startsWith('section'))
+                                            .map(([k, v]) => ({ label: `${k.substring(0, 1).toLocaleUpperCase()}${k.substring(1, 7)} ${k.substring(7)}`, name: k, value: v })) as section}
+                                            {#if chkSdo.deleted}
+                                                <div class={cSectionClasses}>
+                                                    <div class={cSectionSpanClasses}>{section.label}:</div>
+                                                    <div class="w-8">{@html section.value ?? '&varnothing;'}</div>
+                                                </div>
+                                            {:else if chkSdo.confirmed}
+                                                <div class={cSectionClasses}>
+                                                    <span class={cSectionSpanClasses}>{section.label}:</span>
+                                                    <input type="text" value={section.value} class="w-8 mb-0.5 text-center text-black" disabled />
+                                                </div>
+                                            {:else}
+                                                <label class={cSectionClasses}>
+                                                    <span class={cSectionSpanClasses}>{section.label}:</span>
+                                                    <input type="text" name={`${chkSdo.siteDateObservationId}_${section.name}`} value={section.value} class="w-8 mb-0.5 text-center text-black" on:input={() => (total = getTotal())} />
+                                                    <input type="hidden" name={`${chkSdo.siteDateObservationId}_${section.name}_orig`} value={section.value} />
+                                                </label>
+                                            {/if}
+                                        {/each}
+                                    </div>
+                                    <hr />
                                 </div>
-                                <hr />
-                            </div>
-
-                        {/each}
+                            {/each}
                         </form>
-
                     {:else}<!-- VIEWING Multiple species observation recordings -->
 
                         {#each availableObservations as chkSdo}
-
                             <div class={`${chkSdo.deleted ? 'odd:variant-ghost-warning even:variant-ghost-error' : 'odd:bg-gray-200 odd:dark:bg-red-700'}`}>
                                 <div class={`pl-1 flex flex-row ${chkSdo.deleted ? '[&>:not(:first-of-type)]:line-through' : ''}`}>
-                                    <div class="w-6">{ chkSdo.deleted ? '❌' : (chkSdo.confirmed ? '✔' : '✎')}</div>
+                                    <div class="w-6">{chkSdo.deleted ? '❌' : chkSdo.confirmed ? '✔' : '✎'}</div>
                                     <div class="w-56 truncate">{chkSdo.checklist.commonName}</div>
                                     <div class="w-64">{chkSdo.checklist.scientificName}</div>
                                     <div class="w-36">Hodges: {chkSdo.hodges}</div>
@@ -547,29 +503,21 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                                 </div>
 
                                 <div class={`pl-8 flex flex-wrap ${chkSdo.deleted ? 'line-through' : ''}`}>
-
                                     {#each Object.entries(chkSdo)
                                         .filter((x) => x[0].startsWith('section'))
-                                        .map(([k, v]) => ({
-                                            label: `${k.substring(0, 1).toLocaleUpperCase()}${k.substring(1, 7)} ${k.substring(7)}`,
-                                            name: k,
-                                            value: v })) as section}
-
+                                        .map(([k, v]) => ({ label: `${k.substring(0, 1).toLocaleUpperCase()}${k.substring(1, 7)} ${k.substring(7)}`, name: k, value: v })) as section}
                                         <div class={cSectionClasses}>
                                             <div class={cSectionSpanClasses}>{section.label}:</div>
                                             <div class="w-8">{@html section.value ?? '&varnothing;'}</div>
                                         </div>
-
                                     {/each}
                                 </div>
                                 <hr />
                             </div>
-
                         {/each}
-
                     {/if}
-
-                {:else} <!-- Single speices observation recordings -->
+                {:else}
+                    <!-- Single speices observation recordings -->
 
                     <div class={`${data.siteDateObservation.deleted ? 'line-through variant-ghost-error' : ''}`}>
                         <!-- DATA Heading -->
@@ -593,11 +541,7 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                                 <div class="w-28 pr-2 pb-0.5">
                                     <label class={cSectionClasses}>
                                         <span class={cSectionSpanClasses}>ID Code:</span>
-                                        <input
-                                            type="text"
-                                            name={`${currentSiteDateObservation.siteDateObservationId}_idcode`}
-                                            class="w-8 text-center text-black"
-                                            value={currentSiteDateObservation.idCode} />
+                                        <input type="text" name={`${currentSiteDateObservation.siteDateObservationId}_idcode`} class="w-8 text-center text-black" value={currentSiteDateObservation.idCode} />
                                     </label>
                                     <input type="hidden" name={`${currentSiteDateObservation.siteDateObservationId}_idcode_orig`} value={currentSiteDateObservation.idCode} />
                                 </div>
@@ -622,12 +566,7 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                                         <div class={cDatumClasses}>
                                             <label class={cSectionClasses}>
                                                 <span class={cSectionSpanClasses}>{section.label}:</span>
-                                                <input
-                                                    type="text"
-                                                    name={`${data.siteDateObservation.siteDateObservationId}_${section.name}`}
-                                                    value={section.value}
-                                                    class="w-8 text-center text-black"
-                                                    on:input={() => (total = getTotal())} />
+                                                <input type="text" name={`${data.siteDateObservation.siteDateObservationId}_${section.name}`} value={section.value} class="w-8 text-center text-black" on:input={() => (total = getTotal())} />
                                                 <input type="hidden" name={`${data.siteDateObservation.siteDateObservationId}_${section.name}_orig`} value={section.value} />
                                             </label>
                                         </div>

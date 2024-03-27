@@ -83,8 +83,9 @@
     let showDeletedData = false;
 
     /*-- Variables and objects */
+
     /*-- Run first stuff */
-    console.log('sd ##', data.siteDates);
+    //console.log('sd ##', data.siteDates);
     //console.log(data.siteDateSiteDates);
     //console.log(uniqueYears);
     //console.log(trackedWeeks);
@@ -165,10 +166,8 @@
     }
 
     /*-- Methods */
-    /*-- Reactives (functional) */
-    let currentSiteId = data.siteDate.siteId;
-    let currentSiteDateId = data.siteDate.siteDateId;
 
+    /*-- Reactives (functional) */
     $: recordDate = new Date(data.siteDate.recordDate);
     $: recordYear = new Date(data.siteDate.recordDate).getFullYear();
     $: recordWeek = weekOfYearSince(new Date(data.siteDate.recordDate));
@@ -178,10 +177,11 @@
     $: endTemp = String(data.siteDate.endTemp);
 
     /*-- Other */
+    let currentSiteDateId = data.siteDate.siteDateId;
 </script>
 
 <YearWeek bind:year={recordYear} bind:week={recordWeek} />
-<DataOptions bind:showRecentEdits bind:showDeletedData={showDeletedData} />
+<DataOptions bind:showRecentEdits bind:showDeletedData />
 
 <DoubledContainer basisLeft="basis-2/5" basisRight="basis-3/5">
     <svelte:fragment slot="leftHead">
@@ -195,44 +195,32 @@
         <!-- Year and week dropdowns -->
         <div class="flex flex-row space-x-2 pb-2 scale-90">
             <div>
-                <select
-                    class="select w-28"
-                    bind:value={y}
-                    on:blur={() => ([w] = y.children)}>
-
+                <select class="select w-28" bind:value={y} on:blur={() => ([w] = y.children)}>
                     {#each uniqueYears as year}
-                        <option value={{
-                            id: year,
-                            children: [...trackedWeeks.filter((z) => z.year === year)],
-                        }}>
+                        <option
+                            value={{
+                                id: year,
+                                children: [...trackedWeeks.filter((z) => z.year === year)],
+                            }}>
                             {year}
                         </option>
                     {/each}
-
                 </select>
             </div>
 
             <div>
                 {#if y}
-                    <select
-                        class="select w-36"
-                        bind:value={w}
-                        on:change={handleClick}
-                        title="Calculated from 'record date' field">
-            
+                    <select class="select w-36" bind:value={w} on:change={handleClick} title="Calculated from 'record date' field">
                         {#each y.children as dateTrackingItem}
                             <option value={dateTrackingItem.siteDateId}>
                                 {dateTrackingItem.week} - {formatDate(dateTrackingItem.recordDate.toISOString())}
                             </option>
                         {/each}
-
                     </select>
                 {/if}
             </div>
-
         </div>
         <hr />
-
     </svelte:fragment>
 
     <svelte:fragment slot="leftBody">
@@ -468,15 +456,7 @@
     <svelte:fragment slot="rightBody">
         <div class="flex flex-row justify-between mb-2">
             <div class="my-auto">{data.siteDate.siteName}</div>
-            <SiteDatePicker
-                bind:currentSiteDateId
-                controlBody="scale-90"
-                buttonLeft="!px-2"
-                buttonRight="!px-2"
-                buttonYear="w-28 px-0 md:px-1 lg:px-2"
-                buttonWeek="w-24 px-0 md:px-1 lg:px-2"
-                dropdownShowDate={false}
-                dropdownPointers={false}>
+            <SiteDatePicker bind:currentSiteDateId controlBody="scale-90" buttonLeft="!px-2" buttonRight="!px-2" buttonYear="w-28 px-0 md:px-1 lg:px-2" buttonWeek="w-24 px-0 md:px-1 lg:px-2" dropdownShowDate={false} dropdownPointers={false}>
                 <svelte:fragment slot="prefixYear">Year:</svelte:fragment>
                 <svelte:fragment slot="prefixWeek">Week:</svelte:fragment>
             </SiteDatePicker>

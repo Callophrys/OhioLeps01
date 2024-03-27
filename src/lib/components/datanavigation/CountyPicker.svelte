@@ -2,7 +2,7 @@
     /*-- Imports */
     import { goto } from '$app/navigation';
     import type { County, Site } from '@prisma/client';
-    import { popup } from '@skeletonlabs/skeleton';
+    import { filter, popup } from '@skeletonlabs/skeleton';
     import { ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
     import type { PopupSettings } from '@skeletonlabs/skeleton';
     import type { CssClasses } from '@skeletonlabs/skeleton';
@@ -12,7 +12,6 @@
     /*-- Exports */
     export let currentCountyId: number;
     export let filterByCounty: boolean;
-    console.log('currentCountyId', currentCountyId);
 
     /** Show down arrow with year and week labels to indicate dropdown.  Default: true */
     export let dropdownPointers: boolean = true;
@@ -20,36 +19,47 @@
     /*-- Context */
     let allCounties: County[] = getContext('counties') ?? [];
     let allSites: Site[] = getContext('sites') ?? [];
-    //console.log(allCounties);
 
     /*-- -- Styling -- */
     /*-- Properties (styles) */
+    export let controlOuter: CssClasses = '';
     export let controlBody: CssClasses = '';
     export let buttonLeft: CssClasses = '';
+    export let buttonCenter: CssClasses = dropdownPointers ? ($$slots.prefixYear ? 'w-28' : 'w-20') : $$slots.prefixYear ? 'w-24' : 'w-16';
     export let buttonRight: CssClasses = '';
-    export let buttonCounty: CssClasses = dropdownPointers ? ($$slots.prefixYear ? 'w-28' : 'w-20') : $$slots.prefixYear ? 'w-24' : 'w-16';
-    export let prefixCounty: CssClasses = '';
-    export let suffixCounty: CssClasses = dropdownPointers ? "before:content-['↓']" : '';
+    export let prefixCenter: CssClasses = '';
+    export let scriptCenter: CssClasses = '';
+    export let suffixCenter: CssClasses = dropdownPointers ? "before:content-['↓']" : '';
+    export let popupInner: CssClasses = '';
+    export let popupStyles: string = '';
 
     // Properties (a11y)
     /** Provide the ARIA labelledby value.  Default: "Select site-date" */
     export let labelledby = 'Select county';
 
     /*-- Constants (styles) */
+    const cControlOuter = 'block lg:flex lg:flex-row gap-0 md:gap-1 lg:gap-2';
     const cControlBody = 'btn-group variant-soft my-auto';
     const cButtonLeft = '';
+    const cButtonCenter = 'w-32 md:w-44 lg:w-56';
     const cButtonRight = '';
-    const cButtonCounty = 'w-32 md:w-44 lg:w-56 xl:w-64';
-    const cPrefixCounty = '';
-    const cSuffixCounty = '';
+    const cPrefixCenter = '';
+    const cScriptCenter = 'w-full text-left truncate overflow-hidden text-ellipsis';
+    const cSuffixCenter = '';
+    const cPopupInner = 'card w-48 shadow-xl py-2 overflow-y-auto';
+    const cPopupStyles = 'max-height: calc(100vh - 272px);';
 
     /*-- Reactives (styles) */
+    $: classesControlOuter = `${cControlOuter} ${controlOuter} ${$$props.style ?? ''}`;
     $: classesControlBody = `${cControlBody} ${controlBody} ${$$props.class ?? ''}`;
     $: classesButtonLeft = `${cButtonLeft} ${buttonLeft} ${$$props.class ?? ''}`;
+    $: classesButtonCenter = `${cButtonCenter} ${buttonCenter} ${$$props.style ?? ''}`;
     $: classesButtonRight = `${cButtonRight} ${buttonRight} ${$$props.class ?? ''}`;
-    $: classesButtonCounty = `${cButtonCounty} ${buttonCounty} ${$$props.class ?? ''}`;
-    $: classesPrefixCounty = `${cPrefixCounty} ${prefixCounty} ${$$props.class ?? ''}`;
-    $: classesSuffixCounty = `${cSuffixCounty} ${suffixCounty} ${$$props.class ?? ''}`;
+    $: classesPrefixCenter = `${cPrefixCenter} ${prefixCenter} ${$$props.class ?? ''}`;
+    $: classesScriptCenter = `${cScriptCenter} ${scriptCenter} ${$$props.style ?? ''}`;
+    $: classesSuffixCenter = `${cSuffixCenter} ${suffixCenter} ${$$props.class ?? ''}`;
+    $: classesPopupInner = `${cPopupInner} ${popupInner} ${$$props.style ?? ''}`;
+    $: stylesPopup = `${cPopupStyles} ${popupStyles} ${$$props.style ?? ''}`;
 
     /*-- -- Coding -- */
     /*-- Enums */
@@ -59,7 +69,7 @@
         target: 'popupCounties',
         placement: 'bottom',
         closeQuery: '.listbox-item',
-        state: (e: Record<string, boolean>) => console.log('popup state:', e),
+        //, state: (e: Record<string, boolean>) => console.log('popup state:', e),
     };
 
     /*-- Properties (functional) */
@@ -86,11 +96,10 @@
 
     function handlePrev() {
         if (allCountiesIndex > 0) {
-            allCountiesIndex--;
-            currentCountyId = allCounties[allCountiesIndex].id;
-            filteredSitesIndex = filteredSites.findLastIndex((s: any) => s.countyId === currentCountyId);
-            if (filteredSitesIndex > 0) {
-                currentSiteId = filteredSites[filteredSitesIndex].siteId;
+            currentCountyId = allCounties[allCountiesIndex - 1].id;
+            let siteIndex = allSites.findLastIndex((s: any) => s.countyId === currentCountyId);
+            if (siteIndex > 0) {
+                currentSiteId = allSites[siteIndex].siteId;
                 goto('/api/sites/' + currentSiteId);
             }
         }
@@ -98,11 +107,10 @@
 
     function handleNext() {
         if (allCountiesIndex < allCounties.length - 1) {
-            allCountiesIndex++;
-            currentCountyId = allCounties[allCountiesIndex].id;
-            filteredSitesIndex = filteredSites.findIndex((s) => s.countyId === currentCountyId);
-            if (filteredSitesIndex > 0) {
-                currentSiteId = filteredSites[filteredSitesIndex].siteId;
+            currentCountyId = allCounties[allCountiesIndex + 1].id;
+            let siteIndex = allSites.findIndex((s) => s.countyId === currentCountyId);
+            if (siteIndex > 0) {
+                currentSiteId = allSites[siteIndex].siteId;
                 goto('/api/sites/' + currentSiteId);
             }
         }
@@ -120,26 +128,26 @@
     $: nextDisabled = allCountiesIndex > allCounties.length - 2;
 </script>
 
-<div class="flex flex-col lg:flex-row gap-0 md:gap-1 lg:gap-2">
+<div class={classesControlOuter}>
     {#if $$slots.heading}
         <div class="my-auto">
             <slot name="heading" />
         </div>
     {/if}
     <div class={classesControlBody} aria-labelledby={labelledby}>
-        <button class={classesButtonLeft} on:click={handlePrev} disabled={prevDisabled}>◀</button>
-        <button class="w-44" use:popup={popupCounties}>
-            <span class="w-full text-left text-nowrap overflow-hidden text-ellipsis">
+        <button type="button" class={classesButtonLeft} on:click={handlePrev} disabled={prevDisabled}>◀</button>
+        <button type="button" class={classesButtonCenter} use:popup={popupCounties}>
+            <span class={classesScriptCenter}>
                 {currentCounty.name}
             </span>
-            <span class="flex-auto">↓</span>
+            <span>↓</span>
         </button>
-        <button class={classesButtonRight} on:click={handleNext} disabled={nextDisabled}>▶</button>
+        <button type="button" class={classesButtonRight} on:click={handleNext} disabled={nextDisabled}>▶</button>
     </div>
 </div>
 
 <div data-popup="popupCounties">
-    <div class="card w-48 shadow-xl py-2 overflow-y-auto" style="max-height: calc(100vh - 272px);">
+    <div class={classesPopupInner} style={stylesPopup}>
         <ListBox rounded="rounded-none">
             {#each allCounties as county}
                 <ListBoxItem bind:group={currentCountyId} name="counties" on:change={handleSelect} value={county.id}>

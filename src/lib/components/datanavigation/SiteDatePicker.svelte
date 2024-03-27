@@ -29,49 +29,58 @@
 
     /*-- -- Styling -- */
     /*-- Properties (styles) */
+    export let controlOuter: CssClasses = '';
     export let controlBody: CssClasses = '';
     export let buttonLeft: CssClasses = '';
-    export let buttonRight: CssClasses = '';
     export let buttonYear: CssClasses = dropdownPointers ? ($$slots.prefixYear ? 'w-28' : 'w-20') : $$slots.prefixYear ? 'w-24' : 'w-16';
     export let buttonWeek: CssClasses = dropdownPointers ? ($$slots.prefixYear ? 'w-28' : 'w-20') : $$slots.prefixYear ? 'w-24' : 'w-16';
+    export let buttonRight: CssClasses = '';
     export let prefixYear: CssClasses = '';
     export let prefixWeek: CssClasses = '';
     export let suffixYear: CssClasses = dropdownPointers ? "before:content-['↓']" : '';
     export let suffixWeek: CssClasses = dropdownPointers ? "before:content-['↓']" : '';
+    export let popupInner: CssClasses = '';
+    export let popupStyles: string = '';
 
     // Properties (a11y)
     /** Provide the ARIA labelledby value.  Default: "Select site-date" */
     export let labelledby = 'Select site-date';
 
     /*-- Constants (styles) */
+    const cControlOuter = 'block lg:flex lg:flex-row gap-0 md:gap-1 lg:gap-2';
     const cControlBody = 'btn-group variant-soft my-auto';
     const cButtonLeft = '';
-    const cButtonRight = '';
     const cButtonYear = '';
     const cButtonWeek = '';
+    const cButtonRight = '';
     const cPrefixYear = '';
     const cPrefixWeek = '';
     const cSuffixYear = '';
     const cSuffixWeek = '';
+    const cPopupInner = 'card w-48 shadow-xl py-2 overflow-y-auto';
+    const cPopupStyles = 'max-height: calc(100vh - 272px);';
 
     /*-- Reactives (styles) */
+    $: classesControlOuter = `${cControlOuter} ${controlOuter} ${$$props.style ?? ''}`;
     $: classesControlBody = `${cControlBody} ${controlBody} ${$$props.class ?? ''}`;
     $: classesButtonLeft = `${cButtonLeft} ${buttonLeft} ${$$props.class ?? ''}`;
-    $: classesButtonRight = `${cButtonRight} ${buttonRight} ${$$props.class ?? ''}`;
     $: classesButtonYear = `${cButtonYear} ${buttonYear} ${$$props.class ?? ''}`;
     $: classesButtonWeek = `${cButtonWeek} ${buttonWeek} ${$$props.class ?? ''}`;
+    $: classesButtonRight = `${cButtonRight} ${buttonRight} ${$$props.class ?? ''}`;
     $: classesPrefixYear = `${cPrefixYear} ${prefixYear} ${$$props.class ?? ''}`;
     $: classesPrefixWeek = `${cPrefixWeek} ${prefixWeek} ${$$props.class ?? ''}`;
     $: classesSuffixYear = `${cSuffixYear} ${suffixYear} ${$$props.class ?? ''}`;
     $: classesSuffixWeek = `${cSuffixWeek} ${suffixWeek} ${$$props.class ?? ''}`;
+    $: classesPopupInner = `${cPopupInner} ${popupInner} ${$$props.style ?? ''}`;
+    $: stylesPopup = `${cPopupStyles} ${popupStyles} ${$$props.style ?? ''}`;
 
     /*-- -- Coding -- */
     /*-- Enums */
     type SdoWeek = {
-        week: number,
-        siteDateId: number,
-        fDate: string
-    }
+        week: number;
+        siteDateId: number;
+        fDate: string;
+    };
 
     /*-- Constants (functional) */
     const popupSiteDateYears: PopupSettings = {
@@ -93,7 +102,7 @@
     const theYears = [...new Set(siteDates.map((x) => x.year.toString()))];
     //console.log('theYears:', theYears);
 
-    const yearsOfDate: any = {}
+    const yearsOfDate: any = {};
     theYears.forEach((yr: string) => {
         yearsOfDate[yr] = siteDates
             .filter((x: SiteDateYear) => x.year.toString() === yr)
@@ -124,7 +133,7 @@
     /*-- Run first stuff */
     /*-- onMount, beforeUpdate, afterUpdate */
     onMount(() => {
-        let tw = trackedWeeks.find(x => x.siteDateId === currentSiteDateId);
+        let tw = trackedWeeks.find((x) => x.siteDateId === currentSiteDateId);
         if (tw) {
             recordYear = tw.year.toString();
             recordWeek = tw.recordDate ? weekOfYearSince(new Date(tw.recordDate)) : -1;
@@ -134,7 +143,7 @@
     /*-- Handlers */
     function handleSelectYear(event: any) {
         let targetYear = event.currentTarget.value.toString();
-        let idx = trackedWeeks.findIndex(x => x.year.toString() === targetYear);
+        let idx = trackedWeeks.findIndex((x) => x.year.toString() === targetYear);
         //console.log('yearDates', yearDates.slice(0, 2));
 
         if (idx > -1) {
@@ -174,15 +183,14 @@
     /*-- Methods */
     /*-- Reactives (functional) */
     $: yearDates = yearsOfDate[recordYear];
-    $: trackedWeekIndex =  trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteDateId);
+    $: trackedWeekIndex = trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteDateId);
     $: nextDisabled = trackedWeekIndex > trackedWeeks.length - 2;
     $: prevDisabled = trackedWeekIndex < 1;
 
     /*-- Other */
-
 </script>
 
-<div class="block lg:flex lg:flex-row gap-0 md:gap-1 lg:gap-2">
+<div class={classesControlOuter}>
     {#if $$slots.heading}
         <div class="my-auto">
             <slot name="heading" />
@@ -205,14 +213,10 @@
     </div>
 
     <div data-popup="popupComboboxSiteDateYears">
-        <div class="card w-48 shadow-xl py-2 overflow-y-auto" style="max-height: calc(100vh - 272px);">
+        <div class={classesPopupInner} style={stylesPopup}>
             <ListBox rounded="rounded-none" labelledby="Years for site">
                 {#each theYears as year}
-                    <ListBoxItem
-                        bind:group={recordYear}
-                        name="years"
-                        on:change={handleSelectYear}
-                        value={year}>
+                    <ListBoxItem bind:group={recordYear} name="years" on:change={handleSelectYear} value={year}>
                         {year}
                     </ListBoxItem>
                 {/each}
@@ -222,23 +226,17 @@
 
     <div data-popup="popupComboboxSiteDateWeeks">
         {#if yearDates}
-        <div class={`card shadow-xl py-2 overflow-y-auto ${dropdownShowDate ? 'w-44' : 'w-28'}`} style="max-height: calc(100vh - 272px);">
-            <ListBox rounded="rounded-none" labelledby="Weeks in timeframe">
-                {#each yearDates as week}
-                    <ListBoxItem
-                        bind:group={recordSiteDateId}
-                        name="weeks"
-                        on:change={handleSelectWeek}
-                        value={week.siteDateId}>
-
-                        {#if $$slots.prefixWeek}
-                            <slot name="prefixWeek" />
-                        {/if}{`${week.week}${dropdownShowDate ? ' - ' + week.fDate : ''}`}
-
-                    </ListBoxItem>
-                {/each}
-            </ListBox>
-        </div>
+            <div class={`${classesPopupInner} ${dropdownShowDate ? 'w-44' : 'w-28'}`} style={stylesPopup}>
+                <ListBox rounded="rounded-none" labelledby="Weeks in timeframe">
+                    {#each yearDates as week}
+                        <ListBoxItem bind:group={recordSiteDateId} name="weeks" on:change={handleSelectWeek} value={week.siteDateId}>
+                            {#if $$slots.prefixWeek}
+                                <slot name="prefixWeek" />
+                            {/if}{`${week.week}${dropdownShowDate ? ' - ' + week.fDate : ''}`}
+                        </ListBoxItem>
+                    {/each}
+                </ListBox>
+            </div>
         {/if}
     </div>
 </div>

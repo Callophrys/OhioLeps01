@@ -1,22 +1,58 @@
 <script lang="ts">
-    import SitePicker from '$lib/components/datanavigation/SitePicker.svelte';
+    /*-- Imports */
     import CountyPicker from '$lib/components/datanavigation/CountyPicker.svelte';
+    import SitePicker from '$lib/components/datanavigation/SitePicker.svelte';
     import SiteDatePicker from '$lib/components/datanavigation/SiteDatePicker.svelte';
     import StandardContainer from '$lib/components/StandardContainer.svelte';
     import CountySite from '$lib/components/datanavigation/CountySite.svelte';
     import { setContext } from 'svelte';
+    import { afterUpdate, onMount } from 'svelte';
 
+    /*-- -- Data -- */
+    /*-- Exports */
     export let data;
 
+    /*-- Context */
     setContext('counties', data.counties);
     setContext('sites', data.sites);
     setContext('siteDates', data.site.siteDates);
 
+    /*-- -- Styling -- */
+    /*-- Properties (styles) */
+    /*-- Constants (styles) */
+    /*-- Variables (styles) */
+    /*-- Reactives (styles) */
+    /*-- -- Coding -- */
+    /*-- Enums */
+    /*-- Constants (functional) */
+
+    /*-- Properties (functional) */
     let filterByCounty: boolean = false;
 
+    /*-- Variables and objects */
+    /*-- Run first stuff */
+
+    /*-- onMount, beforeUpdate, afterUpdate */
+    onMount(() => {
+        let x = localStorage?.filterByCounty;
+        if (x && x.length) {
+            filterByCounty = x === '1';
+        }
+    });
+
+    afterUpdate(() => {
+        localStorage.setItem('filterByCounty', filterByCounty ? '1' : '0');
+    });
+
+    /*-- Handlers */
+    /*-- Methods */
+
+    /*-- Reactives (functional) */
     $: currentCountyId = data.site.countyId;
     $: currentSiteId = data.site.siteId;
     $: currentSiteDateId = data.site.siteDates.length ? data.site.siteDates[0].siteDateId : -1;
+
+    /*-- Other */
 </script>
 
 <CountySite county={data.site.county.name} site={data.site.siteName} bind:filterByCounty />

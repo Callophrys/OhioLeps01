@@ -33,33 +33,46 @@
 
     /*-- -- Styling -- */
     /*-- Properties (styles) */
+    export let controlOuter: CssClasses = '';
     export let controlBody: CssClasses = '';
     export let buttonLeft: CssClasses = '';
+    export let buttonCenter: CssClasses = '';
     export let buttonRight: CssClasses = '';
-    export let buttonSpecies: CssClasses = 'w-32 md:w-44 lg:w-56 xl:w-64 truncate'; // dropdownPointers ? ($$slots.prefixSiteDateObservation ? 'w-28' : 'w-20') : $$slots.prefixSiteDateObservation ? 'w-24' : 'w-16';
-    export let prefixSiteDateObservation: CssClasses = '';
-    export let suffixSiteDateObservation: CssClasses = dropdownPointers ? "before:content-['↓']" : '';
+    export let prefixCenter: CssClasses = '';
+    export let scriptCenter: CssClasses = '';
+    export let suffixCenter: CssClasses = dropdownPointers ? "before:content-['↓']" : '';
+    export let popupInner: CssClasses = '';
+    export let popupStyles: string = '';
 
     // Properties (a11y)
     /** Provide the ARIA labelledby value.  Default: "Select site-date" */
     export let labelledby = 'Select site-date';
 
     /*-- Constants (styles) */
+    const cControlOuter = 'block lg:flex lg:flex-row gap-0 md:gap-1 lg:gap-2';
     const cControlBody = 'btn-group variant-soft my-auto';
     const cButtonLeft = '';
+    const cButtonCenter = 'w-32 md:w-44 lg:w-56 xl:w-64 truncate'; // dropdownPointers ? ($$slots.prefixSiteDateObservation ? 'w-28' : 'w-20') : $$slots.prefixSiteDateObservation ? 'w-24' : 'w-16';
     const cButtonRight = '';
-    const cButtonSpecies = '';
-    const cPrefixSiteDateObservation = '';
-    const cSuffixSiteDateObservation = '';
+    const cPrefixCenter = '';
+    const cScriptCenter = '';
+    const cSuffixCenter = '';
+    const cPopupInner = 'card w-48 shadow-xl py-2 overflow-y-auto';
+    const cPopupStyles = 'max-height: calc(100vh - 272px);';
+
     const cDeleted = 'bg-warning-100-800-token hover:bg-warning-200-700-token active:bg-surface-200-700 line-through';
 
     /*-- Reactives (styles) */
+    $: classesControlOuter = `${cControlOuter} ${controlOuter} ${$$props.style ?? ''}`;
     $: classesControlBody = `${cControlBody} ${controlBody} ${$$props.class ?? ''}`;
     $: classesButtonLeft = `${cButtonLeft} ${buttonLeft} ${$$props.class ?? ''}`;
+    $: classesButtonCenter = `${cButtonCenter} ${buttonCenter} ${$$props.class ?? ''}`;
     $: classesButtonRight = `${cButtonRight} ${buttonRight} ${$$props.class ?? ''}`;
-    $: classesButtonSpecies = `${cButtonSpecies} ${buttonSpecies} ${$$props.class ?? ''}`;
-    $: classesPrefixSiteDateObservation = `${cPrefixSiteDateObservation} ${prefixSiteDateObservation} ${$$props.class ?? ''}`;
-    $: classesSuffixSiteDateObservation = `${cSuffixSiteDateObservation} ${suffixSiteDateObservation} ${$$props.class ?? ''}`;
+    $: classesPrefixCenter = `${cPrefixCenter} ${prefixCenter} ${$$props.class ?? ''}`;
+    $: classesScriptCenter = `${cScriptCenter} ${scriptCenter} ${$$props.class ?? ''}`;
+    $: classesSuffixCenter = `${cSuffixCenter} ${suffixCenter} ${$$props.class ?? ''}`;
+    $: classesPopupInner = `${cPopupInner} ${popupInner} ${$$props.style ?? ''}`;
+    $: stylesPopup = `${cPopupStyles} ${popupStyles} ${$$props.style ?? ''}`;
 
     /*-- -- Coding -- */
     /*-- Enums */
@@ -204,7 +217,7 @@
 
     $: {
         let currentIndex = sdoCommon.findIndex((o) => o.siteDateObservationId === currentSdoChecklistItemId);
-        enabledDrop = !isAdding && !isEditing && !isViewAll
+        enabledDrop = !isAdding && !isEditing && !isViewAll;
         enabledNext = !isAdding && !isEditing && !isViewAll && currentIndex > -1 && currentIndex < sdoCommon.length - 1;
         enabledPrev = !isAdding && !isEditing && !isViewAll && currentIndex > 0;
 
@@ -254,7 +267,7 @@
     $: currentSdoChecklistItem = checklistsSiteDateObs.find((x) => x.siteDateObservationId === currentSdoChecklistItemId) as SiteDateObservationChecklist;
 </script>
 
-<div class="block lg:flex lg:flex-row gap-0 md:gap-1 lg:gap-2">
+<div class={classesControlOuter}>
     {#if $$slots.heading}
         <div class="my-auto">
             <slot name="heading" />
@@ -265,7 +278,7 @@
         <button type="button" class={classesButtonLeft} on:click={handleClickPrior} disabled={!enabledPrev}>◀</button>
         <button
             type="button"
-            class={classesButtonSpecies}
+            class={classesButtonCenter}
             use:popup={popupSdoSpecies}
             title={currentSdoChecklistItem.checklist.commonName}
             on:keydown={(e) => {
@@ -278,15 +291,15 @@
                 }
             }}
             disabled={!enabledDrop}>
-            {#if $$slots.prefixSiteDateObservation}<span class={classesPrefixSiteDateObservation}><slot name="prefixSiteDateObservation" /></span>{/if}
+            {#if $$slots.prefixSiteDateObservation}<span class={classesPrefixCenter}><slot name="prefixSiteDateObservation" /></span>{/if}
             <span class={`truncate ${currentSdoChecklistItem.deleted ? 'line-through' : ''}`}>{currentSdoChecklistItem?.checklist.commonName}</span>
-            <span class={classesSuffixSiteDateObservation} />
+            <span class={classesSuffixCenter} />
         </button>
         <button type="button" class={classesButtonRight} on:click={handleClickNext} disabled={!enabledNext}>▶</button>
     </div>
 
     <div data-popup="popupComboboxSpecies">
-        <div class="card w-48 shadow-xl py-2 overflow-y-auto" style="max-height: calc(100vh - 272px);">
+        <div class={classesPopupInner} style={stylesPopup}>
             <ListBox rounded="rounded-none" labelledby="Species for site">
                 {#each sdoCommon as sdo}
                     <ListBoxItem class={`${sdo.deleted ? (showDeletedData ? cDeleted : 'hidden') : ''}`} bind:group={currentSdoChecklistItemId} name="species" value={sdo.siteDateObservationId} on:click={handleClick}>{sdo.name}</ListBoxItem>
