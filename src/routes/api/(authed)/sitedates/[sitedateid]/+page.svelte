@@ -11,6 +11,8 @@
     import DataOptions from '$lib/components/datanavigation/DataOptions.svelte';
     import SiteDatePicker from '$lib/components/datanavigation/SiteDatePicker.svelte';
     import YearWeek from '$lib/components/datanavigation/YearWeek.svelte';
+    import GoBack from '$lib/components/datanavigation/GoBack.svelte';
+    import { GOBACK } from '$lib/types.js';
 
     /*-- -- Data -- */
     export let data;
@@ -456,6 +458,7 @@
     <svelte:fragment slot="rightBody">
         <div class="flex flex-row justify-between mb-2">
             <div class="my-auto">{data.siteDate.siteName}</div>
+            <GoBack returnId={data.siteDate.siteId} returnTarget={GOBACK.SITES} />
             <SiteDatePicker bind:currentSiteDateId controlBody="scale-90" buttonLeft="!px-2" buttonRight="!px-2" buttonYear="w-28 px-0 md:px-1 lg:px-2" buttonWeek="w-24 px-0 md:px-1 lg:px-2" dropdownShowDate={false} dropdownPointers={false}>
                 <svelte:fragment slot="prefixYear">Year:</svelte:fragment>
                 <svelte:fragment slot="prefixWeek">Week:</svelte:fragment>

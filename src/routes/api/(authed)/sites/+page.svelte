@@ -6,6 +6,8 @@
     import { page } from '$app/stores';
     //import { enhance } from '$app/forms';
     import { isEmpty, camelToFriendly } from '$lib/utils';
+    import GoBack from '$lib/components/datanavigation/GoBack.svelte';
+    import { GOBACK } from '$lib/types.js';
 
     export let data;
     export let form;
@@ -14,6 +16,7 @@
 <StandardContainer>
     <svelte:fragment slot="standardHead">
         <div class="">
+            <GoBack returnId={-1} returnTarget={GOBACK.COUNTIES} />
             {#if ($page.data.user?.role === 'ADMIN' || $page.data.user?.role === 'SUPER') && typeof form === 'object' && !isEmpty(form?.data)}
                 <span>Site X of {data.sites?.length}: {form?.data?.siteName} </span>
                 <button type="submit"> ➜ Next site</button>

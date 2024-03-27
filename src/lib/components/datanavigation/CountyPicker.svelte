@@ -50,15 +50,15 @@
     const cPopupStyles = 'max-height: calc(100vh - 272px);';
 
     /*-- Reactives (styles) */
-    $: classesControlOuter = `${cControlOuter} ${controlOuter} ${$$props.style ?? ''}`;
+    $: classesControlOuter = `${cControlOuter} ${controlOuter} ${$$props.class ?? ''}`;
     $: classesControlBody = `${cControlBody} ${controlBody} ${$$props.class ?? ''}`;
     $: classesButtonLeft = `${cButtonLeft} ${buttonLeft} ${$$props.class ?? ''}`;
-    $: classesButtonCenter = `${cButtonCenter} ${buttonCenter} ${$$props.style ?? ''}`;
+    $: classesButtonCenter = `${cButtonCenter} ${buttonCenter} ${$$props.class ?? ''}`;
     $: classesButtonRight = `${cButtonRight} ${buttonRight} ${$$props.class ?? ''}`;
     $: classesPrefixCenter = `${cPrefixCenter} ${prefixCenter} ${$$props.class ?? ''}`;
-    $: classesScriptCenter = `${cScriptCenter} ${scriptCenter} ${$$props.style ?? ''}`;
+    $: classesScriptCenter = `${cScriptCenter} ${scriptCenter} ${$$props.class ?? ''}`;
     $: classesSuffixCenter = `${cSuffixCenter} ${suffixCenter} ${$$props.class ?? ''}`;
-    $: classesPopupInner = `${cPopupInner} ${popupInner} ${$$props.style ?? ''}`;
+    $: classesPopupInner = `${cPopupInner} ${popupInner} ${$$props.class ?? ''}`;
     $: stylesPopup = `${cPopupStyles} ${popupStyles} ${$$props.style ?? ''}`;
 
     /*-- -- Coding -- */

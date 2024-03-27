@@ -61,7 +61,7 @@
     const cPopupStyles = 'max-height: calc(100vh - 272px);';
 
     /*-- Reactives (styles) */
-    $: classesControlOuter = `${cControlOuter} ${controlOuter} ${$$props.style ?? ''}`;
+    $: classesControlOuter = `${cControlOuter} ${controlOuter} ${$$props.class ?? ''}`;
     $: classesControlBody = `${cControlBody} ${controlBody} ${$$props.class ?? ''}`;
     $: classesButtonLeft = `${cButtonLeft} ${buttonLeft} ${$$props.class ?? ''}`;
     $: classesButtonYear = `${cButtonYear} ${buttonYear} ${$$props.class ?? ''}`;
@@ -71,7 +71,7 @@
     $: classesPrefixWeek = `${cPrefixWeek} ${prefixWeek} ${$$props.class ?? ''}`;
     $: classesSuffixYear = `${cSuffixYear} ${suffixYear} ${$$props.class ?? ''}`;
     $: classesSuffixWeek = `${cSuffixWeek} ${suffixWeek} ${$$props.class ?? ''}`;
-    $: classesPopupInner = `${cPopupInner} ${popupInner} ${$$props.style ?? ''}`;
+    $: classesPopupInner = `${cPopupInner} ${popupInner} ${$$props.class ?? ''}`;
     $: stylesPopup = `${cPopupStyles} ${popupStyles} ${$$props.style ?? ''}`;
 
     /*-- -- Coding -- */

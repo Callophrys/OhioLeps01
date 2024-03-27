@@ -7,6 +7,8 @@
     import CountySite from '$lib/components/datanavigation/CountySite.svelte';
     import { setContext } from 'svelte';
     import { afterUpdate, onMount } from 'svelte';
+    import GoBack from '$lib/components/datanavigation/GoBack.svelte';
+    import { GOBACK } from '$lib/types.js';
 
     /*-- -- Data -- */
     /*-- Exports */
@@ -60,6 +62,7 @@
 <StandardContainer>
     <svelte:fragment slot="standardHead">
         <div class="flex flex-row justify-between gap-1 md:gap-2">
+            <GoBack returnId={data.site.countyId} returnTarget={GOBACK.COUNTYSITES} />
             <CountyPicker {currentCountyId} {filterByCounty} />
             <!-- TODO: Filter sites to selected country -->
             <SitePicker {currentSiteId} {filterByCounty} />

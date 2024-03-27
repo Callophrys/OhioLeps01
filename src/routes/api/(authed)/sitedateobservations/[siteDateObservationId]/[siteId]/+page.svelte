@@ -1,11 +1,6 @@
 <!--
 TODO: https://dev.to/theether0/sveltekit-changes-form-actions-and-progressive-enhancement-31h9
 TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  - see ActionData and keeping form data
-
-var x = new Set(["a","b","c","t"]);
-var y = new Set(["d","a","t","e","g"]);
-var z = y.difference(x) // [ "d", "e", "g" ]
-
 -->
 <script lang="ts">
     /*-- Imports */
@@ -23,6 +18,8 @@ var z = y.difference(x) // [ "d", "e", "g" ]
     import SpeciesPicker from '$lib/components/datanavigation/SpeciesPicker.svelte';
     import { setContext } from 'svelte';
     import { afterUpdate, onMount } from 'svelte';
+    import GoBack from '$lib/components/datanavigation/GoBack.svelte';
+    import { GOBACK } from '$lib/types.js';
 
     /*-- -- Data -- */
     /*-- Exports */
@@ -228,6 +225,7 @@ var z = y.difference(x) // [ "d", "e", "g" ]
                 <!-- Main controls -->
                 <div class="px-4 flex flex-auto justify-between gap-2">
                     <div class="flex flex-row justify-start gap-2">
+                        <GoBack returnId={data.siteDateObservation.siteDate.siteDateId} returnTarget={GOBACK.SITEDATES} />
                         <!-- EDIT(s) Action -->
                         {#if $page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'ENTRY' || $page.data.user.role === 'REVIEWER'}
                             {#if isAdding}

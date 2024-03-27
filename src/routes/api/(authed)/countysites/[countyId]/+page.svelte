@@ -4,6 +4,9 @@
     import { formatDate } from '$lib/utils.js';
     import type { County } from '@prisma/client';
     import { page } from '$app/stores';
+    import GoBack from '$lib/components/datanavigation/GoBack.svelte';
+    import { GOBACK } from '$lib/types.js';
+
     export let data;
 
     function handleSiteSelect(e: any) {
@@ -39,7 +42,8 @@
                     <button type="button" class="btn"><span class="text-success-400">✚</span>&nbsp;Add new site</button>
                 {/if}
             </div>
-            <div>
+            <div class="flex flex-row">
+                <GoBack returnId={-1} returnTarget={GOBACK.COUNTIES} />
                 <select class="select" bind:value={countyId} on:change={handleSiteSelect}>
                     <option value="-1">ALL SITES</option>
                     {#each data.counties as county}

@@ -5,6 +5,8 @@
     import CountyFilter from '$lib/components/counties/countyFilter.svelte';
     import CountySort from '$lib/components/counties/countySort.svelte';
     import type { CssClasses } from '@skeletonlabs/skeleton';
+    import GoBack from '$lib/components/datanavigation/GoBack.svelte';
+    import { GOBACK } from '$lib/types.js';
 
     export let data;
     setContext('counties', data.counties);
@@ -21,6 +23,7 @@
 <StandardContainer>
     <svelte:fragment slot="standardHead">
         <div class="bg-red flex flex-col lg:flex-row justify-between">
+            <GoBack returnId={-1} returnTarget={GOBACK.HOME} />
             <CountySort bind:counties />
             <CountyFilter bind:vButtonGroupClasses />
         </div>

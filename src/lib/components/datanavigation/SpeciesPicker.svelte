@@ -8,7 +8,6 @@
     import type { CssClasses } from '@skeletonlabs/skeleton';
     import type { SiteDateObservationChecklist } from '$lib/types';
     import { sortByStringProperty, setDifferenceByProp } from '$lib/utils';
-    import type { getSiteDateObservationsByChecklist } from '$lib/database/sitedateobservations';
 
     /*-- -- Data -- */
     /*-- Exports */
@@ -39,7 +38,7 @@
     export let buttonCenter: CssClasses = '';
     export let buttonRight: CssClasses = '';
     export let prefixCenter: CssClasses = '';
-    export let scriptCenter: CssClasses = '';
+    // export let scriptCenter: CssClasses = '';
     export let suffixCenter: CssClasses = dropdownPointers ? "before:content-['↓']" : '';
     export let popupInner: CssClasses = '';
     export let popupStyles: string = '';
@@ -55,7 +54,7 @@
     const cButtonCenter = 'w-32 md:w-44 lg:w-56 xl:w-64 truncate'; // dropdownPointers ? ($$slots.prefixSiteDateObservation ? 'w-28' : 'w-20') : $$slots.prefixSiteDateObservation ? 'w-24' : 'w-16';
     const cButtonRight = '';
     const cPrefixCenter = '';
-    const cScriptCenter = '';
+    // const cScriptCenter = '';
     const cSuffixCenter = '';
     const cPopupInner = 'card w-48 shadow-xl py-2 overflow-y-auto';
     const cPopupStyles = 'max-height: calc(100vh - 272px);';
@@ -63,15 +62,15 @@
     const cDeleted = 'bg-warning-100-800-token hover:bg-warning-200-700-token active:bg-surface-200-700 line-through';
 
     /*-- Reactives (styles) */
-    $: classesControlOuter = `${cControlOuter} ${controlOuter} ${$$props.style ?? ''}`;
+    $: classesControlOuter = `${cControlOuter} ${controlOuter} ${$$props.class ?? ''}`;
     $: classesControlBody = `${cControlBody} ${controlBody} ${$$props.class ?? ''}`;
     $: classesButtonLeft = `${cButtonLeft} ${buttonLeft} ${$$props.class ?? ''}`;
     $: classesButtonCenter = `${cButtonCenter} ${buttonCenter} ${$$props.class ?? ''}`;
     $: classesButtonRight = `${cButtonRight} ${buttonRight} ${$$props.class ?? ''}`;
     $: classesPrefixCenter = `${cPrefixCenter} ${prefixCenter} ${$$props.class ?? ''}`;
-    $: classesScriptCenter = `${cScriptCenter} ${scriptCenter} ${$$props.class ?? ''}`;
+    // $: classesScriptCenter = `${cScriptCenter} ${scriptCenter} ${$$props.class ?? ''}`;
     $: classesSuffixCenter = `${cSuffixCenter} ${suffixCenter} ${$$props.class ?? ''}`;
-    $: classesPopupInner = `${cPopupInner} ${popupInner} ${$$props.style ?? ''}`;
+    $: classesPopupInner = `${cPopupInner} ${popupInner} ${$$props.class ?? ''}`;
     $: stylesPopup = `${cPopupStyles} ${popupStyles} ${$$props.style ?? ''}`;
 
     /*-- -- Coding -- */
