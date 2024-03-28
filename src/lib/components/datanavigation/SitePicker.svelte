@@ -11,7 +11,7 @@
     /*-- -- Data -- */
     /*-- Exports */
     export let currentSiteId: number;
-    export let filterByCounty: boolean;
+    export let filterByCounty: boolean = false;
 
     /** Show down arrow with year and week labels to indicate dropdown.  Default: true */
     export let dropdownPointers: boolean = true;

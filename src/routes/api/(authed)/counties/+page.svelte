@@ -6,7 +6,8 @@
     import CountySort from '$lib/components/counties/countySort.svelte';
     import type { CssClasses } from '@skeletonlabs/skeleton';
     import GoBack from '$lib/components/datanavigation/GoBack.svelte';
-    import { GOBACK } from '$lib/types.js';
+    import GoNext from '$lib/components/datanavigation/GoNext.svelte';
+    import { GOTYPE } from '$lib/types.js';
 
     export let data;
     setContext('counties', data.counties);
@@ -17,15 +18,32 @@
     let vButtonGroupClasses: CssClasses = '';
     $: buttonGroupClasses = `${cButtonGroupClasses} ${vButtonGroupClasses}`;
     $: counties = data.counties;
+    $: goNextCountyId = () => {
+        if (counties.length) {
+            if (counties[0].sites.length === 1) {
+                return counties[0].sites[0].siteId;
+            } else {
+                return counties[0].id;
+            }
+        }
+        return -1;
+    };
+    $: goNextTargetType = () => {
+        if (counties.length && counties[0].sites.length === 1) {
+            return GOTYPE.SITES;
+        }
+        return GOTYPE.COUNTYSITES;
+    } satisfies GOTYPE;
 </script>
 
 <!-- Counties -->
 <StandardContainer>
     <svelte:fragment slot="standardHead">
         <div class="bg-red flex flex-col lg:flex-row justify-between">
-            <GoBack returnId={-1} returnTarget={GOBACK.HOME} />
-            <CountySort bind:counties />
-            <CountyFilter bind:vButtonGroupClasses />
+            <GoBack targetId={-1} targetType={GOTYPE.HOME} controlBody="scale-90" />
+            <GoNext targetId={goNextCountyId} targetType={goNextTargetType} controlBody="scale-90" />
+            <CountySort bind:counties controlBody="scale-90" />
+            <CountyFilter bind:vButtonGroupClasses controlBody="scale-90" />
         </div>
     </svelte:fragment>
     <svelte:fragment slot="standardBody">

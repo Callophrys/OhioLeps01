@@ -23,18 +23,20 @@ export enum ZOOM_DIR {
     ENLARGE = 1,
 }
 
-export enum GOBACK {
+export enum GOTYPE {
+    UNKNOWN = -1,
     HOME = 0,
-    SITEDATES = 1,
-    SITES = 2,
-    COUNTYSITES = 3,
-    COUNTIES = 4,
-    STATEREGIONS = 5,
-    STATES = 6,
-    COUNTRYREGIONS = 7,
-    COUNTRIES = 8,
-    CONTINENTREGIONS = 9,
-    CONTINENTS = 10,
+    SITEDATEOBSERVATIONS = 1,
+    SITEDATES = 2,
+    SITES = 3,
+    COUNTYSITES = 4,
+    COUNTIES = 5,
+    STATEREGIONS = 6,
+    STATES = 7,
+    COUNTRYREGIONS = 8,
+    COUNTRIES = 9,
+    CONTINENTREGIONS = 10,
+    CONTINENTS = 11,
 }
 
 export type AppConfigFormKeyChecked = AppConfig & { checked: boolean; formKey: string };
@@ -60,6 +62,7 @@ export type SiteDateYear = SiteDate & {
     updatedBy: UserComplete;
     confirmBy: UserComplete;
 };
+export type SiteDateYearSdo = SiteDateYear & { siteDateObservations: SiteDateObservation[] };
 export type SiteDateYearSiteDates = SiteDate & {
     siteName: string;
     year: number;

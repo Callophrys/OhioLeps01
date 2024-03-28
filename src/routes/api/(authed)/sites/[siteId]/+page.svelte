@@ -8,7 +8,8 @@
     import { setContext } from 'svelte';
     import { afterUpdate, onMount } from 'svelte';
     import GoBack from '$lib/components/datanavigation/GoBack.svelte';
-    import { GOBACK } from '$lib/types.js';
+    import GoNext from '$lib/components/datanavigation/GoNext.svelte';
+    import { GOTYPE } from '$lib/types.js';
 
     /*-- -- Data -- */
     /*-- Exports */
@@ -62,27 +63,17 @@
 <StandardContainer>
     <svelte:fragment slot="standardHead">
         <div class="flex flex-row justify-between gap-1 md:gap-2">
-            <GoBack returnId={data.site.countyId} returnTarget={GOBACK.COUNTYSITES} />
-            <CountyPicker {currentCountyId} {filterByCounty} />
+            <GoBack targetId={data.site.countyId} targetType={GOTYPE.COUNTYSITES} controlBody="scale-90" />
+            <GoNext targetId={data.site.siteDates[0].siteDateId} targetType={GOTYPE.SITEDATES} controlBody="scale-90" />
+            <CountyPicker {currentCountyId} {filterByCounty} controlBody="scale-90" />
             <!-- TODO: Filter sites to selected country -->
-            <SitePicker {currentSiteId} {filterByCounty} />
-            <SiteDatePicker bind:currentSiteId bind:currentSiteDateId />
+            <SitePicker {currentSiteId} {filterByCounty} controlBody="scale-90" />
+            <SiteDatePicker bind:currentSiteId bind:currentSiteDateId controlBody="scale-90" />
         </div>
 
         <!-- TODO: Make this change the site by alphabetical -->
         <!--       Need to filter Observations where observations must indicate as such -->
         <!--       If limit is reached then move loudly to next county's worth of sites -->
-        <!---->
-        <!--       Any change here should advance the downstream pickers and the -->
-        <!--       current data - as long as there is no unchanged data - Prompt -->
-        <!--       user about this -->
-
-        <!-- TODO: Convert to ObservationPicker picker (or YearWeekPicker) -->
-        <!--       If limit is reached then move loudly to next year's worth of weeks -->
-        <!--       and then even more loudly to next site  -->
-        <!---->
-        <!--       Should the last week of last year advance to another site?  -->
-        <!--       Or should there be a prompt about creating a new year-week record? -->
         <!---->
         <!--       Any change here should advance the downstream pickers and the -->
         <!--       current data - as long as there is no unchanged data - Prompt -->

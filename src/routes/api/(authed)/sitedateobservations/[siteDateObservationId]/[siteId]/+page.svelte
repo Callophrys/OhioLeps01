@@ -19,7 +19,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     import { setContext } from 'svelte';
     import { afterUpdate, onMount } from 'svelte';
     import GoBack from '$lib/components/datanavigation/GoBack.svelte';
-    import { GOBACK } from '$lib/types.js';
+    import { GOTYPE } from '$lib/types.js';
 
     /*-- -- Data -- */
     /*-- Exports */
@@ -217,15 +217,15 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                 <!-- Header and options -->
                 <!-- TODO: make this flex better for responsive sizings -->
                 <div class="flex flex-col lg:flex-row lg:justify-start gap-1 lg:gap-2 pb-2 text-surface-600-300-token">
-                    <SitePicker currentSiteId={data.siteDateObservation.siteDate.siteId} />
-                    <SiteDatePicker currentSiteId={data.siteDateObservation.siteDate.siteId} currentSiteDateId={data.siteDateObservation.siteDateId ?? -1} />
-                    <SpeciesPicker currentSdoChecklistItemId={currentSiteDateObservation.siteDateObservationId} {isAdding} {isEditing} {isViewAll} {showDeletedData} />
+                    <GoBack targetId={data.siteDateObservation.siteDate.siteDateId} targetType={GOTYPE.SITEDATES} controlBody="scale-90" />
+                    <SitePicker currentSiteId={data.siteDateObservation.siteDate.siteId} controlBody="scale-90" />
+                    <SiteDatePicker currentSiteId={data.siteDateObservation.siteDate.siteId} currentSiteDateId={data.siteDateObservation.siteDateId ?? -1} controlBody="scale-90" />
+                    <SpeciesPicker currentSdoChecklistItemId={currentSiteDateObservation.siteDateObservationId} {isAdding} {isEditing} {isViewAll} {showDeletedData} controlBody="scale-90" />
                 </div>
 
                 <!-- Main controls -->
                 <div class="px-4 flex flex-auto justify-between gap-2">
                     <div class="flex flex-row justify-start gap-2">
-                        <GoBack returnId={data.siteDateObservation.siteDate.siteDateId} returnTarget={GOBACK.SITEDATES} />
                         <!-- EDIT(s) Action -->
                         {#if $page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'ENTRY' || $page.data.user.role === 'REVIEWER'}
                             {#if isAdding}

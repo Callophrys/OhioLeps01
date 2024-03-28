@@ -63,6 +63,6 @@
 
 <div class={classesControlBody} aria-labelledby={labelledby}>
     <button type="button" class={classesButtonCenter} on:click={handleClick} title={`Return to ${GOTYPE[targetType]}`} disabled={targetType === GOTYPE.UNKNOWN}>
-        <span class={classesScriptCenter}>◀</span>
+        <span class={classesScriptCenter}>▶</span>
     </button>
 </div>

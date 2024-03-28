@@ -6,13 +6,14 @@
     import { afterUpdate, onMount } from 'svelte';
     import { setContext } from 'svelte';
     import { goto } from '$app/navigation';
-    import type { SiteDateYear, SiteDateYearSiteDates, dateTracking, dateTrackingSet } from '$lib/types.js';
+    import type { dateTracking, dateTrackingSet } from '$lib/types.js';
     import { compareNumeric, compareYearWeek, formatDate, weekOfYearSince, convertFtoC } from '$lib/utils';
     import DataOptions from '$lib/components/datanavigation/DataOptions.svelte';
     import SiteDatePicker from '$lib/components/datanavigation/SiteDatePicker.svelte';
     import YearWeek from '$lib/components/datanavigation/YearWeek.svelte';
     import GoBack from '$lib/components/datanavigation/GoBack.svelte';
-    import { GOBACK } from '$lib/types.js';
+    import GoNext from '$lib/components/datanavigation/GoNext.svelte';
+    import { GOTYPE } from '$lib/types.js';
 
     /*-- -- Data -- */
     export let data;
@@ -174,6 +175,7 @@
     $: recordYear = new Date(data.siteDate.recordDate).getFullYear();
     $: recordWeek = weekOfYearSince(new Date(data.siteDate.recordDate));
     $: recordSiteId = data.siteDate.siteDateId;
+    $: recordSdoCount = data.siteDate.siteDateObservations.filter((o: any) => showDeletedData || !o.deleted).length;
 
     $: startTemp = String(data.siteDate.startTemp);
     $: endTemp = String(data.siteDate.endTemp);
@@ -182,7 +184,7 @@
     let currentSiteDateId = data.siteDate.siteDateId;
 </script>
 
-<YearWeek bind:year={recordYear} bind:week={recordWeek} />
+<YearWeek bind:year={recordYear} bind:week={recordWeek} bind:sdoCount={recordSdoCount} />
 <DataOptions bind:showRecentEdits bind:showDeletedData />
 
 <DoubledContainer basisLeft="basis-2/5" basisRight="basis-3/5">
@@ -458,7 +460,8 @@
     <svelte:fragment slot="rightBody">
         <div class="flex flex-row justify-between mb-2">
             <div class="my-auto">{data.siteDate.siteName}</div>
-            <GoBack returnId={data.siteDate.siteId} returnTarget={GOBACK.SITES} />
+            <GoBack targetId={data.siteDate.siteId} targetType={GOTYPE.SITES} controlBody="scale-90" />
+            <GoNext targetId={data.siteDate.siteDateObservations[0].siteDateObservationId} targetType={GOTYPE.SITEDATEOBSERVATIONS} targetIdSecondary={data.siteDate.siteId} controlBody="scale-90" />
             <SiteDatePicker bind:currentSiteDateId controlBody="scale-90" buttonLeft="!px-2" buttonRight="!px-2" buttonYear="w-28 px-0 md:px-1 lg:px-2" buttonWeek="w-24 px-0 md:px-1 lg:px-2" dropdownShowDate={false} dropdownPointers={false}>
                 <svelte:fragment slot="prefixYear">Year:</svelte:fragment>
                 <svelte:fragment slot="prefixWeek">Week:</svelte:fragment>

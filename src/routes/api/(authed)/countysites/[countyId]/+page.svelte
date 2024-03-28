@@ -5,7 +5,8 @@
     import type { County } from '@prisma/client';
     import { page } from '$app/stores';
     import GoBack from '$lib/components/datanavigation/GoBack.svelte';
-    import { GOBACK } from '$lib/types.js';
+    import GoNext from '$lib/components/datanavigation/GoNext.svelte';
+    import { GOTYPE } from '$lib/types.js';
 
     export let data;
 
@@ -31,6 +32,7 @@
     console.log(countyId);
     let county: County = data.counties.find((c: County) => c.id === countyId) as County;
     console.log(county);
+    let goNextSiteId = data.sites.length ? data.sites[0].siteId : -1;
 </script>
 
 <StandardContainer>
@@ -43,8 +45,9 @@
                 {/if}
             </div>
             <div class="flex flex-row">
-                <GoBack returnId={-1} returnTarget={GOBACK.COUNTIES} />
-                <select class="select" bind:value={countyId} on:change={handleSiteSelect}>
+                <GoBack targetId={-1} targetType={GOTYPE.COUNTIES} controlBody="scale-90" />
+                <GoNext targetId={goNextSiteId} targetType={GOTYPE.SITES} controlBody="scale-90" />
+                <select class="select scale-90" bind:value={countyId} on:change={handleSiteSelect}>
                     <option value="-1">ALL SITES</option>
                     {#each data.counties as county}
                         <option value={county.id}>{county.name}</option>

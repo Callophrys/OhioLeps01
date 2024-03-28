@@ -60,7 +60,7 @@ model AppConfig {
 	updatedBy User? @relation("UpdateUserOfAppConfig", fields: [updatedById], references: [id])
 	updatedById String?
 
-    organizationId String 
+    organizationId String
     organization Organization @relation("ConfigOfOrganization", fields: [organizationId], references: [id])
 
     @@unique([configName, organizationId])
@@ -79,7 +79,7 @@ model User {
     passwordRetries Int      @default(0) // e.g. disable account on 3, or turn on delay-until-retry feature
     delayedRetries  Int      @default(0) // if 3 times inside 3 days then disable account; Report to admins with user and IP and maybe headers too
     passwordExpires DateTime?
-    
+
 // maxLoginRetries', configType: 'number', configValue: '12', organizationId: templateOrganizationId ,
 // attemptsBeforeDelay', configType: 'number', configValue: '3', organizationId: templateOrganizationId ,
 // loginDelayTime', configType: 'number', configValue: '90', organizationId: templateOrganizationId ,
@@ -117,11 +117,11 @@ model User {
     // AppConfigs
     appConfigCreatorOf AppConfig[] @relation("CreateUserOfAppConfig")
     appConfigUpdatorOf AppConfig[] @relation("UpdateUserOfAppConfig")
-    
+
     // NameAddress
     nameAddressCreatorOf NameAddress[] @relation("CreateUserOfNameAddress")
     nameAddressUpdatorOf NameAddress[] @relation("UpdateUserOfNameAddress")
-    
+
     // Site
     siteCreatorOf Site[] @relation("CreateUserOfSite")
     siteUpdatorOf Site[] @relation("UpdateUserOfSite")
@@ -150,7 +150,7 @@ model Organization {
 	createdById String? // Probably should never be null
 	updatedBy User? @relation("UpdateUserOfOrganization", fields: [updatedById], references: [id])
 	updatedById String?
-    
+
     appConfigs AppConfig[] @relation("ConfigOfOrganization")
     users User[]           @relation("UserOfOrganization")
 }
@@ -269,7 +269,7 @@ model SiteDateObservation {
     siteDateObservationId Int @id @default(autoincrement())
     // ** use siteDateObservationId as real key now - and later just drop 'seqId Int?'
     seqId Int?
-    hodges String?
+    hodges String? // hodges + siteDateId would be unique
     idCode String? // @db.String(1)  // in { how id'ed:  O observ, N net, P photo, C collected }
     section1 Int?        // counts of CheckList species per section
     section2 Int?
@@ -309,7 +309,7 @@ model SiteDateObservation {
 
     // Parent Relation
     siteDate SiteDate? @relation(fields: [siteDateId], references: [siteDateId])
-    siteDateId Int? // Probably should never be null
+    siteDateId Int? // Should never be null
 
     //@@index([checklistId]); // error on run
     //@@index([siteDateId]);  // error on run
