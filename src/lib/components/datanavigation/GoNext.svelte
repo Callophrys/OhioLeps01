@@ -6,6 +6,7 @@
     export let targetId: number;
     export let targetType: GOTYPE;
     export let targetIdSecondary: number = -1;
+    export let controlDisabled: boolean = false;
 
     /*-- -- Styling -- */
     /*-- Properties (styles) */
@@ -62,7 +63,7 @@
 </script>
 
 <div class={classesControlBody} aria-labelledby={labelledby}>
-    <button type="button" class={classesButtonCenter} on:click={handleClick} title={`Return to ${GOTYPE[targetType]}`} disabled={targetType === GOTYPE.UNKNOWN}>
+    <button type="button" class={classesButtonCenter} on:click={handleClick} title={`Proceed to ${GOTYPE[targetType]}`} disabled={controlDisabled || targetType === GOTYPE.UNKNOWN}>
         <span class={classesScriptCenter}>▶</span>
     </button>
 </div>

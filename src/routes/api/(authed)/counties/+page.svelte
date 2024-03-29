@@ -18,7 +18,8 @@
     let vButtonGroupClasses: CssClasses = '';
     $: buttonGroupClasses = `${cButtonGroupClasses} ${vButtonGroupClasses}`;
     $: counties = data.counties;
-    $: goNextCountyId = () => {
+
+    const goNextCountyId = () => {
         if (counties.length) {
             if (counties[0].sites.length === 1) {
                 return counties[0].sites[0].siteId;
@@ -28,12 +29,15 @@
         }
         return -1;
     };
-    $: goNextTargetType = () => {
+
+    const goNextTargetType = () => {
         if (counties.length && counties[0].sites.length === 1) {
             return GOTYPE.SITES;
         }
         return GOTYPE.COUNTYSITES;
-    } satisfies GOTYPE;
+    };
+
+    $: controlDisabled = counties.length === 0;
 </script>
 
 <!-- Counties -->
@@ -41,7 +45,7 @@
     <svelte:fragment slot="standardHead">
         <div class="bg-red flex flex-col lg:flex-row justify-between">
             <GoBack targetId={-1} targetType={GOTYPE.HOME} controlBody="scale-90" />
-            <GoNext targetId={goNextCountyId} targetType={goNextTargetType} controlBody="scale-90" />
+            <GoNext targetId={goNextCountyId()} targetType={goNextTargetType()} controlBody="scale-90" {controlDisabled} />
             <CountySort bind:counties controlBody="scale-90" />
             <CountyFilter bind:vButtonGroupClasses controlBody="scale-90" />
         </div>

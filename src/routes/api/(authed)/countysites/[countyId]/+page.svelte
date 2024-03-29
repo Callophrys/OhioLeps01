@@ -32,7 +32,8 @@
     console.log(countyId);
     let county: County = data.counties.find((c: County) => c.id === countyId) as County;
     console.log(county);
-    let goNextSiteId = data.sites.length ? data.sites[0].siteId : -1;
+
+    $: goNextSiteId = data.sites.length ? data.sites[0].siteId : -1;
 </script>
 
 <StandardContainer>
@@ -46,7 +47,7 @@
             </div>
             <div class="flex flex-row">
                 <GoBack targetId={-1} targetType={GOTYPE.COUNTIES} controlBody="scale-90" />
-                <GoNext targetId={goNextSiteId} targetType={GOTYPE.SITES} controlBody="scale-90" />
+                <GoNext targetId={goNextSiteId} targetType={GOTYPE.SITES} controlBody="scale-90" controlDisabled={goNextSiteId === -1} />
                 <select class="select scale-90" bind:value={countyId} on:change={handleSiteSelect}>
                     <option value="-1">ALL SITES</option>
                     {#each data.counties as county}

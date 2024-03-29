@@ -43,6 +43,7 @@
         }
     });
 
+    console.log(data.site);
     afterUpdate(() => {
         localStorage.setItem('filterByCounty', filterByCounty ? '1' : '0');
     });
@@ -63,8 +64,8 @@
 <StandardContainer>
     <svelte:fragment slot="standardHead">
         <div class="flex flex-row justify-between gap-1 md:gap-2">
-            <GoBack targetId={data.site.countyId} targetType={GOTYPE.COUNTYSITES} controlBody="scale-90" />
-            <GoNext targetId={data.site.siteDates[0].siteDateId} targetType={GOTYPE.SITEDATES} controlBody="scale-90" />
+            <GoBack targetId={currentCountyId} targetType={GOTYPE.COUNTYSITES} controlBody="scale-90" />
+            <GoNext targetId={currentSiteDateId} targetType={GOTYPE.SITEDATES} controlBody="scale-90" />
             <CountyPicker {currentCountyId} {filterByCounty} controlBody="scale-90" />
             <!-- TODO: Filter sites to selected country -->
             <SitePicker {currentSiteId} {filterByCounty} controlBody="scale-90" />
