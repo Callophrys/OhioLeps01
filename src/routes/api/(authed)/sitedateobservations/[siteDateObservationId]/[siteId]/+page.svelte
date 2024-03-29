@@ -193,6 +193,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     $: currentSiteDateObservation = data.siteDateObservation as SiteDateObservationChecklist;
     $: recordYear = new Date(currentSiteDateObservation.siteDate.recordDate).getFullYear();
     $: recordWeek = weekOfYearSince(new Date(currentSiteDateObservation.siteDate.recordDate));
+    $: recordSdoCount = data.checklistsSiteDateObs.filter((o: any) => showDeletedData || !o.deleted).length;
 
     $: sdoSections = Object.entries(currentSiteDateObservation)
         .filter((x) => x[0].startsWith('section'))
@@ -207,7 +208,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     //console.log(data);
 </script>
 
-<YearWeek year={new Date(data.siteDateObservation.siteDate.recordDate).getFullYear()} week={weekOfYearSince(new Date(data.siteDateObservation.siteDate.recordDate))} />
+<YearWeek year={new Date(data.siteDateObservation.siteDate.recordDate).getFullYear()} week={weekOfYearSince(new Date(data.siteDateObservation.siteDate.recordDate))} sdoCount={recordSdoCount} />
 <DataOptions bind:showRecentEdits bind:showDeletedData />
 
 <StandardContainer>
