@@ -1,4 +1,5 @@
 <script lang="ts">
+    /*-- Imports */
     import DoubledContainer from '$lib/components/DoubledContainer.svelte';
     import SpeciesPicker from '$lib/components/query/SpeciesPicker.svelte';
     import StateCountyPicker from '$lib/components/query/StateCountyPicker.svelte';
@@ -9,15 +10,41 @@
     import { page } from '$app/stores';
     import { setContext } from 'svelte';
     import { sortByStringProperty } from '$lib/utils';
+
+    /*-- -- Data -- */
+    /*-- Exports */
     export let data;
     export let form;
+    /*
+    console.log('data', data);
+    console.log('form', form);
+    */
 
-    let config: any = $page.data.config ?? {};
+    /*-- Context */
     setContext('counties', data.counties);
     setContext('speciesList', data.speciesList);
+    // Read global configs to setup initial option presets for
+    // entire organization for user storage handles per user options
+    const config: any = $page.data.config ?? {};
 
-    let loading = false;
+    /*-- -- Styling -- */
+    /*-- Properties (styles) */
+    /*-- Constants (styles) */
+    const intensities: any = {
+        1: 'font-2xl text-xl after:text-current-900 after:brightness-0 dark:after:text-current-50 dark:after:brightness-200',
+        2: 'font-2xl text-lg after:text-current-700 after:brightness-50 dark:after:text-current-200 dark:after:brightness-150',
+        3: 'font-2xl text-base after:text-current-500 after:brightness-75 dark:after:text-current-400 dark:after:brightness-125',
+        4: 'font-2xl text-sm after:text-current-400 dark:after:text-current-600',
+    };
 
+    /*-- Variables (styles) */
+    /*-- Reactives (styles) */
+
+    /*-- -- Coding -- */
+    /*-- Enums */
+    type sortInfo = { col: string; ascending: boolean };
+
+    /*-- Constants (functional) */
     const countedRegions = Object.create(null);
     const countedCounties = Object.create(null);
     const countedSpecies = Object.create(null);
@@ -26,53 +53,6 @@
     const distinctCounties = Object.create(null);
     const distinctSpecies = Object.create(null);
 
-    const runSearch: SubmitFunction = () => {
-        loading = true;
-
-        return async ({ update }) => {
-            loading = false;
-            await update();
-        };
-    };
-
-    $: {
-        if (form?.success) {
-            form.checklists.forEach((cs: CountySpecimen) => {
-                countedRegions[cs.region] = 1 + (countedRegions[cs.region] ?? 0);
-                countedCounties[cs.county] = 1 + (countedCounties[cs.county] ?? 0);
-                countedSpecies[cs.checklistId] = 1 + (countedRegions[cs.checklistId] ?? 0);
-
-                distinctRegions[cs.region] = 1;
-                distinctCounties[cs.county] = 1;
-                distinctSpecies[cs.checklistId] = 1;
-            });
-
-            //console.log(form.checklists.length);
-            const z = form.checklists.map((y: CountySpecimen) => JSON.stringify({ region: y.region, county: y.county, commonName: y.commonName, scientificName: y.scientificName }));
-            const a = [...new Set(z)];
-            //console.log(a);
-            const b = a.map((x) => JSON.parse(x) as CountySpecimen);
-            //console.log(b.length);
-            form.checklists = b;
-        }
-
-        /*
-        console.log('countedRegions', countedRegions);
-        console.log('countedCounties', countedCounties);
-        console.log('countedSpecies', countedSpecies);
-
-        console.log('distinctRegions', Object.keys(distinctRegions).length);
-        console.log('distinctCounties', Object.keys(distinctCounties).length);
-        console.log('distinctSpecies', Object.keys(distinctSpecies).length);
-        */
-    }
-
-    /*
-    console.log('data', data);
-    console.log('form', form);
-    */
-
-    type sortInfo = { col: string; ascending: boolean };
     const sortBy: sortInfo[] = [];
     const dirIndicator: any = {
         region: '',
@@ -88,31 +68,24 @@
         scientificName: '',
     };
 
-    const intensities: any = {
-        1: 'font-2xl text-xl after:text-current-900 after:brightness-0 dark:after:text-current-50 dark:after:brightness-200',
-        2: 'font-2xl text-lg after:text-current-700 after:brightness-50 dark:after:text-current-200 dark:after:brightness-150',
-        3: 'font-2xl text-base after:text-current-500 after:brightness-75 dark:after:text-current-400 dark:after:brightness-125',
-        4: 'font-2xl text-sm after:text-current-400 dark:after:text-current-600',
+    /*-- Properties (functional) */
+    /*-- Variables and objects */
+    let isSorting = false; // Helps prevent issue of handler method running more than once at same time
+    let loading = false; // Supports pattern to set styles and disable control while method is runing
+
+    /*-- Run first stuff */
+    /*-- onMount, beforeUpdate, afterUpdate */
+    /*-- Handlers */
+    const runSearch: SubmitFunction = () => {
+        loading = true;
+
+        return async ({ update }) => {
+            loading = false;
+            await update();
+        };
     };
 
-    /*
-    const intensities: any = {
-        1: 'font-extrabold text-xl after:text-red-900 dark:after:text-slate-400',
-        2: 'font-extrabold text-lg after:text-green-900 dark:after:text-green-400',
-        3: 'font-extrabold text-base after:text-amber-900 dark:after:text-amber-400',
-        4: 'font-extrabold text-sm after:text-blue-900 dark:after:text-blue-400',
-    };
-    */
-
-    /*
-    brightness-110	filter: brightness(1.1);
-    brightness-125	filter: brightness(1.25);
-    brightness-150	filter: brightness(1.5);
-    */
-
-    let isSorting = false;
-    function resultSort (e: any) {
-
+    function resultSort(e: any) {
         if (isSorting) {
             console.log('isSorting...');
             return;
@@ -163,6 +136,48 @@
 
         isSorting = false;
     }
+
+    /*-- Methods */
+    /*-- Reactives (functional) */
+    $: {
+        if (form?.success) {
+            form.checklists.forEach((cs: CountySpecimen) => {
+                countedRegions[cs.region] = 1 + (countedRegions[cs.region] ?? 0);
+                countedCounties[cs.county] = 1 + (countedCounties[cs.county] ?? 0);
+                countedSpecies[cs.checklistId] = 1 + (countedRegions[cs.checklistId] ?? 0);
+
+                distinctRegions[cs.region] = 1;
+                distinctCounties[cs.county] = 1;
+                distinctSpecies[cs.checklistId] = 1;
+            });
+
+            //console.log(form.checklists.length);
+            const z = form.checklists.map((y: CountySpecimen) => JSON.stringify({ region: y.region, county: y.county, commonName: y.commonName, scientificName: y.scientificName }));
+            const a = [...new Set(z)];
+            //console.log(a);
+            const b = a.map((x) => JSON.parse(x) as CountySpecimen);
+            //console.log(b.length);
+            form.checklists = b;
+        }
+
+        /*
+        console.log('countedRegions', countedRegions);
+        console.log('countedCounties', countedCounties);
+        console.log('countedSpecies', countedSpecies);
+
+        console.log('distinctRegions', Object.keys(distinctRegions).length);
+        console.log('distinctCounties', Object.keys(distinctCounties).length);
+        console.log('distinctSpecies', Object.keys(distinctSpecies).length);
+        */
+    }
+
+    /*-- Other */
+
+    /*
+    brightness-110	filter: brightness(1.1);
+    brightness-125	filter: brightness(1.25);
+    brightness-150	filter: brightness(1.5);
+    */
 </script>
 
 <DoubledContainer rightBodyClasses={loading ? 'overflow-hidden pr-4' : 'overflow-hidden'}>
@@ -190,7 +205,6 @@
             <div class="w-full h-full pl-4 pt-2 animate-pulse variant-filled-surface hover:cursor-wait">Loading...</div>
         {:else if form?.success}
             <div class="w-[calc(100%_-_1em)] h-full">
-
                 <!-- Header-Sort Controls -->
                 <div class="flex h-[4.75em]">
                     <button class="w-28 top-0 px-6 py-3 font-bold text-center variant-outline-surface rounded-tl" name="region" on:click={resultSort}>
