@@ -137,6 +137,8 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     let isViewAll = false;
     let showRecentEdits = true;
     let showDeletedData = false;
+    let showHodges = true;
+    let showP3 = true;
 
     /*-- Variables and objects */
     let x: string;
@@ -209,7 +211,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 </script>
 
 <YearWeek year={new Date(data.siteDateObservation.siteDate.recordDate).getFullYear()} week={weekOfYearSince(new Date(data.siteDateObservation.siteDate.recordDate))} sdoCount={recordSdoCount} />
-<DataOptions bind:showRecentEdits bind:showDeletedData />
+<DataOptions bind:showRecentEdits bind:showDeletedData bind:showHodges bind:showP3 />
 
 <StandardContainer>
     <svelte:fragment slot="standardBody">

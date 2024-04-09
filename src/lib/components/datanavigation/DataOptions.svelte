@@ -6,6 +6,8 @@
     /*-- Exports */
     export let showRecentEdits: boolean = true;
     export let showDeletedData: boolean = false;
+    export let showHodges: boolean = true;
+    export let showP3: boolean = true;
 
     /*-- Context */
     /*-- -- Styling -- */
@@ -26,6 +28,14 @@
 </script>
 
 <div class="flex flex-row space-x-2 text-sm fixed top-[134px] right-10">
+    <label class="flex items-center space-x-2" title="Highlight recently added/updated data">
+        <p>Show Hodges</p>
+        <input class="checkbox" type="checkbox" bind:checked={showHodges} />
+    </label>
+    <label class="flex items-center space-x-2" title="Highlight recently added/updated data">
+        <p>Show P3</p>
+        <input class="checkbox" type="checkbox" bind:checked={showP3} />
+    </label>
     <label class="flex items-center space-x-2" title="Highlight recently added/updated data">
         <p>Recently updated</p>
         <input class="checkbox" type="checkbox" bind:checked={showRecentEdits} />
