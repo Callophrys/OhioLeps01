@@ -176,6 +176,7 @@
     $: recordWeek = weekOfYearSince(new Date(data.siteDate.recordDate));
     $: recordSiteId = data.siteDate.siteDateId;
     $: recordSdoCount = data.siteDate.siteDateObservations.filter((o: any) => showDeletedData || !o.deleted).length;
+    $: firstSdoId = recordSdoCount > 0 ? data.siteDate.siteDateObservations[0].siteDateObservationId : -1;
 
     $: startTemp = String(data.siteDate.startTemp);
     $: endTemp = String(data.siteDate.endTemp);
@@ -461,7 +462,7 @@
         <div class="flex flex-row justify-between mb-2">
             <div class="my-auto">{data.siteDate.siteName}</div>
             <GoBack targetId={data.siteDate.siteId} targetType={GOTYPE.SITES} controlBody="scale-90" />
-            <GoNext targetId={data.siteDate.siteDateObservations[0].siteDateObservationId} targetType={GOTYPE.SITEDATEOBSERVATIONS} targetIdSecondary={data.siteDate.siteId} controlBody="scale-90" />
+            <GoNext targetId={firstSdoId} targetType={GOTYPE.SITEDATEOBSERVATIONS} targetIdSecondary={data.siteDate.siteId} controlBody="scale-90" controlDisabled={firstSdoId < 0} />
             <SiteDatePicker bind:currentSiteDateId controlBody="scale-90" buttonLeft="!px-2" buttonRight="!px-2" buttonYear="w-28 px-0 md:px-1 lg:px-2" buttonWeek="w-24 px-0 md:px-1 lg:px-2" dropdownShowDate={false} dropdownPointers={false}>
                 <svelte:fragment slot="prefixYear">Year:</svelte:fragment>
                 <svelte:fragment slot="prefixWeek">Week:</svelte:fragment>
