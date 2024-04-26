@@ -1,6 +1,8 @@
 <script lang="ts">
     import DoubledContainer from '$lib/components/DoubledContainer.svelte';
     import { onMount } from 'svelte';
+    import { popup } from '@skeletonlabs/skeleton';
+    import type { PopupSettings } from '@skeletonlabs/skeleton';
 
     /*
     import { imageModules } from '$lib/gallery';
@@ -13,7 +15,7 @@
     }
     <ul>
     {#each galleryUrls as asset}
-       <li></li>{asset}</li>   
+       <li></li>{asset}</li>
     {/each}
     </ul>
     */
@@ -160,6 +162,15 @@
         sss.cspcnt = document.getElementById('species-in-selection');
         sss.csplst = document.getElementById('species-in-selection-list');
     });
+
+    const popupFeatured: PopupSettings = {
+        // Represents the type of event that opens/closed the popup
+        event: 'click',
+        // Matches the data-popup value on your popup element
+        target: 'popupFeatured',
+        // Defines which side of your trigger the popup will appear
+        placement: 'bottom',
+    };
 </script>
 
 <DoubledContainer>
@@ -275,6 +286,16 @@
                     <input class="radio" type="radio" disabled name="radio-direct" value="2" />
                     <p>Counties with species</p>
                 </label>
+                <button class="btn variant-filled" use:popup={popupFeatured}>How to select counties</button>
+                <div class="card p-4 w-80 shadow-xl bg-surface-100-800-token" data-popup="popupFeatured">
+                    <div class="text-center"><p>Demo Content</p></div>
+                    <ul class="list-disc ml-2">
+                        <li>Left-click mouse and drag to create sets of counties</li>
+                        <li>Press and hold down control key while clicking or dragging to add or remove</li>
+                        <li>Press and hold control and shift keys together to add or remove entire regions of counties</li>
+                    </ul>
+                    <div class="arrow shadow-xl bg-surface-100-800-token" />
+                </div>
             </div>
         </div>
     </svelte:fragment>
