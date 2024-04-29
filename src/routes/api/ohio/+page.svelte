@@ -73,10 +73,7 @@
         isMouseDown = true;
         sss.svgvp.classList.add('cursor-pointer');
         if (e.target.tagName === 'polygon') {
-            if (!e.ctrlKey) {
-                sss.svgvp.querySelectorAll('polygon').forEach((p: any) => p.classList.remove('polygon-select'));
-                selectedCounties.length = 0;
-            } else if (e.shiftKey) {
+            if (e.shiftKey) {
                 let region = Array.from(e.target.classList).find((c: any) => c.startsWith('region'));
                 let isAdding = !e.target.classList.contains('polygon-select');
                 Array.from(sss.svgvp.querySelectorAll('polygon'))
@@ -98,12 +95,19 @@
                     });
             } else {
                 if (e.target.classList.contains('polygon-select')) {
-                    e.target.classList.remove('polygon-select');
-                    selectedCounties.splice(
-                        selectedCounties.findIndex((c: countyItem) => c.id === e.target.id),
-                        1
-                    );
+                    if (!e.ctrlKey) {
+                        clearSelectedCounties();
+                    } else {
+                        e.target.classList.remove('polygon-select');
+                        selectedCounties.splice(
+                            selectedCounties.findIndex((c: countyItem) => c.id === e.target.id),
+                            1
+                        );
+                    }
                 } else {
+                    if (!e.ctrlKey) {
+                        clearSelectedCounties();
+                    }
                     e.target.classList.add('polygon-select');
                     selectedCounties.push({
                         id: e.target.id,
@@ -113,6 +117,11 @@
             }
             updateCounties();
         }
+    }
+
+    function clearSelectedCounties() {
+        sss.svgvp.querySelectorAll('polygon').forEach((p: any) => p.classList.remove('polygon-select'));
+        selectedCounties.length = 0;
     }
 
     function handleMouseUp(e: any) {
@@ -288,13 +297,13 @@
                 </label>
                 <button class="btn variant-filled" use:popup={popupFeatured}>How to select counties</button>
                 <div class="card p-4 w-80 shadow-xl bg-surface-100-800-token" data-popup="popupFeatured">
-                    <div class="text-center"><p>Demo Content</p></div>
+                    <div class="text-center"><p>Instructions</p></div>
                     <ul class="list-disc ml-2">
                         <li>Left-click mouse and drag to create sets of counties</li>
                         <li>Press and hold down control key while clicking or dragging to add or remove</li>
                         <li>Press and hold control and shift keys together to add or remove entire regions of counties</li>
                     </ul>
-                    <div class="arrow shadow-xl bg-surface-100-800-token" />
+                    <div class="arrow shadow-xl bg-surface-100-800-token"></div>
                 </div>
             </div>
         </div>
@@ -312,8 +321,8 @@
     </svelte:fragment>
     <svelte:fragment slot="rightBody">
         <div class="grid grid-cols-2">
-            <ul id="selected-counties-list" class="list ml-4" />
-            <ul id="species-in-selection-list" class="list ml-4" />
+            <ul id="selected-counties-list" class="list ml-4"></ul>
+            <ul id="species-in-selection-list" class="list ml-4"></ul>
         </div>
     </svelte:fragment>
     <svelte:fragment slot="rightTail"><div class="text-xs text-secondary-500 mb-[-1em]">* Not monitored / no species observed</div></svelte:fragment>

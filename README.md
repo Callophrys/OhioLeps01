@@ -725,6 +725,10 @@ naba site
 citizen science sites for spceices Counts
 See NSF
 inat source
+https://gitcontext.com/blog/svelte-5-upgrade
+
+
+pnpm install -D @tailwindcss/forms
 
 
 

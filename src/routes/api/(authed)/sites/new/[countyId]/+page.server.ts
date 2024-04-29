@@ -5,6 +5,8 @@ import type { Site, County } from '@prisma/client';
 import type { SiteCounty } from '$lib/types.js';
 import { getSitesByCounty, getSites } from '$lib/database/sites.js';
 import { getCountiesExpanded } from '$lib/database/counties.js';
+import type { Actions } from '@sveltejs/kit';
+import { addSite } from '$lib/database/sites.js';
 
 export async function load({ cookies, url, params }) {
 
@@ -12,7 +14,7 @@ export async function load({ cookies, url, params }) {
 	if (!cookies.get('session')) {
 		throw redirect(303, `/login?redirectTo=${url.pathname}`);
 	}
-	
+
 	return { countyId: params.countyId };
 
 	// let countyId = Number(params.countyId);
@@ -37,4 +39,17 @@ export async function load({ cookies, url, params }) {
 	// //console.log(jsonResultC);
 
 	// return { sites: jsonResultS, counties: jsonResultC, refCountyId: countyId };
+}
+
+export const actions: Actions = {
+	addSite: async ({ request, locals }) => {
+		//console.log('ddd');
+		const formData: any = await request.formData();
+
+		const addedSite: Site = await addSite(formData);
+
+		//console.log(formData);
+		// hodges checklistId siteDateId createdById createdAt
+		return { action: 'create', success: true, data: addedSite }
+	},
 }

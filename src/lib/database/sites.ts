@@ -1,4 +1,5 @@
 import prisma from "$lib/prisma"
+import type { Site } from '@prisma/client';
 
 /**
  * Obtain site details including county, yearly statuses, and observation dates
@@ -80,8 +81,13 @@ export async function getSites(idList: number[] | null) {
   return sites;
 }
 
-export async function addSite(site: any) {
+export async function addSite(site: Site) {
   console.log('/lib/api/entry/sites.ts > addSite');
+  const createdSite = await prisma.site.create({
+    data: site
+  });
+
+  return createdSite;
   /*
   const newSite = await prisma.site.create({
     data: {

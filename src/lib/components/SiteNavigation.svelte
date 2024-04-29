@@ -42,7 +42,7 @@
             {/if}
             <li><a href="/api/checklists" class={cAnchorIndentedPl2}>Checklists</a></li>
             <li><a href="/api/counties" class={cAnchorIndentedPl2}>Counties</a></li>
-            <li><a href="/api/countypanes" class={cAnchorIndentedPl2}>County Panes</a></li>
+            <!-- <li><a href="/api/countypanes" class={cAnchorIndentedPl2}>County Panes</a></li> -->
             <li><a href="/api/sites" class={cAnchorIndentedPl2}>Sites</a></li>
             <li><a href="/api/nameaddresses" class={cAnchorIndentedPl2}>Name-Address</a></li>
         {/if}

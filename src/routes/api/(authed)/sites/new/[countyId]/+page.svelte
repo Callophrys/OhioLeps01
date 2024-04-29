@@ -11,9 +11,9 @@
     import GoNext from '$lib/components/datanavigation/GoNext.svelte';
     import { GOTYPE } from '$lib/types.js';
 
-    export let data;
-    console.log(data);
-	let countyId = data.countyId;
+    // export let data;
+    // console.log(data);
+    // let countyId = data.countyId;
 
     /*-- -- Data -- */
     /*-- Exports */
@@ -41,10 +41,10 @@
 
     /*-- onMount, beforeUpdate, afterUpdate */
     onMount(() => {
-        let x = localStorage?.filterByCounty;
-        if (x && x.length) {
-            filterByCounty = x === '1';
-        }
+        // let x = localStorage?.filterByCounty;
+        // if (x && x.length) {
+        //     filterByCounty = x === '1';
+        // }
     });
 
     // console.log(data.site);
@@ -77,48 +77,41 @@
             <!-- <SitePicker {currentSiteId} {filterByCounty} controlBody="scale-90" /> -->
             <!-- <SiteDatePicker bind:currentSiteId bind:currentSiteDateId controlBody="scale-90" /> -->
         </div>
-
     </svelte:fragment>
 
     <svelte:fragment slot="standardBody">
-        <div class="max-w-[600px]">
-            <div class="content">
-                <div>siteName: <input type="text" name="siteName"/></div>
-                <div>county: data.site.county.name ?? ''</div>
-                <div>township: data.site.township ?? ''</div>
-                <div>locationZip: data.site.locationZip ?? ''</div>
-                <div>siteAddress: data.site.siteAddress ?? ''</div>
-                <div>siteAddress2: data.site.siteAddress2 ?? ''</div>
-                <div>siteCityStateZip: data.site.siteCityStateZip ?? ''</div>
-                <div>person: data.site.person ?? ''</div>
-                <div>address: data.site.address ?? ''</div>
-                <div>address2: data.site.address2 ?? ''</div>
-                <div>cityStateZip: data.site.cityStateZip ?? ''</div>
-                <div>phone: data.site.phone ?? ''</div>
-                <div>email: data.site.email ?? ''</div>
-                <div>latitudeStart: data.site.latitudeStart ?? ''</div>
-                <div>latitudeEnd: data.site.latitudeEnd ?? ''</div>
-                <div>altPerson: data.site.altPerson ?? ''</div>
-                <div>altAddress: data.site.altAddress ?? ''</div>
-                <div>altAddress2: data.site.altAddress2 ?? ''</div>
-                <div>altCityStateZip: data.site.altCityStateZip ?? ''</div>
-                <div>altPhone: data.site.altPhone ?? ''</div>
-                <div>altEmail: data.site.altEmail ?? ''</div>
-                <div>otherParticipants: data.site.otherParticipants ?? ''</div>
-                <div>description: data.site.description ?? ''</div>
-                <div>Statuses</div>
-                <ul class="pl-4">
-                    #each data.site.siteStatuses as siteStatus
-                        <li>siteStatus.year: siteStatus.statusCode.description ?? ''</li>
-                    /each
-                </ul>
-                <div>
-                    createdAt: data.site.createdAt ?? ''
-                </div>
-                <div>
-                    updated at data.site.updatedAt ?? ''
+        <form id="addSite" name="addSite">
+            <div class="max-w-[600px]">
+                <div class="content">
+                    <label class="label">
+                        <span>Site Name:</span>
+                        <input type="text" class="input" id="siteName" name="siteName" title="Site Name:" placeholder="Site name" />
+                    </label>
+                    <div>county: some picker control here</div>
+                    <label class="label"><span>Township:</span><input type="text" class="input" id="township" name="township" title="Township:" placeholder="Township" /></label>
+
+                    <label class="label"><span>Location Zip:</span><input type="text" class="input" id="locationZip" name="locationZip" title="Location Zip:" placeholder="Location Zip" /></label>
+                    <label class="label"><span>Site Address:</span><input type="text" class="input" id="siteAddress" name="siteAddress" title="Site Address:" placeholder="Site Address" /></label>
+                    <label class="label"><span>Site Address 2:</span><input type="text" class="input" id="siteAddress2" name="siteAddress2" title="Site Address 2:" placeholder="Site Address 2:" /></label>
+                    <label class="label"><span>Site City State Zip:</span><input type="text" class="input" id="siteCityStateZip" name="siteCityStateZip" title="Site City State Zip:" placeholder="Site City State Zip" /></label>
+                    <label class="label"><span>Person:</span><input type="text" class="input" id="person" name="person" title="Person:" placeholder="Person" /></label>
+                    <label class="label"><span>Address:</span><input type="text" class="input" id="address" name="address" title="Address:" placeholder="Address" /></label>
+                    <label class="label"><span>Address 2:</span><input type="text" class="input" id="address2" name="address2" title="Address 2:" placeholder="Address 2" /></label>
+                    <label class="label"><span>City State Zip:</span><input type="text" class="input" id="cityStateZip" name="cityStateZip" title="City State Zip:" placeholder="City State Zip" /></label>
+                    <label class="label"><span>Phone:</span><input type="text" class="input" id="phone" name="phone" title="Phone:" placeholder="Phone" /></label>
+                    <label class="label"><span>Email:</span><input type="text" class="input" id="email" name="email" title="Email:" placeholder="Email" /></label>
+                    <label class="label"><span>Latitude Start:</span><input type="text" class="input" id="latitudeStart" name="latitudeStart" title="Latitude Start:" placeholder="Latitude Start" /></label>
+                    <label class="label"><span>Latitude End:</span><input type="text" class="input" id="latitudeEnd" name="latitudeEnd" title="Latitude End:" placeholder="Latitude End" /></label>
+                    <label class="label"><span>Alt Person:</span><input type="text" class="input" id="altPerson" name="altPerson" title="Alt Person:" placeholder="Alt Person" /></label>
+                    <label class="label"><span>Alt Address:</span><input type="text" class="input" id="altAddress" name="altAddress" title="Alt Address:" placeholder="Alt Address" /></label>
+                    <label class="label"><span>Alt Address 2:</span><input type="text" class="input" id="altAddress2" name="altAddress2" title="Alt Address 2:" placeholder="Alt Address 2" /></label>
+                    <label class="label"><span>Alt City State Zip:</span><input type="text" class="input" id="altCityStateZip" name="altCityStateZip" title="Alt City State Zip:" placeholder="Alt City State Zip" /></label>
+                    <label class="label"><span>Alt Phone:</span><input type="text" class="input" id="altPhone" name="altPhone" title="Alt Phone:" placeholder="Alt Phone" /></label>
+                    <label class="label"><span>Alt Email:</span><input type="text" class="input" id="altEmail" name="altEmail" title="Alt Email:" placeholder="Alt Email" /></label>
+                    <label class="label"><span>Other Participants:</span><input type="text" class="input" id="otherParticipants" name="otherParticipants" title="Other Participants:" placeholder="Other Participants" /></label>
+                    <label class="label"><span>description:</span><textarea class="textarea" id="description" name="description" rows="4" title="Description" placeholder="Description"></textarea></label>
                 </div>
             </div>
-        </div>
+        </form>
     </svelte:fragment>
 </StandardContainer>
