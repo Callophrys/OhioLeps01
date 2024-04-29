@@ -627,9 +627,9 @@ choco upgrade nodejs.install
   28        0.608 pnpm install
   29       35.607 pnpm run dev -- --open
   30        1.899 npx prisma generate
-                    
+
     # 2/22/2024
-    
+
 ```Typescript
 use:enhance={({ formReview, data, cancel }) => {
 // `form` is the `<form>` element
@@ -707,3 +707,25 @@ with recursive cte (id, name, parent_id) as (
           on p.parent_id = cte.id
 )
 select * from cte;
+
+TODO
+----
+Make sure a single click on a county on Ohio page can toggle a single county
+Switching from country filter to not filtered should effect the selected site appropriately - Q: left site showing on change to another country?  Or set to first of county or empty if country possesses no sites.
+Admin section - edit, reset users, etc
+User admin - update details, set avatar picture
+
+Make browsing easy for non-researchers
+Tie to gardening
+Hide site contacts from public
+
+SEE
+--
+naba site
+citizen science sites for spceices Counts
+See NSF
+inat source
+
+
+
+

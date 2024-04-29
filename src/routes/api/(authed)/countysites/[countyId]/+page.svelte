@@ -22,6 +22,10 @@
         }
         */
     }
+    
+    function addSite() {
+        goto(`/api/sites/new/${countyId}`);
+    }
 
     /*
 	console.log(data);
@@ -41,9 +45,11 @@
         <div class="flex flex-row justify-between">
             <div class="flex">
                 <div class="my-auto">All sites in county: {county.name}</div>
+
                 {#if $page.data?.user && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN')}
-                    <button type="button" class="btn"><span class="text-success-400">✚</span>&nbsp;Add new site</button>
+                    <button type="button" class="btn" on:click={addSite}><span class="text-success-400">✚</span>&nbsp;Add new site</button>
                 {/if}
+
             </div>
             <div class="flex flex-row">
                 <GoBack targetId={-1} targetType={GOTYPE.COUNTIES} controlBody="scale-90" />
