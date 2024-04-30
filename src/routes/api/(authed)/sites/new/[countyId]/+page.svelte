@@ -1,28 +1,23 @@
 <script lang="ts">
     /*-- Imports */
     import CountyPicker from '$lib/components/datanavigation/CountyPicker.svelte';
-    import SitePicker from '$lib/components/datanavigation/SitePicker.svelte';
-    import SiteDatePicker from '$lib/components/datanavigation/SiteDatePicker.svelte';
     import StandardContainer from '$lib/components/StandardContainer.svelte';
     import CountySite from '$lib/components/datanavigation/CountySite.svelte';
     import { setContext } from 'svelte';
-    import { afterUpdate, onMount } from 'svelte';
     import GoBack from '$lib/components/datanavigation/GoBack.svelte';
     import GoNext from '$lib/components/datanavigation/GoNext.svelte';
     import { GOTYPE } from '$lib/types.js';
 
-    // export let data;
-    // console.log(data);
-    // let countyId = data.countyId;
+    export let data;
+    console.log(data);
+    let countyId = data?.countyId ?? -1;
 
     /*-- -- Data -- */
     /*-- Exports */
     // export let data../$types.js;
 
     /*-- Context */
-    // setContext('counties', data.counties);
-    // setContext('sites', data.sites);
-    // setContext('siteDates', data.site.siteDates);
+    setContext('counties', data.counties);
 
     /*-- -- Styling -- */
     /*-- Properties (styles) */
@@ -34,28 +29,14 @@
     /*-- Constants (functional) */
 
     /*-- Properties (functional) */
-    let filterByCounty: boolean = false;
-
     /*-- Variables and objects */
     /*-- Run first stuff */
-
     /*-- onMount, beforeUpdate, afterUpdate */
-    onMount(() => {
-        // let x = localStorage?.filterByCounty;
-        // if (x && x.length) {
-        //     filterByCounty = x === '1';
-        // }
-    });
-
-    // console.log(data.site);
-    // afterUpdate(() => {
-    //     localStorage.setItem('filterByCounty', filterByCounty ? '1' : '0');
-    // });
-
     /*-- Handlers */
     /*-- Methods */
 
     /*-- Reactives (functional) */
+    $: currentCountyId = data.countyId;
     // $: countyId = data.site.countyId;
     // $: currentSiteId = data.site.siteId;
     // $: currentSiteDateId = data.site.siteDates.length ? data.site.siteDates[0].siteDateId : -1;
@@ -71,11 +52,6 @@
             <!-- <GoBack targetId={countyId} targetType={GOTYPE.COUNTYSITES} controlBody="scale-90" /> -->
             <!-- <GoNext targetId={currentSiteDateId} targetType={GOTYPE.SITEDATES} controlBody="scale-90" /> -->
             <!-- <CountyPicker {countyId} {filterByCounty} controlBody="scale-90" /> -->
-
-            <!-- TODO: Filter sites to selected country -->
-
-            <!-- <SitePicker {currentSiteId} {filterByCounty} controlBody="scale-90" /> -->
-            <!-- <SiteDatePicker bind:currentSiteId bind:currentSiteDateId controlBody="scale-90" /> -->
         </div>
     </svelte:fragment>
 
@@ -87,9 +63,11 @@
                         <span>Site Name:</span>
                         <input type="text" class="input" id="siteName" name="siteName" title="Site Name:" placeholder="Site name" />
                     </label>
-                    <div>county: some picker control here</div>
+                    <label class="label" for="">
+                        <span>County</span>
+                        <CountyPicker {currentCountyId} filterByCounty={false} controlBody="scale-90" class="w-auto" />
+                    </label>
                     <label class="label"><span>Township:</span><input type="text" class="input" id="township" name="township" title="Township:" placeholder="Township" /></label>
-
                     <label class="label"><span>Location Zip:</span><input type="text" class="input" id="locationZip" name="locationZip" title="Location Zip:" placeholder="Location Zip" /></label>
                     <label class="label"><span>Site Address:</span><input type="text" class="input" id="siteAddress" name="siteAddress" title="Site Address:" placeholder="Site Address" /></label>
                     <label class="label"><span>Site Address 2:</span><input type="text" class="input" id="siteAddress2" name="siteAddress2" title="Site Address 2:" placeholder="Site Address 2:" /></label>

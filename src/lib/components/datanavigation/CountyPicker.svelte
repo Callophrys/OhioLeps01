@@ -11,6 +11,7 @@
     /*-- -- Data -- */
     /*-- Exports */
     export let currentCountyId: number;
+    console.log('skdfjdlkjflk'); console.log(currentCountyId);
     export let filterByCounty: boolean;
 
     /** Show down arrow with year and week labels to indicate dropdown.  Default: true */
@@ -121,7 +122,7 @@
     /*-- Reactives (functional) */
     $: filteredSites = filterByCounty ? allSites.filter((s: any) => s.countyId === currentCountyId) : allSites;
     $: allCountiesIndex = allCounties.findIndex((c: any) => c.id === currentCountyId);
-    $: currentCounty = allCounties.find((x) => x.id === currentCountyId);
+    $: currentCounty = currentCountyId > -1 ? allCounties.find((x) => x.id === currentCountyId) : null;
     $: currentSite = filteredSites.find((x: any) => x.countyId === currentCountyId);
     $: currentSiteId = currentSite?.siteId;
     $: prevDisabled = allCountiesIndex < 1;
@@ -138,7 +139,7 @@
         <button type="button" class={classesButtonLeft} on:click={handlePrev} disabled={prevDisabled}>◀</button>
         <button type="button" class={classesButtonCenter} use:popup={popupCounties}>
             <span class={classesScriptCenter}>
-                {currentCounty.name}
+                {currentCounty?.name}
             </span>
             <span>↓</span>
         </button>

@@ -15,30 +15,15 @@ export async function load({ cookies, url, params }) {
 		throw redirect(303, `/login?redirectTo=${url.pathname}`);
 	}
 
-	return { countyId: params.countyId };
+	let countyId = Number(params.countyId);
+	console.log(countyId);
+	const counties = await getCountiesExpanded();
 
-	// let countyId = Number(params.countyId);
-	// console.log(countyId);
-	// const [sites, counties] = (countyId === -1) ?
-	// 	await Promise.all([
-	// 		getSites(null),
-	// 		getCountiesExpanded()
-	// 	])
-	// 	:
-	// 	await Promise.all([
-	// 		getSitesByCounty(countyId),
-	// 		getCountiesExpanded()
-	// 	]);
+	const jsonC = JSON.stringify(counties);
+	const jsonResultC: County[] = JSON.parse(jsonC);
+	console.log(jsonResultC);
 
-	// const jsonS = JSON.stringify(sites);
-	// const jsonResultS: SiteCounty[] = JSON.parse(jsonS);
-
-	// const jsonC = JSON.stringify(counties);
-	// const jsonResultC: County[] = JSON.parse(jsonC);
-
-	// //console.log(jsonResultC);
-
-	// return { sites: jsonResultS, counties: jsonResultC, refCountyId: countyId };
+	return { counties: jsonResultC, refCountyId: countyId, countyId: params.countyId };
 }
 
 export const actions: Actions = {
