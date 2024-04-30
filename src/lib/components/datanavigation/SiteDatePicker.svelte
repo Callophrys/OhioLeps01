@@ -202,12 +202,12 @@
         <button type="button" class={classesButtonYear} use:popup={popupSiteDateYears}>
             {#if $$slots.prefixYear}<span class={classesPrefixYear}><slot name="prefixYear" /></span>{/if}
             <span>{recordYear}</span>
-            <span class={classesSuffixYear} />
+            <span class={classesSuffixYear}></span>
         </button>
         <button type="button" class={classesButtonWeek} use:popup={popupSiteDateWeeks}>
             {#if $$slots.prefixWeek}<span class={classesPrefixWeek}><slot name="prefixWeek" /></span>{/if}
             <span>{recordWeek}</span>
-            <span class={classesSuffixWeek} />
+            <span class={classesSuffixWeek}></span>
         </button>
         <button type="button" class={classesButtonRight} on:click={handleClickNext} disabled={nextDisabled}>▶</button>
     </div>

@@ -2,19 +2,13 @@
     /*-- Imports */
     import CountyPicker from '$lib/components/datanavigation/CountyPicker.svelte';
     import StandardContainer from '$lib/components/StandardContainer.svelte';
-    import CountySite from '$lib/components/datanavigation/CountySite.svelte';
     import { setContext } from 'svelte';
-    import GoBack from '$lib/components/datanavigation/GoBack.svelte';
-    import GoNext from '$lib/components/datanavigation/GoNext.svelte';
-    import { GOTYPE } from '$lib/types.js';
-
-    export let data;
-    console.log(data);
-    let countyId = data?.countyId ?? -1;
 
     /*-- -- Data -- */
     /*-- Exports */
+    export let data;
     // export let data../$types.js;
+    console.log(data);
 
     /*-- Context */
     setContext('counties', data.counties);
@@ -29,6 +23,8 @@
     /*-- Constants (functional) */
 
     /*-- Properties (functional) */
+    let currentCountyId: number = data?.refCountyId ?? -1;
+
     /*-- Variables and objects */
     /*-- Run first stuff */
     /*-- onMount, beforeUpdate, afterUpdate */
@@ -36,36 +32,26 @@
     /*-- Methods */
 
     /*-- Reactives (functional) */
-    $: currentCountyId = data.countyId;
-    // $: countyId = data.site.countyId;
-    // $: currentSiteId = data.site.siteId;
-    // $: currentSiteDateId = data.site.siteDates.length ? data.site.siteDates[0].siteDateId : -1;
+    $: currentCountyId, console.log('local currentCountyId:', currentCountyId);
 
     /*-- Other */
 </script>
 
-<!-- <CountySite county={data.site.county.name} site={data.site.siteName} bind:filterByCounty /> -->
-
 <StandardContainer>
     <svelte:fragment slot="standardHead">
         <div class="flex flex-row justify-between gap-1 md:gap-2">
-            <!-- <GoBack targetId={countyId} targetType={GOTYPE.COUNTYSITES} controlBody="scale-90" /> -->
-            <!-- <GoNext targetId={currentSiteDateId} targetType={GOTYPE.SITEDATES} controlBody="scale-90" /> -->
-            <!-- <CountyPicker {countyId} {filterByCounty} controlBody="scale-90" /> -->
+            <CountyPicker bind:currentCountyId controlBody="scale-90" class="w-auto" />
         </div>
     </svelte:fragment>
 
     <svelte:fragment slot="standardBody">
         <form id="addSite" name="addSite">
+            <input type="hidden" id="countyId" name="countyId" bind:value={currentCountyId} />
             <div class="max-w-[600px]">
                 <div class="content">
                     <label class="label">
                         <span>Site Name:</span>
                         <input type="text" class="input" id="siteName" name="siteName" title="Site Name:" placeholder="Site name" />
-                    </label>
-                    <label class="label" for="">
-                        <span>County</span>
-                        <CountyPicker {currentCountyId} filterByCounty={false} controlBody="scale-90" class="w-auto" />
                     </label>
                     <label class="label"><span>Township:</span><input type="text" class="input" id="township" name="township" title="Township:" placeholder="Township" /></label>
                     <label class="label"><span>Location Zip:</span><input type="text" class="input" id="locationZip" name="locationZip" title="Location Zip:" placeholder="Location Zip" /></label>

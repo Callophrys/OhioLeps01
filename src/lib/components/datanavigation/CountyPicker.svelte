@@ -11,8 +11,7 @@
     /*-- -- Data -- */
     /*-- Exports */
     export let currentCountyId: number;
-    console.log('skdfjdlkjflk'); console.log(currentCountyId);
-    export let filterByCounty: boolean;
+    export let filterByCounty: boolean = false;
 
     /** Show down arrow with year and week labels to indicate dropdown.  Default: true */
     export let dropdownPointers: boolean = true;
@@ -26,7 +25,7 @@
     export let controlOuter: CssClasses = '';
     export let controlBody: CssClasses = '';
     export let buttonLeft: CssClasses = '';
-    export let buttonCenter: CssClasses = dropdownPointers ? ($$slots.prefixYear ? 'w-28' : 'w-20') : $$slots.prefixYear ? 'w-24' : 'w-16';
+    export let buttonCenter: CssClasses = dropdownPointers ? 'w-20' : 'w-16';
     export let buttonRight: CssClasses = '';
     export let prefixCenter: CssClasses = '';
     export let scriptCenter: CssClasses = '';
@@ -127,6 +126,8 @@
     $: currentSiteId = currentSite?.siteId;
     $: prevDisabled = allCountiesIndex < 1;
     $: nextDisabled = allCountiesIndex > allCounties.length - 2;
+
+    $: currentCountyId, console.log('CountyPicker.currentCountyId', currentCountyId);
 </script>
 
 <div class={classesControlOuter}>

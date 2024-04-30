@@ -211,7 +211,9 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 </script>
 
 <YearWeek year={new Date(data.siteDateObservation.siteDate.recordDate).getFullYear()} week={weekOfYearSince(new Date(data.siteDateObservation.siteDate.recordDate))} sdoCount={recordSdoCount} />
-<DataOptions bind:showRecentEdits bind:showDeletedData bind:showHodges bind:showP3 />
+<!-- Hodges and P3 are not implemented yet -->
+<!-- <DataOptions bind:showRecentEdits bind:showDeletedData bind:showHodges bind:showP3 /> -->
+<DataOptions bind:showRecentEdits bind:showDeletedData />
 
 <StandardContainer>
     <svelte:fragment slot="standardBody">
@@ -397,7 +399,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                                 }}
                                 disabled={isEditing || data.siteDateObservation.confirmed}>
                                 <span>Add species</span>
-                                <span class="text-green-900 dark:text-green-200 text-2xl before:content-['✚']" />
+                                <span class="text-green-900 dark:text-green-200 text-2xl before:content-['✚']"></span>
                             </button>
                         {/if}
 
