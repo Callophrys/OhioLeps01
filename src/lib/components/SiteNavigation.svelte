@@ -1,27 +1,19 @@
 <script lang="ts">
     /*-- Imports */
+    import { page } from '$app/stores';
+    import { type CssClasses } from '@skeletonlabs/skeleton';
+
     /*-- -- Data -- */
     /*-- Exports */
     /*-- Context */
     /*-- -- Styling -- */
+    type Props = {
+        navBar: CssClasses;
+    };
     /*-- Properties (styles) */
+    let { navBar = '' }: Props = $props();
+
     /*-- Constants (styles) */
-    /*-- Reactives (styles) */
-    /*-- -- Coding -- */
-    /*-- Enums */
-    /*-- Constants (functional) */
-    /*-- Properties (functional) */
-    /*-- Variables and objects */
-    /*-- Run first stuff */
-    /*-- onMount, beforeUpdate, afterUpdate */
-    /*-- Handlers */
-    /*-- Methods */
-    /*-- Reactives (functional) */
-    import { page } from '$app/stores';
-    import { type CssClasses } from '@skeletonlabs/skeleton';
-
-    export let navBar: CssClasses = '';
-
     const cAnchorBase = 'rounded-l-full outline-none block text-current';
     const cAnchorDefault = 'hover:bg-surface-800-100-token focus:bg-surface-200-700-token hover:text-surface-100-800-token focus:text-secondary-800-100-token';
     const cAnchorMediaMd = 'hover:md:variant-filled-surface focus:md:variant-soft-primary';
@@ -29,7 +21,20 @@
     const cAnchorIndentedPl4 = `${cAnchorBase}  ${cAnchorDefault} ${cAnchorMediaMd} -ml-4 pl-4`;
     const cNavBar = '';
 
-    $: classesNavBar = `${cNavBar} ${navBar}`;
+    /*-- Reactives (styles) */
+    let classesNavBar = $state(`${cNavBar} ${navBar}`);
+
+    /*-- -- Coding -- */
+    /*-- Enums */
+    /*-- Constants (functional) */
+    /*-- Properties (functional) */
+
+    /*-- Variables and objects */
+    /*-- Run first stuff */
+    /*-- onMount, beforeUpdate, afterUpdate */
+    /*-- Handlers */
+    /*-- Methods */
+    /*-- Reactives (functional) */
 </script>
 
 <!-- svelte-ignore a11y-mouse-events-have-key-events -->
