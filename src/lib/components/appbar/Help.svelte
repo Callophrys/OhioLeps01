@@ -1,5 +1,10 @@
 <script lang="ts">
     /*-- Imports */
+    import { popup } from '@skeletonlabs/skeleton';
+    import { SlideToggle } from '@skeletonlabs/skeleton';
+    import type { PopupSettings } from '@skeletonlabs/skeleton';
+    import { browser } from '$app/environment';
+
     /*-- -- Data -- */
     /*-- Exports */
     /*-- Context */
@@ -10,33 +15,26 @@
     /*-- -- Coding -- */
     /*-- Enums */
     /*-- Constants (functional) */
+    const popupComboboxHelp: PopupSettings = {
+        event: 'focus-click',
+        target: 'popupComboboxHelp',
+        placement: 'bottom',
+        closeQuery: '.list-nav',
+    };
+
     /*-- Properties (functional) */
+    let comboboxHelpValue: string = $state('');
+
     /*-- Variables and objects */
     /*-- Run first stuff */
     /*-- onMount, beforeUpdate, afterUpdate */
     /*-- Handlers */
     /*-- Methods */
     /*-- Reactives (functional) */
-    import { popup } from '@skeletonlabs/skeleton';
-    import { SlideToggle } from '@skeletonlabs/skeleton';
-    import type { PopupSettings } from '@skeletonlabs/skeleton';
-    import { onMount } from 'svelte';
-    import { browser } from '$app/environment';
-
-    let comboboxHelpValue: string;
-
-    const popupComboboxHelp: PopupSettings = {
-        event: 'focus-click',
-        target: 'popupComboboxHelp',
-        placement: 'bottom',
-        closeQuery: '.listbox-item',
-    };
-
-    onMount(() => {
+    $effect(() => {
         comboboxHelpValue = localStorage.helpToolTips ?? 'false';
+        if (browser && comboboxHelpValue) localStorage.setItem('helpToolTips', comboboxHelpValue);
     });
-
-    $: if (browser && comboboxHelpValue) localStorage.setItem('helpToolTips', comboboxHelpValue);
 </script>
 
 <button class="btn variant-filled w-32 justify-between" use:popup={popupComboboxHelp}>

@@ -43,7 +43,7 @@
         }
     });
 
-    console.log(data.site);
+    // console.log(data.site);
     afterUpdate(() => {
         localStorage.setItem('filterByCounty', filterByCounty ? '1' : '0');
     });

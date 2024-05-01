@@ -327,7 +327,7 @@
     </svelte:fragment>
     <svelte:fragment slot="rightTail"><div class="text-xs text-secondary-500 mb-[-1em]">* Not monitored / no species observed</div></svelte:fragment>
 </DoubledContainer>
-<div class="hidden polygon-select" />
+<div class="hidden polygon-select"></div>
 
 <style>
     polygon {

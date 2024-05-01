@@ -292,7 +292,7 @@
             disabled={!enabledDrop}>
             {#if $$slots.prefixSiteDateObservation}<span class={classesPrefixCenter}><slot name="prefixSiteDateObservation" /></span>{/if}
             <span class={`truncate ${currentSdoChecklistItem.deleted ? 'line-through' : ''}`}>{currentSdoChecklistItem?.checklist.commonName}</span>
-            <span class={classesSuffixCenter} />
+            <span class={classesSuffixCenter}></span>
         </button>
         <button type="button" class={classesButtonRight} on:click={handleClickNext} disabled={!enabledNext}>▶</button>
     </div>

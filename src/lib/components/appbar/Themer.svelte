@@ -1,5 +1,10 @@
 <script lang="ts">
     /*-- Imports */
+    import { popup } from '@skeletonlabs/skeleton';
+    import type { PopupSettings } from '@skeletonlabs/skeleton';
+    import { ListBox, ListBoxItem, LightSwitch } from '@skeletonlabs/skeleton';
+    import { setInitialClassState } from '@skeletonlabs/skeleton';
+
     /*-- -- Data -- */
     /*-- Exports */
     /*-- Context */
@@ -10,21 +15,11 @@
     /*-- -- Coding -- */
     /*-- Enums */
     /*-- Constants (functional) */
+
     /*-- Properties (functional) */
+    let comboboxValue: string = $state('');
+
     /*-- Variables and objects */
-    /*-- Run first stuff */
-    /*-- onMount, beforeUpdate, afterUpdate */
-    /*-- Handlers */
-    /*-- Methods */
-    /*-- Reactives (functional) */
-    import { popup } from '@skeletonlabs/skeleton';
-    import type { PopupSettings } from '@skeletonlabs/skeleton';
-    import { ListBox, ListBoxItem, LightSwitch } from '@skeletonlabs/skeleton';
-    import { setInitialClassState } from '@skeletonlabs/skeleton';
-    import { onMount } from 'svelte';
-
-    let comboboxValue: string;
-
     const popupCombobox: PopupSettings = {
         event: 'focus-click',
         target: 'popupCombobox',
@@ -32,20 +27,25 @@
         closeQuery: '.listbox-item',
     };
 
-    let themes: string[] = ['skeleton', 'rocket', 'modern', 'crimson', 'wintry', 'seafoam', 'vintage', 'sahara', 'hamlindigo', 'gold-nouveau'];
+    const themes: string[] = ['skeleton', 'rocket', 'modern', 'crimson', 'wintry', 'seafoam', 'vintage', 'sahara', 'hamlindigo', 'gold-nouveau'];
 
-    function setTheme(themeName: string) {
-        document.body.setAttribute('data-theme', themeName);
-        localStorage.setItem('themeName', themeName);
-    }
-
+    /*-- Run first stuff */
+    /*-- onMount, beforeUpdate, afterUpdate */
+    /*-- Handlers */
     function handleClick(event: any) {
         if (event.currentTarget?.value) {
             setTheme(event.currentTarget.value);
         }
     }
 
-    onMount(() => {
+    /*-- Methods */
+    function setTheme(themeName: string) {
+        document.body.setAttribute('data-theme', themeName);
+        localStorage.setItem('themeName', themeName);
+    }
+
+    /*-- Reactives (functional) */
+    $effect(() => {
         comboboxValue = localStorage?.themeName ?? 'rocket';
         setTheme(comboboxValue);
     });

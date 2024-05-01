@@ -127,7 +127,7 @@
     $: prevDisabled = allCountiesIndex < 1;
     $: nextDisabled = allCountiesIndex > allCounties.length - 2;
 
-    $: currentCountyId, console.log('CountyPicker.currentCountyId', currentCountyId);
+    // $: currentCountyId, console.log('CountyPicker.currentCountyId', currentCountyId);
 </script>
 
 <div class={classesControlOuter}>
