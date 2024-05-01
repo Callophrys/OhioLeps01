@@ -16,6 +16,7 @@ export async function load({ cookies, url }) {
     const json = JSON.stringify(sites);
     const jsonResult: SiteCountyState[] = JSON.parse(json);
 
+    console.log(jsonResult);
     return { sites: jsonResult };
 }
 

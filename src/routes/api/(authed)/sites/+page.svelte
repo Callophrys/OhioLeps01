@@ -223,7 +223,7 @@
             {:else}
                 <div>
                     <div class="grid grid-cols-3 gap-4 w-fit">
-                        {#each data.sites as site, i}
+                        {#each data.sites ?? [] as site, i}
                             <!-- Trigger -->
                             <div
                                 class="card w-60 p-4 [&>*]:pointer-events-none"
@@ -246,7 +246,7 @@
                                 <div class="card py-2 px-4 shadow-xl variant-filled-surface">
                                     <div class="underline">Directions</div>
                                     <p>{site.siteName}<br />{site.person}</p>
-                                    <div class="arrow variant-filled-surface" />
+                                    <div class="arrow variant-filled-surface"></div>
                                 </div>
                             </div>
                         {/each}

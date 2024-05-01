@@ -1,14 +1,17 @@
 <script lang="ts">
     /*-- Imports */
+    import { page } from '$app/stores';
     import CountyPicker from '$lib/components/datanavigation/CountyPicker.svelte';
     import StandardContainer from '$lib/components/StandardContainer.svelte';
     import { setContext } from 'svelte';
 
     /*-- -- Data -- */
     /*-- Exports */
-    export let data;
+    let { data } = $props();
+
     // export let data../$types.js;
-    console.log(data);
+    console.log('data ***: ', data);
+    console.log('$page ***: ', $page);
 
     /*-- Context */
     setContext('counties', data.counties);
@@ -23,7 +26,7 @@
     /*-- Constants (functional) */
 
     /*-- Properties (functional) */
-    let currentCountyId: number = data?.refCountyId ?? -1;
+    let currentCountyId: number = $state(data?.refCountyId ?? -1);
 
     /*-- Variables and objects */
     /*-- Run first stuff */
@@ -32,21 +35,28 @@
     /*-- Methods */
 
     /*-- Reactives (functional) */
-    $: currentCountyId, console.log('local currentCountyId:', currentCountyId);
+    $effect(() => {
+        console.log('local currentCountyId:', currentCountyId);
+    });
 
     /*-- Other */
 </script>
 
 <StandardContainer>
     <svelte:fragment slot="standardHead">
-        <div class="flex flex-row justify-between gap-1 md:gap-2">
+        <div class="flex flex-row gap-1 md:gap-2">
             <CountyPicker bind:currentCountyId controlBody="scale-90" class="w-auto" />
+            <button type="submit" class="btn variant-filled" form="addSite">
+                Save New Site
+                <span class="pl-2">✎</span>
+            </button>
         </div>
     </svelte:fragment>
 
     <svelte:fragment slot="standardBody">
-        <form id="addSite" name="addSite">
+        <form method="POST" action="?/addSite" id="addSite" name="addSite">
             <input type="hidden" id="countyId" name="countyId" bind:value={currentCountyId} />
+            <input type="hidden" id="siteId" name="siteId" value="-1" />
             <div class="max-w-[600px]">
                 <div class="content">
                     <label class="label">
