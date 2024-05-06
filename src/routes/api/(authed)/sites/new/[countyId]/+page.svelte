@@ -50,6 +50,10 @@
                 Save New Site
                 <span class="pl-2">✎</span>
             </button>
+            <button type="button" class="btn variant-filled" form="addSite">
+                Cancel
+                <span class="pl-2">✎</span>
+            </button>
         </div>
     </svelte:fragment>
 
