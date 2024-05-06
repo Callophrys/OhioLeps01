@@ -113,6 +113,14 @@
                         <div class="text-right w-40">LatitudeStart</div>
                         <div>{form.data.latitudeStart}</div>
                     </div>
+                    <div class="grid grid-cols-2 space-x-2 w-max">
+                        <div class="text-right w-40">LongitudeEnd</div>
+                        <div>{form.data.longitudeEnd}</div>
+                    </div>
+                    <div class="grid grid-cols-2 space-x-2 w-max">
+                        <div class="text-right w-40">LongitudeStart</div>
+                        <div>{form.data.longitudeStart}</div>
+                    </div>
 
                     <div class="grid grid-cols-2 space-x-2 w-max">
                         <div class="text-right w-40">Person</div>

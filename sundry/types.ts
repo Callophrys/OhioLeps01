@@ -32,6 +32,8 @@ export type Site = {
   email: string | null,
   latitudeStart: string | null,
   latitudeEnd: string | null,
+  longitudeStart: string | null,
+  longitudeEnd: string | null,
   altPerson: string | null,
   altAddress: string | null,
   altAddress2: string | null,

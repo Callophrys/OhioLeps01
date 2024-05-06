@@ -131,6 +131,8 @@
                 <div>email: {data.site.email ?? ''}</div>
                 <div>latitudeStart: {data.site.latitudeStart ?? ''}</div>
                 <div>latitudeEnd: {data.site.latitudeEnd ?? ''}</div>
+                <div>longitudeStart: {data.site.longitudeStart ?? ''}</div>
+                <div>longitudeEnd: {data.site.longitudeEnd ?? ''}</div>
                 <div>altPerson: {data.site.altPerson ?? ''}</div>
                 <div>altAddress: {data.site.altAddress ?? ''}</div>
                 <div>altAddress2: {data.site.altAddress2 ?? ''}</div>

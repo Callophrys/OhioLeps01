@@ -10,8 +10,8 @@
     let { data } = $props();
 
     // export let data../$types.js;
-    console.log('data ***: ', data);
-    console.log('$page ***: ', $page);
+    // console.log('data ***: ', data);
+    // console.log('$page ***: ', $page);
 
     /*-- Context */
     setContext('counties', data.counties);
@@ -27,6 +27,7 @@
 
     /*-- Properties (functional) */
     let currentCountyId: number = $state(data?.refCountyId ?? -1);
+    let currentStateId: number = $state(data.counties.find((x) => x.id === currentCountyId)?.stateId ?? -1);
 
     /*-- Variables and objects */
     /*-- Run first stuff */
@@ -37,6 +38,7 @@
     /*-- Reactives (functional) */
     $effect(() => {
         console.log('local currentCountyId:', currentCountyId);
+        console.log('local currentStateId:', currentStateId);
     });
 
     /*-- Other */
@@ -60,7 +62,7 @@
     <svelte:fragment slot="standardBody">
         <form method="POST" action="?/addSite" id="addSite" name="addSite">
             <input type="hidden" id="countyId" name="countyId" bind:value={currentCountyId} />
-            <input type="hidden" id="siteId" name="siteId" value="-1" />
+            <input type="hidden" id="stateId" name="stateId" bind:value={currentStateId} />
             <div class="max-w-[600px]">
                 <div class="content">
                     <label class="label">
@@ -80,6 +82,8 @@
                     <label class="label"><span>Email:</span><input type="text" class="input" id="email" name="email" title="Email:" placeholder="Email" /></label>
                     <label class="label"><span>Latitude Start:</span><input type="text" class="input" id="latitudeStart" name="latitudeStart" title="Latitude Start:" placeholder="Latitude Start" /></label>
                     <label class="label"><span>Latitude End:</span><input type="text" class="input" id="latitudeEnd" name="latitudeEnd" title="Latitude End:" placeholder="Latitude End" /></label>
+                    <label class="label"><span>Longitude Start:</span><input type="text" class="input" id="longitudeStart" name="longitudeStart" title="Longitude Start:" placeholder="Longitude Start" /></label>
+                    <label class="label"><span>Longitude End:</span><input type="text" class="input" id="longitudeEnd" name="longitudeEnd" title="Longitude End:" placeholder="Longitude End" /></label>
                     <label class="label"><span>Alt Person:</span><input type="text" class="input" id="altPerson" name="altPerson" title="Alt Person:" placeholder="Alt Person" /></label>
                     <label class="label"><span>Alt Address:</span><input type="text" class="input" id="altAddress" name="altAddress" title="Alt Address:" placeholder="Alt Address" /></label>
                     <label class="label"><span>Alt Address 2:</span><input type="text" class="input" id="altAddress2" name="altAddress2" title="Alt Address 2:" placeholder="Alt Address 2" /></label>

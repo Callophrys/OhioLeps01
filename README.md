@@ -731,5 +731,10 @@ https://gitcontext.com/blog/svelte-5-upgrade
 pnpm install -D @tailwindcss/forms
 
 
+force pnpm update:
+corepack cache clean
+corepack enable
+corepace prepare pnpn@9.1.0 --activate
+
 
 

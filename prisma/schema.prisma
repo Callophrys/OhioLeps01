@@ -183,6 +183,8 @@ model Site {
     email String? // @db.String(30)
     latitudeStart String? // @db.String(50)
     latitudeEnd String? // @db.String(50)
+    longitudeStart String? // @db.String(50)
+    longitudeEnd String? // @db.String(50)
     altPerson String? // @db.String(30)
     altAddress String? // @db.String(40)
     altAddress2 String? // @db.String(40)
@@ -225,6 +227,8 @@ model Site {
 
     // Child Relation
     siteStatuses SiteStatus[]
+
+    @@unique([siteName, countyId])
 }
 
 // Will be one-to-one with big taxon data

@@ -22,6 +22,7 @@
 
     export let data;
     //console.log('data\n', data.CountySpecimens);
+    const notMonitored = '<span class="text-secondary-500">*</span>';
 
     let isMouseDown = false;
 
@@ -80,11 +81,13 @@
                     .filter((r: any) => r.classList.contains(region))
                     .forEach((p: any) => {
                         if (isAdding) {
-                            p.classList.add('polygon-select');
-                            selectedCounties.push({
-                                id: p.id,
-                                name: p.id.substring(p.id.lastIndexOf('_') + 1),
-                            });
+                            if (selectedCounties.findIndex((c) => c.id === p.id) < 0) {
+                                p.classList.add('polygon-select');
+                                selectedCounties.push({
+                                    id: p.id,
+                                    name: p.id.substring(p.id.lastIndexOf('_') + 1),
+                                });
+                            }
                         } else {
                             p.classList.remove('polygon-select');
                             selectedCounties.splice(
@@ -143,7 +146,7 @@
         sss.sellst.innerHTML =
             '<ul class="list">' +
             selectedCounties
-                .map((c: any) => '<li class="capitalize">' + c.name + (isMonitored(c.name) ? '' : '<span class="text-secondary-500">*</span>') + '</li>')
+                .map((c: any) => '<li class="capitalize">' + c.name + (isMonitored(c.name) ? '' : notMonitored) + '</li>')
                 .sort()
                 .join('') +
             '</ul>';
@@ -301,7 +304,7 @@
                     <ul class="list-disc ml-2">
                         <li>Left-click mouse and drag to create sets of counties</li>
                         <li>Press and hold down control key while clicking or dragging to add or remove</li>
-                        <li>Press and hold control and shift keys together to add or remove entire regions of counties</li>
+                        <li>Press and hold shift keys to add or remove entire regions of counties</li>
                     </ul>
                     <div class="arrow shadow-xl bg-surface-100-800-token"></div>
                 </div>
@@ -337,48 +340,53 @@
         stroke-width: 1;
         pointer-events: visible;
         transition: background-color 1000ms linear;
+
+        &:hover {
+            fill: #ff6633;
+        }
+    }
+
+    .region1 {
+        fill: #d22b2b;
+
+        &:hover {
+            fill: #d22b2bb2;
+        }
+    }
+
+    .region2 {
+        fill: #ffd700;
+
+        &:hover {
+            fill: #ffd700b2;
+        }
+    }
+
+    .region3 {
+        fill: #ec5800;
+
+        &:hover {
+            fill: #ec5800b2;
+        }
+    }
+
+    .region4 {
+        fill: #085119;
+
+        &:hover {
+            fill: #085119b2;
+        }
+    }
+
+    .region5 {
+        fill: #66bd27;
+
+        &:hover {
+            fill: #66bd27b2;
+        }
     }
 
     .polygon-select {
         fill: #9118b0eb !important;
-    }
-
-    polygon.region1 {
-        fill: #d22b2b;
-    }
-    polygon.region1:hover {
-        fill: #d22b2bb2;
-    }
-
-    polygon.region2 {
-        fill: #ffd700;
-    }
-    polygon.region2:hover {
-        fill: #ffd700b2;
-    }
-
-    polygon.region3 {
-        fill: #ec5800;
-    }
-    polygon.region3:hover {
-        fill: #ec5800b2;
-    }
-
-    polygon.region4 {
-        fill: #085119;
-    }
-    polygon.region4:hover {
-        fill: #085119b2;
-    }
-
-    polygon.region5 {
-        fill: #66bd27;
-    }
-    polygon.region5:hover {
-        fill: #66bd27b2;
-    }
-
-    polygon:hover {
-        fill: #ff6633;
     }
 </style>
