@@ -1,7 +1,5 @@
 <script lang="ts">
-    export let year: number;
-    export let week: number;
-    export let sdoCount: number;
+    let { year = $bindable(), week = $bindable(), sdoCount = $bindable() }: { year: number; week: number; sdoCount: number } = $props();
 </script>
 
 <div class="flex flex-row space-x-2 text-sm fixed top-[134px] pl-10">

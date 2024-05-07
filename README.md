@@ -736,5 +736,21 @@ corepack cache clean
 corepack enable
 corepace prepare pnpn@9.1.0 --activate
 
+-- SNIPPETS --
+{#snippet head()}
+{/snippet}
+{#snippet body()}
+{/snippet}
+{#snippet tail()}
+{/snippet}
+<Container {head} {body} tail={null} />
 
+TODO:
+Split out longitude values for Sites
+Split out city-state-zip to parts
+Assure navigation and sitedate controls are working in SiteDate and SDO pages, and others too.
+The head, body, and tail parts of Container are all same - so snippitafy these into one thing. 
+Snippitafy double container - think unifying both into one flexy thing.
 
+Use this if needing to turn of reativity for some variables
+<!-- svelte-ignore non_reactive_update -->

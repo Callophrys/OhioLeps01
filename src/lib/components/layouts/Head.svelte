@@ -1,15 +1,9 @@
 <script lang="ts">
-    import type { Snippet } from 'svelte';
-    let { children }: { children: Snippet } = $props();
-    const cHeadClasses = 'pr-4';
+    let { classes, children }: { classes: string; children: any } = $props();
 </script>
 
-<div class={cHeadClasses}>
-    {#if children()}
+{#if children}
+    <div class={classes}>
         {@render children()}
-    {:else}
-        <span>_</span>
-    {/if}
-</div>
-
-<!-- {#snippet StandardHead()}{/snippet} -->
+    </div>
+{/if}

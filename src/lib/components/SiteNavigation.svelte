@@ -64,5 +64,6 @@
                 {/if}
             </ul>
         </li>
+        <li><a href="/api/newlayout" class={cAnchorIndentedPl2}>New Layout Tests</a></li>
     </ul>
 </nav>

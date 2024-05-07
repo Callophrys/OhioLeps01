@@ -1,27 +1,62 @@
 <script lang="ts">
     import type { Snippet } from 'svelte';
-    import Head from './Head.svelte';
-    import Body from './Body.svelte';
-    import Tail from './Tail.svelte';
+    import { showAppBar, showFooter } from '$lib/config';
+    import Head from '$lib/components/layouts/Head.svelte';
+    import Body from '$lib/components/layouts/Body.svelte';
+    import Tail from '$lib/components/layouts/Tail.svelte';
 
-    const cOuterBody = 'container flex flex-row gap-8 p-8';
     const cBaseCard = 'card py-4 pl-4 h-full w-full flex flex-col space-y-2';
+    const cOuterBodyFooter = 'container flex flex-row gap-8 px-8 pt-8 pb-4 has-footer';
+    const cOuterBodyNoFooter = 'container flex flex-row gap-8 p-8';
 
-    let { head, body, tail }: { head: Snippet; body: Snippet; tail: Snippet } = $props();
+    const cHeadClasses = 'pr-4';
+    const cBodyClasses = 'space-y-2 h-full overflow-y-auto';
+    const cTailClasses = 'pr-4';
+
+    // Should be 144 (with footer) or 128 but added 4px for just in case
+    // Should do this for show/hide avatar and for show/hide app bar
+    //let heightAdjust = 4 + (showAppBar ? 132 : 0) + (showFooter ? 16 : 0);
+    let configOuterBody = $state(showFooter ? cOuterBodyFooter : cOuterBodyNoFooter);
+
+    let {
+        head = null,
+        body,
+        tail = null,
+    }: {
+        head: Snippet | null;
+        body: Snippet;
+        tail: Snippet | null;
+    } = $props();
 </script>
 
-{#snippet Container(head, body, tail)}
-    <div class={cOuterBody}>
-        <div class={cBaseCard}>
-            <!-- <Head>
+<div class={configOuterBody}>
+    <div class={cBaseCard}>
+        {#if head}
+            <Head classes={cHeadClasses}>
                 {@render head()}
-            </Head> -->
-            <Body>
+            </Head>
+        {/if}
+        {#if body}
+            <Body classes={cBodyClasses}>
                 {@render body()}
             </Body>
-            <!-- <Tail>
+        {/if}
+        {#if tail}
+            <Tail classes={cTailClasses}>
                 {@render tail()}
-            </Tail> -->
-        </div>
+            </Tail>
+        {/if}
     </div>
-{/snippet}
+</div>
+
+<style>
+    /* Calc and 100vh do not work as an
+     * arbitrary valued Tailwind class.
+     * Calc and 100% does work */
+    .container.has-footer {
+        height: calc(100vh - 144px);
+    }
+    .container {
+        height: calc(100vh - 128px);
+    }
+</style>

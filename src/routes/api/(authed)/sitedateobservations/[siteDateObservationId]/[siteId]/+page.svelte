@@ -4,27 +4,27 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 -->
 <script lang="ts">
     /*-- Imports */
-    import { formatDate, isNullOrWhiteSpace, weekOfYearSince } from '$lib/utils';
-    import StandardContainer from '$lib/components/StandardContainer.svelte';
-    import { getModalStore } from '@skeletonlabs/skeleton';
     import { type ModalSettings } from '@skeletonlabs/skeleton';
+    import type { SiteDateObservationChecklist } from '$lib/types.js';
+    import Container from '$lib/components/layouts/Container.svelte';
+    import { formatDate, isNullOrWhiteSpace, weekOfYearSince } from '$lib/utils';
+    import { getModalStore } from '@skeletonlabs/skeleton';
     import { page } from '$app/stores';
     import { enhance } from '$app/forms';
     import DataOptions from '$lib/components/datanavigation/DataOptions.svelte';
     import YearWeek from '$lib/components/datanavigation/YearWeek.svelte';
     import SitePicker from '$lib/components/datanavigation/SitePicker.svelte';
     import SiteDatePicker from '$lib/components/datanavigation/SiteDatePicker.svelte';
-    import type { SiteDateObservationChecklist } from '$lib/types.js';
     import SpeciesPicker from '$lib/components/datanavigation/SpeciesPicker.svelte';
     import { setContext } from 'svelte';
-    import { afterUpdate, onMount } from 'svelte';
+    import { onMount } from 'svelte';
     import GoBack from '$lib/components/datanavigation/GoBack.svelte';
     import { GOTYPE } from '$lib/types.js';
 
     /*-- -- Data -- */
     /*-- Exports */
-    export let data;
-    export let form;
+    let { data, form } = $props();
+    // $inspect(data, form);
 
     /*-- Context */
     setContext('sites', data.sites);
@@ -63,7 +63,8 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
         response: (r: any) => {
             console.log('response:', r);
             if (r) {
-                formReview.submit();
+                // formReview.submit();
+                (document.getElementById('formReview') as HTMLFormElement).submit();
             }
         },
     };
@@ -80,7 +81,8 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
         response: (r: string) => {
             console.log('response:', r);
             if (r) {
-                formReview.submit();
+                // formReview.submit();
+                (document.getElementById('formReview') as HTMLFormElement).submit();
             }
         },
     };
@@ -93,7 +95,8 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
         valueAttr: { type: 'text', minlength: 0, maxlength: 256, required: true },
         response: (r: string) => {
             if (r) {
-                formDelete.submit();
+                // formDelete.submit();
+                (document.getElementById('formDelete') as HTMLFormElement).submit();
             }
         },
     };
@@ -106,7 +109,8 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
         valueAttr: { type: 'text', minlength: 0, maxlength: 256, required: true },
         response: (r: string) => {
             if (r) {
-                formDelete.submit();
+                (document.getElementById('formDelete') as HTMLFormElement).submit();
+                // formDelete.submit();
             }
         },
     };
@@ -127,18 +131,16 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     };
 
     /*-- Properties (functional) */
-    let formAdd: HTMLFormElement;
-    let formEdit: HTMLFormElement;
-    let formReview: HTMLFormElement;
-    let formDelete: HTMLFormElement;
-    let formUndo: HTMLFormElement;
-    let isEditing = false;
-    let isAdding = false;
-    let isViewAll = false;
-    let showRecentEdits = true;
-    let showDeletedData = false;
-    let showHodges = true;
-    let showP3 = true;
+    // let formReview: HTMLFormElement = $state(document.createElement('form'));
+    // let formDelete: HTMLFormElement = $state(document.createElement('form'));
+
+    let isEditing = $state(false);
+    let isAdding = $state(false);
+    let isViewAll = $state(false);
+    let showRecentEdits = $state(true);
+    let showDeletedData = $state(false);
+    let showHodges = $state(true);
+    let showP3 = $state(true);
 
     /*-- Variables and objects */
     let x: string;
@@ -164,7 +166,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
         }
     });
 
-    afterUpdate(() => {
+    $effect(() => {
         localStorage.setItem('showRecentEdits', showRecentEdits ? '1' : '0');
         localStorage.setItem('showDeletedData', showDeletedData ? '1' : '0');
         localStorage.setItem('isViewAll', isViewAll ? '1' : '0');
@@ -172,37 +174,44 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 
     /*-- Handlers */
     const handleChange = () => {
-        total = getTotal();
+        // total = getTotal();
+        total = total;
         return true;
     };
 
     /*-- Methods */
-    const clearCounts = () => {
-        return Array.from(formAdd.querySelectorAll('[type=text]')).forEach((c: any) => (c.value = ''));
-    };
+    // const clearCounts = () => {
+    //     return Array.from(formAdd.querySelectorAll('[type=text]')).forEach((c: any) => (c.value = ''));
+    // };
 
-    const sumCounts = (frm: Element) => {
-        if (typeof document === 'undefined' && typeof frm === 'undefined') return false;
-        return document && frm ? Array.from(frm.querySelectorAll('[type=text]')).reduce((t: number, o: any) => t + (isNaN(o.value) ? 0 : Number(o.value)), 0) : 0;
-    };
+    // const sumCounts = (frm: Element) => {
+    //     if (typeof document === 'undefined' && typeof frm === 'undefined') return false;
+    //     return document && frm ? Array.from(frm.querySelectorAll('[type=text]')).reduce((t: number, o: any) => t + (isNaN(o.value) ? 0 : Number(o.value)), 0) : 0;
+    // };
 
-    const getTotal = () => {
-        return isAdding ? sumCounts(formAdd) : isEditing ? sumCounts(formEdit) : data.siteDateObservation.total;
-    };
+    // const getTotal = () => {
+    //     if (isAdding) return sumCounts(document.getElementById('formAdd') as Element);
+    //     else if (isEditing) return sumCounts(document.getElementById('formEdit') as Element);
+    //     else return data.siteDateObservation.total;
+    // };
 
     /*-- Reactives (functional) */
-    $: total = getTotal();
-    $: currentSiteDateObservation = data.siteDateObservation as SiteDateObservationChecklist;
-    $: recordYear = new Date(currentSiteDateObservation.siteDate.recordDate).getFullYear();
-    $: recordWeek = weekOfYearSince(new Date(currentSiteDateObservation.siteDate.recordDate));
-    $: recordSdoCount = data.checklistsSiteDateObs.filter((o: any) => showDeletedData || !o.deleted).length;
+    // let total = $derived(getTotal());
+    let currentSiteDateObservation = $derived(data.siteDateObservation as SiteDateObservationChecklist);
+    let recordYear = $derived(new Date(currentSiteDateObservation.siteDate.recordDate).getFullYear());
+    let recordWeek = $derived(weekOfYearSince(new Date(currentSiteDateObservation.siteDate.recordDate)));
+    let recordSdoCount = $derived(data.checklistsSiteDateObs.filter((o: any) => showDeletedData || !o.deleted).length);
 
-    $: sdoSections = Object.entries(currentSiteDateObservation)
-        .filter((x) => x[0].startsWith('section'))
-        .map(([k, v]) => ({ label: `${k.substring(0, 1).toLocaleUpperCase()}${k.substring(1, 7)} ${k.substring(7)}`, name: k, value: v }));
+    let sdoSections = $derived(
+        Object.entries(currentSiteDateObservation)
+            .filter((x) => x[0].startsWith('section'))
+            .map(([k, v]) => ({ label: `${k.substring(0, 1).toLocaleUpperCase()}${k.substring(1, 7)} ${k.substring(7)}`, name: k, value: v }))
+    );
+    let total = $derived(sdoSections.reduce((t: number, o: any) => t + (isNaN(o.value) ? 0 : Number(o.value)), 0));
+    // let total = $derived(sdoSections.reduce((t: number, o: any) => t + (isNaN(o.value) ? 0 : Number(o.value)), 0));
     //console.log(sdoSections);
 
-    $: availableObservations = data.checklistsSiteDateObs.filter((x: SiteDateObservationChecklist) => showDeletedData || !x.deleted);
+    let availableObservations = $derived(data.checklistsSiteDateObs.filter((x: SiteDateObservationChecklist) => showDeletedData || !x.deleted));
 
     /*-- Other */
 
@@ -210,420 +219,423 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     //console.log(data);
 </script>
 
-<YearWeek year={new Date(data.siteDateObservation.siteDate.recordDate).getFullYear()} week={weekOfYearSince(new Date(data.siteDateObservation.siteDate.recordDate))} sdoCount={recordSdoCount} />
+<!-- <YearWeek year={new Date(data.siteDateObservation.siteDate.recordDate).getFullYear()} week={weekOfYearSince(new Date(data.siteDateObservation.siteDate.recordDate))} sdoCount={recordSdoCount} /> -->
 <!-- Hodges and P3 are not implemented yet -->
 <!-- <DataOptions bind:showRecentEdits bind:showDeletedData bind:showHodges bind:showP3 /> -->
-<DataOptions bind:showRecentEdits bind:showDeletedData />
+<!-- <DataOptions bind:showRecentEdits bind:showDeletedData /> -->
 
-<StandardContainer>
-    <svelte:fragment slot="standardBody">
-        {#if $page.data.user}
-            <div class="pr-4">
-                <!-- Header and options -->
-                <!-- TODO: make this flex better for responsive sizings -->
-                <div class="flex flex-col lg:flex-row lg:justify-start gap-1 lg:gap-2 pb-2 text-surface-600-300-token">
-                    <GoBack targetId={data.siteDateObservation.siteDate.siteDateId} targetType={GOTYPE.SITEDATES} controlBody="scale-90" />
-                    <SitePicker currentSiteId={data.siteDateObservation.siteDate.siteId} controlBody="scale-90" />
-                    <SiteDatePicker currentSiteId={data.siteDateObservation.siteDate.siteId} currentSiteDateId={data.siteDateObservation.siteDateId ?? -1} controlBody="scale-90" />
-                    <SpeciesPicker currentSdoChecklistItemId={currentSiteDateObservation.siteDateObservationId} {isAdding} {isEditing} {isViewAll} {showDeletedData} controlBody="scale-90" />
-                </div>
+{#snippet body()}
+    {#if $page.data.user}
+        <div class="pr-4">
+            <!-- Header and options -->
+            <!-- TODO: make this flex better for responsive sizings -->
+            <div class="flex flex-col lg:flex-row lg:justify-start gap-1 lg:gap-2 pb-2 text-surface-600-300-token">
+                <GoBack targetId={data.siteDateObservation.siteDate.siteDateId} targetType={GOTYPE.SITEDATES} controlBody="scale-90" />
+                <SitePicker currentSiteId={data.siteDateObservation.siteDate.siteId} controlBody="scale-90" />
+                <!-- <SiteDatePicker currentSiteId={data.siteDateObservation.siteDate.siteId} currentSiteDateId={data.siteDateObservation.siteDateId ?? -1} controlBody="scale-90" /> -->
+                <SpeciesPicker currentSdoChecklistItemId={currentSiteDateObservation.siteDateObservationId} {isAdding} {isEditing} {isViewAll} {showDeletedData} controlBody="scale-90" />
+            </div>
 
-                <!-- Main controls -->
-                <div class="px-4 flex flex-auto justify-between gap-2">
-                    <div class="flex flex-row justify-start gap-2">
-                        <!-- EDIT(s) Action -->
-                        {#if $page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'ENTRY' || $page.data.user.role === 'REVIEWER'}
-                            {#if isAdding}
+            <!-- Main controls -->
+            <div class="px-4 flex flex-auto justify-between gap-2">
+                <div class="flex flex-row justify-start gap-2">
+                    <!-- EDIT(s) Action -->
+                    {#if $page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'ENTRY' || $page.data.user.role === 'REVIEWER'}
+                        {#if isAdding}
+                            <button type="button" class={cButtonStandard} disabled>
+                                {isViewAll ? 'Edit All' : 'Edit'}
+                                <span class="pl-2">✎</span>
+                            </button>
+                        {:else if !isEditing}
+                            {#if data.siteDateObservation.confirmed}
                                 <button type="button" class={cButtonStandard} disabled>
                                     {isViewAll ? 'Edit All' : 'Edit'}
                                     <span class="pl-2">✎</span>
                                 </button>
-                            {:else if !isEditing}
-                                {#if data.siteDateObservation.confirmed}
-                                    <button type="button" class={cButtonStandard} disabled>
-                                        {isViewAll ? 'Edit All' : 'Edit'}
-                                        <span class="pl-2">✎</span>
-                                    </button>
-                                {:else}
-                                    <button type="button" class={cButtonStandard} on:click={() => (isEditing = true)}>
-                                        {isViewAll ? 'Edit All' : 'Edit'}
-                                        <span class="pl-2">✎</span>
-                                    </button>
-                                {/if}
                             {:else}
-                                <!-- SAVE UPDATE(s) Action -->
-                                <button type="button" class={cButtonStandard} on:click={() => formEdit?.submit()}>
-                                    {isViewAll ? 'Save All' : 'Save'}
+                                <button type="button" class={cButtonStandard} onclick={() => (isEditing = true)}>
+                                    {isViewAll ? 'Edit All' : 'Edit'}
                                     <span class="pl-2">✎</span>
                                 </button>
-
-                                <!-- UNDO/REDO(s) Action -->
-                                <!-- TODO: Make undo-redo work, maybe go with left-right group button -->
-                                <form name="undo" method="POST" action="?/undoRedoSiteDateObservation" use:enhance bind:this={formUndo}>
-                                    <!-- UNDO/REDO undo last action, edit or delete done by entry or reviewer - of course permissions matter -->
-                                    <!-- TODO toggle undo and redo on same control -->
-                                    <div class="btn-group variant-soft">
-                                        <button disabled>
-                                            <span class="pr-2 font-extrabold text-amber-700 dark:text-amber-400 group-disabled:text-inherit !group-disabled:font-extrabold">↺</span>
-                                            Undo
-                                        </button>
-                                        <button disabled>
-                                            Redo
-                                            <span class="pl-2 font-extrabold text-amber-700 dark:text-amber-400 group-disabled:text-inherit !group-disabled:font-extrabold">↻</span>
-                                        </button>
-                                    </div>
-                                </form>
-
-                                <button type="button" class={cButtonCancel} on:click={() => (isEditing = false)}>
-                                    Cancel
-                                    <span class="pl-2 text-red-700 dark:text-red-600 text-2xl">↺</span>
-                                </button>
                             {/if}
-                        {/if}
-
-                        {#if isAdding}
-                            <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" disabled>Review<span class="pl-2">🌎</span></button>
-                            <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" disabled>Delete<span class="pl-2">❌</span></button>
-                        {:else if !isEditing}
-                            <!-- REVIEW(LOCK)/UNLOCK Actions -->
-                            <form name="review" method="POST" action="?/reviewSiteDateObservation" use:enhance bind:this={formReview}>
-                                <!-- LOCK/UNLOCK Mark data as reviewed, aka valid and locked; Can unlock -->
-                                {#if $page.data.user && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'REVIEWER')}
-                                    {#if $page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || ($page.data.user.role === 'REVIEWER' && (!data.siteDateObservation.confirmBy || data.siteDateObservation.confirmBy === $page.data.user.id))}
-                                        {#if isNullOrWhiteSpace(data.siteDateObservation.confirmBy?.id)}
-                                            {#if isViewAll}
-                                                <input hidden name="confirm_lock_all" value="true" />
-                                                <button type="button" class={cButtonWider} on:click={() => modalStore.trigger(modalReviewerLock)}>
-                                                    Review All
-                                                    <span class="pl-2">🌎</span>
-                                                </button>
-                                                <input hidden name="confirm_unlock_all" value="true" />
-                                                <button type="button" class={cButtonWider} on:click={() => modalStore.trigger(modalReviewerLock)}>
-                                                    Unlock All
-                                                    <span class="pl-2">🔒</span>
-                                                </button>
-                                            {:else}
-                                                <input hidden name="confirm" value="true" />
-                                                <button type="button" class={cButtonWider} on:click={() => modalStore.trigger(modalReviewerLock)}>
-                                                    Review
-                                                    <span class="pl-2">🌎</span>
-                                                </button>
-                                            {/if}
-                                        {:else if !data.siteDateObservation.confirmed}
-                                            {#if isViewAll}
-                                                <input hidden name="confirm_lock_all" value="true" />
-                                                <button type="button" class={cButtonWider} on:click={() => modalStore.trigger(modalReviewerLock)}>
-                                                    Lock All
-                                                    <span class="pl-2">🔒</span>
-                                                </button>
-                                                <input hidden name="confirm_unlock_all" value="true" />
-                                                <button type="button" class={cButtonWider} on:click={() => modalStore.trigger(modalReviewerLock)}>
-                                                    Unlock All
-                                                    <span class="pl-2">🔒</span>
-                                                </button>
-                                            {:else}
-                                                <input hidden name="confirm" value="true" />
-                                                <button type="button" class={cButtonWider} on:click={() => modalStore.trigger(modalReviewerLock)}>
-                                                    Lock
-                                                    <span class="pl-2">🔒</span>
-                                                </button>
-                                            {/if}
-                                        {:else if isViewAll}
-                                            <input hidden name="confirm_unlock_all" value="false" />
-                                            <button type="button" class={cButtonWider} on:click={() => modalStore.trigger(modalReviewerUnlock)}>
-                                                Unlock All
-                                                <span class="pl-2">🔑</span>
-                                            </button>
-                                        {:else}
-                                            <input hidden name="confirm" value="false" />
-                                            <button type="button" class={cButtonWider} on:click={() => modalStore.trigger(modalReviewerUnlock)}>
-                                                Unlock
-                                                <span class="pl-2">🔑</span>
-                                            </button>
-                                        {/if}
-                                    {:else}
-                                        <button type="button" class={cButtonStandard} disabled>
-                                            {#if typeof data.siteDateObservation.confirmBy !== 'object'}
-                                                <div>Needs review <span class="pl-2">🌎</span></div>
-                                            {:else if data.siteDateObservation.confirmed}
-                                                <div>Locked<span class="pl-2">🔐</span></div>
-                                            {:else}
-                                                <div>Unlocked<span class="pl-2">🔓</span></div>
-                                            {/if}
-                                        </button>
-                                    {/if}
-                                {/if}
-                                <input hidden name="siteDateObservationId" value={data.siteDateObservation.siteDateObservationId} />
-                            </form>
-
-                            <!-- DELETE Action(s) -->
-                            {#if !data.siteDateObservation.confirmed && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || ($page.data.user.role === 'ENTRY' && (data.siteDateObservation.createdBy.id === $page.data.user.id || data.siteDateObservation.updatedBy.id === $page.data.user.id)))}
-                                <form name="delete" method="POST" action="?/deleteSiteDateObservation" use:enhance bind:this={formDelete}>
-                                    {#if !data.siteDateObservation.deleted}
-                                        <button type="button" class={cButtonStandard} on:click={() => modalStore.trigger(modalDelete)}>Delete<span class="pl-2">❌</span></button>
-                                        <input hidden name="deleteOn" value={true} />
-                                    {:else}
-                                        <button type="button" class={cButtonStandard} on:click={() => modalStore.trigger(modalUndelete)}>Undelete<span class="pl-2">↺</span></button>
-                                        <input hidden name="deleteOn" value={false} />
-                                    {/if}
-                                    <input hidden name="siteDateObservationId" value={data.siteDateObservation.siteDateObservationId} />
-                                    <input hidden name="siteDateId" value={data.siteDateObservation.siteDateId} />
-                                    <input hidden name="checklistId" value={data.siteDateObservation.checklistId} />
-                                    <input hidden name="useLatinSort" value={true} />
-                                    <input hidden name="sortDirection" value="asc" />
-                                    <input hidden name="advanceRecord" value={true} />
-                                </form>
-                            {/if}
-                        {/if}
-                    </div>
-
-                    <!-- CREATE Action -->
-                    <div class="flex flex-row gap-2">
-                        {#if isAdding}
-                            <button type="button" class={cButtonStandard} on:click={() => formAdd?.submit()}>
-                                Save
+                        {:else}
+                            <!-- SAVE UPDATE(s) Action -->
+                            <!-- <button type="button" class={cButtonStandard} onclick={() => formEdit?.submit()}> -->
+                            <button type="button" class={cButtonStandard}>
+                                {isViewAll ? 'Save All' : 'Save'}
                                 <span class="pl-2">✎</span>
                             </button>
 
-                            <button type="button" class={cButtonAddView} on:click={() => (isAdding = !isAdding)} disabled={isEditing || data.siteDateObservation.confirmed}>
-                                <span>Cancel Add</span>
+                            <!-- UNDO/REDO(s) Action -->
+                            <!-- TODO: Make undo-redo work, maybe go with left-right group button -->
+                            <form name="undo" method="POST" action="?/undoRedoSiteDateObservation" use:enhance>
+                                <!-- UNDO/REDO undo last action, edit or delete done by entry or reviewer - of course permissions matter -->
+                                <!-- TODO toggle undo and redo on same control -->
+                                <div class="btn-group variant-soft">
+                                    <button disabled>
+                                        <span class="pr-2 font-extrabold text-amber-700 dark:text-amber-400 group-disabled:text-inherit !group-disabled:font-extrabold">↺</span>
+                                        Undo
+                                    </button>
+                                    <button disabled>
+                                        Redo
+                                        <span class="pl-2 font-extrabold text-amber-700 dark:text-amber-400 group-disabled:text-inherit !group-disabled:font-extrabold">↻</span>
+                                    </button>
+                                </div>
+                            </form>
+
+                            <button type="button" class={cButtonCancel} onclick={() => (isEditing = false)}>
+                                Cancel
                                 <span class="pl-2 text-red-700 dark:text-red-600 text-2xl">↺</span>
                             </button>
-                        {:else}
-                            <button
-                                type="button"
-                                class={cButtonAddView}
-                                on:click={() => {
-                                    modalStore.trigger(modalAdd);
-                                    return true;
-                                }}
-                                disabled={isEditing || data.siteDateObservation.confirmed}>
-                                <span>Add species</span>
-                                <span class="text-green-900 dark:text-green-200 text-2xl before:content-['✚']"></span>
-                            </button>
                         {/if}
+                    {/if}
 
-                        <!-- TOGGLE SHOW ALL/SINGLE Action -->
-                        <button type="button" class={cButtonAddView} on:click={() => (isViewAll = !isViewAll)} disabled={isEditing || false} title="View all species">
-                            <input class="checkbox" type="checkbox" checked={isViewAll} disabled={isEditing || false} />
-                            <span>View all</span>
-                            <span class="!ml-0 text-green-900 dark:text-green-200 text-2xl">🔎</span>
-                        </button>
-                    </div>
-                </div>
+                    {#if isAdding}
+                        <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" disabled>Review<span class="pl-2">🌎</span></button>
+                        <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" disabled>Delete<span class="pl-2">❌</span></button>
+                    {:else if !isEditing}
+                        <!-- REVIEW(LOCK)/UNLOCK Actions -->
+                        <form name="review" method="POST" action="?/reviewSiteDateObservation" use:enhance>
+                            <!-- LOCK/UNLOCK Mark data as reviewed, aka valid and locked; Can unlock -->
+                            {#if $page.data.user && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'REVIEWER')}
+                                {#if $page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || ($page.data.user.role === 'REVIEWER' && (!data.siteDateObservation.confirmBy || data.siteDateObservation.confirmBy === $page.data.user.id))}
+                                    {#if isNullOrWhiteSpace(data.siteDateObservation.confirmBy?.id)}
+                                        {#if isViewAll}
+                                            <input hidden name="confirm_lock_all" value="true" />
+                                            <button type="button" class={cButtonWider} onclick={() => modalStore.trigger(modalReviewerLock)}>
+                                                Review All
+                                                <span class="pl-2">🌎</span>
+                                            </button>
+                                            <input hidden name="confirm_unlock_all" value="true" />
+                                            <button type="button" class={cButtonWider} onclick={() => modalStore.trigger(modalReviewerLock)}>
+                                                Unlock All
+                                                <span class="pl-2">🔒</span>
+                                            </button>
+                                        {:else}
+                                            <input hidden name="confirm" value="true" />
+                                            <button type="button" class={cButtonWider} onclick={() => modalStore.trigger(modalReviewerLock)}>
+                                                Review
+                                                <span class="pl-2">🌎</span>
+                                            </button>
+                                        {/if}
+                                    {:else if !data.siteDateObservation.confirmed}
+                                        {#if isViewAll}
+                                            <input hidden name="confirm_lock_all" value="true" />
+                                            <button type="button" class={cButtonWider} onclick={() => modalStore.trigger(modalReviewerLock)}>
+                                                Lock All
+                                                <span class="pl-2">🔒</span>
+                                            </button>
+                                            <input hidden name="confirm_unlock_all" value="true" />
+                                            <button type="button" class={cButtonWider} onclick={() => modalStore.trigger(modalReviewerLock)}>
+                                                Unlock All
+                                                <span class="pl-2">🔒</span>
+                                            </button>
+                                        {:else}
+                                            <input hidden name="confirm" value="true" />
+                                            <button type="button" class={cButtonWider} onclick={() => modalStore.trigger(modalReviewerLock)}>
+                                                Lock
+                                                <span class="pl-2">🔒</span>
+                                            </button>
+                                        {/if}
+                                    {:else if isViewAll}
+                                        <input hidden name="confirm_unlock_all" value="false" />
+                                        <button type="button" class={cButtonWider} onclick={() => modalStore.trigger(modalReviewerUnlock)}>
+                                            Unlock All
+                                            <span class="pl-2">🔑</span>
+                                        </button>
+                                    {:else}
+                                        <input hidden name="confirm" value="false" />
+                                        <button type="button" class={cButtonWider} onclick={() => modalStore.trigger(modalReviewerUnlock)}>
+                                            Unlock
+                                            <span class="pl-2">🔑</span>
+                                        </button>
+                                    {/if}
+                                {:else}
+                                    <button type="button" class={cButtonStandard} disabled>
+                                        {#if typeof data.siteDateObservation.confirmBy !== 'object'}
+                                            <div>Needs review <span class="pl-2">🌎</span></div>
+                                        {:else if data.siteDateObservation.confirmed}
+                                            <div>Locked<span class="pl-2">🔐</span></div>
+                                        {:else}
+                                            <div>Unlocked<span class="pl-2">🔓</span></div>
+                                        {/if}
+                                    </button>
+                                {/if}
+                            {/if}
+                            <input hidden name="siteDateObservationId" value={data.siteDateObservation.siteDateObservationId} />
+                        </form>
 
-                <!-- Action messages -->
-                <div class="text-success-900-50-token h-6">
-                    {#if form?.success}
-                        {#if form.action === 'save'}
-                            Successful update ✔.
-                        {:else if form.action === 'review'}
-                            Successful {@html form.siteDateObservation?.confirmed ? 'LOCK 🔐' : 'UNLOCK 🔓'} of record.
-                        {:else if form.action === 'delete'}
-                            Successful delete 💥.
-                        {:else if form.action === 'undelete'}
-                            Successful undelete ✔.
+                        <!-- DELETE Action(s) -->
+                        {#if !data.siteDateObservation.confirmed && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || ($page.data.user.role === 'ENTRY' && (data.siteDateObservation.createdBy.id === $page.data.user.id || data.siteDateObservation.updatedBy.id === $page.data.user.id)))}
+                            <form name="delete" method="POST" action="?/deleteSiteDateObservation" use:enhance>
+                                {#if !data.siteDateObservation.deleted}
+                                    <button type="button" class={cButtonStandard} onclick={() => modalStore.trigger(modalDelete)}>Delete<span class="pl-2">❌</span></button>
+                                    <input hidden name="deleteOn" value={true} />
+                                {:else}
+                                    <button type="button" class={cButtonStandard} onclick={() => modalStore.trigger(modalUndelete)}>Undelete<span class="pl-2">↺</span></button>
+                                    <input hidden name="deleteOn" value={false} />
+                                {/if}
+                                <input hidden name="siteDateObservationId" value={data.siteDateObservation.siteDateObservationId} />
+                                <input hidden name="siteDateId" value={data.siteDateObservation.siteDateId} />
+                                <input hidden name="checklistId" value={data.siteDateObservation.checklistId} />
+                                <input hidden name="useLatinSort" value={true} />
+                                <input hidden name="sortDirection" value="asc" />
+                                <input hidden name="advanceRecord" value={true} />
+                            </form>
                         {/if}
                     {/if}
                 </div>
 
-                <!-- START Data controls group -->
-                {#if isViewAll}
-                    <!-- Multiple species observation recordings -->
+                <!-- CREATE Action -->
+                <div class="flex flex-row gap-2">
+                    {#if isAdding}
+                        <!-- <button type="button" class={cButtonStandard} onclick={() => formAdd.submit()}> -->
+                        <button type="button" class={cButtonStandard}>
+                            Save
+                            <span class="pl-2">✎</span>
+                        </button>
 
-                    <hr />
+                        <button type="button" class={cButtonAddView} onclick={() => (isAdding = !isAdding)} disabled={isEditing || data.siteDateObservation.confirmed}>
+                            <span>Cancel Add</span>
+                            <span class="pl-2 text-red-700 dark:text-red-600 text-2xl">↺</span>
+                        </button>
+                    {:else}
+                        <button
+                            type="button"
+                            class={cButtonAddView}
+                            onclick={() => {
+                                modalStore.trigger(modalAdd);
+                                return true;
+                            }}
+                            disabled={isEditing || data.siteDateObservation.confirmed}>
+                            <span>Add species</span>
+                            <span class="text-green-900 dark:text-green-200 text-2xl before:content-['✚']"></span>
+                        </button>
+                    {/if}
 
-                    {#if isEditing}<!-- EDITING Multiple species observation recordings -->
+                    <!-- TOGGLE SHOW ALL/SINGLE Action -->
+                    <button type="button" class={cButtonAddView} onclick={() => (isViewAll = !isViewAll)} disabled={isEditing || false} title="View all species">
+                        <input class="checkbox" type="checkbox" checked={isViewAll} disabled={isEditing || false} />
+                        <span>View all</span>
+                        <span class="!ml-0 text-green-900 dark:text-green-200 text-2xl">🔎</span>
+                    </button>
+                </div>
+            </div>
 
-                        <form name="edit" method="POST" action="?/saveSiteDateObservation" use:enhance bind:this={formEdit}>
-                            {#each availableObservations as chkSdo}
-                                <div class={`${chkSdo.deleted ? 'line-through odd:variant-ghost-warning even:variant-ghost-error' : 'odd:bg-gray-200 odd:dark:bg-red-700'}`}>
-                                    <div class="pl-1 flex flex-row">
-                                        <div class="w-6">{chkSdo.deleted ? '❌' : chkSdo.confirmed ? '🔐' : '🔓'}</div>
-                                        <div class="w-56 truncate">{chkSdo.checklist.commonName}</div>
-                                        <div class="w-64">{chkSdo.checklist.scientificName}</div>
-                                        <div class="w-36">Hodges: {chkSdo.hodges}</div>
+            <!-- Action messages -->
+            <div class="text-success-900-50-token h-6">
+                {#if form?.success}
+                    {#if form.action === 'save'}
+                        Successful update ✔.
+                    {:else if form.action === 'review'}
+                        Successful {@html form.siteDateObservation?.confirmed ? 'LOCK 🔐' : 'UNLOCK 🔓'} of record.
+                    {:else if form.action === 'delete'}
+                        Successful delete 💥.
+                    {:else if form.action === 'undelete'}
+                        Successful undelete ✔.
+                    {/if}
+                {/if}
+            </div>
 
-                                        {#if chkSdo.deleted}
-                                            <div class="w-28 pr-2 pb-0.5">ID Code: {@html chkSdo.idCode ?? '&varnothing;'}</div>
-                                        {:else if chkSdo.confirmed}
-                                            <div class="w-28 pr-2 pb-0.5">
-                                                <div class={cSectionClasses}>
-                                                    <span class={cSectionSpanClasses}>ID Code:</span>
-                                                    <input type="text" class="w-8 text-center text-black" value={chkSdo.idCode} disabled />
-                                                </div>
-                                            </div>
-                                        {:else}
-                                            <div class="w-28 pr-2 pb-0.5">
-                                                <label class={cSectionClasses}>
-                                                    <span class={cSectionSpanClasses}>ID Code:</span>
-                                                    <input type="text" name={`${chkSdo.siteDateObservationId}_idcode`} class="w-8 text-center text-black" value={chkSdo.idCode} />
-                                                </label>
-                                                <input type="hidden" name={`${chkSdo.siteDateObservationId}_idcode_orig`} value={chkSdo.idCode} />
-                                            </div>
-                                        {/if}
-                                        <div class="w-36">(Total: {chkSdo.total})</div>
-                                    </div>
+            <!-- START Data controls group -->
+            {#if isViewAll}
+                <!-- Multiple species observation recordings -->
 
-                                    <div class="pl-8 flex flex-wrap">
-                                        {#each Object.entries(chkSdo)
-                                            .filter((x) => x[0].startsWith('section'))
-                                            .map(([k, v]) => ({ label: `${k.substring(0, 1).toLocaleUpperCase()}${k.substring(1, 7)} ${k.substring(7)}`, name: k, value: v })) as section}
-                                            {#if chkSdo.deleted}
-                                                <div class={cSectionClasses}>
-                                                    <div class={cSectionSpanClasses}>{section.label}:</div>
-                                                    <div class="w-8">{@html section.value ?? '&varnothing;'}</div>
-                                                </div>
-                                            {:else if chkSdo.confirmed}
-                                                <div class={cSectionClasses}>
-                                                    <span class={cSectionSpanClasses}>{section.label}:</span>
-                                                    <input type="text" value={section.value} class="w-8 mb-0.5 text-center text-black" disabled />
-                                                </div>
-                                            {:else}
-                                                <label class={cSectionClasses}>
-                                                    <span class={cSectionSpanClasses}>{section.label}:</span>
-                                                    <input type="text" name={`${chkSdo.siteDateObservationId}_${section.name}`} value={section.value} class="w-8 mb-0.5 text-center text-black" on:input={() => (total = getTotal())} />
-                                                    <input type="hidden" name={`${chkSdo.siteDateObservationId}_${section.name}_orig`} value={section.value} />
-                                                </label>
-                                            {/if}
-                                        {/each}
-                                    </div>
-                                    <hr />
-                                </div>
-                            {/each}
-                        </form>
-                    {:else}<!-- VIEWING Multiple species observation recordings -->
+                <hr />
 
+                {#if isEditing}<!-- EDITING Multiple species observation recordings -->
+
+                    <form name="edit" method="POST" action="?/saveSiteDateObservation" use:enhance>
                         {#each availableObservations as chkSdo}
-                            <div class={`${chkSdo.deleted ? 'odd:variant-ghost-warning even:variant-ghost-error' : 'odd:bg-gray-200 odd:dark:bg-red-700'}`}>
-                                <div class={`pl-1 flex flex-row ${chkSdo.deleted ? '[&>:not(:first-of-type)]:line-through' : ''}`}>
-                                    <div class="w-6">{chkSdo.deleted ? '❌' : chkSdo.confirmed ? '✔' : '✎'}</div>
+                            <div class={`${chkSdo.deleted ? 'line-through odd:variant-ghost-warning even:variant-ghost-error' : 'odd:bg-gray-200 odd:dark:bg-red-700'}`}>
+                                <div class="pl-1 flex flex-row">
+                                    <div class="w-6">{chkSdo.deleted ? '❌' : chkSdo.confirmed ? '🔐' : '🔓'}</div>
                                     <div class="w-56 truncate">{chkSdo.checklist.commonName}</div>
                                     <div class="w-64">{chkSdo.checklist.scientificName}</div>
                                     <div class="w-36">Hodges: {chkSdo.hodges}</div>
-                                    <div class="w-28 pr-2 pb-0.5">ID Code: {@html chkSdo.idCode ?? '&varnothing;'}</div>
+
+                                    {#if chkSdo.deleted}
+                                        <div class="w-28 pr-2 pb-0.5">ID Code: {@html chkSdo.idCode ?? '&varnothing;'}</div>
+                                    {:else if chkSdo.confirmed}
+                                        <div class="w-28 pr-2 pb-0.5">
+                                            <div class={cSectionClasses}>
+                                                <span class={cSectionSpanClasses}>ID Code:</span>
+                                                <input type="text" class="w-8 text-center text-black" value={chkSdo.idCode} disabled />
+                                            </div>
+                                        </div>
+                                    {:else}
+                                        <div class="w-28 pr-2 pb-0.5">
+                                            <label class={cSectionClasses}>
+                                                <span class={cSectionSpanClasses}>ID Code:</span>
+                                                <input type="text" name={`${chkSdo.siteDateObservationId}_idcode`} class="w-8 text-center text-black" value={chkSdo.idCode} />
+                                            </label>
+                                            <input type="hidden" name={`${chkSdo.siteDateObservationId}_idcode_orig`} value={chkSdo.idCode} />
+                                        </div>
+                                    {/if}
                                     <div class="w-36">(Total: {chkSdo.total})</div>
                                 </div>
 
-                                <div class={`pl-8 flex flex-wrap ${chkSdo.deleted ? 'line-through' : ''}`}>
+                                <div class="pl-8 flex flex-wrap">
                                     {#each Object.entries(chkSdo)
                                         .filter((x) => x[0].startsWith('section'))
                                         .map(([k, v]) => ({ label: `${k.substring(0, 1).toLocaleUpperCase()}${k.substring(1, 7)} ${k.substring(7)}`, name: k, value: v })) as section}
-                                        <div class={cSectionClasses}>
-                                            <div class={cSectionSpanClasses}>{section.label}:</div>
-                                            <div class="w-8">{@html section.value ?? '&varnothing;'}</div>
-                                        </div>
+                                        {#if chkSdo.deleted}
+                                            <div class={cSectionClasses}>
+                                                <div class={cSectionSpanClasses}>{section.label}:</div>
+                                                <div class="w-8">{@html section.value ?? '&varnothing;'}</div>
+                                            </div>
+                                        {:else if chkSdo.confirmed}
+                                            <div class={cSectionClasses}>
+                                                <span class={cSectionSpanClasses}>{section.label}:</span>
+                                                <input type="text" value={section.value} class="w-8 mb-0.5 text-center text-black" disabled />
+                                            </div>
+                                        {:else}
+                                            <label class={cSectionClasses}>
+                                                <span class={cSectionSpanClasses}>{section.label}:</span>
+                                                <input type="text" name={`${chkSdo.siteDateObservationId}_${section.name}`} value={section.value} class="w-8 mb-0.5 text-center text-black" />
+                                                <input type="hidden" name={`${chkSdo.siteDateObservationId}_${section.name}_orig`} value={section.value} />
+                                            </label>
+                                        {/if}
                                     {/each}
                                 </div>
                                 <hr />
                             </div>
                         {/each}
-                    {/if}
-                {:else}
-                    <!-- Single speices observation recordings -->
+                    </form>
+                {:else}<!-- VIEWING Multiple species observation recordings -->
 
-                    <div class={`${data.siteDateObservation.deleted ? 'line-through variant-ghost-error' : ''}`}>
-                        <!-- DATA Heading -->
-                        <div class="flex flex-row justify-between font-bold">
-                            <div>
-                                {data.siteDateObservation.checklist.scientificName}
+                    {#each availableObservations as chkSdo}
+                        <div class={`${chkSdo.deleted ? 'odd:variant-ghost-warning even:variant-ghost-error' : 'odd:bg-gray-200 odd:dark:bg-red-700'}`}>
+                            <div class={`pl-1 flex flex-row ${chkSdo.deleted ? '[&>:not(:first-of-type)]:line-through' : ''}`}>
+                                <div class="w-6">{chkSdo.deleted ? '❌' : chkSdo.confirmed ? '✔' : '✎'}</div>
+                                <div class="w-56 truncate">{chkSdo.checklist.commonName}</div>
+                                <div class="w-64">{chkSdo.checklist.scientificName}</div>
+                                <div class="w-36">Hodges: {chkSdo.hodges}</div>
+                                <div class="w-28 pr-2 pb-0.5">ID Code: {@html chkSdo.idCode ?? '&varnothing;'}</div>
+                                <div class="w-36">(Total: {chkSdo.total})</div>
                             </div>
-                            <div>
-                                {data.siteDateObservation.checklist.commonName}
-                            </div>
-                        </div>
-                        <div class="flex flex-row space-x-4">
-                            {#if isAdding}
-                                <!-- TODO: Update on some kind of selector -->
-                                <div class="w-32">Hodges:</div>
-                                <!-- TODO: Make Id Code editable -->
-                                <div class="w-28">Id Code:</div>
-                                <div class="w-28 text-amber-700 dark:text-amber-400">(Total: {getTotal()})</div>
-                            {:else if isEditing && getTotal() !== currentSiteDateObservation.total}
-                                <div class="w-32">Hodges: {currentSiteDateObservation.hodges}</div>
-                                <div class="w-28 pr-2 pb-0.5">
-                                    <label class={cSectionClasses}>
-                                        <span class={cSectionSpanClasses}>ID Code:</span>
-                                        <input type="text" name={`${currentSiteDateObservation.siteDateObservationId}_idcode`} class="w-8 text-center text-black" value={currentSiteDateObservation.idCode} />
-                                    </label>
-                                    <input type="hidden" name={`${currentSiteDateObservation.siteDateObservationId}_idcode_orig`} value={currentSiteDateObservation.idCode} />
-                                </div>
-                                <div class="w-28 text-amber-700 dark:text-amber-400">(Total: {getTotal()})</div>
-                            {:else}
-                                <div class="w-32">Hodges: {currentSiteDateObservation.hodges}</div>
-                                <div class="w-28">Id Code: {@html currentSiteDateObservation.idCode ?? '&varnothing;'}</div>
-                                <div class="w-28">(Total: {currentSiteDateObservation.total})</div>
-                            {/if}
-                        </div>
-                        <!-- LOOKAT: https://stackoverflow.com/questions/77420975/svelte-store-calculate-total-value-of-items-in-array-of-objects -->
 
-                        <hr />
-
-                        <!-- DATA Details -->
-                        {#if isEditing}
-                            <!-- TODO: Indicate when data has changed -->
-                            <form name="edit" method="POST" action="?/saveSiteDateObservation" use:enhance bind:this={formEdit}>
-                                <!-- <input type="hidden" name={`${data.siteDateObservation.siteDateObservationId}_siteDateObservationId`} value={data.siteDateObservation.siteDateObservationId} /> -->
-                                <div class={cDataClasses}>
-                                    {#each sdoSections as section}
-                                        <div class={cDatumClasses}>
-                                            <label class={cSectionClasses}>
-                                                <span class={cSectionSpanClasses}>{section.label}:</span>
-                                                <input type="text" name={`${data.siteDateObservation.siteDateObservationId}_${section.name}`} value={section.value} class="w-8 text-center text-black" on:input={() => (total = getTotal())} />
-                                                <input type="hidden" name={`${data.siteDateObservation.siteDateObservationId}_${section.name}_orig`} value={section.value} />
-                                            </label>
-                                        </div>
-                                    {/each}
-                                </div>
-                            </form>
-                        {:else if isAdding}
-                            <form name="add" method="POST" action="?/addSiteDateObservation" use:enhance bind:this={formAdd}>
-                                <div class={cDataClasses}>
-                                    {#each sdoSections as section}
-                                        <div class={cDatumClasses}>
-                                            <label class={cSectionClasses}>
-                                                <span class={cSectionSpanClasses}>{section.label}:</span>
-                                                <input type="text" name={section.name} class="w-8 text-center text-black" on:input={handleChange} />
-                                            </label>
-                                        </div>
-                                    {/each}
-                                </div>
-                            </form>
-                        {:else}
-                            <!-- TODO: Consider indicator to show newly updated data -->
-                            <div class={cDataClasses}>
-                                {#each sdoSections as section}
-                                    <div class={cDatumClasses}>
-                                        <div class={cSectionClasses}>
-                                            <div class={cSectionSpanClasses}>{section.label}:</div>
-                                            <div class="w-8">{@html section.value ?? '&varnothing;'}</div>
-                                        </div>
+                            <div class={`pl-8 flex flex-wrap ${chkSdo.deleted ? 'line-through' : ''}`}>
+                                {#each Object.entries(chkSdo)
+                                    .filter((x) => x[0].startsWith('section'))
+                                    .map(([k, v]) => ({ label: `${k.substring(0, 1).toLocaleUpperCase()}${k.substring(1, 7)} ${k.substring(7)}`, name: k, value: v })) as section}
+                                    <div class={cSectionClasses}>
+                                        <div class={cSectionSpanClasses}>{section.label}:</div>
+                                        <div class="w-8">{@html section.value ?? '&varnothing;'}</div>
                                     </div>
                                 {/each}
                             </div>
-                        {/if}
+                            <hr />
+                        </div>
+                    {/each}
+                {/if}
+            {:else}
+                <!-- Single speices observation recordings -->
 
-                        <hr />
-
-                        <!-- AUDIT Summary -->
-                        <div class="flex flex-row flex-wrap justify-between">
-                            <div class="flex flex-col basis-60">
-                                <div>Created At: {!isAdding && data.siteDateObservation.createdAt ? formatDate(new Date(data.siteDateObservation.createdAt).toISOString(), 'short', 'short') : ''}</div>
-                                <div class="">Created By: {!isAdding ? data.siteDateObservation.createdBy?.lastFirst ?? '' : $page.data.user.lastFirst}</div>
-                            </div>
-                            <div class="flex flex-col basis-60">
-                                <div>Updated At: {!isAdding && data.siteDateObservation.updatedAt ? formatDate(new Date(data.siteDateObservation.updatedAt).toISOString(), 'short', 'short') : ''}</div>
-                                <div class="">Updated By: {!isAdding ? data.siteDateObservation.updatedBy?.lastFirst ?? '' : ''}</div>
-                            </div>
-                            <div class="flex flex-col basis-60">
-                                <div>Confirm At: {!isAdding && data.siteDateObservation.confirmAt ? formatDate(new Date(data.siteDateObservation.confirmAt).toISOString(), 'short', 'short') : ''}</div>
-                                <div class="">Confirm By: {!isAdding ? data.siteDateObservation.confirmBy?.lastFirst ?? '' : ''}</div>
-                            </div>
+                <div class={`${data.siteDateObservation.deleted ? 'line-through variant-ghost-error' : ''}`}>
+                    <!-- DATA Heading -->
+                    <div class="flex flex-row justify-between font-bold">
+                        <div>
+                            {data.siteDateObservation.checklist.scientificName}
+                        </div>
+                        <div>
+                            {data.siteDateObservation.checklist.commonName}
                         </div>
                     </div>
-                {/if}
-                <!-- END Data controls group -->
-            </div>
-        {/if}
-    </svelte:fragment>
-</StandardContainer>
+                    <div class="flex flex-row space-x-4">
+                        {#if isAdding}
+                            <!-- TODO: Update on some kind of selector -->
+                            <div class="w-32">Hodges:</div>
+                            <!-- TODO: Make Id Code editable -->
+                            <div class="w-28">Id Code:</div>
+                            <div class="w-28 text-amber-700 dark:text-amber-400">(Total: {total})</div>
+                        {:else if isEditing && total !== currentSiteDateObservation.total}
+                            <div class="w-32">Hodges: {currentSiteDateObservation.hodges}</div>
+                            <div class="w-28 pr-2 pb-0.5">
+                                <label class={cSectionClasses}>
+                                    <span class={cSectionSpanClasses}>ID Code:</span>
+                                    <input type="text" name={`${currentSiteDateObservation.siteDateObservationId}_idcode`} class="w-8 text-center text-black" value={currentSiteDateObservation.idCode} />
+                                </label>
+                                <input type="hidden" name={`${currentSiteDateObservation.siteDateObservationId}_idcode_orig`} value={currentSiteDateObservation.idCode} />
+                            </div>
+                            <div class="w-28 text-amber-700 dark:text-amber-400">(Total: {total})</div>
+                        {:else}
+                            <div class="w-32">Hodges: {currentSiteDateObservation.hodges}</div>
+                            <div class="w-28">Id Code: {@html currentSiteDateObservation.idCode ?? '&varnothing;'}</div>
+                            <div class="w-28">(Total: {currentSiteDateObservation.total})</div>
+                        {/if}
+                    </div>
+                    <!-- LOOKAT: https://stackoverflow.com/questions/77420975/svelte-store-calculate-total-value-of-items-in-array-of-objects -->
+
+                    <hr />
+
+                    <!-- DATA Details -->
+                    {#if isEditing}
+                        <!-- TODO: Indicate when data has changed -->
+                        <form name="edit" id="formEdit" method="POST" action="?/saveSiteDateObservation" use:enhance>
+                            <!-- <input type="hidden" name={`${data.siteDateObservation.siteDateObservationId}_siteDateObservationId`} value={data.siteDateObservation.siteDateObservationId} /> -->
+                            <div class={cDataClasses}>
+                                {#each sdoSections as section}
+                                    <div class={cDatumClasses}>
+                                        <label class={cSectionClasses}>
+                                            <span class={cSectionSpanClasses}>{section.label}:</span>
+                                            <input type="text" name={`${data.siteDateObservation.siteDateObservationId}_${section.name}`} value={section.value} class="w-8 text-center text-black" />
+                                            <input type="hidden" name={`${data.siteDateObservation.siteDateObservationId}_${section.name}_orig`} value={section.value} oninput={handleChange} />
+                                        </label>
+                                    </div>
+                                {/each}
+                            </div>
+                        </form>
+                    {:else if isAdding}
+                        <form name="add" id="formAdd" method="POST" action="?/addSiteDateObservation" use:enhance>
+                            <div class={cDataClasses}>
+                                {#each sdoSections as section}
+                                    <div class={cDatumClasses}>
+                                        <label class={cSectionClasses}>
+                                            <span class={cSectionSpanClasses}>{section.label}:</span>
+                                            <input type="text" name={section.name} class="w-8 text-center text-black" />
+                                            <!--oninput={handleChange} / -->
+                                        </label>
+                                    </div>
+                                {/each}
+                            </div>
+                        </form>
+                    {:else}
+                        <!-- TODO: Consider indicator to show newly updated data -->
+                        <div class={cDataClasses}>
+                            {#each sdoSections as section}
+                                <div class={cDatumClasses}>
+                                    <div class={cSectionClasses}>
+                                        <div class={cSectionSpanClasses}>{section.label}:</div>
+                                        <div class="w-8">{@html section.value ?? '&varnothing;'}</div>
+                                    </div>
+                                </div>
+                            {/each}
+                        </div>
+                    {/if}
+
+                    <hr />
+
+                    <!-- AUDIT Summary -->
+                    <div class="flex flex-row flex-wrap justify-between">
+                        <div class="flex flex-col basis-60">
+                            <div>Created At: {!isAdding && data.siteDateObservation.createdAt ? formatDate(new Date(data.siteDateObservation.createdAt).toISOString(), 'short', 'short') : ''}</div>
+                            <div class="">Created By: {!isAdding ? data.siteDateObservation.createdBy?.lastFirst ?? '' : $page.data.user.lastFirst}</div>
+                        </div>
+                        <div class="flex flex-col basis-60">
+                            <div>Updated At: {!isAdding && data.siteDateObservation.updatedAt ? formatDate(new Date(data.siteDateObservation.updatedAt).toISOString(), 'short', 'short') : ''}</div>
+                            <div class="">Updated By: {!isAdding ? data.siteDateObservation.updatedBy?.lastFirst ?? '' : ''}</div>
+                        </div>
+                        <div class="flex flex-col basis-60">
+                            <div>Confirm At: {!isAdding && data.siteDateObservation.confirmAt ? formatDate(new Date(data.siteDateObservation.confirmAt).toISOString(), 'short', 'short') : ''}</div>
+                            <div class="">Confirm By: {!isAdding ? data.siteDateObservation.confirmBy?.lastFirst ?? '' : ''}</div>
+                        </div>
+                    </div>
+                </div>
+            {/if}
+            <!-- END Data controls group -->
+        </div>
+    {/if}
+{/snippet}
+
+<Container head={null} {body} tail={null} />

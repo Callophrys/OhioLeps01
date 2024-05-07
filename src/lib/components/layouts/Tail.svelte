@@ -1,15 +1,9 @@
 <script lang="ts">
-    import type { Snippet } from 'svelte';
-    let { children }: { children: Snippet } = $props();
-    const cTailClasses = 'pr-4';
+    let { classes, children }: { classes: string; children: any } = $props();
 </script>
 
-<div class={cTailClasses}>
-    {#if children()}
+{#if children}
+    <div class={classes}>
         {@render children()}
-    {:else}
-        <span>_</span>
-    {/if}
-</div>
-
-<!-- {#snippet StandardTail()}{/snippet} -->
+    </div>
+{/if}

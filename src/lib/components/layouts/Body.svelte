@@ -1,15 +1,9 @@
 <script lang="ts">
-    import type { Snippet } from 'svelte';
-    let { children }: { children: Snippet } = $props();
-    const cBodyClasses = 'space-y-2 h-full overflow-y-auto';
+    let { classes = '', children }: { classes: string; children: any } = $props();
 </script>
 
-<div class={cBodyClasses}>
-    {#if children()}
+{#if children}
+    <div class={classes}>
         {@render children()}
-    {:else}
-        <span>_</span>
-    {/if}
-</div>
-
-<!-- {#snippet StandardBody()} {/snippet} -->
+    </div>
+{/if}

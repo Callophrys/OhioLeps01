@@ -1,14 +1,14 @@
 <script lang="ts">
-    import { goto } from '$app/navigation';
-    import StandardContainer from '$lib/components/StandardContainer.svelte';
-    import { formatDate } from '$lib/utils.js';
     import type { County } from '@prisma/client';
+    import Container from '$lib/components/layouts/Container.svelte';
+    import { goto } from '$app/navigation';
+    import { formatDate } from '$lib/utils.js';
     import { page } from '$app/stores';
     import GoBack from '$lib/components/datanavigation/GoBack.svelte';
     import GoNext from '$lib/components/datanavigation/GoNext.svelte';
     import { GOTYPE } from '$lib/types.js';
 
-    export let data;
+    let { data } = $props();
 
     function handleSiteSelect(e: any) {
         let id = e.currentTarget.value;
@@ -22,7 +22,7 @@
         }
         */
     }
-    
+
     function addSite() {
         goto(`/api/sites/new/${countyId}`);
     }
@@ -32,58 +32,58 @@
 	console.log(data.counties);
 	console.log(data.sites[0].countyId);
     */
-    let countyId = data.refCountyId; // data.sites[0].countyId;
-    console.log(countyId);
-    let county: County = data.counties.find((c: County) => c.id === countyId) as County;
-    console.log(county);
+    let countyId = $state(data.refCountyId); // data.sites[0].countyId;
+    $inspect(countyId);
 
-    $: goNextSiteId = data.sites.length ? data.sites[0].siteId : -1;
+    let county: County = $derived(data.counties.find((c: County) => c.id === countyId) as County);
+    $inspect(county);
+
+    let goNextSiteId = $derived(data.sites.length ? data.sites[0].siteId : -1);
 </script>
 
-<StandardContainer>
-    <svelte:fragment slot="standardHead">
-        <div class="flex flex-row justify-between">
-            <div class="flex">
-                <div class="my-auto">All sites in county: {county.name}</div>
+{#snippet head()}
+    <div class="flex flex-row justify-between">
+        <div class="flex">
+            <div class="my-auto">All sites in county: {county.name}</div>
 
-                {#if $page.data?.user && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN')}
-                    <button type="button" class="btn" on:click={addSite}><span class="text-success-400">✚</span>&nbsp;Add new site</button>
-                {/if}
-
-            </div>
-            <div class="flex flex-row">
-                <GoBack targetId={-1} targetType={GOTYPE.COUNTIES} controlBody="scale-90" />
-                <GoNext targetId={goNextSiteId} targetType={GOTYPE.SITES} controlBody="scale-90" controlDisabled={goNextSiteId === -1} />
-                <select class="select scale-90" bind:value={countyId} on:change={handleSiteSelect}>
-                    <option value="-1">ALL SITES</option>
-                    {#each data.counties as county}
-                        <option value={county.id}>{county.name}</option>
-                    {/each}
-                </select>
-            </div>
+            {#if $page.data?.user && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN')}
+                <button type="button" class="btn" onclick={addSite}><span class="text-success-400">✚</span>&nbsp;Add new site</button>
+            {/if}
         </div>
-    </svelte:fragment>
-    <svelte:fragment slot="standardBody">
-        <div>
-            <div class="flex flex-wrap gap-2">
-                {#each data.sites as site, i}
-                    <a href="/api/sites/{site.siteId}">
-                        <div class="card relative grid w-56 h-32 p-0 m-0 text-wrap hover:variant-soft">
-                            <div class="absolute top-2 left-2">🔍</div>
-                            <div class="px-2 pt-2 w-full text-center">
-                                <h3>{site.siteName}</h3>
-                                <div>
-                                    {site.county.name}
-                                </div>
-                                <div>{site.person}</div>
-                                <div class="text-wrap">
-                                    Last update: {formatDate(new Date(site.createdAt).toISOString())}
-                                </div>
+        <div class="flex flex-row">
+            <GoBack targetId={-1} targetType={GOTYPE.COUNTIES} controlBody="scale-90" />
+            <GoNext targetId={goNextSiteId} targetType={GOTYPE.SITES} controlBody="scale-90" controlDisabled={goNextSiteId === -1} />
+            <select class="select scale-90" bind:value={countyId} onchange={handleSiteSelect}>
+                <option value="-1">ALL SITES</option>
+                {#each data.counties as county}
+                    <option value={county.id}>{county.name}</option>
+                {/each}
+            </select>
+        </div>
+    </div>
+{/snippet}
+{#snippet body()}
+    <div>
+        <div class="flex flex-wrap gap-2">
+            {#each data.sites as site, i}
+                <a href="/api/sites/{site.siteId}">
+                    <div class="card relative grid w-56 h-32 p-0 m-0 text-wrap hover:variant-soft">
+                        <div class="absolute top-2 left-2">🔍</div>
+                        <div class="px-2 pt-2 w-full text-center">
+                            <h3>{site.siteName}</h3>
+                            <div>
+                                {site.county.name}
+                            </div>
+                            <div>{site.person}</div>
+                            <div class="text-wrap">
+                                Last update: {formatDate(new Date(site.createdAt).toISOString())}
                             </div>
                         </div>
-                    </a>
-                {/each}
-            </div>
+                    </div>
+                </a>
+            {/each}
         </div>
-    </svelte:fragment>
-</StandardContainer>
+    </div>
+{/snippet}
+{#snippet tail()}{/snippet}
+<Container {head} {body} tail={null} />

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import StandardContainer from '$lib/components/StandardContainer.svelte';
+    import Container from '$lib/components/layouts/Container.svelte';
     import { formatDate } from '$lib/utils';
     import { popup } from '@skeletonlabs/skeleton';
     //import type { PopupSettings } from '@skeletonlabs/skeleton';
@@ -10,39 +10,37 @@
     import GoNext from '$lib/components/datanavigation/GoNext.svelte';
     import { GOTYPE } from '$lib/types.js';
 
-    export let data;
-    export let form;
+    let { data, form } = $props();
 </script>
 
-<StandardContainer>
-    <svelte:fragment slot="standardHead">
-        <div class="">
-            <GoBack targetId={-1} targetType={GOTYPE.COUNTYSITES} class="scale-90" />
-            {#if ($page.data.user?.role === 'ADMIN' || $page.data.user?.role === 'SUPER') && typeof form === 'object' && !isEmpty(form?.data)}
-                <span>Site X of {data.sites?.length}: {form?.data?.siteName} </span>
-                <button type="submit"> ➜ Next site</button>
+{#snippet head()}
+    <div class="">
+        <GoBack targetId={-1} targetType={GOTYPE.COUNTYSITES} class="scale-90" />
+        {#if ($page.data.user?.role === 'ADMIN' || $page.data.user?.role === 'SUPER') && typeof form === 'object' && !isEmpty(form?.data)}
+            <span>Site X of {data.sites?.length}: {form?.data?.siteName} </span>
+            <button type="submit"> ➜ Next site</button>
 
-                <div class="flex gap-2">
-                    <a href="/api/sites" class="p-2 hover:bg-sky-700">🔍 Return to all sites</a>
-                    <form method="POST" action="?/getSites" id="pickSite">
-                        <label class="p-2 hover:bg-sky-700">
-                            <button type="submit">🔍 Return to all sites</button>
-                        </label>
-                    </form>
-                    <form method="POST" action="?/editSite" id="pickSite">
-                        <label class="p-2 hover:bg-sky-700">
-                            <button type="submit">✐ Edit this site</button>
-                        </label>
-                    </form>
-                    <form method="POST" action="?/removeSite" id="pickSite">
-                        <label class="p-2 hover:bg-sky-700">
-                            <input type="hidden" name="siteId" value={data.sites?.siteId} />
-                            <button type="submit">❌ Delete this site</button>
-                        </label>
-                    </form>
-                </div>
-                <hr />
-                <!--
+            <div class="flex gap-2">
+                <a href="/api/sites" class="p-2 hover:bg-sky-700">🔍 Return to all sites</a>
+                <form method="POST" action="?/getSites" id="pickSite">
+                    <label class="p-2 hover:bg-sky-700">
+                        <button type="submit">🔍 Return to all sites</button>
+                    </label>
+                </form>
+                <form method="POST" action="?/editSite" id="pickSite">
+                    <label class="p-2 hover:bg-sky-700">
+                        <button type="submit">✐ Edit this site</button>
+                    </label>
+                </form>
+                <form method="POST" action="?/removeSite" id="pickSite">
+                    <label class="p-2 hover:bg-sky-700">
+                        <input type="hidden" name="siteId" value={data.sites?.siteId} />
+                        <button type="submit">❌ Delete this site</button>
+                    </label>
+                </form>
+            </div>
+            <hr />
+            <!--
     <form method="POST" action="?/addTodo">
         <input type="text" name="todo" value={form?.site ?? ''} />
         {#if form?.missing}
@@ -58,155 +56,155 @@
         <p>Added todo! 🥳</p>
     {/if}
     -->
-            {:else if typeof form === 'object' && !isEmpty(form?.data)}
-                <span>Site X of {data.sites?.length}: {form?.data?.siteName} </span>
-                <button type="submit"> ➜ Next site</button>
-            {:else}
-                <span>Sites: {data.sites?.length}</span>
-            {/if}
-        </div>
-    </svelte:fragment>
+        {:else if typeof form === 'object' && !isEmpty(form?.data)}
+            <span>Site X of {data.sites?.length}: {form?.data?.siteName} </span>
+            <button type="submit"> ➜ Next site</button>
+        {:else}
+            <span>Sites: {data.sites?.length}</span>
+        {/if}
+    </div>
+{/snippet}
 
-    <svelte:fragment slot="standardBody">
-        <div class="">
-            {#if typeof form === 'object' && !isEmpty(form?.data)}
-                <div class="w-1/2">
-                    <div class="grid grid-cols-2 space-x-2 w-max">
-                        <div class="text-right w-40">SiteName</div>
-                        <div>{form.data.siteName}</div>
-                    </div>
-                    <div class="grid grid-cols-2 space-x-2 w-max">
-                        <div class="text-right w-40">Description</div>
-                        <div>{form.data.description}</div>
-                    </div>
-                    <div class="grid grid-cols-2 space-x-2 w-max">
-                        <div class="text-right w-40">SiteAddress</div>
-                        <div>{form.data.siteAddress}</div>
-                    </div>
-                    <div class="grid grid-cols-2 space-x-2 w-max">
-                        <div class="text-right w-40">SiteAddress2</div>
-                        <div>{form.data.siteAddress2}</div>
-                    </div>
-                    <div class="grid grid-cols-2 space-x-2 w-max">
-                        <div class="text-right w-40">SiteCityStateZip</div>
-                        <div>{form.data.siteCityStateZip}</div>
-                    </div>
-
-                    <div class="grid grid-cols-2 space-x-2 w-max">
-                        <div class="text-right w-40">County</div>
-                        <div>{form.data.county}</div>
-                    </div>
-                    <div class="grid grid-cols-2 space-x-2 w-max">
-                        <div class="text-right w-40">Township</div>
-                        <div>{form.data.township}</div>
-                    </div>
-                    <div class="grid grid-cols-2 space-x-2 w-max">
-                        <div class="text-right w-40">LocationZip</div>
-                        <div>{form.data.locationZip}</div>
-                    </div>
-
-                    <div class="grid grid-cols-2 space-x-2 w-max">
-                        <div class="text-right w-40">LatitudeEnd</div>
-                        <div>{form.data.latitudeEnd}</div>
-                    </div>
-                    <div class="grid grid-cols-2 space-x-2 w-max">
-                        <div class="text-right w-40">LatitudeStart</div>
-                        <div>{form.data.latitudeStart}</div>
-                    </div>
-                    <div class="grid grid-cols-2 space-x-2 w-max">
-                        <div class="text-right w-40">LongitudeEnd</div>
-                        <div>{form.data.longitudeEnd}</div>
-                    </div>
-                    <div class="grid grid-cols-2 space-x-2 w-max">
-                        <div class="text-right w-40">LongitudeStart</div>
-                        <div>{form.data.longitudeStart}</div>
-                    </div>
-
-                    <div class="grid grid-cols-2 space-x-2 w-max">
-                        <div class="text-right w-40">Person</div>
-                        <div>{form.data.person}</div>
-                    </div>
-                    <div class="grid grid-cols-2 space-x-2 w-max">
-                        <div class="text-right w-40">Address</div>
-                        <div>{form.data.address}</div>
-                    </div>
-                    <div class="grid grid-cols-2 space-x-2 w-max">
-                        <div class="text-right w-40">Address2</div>
-                        <div>{form.data.address2}</div>
-                    </div>
-                    <div class="grid grid-cols-2 space-x-2 w-max">
-                        <div class="text-right w-40">CityStateZip</div>
-                        <div>{form.data.cityStateZip}</div>
-                    </div>
-                    <div class="grid grid-cols-2 space-x-2 w-max">
-                        <div class="text-right w-40">Phone</div>
-                        <div>{form.data.phone}</div>
-                    </div>
-                    <div class="grid grid-cols-2 space-x-2 w-max">
-                        <div class="text-right w-40">Email</div>
-                        <div>{form.data.email}</div>
-                    </div>
-
-                    <div class="grid grid-cols-2 space-x-2 w-max">
-                        <div class="text-right w-40">AltPerson</div>
-                        <div>{form.data.altPerson}</div>
-                    </div>
-                    <div class="grid grid-cols-2 space-x-2 w-max">
-                        <div class="text-right w-40">AltAddress</div>
-                        <div>{form.data.altAddress}</div>
-                    </div>
-                    <div class="grid grid-cols-2 space-x-2 w-max">
-                        <div class="text-right w-40">AltAddress2</div>
-                        <div>{form.data.altAddress2}</div>
-                    </div>
-                    <div class="grid grid-cols-2 space-x-2 w-max">
-                        <div class="text-right w-40">AltCityStateZip</div>
-                        <div>{form.data.altCityStateZip}</div>
-                    </div>
-                    <div class="grid grid-cols-2 space-x-2 w-max">
-                        <div class="text-right w-40">AltPhone</div>
-                        <div>{form.data.altPhone}</div>
-                    </div>
-                    <div class="grid grid-cols-2 space-x-2 w-max">
-                        <div class="text-right w-40">AltEmail</div>
-                        <div>{form.data.altEmail}</div>
-                    </div>
-
-                    <div class="grid grid-cols-2 space-x-2 w-max">
-                        <div class="text-right w-40">OtherParticipants</div>
-                        <div>{form.data.otherParticipants}</div>
-                    </div>
-                    {#each form.data.siteStatuses as siteStatus}
-                        <div class="grid grid-cols-2 space-x-2 w-max">
-                            <div class="text-right w-40">{siteStatus.year}</div>
-                            <div>{siteStatus.statusCode?.description}</div>
-                        </div>
-                    {/each}
-                    <div class="grid grid-cols-2 space-x-2 w-max">
-                        <div class="text-right w-40">Created on</div>
-                        <div>{form.data.createdAt.toString()}</div>
-                    </div>
+{#snippet body()}
+    <div class="">
+        {#if typeof form === 'object' && !isEmpty(form?.data)}
+            <div class="w-1/2">
+                <div class="grid grid-cols-2 space-x-2 w-max">
+                    <div class="text-right w-40">SiteName</div>
+                    <div>{form.data.siteName}</div>
                 </div>
-            {:else if typeof data === 'object' && !isEmpty(data)}
-                <div>
-                    <div class="flex flex-wrap gap-2">
-                        {#each data.sites as site, i}
-                            <a href="/api/sites/{site.siteId}">
-                                <div class="card relative grid w-56 h-32 p-0 m-0 text-wrap hover:variant-soft">
-                                    <div class="px-2 pt-2 w-full text-center">
-                                        <div class="flex flex-row justify-between">
-                                            <div class="">🔍</div>
-                                            <div class="w-full mr-4">{site.siteName}</div>
-                                        </div>
-                                        <div>
-                                            {site.county.state.name} - {site.county.name}
-                                        </div>
-                                        <div>{site.person}</div>
-                                        <div class="text-wrap">
-                                            Last update: {formatDate(site.updatedAt ?? site.createdAt)}
-                                        </div>
+                <div class="grid grid-cols-2 space-x-2 w-max">
+                    <div class="text-right w-40">Description</div>
+                    <div>{form.data.description}</div>
+                </div>
+                <div class="grid grid-cols-2 space-x-2 w-max">
+                    <div class="text-right w-40">SiteAddress</div>
+                    <div>{form.data.siteAddress}</div>
+                </div>
+                <div class="grid grid-cols-2 space-x-2 w-max">
+                    <div class="text-right w-40">SiteAddress2</div>
+                    <div>{form.data.siteAddress2}</div>
+                </div>
+                <div class="grid grid-cols-2 space-x-2 w-max">
+                    <div class="text-right w-40">SiteCityStateZip</div>
+                    <div>{form.data.siteCityStateZip}</div>
+                </div>
+
+                <div class="grid grid-cols-2 space-x-2 w-max">
+                    <div class="text-right w-40">County</div>
+                    <div>{form.data.county}</div>
+                </div>
+                <div class="grid grid-cols-2 space-x-2 w-max">
+                    <div class="text-right w-40">Township</div>
+                    <div>{form.data.township}</div>
+                </div>
+                <div class="grid grid-cols-2 space-x-2 w-max">
+                    <div class="text-right w-40">LocationZip</div>
+                    <div>{form.data.locationZip}</div>
+                </div>
+
+                <div class="grid grid-cols-2 space-x-2 w-max">
+                    <div class="text-right w-40">LatitudeEnd</div>
+                    <div>{form.data.latitudeEnd}</div>
+                </div>
+                <div class="grid grid-cols-2 space-x-2 w-max">
+                    <div class="text-right w-40">LatitudeStart</div>
+                    <div>{form.data.latitudeStart}</div>
+                </div>
+                <div class="grid grid-cols-2 space-x-2 w-max">
+                    <div class="text-right w-40">LongitudeEnd</div>
+                    <div>{form.data.longitudeEnd}</div>
+                </div>
+                <div class="grid grid-cols-2 space-x-2 w-max">
+                    <div class="text-right w-40">LongitudeStart</div>
+                    <div>{form.data.longitudeStart}</div>
+                </div>
+
+                <div class="grid grid-cols-2 space-x-2 w-max">
+                    <div class="text-right w-40">Person</div>
+                    <div>{form.data.person}</div>
+                </div>
+                <div class="grid grid-cols-2 space-x-2 w-max">
+                    <div class="text-right w-40">Address</div>
+                    <div>{form.data.address}</div>
+                </div>
+                <div class="grid grid-cols-2 space-x-2 w-max">
+                    <div class="text-right w-40">Address2</div>
+                    <div>{form.data.address2}</div>
+                </div>
+                <div class="grid grid-cols-2 space-x-2 w-max">
+                    <div class="text-right w-40">CityStateZip</div>
+                    <div>{form.data.cityStateZip}</div>
+                </div>
+                <div class="grid grid-cols-2 space-x-2 w-max">
+                    <div class="text-right w-40">Phone</div>
+                    <div>{form.data.phone}</div>
+                </div>
+                <div class="grid grid-cols-2 space-x-2 w-max">
+                    <div class="text-right w-40">Email</div>
+                    <div>{form.data.email}</div>
+                </div>
+
+                <div class="grid grid-cols-2 space-x-2 w-max">
+                    <div class="text-right w-40">AltPerson</div>
+                    <div>{form.data.altPerson}</div>
+                </div>
+                <div class="grid grid-cols-2 space-x-2 w-max">
+                    <div class="text-right w-40">AltAddress</div>
+                    <div>{form.data.altAddress}</div>
+                </div>
+                <div class="grid grid-cols-2 space-x-2 w-max">
+                    <div class="text-right w-40">AltAddress2</div>
+                    <div>{form.data.altAddress2}</div>
+                </div>
+                <div class="grid grid-cols-2 space-x-2 w-max">
+                    <div class="text-right w-40">AltCityStateZip</div>
+                    <div>{form.data.altCityStateZip}</div>
+                </div>
+                <div class="grid grid-cols-2 space-x-2 w-max">
+                    <div class="text-right w-40">AltPhone</div>
+                    <div>{form.data.altPhone}</div>
+                </div>
+                <div class="grid grid-cols-2 space-x-2 w-max">
+                    <div class="text-right w-40">AltEmail</div>
+                    <div>{form.data.altEmail}</div>
+                </div>
+
+                <div class="grid grid-cols-2 space-x-2 w-max">
+                    <div class="text-right w-40">OtherParticipants</div>
+                    <div>{form.data.otherParticipants}</div>
+                </div>
+                {#each form.data.siteStatuses as siteStatus}
+                    <div class="grid grid-cols-2 space-x-2 w-max">
+                        <div class="text-right w-40">{siteStatus.year}</div>
+                        <div>{siteStatus.statusCode?.description}</div>
+                    </div>
+                {/each}
+                <div class="grid grid-cols-2 space-x-2 w-max">
+                    <div class="text-right w-40">Created on</div>
+                    <div>{form.data.createdAt.toString()}</div>
+                </div>
+            </div>
+        {:else if typeof data === 'object' && !isEmpty(data)}
+            <div>
+                <div class="flex flex-wrap gap-2">
+                    {#each data.sites as site, i}
+                        <a href="/api/sites/{site.siteId}">
+                            <div class="card relative grid w-56 h-32 p-0 m-0 text-wrap hover:variant-soft">
+                                <div class="px-2 pt-2 w-full text-center">
+                                    <div class="flex flex-row justify-between">
+                                        <div class="">🔍</div>
+                                        <div class="w-full mr-4">{site.siteName}</div>
                                     </div>
-                                    <!--
+                                    <div>
+                                        {site.county.state.name} - {site.county.name}
+                                    </div>
+                                    <div>{site.person}</div>
+                                    <div class="text-wrap">
+                                        Last update: {formatDate(site.updatedAt ?? site.createdAt)}
+                                    </div>
+                                </div>
+                                <!--
                             <div class="flex flex-row m-0">
                                 <a
                                     href="/api/sites/{site.siteId}"
@@ -223,44 +221,45 @@
                                 </form>
                             </div>
                             -->
-                                </div>
-                            </a>
-                        {/each}
-                    </div>
-                </div>
-            {:else}
-                <div>
-                    <div class="grid grid-cols-3 gap-4 w-fit">
-                        {#each data.sites ?? [] as site, i}
-                            <!-- Trigger -->
-                            <div
-                                class="card w-60 p-4 [&>*]:pointer-events-none"
-                                use:popup={{
-                                    event: 'hover',
-                                    target: 'loopExample-' + i,
-                                    placement: 'right',
-                                }}>
-                                <h3>{site.siteName}</h3>
-                                <div>
-                                    {site.siteAddress ?? ''}{#if site.siteCityStateZip}
-                                        {site.siteAddress ? ',' : ''}
-                                        {@html site.siteCityStateZip + '&nbsp;&#124;&nbsp;'}{/if}
-                                    {site.county.state} (County: {site.county.county})
-                                </div>
                             </div>
+                        </a>
+                    {/each}
+                </div>
+            </div>
+        {:else}
+            <div>
+                <div class="grid grid-cols-3 gap-4 w-fit">
+                    {#each data.sites ?? [] as site, i}
+                        <!-- Trigger -->
+                        <div
+                            class="card w-60 p-4 [&>*]:pointer-events-none"
+                            use:popup={{
+                                event: 'hover',
+                                target: 'loopExample-' + i,
+                                placement: 'right',
+                            }}>
+                            <h3>{site.siteName}</h3>
+                            <div>
+                                {site.siteAddress ?? ''}{#if site.siteCityStateZip}
+                                    {site.siteAddress ? ',' : ''}
+                                    {@html site.siteCityStateZip + '&nbsp;&#124;&nbsp;'}{/if}
+                                {site.county.state} (County: {site.county.county})
+                            </div>
+                        </div>
 
-                            <!-- Popup -->
-                            <div data-popup="loopExample-{i}">
-                                <div class="card py-2 px-4 shadow-xl variant-filled-surface">
-                                    <div class="underline">Directions</div>
-                                    <p>{site.siteName}<br />{site.person}</p>
-                                    <div class="arrow variant-filled-surface"></div>
-                                </div>
+                        <!-- Popup -->
+                        <div data-popup="loopExample-{i}">
+                            <div class="card py-2 px-4 shadow-xl variant-filled-surface">
+                                <div class="underline">Directions</div>
+                                <p>{site.siteName}<br />{site.person}</p>
+                                <div class="arrow variant-filled-surface"></div>
                             </div>
-                        {/each}
-                    </div>
+                        </div>
+                    {/each}
                 </div>
-            {/if}
-        </div>
-    </svelte:fragment>
-</StandardContainer>
+            </div>
+        {/if}
+    </div>
+{/snippet}
+
+<Container {head} {body} tail={null} />

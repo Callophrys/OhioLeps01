@@ -3,7 +3,7 @@
     import DoubledContainer from '$lib/components/DoubledContainer.svelte';
     import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
     import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
-    import { afterUpdate, onMount } from 'svelte';
+    import { onMount } from 'svelte';
     import { setContext } from 'svelte';
     import { goto } from '$app/navigation';
     import type { dateTracking, dateTrackingSet } from '$lib/types.js';
@@ -16,20 +16,34 @@
     import { GOTYPE } from '$lib/types.js';
 
     /*-- -- Data -- */
-    export let data;
-
     /*-- Exports */
-    export let initialUseFarenheit: number = 0;
-    export let accA = true;
-    export let accB = false;
-    export let accC = false;
-    export let accD = false;
-    export let accE = false;
-    export let accF = false;
-    export let accG = false;
-    export let accH = false;
-    export let accI = false;
-    export let accJ = false;
+    let {
+        data,
+        initialUseFarenheit = 0,
+        accA = true,
+        accB = false,
+        accC = false,
+        accD = false,
+        accE = false,
+        accF = false,
+        accG = false,
+        accH = false,
+        accI = false,
+        accJ = false,
+    }: {
+        data: any;
+        initialUseFarenheit: number;
+        accA: boolean;
+        accB: boolean;
+        accC: boolean;
+        accD: boolean;
+        accE: boolean;
+        accF: boolean;
+        accG: boolean;
+        accH: boolean;
+        accI: boolean;
+        accJ: boolean;
+    } = $props();
 
     /*-- Context */
     setContext('sites', data.sites);
@@ -46,7 +60,7 @@
     /*-- Enums */
     /*-- Constants (functional) */
     const trackedWeeks: dateTracking[] = Array.from(data.siteDates)
-        .map<dateTracking>((w) => ({
+        .map<dateTracking>((w: any) => ({
             siteDateId: w.siteDateId,
             year: new Date(w.recordDate).getFullYear(),
             week: weekOfYearSince(new Date(w.recordDate)),
@@ -57,33 +71,26 @@
 
     /*-- Properties (functional) */
     //let currentSiteDate: SiteDateYear = data.siteDate;
-    const allYears = Array.from(data.siteDates).map((y) => new Date(y.recordDate).getFullYear());
+    const allYears = Array.from(data.siteDates).map((y: any) => new Date(y.recordDate).getFullYear());
     const uniqueYears = [...new Set(allYears)].sort(compareNumeric);
 
-    let startTemp: string;
-    let endTemp: string;
+    let useFarenheit: number = $state(0);
+    let optAccA: boolean = $state(false);
+    let optAccB: boolean = $state(false);
+    let optAccC: boolean = $state(false);
+    let optAccD: boolean = $state(false);
+    let optAccE: boolean = $state(false);
+    let optAccF: boolean = $state(false);
+    let optAccG: boolean = $state(false);
+    let optAccH: boolean = $state(false);
+    let optAccI: boolean = $state(false);
+    let optAccJ: boolean = $state(false);
 
-    let useFarenheit: number;
-    let optAccA: boolean;
-    let optAccB: boolean;
-    let optAccC: boolean;
-    let optAccD: boolean;
-    let optAccE: boolean;
-    let optAccF: boolean;
-    let optAccG: boolean;
-    let optAccH: boolean;
-    let optAccI: boolean;
-    let optAccJ: boolean;
+    let y: dateTrackingSet = $state({ id: 0, children: [] });
+    let w: any = $state(false);
 
-    let recordSiteId: number;
-    let recordDate: Date;
-    let recordYear: number;
-    let recordWeek: number;
-    let y: dateTrackingSet;
-    let w: any;
-
-    let showRecentEdits = true;
-    let showDeletedData = false;
+    let showRecentEdits: boolean = $state(false);
+    let showDeletedData: boolean = $state(false);
 
     /*-- Variables and objects */
 
@@ -133,7 +140,7 @@
         }
     });
 
-    afterUpdate(() => {
+    $effect(() => {
         localStorage.setItem('useFarenheit', useFarenheit.toString());
         localStorage.setItem('optAccA', optAccA.toString());
         localStorage.setItem('optAccB', optAccB.toString());
@@ -171,21 +178,23 @@
     /*-- Methods */
 
     /*-- Reactives (functional) */
-    $: recordDate = new Date(data.siteDate.recordDate);
-    $: recordYear = new Date(data.siteDate.recordDate).getFullYear();
-    $: recordWeek = weekOfYearSince(new Date(data.siteDate.recordDate));
-    $: recordSiteId = data.siteDate.siteDateId;
-    $: recordSdoCount = data.siteDate.siteDateObservations.filter((o: any) => showDeletedData || !o.deleted).length;
-    $: firstSdoId = recordSdoCount > 0 ? data.siteDate.siteDateObservations[0].siteDateObservationId : -1;
+    let recordDate: Date = $state(new Date(data.siteDate.recordDate));
+    let recordYear: number = $state(new Date(data.siteDate.recordDate).getFullYear());
+    let recordWeek: number = $state(weekOfYearSince(new Date(data.siteDate.recordDate)));
+    let recordSdoCount: number = $state(data.siteDate.siteDateObservations.filter((o: any) => showDeletedData || !o.deleted).length);
 
-    $: startTemp = String(data.siteDate.startTemp);
-    $: endTemp = String(data.siteDate.endTemp);
+    let currentSiteId: number = $state(data.siteDate.siteId);
 
-    $: showRecentEdits, console.log('showRecentEdits', showRecentEdits);
-    $: showDeletedData, console.log('showDeletedData', showDeletedData);
+    let firstSdoId = $derived(recordSdoCount > 0 ? data.siteDate.siteDateObservations[0].siteDateObservationId : -1);
+
+    // let startTemp = $derived(String(data.siteDate.startTemp));
+    // let endTemp = $derived(String(data.siteDate.endTemp));
+
+    $inspect(showRecentEdits);
+    $inspect(showDeletedData);
 
     /*-- Other */
-    let currentSiteDateId = data.siteDate.siteDateId;
+    let currentSiteDateId = $state(data.siteDate.siteDateId);
 </script>
 
 <YearWeek bind:year={recordYear} bind:week={recordWeek} bind:sdoCount={recordSdoCount} />
@@ -194,8 +203,8 @@
 <DoubledContainer basisLeft="basis-2/5" basisRight="basis-3/5">
     <svelte:fragment slot="leftHead">
         <h2 class="flex flex-row justify-between pb-2">
-            <div>{data.siteDate.siteName}</div>
-            <div>
+            <div class="overflow-hidden text-ellipsis text-nowrap w-80">{data.siteDate.siteName}</div>
+            <div class="text-nowrap text-right">
                 Record Date: {formatDate(recordDate.toISOString(), 'short', undefined)}
             </div>
         </h2>
@@ -203,7 +212,7 @@
         <!-- Year and week dropdowns -->
         <div class="flex flex-row space-x-2 pb-2 scale-90">
             <div>
-                <select class="select w-28" bind:value={y} on:blur={() => ([w] = y.children)}>
+                <select class="select w-28" bind:value={y} onblur={() => ([w] = y.children)}>
                     {#each uniqueYears as year}
                         <option
                             value={{
@@ -218,7 +227,7 @@
 
             <div>
                 {#if y}
-                    <select class="select w-36" bind:value={w} on:change={handleClick} title="Calculated from 'record date' field">
+                    <select class="select w-36" bind:value={w} onchange={handleClick} title="Calculated from 'record date' field">
                         {#each y.children as dateTrackingItem}
                             <option value={dateTrackingItem.siteDateId}>
                                 {dateTrackingItem.week} - {formatDate(dateTrackingItem.recordDate.toISOString())}
@@ -259,8 +268,8 @@
                         <span class="my-auto">Temperature</span>
                         <div class="scale-75 origin-right">
                             <RadioGroup name="toggle-naming-group" active="variant-filled-primary" hover="hover:variant-soft-primary">
-                                <RadioItem on:click={handleRadioGroupClick} bind:group={useFarenheit} name="toggle-naming" value={1}>&deg;F</RadioItem>
-                                <RadioItem on:click={handleRadioGroupClick} bind:group={useFarenheit} name="toggle-naming" value={0}>&degC</RadioItem>
+                                <RadioItem onclick={handleRadioGroupClick} bind:group={useFarenheit} name="toggle-naming" value={1}>&deg;F</RadioItem>
+                                <RadioItem onclick={handleRadioGroupClick} bind:group={useFarenheit} name="toggle-naming" value={0}>&deg;C</RadioItem>
                             </RadioGroup>
                         </div>
                     </div>
@@ -466,10 +475,27 @@
             <div class="my-auto">{data.siteDate.siteName}</div>
             <GoBack targetId={data.siteDate.siteId} targetType={GOTYPE.SITES} controlBody="scale-90" />
             <GoNext targetId={firstSdoId} targetType={GOTYPE.SITEDATEOBSERVATIONS} targetIdSecondary={data.siteDate.siteId} controlBody="scale-90" controlDisabled={firstSdoId < 0} />
-            <SiteDatePicker bind:currentSiteDateId controlBody="scale-90" buttonLeft="!px-2" buttonRight="!px-2" buttonYear="w-28 px-0 md:px-1 lg:px-2" buttonWeek="w-24 px-0 md:px-1 lg:px-2" dropdownShowDate={false} dropdownPointers={false}>
-                <svelte:fragment slot="prefixYear">Year:</svelte:fragment>
-                <svelte:fragment slot="prefixWeek">Week:</svelte:fragment>
-            </SiteDatePicker>
+            <!-- <SiteDatePicker
+                bind:currentSiteId
+                bind:currentSiteDateId
+                controlBody="scale-90"
+                buttonLeft="!px-2"
+                buttonRight="!px-2"
+                buttonYear="w-28 px-0 md:px-1 lg:px-2"
+                buttonWeek="w-24 px-0 md:px-1 lg:px-2"
+                dropdownShowDate={false}
+                dropdownPointers={false}
+                heading={null}
+                yearPrefix="Year:"
+                weekPrefix="Week:"
+                controlOuter=""
+                prefixYear=""
+                prefixWeek=""
+                suffixYear=""
+                suffixWeek=""
+                popupInner=""
+                popupStyles=""
+                labelledby=""></SiteDatePicker> -->
         </div>
 
         <hr />

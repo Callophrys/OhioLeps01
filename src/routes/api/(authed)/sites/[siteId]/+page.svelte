@@ -69,7 +69,7 @@
             <CountyPicker {currentCountyId} {filterByCounty} controlBody="scale-90" />
             <!-- TODO: Filter sites to selected country -->
             <SitePicker {currentSiteId} {filterByCounty} controlBody="scale-90" />
-            <SiteDatePicker bind:currentSiteId bind:currentSiteDateId controlBody="scale-90" />
+            <SiteDatePicker bind:currentSiteId bind:currentSiteDateId controlBody="scale-90" buttonLeft="" buttonRight="" buttonYear="" buttonWeek="" dropdownShowDate={false} dropdownPointers={false} heading={null} yearPrefix="" weekPrefix="" controlOuter="" prefixYear="" prefixWeek="" suffixYear="" suffixWeek="" popupInner="" popupStyles="" labelledby=""></SiteDatePicker>
         </div>
 
         <!-- TODO: Make this change the site by alphabetical -->

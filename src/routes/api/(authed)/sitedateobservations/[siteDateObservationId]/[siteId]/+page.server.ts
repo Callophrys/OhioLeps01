@@ -17,12 +17,12 @@ export async function load({ params }) {
 	//console.log('.....', params);
 
 	let siteId = Number(params.siteId);
-	
+
 	// need 3 lists of checklists
 	// 1. all seen by this current siteDateObs
 	// 2. all seen by the site of this siteDateObs
 	// 3. all possible
-	
+
 	// Get current siteDateObs, list of sites, and list of siteDates
 	const [siteDateObservation, sites, siteDates,] = await Promise.all([
 		getSiteDateObservationBySiteDateObservation(Number(params.siteDateObservationId)),
@@ -50,7 +50,7 @@ export async function load({ params }) {
 		// 1. SiteDateObservations by current siteDate - this gets all checklist species for this siteDate
 		const jsonC = JSON.stringify(siteDateObservations);
 		const jsonResultC: SiteDateObservationChecklist[] = JSON.parse(jsonC);
-		
+
 		// 2. All checklists for site overall
 		const jsonT = JSON.stringify(checklistsForSite);
 		const jsonResultT: SiteDateObservationChecklist[] = JSON.parse(jsonT);
@@ -59,8 +59,8 @@ export async function load({ params }) {
 		const jsonA = JSON.stringify(checklistsAll);
 		const jsonResultA: SiteDateObservationChecklist[] = JSON.parse(jsonA);
 
-		//console.log('sdo > ', siteDateObservation);
-		//console.log('sdoS > ', siteDateObservations);
+		// console.log('sdo > ', siteDateObservation);
+		// console.log('sdoS > ', siteDateObservations);
 
 		return {
 			siteDateObservation: jsonResultO,
@@ -89,7 +89,7 @@ export const actions: Actions = {
 
 		const getDbData = async (sdoId: number): Promise<T> => {
 			const dbSdo: any = await getSiteDateObservation(sdoId);
-			return { sdoId: sdoId, sdo: dbSdo};
+			return { sdoId: sdoId, sdo: dbSdo };
 			//return {[sdoId]: dbSdo};
 		}
 
@@ -175,9 +175,9 @@ export const actions: Actions = {
 			}
 		});
 
-        if (promises.length === 0) {
-            return { action: 'save', success: false, message: 'No changes to save'};
-        }
+		if (promises.length === 0) {
+			return { action: 'save', success: false, message: 'No changes to save' };
+		}
 
 		const savedData = await Promise.all(promises);
 
