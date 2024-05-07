@@ -181,6 +181,9 @@
     $: startTemp = String(data.siteDate.startTemp);
     $: endTemp = String(data.siteDate.endTemp);
 
+    $: showRecentEdits, console.log('showRecentEdits', showRecentEdits);
+    $: showDeletedData, console.log('showDeletedData', showDeletedData);
+
     /*-- Other */
     let currentSiteDateId = data.siteDate.siteDateId;
 </script>
@@ -477,7 +480,7 @@
                     ${(() => {
                         let classes = 'hover:variant-soft-primary active:variant-filled-primary';
                         if (siteDateObservation.deleted) {
-                            classes += showDeletedData ? cClassesObservation + ' line-through variant-ghost-error' : 'hidden';
+                            classes += showDeletedData ? cClassesObservation + ' line-through variant-ghost-error' : ' hidden';
                         } else if (showRecentEdits && siteDateObservation.updatedAt) {
                             let x = new Date();
                             x = new Date(x.getUTCFullYear(), x.getUTCMonth(), x.getUTCDate() - 10);

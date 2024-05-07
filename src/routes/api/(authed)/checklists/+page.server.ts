@@ -7,5 +7,6 @@ export async function load({ cookies, url }) {
 	const checklists = await getChecklists();
 	const json = JSON.stringify(checklists);
 	const jsonResult: ChecklistScientificName[] = JSON.parse(json);
+	// console.log('jsonResult', jsonResult);
 	return { checklists: jsonResult };
 }

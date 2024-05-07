@@ -7,6 +7,8 @@
     export let showRecentEdits: boolean = true;
     export let showDeletedData: boolean = false;
 
+    //let { showRecentEdits = $bindable(true), showDeletedData = $bindable(false) } = $props();
+
     // TODO: Implement swapping for Hodges, P3, and phylogenic identifiers
     // export let showHodges: boolean = true;
     // export let showP3: boolean = true;
