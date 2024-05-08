@@ -4,14 +4,26 @@
 
     /*-- -- Data -- */
     /*-- Exports */
-    export let showRecentEdits: boolean = true;
-    export let showDeletedData: boolean = false;
-
-    //let { showRecentEdits = $bindable(true), showDeletedData = $bindable(false) } = $props();
+    let {
+        showMultipleRows = $bindable(false),
+        showMultipleRowsDisabled = $bindable(false),
+        showRecentEdits = $bindable(false),
+        showDeletedData = $bindable(false),
+    }: {
+        showMultipleRows: boolean;
+        showMultipleRowsDisabled: boolean;
+        showRecentEdits: boolean;
+        showDeletedData: boolean;
+    } = $props();
 
     // TODO: Implement swapping for Hodges, P3, and phylogenic identifiers
     // export let showHodges: boolean = true;
     // export let showP3: boolean = true;
+
+    let cLabel = 'flex items-center space-x-2';
+
+    let cLabelMultiple = $derived(`${cLabel}${showMultipleRowsDisabled ? ' hover:cursor-not-allowed opacity-30' : ''}`);
+    let cCheckboxMultiple = $derived(`checkbox${showMultipleRowsDisabled ? ' hover:cursor-not-allowed' : ''}`);
 
     /*-- Context */
     /*-- -- Styling -- */
@@ -32,26 +44,31 @@
 </script>
 
 <div class="flex flex-row space-x-2 text-sm fixed top-[134px] right-10">
-    <!-- <label class="flex items-center space-x-2" title="Highlight recently added/updated data"> -->
+    <!-- <label class={cLabel} title="Highlight recently added/updated data"> -->
     <!--     <p>Show Hodges</p> -->
     <!--     <input class="checkbox" type="checkbox" bind:checked={showHodges} /> -->
     <!-- </label> -->
-    <!-- <label class="flex items-center space-x-2" title="Highlight recently added/updated data"> -->
+    <!-- <label class={cLabel} title="Highlight recently added/updated data"> -->
     <!--     <p>Show P3</p> -->
     <!--     <input class="checkbox" type="checkbox" bind:checked={showP3} /> -->
     <!-- </label> -->
-    <label class="flex items-center space-x-2" title="Highlight recently added/updated data">
-        <p>Recently updated</p>
+    <label class={cLabelMultiple} title="Toggle between single or mutilple rows for viewing or editing">
+        <!-- TODO Make label message toggle and convert checkbox to toggle switch -->
+        <span>View Multiple/Single</span>
+        <input class={cCheckboxMultiple} type="checkbox" disabled={showMultipleRowsDisabled} bind:checked={showMultipleRows} />
+    </label>
+    <label class={cLabel} title="Highlight recently added/updated data">
+        <span>Recently updated</span>
         <input class="checkbox" type="checkbox" bind:checked={showRecentEdits} />
     </label>
     {#if $page.data.user && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'REVIEWER' || $page.data.user.role === 'ENTRY')}
-        <label class="flex items-center space-x-2" title="Display deleted data">
-            <p>Deleted data</p>
+        <label class={cLabel} title="Display deleted data">
+            <span>Deleted data</span>
             <input class="checkbox" type="checkbox" bind:checked={showDeletedData} />
         </label>
     {:else}<!-- TODO: Show my deleted (or other actioned on) data is not supported at this time; Roadmapped; -->
-        <label class="flex items-center space-x-2" title="Display my deleted data">
-            <p>My deleted data</p>
+        <label class={cLabel} title="Display my deleted data">
+            <span>My deleted data</span>
             <input class="checkbox" type="checkbox" bind:checked={showDeletedData} />
         </label>
     {/if}

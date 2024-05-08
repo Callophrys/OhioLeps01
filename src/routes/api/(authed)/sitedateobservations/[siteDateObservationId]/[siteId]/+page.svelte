@@ -202,11 +202,14 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     let recordWeek = $derived(weekOfYearSince(new Date(currentSiteDateObservation.siteDate.recordDate)));
     let recordSdoCount = $derived(data.checklistsSiteDateObs.filter((o: any) => showDeletedData || !o.deleted).length);
 
-    let sdoSections = $derived(
-        Object.entries(currentSiteDateObservation)
+    let total: number = 0;
+    let sdoSections = $derived.by(() => {
+        const result = Object.entries(currentSiteDateObservation)
             .filter((x) => x[0].startsWith('section'))
-            .map(([k, v]) => ({ label: `${k.substring(0, 1).toLocaleUpperCase()}${k.substring(1, 7)} ${k.substring(7)}`, name: k, value: v }))
-    );
+            .map(([k, v]) => ({ label: `${k.substring(0, 1).toLocaleUpperCase()}${k.substring(1, 7)} ${k.substring(7)}`, name: k, value: v }));
+        total = result.reduce((t: number, o: any) => t + (isNaN(o.value) ? 0 : Number(o.value)), 0);
+        return result;
+    });
 
     // let total = $derived(sdoSections.reduce((t: number, o: any) => t + (isNaN(o.value) ? 0 : Number(o.value)), 0));
     //console.log(sdoSections);
@@ -219,10 +222,10 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     //console.log(data);
 </script>
 
-<!-- <YearWeek year={new Date(data.siteDateObservation.siteDate.recordDate).getFullYear()} week={weekOfYearSince(new Date(data.siteDateObservation.siteDate.recordDate))} sdoCount={recordSdoCount} /> -->
+<YearWeek year={new Date(data.siteDateObservation.siteDate.recordDate).getFullYear()} week={weekOfYearSince(new Date(data.siteDateObservation.siteDate.recordDate))} sdoCount={recordSdoCount} />
 <!-- Hodges and P3 are not implemented yet -->
 <!-- <DataOptions bind:showRecentEdits bind:showDeletedData bind:showHodges bind:showP3 /> -->
-<!-- <DataOptions bind:showRecentEdits bind:showDeletedData /> -->
+<DataOptions bind:showMultipleRows={isViewAll} bind:showMultipleRowsDisabled={isEditing} bind:showRecentEdits bind:showDeletedData />
 
 {#snippet body()}
     {#if $page.data.user}
@@ -232,7 +235,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
             <div class="flex flex-col lg:flex-row lg:justify-start gap-1 lg:gap-2 pb-2 text-surface-600-300-token">
                 <GoBack targetId={data.siteDateObservation.siteDate.siteDateId} targetType={GOTYPE.SITEDATES} controlBody="scale-90" />
                 <SitePicker currentSiteId={data.siteDateObservation.siteDate.siteId} controlBody="scale-90" />
-                <!-- <SiteDatePicker currentSiteId={data.siteDateObservation.siteDate.siteId} currentSiteDateId={data.siteDateObservation.siteDateId ?? -1} controlBody="scale-90" /> -->
+                <SiteDatePicker currentSiteId={data.siteDateObservation.siteDate.siteId} currentSiteDateId={data.siteDateObservation.siteDateId ?? -1} controlBody="scale-90" />
                 <SpeciesPicker currentSdoChecklistItemId={currentSiteDateObservation.siteDateObservationId} {isAdding} {isEditing} {isViewAll} {showDeletedData} controlBody="scale-90" />
             </div>
 
@@ -268,7 +271,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 
                             <!-- UNDO/REDO(s) Action -->
                             <!-- TODO: Make undo-redo work, maybe go with left-right group button -->
-                            <form name="undo" method="POST" action="?/undoRedoSiteDateObservation" use:enhance>
+                            <form name="undo" id="formUndo" method="POST" action="?/undoRedoSiteDateObservation" use:enhance>
                                 <!-- UNDO/REDO undo last action, edit or delete done by entry or reviewer - of course permissions matter -->
                                 <!-- TODO toggle undo and redo on same control -->
                                 <div class="btn-group variant-soft">
@@ -295,7 +298,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                         <button type="button" class="btn w-24 md:w-28 h-8 sm:h-10 md:h-11 variant-filled-surface pb-2" disabled>Delete<span class="pl-2">❌</span></button>
                     {:else if !isEditing}
                         <!-- REVIEW(LOCK)/UNLOCK Actions -->
-                        <form name="review" method="POST" action="?/reviewSiteDateObservation" use:enhance>
+                        <form name="review" id="formReview" method="POST" action="?/reviewSiteDateObservation" use:enhance>
                             <!-- LOCK/UNLOCK Mark data as reviewed, aka valid and locked; Can unlock -->
                             {#if $page.data.user && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'REVIEWER')}
                                 {#if $page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || ($page.data.user.role === 'REVIEWER' && (!data.siteDateObservation.confirmBy || data.siteDateObservation.confirmBy === $page.data.user.id))}
@@ -367,7 +370,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 
                         <!-- DELETE Action(s) -->
                         {#if !data.siteDateObservation.confirmed && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || ($page.data.user.role === 'ENTRY' && (data.siteDateObservation.createdBy.id === $page.data.user.id || data.siteDateObservation.updatedBy.id === $page.data.user.id)))}
-                            <form name="delete" method="POST" action="?/deleteSiteDateObservation" use:enhance>
+                            <form name="delete" id="formDelete" method="POST" action="?/deleteSiteDateObservation" use:enhance>
                                 {#if !data.siteDateObservation.deleted}
                                     <button type="button" class={cButtonStandard} onclick={() => modalStore.trigger(modalDelete)}>Delete<span class="pl-2">❌</span></button>
                                     <input hidden name="deleteOn" value={true} />
@@ -412,13 +415,6 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                             <span class="text-green-900 dark:text-green-200 text-2xl before:content-['✚']"></span>
                         </button>
                     {/if}
-
-                    <!-- TOGGLE SHOW ALL/SINGLE Action -->
-                    <button type="button" class={cButtonAddView} onclick={() => (isViewAll = !isViewAll)} disabled={isEditing || false} title="View all species">
-                        <input class="checkbox" type="checkbox" checked={isViewAll} disabled={isEditing || false} />
-                        <span>View all</span>
-                        <span class="!ml-0 text-green-900 dark:text-green-200 text-2xl">🔎</span>
-                    </button>
                 </div>
             </div>
 
@@ -445,7 +441,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 
                 {#if isEditing}<!-- EDITING Multiple species observation recordings -->
 
-                    <form name="edit" method="POST" action="?/saveSiteDateObservation" use:enhance>
+                    <form name="edit" id="formEdit" method="POST" action="?/saveSiteDateObservation" use:enhance>
                         {#each availableObservations as chkSdo}
                             <div class={`${chkSdo.deleted ? 'line-through odd:variant-ghost-warning even:variant-ghost-error' : 'odd:bg-gray-200 odd:dark:bg-red-700'}`}>
                                 <div class="pl-1 flex flex-row">
@@ -518,10 +514,10 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                             <div class={`pl-8 flex flex-wrap ${chkSdo.deleted ? 'line-through' : ''}`}>
                                 {#each Object.entries(chkSdo)
                                     .filter((x) => x[0].startsWith('section'))
-                                    .map(([k, v]) => ({ label: `${k.substring(0, 1).toLocaleUpperCase()}${k.substring(1, 7)} ${k.substring(7)}`, name: k, value: v })) as section}
+                                    .map(([k, v]) => ({ label: `${k.substring(0, 1).toLocaleUpperCase()}${k.substring(1, 7)} ${k.substring(7)}`, name: k, value: v })) as { label, value }}
                                     <div class={cSectionClasses}>
-                                        <div class={cSectionSpanClasses}>{section.label}:</div>
-                                        <div class="w-8">{@html section.value ?? '&varnothing;'}</div>
+                                        <div class={cSectionSpanClasses}>{label}:</div>
+                                        <div class="w-8">{@html value ?? '&varnothing;'}</div>
                                     </div>
                                 {/each}
                             </div>
@@ -542,14 +538,15 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                             {data.siteDateObservation.checklist.commonName}
                         </div>
                     </div>
+
                     <div class="flex flex-row space-x-4">
                         {#if isAdding}
                             <!-- TODO: Update on some kind of selector -->
                             <div class="w-32">Hodges:</div>
                             <!-- TODO: Make Id Code editable -->
                             <div class="w-28">Id Code:</div>
-                            <div class="w-28 text-amber-700 dark:text-amber-400">(Total: -total-)</div>
-                        <!-- {:else if isEditing && total !== currentSiteDateObservation.total} -->
+                            <div class="w-28 text-amber-700 dark:text-amber-400">(Total: {total})</div>
+                            <!-- {:else if isEditing && total !== currentSiteDateObservation.total} -->
                         {:else if isEditing}
                             <div class="w-32">Hodges: {currentSiteDateObservation.hodges}</div>
                             <div class="w-28 pr-2 pb-0.5">
@@ -559,7 +556,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                                 </label>
                                 <input type="hidden" name={`${currentSiteDateObservation.siteDateObservationId}_idcode_orig`} value={currentSiteDateObservation.idCode} />
                             </div>
-                            <div class="w-28 text-amber-700 dark:text-amber-400">(Total: -total-)</div>
+                            <div class="w-28 text-amber-700 dark:text-amber-400">(Total: {total})</div>
                         {:else}
                             <div class="w-32">Hodges: {currentSiteDateObservation.hodges}</div>
                             <div class="w-28">Id Code: {@html currentSiteDateObservation.idCode ?? '&varnothing;'}</div>
@@ -590,11 +587,11 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                     {:else if isAdding}
                         <form name="add" id="formAdd" method="POST" action="?/addSiteDateObservation" use:enhance>
                             <div class={cDataClasses}>
-                                {#each sdoSections as section}
+                                {#each sdoSections as { label, name }}
                                     <div class={cDatumClasses}>
                                         <label class={cSectionClasses}>
-                                            <span class={cSectionSpanClasses}>{section.label}:</span>
-                                            <input type="text" name={section.name} class="w-8 text-center text-black" />
+                                            <span class={cSectionSpanClasses}>{label}:</span>
+                                            <input type="text" {name} class="w-8 text-center text-black" />
                                             <!--oninput={handleChange} / -->
                                         </label>
                                     </div>
@@ -604,11 +601,11 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                     {:else}
                         <!-- TODO: Consider indicator to show newly updated data -->
                         <div class={cDataClasses}>
-                            {#each sdoSections as section}
+                            {#each sdoSections as { label, value }}
                                 <div class={cDatumClasses}>
                                     <div class={cSectionClasses}>
-                                        <div class={cSectionSpanClasses}>{section.label}:</div>
-                                        <div class="w-8">{@html section.value ?? '&varnothing;'}</div>
+                                        <div class={cSectionSpanClasses}>{label}:</div>
+                                        <div class="w-8">{@html value ?? '&varnothing;'}</div>
                                     </div>
                                 </div>
                             {/each}

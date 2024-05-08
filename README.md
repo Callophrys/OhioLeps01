@@ -749,8 +749,11 @@ TODO:
 Split out longitude values for Sites
 Split out city-state-zip to parts
 Assure navigation and sitedate controls are working in SiteDate and SDO pages, and others too.
-The head, body, and tail parts of Container are all same - so snippitafy these into one thing. 
+The head, body, and tail parts of Container are all same - so snippitafy these into one thing.
 Snippitafy double container - think unifying both into one flexy thing.
+Move "View All" of SDO into DataOption control item
+"Recently Updated" option of DataOption control (1) needs to do something or hide it (2) could be extended to show a data range dropdown or somethi
+Support selection of SDO multi-record so a point of reference is maintained when going from multi to single mode.
 
 Use this if needing to turn of reativity for some variables
 <!-- svelte-ignore non_reactive_update -->
