@@ -78,18 +78,25 @@
                     <div>{form.data.description}</div>
                 </div>
                 <div class="grid grid-cols-2 space-x-2 w-max">
-                    <div class="text-right w-40">SiteAddress</div>
+                    <div class="text-right w-40">Site Address</div>
                     <div>{form.data.siteAddress}</div>
                 </div>
                 <div class="grid grid-cols-2 space-x-2 w-max">
-                    <div class="text-right w-40">SiteAddress2</div>
+                    <div class="text-right w-40">Site Address 2</div>
                     <div>{form.data.siteAddress2}</div>
                 </div>
                 <div class="grid grid-cols-2 space-x-2 w-max">
-                    <div class="text-right w-40">SiteCityStateZip</div>
-                    <div>{form.data.siteCityStateZip}</div>
+                    <div class="text-right w-40">Site City</div>
+                    <div>{form.data.siteCity}</div>
                 </div>
-
+                <div class="grid grid-cols-2 space-x-2 w-max">
+                    <div class="text-right w-40">Site State</div>
+                    <div>{form.data.siteState}</div>
+                </div>
+                <div class="grid grid-cols-2 space-x-2 w-max">
+                    <div class="text-right w-40">Site Zip</div>
+                    <div>{form.data.siteZip}</div>
+                </div>
                 <div class="grid grid-cols-2 space-x-2 w-max">
                     <div class="text-right w-40">County</div>
                     <div>{form.data.county}</div>
@@ -102,7 +109,6 @@
                     <div class="text-right w-40">LocationZip</div>
                     <div>{form.data.locationZip}</div>
                 </div>
-
                 <div class="grid grid-cols-2 space-x-2 w-max">
                     <div class="text-right w-40">LatitudeEnd</div>
                     <div>{form.data.latitudeEnd}</div>
@@ -119,55 +125,70 @@
                     <div class="text-right w-40">LongitudeStart</div>
                     <div>{form.data.longitudeStart}</div>
                 </div>
-
                 <div class="grid grid-cols-2 space-x-2 w-max">
                     <div class="text-right w-40">Person</div>
                     <div>{form.data.person}</div>
                 </div>
                 <div class="grid grid-cols-2 space-x-2 w-max">
-                    <div class="text-right w-40">Address</div>
-                    <div>{form.data.address}</div>
+                    <div class="text-right w-40">Person Address</div>
+                    <div>{form.data.personAddress}</div>
                 </div>
                 <div class="grid grid-cols-2 space-x-2 w-max">
-                    <div class="text-right w-40">Address2</div>
-                    <div>{form.data.address2}</div>
+                    <div class="text-right w-40">Person Address 2</div>
+                    <div>{form.data.personAddress2}</div>
                 </div>
                 <div class="grid grid-cols-2 space-x-2 w-max">
-                    <div class="text-right w-40">CityStateZip</div>
-                    <div>{form.data.cityStateZip}</div>
+                    <div class="text-right w-40">Person City</div>
+                    <div>{form.data.personCity}</div>
                 </div>
                 <div class="grid grid-cols-2 space-x-2 w-max">
-                    <div class="text-right w-40">Phone</div>
-                    <div>{form.data.phone}</div>
+                    <div class="text-right w-40">Person State</div>
+                    <div>{form.data.personState}</div>
                 </div>
                 <div class="grid grid-cols-2 space-x-2 w-max">
-                    <div class="text-right w-40">Email</div>
-                    <div>{form.data.email}</div>
+                    <div class="text-right w-40">Person Zip</div>
+                    <div>{form.data.personZip}</div>
+                </div>
+                <div class="grid grid-cols-2 space-x-2 w-max">
+                    <div class="text-right w-40">Person Phone</div>
+                    <div>{form.data.personPhone}</div>
+                </div>
+                <div class="grid grid-cols-2 space-x-2 w-max">
+                    <div class="text-right w-40">Person Email</div>
+                    <div>{form.data.personEmail}</div>
                 </div>
 
                 <div class="grid grid-cols-2 space-x-2 w-max">
-                    <div class="text-right w-40">AltPerson</div>
+                    <div class="text-right w-40">Alt. Person</div>
                     <div>{form.data.altPerson}</div>
                 </div>
                 <div class="grid grid-cols-2 space-x-2 w-max">
-                    <div class="text-right w-40">AltAddress</div>
-                    <div>{form.data.altAddress}</div>
+                    <div class="text-right w-40">Alt Person Address</div>
+                    <div>{form.data.altPersonAddress}</div>
                 </div>
                 <div class="grid grid-cols-2 space-x-2 w-max">
-                    <div class="text-right w-40">AltAddress2</div>
-                    <div>{form.data.altAddress2}</div>
+                    <div class="text-right w-40">Alt Person Address 2</div>
+                    <div>{form.data.altPersonAddress2}</div>
                 </div>
                 <div class="grid grid-cols-2 space-x-2 w-max">
-                    <div class="text-right w-40">AltCityStateZip</div>
-                    <div>{form.data.altCityStateZip}</div>
+                    <div class="text-right w-40">Alt Person City</div>
+                    <div>{form.data.altPersonCity}</div>
                 </div>
                 <div class="grid grid-cols-2 space-x-2 w-max">
-                    <div class="text-right w-40">AltPhone</div>
-                    <div>{form.data.altPhone}</div>
+                    <div class="text-right w-40">Alt Person State</div>
+                    <div>{form.data.altPersonState}</div>
                 </div>
                 <div class="grid grid-cols-2 space-x-2 w-max">
-                    <div class="text-right w-40">AltEmail</div>
-                    <div>{form.data.altEmail}</div>
+                    <div class="text-right w-40">Alt Person Zip</div>
+                    <div>{form.data.altPersonZip}</div>
+                </div>
+                <div class="grid grid-cols-2 space-x-2 w-max">
+                    <div class="text-right w-40">Alt Person Phone</div>
+                    <div>{form.data.altPersonPhone}</div>
+                </div>
+                <div class="grid grid-cols-2 space-x-2 w-max">
+                    <div class="text-right w-40">Alt Person Email</div>
+                    <div>{form.data.altPersonEmail}</div>
                 </div>
 
                 <div class="grid grid-cols-2 space-x-2 w-max">

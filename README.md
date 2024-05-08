@@ -128,7 +128,7 @@ Next steps:
 use ohioleps
 mysql --user=zabulon --password ohioleps
 
-```SQL
+```sql
 CREATE USER 'zabulon'@'localhost' IDENTIFIED BY 'The......123';
 GRANT ALL
   ON *.*
@@ -136,13 +136,13 @@ GRANT ALL
   WITH GRANT OPTION;
 ```
 
-```SQL
+```sql
 create database ohioleps;
 use ohioleps
 show tables;
 ```
 
-```SQL
+```sql
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPass';
 ```
 bis........
@@ -173,8 +173,6 @@ Bring in tailwind/forms and skeleton/ui as needed.
 mysql> select * from checklist where hodges is null;
 
 ```
-
-```
 update siteDateObservation o join checklist k on o.hodges = k.hodges
    set o.checklistId = k.checklistId
 
@@ -182,6 +180,7 @@ update siteDateObservation o join siteDate d on o.seqId = d.seqId
    set o.siteDateId = d.siteDateId
 ```
 ### Node.js way to get json from mdb
+```
 import * as adodb  from "node-adodb";
 import * as fs from "fs";
 
@@ -202,7 +201,7 @@ async function toJSON(filename:string,sql:string) {
     console.error(error);
   }
 }
-
+```
 
 ### Svelte comments
 use JS to comment out HTML elements. Its hackky but works:
@@ -217,7 +216,7 @@ use JS to comment out HTML elements. Its hackky but works:
 for nvim lang server issue, install:
 pnpm i -g vscode-langservers-extractedo
 
-```SQL
+```sql
 #### MySql stuff
 select table_name, table_rows from INFORMATION_SCHEMA.TABLES where table_schema = 'ohioleps';
 show create table site;
@@ -411,6 +410,7 @@ TODO: Figure out edit history
 
 ### 1/15/2024
 
+```
 -- use information_schema.table_constraints table to get
 -- the names of the constraints defined on each table
 select *
@@ -433,6 +433,7 @@ where constraint_schema = 'ohioleps';
 
 
 select table_name, constraint_name from information_schema.referential_constraints where constraint_schema = 'ohioleps';
+```
 
 ### 1/17//2024
 
@@ -443,6 +444,7 @@ const siteDates: any = Array.from(ssiteDates).map((sd: any) => ({ ...sd, year: s
 TODO: hook up checklists to taxonomy
 TODO: think views to better fetch and compute data, e.g. all checklists to a site
 
+```
 select c.name county,
 r.name region,
 s.sitename site,
@@ -469,6 +471,7 @@ inner join checklist l on o.checklistid = l.checklistid;
 
 
 where c.name = 'greene';
+```
 
 ### 1/22/2024
 
@@ -491,7 +494,7 @@ https://svelte.dev/repl/13570eb8a00747279a583a95f6d5b4f6?version=3.24.1
 
 ### 1/25/2024
 Interesting font, icon, svg and maps stuff
-```
+
 https://base64.guru/converter/encode/text text to base64
 https://base64.guru/converter/decode/file base64 to file
 https://base64.guru/converter/decode/file (for color arrow)....but
@@ -521,7 +524,6 @@ https://svelte.dev/repl/08aca4e5d75e4ba7b8b05680f3d3bf7a?version=3.49.0
 
 OPACITY stuff
 https://stackoverflow.com/questions/15597167/css3-opacity-gradient
-```
 
 
 wsl --install
@@ -630,7 +632,7 @@ choco upgrade nodejs.install
 
     # 2/22/2024
 
-```Typescript
+```typescript
 use:enhance={({ formReview, data, cancel }) => {
 // `form` is the `<form>` element
 // `data` is its `FormData` object response from action
@@ -644,7 +646,7 @@ return async ({ result }) => {
 
 
 # 2/26/2024
-```Javascript
+```javascript
 const foo = {x1: "bat", x2: "cat", x3: "dog", x4: "emu"}
 console.log(foo);
 //{ x1: "bat", x2: "cat", x3: "dog", x4: "emu" }
@@ -666,6 +668,7 @@ bar.forEach((kvp) => {const x = Object.entries(kvp); res[x[0][0]]=x[0][1]});
 console.log(res);
 ```
 # 3/12/2024
+```
 /*-- Imports */
 /*-- -- Data -- */
 /*-- Exports */
@@ -686,12 +689,12 @@ console.log(res);
 /*-- Methods */
 /*-- Reactives (functional) */
 /*-- Other */
-
+```
 
 Hierarchical tables
 -------------------
 https://stackoverflow.com/questions/20215744/how-to-create-a-mysql-hierarchical-recursive-query
-
+```
 with recursive cte (id, name, parent_id) as (
   select     id,
              name,
@@ -707,6 +710,7 @@ with recursive cte (id, name, parent_id) as (
           on p.parent_id = cte.id
 )
 select * from cte;
+```
 
 TODO
 ----
@@ -737,6 +741,7 @@ corepack enable
 corepace prepare pnpn@9.1.0 --activate
 
 -- SNIPPETS --
+```
 {#snippet head()}
 {/snippet}
 {#snippet body()}
@@ -744,10 +749,9 @@ corepace prepare pnpn@9.1.0 --activate
 {#snippet tail()}
 {/snippet}
 <Container {head} {body} tail={null} />
+```
 
 TODO:
-Split out longitude values for Sites
-Split out city-state-zip to parts
 Assure navigation and sitedate controls are working in SiteDate and SDO pages, and others too.
 The head, body, and tail parts of Container are all same - so snippitafy these into one thing.
 Snippitafy double container - think unifying both into one flexy thing.
@@ -756,4 +760,7 @@ Move "View All" of SDO into DataOption control item
 Support selection of SDO multi-record so a point of reference is maintained when going from multi to single mode.
 
 Use this if needing to turn of reativity for some variables
-<!-- svelte-ignore non_reactive_update -->
+```<!-- svelte-ignore non_reactive_update -->```
+
+
+

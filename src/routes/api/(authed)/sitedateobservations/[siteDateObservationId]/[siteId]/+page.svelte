@@ -235,7 +235,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
             <div class="flex flex-col lg:flex-row lg:justify-start gap-1 lg:gap-2 pb-2 text-surface-600-300-token">
                 <GoBack targetId={data.siteDateObservation.siteDate.siteDateId} targetType={GOTYPE.SITEDATES} controlBody="scale-90" />
                 <SitePicker currentSiteId={data.siteDateObservation.siteDate.siteId} controlBody="scale-90" />
-                <SiteDatePicker currentSiteId={data.siteDateObservation.siteDate.siteId} currentSiteDateId={data.siteDateObservation.siteDateId ?? -1} controlBody="scale-90" />
+                <!-- <SiteDatePicker currentSiteId={data.siteDateObservation.siteDate.siteId} currentSiteDateId={data.siteDateObservation.siteDateId ?? -1} controlBody="scale-90" /> -->
                 <SpeciesPicker currentSdoChecklistItemId={currentSiteDateObservation.siteDateObservationId} {isAdding} {isEditing} {isViewAll} {showDeletedData} controlBody="scale-90" />
             </div>
 

@@ -3,9 +3,15 @@
 
     /*-- -- Data -- */
     /*-- Exports */
-    export let county: string;
-    export let site: string;
-    export let filterByCounty: boolean;
+    let {
+        county = $bindable(),
+        site = $bindable(),
+        filterByCounty = $bindable(),
+    }: {
+        county: string;
+        site: string;
+        filterByCounty: boolean;
+    } = $props();
 
     /*-- Context */
     /*-- -- Styling -- */
