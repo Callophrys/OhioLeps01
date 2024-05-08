@@ -3,19 +3,29 @@
     import { GOTYPE } from '$lib/types';
     import { goto } from '$app/navigation';
 
-    export let targetId: number;
-    export let targetType: GOTYPE;
-    export let targetIdSecondary: number = -1;
+    let {
+        targetId = $bindable(),
+        targetType = $bindable(),
+        targetIdSecondary = $bindable(),
+        controlBody = '',
+        buttonCenter = '',
+        scriptCenter = '',
+        labelledby = 'Select site-date',
+    }: {
+        targetId: number;
+        targetType: GOTYPE;
+        targetIdSecondary: number;
+        controlBody: CssClasses;
+        buttonCenter: CssClasses;
+        scriptCenter: CssClasses;
+        labelledby: string;
+    } = $props();
 
     /*-- -- Styling -- */
     /*-- Properties (styles) */
-    export let controlBody: CssClasses = '';
-    export let buttonCenter: CssClasses = '';
-    export let scriptCenter: CssClasses = '';
 
     // Properties (a11y)
     /** Provide the ARIA labelledby value.  Default: "Select site-date" */
-    export let labelledby = 'Select site-date';
 
     /*-- Constants (styles) */
     const cControlBody = 'btn-group w-16 variant-soft my-auto';
@@ -23,9 +33,9 @@
     const cScriptCenter = 'w-full my-auto text-center truncate overflow-hidden text-ellipsis';
 
     /*-- Reactives (styles) */
-    $: classesControlBody = `${cControlBody} ${controlBody} ${$$props.class ?? ''}`;
-    $: classesButtonCenter = `${cButtonCenter} ${buttonCenter} ${$$props.class ?? ''}`;
-    $: classesScriptCenter = `${cScriptCenter} ${scriptCenter} ${$$props.class ?? ''}`;
+    let classesControlBody = $derived(`${cControlBody} ${controlBody}`); // ${$$props.class ?? ''}`);
+    let classesButtonCenter = $derived(`${cButtonCenter} ${buttonCenter}`); // ${$$props.class ?? ''}`);
+    let classesScriptCenter = $derived(`${cScriptCenter} ${scriptCenter}`); // ${$$props.class ?? ''}`);
 
     /*-- Handlers */
     function handleClick() {
@@ -62,7 +72,7 @@
 </script>
 
 <div class={classesControlBody} aria-labelledby={labelledby}>
-    <button type="button" class={classesButtonCenter} on:click={handleClick} title={`Return to ${GOTYPE[targetType]}`} disabled={targetType === GOTYPE.UNKNOWN}>
+    <button type="button" class={classesButtonCenter} onclick={handleClick} title={`Return to ${GOTYPE[targetType]}`} disabled={targetType === GOTYPE.UNKNOWN}>
         <span class={classesScriptCenter}>◀</span>
     </button>
 </div>

@@ -7,15 +7,17 @@
     //import { enhance } from '$app/forms';
     import { isEmpty, camelToFriendly } from '$lib/utils';
     import GoBack from '$lib/components/datanavigation/GoBack.svelte';
-    import GoNext from '$lib/components/datanavigation/GoNext.svelte';
+    // import GoNext from '$lib/components/datanavigation/GoNext.svelte';
     import { GOTYPE } from '$lib/types.js';
 
     let { data, form } = $props();
+    let targetId = data.sites[0].countyId;
+    let targetIdSecondary = -1;
 </script>
 
 {#snippet head()}
     <div class="">
-        <GoBack targetId={-1} targetType={GOTYPE.COUNTYSITES} class="scale-90" />
+        <GoBack bind:targetId targetType={GOTYPE.COUNTYSITES} targetIdSecondary={-1} controlBody="scale-90" buttonCenter="" scriptCenter="" labelledby="Select site-date" />
         {#if ($page.data.user?.role === 'ADMIN' || $page.data.user?.role === 'SUPER') && typeof form === 'object' && !isEmpty(form?.data)}
             <span>Site X of {data.sites?.length}: {form?.data?.siteName} </span>
             <button type="submit"> ➜ Next site</button>

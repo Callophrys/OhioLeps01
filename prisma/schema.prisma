@@ -531,6 +531,7 @@ model Region {
 
 model County {
     id Int @id @default(autoincrement())
+		countyNumber Int @default(0)
     name String
 
     // Parent Relation

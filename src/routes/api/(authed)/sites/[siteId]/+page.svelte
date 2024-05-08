@@ -10,6 +10,8 @@
     import GoBack from '$lib/components/datanavigation/GoBack.svelte';
     import GoNext from '$lib/components/datanavigation/GoNext.svelte';
     import { GOTYPE } from '$lib/types.js';
+    import CountySort from '$lib/components/counties/countySort.svelte';
+    import StateCountyPicker from '$lib/components/query/StateCountyPicker.svelte';
 
     /*-- -- Data -- */
     /*-- Exports */
@@ -52,9 +54,9 @@
     /*-- Methods */
 
     /*-- Reactives (functional) */
-    let currentCountyId = $state(data.site.countyId);
-    let currentSiteId = $state(data.site.siteId);
-    let currentSiteDateId = $state(data.site.siteDates[0].siteDateId);
+    let currentCountyId: number = $state(data.site.countyId);
+    let currentSiteId: number = $state(data.site.siteId);
+    let currentSiteDateId: number = $state(data.site.siteDates[0].siteDateId);
 
     /*-- Other */
 </script>
@@ -64,9 +66,16 @@
 {#snippet head()}
     <div class="flex flex-row justify-between gap-1 md:gap-2">
         <GoBack targetId={currentCountyId} targetType={GOTYPE.COUNTYSITES} controlBody="scale-90" />
-        <GoNext targetId={data.site.siteDates[0].siteDateId} targetType={GOTYPE.SITEDATES} controlBody="scale-90" />
-        <CountyPicker {currentCountyId} {filterByCounty} controlBody="scale-90" />
+        <!-- prefixCenter = '', -->
+        <!-- scriptCenter = '', -->
+        <!-- suffixCenter = '', -->
+        <!-- popupInner = '', -->
+        <!-- popupStyles = '', -->
+        <!-- labelledby = 'Select county', -->
+        <!-- heading, -->
+
         <!-- TODO: Filter sites to selected country -->
+        <CountyPicker bind:currentCountyId bind:filterByCounty />
         <SitePicker {currentSiteId} {filterByCounty} controlBody="scale-90" />
         <SiteDatePicker bind:currentSiteId bind:currentSiteDateId controlBody="scale-90" buttonLeft="" buttonRight="" buttonYear="" buttonWeek="" dropdownShowDate={false} dropdownPointers={false} heading={null} yearPrefix="" weekPrefix="" controlOuter="" prefixYear="" prefixWeek="" suffixYear="" suffixWeek="" popupInner="" popupStyles="" labelledby=""></SiteDatePicker>
     </div>
