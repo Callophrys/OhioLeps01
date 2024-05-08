@@ -175,7 +175,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     /*-- Handlers */
     const handleChange = () => {
         // total = getTotal();
-        total = total;
+        //total = total;
         return true;
     };
 
@@ -207,7 +207,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
             .filter((x) => x[0].startsWith('section'))
             .map(([k, v]) => ({ label: `${k.substring(0, 1).toLocaleUpperCase()}${k.substring(1, 7)} ${k.substring(7)}`, name: k, value: v }))
     );
-    let total = $derived(sdoSections.reduce((t: number, o: any) => t + (isNaN(o.value) ? 0 : Number(o.value)), 0));
+
     // let total = $derived(sdoSections.reduce((t: number, o: any) => t + (isNaN(o.value) ? 0 : Number(o.value)), 0));
     //console.log(sdoSections);
 
@@ -548,8 +548,9 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                             <div class="w-32">Hodges:</div>
                             <!-- TODO: Make Id Code editable -->
                             <div class="w-28">Id Code:</div>
-                            <div class="w-28 text-amber-700 dark:text-amber-400">(Total: {total})</div>
-                        {:else if isEditing && total !== currentSiteDateObservation.total}
+                            <div class="w-28 text-amber-700 dark:text-amber-400">(Total: -total-)</div>
+                        <!-- {:else if isEditing && total !== currentSiteDateObservation.total} -->
+                        {:else if isEditing}
                             <div class="w-32">Hodges: {currentSiteDateObservation.hodges}</div>
                             <div class="w-28 pr-2 pb-0.5">
                                 <label class={cSectionClasses}>
@@ -558,7 +559,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                                 </label>
                                 <input type="hidden" name={`${currentSiteDateObservation.siteDateObservationId}_idcode_orig`} value={currentSiteDateObservation.idCode} />
                             </div>
-                            <div class="w-28 text-amber-700 dark:text-amber-400">(Total: {total})</div>
+                            <div class="w-28 text-amber-700 dark:text-amber-400">(Total: -total-)</div>
                         {:else}
                             <div class="w-32">Hodges: {currentSiteDateObservation.hodges}</div>
                             <div class="w-28">Id Code: {@html currentSiteDateObservation.idCode ?? '&varnothing;'}</div>
