@@ -14,7 +14,7 @@
     }: {
         targetId: number;
         targetType: GOTYPE;
-        targetIdSecondary: number;
+        targetIdSecondary: number | null;
         controlBody: CssClasses;
         buttonCenter: CssClasses;
         scriptCenter: CssClasses;

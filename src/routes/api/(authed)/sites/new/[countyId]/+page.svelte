@@ -70,23 +70,31 @@
                 <label class="label"><span>Location Zip:</span><input type="text" class="input" id="locationZip" name="locationZip" title="Location Zip:" placeholder="Location Zip" /></label>
                 <label class="label"><span>Site Address:</span><input type="text" class="input" id="siteAddress" name="siteAddress" title="Site Address:" placeholder="Site Address" /></label>
                 <label class="label"><span>Site Address 2:</span><input type="text" class="input" id="siteAddress2" name="siteAddress2" title="Site Address 2:" placeholder="Site Address 2:" /></label>
-                <label class="label"><span>Site City State Zip:</span><input type="text" class="input" id="siteCityStateZip" name="siteCityStateZip" title="Site City State Zip:" placeholder="Site City State Zip" /></label>
+                <label class="label"><span>Site City:</span><input type="text" class="input" id="siteCity" name="siteCity" title="Site City:" placeholder="Site City" /></label>
+                <label class="label"><span>Site State:</span><input type="text" class="input" id="siteState" name="siteState" title="Site State:" placeholder="Site State" /></label>
+                <label class="label"><span>Site Zip:</span><input type="text" class="input" id="siteZip" name="siteZip" title="Site Zip:" placeholder="Site Zip" /></label>
                 <label class="label"><span>Person:</span><input type="text" class="input" id="person" name="person" title="Person:" placeholder="Person" /></label>
-                <label class="label"><span>Address:</span><input type="text" class="input" id="address" name="address" title="Address:" placeholder="Address" /></label>
-                <label class="label"><span>Address 2:</span><input type="text" class="input" id="address2" name="address2" title="Address 2:" placeholder="Address 2" /></label>
-                <label class="label"><span>City State Zip:</span><input type="text" class="input" id="cityStateZip" name="cityStateZip" title="City State Zip:" placeholder="City State Zip" /></label>
-                <label class="label"><span>Phone:</span><input type="text" class="input" id="phone" name="phone" title="Phone:" placeholder="Phone" /></label>
-                <label class="label"><span>Email:</span><input type="text" class="input" id="email" name="email" title="Email:" placeholder="Email" /></label>
+                <label class="label"><span>Person Address:</span><input type="text" class="input" id="personAddress" name="personAddress" title="Person Address:" placeholder="Person Address" /></label>
+                <label class="label"><span>Person Address 2:</span><input type="text" class="input" id="personAddress2" name="personAddress2" title="Person Address 2:" placeholder="Person Address 2" /></label>
+                <label class="label"><span>Person City:</span><input type="text" class="input" id="personCity" name="personCity" title="Person City:" placeholder="Person City" /></label>
+                <label class="label"><span>Person State:</span><input type="text" class="input" id="personState" name="personState" title="Person State:" placeholder="Person State" /></label>
+                <label class="label"><span>Person Zip:</span><input type="text" class="input" id="personZip" name="personZip" title="Person Zip:" placeholder="Person Zip" /></label>
+                <label class="label"><span>Person Phone:</span><input type="text" class="input" id="personPhone" name="personPhone" title="Person Phone:" placeholder="Person Phone" /></label>
+                <label class="label"><span>Person Phone 2:</span><input type="text" class="input" id="personPhone2" name="personPhone2" title="Person Phone 2:" placeholder="Person Phone 2" /></label>
+                <label class="label"><span>Person Email:</span><input type="text" class="input" id="personEmail" name="personEmail" title="Person Email:" placeholder="Person Email" /></label>
                 <label class="label"><span>Latitude Start:</span><input type="text" class="input" id="latitudeStart" name="latitudeStart" title="Latitude Start:" placeholder="Latitude Start" /></label>
                 <label class="label"><span>Latitude End:</span><input type="text" class="input" id="latitudeEnd" name="latitudeEnd" title="Latitude End:" placeholder="Latitude End" /></label>
                 <label class="label"><span>Longitude Start:</span><input type="text" class="input" id="longitudeStart" name="longitudeStart" title="Longitude Start:" placeholder="Longitude Start" /></label>
                 <label class="label"><span>Longitude End:</span><input type="text" class="input" id="longitudeEnd" name="longitudeEnd" title="Longitude End:" placeholder="Longitude End" /></label>
                 <label class="label"><span>Alt Person:</span><input type="text" class="input" id="altPerson" name="altPerson" title="Alt Person:" placeholder="Alt Person" /></label>
-                <label class="label"><span>Alt Address:</span><input type="text" class="input" id="altAddress" name="altAddress" title="Alt Address:" placeholder="Alt Address" /></label>
-                <label class="label"><span>Alt Address 2:</span><input type="text" class="input" id="altAddress2" name="altAddress2" title="Alt Address 2:" placeholder="Alt Address 2" /></label>
-                <label class="label"><span>Alt City State Zip:</span><input type="text" class="input" id="altCityStateZip" name="altCityStateZip" title="Alt City State Zip:" placeholder="Alt City State Zip" /></label>
-                <label class="label"><span>Alt Phone:</span><input type="text" class="input" id="altPhone" name="altPhone" title="Alt Phone:" placeholder="Alt Phone" /></label>
-                <label class="label"><span>Alt Email:</span><input type="text" class="input" id="altEmail" name="altEmail" title="Alt Email:" placeholder="Alt Email" /></label>
+                <label class="label"><span>Alt Person Address:</span><input type="text" class="input" id="altPersonAddress" name="altPersonAddress" title="Alt Person Address:" placeholder="Alt Person Address" /></label>
+                <label class="label"><span>Alt Person Address 2:</span><input type="text" class="input" id="altPersonAddress2" name="altPersonAddress2" title="Alt Person Address 2:" placeholder="Alt Person Address 2" /></label>
+                <label class="label"><span>Alt Person City:</span><input type="text" class="input" id="altPersonCity" name="altPersonCity" title="Alt Person City:" placeholder="Alt Person City" /></label>
+                <label class="label"><span>Alt Person State:</span><input type="text" class="input" id="altPersonState" name="altPersonState" title="Alt Person State:" placeholder="Alt Person State" /></label>
+                <label class="label"><span>Alt Person Zip:</span><input type="text" class="input" id="altPersonZip" name="altPersonZip" title="Alt Person Zip:" placeholder="Alt Person Zip" /></label>
+                <label class="label"><span>Alt Person Phone:</span><input type="text" class="input" id="altPersonPhone" name="altPersonPhone" title="Alt Person Phone:" placeholder="Alt Phone" /></label>
+                <label class="label"><span>Alt Person Phone 2:</span><input type="text" class="input" id="altPersonPhone2" name="altPersonPhone2" title="Alt Person Phone 2:" placeholder="Alt Person Phone 2" /></label>
+                <label class="label"><span>Alt Person Email:</span><input type="text" class="input" id="altPersonEmail" name="altPersonEmail" title="Alt Person Email:" placeholder="Alt Person Email" /></label>
                 <label class="label"><span>Other Participants:</span><input type="text" class="input" id="otherParticipants" name="otherParticipants" title="Other Participants:" placeholder="Other Participants" /></label>
                 <label class="label"><span>description:</span><textarea class="textarea" id="description" name="description" rows="4" title="Description" placeholder="Description"></textarea></label>
             </div>

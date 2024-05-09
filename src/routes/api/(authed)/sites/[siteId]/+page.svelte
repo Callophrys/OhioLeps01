@@ -65,19 +65,11 @@
 
 {#snippet head()}
     <div class="flex flex-row justify-between gap-1 md:gap-2">
-        <GoBack targetId={currentCountyId} targetType={GOTYPE.COUNTYSITES} controlBody="scale-90" />
-        <!-- prefixCenter = '', -->
-        <!-- scriptCenter = '', -->
-        <!-- suffixCenter = '', -->
-        <!-- popupInner = '', -->
-        <!-- popupStyles = '', -->
-        <!-- labelledby = 'Select county', -->
-        <!-- heading, -->
-
+        <GoBack bind:targetId={currentCountyId} bind:targetType={GOTYPE.COUNTYSITES} targetIdSecondary={null} controlBody="scale-90" buttonCenter="" scriptCenter="" labelledby="" />
         <!-- TODO: Filter sites to selected country -->
         <CountyPicker bind:currentCountyId bind:filterByCounty />
-        <SitePicker {currentSiteId} {filterByCounty} controlBody="scale-90" />
-        <SiteDatePicker bind:currentSiteId bind:currentSiteDateId controlBody="scale-90" buttonLeft="" buttonRight="" buttonYear="" buttonWeek="" dropdownShowDate={false} dropdownPointers={false} heading={null} yearPrefix="" weekPrefix="" controlOuter="" prefixYear="" prefixWeek="" suffixYear="" suffixWeek="" popupInner="" popupStyles="" labelledby=""></SiteDatePicker>
+        <SitePicker bind:currentSiteId bind:filterByCounty controlBody="scale-90" />
+        <SiteDatePicker bind:currentSiteId bind:currentSiteDateId controlBody="scale-90" buttonLeft="" buttonRight="" buttonYear="" buttonWeek="" dropdownShowDate={false} dropdownPointers={false} heading={null} yearPrefix="" weekPrefix="" controlOuter="" prefixYear="" prefixWeek="" suffixYear="" suffixWeek="" popupInner="" popupStyles="" labelledby="" />
     </div>
 
     <!-- TODO: Make this change the site by alphabetical -->

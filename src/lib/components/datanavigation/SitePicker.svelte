@@ -1,41 +1,63 @@
 <script lang="ts">
     /*-- Imports */
-    import { goto } from '$app/navigation';
     import type { Site } from '@prisma/client';
-    import { popup } from '@skeletonlabs/skeleton';
-    import { ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
+    import type { Snippet } from 'svelte';
     import type { PopupSettings } from '@skeletonlabs/skeleton';
     import type { CssClasses } from '@skeletonlabs/skeleton';
+    import { goto } from '$app/navigation';
+    import { popup, ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
     import { getContext } from 'svelte';
+    import SiteNavigation from '../SiteNavigation.svelte';
 
     /*-- -- Data -- */
     /*-- Exports */
-    export let currentSiteId: number;
-    export let filterByCounty: boolean = false;
+    let {
+        currentSiteId = $bindable(),
+        filterByCounty = $bindable(false),
+        dropdownPointers = true,
+        heading,
+        controlOuter = '',
+        controlBody = '',
+        buttonLeft = '',
+        buttonCenter = '',
+        buttonRight = '',
+        prefixCenter = '',
+        scriptCenter = '',
+        suffixCenter = '',
+        popupInner = '',
+        popupStyles = '',
+        labelledby = 'Select site-date',
+    }: {
+        currentSiteId: number;
+        filterByCounty: boolean;
+        dropdownPointers: boolean;
+        heading: Snippet | null;
+        controlOuter: CssClasses;
+        controlBody: CssClasses;
+        buttonLeft: CssClasses;
+        buttonCenter: CssClasses;
+        buttonRight: CssClasses;
+        prefixCenter: CssClasses;
+        scriptCenter: CssClasses;
+        suffixCenter: CssClasses;
+        popupInner: CssClasses;
+        popupStyles: string;
+        labelledby: string;
+    } = $props();
 
     /** Show down arrow with year and week labels to indicate dropdown.  Default: true */
-    export let dropdownPointers: boolean = true;
+    buttonCenter = dropdownPointers ? 'w-20' : 'w-16';
+    suffixCenter = dropdownPointers ? "before:content-['↓']" : '';
 
     /*-- Context */
     let allSites: Site[] = getContext('sites') ?? [];
-    //console.log(allSites);
+    //$inspect(allSites);
 
     /*-- -- Styling -- */
     /*-- Properties (styles) */
-    export let controlOuter: CssClasses = '';
-    export let controlBody: CssClasses = '';
-    export let buttonLeft: CssClasses = '';
-    export let buttonCenter: CssClasses = dropdownPointers ? ($$slots.prefixYear ? 'w-28' : 'w-20') : $$slots.prefixYear ? 'w-24' : 'w-16';
-    export let buttonRight: CssClasses = '';
-    export let prefixCenter: CssClasses = '';
-    export let scriptCenter: CssClasses = '';
-    export let suffixCenter: CssClasses = dropdownPointers ? "before:content-['↓']" : '';
-    export let popupInner: CssClasses = '';
-    export let popupStyles: string = '';
 
     // Properties (a11y)
     /** Provide the ARIA labelledby value.  Default: "Select site-date" */
-    export let labelledby = 'Select site-date';
 
     /*-- Constants (styles) */
     const cControlOuter = 'block lg:flex lg:flex-row gap-0 md:gap-1 lg:gap-2';
@@ -50,16 +72,16 @@
     const cPopupStyles = 'max-height: calc(100vh - 272px);';
 
     /*-- Reactives (styles) */
-    $: classesControlOuter = `${cControlOuter} ${controlOuter} ${$$props.class ?? ''}`;
-    $: classesControlBody = `${cControlBody} ${controlBody} ${$$props.class ?? ''}`;
-    $: classesButtonLeft = `${cButtonLeft} ${buttonLeft} ${$$props.class ?? ''}`;
-    $: classesButtonCenter = `${cButtonCenter} ${buttonCenter} ${$$props.class ?? ''}`;
-    $: classesButtonRight = `${cButtonRight} ${buttonRight} ${$$props.class ?? ''}`;
-    $: classesPrefixCenter = `${cPrefixCenter} ${prefixCenter} ${$$props.class ?? ''}`;
-    $: classesScriptCenter = `${cScriptCenter} ${scriptCenter} ${$$props.class ?? ''}`;
-    $: classesSuffixCenter = `${cSuffixCenter} ${suffixCenter} ${$$props.class ?? ''}`;
-    $: classesPopupInner = `${cPopupInner} ${popupInner} ${$$props.class ?? ''}`;
-    $: stylesPopup = `${cPopupStyles} ${popupStyles} ${$$props.style ?? ''}`;
+    let classesControlOuter = $derived(`${cControlOuter} ${controlOuter}`); // } ${$$props.class ?? ''}`;
+    let classesControlBody = $derived(`${cControlBody} ${controlBody}`); // } ${$$props.class ?? ''}`;
+    let classesButtonLeft = $derived(`${cButtonLeft} ${buttonLeft}`); // } ${$$props.class ?? ''}`;
+    let classesButtonCenter = $derived(`${cButtonCenter} ${buttonCenter}`); // } ${$$props.class ?? ''}`;
+    let classesButtonRight = $derived(`${cButtonRight} ${buttonRight}`); // } ${$$props.class ?? ''}`;
+    let classesPrefixCenter = $derived(`${cPrefixCenter} ${prefixCenter}`); // } ${$$props.class ?? ''}`;
+    let classesScriptCenter = $derived(`${cScriptCenter} ${scriptCenter}`); // } ${$$props.class ?? ''}`;
+    let classesSuffixCenter = $derived(`${cSuffixCenter} ${suffixCenter}`); // } ${$$props.class ?? ''}`;
+    let classesPopupInner = $derived(`${cPopupInner} ${popupInner}`); // } ${$$props.class ?? ''}`;
+    let stylesPopup = $derived(`${cPopupStyles} ${popupStyles}`); // } ${$$props.style ?? ''}`;
 
     /*-- -- Coding -- */
     /*-- Enums */
@@ -103,30 +125,30 @@
     /*-- Methods */
 
     /*-- Reactives (functional) */
-    $: filteredSites = filterByCounty ? allSites.filter((s: any) => s.countyId === currentSite?.countyId) : allSites;
-    $: filteredSitesIndex = filteredSites.findIndex((s: any) => s.siteId === currentSiteId);
-    $: currentSite = allSites.find((x) => x.siteId === currentSiteId);
-    $: prevDisabled = filteredSitesIndex < 1;
-    $: nextDisabled = filteredSitesIndex > filteredSites.length - 2;
-    //console.log(currentSite);
+    let filteredSites = $derived(filterByCounty ? allSites.filter((s: any) => s.countyId === currentSite?.countyId) : allSites);
+    let filteredSitesIndex = $derived(filteredSites.findIndex((s: any) => s.siteId === currentSiteId));
+    let currentSite = $derived(allSites.find((x) => x.siteId === currentSiteId));
+    let prevDisabled = $derived(filteredSitesIndex < 1);
+    let nextDisabled = $derived(filteredSitesIndex > filteredSites.length - 2);
+    //$inspect(currentSite);
 </script>
 
 <!-- TODO: add help tooltip to show this is filtered and maybe an option of all and/or unfiltered -->
 <div class={classesControlOuter}>
-    {#if $$slots.heading}
+    {#if heading}
         <div class="my-auto">
-            <slot name="heading" />
+            {@render heading()}
         </div>
     {/if}
     <div class={classesControlBody} aria-labelledby={labelledby}>
-        <button type="button" class={classesButtonLeft} on:click={handlePrev} disabled={prevDisabled}>◀</button>
-        <button type="button" class={classesButtonCenter} use:popup={popupSites} title={currentSite.siteName}>
+        <button type="button" class={classesButtonLeft} onclick={handlePrev} disabled={prevDisabled}>◀</button>
+        <button type="button" class={classesButtonCenter} use:popup={popupSites} title={currentSite?.siteName}>
             <span class={classesScriptCenter}>
-                {currentSite.siteName}
+                {currentSite?.siteName}
             </span>
             <span>↓</span>
         </button>
-        <button type="button" class={classesButtonRight} on:click={handleNext} disabled={nextDisabled}>▶</button>
+        <button type="button" class={classesButtonRight} onclick={handleNext} disabled={nextDisabled}>▶</button>
     </div>
 </div>
 

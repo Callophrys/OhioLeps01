@@ -32,10 +32,16 @@
 </script>
 
 <div class="flex flex-row space-x-2 text-sm fixed top-[134px] pl-10">
-    <label class="flex items-center space-x-2" title="Highlight recently added/updated data">
-        <input class="checkbox" type="checkbox" bind:checked={filterByCounty} />
-        <span>Filter sites by county</span>
-    </label>
-    &nbsp;&nbsp;County: {county}
-    &nbsp;&nbsp;Site: {site}
+    <div class="flex items-center space-x-2" title="Highlight recently added/updated data">
+        <label for="filterByCounty">
+            <input id="filterByCounty" class="checkbox" type="checkbox" bind:checked={filterByCounty} />
+            <span>Filter by county</span>
+        </label>
+    </div>
+    <div>
+        County: {county}
+    </div>
+    <div>
+        Site: {site}
+    </div>
 </div>
