@@ -11,7 +11,7 @@
     import { GOTYPE } from '$lib/types.js';
 
     let { data, form } = $props();
-    let targetId = data.sites[0].countyId;
+    let targetId = data.sites && data.sites.length ? data.sites[0].countyId : -1;
     let targetIdSecondary = -1;
 </script>
 

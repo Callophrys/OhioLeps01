@@ -1,3 +1,4 @@
+<!-- CountyPicker.svlete -->
 <script lang="ts">
     /*-- Imports */
     import type { County, Site } from '@prisma/client';
@@ -96,8 +97,6 @@
 
     /*-- Properties (functional) */
     /*-- Variables and objects */
-    let filteredSitesIndex: number | undefined;
-
     /*-- Run first stuff */
     /*-- onMount, beforeUpdate, afterUpdate */
     /*-- Handlers */
@@ -105,38 +104,39 @@
     // TODO: apply temporary animate-pulse to indicate site change or perhaps
     //       the inability to change; this class is from tailwind
 
-    // function handleSelect() {
-    //     filteredSitesIndex = filteredSites.findIndex((c: any) => {
-    //         return c.countyId === currentCountyId;
-    //     });
-    //
-    //     if (filteredSitesIndex > -1) {
-    //         currentSiteId = filteredSites[filteredSitesIndex].siteId;
-    //         goto('/api/sites/' + currentSiteId);
-    //     }
-    // }
-    //
-    // function handlePrev() {
-    //     if (allCountiesIndex > 0) {
-    //         currentCountyId = allCounties[allCountiesIndex - 1].id;
-    //         let siteIndex = allSites.findLastIndex((s: any) => s.countyId === currentCountyId);
-    //         if (siteIndex > 0) {
-    //             currentSiteId = allSites[siteIndex].siteId;
-    //             goto('/api/sites/' + currentSiteId);
-    //         }
-    //     }
-    // }
-    //
-    // function handleNext() {
-    //     if (allCountiesIndex < allCounties.length - 1) {
-    //         currentCountyId = allCounties[allCountiesIndex + 1].id;
-    //         let siteIndex = allSites.findIndex((s) => s.countyId === currentCountyId);
-    //         if (siteIndex > 0) {
-    //             currentSiteId = allSites[siteIndex].siteId;
-    //             goto('/api/sites/' + currentSiteId);
-    //         }
-    //     }
-    // }
+    function handleSelect() {
+        let filteredSitesIndex =
+            filteredSites?.findIndex((c: any) => {
+                return c.countyId === currentCountyId;
+            }) ?? -1;
+
+        if (filteredSitesIndex > -1) {
+            let currentSiteId = filteredSites[filteredSitesIndex].siteId;
+            goto('/api/sites/' + currentSiteId);
+        }
+    }
+
+    function handlePrev() {
+        if (allCountiesIndex > 0) {
+            currentCountyId = allCounties[allCountiesIndex - 1].id;
+            let siteIndex = allSites.findLastIndex((s: any) => s.countyId === currentCountyId);
+            if (siteIndex > 0) {
+                let currentSiteId = allSites[siteIndex].siteId;
+                goto('/api/sites/' + currentSiteId);
+            }
+        }
+    }
+
+    function handleNext() {
+        if (allCountiesIndex < allCounties.length - 1) {
+            currentCountyId = allCounties[allCountiesIndex + 1].id;
+            let siteIndex = allSites.findIndex((s) => s.countyId === currentCountyId);
+            if (siteIndex > 0) {
+                let currentSiteId = allSites[siteIndex].siteId;
+                goto('/api/sites/' + currentSiteId);
+            }
+        }
+    }
 
     /*-- Methods */
 
@@ -144,39 +144,37 @@
     let filteredSites = $derived(filterByCounty ? allSites.filter((s: any) => s.countyId === currentCountyId) : allSites);
     let allCountiesIndex = $derived(allCounties.findIndex((c: any) => c.id === currentCountyId));
     let currentCounty = $derived(currentCountyId > -1 ? allCounties.find((x) => x.id === currentCountyId) : null);
-    let currentSite = $derived(filteredSites.find((x: any) => x.countyId === currentCountyId));
-    let currentSiteId = $derived(currentSite?.siteId);
     let prevDisabled = $derived(allCountiesIndex < 1);
     let nextDisabled = $derived(allCountiesIndex > allCounties.length - 2);
 
-    // $: currentCountyId, console.log('CountyPicker.currentCountyId', currentCountyId);
+    $inspect(currentCountyId);
 </script>
 
 <div class={classesControlOuter}>
-    <!-- {#if heading} -->
-    <!--     <div class="my-auto"> -->
-    <!--         {@render heading()} -->
-    <!--     </div> -->
-    <!-- {/if} -->
+    {#if heading}
+        <div class="my-auto">
+            {@render heading()}
+        </div>
+    {/if}
 
     <div class={classesControlBody} aria-labelledby={labelledby}>
-        <!-- <button type="button" class={classesButtonLeft} onclick={handlePrev} disabled={prevDisabled}>◀</button> -->
+        <button type="button" class={classesButtonLeft} onclick={handlePrev} disabled={prevDisabled}>◀</button>
         <button type="button" class={classesButtonCenter} use:popup={popupCounties}>
-            <span class={classesScriptCenter}> currentCounty?.name </span>
+            <span class={classesScriptCenter}>{currentCounty?.name}</span>
             <span>↓</span>
         </button>
-        <!-- <button type="button" class={classesButtonRight} onclick={handleNext} disabled={nextDisabled}>▶</button> -->
+        <button type="button" class={classesButtonRight} onclick={handleNext} disabled={nextDisabled}>▶</button>
     </div>
 </div>
 
 <div data-popup="popupCounties">
-    <!--     <div class={classesPopupInner} style={stylesPopup}> -->
-    <ListBox rounded="rounded-none">
-        {#each allCounties as county}
-            <!--                 <ListBoxItem bind:group={currentCountyId} name="counties" onchange={handleSelect} value={county.id}> -->
-            {county.name}
-            <!--                 </ListBoxItem> -->
-        {/each}
-    </ListBox>
-    <!--     </div> -->
+    <div class={classesPopupInner} style={stylesPopup}>
+        <ListBox rounded="rounded-none">
+            {#each allCounties as county}
+                <ListBoxItem bind:group={currentCountyId} name="counties" on:change={handleSelect} value={county.id}>
+                    {county.name}
+                </ListBoxItem>
+            {/each}
+        </ListBox>
+    </div>
 </div>

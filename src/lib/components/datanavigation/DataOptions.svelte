@@ -1,6 +1,8 @@
 <script lang="ts">
     /*-- Imports */
     import { page } from '$app/stores';
+    import AppConfigControl from '../AppConfigControl.svelte';
+    import CCounty from '../CCounty.svelte';
 
     /*-- -- Data -- */
     /*-- Exports */
@@ -22,8 +24,8 @@
 
     let cLabel = 'flex items-center space-x-2';
 
-    let cLabelMultiple = $derived(`${cLabel}${showMultipleRowsDisabled ? ' hover:cursor-not-allowed opacity-30' : ''}`);
-    let cCheckboxMultiple = $derived(`checkbox${showMultipleRowsDisabled ? ' hover:cursor-not-allowed' : ''}`);
+    let cControlDisabled = $derived(showMultipleRowsDisabled ? ' hover:cursor-not-allowed opacity-30' : '');
+    let cCheckboxMultiple = $derived(`checkbox${showMultipleRowsDisabled ? cControlDisabled : ''}`);
 
     /*-- Context */
     /*-- -- Styling -- */
@@ -52,9 +54,9 @@
     <!--     <p>Show P3</p> -->
     <!--     <input class="checkbox" type="checkbox" bind:checked={showP3} /> -->
     <!-- </label> -->
-    <label class={cLabelMultiple} title="Toggle between single or mutilple rows for viewing or editing">
+    <label class={cLabel} title="Toggle between single or mutilple rows for viewing or editing">
         <!-- TODO Make label message toggle and convert checkbox to toggle switch -->
-        <span>View Multiple/Single</span>
+        <span class={cControlDisabled}>View Multiple/Single</span>
         <input class={cCheckboxMultiple} type="checkbox" disabled={showMultipleRowsDisabled} bind:checked={showMultipleRows} />
     </label>
     <label class={cLabel} title="Highlight recently added/updated data">

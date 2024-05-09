@@ -762,5 +762,9 @@ Support selection of SDO multi-record so a point of reference is maintained when
 Use this if needing to turn of reativity for some variables
 ```<!-- svelte-ignore non_reactive_update -->```
 
+```sql
+update county set countyNumber = id;
+
+```
 
 
