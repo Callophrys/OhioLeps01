@@ -763,7 +763,15 @@ Use this if needing to turn of reativity for some variables
 ```<!-- svelte-ignore non_reactive_update -->```
 
 ```sql
-update county set countyNumber = id;
+with ranked as (
+  select *,
+    row_number() over (partition by stateId order by name) as nn
+  from countyNumber
+)
+update county, ranked
+set county.countyNumber = ranked.nn
+where county.id = ranked.id;
+
 
 ```
 

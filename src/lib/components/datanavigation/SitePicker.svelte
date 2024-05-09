@@ -1,6 +1,7 @@
 <script lang="ts">
     /*-- Imports */
-    import type { Site } from '@prisma/client';
+    import type { County, Site } from '@prisma/client';
+    import type { SiteDateYearSiteDates } from '$lib/types.js';
     import type { Snippet } from 'svelte';
     import type { PopupSettings } from '@skeletonlabs/skeleton';
     import type { CssClasses } from '@skeletonlabs/skeleton';
@@ -8,11 +9,14 @@
     import { popup, ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
     import { getContext } from 'svelte';
     import SiteNavigation from '../SiteNavigation.svelte';
+    import SiteDatePicker from './SiteDatePicker.svelte';
 
     /*-- -- Data -- */
     /*-- Exports */
     let {
+        currentCountyId = $bindable(),
         currentSiteId = $bindable(),
+        currentSiteDateId = $bindable(),
         filterByCounty = $bindable(false),
         dropdownPointers = true,
         heading,
@@ -28,7 +32,9 @@
         popupStyles = '',
         labelledby = 'Select site-date',
     }: {
+        currentCountyId: number;
         currentSiteId: number;
+        currentSiteDateId: number;
         filterByCounty: boolean;
         dropdownPointers: boolean;
         heading: Snippet | null;
@@ -50,7 +56,9 @@
     suffixCenter = dropdownPointers ? "before:content-['↓']" : '';
 
     /*-- Context */
-    let allSites: Site[] = getContext('sites') ?? [];
+    const allSites: Site[] = getContext('sites') ?? [];
+    const siteDates: SiteDateYearSiteDates[] = $state(getContext('siteDates') ?? []);
+    console.log(allSites[0]);
     //$inspect(allSites);
 
     /*-- -- Styling -- */
@@ -101,7 +109,11 @@
     /*-- Handlers */
     function handleSelect() {
         if (filteredSitesIndex > -1) {
+            currentCountyId = filteredSites[filteredSitesIndex].countyId;
             currentSiteId = filteredSites[filteredSitesIndex].siteId;
+            let sd = siteDates.find((x) => x.siteId === currentSiteId);
+            console.log('sd', siteDates);
+            if (sd) currentSiteDateId = sd.siteDateId;
             goto('/api/sites/' + currentSiteId);
         }
     }
@@ -109,7 +121,10 @@
     function handlePrev() {
         if (filteredSitesIndex > 0) {
             let index = filteredSitesIndex - 1;
+            currentCountyId = filteredSites[index].countyId;
             currentSiteId = filteredSites[index].siteId;
+            let sd = siteDates.find((x) => x.siteId === currentSiteId);
+            if (sd) currentSiteDateId = sd.siteDateId;
             goto('/api/sites/' + currentSiteId);
         }
     }
@@ -117,7 +132,10 @@
     function handleNext() {
         if (filteredSitesIndex < filteredSites.length - 1) {
             let index = filteredSitesIndex + 1;
+            currentCountyId = filteredSites[index].countyId;
             currentSiteId = filteredSites[index].siteId;
+            let sd = siteDates.find((x) => x.siteId === currentSiteId);
+            if (sd) currentSiteDateId = sd.siteDateId;
             goto('/api/sites/' + currentSiteId);
         }
     }

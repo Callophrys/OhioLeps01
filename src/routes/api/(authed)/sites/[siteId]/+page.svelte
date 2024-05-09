@@ -1,5 +1,6 @@
 <script lang="ts">
     /*-- Imports */
+    import type { County, Site } from '@prisma/client';
     import Container from '$lib/components/layouts/Container.svelte';
     import CountyPicker from '$lib/components/datanavigation/CountyPicker.svelte';
     import SitePicker from '$lib/components/datanavigation/SitePicker.svelte';
@@ -37,16 +38,22 @@
     /*-- Variables and objects */
     /*-- Run first stuff */
 
+    /***************************************************************/
+    /* TODO - see about updating SDO list on site change
+    /*        so SD picker udpates correctly (at all)
+    /***************************************************************/
+
     /*-- onMount, beforeUpdate, afterUpdate */
-    onMount(() => {
+    $effect(() => {
+        console.log('onMount for filterByCounty');
         let x = localStorage?.filterByCounty;
         if (x && x.length) {
             filterByCounty = x === '1';
         }
     });
 
-    // $inspect(data.site);
     $effect(() => {
+        console.log('effect for saving filterByCounty');
         localStorage.setItem('filterByCounty', filterByCounty ? '1' : '0');
     });
 
@@ -54,11 +61,37 @@
     /*-- Methods */
 
     /*-- Reactives (functional) */
+
     let currentCountyId: number = $state(data.site.countyId);
     let currentSiteId: number = $state(data.site.siteId);
-    let currentSiteDateId: number = $state(data.site.siteDates[0].siteDateId);
+    let currentSiteDateId: number = $state(data.site.siteDates.length ? data.site.siteDates[0].siteDateId : -1);
+    $inspect(currentCountyId, currentSiteId, currentSiteDateId);
 
     /*-- Other */
+
+    // const updateCounty = () => {
+    //     console.log('set currentCountyId');
+    //     let cn = currentCounty?.countyNumber ?? -1;
+    //     const county = data.counties.find((x) => x.id === currentCountyId);
+    //     const site: any = (() => {
+    //         if (cn < currentCounty.countyNumber) return allSites.find((x: any) => x.countyId === currentCountyId);
+    //         return allSites.findLast((x: any) => x.countyId === currentCountyId);
+    //     })();
+    //     if (site) currentSiteId = site.siteId; // this could cause nesting and looping infinitely
+    //     return county;
+    // };
+
+    // const updateSite = () => {
+    //     console.log('set currentSiteId');
+    //     const site: any = data.sites.find((x) => x.siteId === currentSiteId);
+    //     let county = allCounties.find((x: any) => x.id === site.countyId);
+    //     if (county) currentCountyId = county.id; // this could cause nesting and looping infinitely
+    //     return site;
+    // };
+
+    // let currentCounty: any = $derived(updateCounty());
+    // let currentSite: any = $derived(updateSite());
+    // $inspect(currentCounty, currentSite);
 </script>
 
 <CountySite bind:county={data.site.county.name} bind:site={data.site.siteName} bind:filterByCounty />
@@ -67,8 +100,8 @@
     <div class="flex flex-row justify-between gap-1 md:gap-2">
         <GoBack bind:targetId={currentCountyId} bind:targetType={GOTYPE.COUNTYSITES} targetIdSecondary={null} controlBody="scale-90" buttonCenter="" scriptCenter="" labelledby="" />
         <!-- TODO: Filter sites to selected country -->
-        <CountyPicker bind:currentCountyId bind:filterByCounty />
-        <SitePicker bind:currentSiteId bind:filterByCounty controlBody="scale-90" />
+        <CountyPicker bind:currentCountyId bind:currentSiteId bind:filterByCounty />
+        <SitePicker bind:currentCountyId bind:currentSiteId bind:currentSiteDateId bind:filterByCounty controlBody="scale-90" />
         <SiteDatePicker bind:currentSiteId bind:currentSiteDateId controlBody="scale-90" buttonLeft="" buttonRight="" buttonYear="" buttonWeek="" dropdownShowDate={false} dropdownPointers={false} heading={null} yearPrefix="" weekPrefix="" controlOuter="" prefixYear="" prefixWeek="" suffixYear="" suffixWeek="" popupInner="" popupStyles="" labelledby="" />
     </div>
 

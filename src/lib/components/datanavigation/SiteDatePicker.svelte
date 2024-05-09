@@ -76,7 +76,7 @@
 
     // siteDate list for respective site via Context
     const siteDates: SiteDateYearSiteDates[] = $state(getContext('siteDates') ?? []);
-    //console.log('siteDates - 1:', siteDates);
+    console.log('siteDates - 1:', siteDates);
     //console.log('SiteDatePicker:siteDates', siteDates);
 
     /*-- -- Styling -- */
@@ -151,11 +151,11 @@
 
     /*-- Properties (functional) */
 
-    const theYears = [...new Set(siteDates.map((x) => x.year.toString()))];
-    //console.log('theYears:', theYears);
+    const uniqueYears = [...new Set(siteDates.map((x) => x.year.toString()))];
+    //console.log('uniqueYears:', uniqueYears);
 
     const yearsOfDate: any = {};
-    theYears.forEach((yr: string) => {
+    uniqueYears.forEach((yr: string) => {
         yearsOfDate[yr] = siteDates
             .filter((x: SiteDateYear) => x.year.toString() === yr)
             .map<SdoWeek>((y: SiteDateYear) => ({
@@ -184,7 +184,7 @@
 
     /*-- Run first stuff */
     /*-- onMount, beforeUpdate, afterUpdate */
-    onMount(() => {
+    $effect(() => {
         let tw = trackedWeeks.find((x) => x.siteDateId === currentSiteDateId);
         if (tw) {
             recordYear = tw.year.toString();
@@ -287,7 +287,7 @@
     <div data-popup="popupComboboxSiteDateYears">
         <div class={classesPopupInner} style={stylesPopup}>
             <ListBox rounded="rounded-none" labelledby="Years for site">
-                {#each theYears as year}
+                {#each uniqueYears as year}
                     <ListBoxItem bind:group={recordYear} name="years" onchange={handleSelectYear} value={year}>
                         {year}
                     </ListBoxItem>

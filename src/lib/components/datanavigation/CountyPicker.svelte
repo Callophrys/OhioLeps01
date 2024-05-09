@@ -13,6 +13,7 @@
     /*-- Exports */
     let {
         currentCountyId = $bindable(),
+        currentSiteId = $bindable(),
         filterByCounty = $bindable(false),
         dropdownPointers = true,
         controlOuter = '',
@@ -29,6 +30,7 @@
         heading,
     }: {
         currentCountyId: number;
+        currentSiteId: number;
         filterByCounty: boolean | null;
         dropdownPointers: boolean | null;
         controlOuter: CssClasses | null;
@@ -51,8 +53,8 @@
     /** Show down arrow with year and week labels to indicate dropdown.  Default: true */
 
     /*-- Context */
-    let allCounties: County[] = $state(getContext('counties') ?? []);
-    let allSites: Site[] = $state(getContext('sites') ?? []);
+    let allCounties: County[] = getContext('counties') ?? [];
+    let allSites: Site[] = getContext('sites') ?? [];
 
     /*-- -- Styling -- */
     /*-- Properties (styles) */
@@ -111,7 +113,7 @@
             }) ?? -1;
 
         if (filteredSitesIndex > -1) {
-            let currentSiteId = filteredSites[filteredSitesIndex].siteId;
+            currentSiteId = filteredSites[filteredSitesIndex].siteId;
             goto('/api/sites/' + currentSiteId);
         }
     }
@@ -121,7 +123,7 @@
             currentCountyId = allCounties[allCountiesIndex - 1].id;
             let siteIndex = allSites.findLastIndex((s: any) => s.countyId === currentCountyId);
             if (siteIndex > 0) {
-                let currentSiteId = allSites[siteIndex].siteId;
+                currentSiteId = allSites[siteIndex].siteId;
                 goto('/api/sites/' + currentSiteId);
             }
         }
@@ -132,7 +134,7 @@
             currentCountyId = allCounties[allCountiesIndex + 1].id;
             let siteIndex = allSites.findIndex((s) => s.countyId === currentCountyId);
             if (siteIndex > 0) {
-                let currentSiteId = allSites[siteIndex].siteId;
+                currentSiteId = allSites[siteIndex].siteId;
                 goto('/api/sites/' + currentSiteId);
             }
         }
@@ -147,7 +149,17 @@
     let prevDisabled = $derived(allCountiesIndex < 1);
     let nextDisabled = $derived(allCountiesIndex > allCounties.length - 2);
 
-    $inspect(currentCountyId);
+    // $effect(() => {
+    //     let cn = currentCounty?.countyNumber ?? -1;
+    //     const county = data.counties.find((x) => x.id === currentCountyId);
+    //     const site: any = (() => {
+    //         if (cn < currentCounty.countyNumber) return allSites.find((x: any) => x.countyId === currentCountyId);
+    //         return allSites.findLast((x: any) => x.countyId === currentCountyId);
+    //     })();
+    //     if (site) currentSiteId = site.siteId; // this could cause nesting and looping infinitely
+    // })
+
+    //$inspect(currentCountyId);
 </script>
 
 <div class={classesControlOuter}>
