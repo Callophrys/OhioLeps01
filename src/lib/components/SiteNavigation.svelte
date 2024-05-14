@@ -22,7 +22,7 @@
     const cNavBar = '';
 
     /*-- Reactives (styles) */
-    let classesNavBar = $state(`${cNavBar} ${navBar}`);
+    let classesNavBar = $derived(`${cNavBar} ${navBar}`);
 
     /*-- -- Coding -- */
     /*-- Enums */

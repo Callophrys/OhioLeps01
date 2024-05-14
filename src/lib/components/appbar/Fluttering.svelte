@@ -12,7 +12,7 @@
     /*-- Constants (functional) */
     /*-- Properties (functional) */
     /*-- Variables and objects */
-    let fillColor = '#ff6699';
+    let fillColor = $state('#ff6699');
     let interval: NodeJS.Timeout;
 
     /*-- Run first stuff */
@@ -34,10 +34,10 @@
     }
 
     /*-- Reactives (functional) */
-    $: {
+    $effect(() => {
         clearInterval(interval);
         interval = setInterval(changeColor, 10000);
-    }
+    });
 </script>
 
 <!-- SVG modified from freepik.com -->

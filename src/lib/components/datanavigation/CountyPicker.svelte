@@ -5,30 +5,10 @@
     import type { PopupSettings } from '@skeletonlabs/skeleton';
     import type { CssClasses } from '@skeletonlabs/skeleton';
     import { goto } from '$app/navigation';
-    import { filter, popup } from '@skeletonlabs/skeleton';
-    import { ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
     import { getContext, type Snippet } from 'svelte';
+    import { ListBox, ListBoxItem, popup } from '@skeletonlabs/skeleton';
 
-    /*-- -- Data -- */
-    /*-- Exports */
-    let {
-        currentCountyId = $bindable(),
-        currentSiteId = $bindable(),
-        filterByCounty = $bindable(false),
-        dropdownPointers = true,
-        controlOuter = '',
-        controlBody = '',
-        buttonLeft = '',
-        buttonCenter = '',
-        buttonRight = '',
-        prefixCenter = '',
-        scriptCenter = '',
-        suffixCenter = '',
-        popupInner = '',
-        popupStyles = '',
-        labelledby = 'Select county',
-        heading,
-    }: {
+    type CountyPickerProps = {
         currentCountyId: number;
         currentSiteId: number;
         filterByCounty: boolean | null;
@@ -45,7 +25,11 @@
         popupStyles: string | null;
         labelledby: string | null;
         heading: Snippet | null;
-    } = $props();
+    };
+
+    /*-- -- Data -- */
+    /*-- Exports */
+    let { currentCountyId = $bindable(), currentSiteId = $bindable(), filterByCounty = $bindable(false), dropdownPointers = true, controlOuter = '', controlBody = '', buttonLeft = '', buttonCenter = '', buttonRight = '', prefixCenter = '', scriptCenter = '', suffixCenter = '', popupInner = '', popupStyles = '', labelledby = 'Select county', heading }: CountyPickerProps = $props();
 
     if (!buttonCenter) buttonCenter = dropdownPointers ? 'w-20' : 'w-16';
     if (!suffixCenter) suffixCenter = dropdownPointers ? "before:content-['↓']" : '';

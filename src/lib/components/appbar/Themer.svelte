@@ -1,9 +1,7 @@
 <script lang="ts">
     /*-- Imports */
-    import { popup } from '@skeletonlabs/skeleton';
     import type { PopupSettings } from '@skeletonlabs/skeleton';
-    import { ListBox, ListBoxItem, LightSwitch } from '@skeletonlabs/skeleton';
-    import { setInitialClassState } from '@skeletonlabs/skeleton';
+    import { ListBox, ListBoxItem, LightSwitch, popup, setInitialClassState } from '@skeletonlabs/skeleton';
 
     /*-- -- Data -- */
     /*-- Exports */

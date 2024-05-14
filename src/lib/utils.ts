@@ -1,4 +1,4 @@
-import type { dateTracking } from '$lib/types.js';
+import type { DateTracking } from '$lib/types.js';
 
 type DateStyle = Intl.DateTimeFormatOptions['dateStyle'];
 type TimeStyle = Intl.DateTimeFormatOptions['timeStyle'];
@@ -50,7 +50,7 @@ export function compareNumeric(a: number, b: number) {
     return a - b;
 }
 
-export function compareYearWeek(a: dateTracking, b: dateTracking) {
+export function compareYearWeek(a: DateTracking, b: DateTracking) {
     return compareNumeric(a.recordDate.getTime(), b.recordDate.getTime());
 }
 

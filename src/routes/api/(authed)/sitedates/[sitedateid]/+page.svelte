@@ -6,7 +6,7 @@
     import { onMount } from 'svelte';
     import { setContext } from 'svelte';
     import { goto } from '$app/navigation';
-    import type { dateTracking, dateTrackingSet } from '$lib/types.js';
+    import type { DateTracking, DateTrackingSet } from '$lib/types.js';
     import { compareNumeric, compareYearWeek, formatDate, weekOfYearSince, convertFtoC } from '$lib/utils';
     import DataOptions from '$lib/components/datanavigation/DataOptions.svelte';
     import SiteDatePicker from '$lib/components/datanavigation/SiteDatePicker.svelte';
@@ -59,8 +59,8 @@
     /*-- -- Coding -- */
     /*-- Enums */
     /*-- Constants (functional) */
-    const trackedWeeks: dateTracking[] = Array.from(data.siteDates)
-        .map<dateTracking>((w: any) => ({
+    const trackedWeeks: DateTracking[] = Array.from(data.siteDates)
+        .map<DateTracking>((w: any) => ({
             siteDateId: w.siteDateId,
             year: new Date(w.recordDate).getFullYear(),
             week: weekOfYearSince(new Date(w.recordDate)),
@@ -86,7 +86,7 @@
     let optAccI: boolean = $state(false);
     let optAccJ: boolean = $state(false);
 
-    let y: dateTrackingSet = $state({ id: 0, children: [] });
+    let y: DateTrackingSet = $state({ id: 0, children: [] });
     let w: any = $state(false);
 
     let showRecentEdits: boolean = $state(false);

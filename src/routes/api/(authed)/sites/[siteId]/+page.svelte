@@ -7,7 +7,6 @@
     import SiteDatePicker from '$lib/components/datanavigation/SiteDatePicker.svelte';
     import CountySite from '$lib/components/datanavigation/CountySite.svelte';
     import { setContext } from 'svelte';
-    import { onMount } from 'svelte';
     import GoBack from '$lib/components/datanavigation/GoBack.svelte';
     import GoNext from '$lib/components/datanavigation/GoNext.svelte';
     import { GOTYPE } from '$lib/types.js';

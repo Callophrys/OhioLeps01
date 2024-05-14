@@ -45,7 +45,7 @@
 
 {#snippet head()}
     <div class="flex flex-row gap-1 md:gap-2">
-        <CountyPicker bind:currentCountyId controlBody="scale-90" class="w-auto" />
+        <CountyPicker bind:currentCountyId controlBody="scale-90" controlOuter="w-auto" />
         <button type="submit" class="btn variant-filled" form="addSite">
             Save New Site
             <span class="pl-2">✎</span>
@@ -56,6 +56,7 @@
         </button>
     </div>
 {/snippet}
+
 {#snippet body()}
     <form method="POST" action="?/addSite" id="addSite" name="addSite">
         <input type="hidden" id="countyId" name="countyId" bind:value={currentCountyId} />

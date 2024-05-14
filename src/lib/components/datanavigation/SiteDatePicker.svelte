@@ -1,14 +1,11 @@
 <script lang="ts">
     /*-- Imports */
+    import type { CssClasses, PopupSettings } from '@skeletonlabs/skeleton';
+    import type { DateTracking, SiteDateYear, SiteDateYearSiteDates } from '$lib/types.js';
     import { goto } from '$app/navigation';
-    import { popup } from '@skeletonlabs/skeleton';
-    import type { PopupSettings } from '@skeletonlabs/skeleton';
-    import { ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
-    import { getContext, type Snippet } from 'svelte';
-    import type { dateTracking, SiteDateYear, SiteDateYearSiteDates } from '$lib/types.js';
-    import type { CssClasses } from '@skeletonlabs/skeleton';
+    import { getContext } from 'svelte';
+    import { ListBox, ListBoxItem, popup } from '@skeletonlabs/skeleton';
     import { compareYearWeek, formatDate, weekOfYearSince } from '$lib/utils';
-    import { onMount } from 'svelte';
 
     /*-- -- Data -- */
     /*-- Exports */
@@ -167,7 +164,7 @@
     //console.log('yearsOfDate:', yearsOfDate);
 
     const trackedWeeks = Array.from(siteDates)
-        .map<dateTracking>((w: SiteDateYearSiteDates) => ({
+        .map<DateTracking>((w: SiteDateYearSiteDates) => ({
             siteDateId: w.siteDateId,
             year: w.year,
             week: w.recordDate ? weekOfYearSince(new Date(w.recordDate)) : -1,
@@ -235,7 +232,7 @@
     /*-- Methods */
     /*-- Reactives (functional) */
     let yearDates = $derived(yearsOfDate[recordYear]);
-    let trackedWeekIndex = $derived(trackedWeeks.findIndex((x: dateTracking) => x.siteDateId === recordSiteDateId));
+    let trackedWeekIndex = $derived(trackedWeeks.findIndex((x: DateTracking) => x.siteDateId === recordSiteDateId));
     let nextDisabled = $derived(trackedWeekIndex > trackedWeeks.length - 2);
     let prevDisabled = $derived(trackedWeekIndex < 1);
 

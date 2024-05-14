@@ -12,6 +12,7 @@
     import SiteNavigation from '$lib/components/SiteNavigation.svelte';
 
     let config: any = $page.data.config ?? {};
+    //let { config = $page.data.config ?? {} }: any = $props();
 
     const cNavBarClasses = 'w-60';
     const cSidebarClassesBase = 'variant-filled-surface w-60 h-full top-0 p-4 -left-56 fixed z-10 duration-700';
@@ -22,7 +23,6 @@
     storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
 
     initializeStores();
-
 </script>
 
 <svelte:head>
