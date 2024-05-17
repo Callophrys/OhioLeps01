@@ -12,6 +12,8 @@
     import { GOTYPE } from '$lib/types.js';
     import CountySort from '$lib/components/counties/countySort.svelte';
     import StateCountyPicker from '$lib/components/query/StateCountyPicker.svelte';
+    import { page } from '$app/stores';
+    import { goto } from '$app/navigation';
 
     /*-- -- Data -- */
     /*-- Exports */
@@ -58,6 +60,9 @@
 
     /*-- Handlers */
     /*-- Methods */
+    function addSiteDate() {
+        goto(`/api/siteDates/new/${currentSiteId}`);
+    }
 
     /*-- Reactives (functional) */
 
@@ -101,7 +106,12 @@
         <!-- TODO: Filter sites to selected country -->
         <CountyPicker bind:currentCountyId bind:currentSiteId bind:filterByCounty />
         <SitePicker bind:currentCountyId bind:currentSiteId bind:currentSiteDateId bind:filterByCounty controlBody="scale-90" />
-        <SiteDatePicker bind:currentSiteId bind:currentSiteDateId controlBody="scale-90" buttonLeft="" buttonRight="" buttonYear="" buttonWeek="" dropdownShowDate={false} dropdownPointers={false} heading={null} yearPrefix="" weekPrefix="" controlOuter="" prefixYear="" prefixWeek="" suffixYear="" suffixWeek="" popupInner="" popupStyles="" labelledby="" />
+        <div class="flex flex-row">
+            {#if $page.data?.user && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN')}
+                <button type="button" class="btn" onclick={addSiteDate}><span class="text-success-400">✚</span>&nbsp;Add new site</button>
+            {/if}
+            <SiteDatePicker bind:currentSiteId bind:currentSiteDateId controlBody="scale-90" buttonLeft="" buttonRight="" buttonYear="" buttonWeek="" dropdownShowDate={false} dropdownPointers={false} heading={null} yearPrefix="" weekPrefix="" controlOuter="" prefixYear="" prefixWeek="" suffixYear="" suffixWeek="" popupInner="" popupStyles="" labelledby="" />
+        </div>
     </div>
 
     <!-- TODO: Make this change the site by alphabetical -->

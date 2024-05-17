@@ -1,13 +1,13 @@
 <script lang="ts">
+    import { GOTYPE } from '$lib/types.js';
+    import type { CssClasses } from '@skeletonlabs/skeleton';
     import Container from '$lib/components/layouts/Container.svelte';
     import { goto } from '$app/navigation';
     import { setContext } from 'svelte';
     import CountyFilter from '$lib/components/counties/countyFilter.svelte';
     import CountySort from '$lib/components/counties/countySort.svelte';
-    import type { CssClasses } from '@skeletonlabs/skeleton';
     import GoBack from '$lib/components/datanavigation/GoBack.svelte';
     import GoNext from '$lib/components/datanavigation/GoNext.svelte';
-    import { GOTYPE } from '$lib/types.js';
 
     let { data } = $props();
     setContext('counties', data.counties);
@@ -46,8 +46,8 @@
     <div class="bg-red flex flex-col lg:flex-row justify-between">
         <GoBack targetId={-1} targetType={GOTYPE.HOME} controlBody="scale-90" />
         <GoNext targetId={goNextCountyId()} targetType={goNextTargetType()} controlBody="scale-90" {controlDisabled} />
-        <CountySort bind:counties controlBody="scale-90" />
-        <CountyFilter bind:vButtonGroupClasses controlBody="scale-90" />
+        <CountySort bind:counties controlBody="scale-90 origin-left" />
+        <CountyFilter bind:vButtonGroupClasses controlBody="scale-90 origin-left" />
     </div>
 {/snippet}
 

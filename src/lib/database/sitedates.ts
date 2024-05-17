@@ -20,6 +20,7 @@ export async function getSiteDate(siteDateId: number) {
 }
 
 export async function getSiteDates(siteId: number) {
+    //console.log('ok', siteId);
     const siteDates = await prisma.siteDate.findMany({
         where: {
             siteId: siteId,
@@ -34,6 +35,7 @@ export async function getSiteDates(siteId: number) {
         ],
     });
 
+    //console.log('siteDates', siteDates);
     return siteDates;
 }
 

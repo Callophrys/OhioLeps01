@@ -1,18 +1,17 @@
 <script lang="ts">
+    import { GOTYPE } from '$lib/types.js';
     import Container from '$lib/components/layouts/Container.svelte';
     import { formatDate } from '$lib/utils';
     import { popup } from '@skeletonlabs/skeleton';
     //import type { PopupSettings } from '@skeletonlabs/skeleton';
     import { page } from '$app/stores';
     //import { enhance } from '$app/forms';
-    import { isEmpty, camelToFriendly } from '$lib/utils';
+    import { isEmpty } from '$lib/utils';
     import GoBack from '$lib/components/datanavigation/GoBack.svelte';
     // import GoNext from '$lib/components/datanavigation/GoNext.svelte';
-    import { GOTYPE } from '$lib/types.js';
 
     let { data, form } = $props();
-    let targetId = data.sites && data.sites.length ? data.sites[0].countyId : -1;
-    let targetIdSecondary = -1;
+    let targetId = $state(data.sites && data.sites.length ? data.sites[0].countyId : -1);
 </script>
 
 {#snippet head()}
@@ -211,7 +210,7 @@
         {:else if typeof data === 'object' && !isEmpty(data)}
             <div>
                 <div class="flex flex-wrap gap-2">
-                    {#each data.sites as site, i}
+                    {#each data.sites as site}
                         <a href="/api/sites/{site.siteId}">
                             <div class="card relative grid w-56 h-32 p-0 m-0 text-wrap hover:variant-soft">
                                 <div class="px-2 pt-2 w-full text-center">

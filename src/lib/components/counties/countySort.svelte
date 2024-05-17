@@ -1,29 +1,36 @@
 <script lang="ts">
     /*-- Imports */
-    import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
-    import { SORTORDER, type CountyComplete } from '$lib/types.js';
     import type { CssClasses } from '@skeletonlabs/skeleton';
+    import { SORTORDER, type CountyComplete } from '$lib/types.js';
+    import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
+
+    type CountySortProps = {
+        counties: CountyComplete[];
+        elementEins: CssClasses;
+        elementZwei: CssClasses;
+        elementDrei: CssClasses;
+        controlBody: CssClasses | null;
+    };
+
+    let { counties = $bindable(), elementEins = 'pr-2', elementZwei = '-mr-9', elementDrei = '', controlBody = null }: CountySortProps = $props();
 
     /*-- -- Data -- */
     /*-- Exports */
-    export let counties: CountyComplete[];
-
     /*-- Context */
     /*-- -- Styling -- */
     /*-- Properties (styles) */
-    export let elementEins: CssClasses = 'pr-2';
-    export let elementZwei: CssClasses = '-mr-9';
-    export let elementDrei: CssClasses = '';
 
     /*-- Constants (styles) */
     const cClassesElementEins = "my-auto before:content-['Counties:'] before:lg:content-['County_count:']";
     const cClassesElementZwei = 'flex flex-row space-x-2';
     const cClassesElementDrei = "my-auto text-right before:content-[''] md:before:content-['Sort_by'] lg:before:content-['Sort_by_County/Region:']";
+    const cControlBody = '';
 
     /*-- Reactives (styles) */
-    $: classesElementEins = `${cClassesElementEins} ${elementEins} ${$$props.class ?? ''}`;
-    $: classesElementZwei = `${cClassesElementZwei} ${elementZwei} ${$$props.class ?? ''}`;
-    $: classesElementDrei = `${cClassesElementDrei} ${elementDrei} ${$$props.class ?? ''}`;
+    let classesElementEins = $derived(`${cClassesElementEins} ${elementEins}`); // ${$$props.class ?? ''}`);
+    let classesElementZwei = $derived(`${cClassesElementZwei} ${elementZwei}`); // ${$$props.class ?? ''}`);
+    let classesElementDrei = $derived(`${cClassesElementDrei} ${elementDrei}`); // ${$$props.class ?? ''}`);
+    let classesControlBody = $derived(`${cControlBody} ${controlBody}`); //${$$props.class ?? ''}`);
 
     /*-- -- Coding -- */
     /*-- Enums */
@@ -35,11 +42,11 @@
     /*-- Constants (functional) */
     /*-- Properties (functional) */
     /*-- Variables and objects */
-    let valueCountyRegion: number = GEOGRAPHIC.COUNTY;
-    let sortOrderCounty: SORTORDER = SORTORDER.ASC;
-    let sortOrderRegion: SORTORDER = SORTORDER.NONE;
-    let sortIconCounty: string = 'table-sort-asc';
-    let sortIconRegion: string = '';
+    let valueCountyRegion: number = $state(GEOGRAPHIC.COUNTY);
+    let sortOrderCounty: SORTORDER = $state(SORTORDER.ASC);
+    let sortOrderRegion: SORTORDER = $state(SORTORDER.NONE);
+    let sortIconCounty: string = $state('table-sort-asc');
+    let sortIconRegion: string = $state('');
 
     /*-- Run first stuff */
     /*-- onMount, beforeUpdate, afterUpdate */
@@ -107,8 +114,8 @@
     &nbsp;{counties.length}
 </div>
 <div class={classesElementZwei}>
-    <span class={classesElementDrei} />
-    <div class="scale-75 origin-left">
+    <span class={classesElementDrei}></span>
+    <div class={classesControlBody}>
         <RadioGroup name="toggle-naming-group" active="variant-filled-primary" hover="hover:variant-soft-primary">
             <RadioItem bind:group={valueCountyRegion} on:click={handleSortClick} class={sortIconCounty} name="toggle-sort-county" value={GEOGRAPHIC.COUNTY}>County</RadioItem>
             <RadioItem bind:group={valueCountyRegion} on:click={handleSortClick} class={sortIconRegion} name="toggle-sort-region" value={GEOGRAPHIC.REGION}>Region</RadioItem>

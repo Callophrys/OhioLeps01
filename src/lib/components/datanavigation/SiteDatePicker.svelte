@@ -3,9 +3,9 @@
     import type { CssClasses, PopupSettings } from '@skeletonlabs/skeleton';
     import type { DateTracking, SiteDateYear, SiteDateYearSiteDates } from '$lib/types.js';
     import { goto } from '$app/navigation';
-    import { getContext } from 'svelte';
     import { ListBox, ListBoxItem, popup } from '@skeletonlabs/skeleton';
     import { compareYearWeek, formatDate, weekOfYearSince } from '$lib/utils';
+    //import { render } from 'svelte/server';
 
     /*-- -- Data -- */
     /*-- Exports */
@@ -71,9 +71,11 @@
 
     /*-- Context */
 
+    let siteDates: SiteDateYearSiteDates[] = $state([]);
+
     // siteDate list for respective site via Context
-    const siteDates: SiteDateYearSiteDates[] = $state(getContext('siteDates') ?? []);
-    console.log('siteDates - 1:', siteDates);
+    //const siteDates: SiteDateYearSiteDates[] = $state(getContext('siteDates') ?? []);
+    //console.log('siteDates - 1:', siteDates);
     //console.log('SiteDatePicker:siteDates', siteDates);
 
     /*-- -- Styling -- */
@@ -148,30 +150,40 @@
 
     /*-- Properties (functional) */
 
-    const uniqueYears = [...new Set(siteDates.map((x) => x.year.toString()))];
-    //console.log('uniqueYears:', uniqueYears);
+    let yearDates: any = $state(); // ArrayLike<unknown> | Iterable<unknown> | undefined = $state(); //yearsOfDate[recordYear]);
+    let uniqueYears = $derived.by(() => {
+        const yearsOfDate: any = {};
+        const yod = [...new Set(siteDates.map((x) => x.year.toString()))];
+        //console.log('uniqueYears:', yod);
+        yod.forEach((yr: string) => {
+            yearsOfDate[yr] = siteDates
+                .filter((x: SiteDateYear) => x.year.toString() === yr)
+                .map<SdoWeek>((y: SiteDateYear) => ({
+                    week: y.week,
+                    siteDateId: y.siteDateId,
+                    fDate: y.recordDate ? formatDate(new Date(y.recordDate).toISOString()) : '',
+                }));
+        });
 
-    const yearsOfDate: any = {};
-    uniqueYears.forEach((yr: string) => {
-        yearsOfDate[yr] = siteDates
-            .filter((x: SiteDateYear) => x.year.toString() === yr)
-            .map<SdoWeek>((y: SiteDateYear) => ({
-                week: y.week,
-                siteDateId: y.siteDateId,
-                fDate: y.recordDate ? formatDate(new Date(y.recordDate).toISOString()) : '',
-            }));
+        if (yearsOfDate.length) {
+            yearDates = recordYear ? yearsOfDate[recordYear] : yearsOfDate[0];
+        }
+
+        console.log('yearsOfDate:', yearsOfDate);
+        return yod;
     });
-    //console.log('yearsOfDate:', yearsOfDate);
 
-    const trackedWeeks = Array.from(siteDates)
-        .map<DateTracking>((w: SiteDateYearSiteDates) => ({
-            siteDateId: w.siteDateId,
-            year: w.year,
-            week: w.recordDate ? weekOfYearSince(new Date(w.recordDate)) : -1,
-            recordDate: new Date(w.recordDate),
-            fDate: w.recordDate ? formatDate(new Date(w.recordDate).toISOString()) : '',
-        }))
-        .sort(compareYearWeek);
+    let trackedWeeks = $derived(
+        Array.from(siteDates)
+            .map<DateTracking>((w: SiteDateYearSiteDates) => ({
+                siteDateId: w.siteDateId,
+                year: w.year,
+                week: w.recordDate ? weekOfYearSince(new Date(w.recordDate)) : -1,
+                recordDate: new Date(w.recordDate),
+                fDate: w.recordDate ? formatDate(new Date(w.recordDate).toISOString()) : '',
+            }))
+            .sort(compareYearWeek)
+    );
     //console.log('trackedWeeks:', trackedWeeks);
 
     /*-- Variables and objects */
@@ -207,14 +219,14 @@
         }
     }
 
-    function handleClickPrior(event: any) {
+    function handleClickPrior() {
         let idx = trackedWeeks.findIndex((x) => x.siteDateId === recordSiteDateId);
         if (idx > 0) {
             updatePerHandler(idx - 1);
         }
     }
 
-    function handleClickNext(event: any) {
+    function handleClickNext() {
         let idx = trackedWeeks.findIndex((x) => x.siteDateId === recordSiteDateId);
         if (idx < trackedWeeks.length - 1) {
             updatePerHandler(idx + 1);
@@ -231,13 +243,43 @@
 
     /*-- Methods */
     /*-- Reactives (functional) */
-    let yearDates = $derived(yearsOfDate[recordYear]);
     let trackedWeekIndex = $derived(trackedWeeks.findIndex((x: DateTracking) => x.siteDateId === recordSiteDateId));
     let nextDisabled = $derived(trackedWeekIndex > trackedWeeks.length - 2);
     let prevDisabled = $derived(trackedWeekIndex < 1);
 
     /*-- Other */
+
+    async function fetchData() {
+        let sdpath = `/api/sitedates/c/${currentSiteId}`;
+        try {
+            console.log('sdpath', sdpath);
+            const response = await fetch(`${sdpath}`);
+            console.log('response', response);
+            const data = await response.json();
+            // Assuming your API returns JSON data
+            siteDates = data.siteDates;
+            console.log('rsData', siteDates);
+        } catch (error) {
+            console.log('error sdpath', sdpath);
+            console.error('Error fetching data:', error);
+        }
+    }
+
+    // Call fetchData initially to populate the data
+    $effect(() => {
+        fetchData();
+    });
 </script>
+
+{#if false && siteDates}
+    <ul>
+        {#each siteDates as item}
+            <li>{item}</li>
+        {/each}
+    </ul>
+{:else if false}
+    <p>Loading...</p>
+{/if}
 
 {#snippet sHeading()}
     {#if heading}
@@ -263,6 +305,26 @@
     {/if}
 {/snippet}
 
+{#snippet sListBoxYears()}
+    <ListBox rounded="rounded-none" labelledby="Years for site">
+        {#each uniqueYears as year}
+            <ListBoxItem bind:group={recordYear} name="years" onchange={handleSelectYear} value={year}>
+                {year}
+            </ListBoxItem>
+        {/each}
+    </ListBox>
+{/snippet}
+
+{#snippet sListBoxWeeks()}
+    <ListBox rounded="rounded-none" labelledby="Weeks in timeframe">
+        {#each yearDates as week}
+            <ListBoxItem bind:group={recordSiteDateId} name="weeks" on:change={handleSelectWeek} value={week.siteDateId}>
+                {@render sPrefixWeek()}{`${week.week}${dropdownShowDate ? ' - ' + week.fDate : ''}`}
+            </ListBoxItem>
+        {/each}
+    </ListBox>
+{/snippet}
+
 <div class={classesControlOuter}>
     {@render sHeading()}
 
@@ -283,26 +345,14 @@
 
     <div data-popup="popupComboboxSiteDateYears">
         <div class={classesPopupInner} style={stylesPopup}>
-            <ListBox rounded="rounded-none" labelledby="Years for site">
-                {#each uniqueYears as year}
-                    <ListBoxItem bind:group={recordYear} name="years" onchange={handleSelectYear} value={year}>
-                        {year}
-                    </ListBoxItem>
-                {/each}
-            </ListBox>
+            {@render sListBoxYears()}
         </div>
     </div>
 
     <div data-popup="popupComboboxSiteDateWeeks">
         {#if yearDates}
             <div class={`${classesPopupInner} ${dropdownShowDate ? 'w-44' : 'w-28'}`} style={stylesPopup}>
-                <ListBox rounded="rounded-none" labelledby="Weeks in timeframe">
-                    {#each yearDates as week}
-                        <ListBoxItem bind:group={recordSiteDateId} name="weeks" on:change={handleSelectWeek} value={week.siteDateId}>
-                            {@render sPrefixWeek()}{`${week.week}${dropdownShowDate ? ' - ' + week.fDate : ''}`}
-                        </ListBoxItem>
-                    {/each}
-                </ListBox>
+                {@render sListBoxWeeks()}
             </div>
         {/if}
     </div>

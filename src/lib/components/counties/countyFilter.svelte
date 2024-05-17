@@ -1,32 +1,40 @@
 <script lang="ts">
     /*-- Imports */
-    import { getContext } from 'svelte';
-    import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
     import type { CountyMonitored } from '$lib/types';
     import type { CssClasses } from '@skeletonlabs/skeleton';
+    import { getContext } from 'svelte';
+    import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
+
+    type CountyFilterProps = {
+        vButtonGroupClasses: CssClasses;
+        elementEins: CssClasses;
+        elementZwei: CssClasses;
+        elementDrei: CssClasses;
+        controlBody: CssClasses | null;
+    };
+
+    let { vButtonGroupClasses = $bindable(''), elementEins = 'pr-2', elementZwei = '', elementDrei = '-mr-16', controlBody = null }: CountyFilterProps = $props();
 
     /*-- -- Data -- */
     /*-- Exports */
-    export let vButtonGroupClasses: CssClasses = '';
 
     /*-- Context */
     let counties: CountyMonitored[] = getContext('counties');
 
     /*-- -- Styling -- */
     /*-- Properties (styles) */
-    export let elementEins: CssClasses = 'pr-2';
-    export let elementZwei: CssClasses = '';
-    export let elementDrei: CssClasses = '-mr-16';
 
     /*-- Constants (styles) */
     const cClassesElementEins = "my-auto before:content-['Monitored_counties:'] before:lg:content-['Counties_with_monitored_sites:']";
     const cClassesElementZwei = "my-auto text-right before:content-[''] sm:before:content-['Filter_by:'] lg:before:content-['Filter_by_monitor_status:']";
     const cClassesElementDrei = 'flex flex-row space-x-2';
+    const cControlBody = '';
 
     /*-- Reactives (styles) */
-    $: classesElementEins = `${cClassesElementEins} ${elementEins} ${$$props.class ?? ''}`;
-    $: classesElementZwei = `${cClassesElementZwei} ${elementZwei} ${$$props.class ?? ''}`;
-    $: classesElementDrei = `${cClassesElementDrei} ${elementDrei} ${$$props.class ?? ''}`;
+    let classesElementEins = $derived(`${cClassesElementEins} ${elementEins}`); // ${$$props.class ?? ''}`);
+    let classesElementZwei = $derived(`${cClassesElementZwei} ${elementZwei}`); // ${$$props.class ?? ''}`);
+    let classesElementDrei = $derived(`${cClassesElementDrei} ${elementDrei}`); // ${$$props.class ?? ''}`);
+    let classesControlBody = $derived(`${cControlBody} ${controlBody}`); //${$$props.class ?? ''}`);
 
     /*-- -- Coding -- */
     /*-- Enums */
@@ -39,10 +47,12 @@
     /*-- Constants (functional) */
     /*-- Properties (functional) */
     /*-- Variables and objects */
-    let showUnmonitored = MonitorStatus.MONITORED;
+    let showUnmonitored = $state(MonitorStatus.MONITORED);
 
     /*-- Run first stuff */
-    filterCountyGroups(showUnmonitored);
+    $effect(() => {
+        filterCountyGroups(showUnmonitored);
+    });
 
     /*-- onMount, beforeUpdate, afterUpdate */
     /*-- Handlers */
@@ -72,9 +82,9 @@
     &nbsp;{counties.filter((c) => c.isMonitored).length}
 </div>
 <div class="flex flex-row space-x-2">
-    <div class={classesElementZwei} />
+    <div class={classesElementZwei}></div>
     <div class={classesElementDrei}>
-        <div class="scale-75 origin-left">
+        <div class={classesControlBody}>
             <RadioGroup active="variant-filled-primary" hover="hover:variant-soft-primary">
                 <RadioItem bind:group={showUnmonitored} on:click={handleShowClick} name="toggle-show-all" value={MonitorStatus.ALL}>All</RadioItem>
                 <RadioItem bind:group={showUnmonitored} on:click={handleShowClick} name="toggle-show-monitored" value={MonitorStatus.MONITORED}>Monitored</RadioItem>

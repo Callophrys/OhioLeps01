@@ -475,7 +475,7 @@
             <div class="my-auto">{data.siteDate.siteName}</div>
             <GoBack targetId={data.siteDate.siteId} targetType={GOTYPE.SITES} controlBody="scale-90" />
             <GoNext targetId={firstSdoId} targetType={GOTYPE.SITEDATEOBSERVATIONS} targetIdSecondary={data.siteDate.siteId} controlBody="scale-90" controlDisabled={firstSdoId < 0} />
-            <!-- <SiteDatePicker
+            <SiteDatePicker
                 bind:currentSiteId
                 bind:currentSiteDateId
                 controlBody="scale-90"
@@ -495,7 +495,7 @@
                 suffixWeek=""
                 popupInner=""
                 popupStyles=""
-                labelledby=""></SiteDatePicker> -->
+                labelledby=""></SiteDatePicker>
         </div>
 
         <hr />
