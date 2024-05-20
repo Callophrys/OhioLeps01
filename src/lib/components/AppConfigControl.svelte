@@ -1,9 +1,8 @@
 <script lang="ts">
     /*-- Imports */
-    import { camelToFriendly, toBool } from '$lib/utils';
     import type { AppConfigFormKeyChecked } from '$lib/types';
+    import { camelToFriendly, toBool } from '$lib/utils';
     import { getContext } from 'svelte';
-    import { afterUpdate } from 'svelte';
 
     /*-- -- Data -- */
     /*-- Exports */
@@ -17,7 +16,7 @@
     /*-- Reactives (styles) */
     /*-- -- Coding -- */
     /*-- Enums */
-    type candidate = {
+    type Candidate = {
         configValue: string;
         changed: boolean;
         class: string;
@@ -25,23 +24,26 @@
     };
 
     /*-- Constants (functional) */
-    const candidates: any = {};
+    const candidates: any = $state({});
 
     /*-- Properties (functional) */
     /*-- Variables and objects */
     /*-- Run first stuff */
-    for (const p of appConfigs) {
-        candidates[p.formKey] = {
-            configValue: p.configValue,
-            changed: false,
-            class: '',
-            checked: p.checked,
-        } as candidate;
-    }
+    $effect(() => {
+        for (const p of appConfigs) {
+            candidates[p.formKey] = {
+                configValue: p.configValue,
+                changed: false,
+                class: '',
+                checked: p.checked,
+            } as Candidate;
+        }
+    });
+
     //console.log('c', candidates);
 
     /*-- onMount, beforeUpdate, afterUpdate */
-    afterUpdate(() => {
+    $effect(() => {
         appConfigs.forEach((c) => {
             if (c.configType === 'boolean') {
                 let formValue = toBool(c.configValue);
@@ -51,8 +53,6 @@
                     console.log('>>', { config: c, candidate: candidates[c.formKey] });
                     console.log('<<', formValue, origValue);
                 }
-                /*
-                 */
 
                 candidates[c.formKey].changed = formValue !== origValue;
                 candidates[c.formKey].checked = formValue;
@@ -82,7 +82,7 @@
         <div class="w-fit flex flex-row">
             {#if appConfig.configType === 'string'}
                 {#if appConfig.configName.toLocaleLowerCase() === 'description'}
-                    <textarea id={appConfig.formKey} name={appConfig.formKey} rows="3" cols="50" class="resize p-1 rounded-md variant-filled {candidates[appConfig.formKey].class}" bind:value={appConfig.configValue} />
+                    <textarea id={appConfig.formKey} name={appConfig.formKey} rows="3" cols="50" class="resize p-1 rounded-md variant-filled {candidates[appConfig.formKey].class}" bind:value={appConfig.configValue}></textarea>
                 {:else}
                     <input id={appConfig.formKey} name={appConfig.formKey} type="text" class="p-1 rounded-md variant-filled {candidates[appConfig.formKey].class}" bind:value={appConfig.configValue} />
                 {/if}

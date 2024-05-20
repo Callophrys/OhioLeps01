@@ -72,6 +72,7 @@
     /*-- Context */
 
     let siteDates: SiteDateYearSiteDates[] = $state([]);
+    let isDisabled = $state(false);
 
     // siteDate list for respective site via Context
     //const siteDates: SiteDateYearSiteDates[] = $state(getContext('siteDates') ?? []);
@@ -249,8 +250,8 @@
 
     /*-- Other */
 
-    async function fetchData() {
-        let sdpath = `/api/sitedates/c/${currentSiteId}`;
+    async function fetchData(siteId: number) {
+        let sdpath = `/api/sitedates/c/${siteId}`;
         try {
             console.log('sdpath', sdpath);
             const response = await fetch(`${sdpath}`);
@@ -259,6 +260,7 @@
             // Assuming your API returns JSON data
             siteDates = data.siteDates;
             console.log('rsData', siteDates);
+            isDisabled = false;
         } catch (error) {
             console.log('error sdpath', sdpath);
             console.error('Error fetching data:', error);
@@ -267,7 +269,7 @@
 
     // Call fetchData initially to populate the data
     $effect(() => {
-        fetchData();
+        fetchData(currentSiteId);
     });
 </script>
 
@@ -329,18 +331,18 @@
     {@render sHeading()}
 
     <div class={classesControlBody} aria-labelledby={labelledby}>
-        <button type="button" class={classesButtonLeft} onclick={handleClickPrior} disabled={prevDisabled}>◀</button>
-        <button type="button" class={classesButtonYear} use:popup={popupSiteDateYears}>
+        <button type="button" class={classesButtonLeft} onclick={handleClickPrior} disabled={isDisabled || prevDisabled}>◀</button>
+        <button type="button" class={classesButtonYear} use:popup={popupSiteDateYears} disabled={isDisabled}>
             {@render sPrefixYear()}
             <span>{recordYear}</span>
             <span class={classesSuffixYear}></span>
         </button>
-        <button type="button" class={classesButtonWeek} use:popup={popupSiteDateWeeks}>
+        <button type="button" class={classesButtonWeek} use:popup={popupSiteDateWeeks} disabled={isDisabled}>
             {@render sPrefixWeek()}
             <span>{recordWeek}</span>
             <span class={classesSuffixWeek}></span>
         </button>
-        <button type="button" class={classesButtonRight} onclick={handleClickNext} disabled={nextDisabled}>▶</button>
+        <button type="button" class={classesButtonRight} onclick={handleClickNext} disabled={isDisabled || nextDisabled}>▶</button>
     </div>
 
     <div data-popup="popupComboboxSiteDateYears">

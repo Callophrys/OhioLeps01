@@ -4,16 +4,18 @@
 </script>
 
 {#snippet head()}
-    <div class="bg-red">Name-Address Count: {data.nameAddresses.length}</div>
+    <div><span>Name-Address Count:</span><span class="bg-slate-300 ml-2">{data.nameAddresses.length}</span></div>
 {/snippet}
+
 {#snippet body()}
     <ul class="nameAddresses">
         {#each data.nameAddresses as nameAddress}
-            <li class="nameAddress">
-                <a href="javascript:void(0);" title="nameAddress.slug" class="title">{nameAddress.fullName}</a>
-                <span class="bg-red-600">{nameAddress.organization ?? ''}</span>
+            <li class="nameAddress flex flex-row space-x-4 odd:bg-slate-300">
+                <button title="nameAddress.slug" class="w-72 text-right">{nameAddress.fullName}</button>
+                <div>{nameAddress.organization ?? ''}</div>
             </li>
         {/each}
     </ul>
 {/snippet}
+
 <Container {head} {body} tail={null} />

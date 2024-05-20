@@ -1,12 +1,10 @@
 <script lang="ts">
     /*-- Imports */
+    import type { DateTracking, DateTrackingSet } from '$lib/types.js';
     import DoubledContainer from '$lib/components/DoubledContainer.svelte';
-    import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
-    import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
-    import { onMount } from 'svelte';
+    import { Accordion, AccordionItem, RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
     import { setContext } from 'svelte';
     import { goto } from '$app/navigation';
-    import type { DateTracking, DateTrackingSet } from '$lib/types.js';
     import { compareNumeric, compareYearWeek, formatDate, weekOfYearSince, convertFtoC } from '$lib/utils';
     import DataOptions from '$lib/components/datanavigation/DataOptions.svelte';
     import SiteDatePicker from '$lib/components/datanavigation/SiteDatePicker.svelte';
@@ -103,7 +101,7 @@
     //console.log(data.siteDateObservations[0]);
 
     /*-- onMount, beforeUpdate, afterUpdate */
-    onMount(() => {
+    $effect(() => {
         let x: string;
 
         x = localStorage?.useFarenheit;

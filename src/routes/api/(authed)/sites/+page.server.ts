@@ -1,7 +1,7 @@
+import type { SiteCountyState } from '$lib/types';
 import { fail } from '@sveltejs/kit';
 import { redirect } from '@sveltejs/kit';
 import { addSite, getSite, getSites, removeSite } from '$lib/database/sites.js';
-import type { SiteCountyState } from '$lib/types';
 
 export async function load({ cookies, url }) {
     // TODO: fix the issue where user refreshes and 500 error appears
@@ -16,7 +16,7 @@ export async function load({ cookies, url }) {
     const json = JSON.stringify(sites);
     const jsonResult: SiteCountyState[] = JSON.parse(json);
 
-    console.log(jsonResult);
+    //console.log(jsonResult);
     return { sites: jsonResult };
 }
 

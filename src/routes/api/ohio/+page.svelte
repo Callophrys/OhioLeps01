@@ -155,7 +155,7 @@
         //console.log('CountySpecimens:', data.CountySpecimens);
         //console.log('ctys:', ctys);
         let spcno = data.CountySpecimens.filter((g: any) => {
-            console.log(g.county);
+            //console.log(g.county);
             return ctys.includes(g.county.toString().toLowerCase());
         });
         //console.log('spcno:', spcno);

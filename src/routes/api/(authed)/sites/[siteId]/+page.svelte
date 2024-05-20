@@ -1,6 +1,6 @@
 <script lang="ts">
     /*-- Imports */
-    import type { County, Site } from '@prisma/client';
+    //import type { County, Site } from '@prisma/client';
     import Container from '$lib/components/layouts/Container.svelte';
     import CountyPicker from '$lib/components/datanavigation/CountyPicker.svelte';
     import SitePicker from '$lib/components/datanavigation/SitePicker.svelte';
@@ -8,7 +8,7 @@
     import CountySite from '$lib/components/datanavigation/CountySite.svelte';
     import { setContext } from 'svelte';
     import GoBack from '$lib/components/datanavigation/GoBack.svelte';
-    import GoNext from '$lib/components/datanavigation/GoNext.svelte';
+    //import GoNext from '$lib/components/datanavigation/GoNext.svelte';
     import { GOTYPE } from '$lib/types.js';
     import CountySort from '$lib/components/counties/countySort.svelte';
     import StateCountyPicker from '$lib/components/query/StateCountyPicker.svelte';
@@ -46,7 +46,7 @@
 
     /*-- onMount, beforeUpdate, afterUpdate */
     $effect(() => {
-        console.log('onMount for filterByCounty');
+        console.log('effect (onMount) for filterByCounty');
         let x = localStorage?.filterByCounty;
         if (x && x.length) {
             filterByCounty = x === '1';
