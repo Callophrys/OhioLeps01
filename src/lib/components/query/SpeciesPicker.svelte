@@ -24,9 +24,9 @@
     /*-- -- Coding -- */
     /*-- Enums */
     /*-- Constants (functional) */
-    const popupComboboxSpecies: PopupSettings = {
+    const popupComboSpecies: PopupSettings = {
         event: 'focus-click',
-        target: 'popupComboboxSpecies',
+        target: 'popupComboSpecies',
         placement: 'bottom',
     };
 
@@ -45,10 +45,9 @@
     let sortIconCommon: string = '';
     let sortIconLatin: string = '';
 
-
     function SortSpecies(isScientific: boolean) {
         console.log(speciesChecklist[0]);
-// TODO: handle flip flop of sort order
+        // TODO: handle flip flop of sort order
         if (isScientific) {
             console.log('useLatin', useLatin);
             return speciesChecklist.toSorted((a: Checklist, b: Checklist) => {
@@ -255,7 +254,7 @@
 </script>
 
 <div class="flex items-center space-x-2">
-    <button class="btn w-32 variant-filled justify-between" use:popup={popupComboboxSpecies} on:click={(e) => e.preventDefault()}>
+    <button class="btn w-32 variant-filled justify-between" use:popup={popupComboSpecies} on:click={(e) => e.preventDefault()}>
         <span>Species</span>
         <span>↓</span>
     </button>
@@ -264,17 +263,11 @@
     </div>
 </div>
 
-<div data-popup="popupComboboxSpecies">
+<div data-popup="popupComboSpecies">
     <div class="card w-64 shadow-xl p-2">
         <label class="flex justify-between space-x-2">
             <span>{useAllSpecies ? 'Select all' : 'Unselect all'}</span>
-            <SlideToggle
-                name="toggle-all-species"
-                size="sm"
-                active="variant-filled-primary"
-                bind:checked={useAllSpecies}
-                on:click={toggleAllSpecies}
-            /><input hidden />
+            <SlideToggle name="toggle-all-species" size="sm" active="variant-filled-primary" bind:checked={useAllSpecies} on:click={toggleAllSpecies} /><input hidden />
         </label>
 
         <span class="my-auto">Naming</span>

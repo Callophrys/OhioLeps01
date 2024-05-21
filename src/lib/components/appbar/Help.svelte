@@ -15,9 +15,9 @@
     /*-- -- Coding -- */
     /*-- Enums */
     /*-- Constants (functional) */
-    const popupComboboxHelp: PopupSettings = {
+    const popupComboHelp: PopupSettings = {
         event: 'focus-click',
-        target: 'popupComboboxHelp',
+        target: 'popupComboHelp',
         placement: 'bottom',
         closeQuery: '.list-nav',
     };
@@ -37,12 +37,12 @@
     });
 </script>
 
-<button class="btn variant-filled w-32 justify-between" use:popup={popupComboboxHelp}>
+<button class="btn variant-filled w-32 justify-between" use:popup={popupComboHelp}>
     <span class="capitalize">Help</span>
     <span>↓</span>
 </button>
 
-<div data-popup="popupComboboxHelp">
+<div data-popup="popupComboHelp">
     <div class="card w-48 shadow-xl py-2">
         <!-- svelte-ignore a11y-label-has-associated-control -->
         <label class="content flex justify-between px-2 pb-1">

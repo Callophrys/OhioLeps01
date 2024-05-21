@@ -18,9 +18,9 @@
     let comboboxValue: string = $state('');
 
     /*-- Variables and objects */
-    const popupCombobox: PopupSettings = {
+    const popupCombo: PopupSettings = {
         event: 'focus-click',
-        target: 'popupCombobox',
+        target: 'popupCombo',
         placement: 'bottom',
         closeQuery: '.listbox-item',
     };
@@ -50,12 +50,12 @@
 </script>
 
 <svelte:head>{@html '<script>(' + setInitialClassState.toString() + ')();</script>'}</svelte:head>
-<button class="btn variant-filled w-32 justify-between" use:popup={popupCombobox}>
+<button class="btn variant-filled w-32 justify-between" use:popup={popupCombo}>
     <span class="capitalize">Theme</span>
     <span>↓</span>
 </button>
 
-<div data-popup="popupCombobox">
+<div data-popup="popupCombo">
     <div class="card w-36 shadow-xl py-2">
         <!-- svelte-ignore a11y-label-has-associated-control -->
         <label class="content-center flex justify-between px-2 pb-1">

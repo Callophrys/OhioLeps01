@@ -80,7 +80,7 @@
     /*-- Constants (functional) */
     const popupSdoSpecies: PopupSettings = {
         event: 'focus-click',
-        target: 'popupComboboxSpecies',
+        target: 'popupComboSpecies',
         placement: 'bottom',
         closeQuery: '.listbox-item',
     };
@@ -297,7 +297,7 @@
         <button type="button" class={classesButtonRight} on:click={handleClickNext} disabled={!enabledNext}>▶</button>
     </div>
 
-    <div data-popup="popupComboboxSpecies">
+    <div data-popup="popupComboSpecies">
         <div class={classesPopupInner} style={stylesPopup}>
             <ListBox rounded="rounded-none" labelledby="Species for site">
                 {#each sdoCommon as sdo}

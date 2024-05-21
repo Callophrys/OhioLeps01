@@ -124,7 +124,7 @@
 
     <!-- <div class="w-1/2 text-right my-auto">Observations (year/week)</div> -->
     <!-- <div class="w-1/2"> -->
-    <!--     <button class="btn variant-soft w-40 justify-between" use:popup={popupComboboxSiteDate}> -->
+    <!--     <button class="btn variant-soft w-40 justify-between" use:popup={popupComboSiteDate}> -->
     <!--         <span class="capitalize">{comboboxValueSiteDate ? `${comboboxValueSiteDate.toString().slice(0, 4)} week ${comboboxValueSiteDate % 100}` : 'Year week'}</span> -->
     <!--         <span>↓</span> -->
     <!--     </button> -->

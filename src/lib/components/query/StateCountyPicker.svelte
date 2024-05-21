@@ -24,9 +24,9 @@
     /*-- -- Coding -- */
     /*-- Enums */
     /*-- Constants (functional) */
-    const popupComboboxCounty: PopupSettings = {
+    const popupComboCounty: PopupSettings = {
         event: 'focus-click',
-        target: 'popupComboboxCounty',
+        target: 'popupComboCounty',
         placement: 'bottom',
     };
 
@@ -92,7 +92,7 @@
 </script>
 
 <div class="flex items-center space-x-2">
-    <button class="btn w-32 variant-filled justify-between" use:popup={popupComboboxCounty} on:click={(e) => e.preventDefault()}>
+    <button class="btn w-32 variant-filled justify-between" use:popup={popupComboCounty} on:click={(e) => e.preventDefault()}>
         <span class="capitalize">{(showStateProvince ? 'State/' : '') + 'Counties'}</span>
         <span>↓</span>
     </button>
@@ -101,7 +101,7 @@
     </div>
 </div>
 
-<div data-popup="popupComboboxCounty">
+<div data-popup="popupComboCounty">
     <div class="card w-64 shadow-xl p-2">
         <label class="flex justify-between space-x-2">
             <span>{allSelected ? 'Unselect all' : 'Select all'}</span>

@@ -72,7 +72,7 @@
     /*-- Context */
 
     let siteDates: SiteDateYearSiteDates[] = $state([]);
-    let isDisabled = $state(false);
+    let isDisabled: boolean = $state(true);
 
     // siteDate list for respective site via Context
     //const siteDates: SiteDateYearSiteDates[] = $state(getContext('siteDates') ?? []);
@@ -137,14 +137,14 @@
     /*-- Constants (functional) */
     const popupSiteDateYears: PopupSettings = {
         event: 'focus-click',
-        target: 'popupComboboxSiteDateYears',
+        target: 'popupComboSiteDateYears',
         placement: 'bottom',
         closeQuery: '.listbox-item',
     };
 
     const popupSiteDateWeeks: PopupSettings = {
         event: 'focus-click',
-        target: 'popupComboboxSiteDateWeeks',
+        target: 'popupComboSiteDateWeeks',
         placement: 'bottom',
         closeQuery: '.listbox-item',
     };
@@ -345,13 +345,13 @@
         <button type="button" class={classesButtonRight} onclick={handleClickNext} disabled={isDisabled || nextDisabled}>▶</button>
     </div>
 
-    <div data-popup="popupComboboxSiteDateYears">
+    <div data-popup="popupComboSiteDateYears">
         <div class={classesPopupInner} style={stylesPopup}>
             {@render sListBoxYears()}
         </div>
     </div>
 
-    <div data-popup="popupComboboxSiteDateWeeks">
+    <div data-popup="popupComboSiteDateWeeks">
         {#if yearDates}
             <div class={`${classesPopupInner} ${dropdownShowDate ? 'w-44' : 'w-28'}`} style={stylesPopup}>
                 {@render sListBoxWeeks()}
