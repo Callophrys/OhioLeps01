@@ -166,7 +166,7 @@
 
     /*-- Variables and objects */
     let recordYear: string = $state('');
-    let recordWeek: number = $state(-1);
+    let recordWeek: string = $state('');
 
     /*-- Run first stuff */
     /*-- onMount, beforeUpdate, afterUpdate */
@@ -207,7 +207,7 @@
         console.log('updatePerHandler.idx:', idx);
         const tw = trackedWeeks[idx];
         recordYear = tw.year.toString();
-        recordWeek = tw.week;
+        recordWeek = tw.week.toString();
         currentSiteDateId = tw.siteDateId;
         goto('/api/sitedates/' + tw.siteDateId);
     }
@@ -222,6 +222,9 @@
 
     async function fetchData(siteId: number) {
         let sdpath = `/api/sitedates/c/${siteId}`;
+        isDisabled = true;
+        recordYear = '...';
+        recordWeek = '...';
 
         try {
             const response = await fetch(`${sdpath}`);
@@ -248,7 +251,7 @@
             uniqueYears.length = 0;
             uniqueYears.push(...new Set(siteDates.map((x) => x.year.toString())));
             recordYear = uniqueYears.length ? uniqueYears[0] : '';
-            recordWeek = siteDates[0].week;
+            recordWeek = siteDates[0].week.toString();
             isDisabled = false;
         } catch (error) {
             console.error('Error fetching data:', error);

@@ -207,7 +207,6 @@
             </div>
         </h2>
 
-        <!-- Year and week dropdowns -->
         <div class="flex flex-row space-x-2 pb-2 scale-90">
             <div>
                 <select class="select w-28" bind:value={y} onblur={() => ([w] = y.children)}>
@@ -473,27 +472,29 @@
             <div class="my-auto">{data.siteDate.siteName}</div>
             <GoBack targetId={data.siteDate.siteId} targetType={GOTYPE.SITES} controlBody="scale-90" />
             <GoNext targetId={firstSdoId} targetType={GOTYPE.SITEDATEOBSERVATIONS} targetIdSecondary={data.siteDate.siteId} controlBody="scale-90" controlDisabled={firstSdoId < 0} />
-            <SiteDatePicker
-                bind:currentSiteId
-                bind:currentSiteDateId
-                controlBody="scale-90"
-                buttonLeft="!px-2"
-                buttonRight="!px-2"
-                buttonYear="w-28 px-0 md:px-1 lg:px-2"
-                buttonWeek="w-24 px-0 md:px-1 lg:px-2"
-                dropdownShowDate={false}
-                dropdownPointers={false}
-                heading={null}
-                yearPrefix="Year:"
-                weekPrefix="Week:"
-                controlOuter=""
-                prefixYear=""
-                prefixWeek=""
-                suffixYear=""
-                suffixWeek=""
-                popupInner=""
-                popupStyles=""
-                labelledby=""></SiteDatePicker>
+            <SiteDatePicker bind:currentSiteId bind:currentSiteDateId controlBody="scale-90" buttonLeft="" buttonRight="" buttonYear="" buttonWeek="" dropdownShowDate={false} dropdownPointers={false} heading={null} yearPrefix="" weekPrefix="" controlOuter="" prefixYear="" prefixWeek="" suffixYear="" suffixWeek="" popupInner="" popupStyles="" labelledby="" />
+            <!-- below version breaks -->
+            <!--     <SiteDatePicker -->
+            <!--         bind:currentSiteId -->
+            <!--         bind:currentSiteDateId -->
+            <!--         controlBody="scale-90" -->
+            <!--         buttonLeft="!px-2" -->
+            <!--         buttonRight="!px-2" -->
+            <!--         buttonYear="w-28 px-0 md:px-1 lg:px-2" -->
+            <!--         buttonWeek="w-24 px-0 md:px-1 lg:px-2" -->
+            <!--         dropdownShowDate={false} -->
+            <!--         dropdownPointers={false} -->
+            <!--         heading={null} -->
+            <!--         yearPrefix="Year:" -->
+            <!--         weekPrefix="Week:" -->
+            <!--         controlOuter="" -->
+            <!--         prefixYear="" -->
+            <!--         prefixWeek="" -->
+            <!--         suffixYear="" -->
+            <!--         suffixWeek="" -->
+            <!--         popupInner="" -->
+            <!--         popupStyles="" -->
+            <!--         labelledby=""></SiteDatePicker> -->
         </div>
 
         <hr />

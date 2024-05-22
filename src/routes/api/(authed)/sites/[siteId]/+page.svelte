@@ -8,10 +8,8 @@
     import CountySite from '$lib/components/datanavigation/CountySite.svelte';
     import { setContext } from 'svelte';
     import GoBack from '$lib/components/datanavigation/GoBack.svelte';
-    //import GoNext from '$lib/components/datanavigation/GoNext.svelte';
+    import GoNext from '$lib/components/datanavigation/GoNext.svelte';
     import { GOTYPE } from '$lib/types.js';
-    import CountySort from '$lib/components/counties/countySort.svelte';
-    import StateCountyPicker from '$lib/components/query/StateCountyPicker.svelte';
     import { page } from '$app/stores';
     import { goto } from '$app/navigation';
 
@@ -103,7 +101,7 @@
 {#snippet head()}
     <div class="flex flex-row justify-between gap-1 md:gap-2">
         <GoBack bind:targetId={currentCountyId} bind:targetType={GOTYPE.COUNTYSITES} targetIdSecondary={null} controlBody="scale-90" buttonCenter="" scriptCenter="" labelledby="" />
-        <!-- TODO: Filter sites to selected country -->
+        <GoNext targetId={currentSiteDateId} targetType={GOTYPE.SITEDATES} targetIdSecondary={currentSiteId} controlBody="scale-90" controlDisabled={data.site.siteDates.length < 1} />
         <CountyPicker bind:currentCountyId bind:currentSiteId bind:filterByCounty />
         <SitePicker bind:currentCountyId bind:currentSiteId bind:currentSiteDateId bind:filterByCounty controlBody="scale-90" />
         <div class="flex flex-row">
@@ -113,14 +111,6 @@
             <SiteDatePicker bind:currentSiteId bind:currentSiteDateId controlBody="scale-90" buttonLeft="" buttonRight="" buttonYear="" buttonWeek="" dropdownShowDate={false} dropdownPointers={false} heading={null} yearPrefix="" weekPrefix="" controlOuter="" prefixYear="" prefixWeek="" suffixYear="" suffixWeek="" popupInner="" popupStyles="" labelledby="" />
         </div>
     </div>
-
-    <!-- TODO: Make this change the site by alphabetical -->
-    <!--       Need to filter Observations where observations must indicate as such -->
-    <!--       If limit is reached then move loudly to next county's worth of sites -->
-    <!---->
-    <!--       Any change here should advance the downstream pickers and the -->
-    <!--       current data - as long as there is no unchanged data - Prompt -->
-    <!--       user about this -->
 
     <!-- <div class="w-1/2 text-right my-auto">Observations (year/week)</div> -->
     <!-- <div class="w-1/2"> -->

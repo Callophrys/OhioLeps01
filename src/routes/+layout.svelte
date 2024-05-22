@@ -2,8 +2,8 @@
     import '../app.css';
     import { AppShell, AppBar, Avatar, LightSwitch } from '@skeletonlabs/skeleton';
     import { initializeStores, Modal } from '@skeletonlabs/skeleton';
-    import { computePosition, autoUpdate, offset, shift, flip, arrow } from '@floating-ui/dom';
     import { storePopup } from '@skeletonlabs/skeleton';
+    import { computePosition, autoUpdate, offset, shift, flip, arrow } from '@floating-ui/dom';
     import { enhance } from '$app/forms';
     import { page } from '$app/stores';
     import Help from '$lib/components/appbar/Help.svelte';
