@@ -777,3 +777,10 @@ pnpm list
 pnpm update svelte@5.0.0-next.132
 pnpm update skeletonlabs/skeleton@next
 
+```sql
+select distinct c.name county, s.sitename, year(sd.recordDate)
+from site s
+inner join sitedate sd on s.siteId = sd.siteId
+inner join county c on c.id = s.countyId
+order by 1, 2, 3;
+```

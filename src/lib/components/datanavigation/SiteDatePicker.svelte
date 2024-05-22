@@ -5,7 +5,6 @@
     import { goto } from '$app/navigation';
     import { ListBox, ListBoxItem, popup } from '@skeletonlabs/skeleton';
     import { compareYearWeek, formatDate, weekOfYearSince } from '$lib/utils';
-    //import { render } from 'svelte/server';
 
     /*-- -- Data -- */
     /*-- Exports */
@@ -151,62 +150,32 @@
 
     /*-- Properties (functional) */
 
-    let yearDates: any = $state(); // ArrayLike<unknown> | Iterable<unknown> | undefined = $state(); //yearsOfDate[recordYear]);
-    let uniqueYears = $derived.by(() => {
-        const yearsOfDate: any = {};
-        const yod = [...new Set(siteDates.map((x) => x.year.toString()))];
-        //console.log('uniqueYears:', yod);
-        yod.forEach((yr: string) => {
-            yearsOfDate[yr] = siteDates
-                .filter((x: SiteDateYear) => x.year.toString() === yr)
-                .map<SdoWeek>((y: SiteDateYear) => ({
-                    week: y.week,
-                    siteDateId: y.siteDateId,
-                    fDate: y.recordDate ? formatDate(new Date(y.recordDate).toISOString()) : '',
-                }));
-        });
-
-        if (yearsOfDate.length) {
-            yearDates = recordYear ? yearsOfDate[recordYear] : yearsOfDate[0];
-        }
-
-        console.log('yearsOfDate:', yearsOfDate);
-        return yod;
-    });
-
-    let trackedWeeks = $derived(
-        Array.from(siteDates)
-            .map<DateTracking>((w: SiteDateYearSiteDates) => ({
-                siteDateId: w.siteDateId,
-                year: w.year,
-                week: w.recordDate ? weekOfYearSince(new Date(w.recordDate)) : -1,
-                recordDate: new Date(w.recordDate),
-                fDate: w.recordDate ? formatDate(new Date(w.recordDate).toISOString()) : '',
+    const uniqueYears: string[] = $state([]);
+    const yearDates: any = $derived(
+        siteDates
+            .filter((x: SiteDateYear) => x.year.toString() === recordYear)
+            .map<SdoWeek>((y: SiteDateYear) => ({
+                week: y.week,
+                siteDateId: y.siteDateId,
+                fDate: y.recordDate ? formatDate(new Date(y.recordDate).toISOString()) : '',
             }))
-            .sort(compareYearWeek)
     );
-    //console.log('trackedWeeks:', trackedWeeks);
+
+    const trackedWeeks: DateTracking[] = [];
+    $inspect(trackedWeeks);
 
     /*-- Variables and objects */
-    let recordSiteDateId = $state(currentSiteDateId);
     let recordYear: string = $state('');
-    let recordWeek: number = $state(0);
+    let recordWeek: number = $state(-1);
 
     /*-- Run first stuff */
     /*-- onMount, beforeUpdate, afterUpdate */
-    $effect(() => {
-        let tw = trackedWeeks.find((x) => x.siteDateId === currentSiteDateId);
-        if (tw) {
-            recordYear = tw.year.toString();
-            recordWeek = tw.recordDate ? weekOfYearSince(new Date(tw.recordDate)) : -1;
-        }
-    });
 
     /*-- Handlers */
     function handleSelectYear(event: any) {
         let targetYear = event.currentTarget.value.toString();
         let idx = trackedWeeks.findIndex((x) => x.year.toString() === targetYear);
-        //console.log('yearDates', yearDates.slice(0, 2));
+        console.log('yearDates', yearDates.slice(0, 2));
 
         if (idx > -1) {
             updatePerHandler(idx);
@@ -221,30 +190,31 @@
     }
 
     function handleClickPrior() {
-        let idx = trackedWeeks.findIndex((x) => x.siteDateId === recordSiteDateId);
+        let idx = trackedWeeks.findIndex((x) => x.siteDateId === currentSiteDateId);
         if (idx > 0) {
             updatePerHandler(idx - 1);
         }
     }
 
     function handleClickNext() {
-        let idx = trackedWeeks.findIndex((x) => x.siteDateId === recordSiteDateId);
+        let idx = trackedWeeks.findIndex((x) => x.siteDateId === currentSiteDateId);
         if (idx < trackedWeeks.length - 1) {
             updatePerHandler(idx + 1);
         }
     }
 
     function updatePerHandler(idx: number) {
+        console.log('updatePerHandler.idx:', idx);
         const tw = trackedWeeks[idx];
         recordYear = tw.year.toString();
         recordWeek = tw.week;
-        recordSiteDateId = tw.siteDateId;
+        currentSiteDateId = tw.siteDateId;
         goto('/api/sitedates/' + tw.siteDateId);
     }
 
     /*-- Methods */
     /*-- Reactives (functional) */
-    let trackedWeekIndex = $derived(trackedWeeks.findIndex((x: DateTracking) => x.siteDateId === recordSiteDateId));
+    let trackedWeekIndex = $derived(trackedWeeks.findIndex((x: DateTracking) => x.siteDateId === currentSiteDateId));
     let nextDisabled = $derived(trackedWeekIndex > trackedWeeks.length - 2);
     let prevDisabled = $derived(trackedWeekIndex < 1);
 
@@ -252,18 +222,37 @@
 
     async function fetchData(siteId: number) {
         let sdpath = `/api/sitedates/c/${siteId}`;
+
         try {
-            console.log('sdpath', sdpath);
             const response = await fetch(`${sdpath}`);
-            console.log('response', response);
             const data = await response.json();
-            // Assuming your API returns JSON data
+
             siteDates = data.siteDates;
-            console.log('rsData', siteDates);
+            console.log('Response data', siteDates);
+
+            currentSiteDateId = siteDates ? siteDates[0].siteDateId : -1;
+
+            trackedWeeks.length = 0;
+            trackedWeeks.push(
+                ...Array.from(siteDates)
+                    .map<DateTracking>((w: SiteDateYearSiteDates) => ({
+                        siteDateId: w.siteDateId,
+                        year: w.year,
+                        week: w.recordDate ? weekOfYearSince(new Date(w.recordDate)) : -1,
+                        recordDate: new Date(w.recordDate),
+                        fDate: w.recordDate ? formatDate(new Date(w.recordDate).toISOString()) : '',
+                    }))
+                    .sort(compareYearWeek)
+            );
+
+            uniqueYears.length = 0;
+            uniqueYears.push(...new Set(siteDates.map((x) => x.year.toString())));
+            recordYear = uniqueYears.length ? uniqueYears[0] : '';
+            recordWeek = siteDates[0].week;
             isDisabled = false;
         } catch (error) {
-            console.log('error sdpath', sdpath);
             console.error('Error fetching data:', error);
+            console.log('From sdpath', sdpath);
         }
     }
 
@@ -273,15 +262,17 @@
     });
 </script>
 
-{#if false && siteDates}
+<!--
+{#if siteDates}
     <ul>
         {#each siteDates as item}
             <li>{item}</li>
         {/each}
     </ul>
-{:else if false}
+{:else}
     <p>Loading...</p>
 {/if}
+-->
 
 {#snippet sHeading()}
     {#if heading}
@@ -310,7 +301,7 @@
 {#snippet sListBoxYears()}
     <ListBox rounded="rounded-none" labelledby="Years for site">
         {#each uniqueYears as year}
-            <ListBoxItem bind:group={recordYear} name="years" onchange={handleSelectYear} value={year}>
+            <ListBoxItem bind:group={recordYear} name="years" on:change={handleSelectYear} value={year}>
                 {year}
             </ListBoxItem>
         {/each}
@@ -320,7 +311,7 @@
 {#snippet sListBoxWeeks()}
     <ListBox rounded="rounded-none" labelledby="Weeks in timeframe">
         {#each yearDates as week}
-            <ListBoxItem bind:group={recordSiteDateId} name="weeks" on:change={handleSelectWeek} value={week.siteDateId}>
+            <ListBoxItem bind:group={currentSiteDateId} name="weeks" on:change={handleSelectWeek} value={week.siteDateId}>
                 {@render sPrefixWeek()}{`${week.week}${dropdownShowDate ? ' - ' + week.fDate : ''}`}
             </ListBoxItem>
         {/each}
