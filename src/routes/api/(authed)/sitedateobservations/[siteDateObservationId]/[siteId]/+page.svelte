@@ -19,12 +19,12 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     import { setContext } from 'svelte';
     import { onMount } from 'svelte';
     import GoBack from '$lib/components/datanavigation/GoBack.svelte';
+    //import GoNext from '$lib/components/datanavigation/GoNext.svelte';
     import { GOTYPE } from '$lib/types.js';
 
     /*-- -- Data -- */
     /*-- Exports */
     let { data, form } = $props();
-    // $inspect(data, form);
 
     /*-- Context */
     setContext('sites', data.sites);
@@ -136,41 +136,41 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 
     let isEditing = $state(false);
     let isAdding = $state(false);
-    let isViewAll = $state(false);
-    let showRecentEdits = $state(true);
-    let showDeletedData = $state(false);
     let showHodges = $state(true);
     let showP3 = $state(true);
 
-    /*-- Variables and objects */
-    let x: string;
+    let isViewAll: boolean = $state(false);
+    let showRecentEdits: boolean = $state(true);
+    let showDeletedData: boolean = $state(true);
 
+    /*
+    let isViewAll: boolean = $state(() => {
+        let x = localStorage?.isViewAll;
+        return x && x.length ? x === '1' : false;
+    });
+
+    let showRecentEdits: boolean = $state(() => {
+        let x = localStorage?.showRecentEdits;
+        return x && x.length ? x === '1' : true;
+    });
+
+    let showDeletedData: boolean = $state(() => {
+        let x = localStorage?.showDeletedData;
+        return x && x.length ? x === '1' : true;
+    });
+    */
+
+    /*-- Variables and objects */
     /*-- Run first stuff */
     const modalStore = getModalStore();
 
-    /*-- onMount, beforeUpdate, afterUpdate */
-    onMount(() => {
-        x = localStorage?.showRecentEdits;
-        if (x && x.length) {
-            showRecentEdits = x === '1';
-        }
-
-        x = localStorage?.showDeletedData;
-        if (x && x.length) {
-            showDeletedData = x === '1';
-        }
-
-        x = localStorage?.isViewAll;
-        if (x && x.length) {
-            isViewAll = x === '1';
-        }
-    });
-
-    $effect(() => {
-        localStorage.setItem('showRecentEdits', showRecentEdits ? '1' : '0');
-        localStorage.setItem('showDeletedData', showDeletedData ? '1' : '0');
-        localStorage.setItem('isViewAll', isViewAll ? '1' : '0');
-    });
+    /*-- onMount */
+    // afterUpdate
+    /*
+    //$effect(() => localStorage.setItem('isViewAll', (isViewAll ? '1' : '0')));
+    //$effect(() => localStorage.setItem('showRecentEdits', (showRecentEdits ? '1' : '0')));
+    //$effect(() => localStorage.setItem('showDeletedData', (showDeletedData ? '1' : '0')));
+    */
 
     /*-- Handlers */
     const handleChange = () => {
@@ -214,6 +214,11 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     // let total = $derived(sdoSections.reduce((t: number, o: any) => t + (isNaN(o.value) ? 0 : Number(o.value)), 0));
     //console.log(sdoSections);
 
+    let nextSiteDateObservation = $derived(() => {
+        let currentIndex = data.siteDates.findIndex((x) => x === currentSiteDateObservation.siteDateId);
+        let nextIndex = ++currentIndex % data.siteDates.length;
+        return data.siteDates[nextIndex];
+    });
     let availableObservations = $derived(data.checklistsSiteDateObs.filter((x: SiteDateObservationChecklist) => showDeletedData || !x.deleted));
 
     /*-- Other */
@@ -232,11 +237,39 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
         <div class="pr-4">
             <!-- Header and options -->
             <!-- TODO: make this flex better for responsive sizings -->
-            <div class="flex flex-col lg:flex-row lg:justify-start gap-1 lg:gap-2 pb-2 text-surface-600-300-token">
-                <GoBack targetId={data.siteDateObservation.siteDate.siteDateId} targetType={GOTYPE.SITEDATES} controlBody="scale-90" />
-                <SitePicker currentSiteId={data.siteDateObservation.siteDate.siteId} controlBody="scale-90" />
-                <!-- <SiteDatePicker currentSiteId={data.siteDateObservation.siteDate.siteId} currentSiteDateId={data.siteDateObservation.siteDateId ?? -1} controlBody="scale-90" /> -->
+            <div class="flex flex-col lg:flex-row lg:justify-between gap-1 lg:gap-2 pb-2 text-surface-600-300-token">
+                <div class="flex flex-row">
+                    <GoBack targetId={data.siteDateObservation.siteDate.siteDateId} targetType={GOTYPE.SITEDATES} controlBody="scale-90" />
+                    <!--
+                <GoNext targetId={nextSiteDateObservation.siteDateId} targetIdSecondary={data.siteDateObservation.siteId} targetType={GOTYPE.SITEDATEOBSERVATIONS} targetIdSecondary={data.siteDate.siteId} controlBody="scale-90" controlDisabled={firstSdoId < 0} />
+                -->
+                    <SitePicker currentSiteId={data.siteDateObservation.siteDate.siteId} controlBody="scale-90" />
+                </div>
                 <SpeciesPicker currentSdoChecklistItemId={currentSiteDateObservation.siteDateObservationId} {isAdding} {isEditing} {isViewAll} {showDeletedData} controlBody="scale-90" />
+                <!-- older one <SiteDatePicker currentSiteId={data.siteDateObservation.siteDate.siteId} currentSiteDateId={data.siteDateObservation.siteDateId ?? -1} controlBody="scale-90" /> -->
+                <!-- newer one
+                    <SiteDatePicker
+                        bind:currentSiteId={currentSiteDateObservation.siteId}
+                        bind:currentSiteDateId={currentSiteDateObservation.siteDateId}
+                        controlBody="scale-90"
+                        buttonLeft=""
+                        buttonRight=""
+                        buttonYear=""
+                        buttonWeek=""
+                        dropdownShowDate={false}
+                        dropdownPointers={false}
+                        heading={null}
+                        yearPrefix=""
+                        weekPrefix=""
+                        controlOuter=""
+                        prefixYear=""
+                        prefixWeek=""
+                        suffixYear=""
+                        suffixWeek=""
+                        popupInner=""
+                        popupStyles=""
+                        labelledby="" />
+                -->
             </div>
 
             <!-- Main controls -->

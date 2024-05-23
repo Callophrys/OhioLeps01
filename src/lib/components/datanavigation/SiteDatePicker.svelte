@@ -233,7 +233,7 @@
             siteDates = data.siteDates;
             console.log('Response data', siteDates);
 
-            currentSiteDateId = siteDates ? siteDates[0].siteDateId : -1;
+            currentSiteDateId = siteDates.length > 0 ? siteDates[0].siteDateId : -1;
 
             trackedWeeks.length = 0;
             trackedWeeks.push(
@@ -250,8 +250,8 @@
 
             uniqueYears.length = 0;
             uniqueYears.push(...new Set(siteDates.map((x) => x.year.toString())));
-            recordYear = uniqueYears.length ? uniqueYears[0] : '';
-            recordWeek = siteDates[0].week.toString();
+            recordYear = uniqueYears.length > 0 ? uniqueYears[0] : '';
+            recordWeek = siteDates.length > 0 ? siteDates[0].week.toString() : '';
             isDisabled = false;
         } catch (error) {
             console.error('Error fetching data:', error);

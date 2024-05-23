@@ -1,11 +1,9 @@
 <script lang="ts">
     /*-- Imports */
-    import type { DateTracking, DateTrackingSet } from '$lib/types.js';
     import DoubledContainer from '$lib/components/DoubledContainer.svelte';
     import { Accordion, AccordionItem, RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
     import { setContext } from 'svelte';
-    import { goto } from '$app/navigation';
-    import { compareNumeric, compareYearWeek, formatDate, weekOfYearSince, convertFtoC } from '$lib/utils';
+    import { formatDate, weekOfYearSince, convertFtoC } from '$lib/utils';
     import DataOptions from '$lib/components/datanavigation/DataOptions.svelte';
     import SiteDatePicker from '$lib/components/datanavigation/SiteDatePicker.svelte';
     import YearWeek from '$lib/components/datanavigation/YearWeek.svelte';
@@ -57,21 +55,8 @@
     /*-- -- Coding -- */
     /*-- Enums */
     /*-- Constants (functional) */
-    const trackedWeeks: DateTracking[] = Array.from(data.siteDates)
-        .map<DateTracking>((w: any) => ({
-            siteDateId: w.siteDateId,
-            year: new Date(w.recordDate).getFullYear(),
-            week: weekOfYearSince(new Date(w.recordDate)),
-            recordDate: new Date(w.recordDate),
-            fDate: formatDate(new Date(w.recordDate).toISOString()),
-        }))
-        .sort(compareYearWeek);
-
     /*-- Properties (functional) */
     //let currentSiteDate: SiteDateYear = data.siteDate;
-    const allYears = Array.from(data.siteDates).map((y: any) => new Date(y.recordDate).getFullYear());
-    const uniqueYears = [...new Set(allYears)].sort(compareNumeric);
-
     let useFarenheit: number = $state(0);
     let optAccA: boolean = $state(false);
     let optAccB: boolean = $state(false);
@@ -83,9 +68,6 @@
     let optAccH: boolean = $state(false);
     let optAccI: boolean = $state(false);
     let optAccJ: boolean = $state(false);
-
-    let y: DateTrackingSet = $state({ id: 0, children: [] });
-    let w: any = $state(false);
 
     let showRecentEdits: boolean = $state(false);
     let showDeletedData: boolean = $state(false);
@@ -165,14 +147,6 @@
         return true;
     }
 
-    function handleClick(event: any) {
-        event.preventDefault();
-        console.log('/api/sitedates/' + event.currentTarget.value);
-        if (event.currentTarget?.value) {
-            goto('/api/sitedates/' + event.currentTarget.value);
-        }
-    }
-
     /*-- Methods */
 
     /*-- Reactives (functional) */
@@ -206,34 +180,6 @@
                 Record Date: {formatDate(recordDate.toISOString(), 'short', undefined)}
             </div>
         </h2>
-
-        <div class="flex flex-row space-x-2 pb-2 scale-90">
-            <div>
-                <select class="select w-28" bind:value={y} onblur={() => ([w] = y.children)}>
-                    {#each uniqueYears as year}
-                        <option
-                            value={{
-                                id: year,
-                                children: [...trackedWeeks.filter((z) => z.year === year)],
-                            }}>
-                            {year}
-                        </option>
-                    {/each}
-                </select>
-            </div>
-
-            <div>
-                {#if y}
-                    <select class="select w-36" bind:value={w} onchange={handleClick} title="Calculated from 'record date' field">
-                        {#each y.children as dateTrackingItem}
-                            <option value={dateTrackingItem.siteDateId}>
-                                {dateTrackingItem.week} - {formatDate(dateTrackingItem.recordDate.toISOString())}
-                            </option>
-                        {/each}
-                    </select>
-                {/if}
-            </div>
-        </div>
         <hr />
     </svelte:fragment>
 
