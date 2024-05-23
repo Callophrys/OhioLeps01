@@ -7,49 +7,49 @@ import { defaultOrganization } from '$lib/config';
 import prisma from '$lib/prisma';
 
 export const load: PageServerLoad = async ({ locals }) => {
-  console.log('register: ', locals);
-  // redirect user if logged in
-  if (locals.user) {
-    throw redirect(302, '/');
-  }
-}
+    console.log('register: ', locals);
+    // redirect user if logged in
+    if (locals.user) {
+        throw redirect(302, '/');
+    }
+};
 
 const register: Action = async ({ request }) => {
-  const data = await request.formData()
-  const username = data.get('username')
-  const password = data.get('password')
-  //console.log(data);
+    const data = await request.formData();
+    const username = data.get('username');
+    const firstName = data.get('firstname');
+    const lastName = data.get('lastname');
+    const password = data.get('password');
+    //console.log(data);
 
-  if (typeof username !== 'string' ||
-    typeof password !== 'string' ||
-    !username ||
-    !password) {
+    if (typeof username !== 'string' || typeof firstName !== 'string' || typeof lastName !== 'string' || typeof password !== 'string' || !username || !firstName || !lastName || !password) {
+        return fail(400, { invalid: true });
+    }
 
-    return fail(400, { invalid: true })
-  }
+    const user = await prisma.user.findUnique({
+        where: { username },
+    });
 
-  const user = await prisma.user.findUnique({
-    where: { username },
-  });
+    if (user) {
+        return fail(400, { user: true });
+    }
 
-  if (user) {
-    return fail(400, { user: true })
-  }
+    const organization = await getOrganizationByName(defaultOrganization);
+    console.log(organization);
 
-  const organization = await getOrganizationByName(defaultOrganization);
-  console.log(organization);
+    await prisma.user.create({
+        data: {
+            username,
+            firstName,
+            lastName,
+            passwordHash: await bcrypt.hash(password, 10),
+            userAuthToken: crypto.randomUUID(),
+            role: { connect: { name: Role.USER } },
+            organizationId: organization?.id ?? undefined,
+        },
+    });
 
-  await prisma.user.create({
-    data: {
-      username,
-      passwordHash: await bcrypt.hash(password, 10),
-      userAuthToken: crypto.randomUUID(),
-      role: { connect: { name: Role.USER } },
-      organizationId: organization?.id ?? undefined
-    },
-  })
+    throw redirect(303, '/login');
+};
 
-  throw redirect(303, '/login')
-}
-
-export const actions: Actions = { register }
+export const actions: Actions = { register };

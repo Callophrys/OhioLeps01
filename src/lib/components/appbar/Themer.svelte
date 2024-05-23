@@ -15,12 +15,12 @@
     /*-- Constants (functional) */
 
     /*-- Properties (functional) */
-    let comboboxValue: string = $state('');
+    let comboboxThemeValue: string = $state('');
 
     /*-- Variables and objects */
-    const popupCombo: PopupSettings = {
+    const popupComboTheme: PopupSettings = {
         event: 'focus-click',
-        target: 'popupCombo',
+        target: 'popupComboTheme',
         placement: 'bottom',
         closeQuery: '.listbox-item',
     };
@@ -44,18 +44,18 @@
 
     /*-- Reactives (functional) */
     $effect(() => {
-        comboboxValue = localStorage?.themeName ?? 'rocket';
-        setTheme(comboboxValue);
+        comboboxThemeValue = localStorage?.themeName ?? 'rocket';
+        setTheme(comboboxThemeValue);
     });
 </script>
 
 <svelte:head>{@html '<script>(' + setInitialClassState.toString() + ')();</script>'}</svelte:head>
-<button class="btn variant-filled w-32 justify-between" use:popup={popupCombo}>
+<button class="btn variant-filled w-32 justify-between" use:popup={popupComboTheme}>
     <span class="capitalize">Theme</span>
     <span>↓</span>
 </button>
 
-<div data-popup="popupCombo">
+<div data-popup="popupComboTheme">
     <div class="card w-36 shadow-xl py-2">
         <!-- svelte-ignore a11y-label-has-associated-control -->
         <label class="content-center flex justify-between px-2 pb-1">
@@ -65,7 +65,7 @@
         <hr />
         <ListBox rounded="rounded-none" class="capitalize">
             {#each themes as theme}
-                <ListBoxItem bind:group={comboboxValue} name="medium" on:click={handleClick} value={theme}>{theme.replace('-', ' ')}</ListBoxItem>
+                <ListBoxItem bind:group={comboboxThemeValue} name="medium" on:click={handleClick} value={theme}>{theme.replace('-', ' ')}</ListBoxItem>
             {/each}
         </ListBox>
     </div>

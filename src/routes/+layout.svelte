@@ -1,8 +1,10 @@
 <script lang="ts">
+    import type { Snippet } from 'svelte';
+
     import '../app.css';
-    import { AppShell, AppBar, Avatar, LightSwitch } from '@    tonlabs/    ton';
-    import { initializeStores, Modal } from '@    tonlabs/    ton';
-    import { storePopup } from '@    tonlabs/    ton';
+    import { Avatar } from '@skeletonlabs/skeleton';
+    import { initializeStores, Modal } from '@skeletonlabs/skeleton';
+    import { storePopup } from '@skeletonlabs/skeleton';
     import { computePosition, autoUpdate, offset, shift, flip, arrow } from '@floating-ui/dom';
     import { enhance } from '$app/forms';
     import { page } from '$app/stores';
@@ -11,15 +13,36 @@
     import Themer from '$lib/components/appbar/Themer.svelte';
     import SiteNavigation from '$lib/components/SiteNavigation.svelte';
 
-    let { config = $page.data.config ?? {} }: any = $props();
+    let { children }: { children: Snippet } = $props();
 
-    const cNavBarClasses = 'w-60';
-    const cSidebarClassesBase = 'variant-filled-surface w-60 h-full top-0 p-4 -left-56 fixed z-10 duration-700';
+    let config = $state({});
+    $effect(() => {
+        config = $page.data.config;
+        console.log('config:', config);
+    });
+
+    const wNavBar = 60;
+    const wNavHid = 56;
+    const cNavBarClasses = `w-${wNavBar}`;
+    const cSidebarClassesBase = `variant-filled-surface w-${wNavBar} h-full top-0 p-4 -left-${wNavHid} fixed z-10 duration-700`;
     const cSidebarClassesMedium = 'md:bg-surface-100-800-token md:text-current md:h-screen md:top-auto md:left-0 md:static';
-    const cSidebarClassesHover = 'hover:translate-x-56 hover:md:translate-x-0';
+    const cSidebarClassesHover = `hover:translate-x-${wNavHid} hover:md:translate-x-0`;
     const cSidebarClasses = `${cSidebarClassesBase} ${cSidebarClassesMedium} ${cSidebarClassesHover}`;
 
+    const cBase = 'w-full h-full flex flex-col overflow-hidden';
+    const cHeader = 'flex-none h-24 z-10';
+    const cContentArea = 'flex flex-auto w-full h-full overflow-hidden';
+    const cSidebarLeft = 'flex-none overflow-x-hidden overflow-y-auto w-auto';
+    const cPage = 'flex-1 overflow-x-hidden flex flex-col';
+    const cPageContent = 'flex-auto overflow-hidden';
+    const cPageFooter = 'flex-none text-center text-xs';
+
     storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
+
+    let showAnimatedIcon = $derived(config.showAnimatedIcon);
+    let showAppBar = $derived(config.showAppBar);
+    let showAvatar = $derived(config.showAvatar);
+    let showFooter = $derived(config.showFooter);
 
     initializeStores();
 </script>
@@ -36,168 +59,116 @@
     <meta name="keywords" content="butterflies, skippers, moths, Tiger, Viceroy, Swallowtail, Luna, Buckeye, Metalmark, Monarch, Spangled Fritillary, Spicebush, Satyr, Nymph, Parshall, Wiedmann" />
 </svelte:head>
 
-<Modal />
+{#snippet headerLead()}
+    <div class="ml-16">
+        {#if showAnimatedIcon}
+            <Fluttering />
+        {/if}
+    </div>
+{/snippet}
 
-<!-- svelte-ignore a11y-no-static-element-interactions -->
-<!-- svelte-ignore a11y-mouse-events-have-key-events -->
+{#snippet headerTitle()}
+    <div class="text-2xl">
+        <a href="/">
+            {config.title}
+        </a>
+    </div>
+{/snippet}
 
-<!--
-<AppShell slotSidebarLeft={cSidebarClasses} slotPageContent="overflow-hidden" slotPageFooter="text-center text-xs">
-    <svelte:fragment slot="header">
-        {#if config.showAppBar}
-            <AppBar>
-                <svelte:fragment slot="lead">
-                    {#if config.showAnimatedIcon}
-                        <div class="ml-16">
-                            <Fluttering />
-                        </div>
-                    {/if}
-                </svelte:fragment>
+{#snippet headerTrailAvatarWhenSkipped()}
+    {#if !showAvatar}
+        <a class="btn variant-filled w-32 justify-between" href="/account">
+            <span>Account</span>
+        </a>
+    {/if}
+{/snippet}
 
-                <div class="text-2xl">
-                    <a href="/">
-                        {config.title}
-                    </a>
+{#snippet headerTrailAvatar()}
+    {#if showAvatar}
+        <a href="/account">
+            <Avatar src="https://i.pravatar.cc/" initials="OH" width="w-24" rounded="rounded-full" border="border-4 border-surface-300-600-token hover:!border-primary-500" cursor="cursor-pointer" />
+        </a>
+    {/if}
+{/snippet}
+
+{#snippet headerTrailLogInOut()}
+    {#if !$page.data.user}
+        <a class="btn variant-filled w-32 justify-between" href="/login">
+            <span>Login</span>
+        </a>
+    {:else}
+        <form class="contents" action="/logout" method="POST" use:enhance>
+            <button type="submit" class="btn variant-filled w-32 justify-between"> Log out </button><input type="hidden" name="to" value="/" />
+        </form>
+    {/if}
+{/snippet}
+
+{#snippet headerTrailExtras()}
+    <Help />
+    <Themer />
+{/snippet}
+
+{#snippet headerTrail()}
+    <div class="w-fit h-24 flex mr-2">
+        <div class="my-auto space-x-2 space-y-2 pr-2">
+            {@render headerTrailLogInOut()}
+            {@render headerTrailExtras()}
+            {@render headerTrailAvatarWhenSkipped()}
+        </div>
+
+        {@render headerTrailAvatar()}
+    </div>
+{/snippet}
+
+{#snippet header()}
+    {#if showAppBar}
+        <header class={cHeader}>
+            <div class="app-bar flex flex-col bg-surface-100-800-token space-y-4" role="toolbar" aria-label={config.title} aria-labelledby=" ">
+                <div class="app-bar-row-main grid items-center grid-cols-[auto_1fr_auto] gap-4">
+                    {@render headerLead()}
+                    {@render headerTitle()}
+                    {@render headerTrail()}
                 </div>
-
-                <svelte:fragment slot="trail">
-                    <div class="w-fit h-24 flex">
-                        <div class="my-auto space-x-2 space-y-2 pr-2">
-                            {#if !$page.data.user}
-                                <a class="btn variant-filled w-32 justify-between" href="/login">
-                                    <span>Login</span>
-                                </a>
-                            {:else}
-                                <form class="contents" action="/logout" method="POST" use:enhance>
-                                    <button type="submit" class="btn variant-filled w-32 justify-between"> Log out </button><input type="hidden" name="to" value="/" />
-                                </form>
-                            {/if}
-
-                            <Help />
-                            <Themer />
-
-                            {#if !config.showAvatar}
-                                <a class="btn variant-filled w-32 justify-between" href="/account">
-                                    <span>Account</span>
-                                </a>
-                            {/if}
-                        </div>
-
-                        {#if config.showAvatar}
-                            <a href="/account">
-                                <Avatar src="https://i.pravatar.cc/" initials="OH" width="w-24" rounded="rounded-full" border="border-4 border-surface-300-600-token hover:!border-primary-500" cursor="cursor-pointer" />
-                            </a>
-                        {/if}
-                    </div>
-                </svelte:fragment>
-            </AppBar>
-        {/if}
-    </svelte:fragment>
-
-    <svelte:fragment slot="sidebarLeft">
-        <SiteNavigation navBar={cNavBarClasses} />
-    </svelte:fragment>
-
-    <slot />
-
-    <svelte:fragment slot="pageFooter">
-        {#if config.showFooter}
-            {@html config.owner} {config.title} &copy;{new Date().getFullYear()}
-        {/if}
-    </svelte:fragment>
-</AppShell>
--->
-
-{#snippit header()}
-    {#if config.showAppBar}
-        <AppBar>
-            <svelte:fragment slot="lead">
-                {#if config.showAnimatedIcon}
-                    <div class="ml-16">
-                        <Fluttering />
-                    </div>
-                {/if}
-            </svelte:fragment>
-
-            <div class="text-2xl">
-                <a href="/">
-                    {config.title}
-                </a>
             </div>
-
-            <svelte:fragment slot="trail">
-                <div class="w-fit h-24 flex">
-                    <div class="my-auto space-x-2 space-y-2 pr-2">
-                        {#if !$page.data.user}
-                            <a class="btn variant-filled w-32 justify-between" href="/login">
-                                <span>Login</span>
-                            </a>
-                        {:else}
-                            <form class="contents" action="/logout" method="POST" use:enhance>
-                                <button type="submit" class="btn variant-filled w-32 justify-between"> Log out </button><input type="hidden" name="to" value="/" />
-                            </form>
-                        {/if}
-
-                        <Help />
-                        <Themer />
-
-                        {#if !config.showAvatar}
-                            <a class="btn variant-filled w-32 justify-between" href="/account">
-                                <span>Account</span>
-                            </a>
-                        {/if}
-                    </div>
-
-                    {#if config.showAvatar}
-                        <a href="/account">
-                            <Avatar src="https://i.pravatar.cc/" initials="OH" width="w-24" rounded="rounded-full" border="border-4 border-surface-300-600-token hover:!border-primary-500" cursor="cursor-pointer" />
-                        </a>
-                    {/if}
-                </div>
-            </svelte:fragment>
-        </AppBar>
-    {/if}
-{/snippet}
-
-{#snippit navLeft()}
-    <SiteNavigation navBar={cNavBarClasses} />
-{/snippet}
-
-{#snippit body()}
-    <span>body</span>
-{/snippet}
-
-{#snippit footer()}
-    {#if config.showFooter}
-        {@html config.owner} {config.title} &copy;{new Date().getFullYear()}
-    {/if}
-{/snippet}
-
-<!-- https://github.com/skeletonlabs/skeleton/blob/master/packages/skeleton/src/lib/components/AppShell/AppShell.svelte -->
-<div id="appShell" class={classesBase} data-testid="app-shell">
-    {#if header}
-        <header id="shell-header" class="`flex-none ${classesHeader}`">
-            {@render header()}
         </header>
     {/if}
+{/snippet}
 
-    <div class="`flex-auto ${cContentArea}`">
-        <aside id="sidebar-left" class={classesSidebarLeft}>
-            {@render navLeft()}
-        </aside>
+{#snippet navLeft()}
+    <aside class="{cSidebarLeft} {cSidebarClasses}">
+        <SiteNavigation navBar={cNavBarClasses} />
+    </aside>
+{/snippet}
 
-        <div id="page" class="`${regionPage} ${cPage}`" style:scrollbar-gutter={scrollbarGutter} onscroll>
-            <main id="page-content" class="`flex-auto overflow-hidden ${classesPageContent}`">
-                {@render body()}
-            </main>
+{#snippet body()}
+    <main class={cPageContent}>
+        {@render children()}
+    </main>
+{/snippet}
 
-            {#if footer}
-                <footer id="page-footer" class="`flex-none ${classesPageFooter}`">
-                    <div class="text-center text-xs">
-                        {@render footer()}
-                    </div>
-                </footer>
-            {/if}
+{#snippet footer()}
+    {#if showFooter}
+        <footer class={cPageFooter}>
+            <div class="text-center text-xs">
+                {@html config.owner}
+                {config.title} &copy;{new Date().getFullYear()}
+            </div>
+        </footer>
+    {/if}
+{/snippet}
+
+<Modal />
+
+<!-- https://github.com/skeletonlabs/skeleton/blob/master/packages/skeleton/src/lib/components/AppShell/AppShell.svelte -->
+<div class={cBase} data-testid="app-shell">
+    {@render header()}
+
+    <div class={cContentArea}>
+        {@render navLeft()}
+
+        <div class={cPage}>
+            {@render body()}
+            {@render footer()}
         </div>
     </div>
 </div>

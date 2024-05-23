@@ -1,7 +1,7 @@
 import { error } from '@sveltejs/kit';
 import { getSite, getSites } from '$lib/database/sites';
 import { getCounties } from '$lib/database/counties.js';
-import type { SiteDateYearSiteDates, SiteCountySiteDatesSiteStatuses } from '$lib/types.js';
+import type { SiteCountyState, SiteDateYearSiteDates, SiteCountySiteDatesSiteStatuses } from '$lib/types.js';
 import type { County } from '@prisma/client';
 
 export async function load({ params }: any) {
@@ -22,7 +22,8 @@ export async function load({ params }: any) {
     const jsonResultC: County[] = JSON.parse(jsonC);
 
     const jsonS = JSON.stringify(sites);
-    const jsonResultS: SiteDateYearSiteDates[] = JSON.parse(jsonS);
+    const jsonResultS: SiteCountyState[] = JSON.parse(jsonS);
+    //const jsonResultS: SiteDateYearSiteDates[] = JSON.parse(jsonS);
     //console.log('sites.siteId.sites (ct=2)', jsonResultS.slice(0, 1));
     // console.log(jsonResultS);
 

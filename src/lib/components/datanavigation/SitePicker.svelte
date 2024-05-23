@@ -1,4 +1,5 @@
 <script lang="ts">
+    /* TODO Added overall control isDisabled or something for when there is no data or just want it off */
     /*-- Imports */
     import type { County, Site } from '@prisma/client';
     import type { SiteDateYearSiteDates } from '$lib/types.js';

@@ -4,9 +4,9 @@ import type { AppConfig } from '@prisma/client';
 export async function getAppConfigById(appConfigId: number) {
     const appConfig = await prisma.appConfig.findUnique({
         where: {
-            id: appConfigId
-        }
-    })
+            id: appConfigId,
+        },
+    });
     return appConfig;
 }
 
@@ -15,31 +15,32 @@ export async function getAppConfigByName(name: string, organizationId: string) {
         where: {
             configName: name,
             organizationId: organizationId,
-        }
-    })
+        },
+    });
     return appConfig;
 }
 
-export async function getAppConfigsByOrgId(organizationId: string) {
+export async function getAppConfigsByOrgId(organizationId: string): Promise<AppConfig[]> {
     const appConfigs = await prisma.appConfig.findMany({
         where: {
-            organizationId: organizationId
-        }
-    })
+            organizationId: organizationId,
+        },
+    });
 
     return appConfigs;
 }
 
-export async function getAppConfigsByOrgName(organizationName: string) {
-    const appConfigs = await prisma.appConfig.findMany({
+export async function getAppConfigsByOrgName(organizationName: string): Promise<AppConfig[] | undefined> {
+    const organation = await prisma.organization.findFirst({
         where: {
-            organization: {
-                name: organizationName
-            }
-        }
-    })
+            name: organizationName,
+        },
+        include: {
+            appConfigs: true,
+        },
+    });
 
-    return appConfigs;
+    return organation?.appConfigs;
 }
 
 export async function getTemplateAppConfig(configName: string) {
@@ -47,10 +48,10 @@ export async function getTemplateAppConfig(configName: string) {
         where: {
             configName: configName,
             organization: {
-                name: 'TEMPLATE'
-            }
-        }
-    })
+                name: 'TEMPLATE',
+            },
+        },
+    });
 
     return appConfigs;
 }
@@ -66,13 +67,13 @@ export async function getTemplateAppConfigs() {
 export async function updateAppConfig(appConfig: AppConfig) {
     const updatedAppConfig = await prisma.appConfig.update({
         where: {
-            id: appConfig.id
+            id: appConfig.id,
         },
         data: {
             configName: appConfig.configName,
             configType: appConfig.configType,
-            configValue: appConfig.configValue
-        }
+            configValue: appConfig.configValue,
+        },
     });
 
     return updatedAppConfig;
@@ -80,32 +81,36 @@ export async function updateAppConfig(appConfig: AppConfig) {
 
 export async function updateAllAppConfigs(appConfigs: AppConfig[]) {
     const promises: Promise<AppConfig>[] = [];
-    appConfigs.forEach(p => promises.push(updateAppConfig(p)));
+    appConfigs.forEach((p) => promises.push(updateAppConfig(p)));
     return await Promise.all(promises);
 }
 
 export async function resetAppConfig(appConfig: AppConfig) {
-    return await getTemplateAppConfig(appConfig.configName)
-        .then(config => prisma.appConfig.update({
+    return await getTemplateAppConfig(appConfig.configName).then((config) =>
+        prisma.appConfig.update({
             where: {
-                id: appConfig.id
+                id: appConfig.id,
             },
             data: {
-                configValue: config?.configValue
-            }
-        }));
+                configValue: config?.configValue,
+            },
+        })
+    );
 }
 
 export async function resetAllAppConfigs(organizationId: string) {
-    const resetValues = (await getAppConfigsByOrgName('TEMPLATE')).map((c: AppConfig) => ({ 'configName': c.configName, 'configValue': c.configValue }));
+    const templateConfigs = await getAppConfigsByOrgName('TEMPLATE');
+    if (!templateConfigs) return {};
+
+    const resetValues = templateConfigs.map((c: AppConfig) => ({ configName: c.configName, configValue: c.configValue }));
     //throw 'need to get template values to set the ref org values with';
     const promises: Promise<AppConfig>[] = [];
     const currConfigs = await getAppConfigsByOrgId(organizationId);
-    currConfigs.forEach(c => {
+    currConfigs.forEach((c) => {
         //console.log('>>', c, 'curr', resetValues.find((r: any) => r.configName === c.configName)?.configValue ?? '');
         c.configValue = resetValues.find((r: any) => r.configName === c.configName)?.configValue ?? '';
         promises.push(resetAppConfig(c));
-    })
+    });
     return {};
     /*
     (await getAppConfigsByOrgId(organizationId)).forEach(c => {
@@ -115,4 +120,3 @@ export async function resetAllAppConfigs(organizationId: string) {
     */
     return await Promise.all(promises);
 }
-

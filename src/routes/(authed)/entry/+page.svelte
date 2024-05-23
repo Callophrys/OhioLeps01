@@ -1,13 +1,13 @@
 <script lang="ts">
-    import StandardContainer from '$lib/components/StandardContainer.svelte';
+    import Container from '$lib/components/layouts/Container.svelte';
 </script>
 
-<StandardContainer>
-	<svelte:fragment slot="standardBody">
+{#snippet body()}
     <div class="">
         <h1>Data Entry</h1>
 
         <p>this is the entry page</p>
     </div>
-    </svelte:fragment>
-</StandardContainer>
+{/snippet}
+
+<Container head={null} {body} tail={null} />

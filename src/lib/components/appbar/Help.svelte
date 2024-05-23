@@ -54,7 +54,7 @@
         <hr />
 
         <nav class="list-nav">
-            <ul class="">
+            <ul>
                 <li>
                     <a href="https://tailwindcss.com/docs/container" target="_blank" class="hover:rounded-none">TailwindCSS</a>
                 </li>

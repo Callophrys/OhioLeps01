@@ -1,4 +1,6 @@
 <script lang="ts">
+    /* TODO (1) Make this work (2) Rethink how Svelt5 reactivity works here */
+
     /*-- Imports */
     import type { AppConfigFormKeyChecked } from '$lib/types';
     import { camelToFriendly, toBool } from '$lib/utils';
@@ -29,20 +31,19 @@
     /*-- Properties (functional) */
     /*-- Variables and objects */
     /*-- Run first stuff */
-    $effect(() => {
-        for (const p of appConfigs) {
-            candidates[p.formKey] = {
-                configValue: p.configValue,
-                changed: false,
-                class: '',
-                checked: p.checked,
-            } as Candidate;
-        }
-    });
+    /*-- onMount, beforeUpdate, afterUpdate */
 
+    for (const p of appConfigs) {
+        const c = {
+            configValue: p.configValue,
+            changed: false,
+            class: '',
+            checked: p.checked,
+        } as Candidate;
+        candidates[p.formKey] = c;
+    }
     //console.log('c', candidates);
 
-    /*-- onMount, beforeUpdate, afterUpdate */
     $effect(() => {
         appConfigs.forEach((c) => {
             if (c.configType === 'boolean') {
@@ -61,6 +62,7 @@
                 candidates[c.formKey].changed = c.configValue !== candidates[c.formKey].configValue;
             }
         });
+        //console.log('d', candidates);
     });
 
     /*-- Handlers */
@@ -82,12 +84,12 @@
         <div class="w-fit flex flex-row">
             {#if appConfig.configType === 'string'}
                 {#if appConfig.configName.toLocaleLowerCase() === 'description'}
-                    <textarea id={appConfig.formKey} name={appConfig.formKey} rows="3" cols="50" class="resize p-1 rounded-md variant-filled {candidates[appConfig.formKey].class}" bind:value={appConfig.configValue}></textarea>
+                    <textarea id={appConfig.formKey} name={appConfig.formKey} rows="3" cols="50" class="resize p-1 rounded-md variant-filled" bind:value={appConfig.configValue}></textarea>
                 {:else}
-                    <input id={appConfig.formKey} name={appConfig.formKey} type="text" class="p-1 rounded-md variant-filled {candidates[appConfig.formKey].class}" bind:value={appConfig.configValue} />
+                    <input id={appConfig.formKey} name={appConfig.formKey} type="text" class="p-1 rounded-md variant-filled" bind:value={appConfig.configValue} />
                 {/if}
             {:else if appConfig.configType === 'number'}
-                <input id={appConfig.formKey} name={appConfig.formKey} type="number" class="p-1 rounded-md variant-filled {candidates[appConfig.formKey].class}" bind:value={appConfig.configValue} />
+                <input id={appConfig.formKey} name={appConfig.formKey} type="number" class="p-1 rounded-md variant-filled" bind:value={appConfig.configValue} />
             {:else if appConfig.configType === 'boolean'}
                 <input id={appConfig.formKey} name={appConfig.formKey} type="checkbox" bind:checked={appConfig.checked} />
             {:else if appConfig.configType === 'object'}
@@ -100,7 +102,3 @@
         </div>
     </label>
 {/each}
-
-<!--
-                <input id={appConfig.formKey} name={appConfig.formKey} type="checkbox" class="checkbox p-1 rounded-md variant-filled" bind:checked={appConfig.configValue} />
--->

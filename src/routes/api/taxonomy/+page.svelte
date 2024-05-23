@@ -1,9 +1,11 @@
 <script lang="ts">
-    import StandardContainer from '$lib/components/StandardContainer.svelte';
+    import Container from '$lib/components/layouts/Container.svelte';
+    /*
     import type { TaxonomyComplete } from '$lib/types';
-    import { onMount } from 'svelte';
+    import type { TreeViewNode } from '@skeletonlabs/skeleton';
+    import { TreeView, TreeViewItem, RecursiveTreeView } from '@skeletonlabs/skeleton';
 
-    export let data;
+    let { data } = $props();
 
     function getScientificName(taxon: TaxonomyComplete) {
         if (taxon.taxonType !== 'S' && taxon.taxonType !== 'SS') return taxon.latinName;
@@ -30,9 +32,6 @@
 
         return scientificName;
     }
-
-    import { TreeView, TreeViewItem, RecursiveTreeView } from '@skeletonlabs/skeleton';
-    import type { TreeViewNode } from '@skeletonlabs/skeleton';
 
     let o: any = data.taxonomy.find((x: any) => x.taxonType === 'O');
     const tOrder = {
@@ -107,55 +106,60 @@
     }
 
     let myTreeView: TreeView;
-    onMount(() => myTreeView.expandAll());
+    $effect(() => myTreeView.expandAll());
+
+        <TreeViewItem>
+            {getScientificName(o) + ' - - - - ' + o.commonName}
+            <svelte:fragment slot="children">
+                {#each getBranch(o) as f}
+                    <TreeViewItem>
+                        {getScientificName(f) + ' - - - - ' + f.commonName}
+                        <svelte:fragment slot="children">
+                            {#each getBranch(f) as sf}
+                                <TreeViewItem>
+                                    {getScientificName(sf) + ' - - - - ' + sf.commonName}
+                                    <svelte:fragment slot="children"
+                                        >{#each getBranch(sf) as g}
+                                            <TreeViewItem>
+                                                {getScientificName(g)}
+                                                <svelte:fragment slot="children">
+                                                    {#each getBranch(g) as s}
+                                                        <TreeViewItem>
+                                                            {getScientificName(s)}
+                                                            <svelte:fragment slot="children">
+                                                                {#each getBranch(s) as ss}
+                                                                    <TreeViewItem>
+                                                                        {getScientificName(ss)}
+                                                                    </TreeViewItem>
+                                                                {/each}
+                                                            </svelte:fragment>
+                                                        </TreeViewItem>
+                                                    {/each}
+                                                </svelte:fragment>
+                                            </TreeViewItem>
+                                        {/each}</svelte:fragment>
+                                </TreeViewItem>
+                            {/each}
+                        </svelte:fragment>
+                    </TreeViewItem>
+                {/each}
+            </svelte:fragment>
+        </TreeViewItem>
+    </TreeView>
+
+{#snippet body()}
+    <TreeView bind:this={myTreeView}>
+    <RecursiveTreeView selection multiple relational nodes={myTreeViewNodes} bind:checkedNodes bind:indeterminateNodes />
+{/snippet}
+    */
 </script>
 
-<!-- Taxonomy -->
-<StandardContainer>
-    <svelte:fragment slot="standardHead">
-        <div class="">Butterflies of North America</div>
-    </svelte:fragment>
-    <svelte:fragment slot="standardBody">
-        <TreeView bind:this={myTreeView}>
-            <TreeViewItem>
-                {getScientificName(o) + ' - - - - ' + o.commonName}
-                <svelte:fragment slot="children">
-                    {#each getBranch(o) as f}
-                        <TreeViewItem>
-                            {getScientificName(f) + ' - - - - ' + f.commonName}
-                            <svelte:fragment slot="children">
-                                {#each getBranch(f) as sf}
-                                    <TreeViewItem>
-                                        {getScientificName(sf) + ' - - - - ' + sf.commonName}
-                                        <svelte:fragment slot="children"
-                                            >{#each getBranch(sf) as g}
-                                                <TreeViewItem>
-                                                    {getScientificName(g)}
-                                                    <svelte:fragment slot="children">
-                                                        {#each getBranch(g) as s}
-                                                            <TreeViewItem>
-                                                                {getScientificName(s)}
-                                                                <svelte:fragment slot="children">
-                                                                    {#each getBranch(s) as ss}
-                                                                        <TreeViewItem>
-                                                                            {getScientificName(ss)}
-                                                                        </TreeViewItem>
-                                                                    {/each}
-                                                                </svelte:fragment>
-                                                            </TreeViewItem>
-                                                        {/each}
-                                                    </svelte:fragment>
-                                                </TreeViewItem>
-                                            {/each}</svelte:fragment>
-                                    </TreeViewItem>
-                                {/each}
-                            </svelte:fragment>
-                        </TreeViewItem>
-                    {/each}
-                </svelte:fragment>
-            </TreeViewItem>
-        </TreeView>
+{#snippet head()}
+    <div class="">Butterflies of North America</div>
+{/snippet}
 
-        <RecursiveTreeView selection multiple relational nodes={myTreeViewNodes} bind:checkedNodes bind:indeterminateNodes />
-    </svelte:fragment>
-</StandardContainer>
+{#snippet body()}
+    <p>Requires either a revert back to full Svelte 4 or see if Skeleton 3 has these and upgrade Skeleton</p>
+{/snippet}
+
+<Container {head} {body} tail={null} />

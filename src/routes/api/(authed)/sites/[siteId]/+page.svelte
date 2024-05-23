@@ -1,6 +1,8 @@
 <script lang="ts">
+    /* TODO: figure out what site statuses in info block was all about - this was never returned and return type and results will need to change */
     /*-- Imports */
-    //import type { County, Site } from '@prisma/client';
+    import type { SiteCountySiteDatesSiteStatuses } from '$lib/types.js';
+    import type { SiteCountyState } from '$lib/types.js';
     import Container from '$lib/components/layouts/Container.svelte';
     import CountyPicker from '$lib/components/datanavigation/CountyPicker.svelte';
     import SitePicker from '$lib/components/datanavigation/SitePicker.svelte';
@@ -9,7 +11,7 @@
     import { setContext } from 'svelte';
     import GoBack from '$lib/components/datanavigation/GoBack.svelte';
     import GoNext from '$lib/components/datanavigation/GoNext.svelte';
-    import { GOTYPE } from '$lib/types.js';
+    import { GOTYPE, type SiteDateYearSdo } from '$lib/types.js';
     import { page } from '$app/stores';
     import { goto } from '$app/navigation';
 
@@ -69,6 +71,8 @@
     let currentSiteDateId: number = $state(data.site.siteDates.length ? data.site.siteDates[0].siteDateId : -1);
     $inspect(currentCountyId, currentSiteId, currentSiteDateId);
 
+    let currentSite: SiteCountyState | undefined = $derived(data.sites.find((x) => x.siteId === currentSiteId));
+    $inspect(currentSite);
     /*-- Other */
 
     // const updateCounty = () => {
@@ -148,48 +152,50 @@
 {#snippet body()}
     <div class="max-w-[600px]">
         <div class="content">
-            <div>siteName: {data.site.siteName ?? ''}</div>
-            <div>county: {data.site.county.name ?? ''}</div>
-            <div>township: {data.site.township ?? ''}</div>
-            <div>locationZip: {data.site.locationZip ?? ''}</div>
-            <div>siteAddress: {data.site.siteAddress ?? ''}</div>
-            <div>siteAddress2: {data.site.siteAddress2 ?? ''}</div>
-            <div>siteCity: {data.site.siteCity ?? ''}</div>
-            <div>siteState: {data.site.siteState ?? ''}</div>
-            <div>siteZip: {data.site.siteZip ?? ''}</div>
-            <div>person: {data.site.person ?? ''}</div>
-            <div>personAddress: {data.site.personAddress ?? ''}</div>
-            <div>personAddress2: {data.site.personAddress2 ?? ''}</div>
-            <div>personCity: {data.site.personCity ?? ''}</div>
-            <div>personState: {data.site.personState ?? ''}</div>
-            <div>personZip: {data.site.personZip ?? ''}</div>
-            <div>personPhone: {data.site.personPhone ?? ''}</div>
-            <div>peronsEmail: {data.site.personEmail ?? ''}</div>
-            <div>latitudeStart: {data.site.latitudeStart ?? ''}</div>
-            <div>latitudeEnd: {data.site.latitudeEnd ?? ''}</div>
-            <div>longitudeStart: {data.site.longitudeStart ?? ''}</div>
-            <div>longitudeEnd: {data.site.longitudeEnd ?? ''}</div>
-            <div>altPerson: {data.site.altPerson ?? ''}</div>
-            <div>altPersonAddress: {data.site.altPersonAddress ?? ''}</div>
-            <div>altPersonAddress2: {data.site.altPersonAddress2 ?? ''}</div>
-            <div>altPersonCity: {data.site.altPersonCity ?? ''}</div>
-            <div>altPersonState: {data.site.altPersonState ?? ''}</div>
-            <div>altPersonZip: {data.site.altPersonZip ?? ''}</div>
-            <div>altPersonPhone: {data.site.altPersonPhone ?? ''}</div>
-            <div>altPersonEmail: {data.site.altPersonEmail ?? ''}</div>
-            <div>otherParticipants: {data.site.otherParticipants ?? ''}</div>
-            <div>description: {data.site.description ?? ''}</div>
+            <div>siteName: {currentSite?.siteName ?? ''}</div>
+            <div>county: {currentSite?.county.name ?? ''}</div>
+            <div>township: {currentSite?.township ?? ''}</div>
+            <div>locationZip: {currentSite?.locationZip ?? ''}</div>
+            <div>siteAddress: {currentSite?.siteAddress ?? ''}</div>
+            <div>siteAddress2: {currentSite?.siteAddress2 ?? ''}</div>
+            <div>siteCity: {currentSite?.siteCity ?? ''}</div>
+            <div>siteState: {currentSite?.siteState ?? ''}</div>
+            <div>siteZip: {currentSite?.siteZip ?? ''}</div>
+            <div>person: {currentSite?.person ?? ''}</div>
+            <div>personAddress: {currentSite?.personAddress ?? ''}</div>
+            <div>personAddress2: {currentSite?.personAddress2 ?? ''}</div>
+            <div>personCity: {currentSite?.personCity ?? ''}</div>
+            <div>personState: {currentSite?.personState ?? ''}</div>
+            <div>personZip: {currentSite?.personZip ?? ''}</div>
+            <div>personPhone: {currentSite?.personPhone ?? ''}</div>
+            <div>peronsEmail: {currentSite?.personEmail ?? ''}</div>
+            <div>latitudeStart: {currentSite?.latitudeStart ?? ''}</div>
+            <div>latitudeEnd: {currentSite?.latitudeEnd ?? ''}</div>
+            <div>longitudeStart: {currentSite?.longitudeStart ?? ''}</div>
+            <div>longitudeEnd: {currentSite?.longitudeEnd ?? ''}</div>
+            <div>altPerson: {currentSite?.altPerson ?? ''}</div>
+            <div>altPersonAddress: {currentSite?.altPersonAddress ?? ''}</div>
+            <div>altPersonAddress2: {currentSite?.altPersonAddress2 ?? ''}</div>
+            <div>altPersonCity: {currentSite?.altPersonCity ?? ''}</div>
+            <div>altPersonState: {currentSite?.altPersonState ?? ''}</div>
+            <div>altPersonZip: {currentSite?.altPersonZip ?? ''}</div>
+            <div>altPersonPhone: {currentSite?.altPersonPhone ?? ''}</div>
+            <div>altPersonEmail: {currentSite?.altPersonEmail ?? ''}</div>
+            <div>otherParticipants: {currentSite?.otherParticipants ?? ''}</div>
+            <div>description: {currentSite?.description ?? ''}</div>
             <div>Statuses</div>
             <ul class="pl-4">
-                {#each data.site.siteStatuses as siteStatus}
-                    <li>{siteStatus.year}: {siteStatus.statusCode.description ?? ''}</li>
+                <!--
+                {#each currentSite?.siteStatuses as siteStatus}
+                    <li>{siteStatus?.year}: {siteStatus.statusCode.description ?? ''}</li>
                 {/each}
+                -->
             </ul>
             <div>
-                createdAt: {data.site.createdAt ?? ''}
+                createdAt: {currentSite?.createdAt ?? ''}
             </div>
             <div>
-                updated at {data.site.updatedAt ?? ''}
+                updated at {currentSite?.updatedAt ?? ''}
             </div>
         </div>
     </div>

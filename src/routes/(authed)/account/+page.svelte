@@ -1,9 +1,8 @@
 <script lang="ts">
-    import StandardContainer from "$lib/components/StandardContainer.svelte";
+    import Container from '$lib/components/layouts/Container.svelte';
 </script>
 
-<StandardContainer>
-	<svelte:fragment slot="standardBody">
+{#snippet body()}
     <div class="">
         <h1>Account</h1>
 
@@ -26,6 +25,6 @@
             <div>avatar</div>
             <button type="button" class="btn variant-filled">Update avatar</button>
         </div>
-    </svelte:fragment>
-</StandardContainer>
+{/snippet}
 
+<Container head={null} {body} tail={null} />

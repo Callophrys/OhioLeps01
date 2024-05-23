@@ -99,6 +99,8 @@
         if (filteredSitesIndex > -1) {
             currentSiteId = filteredSites[filteredSitesIndex].siteId;
             goto('/api/sites/' + currentSiteId);
+        } else {
+            currentSiteId = -1;
         }
     }
 
@@ -109,6 +111,8 @@
             if (siteIndex > 0) {
                 currentSiteId = allSites[siteIndex].siteId;
                 goto('/api/sites/' + currentSiteId);
+            } else {
+                currentSiteId = -1;
             }
         }
     }
@@ -120,6 +124,8 @@
             if (siteIndex > 0) {
                 currentSiteId = allSites[siteIndex].siteId;
                 goto('/api/sites/' + currentSiteId);
+            } else {
+                currentSiteId = -1;
             }
         }
     }
