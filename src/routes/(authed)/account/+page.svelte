@@ -25,6 +25,7 @@
             <div>avatar</div>
             <button type="button" class="btn variant-filled">Update avatar</button>
         </div>
+    </div>
 {/snippet}
 
 <Container head={null} {body} tail={null} />
