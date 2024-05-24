@@ -1,5 +1,5 @@
 <!--
-    See: 
+    See:
     https://github.com/skeletonlabs/skeleton/blob/master/packages/skeleton/src/lib/components/AppShell/AppShell.svelte
 -->
 <script lang="ts">
@@ -108,9 +108,9 @@
 -->
 <style>
     .container.has-footer {
-        height: calc(100vh - 144px);
+        height: calc(100vh - 124px);
     }
     .container {
-        height: calc(100vh - 128px);
+        height: calc(100vh - 96px);
     }
 </style>

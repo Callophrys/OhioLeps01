@@ -45,7 +45,7 @@
     /*-- Other */
 </script>
 
-<div class="flex flex-row space-x-2 text-sm fixed top-[134px] right-10">
+<div class="flex flex-row space-x-2 text-sm fixed top-[102px] right-10">
     <!-- <label class={cLabel} title="Highlight recently added/updated data"> -->
     <!--     <p>Show Hodges</p> -->
     <!--     <input class="checkbox" type="checkbox" bind:checked={showHodges} /> -->

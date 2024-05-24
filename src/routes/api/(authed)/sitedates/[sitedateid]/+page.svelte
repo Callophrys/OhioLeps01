@@ -10,6 +10,7 @@
     import GoBack from '$lib/components/datanavigation/GoBack.svelte';
     import GoNext from '$lib/components/datanavigation/GoNext.svelte';
     import { GOTYPE } from '$lib/types.js';
+    import { goto } from '$app/navigation';
 
     /*-- -- Data -- */
     /*-- Exports */
@@ -148,6 +149,9 @@
     }
 
     /*-- Methods */
+    function addSiteDate() {
+        goto(`/api/siteDates/new/${currentSiteId}`);
+    }
 
     /*-- Reactives (functional) */
     let recordDate: Date = $state(new Date(data.siteDate.recordDate));
@@ -415,10 +419,15 @@
 
     <svelte:fragment slot="rightBody">
         <div class="flex flex-row justify-between mb-2">
-            <div class="my-auto">{data.siteDate.siteName}</div>
-            <GoBack targetId={data.siteDate.siteId} targetType={GOTYPE.SITES} controlBody="scale-90" />
-            <GoNext targetId={firstSdoId} targetType={GOTYPE.SITEDATEOBSERVATIONS} targetIdSecondary={data.siteDate.siteId} controlBody="scale-90" controlDisabled={firstSdoId < 0} />
-            <SiteDatePicker bind:currentSiteId bind:currentSiteDateId controlBody="scale-90" buttonLeft="" buttonRight="" buttonYear="" buttonWeek="" dropdownShowDate={false} dropdownPointers={false} heading={null} yearPrefix="" weekPrefix="" controlOuter="" prefixYear="" prefixWeek="" suffixYear="" suffixWeek="" popupInner="" popupStyles="" labelledby="" />
+            <div class="flex flex-row">
+                <div class="my-auto mr-4">{data.siteDate.siteName}</div>
+                <GoBack targetId={data.siteDate.siteId} targetType={GOTYPE.SITES} controlBody="scale-90" />
+                <GoNext targetId={firstSdoId} targetType={GOTYPE.SITEDATEOBSERVATIONS} targetIdSecondary={data.siteDate.siteId} controlBody="scale-90" controlDisabled={firstSdoId < 0} />
+            </div>
+            <div class="flex flex-row">
+                <button type="button" class="btn" onclick={addSiteDate} title="Add new site date observation"><span class="text-success-400">✚</span>&nbsp;Add site date</button>
+                <SiteDatePicker bind:currentSiteId bind:currentSiteDateId controlBody="scale-90" buttonLeft="" buttonRight="" buttonYear="" buttonWeek="" dropdownShowDate={false} dropdownPointers={false} heading={null} yearPrefix="" weekPrefix="" controlOuter="" prefixYear="" prefixWeek="" suffixYear="" suffixWeek="" popupInner="" popupStyles="" labelledby="" />
+            </div>
             <!-- below version breaks -->
             <!--     <SiteDatePicker -->
             <!--         bind:currentSiteId -->

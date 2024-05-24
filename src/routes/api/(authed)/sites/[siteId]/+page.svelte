@@ -1,5 +1,7 @@
 <script lang="ts">
     /* TODO: figure out what site statuses in info block was all about - this was never returned and return type and results will need to change */
+    /* TODO: after back action from sdo the sdo picker should update its selection to last visited sdo */
+
     /*-- Imports */
     import type { SiteCountySiteDatesSiteStatuses } from '$lib/types.js';
     import type { SiteCountyState } from '$lib/types.js';
@@ -61,7 +63,7 @@
     /*-- Handlers */
     /*-- Methods */
     function addSiteDate() {
-        goto(`/api/siteDates/new/${currentSiteId}`);
+        goto(`/api/sitedates/new/${currentSiteId}`);
     }
 
     /*-- Reactives (functional) */
@@ -110,9 +112,9 @@
         <SitePicker bind:currentCountyId bind:currentSiteId bind:currentSiteDateId bind:filterByCounty controlBody="scale-90" />
         <div class="flex flex-row">
             {#if $page.data?.user && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN')}
-                <button type="button" class="btn" onclick={addSiteDate}><span class="text-success-400">✚</span>&nbsp;Add new site</button>
+                <button type="button" class="btn" onclick={addSiteDate} title="Add new site date observation"><span class="text-success-400">✚</span>&nbsp;Add site date</button>
             {/if}
-            <SiteDatePicker bind:currentSiteId bind:currentSiteDateId controlBody="scale-90" buttonLeft="" buttonRight="" buttonYear="" buttonWeek="" dropdownShowDate={false} dropdownPointers={false} heading={null} yearPrefix="" weekPrefix="" controlOuter="" prefixYear="" prefixWeek="" suffixYear="" suffixWeek="" popupInner="" popupStyles="" labelledby="" />
+            <SiteDatePicker bind:currentSiteId bind:currentSiteDateId controlBody="scale-90" buttonLeft="" buttonRight="" buttonYear="" buttonWeek="" dropdownShowDate={false} dropdownPointers={true} heading={null} yearPrefix="" weekPrefix="" controlOuter="" prefixYear="" prefixWeek="" suffixYear="" suffixWeek="" popupInner="" popupStyles="" labelledby="" />
         </div>
     </div>
 
