@@ -77,31 +77,17 @@
     </label>
 {/snippet}
 
-{#snippet energyLarva(id)}
-    <label class="label">
-        <span>Larval Energy Source - Section {id}:</span>
-        <input type="text" class="input" id="lEsec{id}" name="lEsec{id}" title="Larval Energy Source - Section {id}" />
-    </label>
-{/snippet}
-
-{#snippet larva(id)}
-    <label class="label">
-        <span>Larva Observed - Area {id}:</span>
-        <input type="text" class="select" id="larvaOb{id}" name="larvaOb{id}" title="Larva Observed - Area {id}" />
-    </label>
-{/snippet}
-
-{#snippet energyAdult(id)}
-    <label class="label">
-        <span>Energy Source - Group {id}:</span>
-        <input type="text" class="input" id="energySource{id}" name="energySource{id}" title="Energy Source - Group {id}" />
-    </label>
-{/snippet}
-
 {#snippet entryInput(fullId, fullLabel, inputType)}
     <label class="label">
         <span>{fullLabel}:</span>
         <input type={inputType} class="input" id={fullId} name={fullId} title={fullLabel} />
+    </label>
+{/snippet}
+
+{#snippet entryInputForSets(rootId, idKey, rootLabel, inputType)}
+    <label class="label">
+        <span>{rootLabel} {idKey}:</span>
+        <input type={inputType} class="input" id="{rootId}{idKey}" name="{rootId}{idKey}" title="{rootLabel} {idKey}" />
     </label>
 {/snippet}
 
@@ -112,10 +98,16 @@
     </label>
 {/snippet}
 
+{#snippet entryTextarea(fullId, fullLabel, rows)}
+    <label class="label">
+        <span>{fullLabel}:</span>
+        <textarea class="textarea" id={fullId} name={fullId} {rows} title={fullLabel}></textarea>
+    </label>
+{/snippet}
+
 {#snippet body()}
     <form method="POST" action="?/addSiteDate" id="addSiteDate" name="addSiteDate">
-        <input type="hidden" id="countyId" name="countyId" bind:value={currentCountyId} />
-        <input type="hidden" id="stateId" name="stateId" bind:value={currentStateId} />
+        <!-- input type="hidden" id="siteId" name="siteId" bind:value= / -->
         <div class="w-[37em]">
             <div class="content">
                 {@render entryInput('recorder', 'Recorder', 'input')}
@@ -143,34 +135,38 @@
                     <input type="number" min="0" class="input" id="endWindMPH" name="endWindMPH" title="End Wind Speed" />
                 </label>
 
-                <div class="text-center mt-4">Weather</div>
-                {#each { length: 15 } as _, i}
-                    {@render weather(i + 1)}
-                {/each}
+                <div class="mt-4">
+                    <div class="text-center">Weather</div>
+                    {#each { length: 15 } as _, i}
+                        {@render weather(i + 1)}
+                    {/each}
+                </div>
 
-                <div class="text-center mt-4">Larval Food Sources</div>
-                {#each { length: 15 } as _, i}
-                    {@render energyLarva(i + 1)}
-                {/each}
+                <div class="mt-4">
+                    <div class="text-center">Larval Food Sources</div>
+                    {#each { length: 15 } as _, i}
+                        {@render entryInputForSets('lEsec', i + 1, 'Larval Energy Source - Section', 'input')}
+                    {/each}
+                </div>
 
-                <div class="text-center mt-4">Larva</div>
-                {@render larva('A')}
-                {@render larva('B')}
-                {@render larva('C')}
-                {@render larva('D')}
+                <div class="mt-4">
+                    <div class="text-center">Larva</div>
+                    {#each ['A', 'B', 'C', 'D'] as areaId}
+                        {@render entryInputForSets('larvaOb', areaId, 'Larva Observed - Area', 'input')}
+                    {/each}
+                </div>
 
-                <div class="text-center mt-4">Energy/Blooming</div>
-                {#each { length: 4 } as _, i}
-                    {@render energyAdult(i + 1)}
-                {/each}
+                <div class="mt-4">
+                    <div class="text-center">Energy/Blooming</div>
+                    {#each { length: 4 } as _, i}
+                        {@render entryInputForSets('energySource', i + 1, 'Energy Source - Group', 'input')}
+                    {/each}
+                </div>
 
-                <div class="h-8"></div>
-                {@render entryInput('flowersInBloom', 'Flowers In Bloom', 'input')}
-
-                <label class="label">
-                    <span>Field Notes</span>
-                    <textarea class="textarea" id="fieldNotes" name="fieldNotes" rows="4" title="Field Notes"></textarea>
-                </label>
+                <div class="mt-4">
+                    {@render entryInput('flowersInBloom', 'Flowers In Bloom', 'input')}
+                    {@render entryTextarea('fieldNotes', 'Field Notes', '4')}
+                </div>
             </div>
         </div>
     </form>

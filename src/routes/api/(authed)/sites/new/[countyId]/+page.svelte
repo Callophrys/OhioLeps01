@@ -64,6 +64,13 @@
     </label>
 {/snippet}
 
+{#snippet entryTextarea(fullId, fullLabel, rows)}
+    <label class="label">
+        <span>{fullLabel}:</span>
+        <textarea class="textarea" id={fullId} name={fullId} {rows} title={fullLabel}></textarea>
+    </label>
+{/snippet}
+
 {#snippet body()}
     <form method="POST" action="?/addSite" id="addSite" name="addSite">
         <input type="hidden" id="countyId" name="countyId" bind:value={currentCountyId} />
@@ -71,41 +78,37 @@
         <div class="w-[37em]">
             <div class="content">
                 {@render entryInput('siteName', 'Site Name', 'text')}
-                <label class="label">
-                    <span>Site Name:</span>
-                    <input type="text" class="input" id="siteName" name="siteName" title="Site Name:" />
-                </label>
-                <label class="label"><span>Township:</span><input type="text" class="input" id="township" name="township" title="Township:" /></label>
-                <label class="label"><span>Location Zip:</span><input type="text" class="input" id="locationZip" name="locationZip" title="Location Zip:" /></label>
-                <label class="label"><span>Site Address:</span><input type="text" class="input" id="siteAddress" name="siteAddress" title="Site Address:" /></label>
-                <label class="label"><span>Site Address 2:</span><input type="text" class="input" id="siteAddress2" name="siteAddress2" title="Site Address 2:" /></label>
-                <label class="label"><span>Site City:</span><input type="text" class="input" id="siteCity" name="siteCity" title="Site City:" /></label>
-                <label class="label"><span>Site State:</span><input type="text" class="input" id="siteState" name="siteState" title="Site State:" /></label>
-                <label class="label"><span>Site Zip:</span><input type="text" class="input" id="siteZip" name="siteZip" title="Site Zip:" /></label>
-                <label class="label"><span>Person:</span><input type="text" class="input" id="person" name="person" title="Person:" /></label>
-                <label class="label"><span>Person Address:</span><input type="text" class="input" id="personAddress" name="personAddress" title="Person Address:" /></label>
-                <label class="label"><span>Person Address 2:</span><input type="text" class="input" id="personAddress2" name="personAddress2" title="Person Address 2:" /></label>
-                <label class="label"><span>Person City:</span><input type="text" class="input" id="personCity" name="personCity" title="Person City:" /></label>
-                <label class="label"><span>Person State:</span><input type="text" class="input" id="personState" name="personState" title="Person State:" /></label>
-                <label class="label"><span>Person Zip:</span><input type="text" class="input" id="personZip" name="personZip" title="Person Zip:" /></label>
-                <label class="label"><span>Person Phone:</span><input type="text" class="input" id="personPhone" name="personPhone" title="Person Phone:" /></label>
-                <label class="label"><span>Person Phone 2:</span><input type="text" class="input" id="personPhone2" name="personPhone2" title="Person Phone 2:" /></label>
-                <label class="label"><span>Person Email:</span><input type="text" class="input" id="personEmail" name="personEmail" title="Person Email:" /></label>
-                <label class="label"><span>Latitude Start:</span><input type="text" class="input" id="latitudeStart" name="latitudeStart" title="Latitude Start:" /></label>
-                <label class="label"><span>Latitude End:</span><input type="text" class="input" id="latitudeEnd" name="latitudeEnd" title="Latitude End:" /></label>
-                <label class="label"><span>Longitude Start:</span><input type="text" class="input" id="longitudeStart" name="longitudeStart" title="Longitude Start:" /></label>
-                <label class="label"><span>Longitude End:</span><input type="text" class="input" id="longitudeEnd" name="longitudeEnd" title="Longitude End:" /></label>
-                <label class="label"><span>Alt Person:</span><input type="text" class="input" id="altPerson" name="altPerson" title="Alt Person:" /></label>
-                <label class="label"><span>Alt Person Address:</span><input type="text" class="input" id="altPersonAddress" name="altPersonAddress" title="Alt Person Address:" /></label>
-                <label class="label"><span>Alt Person Address 2:</span><input type="text" class="input" id="altPersonAddress2" name="altPersonAddress2" title="Alt Person Address 2:" /></label>
-                <label class="label"><span>Alt Person City:</span><input type="text" class="input" id="altPersonCity" name="altPersonCity" title="Alt Person City:" /></label>
-                <label class="label"><span>Alt Person State:</span><input type="text" class="input" id="altPersonState" name="altPersonState" title="Alt Person State:" /></label>
-                <label class="label"><span>Alt Person Zip:</span><input type="text" class="input" id="altPersonZip" name="altPersonZip" title="Alt Person Zip:" /></label>
-                <label class="label"><span>Alt Person Phone:</span><input type="text" class="input" id="altPersonPhone" name="altPersonPhone" title="Alt Person Phone:" /></label>
-                <label class="label"><span>Alt Person Phone 2:</span><input type="text" class="input" id="altPersonPhone2" name="altPersonPhone2" title="Alt Person Phone 2:" /></label>
-                <label class="label"><span>Alt Person Email:</span><input type="text" class="input" id="altPersonEmail" name="altPersonEmail" title="Alt Person Email:" /></label>
-                <label class="label"><span>Other Participants:</span><input type="text" class="input" id="otherParticipants" name="otherParticipants" title="Other Participants:" /></label>
-                <label class="label"><span>description:</span><textarea class="textarea" id="description" name="description" rows="4" title="Description"></textarea></label>
+                {@render entryInput('township', 'Township', 'text')}
+                {@render entryInput('locationZip', 'Location Zip', 'text')}
+                {@render entryInput('siteAddress', 'Site Address', 'text')}
+                {@render entryInput('siteAddress2', 'Site Address 2', 'text')}
+                {@render entryInput('siteCity', 'Site City', 'text')}
+                {@render entryInput('siteState', 'Site State', 'text')}
+                {@render entryInput('siteZip', 'Site Zip', 'text')}
+                {@render entryInput('person', 'Person', 'text')}
+                {@render entryInput('personAddress', 'Person Address', 'text')}
+                {@render entryInput('personAddress2', 'Person Address 2', 'text')}
+                {@render entryInput('personCity', 'Person City', 'text')}
+                {@render entryInput('personState', 'Person State', 'text')}
+                {@render entryInput('personZip', 'Person Zip', 'text')}
+                {@render entryInput('personPhone', 'Person Phone', 'text')}
+                {@render entryInput('personPhone2', 'Person Phone 2', 'text')}
+                {@render entryInput('personEmail', 'Person Email', 'text')}
+                {@render entryInput('latitudeStart', 'Latitude Start', 'text')}
+                {@render entryInput('latitudeEnd', 'Latitude End', 'text')}
+                {@render entryInput('longitudeStart', 'Longitude Start', 'text')}
+                {@render entryInput('longitudeEnd', 'Longitude End', 'text')}
+                {@render entryInput('altPerson', 'Alt Person', 'text')}
+                {@render entryInput('altPersonAddress', 'Alt Person Address', 'text')}
+                {@render entryInput('altPersonAddress2', 'Alt Person Address 2', 'text')}
+                {@render entryInput('altPersonCity', 'Alt Person City', 'text')}
+                {@render entryInput('altPersonState', 'Alt Person State', 'text')}
+                {@render entryInput('altPersonZip', 'Alt Person Zip', 'text')}
+                {@render entryInput('altPersonPhone', 'Alt Person Phone', 'text')}
+                {@render entryInput('altPersonPhone2', 'Alt Person Phone 2', 'text')}
+                {@render entryInput('altPersonEmail', 'Alt Person Email', 'text')}
+                {@render entryInput('otherParticipants', 'Other Participants', 'text')}
+                {@render entryTextarea('description', 'description', '4')}
             </div>
         </div>
     </form>

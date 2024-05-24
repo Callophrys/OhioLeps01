@@ -48,7 +48,6 @@
     $: classesRightHead = `${rightHeadClasses}`;
     $: classesRightBody = `${cBaseRightBody} ${rightBodyClasses}`;
     $: classesRightTail = `${rightTailClasses}`;
-
 </script>
 
 <div class={classesOuterBody}>
@@ -95,9 +94,9 @@
 -->
 <style>
     .container.has-footer {
-        height: calc(100vh - 144px);
+        height: calc(100vh - 7rem);
     }
     .container {
-        height: calc(100vh - 128px);
+        height: calc(100vh - 6rem);
     }
 </style>

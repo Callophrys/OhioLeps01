@@ -61,9 +61,9 @@
      * arbitrary valued Tailwind class.
      * Calc and 100% does work */
     .container.has-footer {
-        height: calc(100vh - 144px);
+        height: calc(100vh - 6rem);
     }
     .container {
-        height: calc(100vh - 128px);
+        height: calc(100vh - 7rem);
     }
 </style>

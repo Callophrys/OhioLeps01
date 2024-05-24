@@ -108,9 +108,9 @@
 -->
 <style>
     .container.has-footer {
-        height: calc(100vh - 124px);
+        height: calc(100vh - 7rem);
     }
     .container {
-        height: calc(100vh - 96px);
+        height: calc(100vh - 6rem);
     }
 </style>

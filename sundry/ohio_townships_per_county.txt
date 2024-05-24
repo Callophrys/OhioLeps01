@@ -1,0 +1,3593 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="https://assets.noviams.com/novi-file-uploads/ota/structure/favicon.ico" />
+    <link rel="apple-touch-icon" href="https://assets.noviams.com/novi-file-uploads/ota/structure/ota_apple_touch_icon_1024x1024.png" />
+    <title>Ohio Townships Map - Ohio Township Association</title>
+
+            <link rel="canonical" href="https://www.ohiotownships.org/ohio-townships-map" />
+
+    <link href="https://assets.noviams.com/novi-core-assets/css/c/ota/ota.css" rel="stylesheet" />
+    <link href="https://assets.noviams.com/novi-core-assets/css/fontawesome.css" rel="stylesheet" />
+
+
+
+    <link href="/client-apps/main/dist/css-fingerprint763B38EA7DE18117C3EE5FBA9D3A8EF7/content-region-shims.css" rel="stylesheet" />
+    <link href="/client-apps/main/dist/css-fingerprint1A54E872F6E18143C71FF5AED2D27155/prism.css" rel="stylesheet" />
+
+    <!-- New Relic Header -->
+
+
+        <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', ' GTM-TRTSWRV');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TRTSWRV');</script>
+<!-- End Google Tag Manager -->
+
+    <style type="text/css">
+        .nav-fixerbg .fixed-nav-logo {
+	background-image: url('https://assets.noviams.com/novi-file-uploads/ota/structure/ota_minimal_red.png') !important;
+
+}
+
+#search-panel {
+display: inline-block !important;
+}
+
+.navbar-utility li #search-panel {
+margin-top: 0px;
+}
+    </style>
+</head>
+<body>
+        <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id= GTM-TRTSWRV"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+        <a href="#content" class="skip">Skip to content</a>
+
+
+        <header>
+
+
+
+
+
+<a href="/products/checkout" class="cart cart-mobile hidden-md hidden-lg hide" aria-label="View Cart">
+    <span class="novicon novicon-cart" aria-hidden="true"></span>
+    <strong>
+        <span class="items-in-cart" role="status">0</span> Items
+    </strong> in your cart <span class="view-cart">View Cart</span>
+</a>
+
+
+
+    <div class="navbar main-menu">
+
+
+<div class="navbar-utility">
+    <div class="navbar-utility__content">
+        <ul>
+            <li>
+                <a href="/products/checkout" class="cart hidden-xs hidden-sm hide" aria-label="View Cart">
+                    <span class="novicon novicon-cart" aria-hidden="true"></span>
+                    <span class="items-in-cart" aria-label="Number of items in cart">0</span>
+                    <span>Cart</span>
+                </a>
+            </li>
+                    <li>
+                        <a href="#join-modal" data-toggle="modal" id="join-link">
+                            <span class="novicon novicon-handshake join-modal-link" aria-hidden="true"></span>
+                            <span class="join-modal-link">Join</span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="
+/login">
+                        <span class="novicon novicon-login" aria-hidden="true"></span>
+                        <span>Login</span>
+                    </a>
+                </li>
+            <li>
+                <a href="/contact-us">
+                    <span class="novicon novicon-envelope" aria-hidden="true"></span>
+                    <span>Contact Us</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="#search-panel" class="hidden-xs hidden-sm search-toggle" aria-label="Search Site" aria-expanded="false">
+                    <span class="novicon novicon-search"></span>
+                </a>
+            </li>
+
+            <li>
+                <div id="search-panel" role="search" style="display: none;">
+                    <div class="form-group">
+                        <a href="/search" aria-label="Click to search site" class="btn btn-secondary search-go"><span class="novicon novicon-arrow-right" aria-hidden="true"></span></a>
+                        <span><input type="text" class="form-control search-text" aria-label="Enter keyword to search site for" placeholder="Search site" /></span>
+                    </div>
+                </div>
+            </li>
+
+
+        </ul>
+    </div>
+
+</div>
+
+        <div class="navbar__wrapper">
+
+            <a href="/" class="navbar__logo-wrapper">
+                <img alt="Ohio Township Association Logo" src="https://assets.noviams.com/novi-file-uploads/ota/structure/ota_minimal_red.png" class="img-responsive navbar-brand__img" />
+            </a>
+
+            <a href="javascript:void(0);" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" aria-label="Open and close the menu">
+                <span class="novicon novicon-menu" aria-hidden="true"></span>
+            </a>
+
+            <div class="clearfix hidden-md hidden-lg"></div>
+
+            <div class="nav-secondary hidden-sm hidden-xs">
+
+<novi-content-wrapper><ul class="list-inline nav-secondary-icons">
+<li class="list-group-item"><a href="/events/?CalendarView=1"><i class="fas fa-calendar-alt"></i></a>
+<p>CALENDAR</p>
+</li>
+<li class="list-group-item"><a href="/news/newsroom"><i class="fas fa-globe"></i></a>
+<p>NEWS</p>
+</li>
+<li class="list-group-item"><a href="/news/classifieds"> <i class="fas fa-newspaper"></i> </a>
+<p>CLASSIFIEDS</p>
+</li>
+<li class="list-group-item"><a href="/vendor-directory"> <i class="fas fa-address-book"></i> </a>
+<p>VENDOR <br />DIRECTORY</p>
+</li>
+<li class="list-group-item"><a href="/products"> <i class="fas fa-shopping-cart"></i> </a>
+<p>STORE</p>
+</li>
+</ul></novi-content-wrapper>
+            </div>
+        </div>
+
+        <div id="nav-background" class="navbar-custom-background">
+
+            <div class="navbar__wrapper-sticky">
+
+                <div id="nav-placeholder"></div>
+
+                <div id="main-nav" class="navbar-collapse collapse">
+
+                    <nav  class="navbar__wrapper-fixerbg">
+
+                        <a href="/" class="navbar-brand-fixed-logo">
+                            <div class="fixed-nav-logo"></div>
+                        </a>
+
+                        <ul class="nav navbar-nav">
+                            	<li>
+		<a href="javascript:void(0);">
+			About the OTA
+			<span class="caret"></span>
+		</a>
+				<ul class="dropdown-menu level-2">
+	<li>
+		<a href="javascript:void(0);">
+			Who We Are
+			<span class="caret"></span>
+		</a>
+				<ul class="dropdown-menu level-3">
+	<li>
+		<a href="/who-we-are">
+			About the OTA
+		</a>
+
+	</li>
+	<li>
+		<a href="/ota-history">
+			OTA History
+		</a>
+
+	</li>
+	<li>
+		<a href="/ota-constitution">
+			OTA Constitution
+		</a>
+
+	</li>
+				</ul>
+
+	</li>
+	<li>
+		<a href="javascript:void(0);">
+			Leadership
+			<span class="caret"></span>
+		</a>
+				<ul class="dropdown-menu level-3">
+	<li>
+		<a href="/board">
+			Board of Directors
+		</a>
+
+	</li>
+	<li>
+		<a href="/staff">
+			Staff
+		</a>
+
+	</li>
+				</ul>
+
+	</li>
+	<li>
+		<a href="javascript:void(0);">
+			Membership
+			<span class="caret"></span>
+		</a>
+				<ul class="dropdown-menu level-3">
+	<li>
+		<a href="/become-an-ota-member">
+			Become an OTA Member
+		</a>
+
+	</li>
+	<li>
+		<a href="/county-township-associations">
+			County Township Associations
+		</a>
+
+	</li>
+	<li>
+		<a href="/county-membership-coordinator-directory">
+			County Membership Coordinator Directory
+		</a>
+
+	</li>
+	<li>
+		<a href="/county-memos">
+			County Memos
+		</a>
+
+	</li>
+				</ul>
+
+	</li>
+	<li>
+		<a href="/affiliate-groups">
+			Affiliate Groups
+			<span class="caret"></span>
+		</a>
+				<ul class="dropdown-menu level-3">
+	<li>
+		<a href="/clout">
+			CLOUT
+		</a>
+
+	</li>
+	<li>
+		<a href="/law-directors-group">
+			Law Directors Group
+		</a>
+
+	</li>
+	<li>
+		<a href="/otan">
+			OTAN
+		</a>
+
+	</li>
+	<li>
+		<a href="/zoning-inspectors-group">
+			Zoning Inspectors Group
+		</a>
+
+	</li>
+				</ul>
+
+	</li>
+	<li>
+		<a href="https://www.ohiotownships.org/products">
+			Store
+		</a>
+
+	</li>
+				</ul>
+
+	</li>
+	<li>
+		<a href="javascript:void(0);">
+			Townships 101
+			<span class="caret"></span>
+		</a>
+				<ul class="dropdown-menu level-2">
+	<li>
+		<a href="/townships101">
+			About Townships
+		</a>
+
+	</li>
+	<li>
+		<a href="/ohio-township-day">
+			Ohio Township Day
+		</a>
+
+	</li>
+	<li>
+		<a href="/ohio-townships-map" class="active">
+			Ohio Townships Map
+		</a>
+
+	</li>
+	<li>
+		<a href="/census-data">
+			Ohio Townships Census Data
+		</a>
+
+	</li>
+	<li>
+		<a href="/cox-report">
+			&quot;Ohio&#39;s Townships: Spending, Taxing &amp; Borrowing Less&quot;
+		</a>
+
+	</li>
+				</ul>
+
+	</li>
+	<li>
+		<a href="javascript:void(0);">
+			Programs
+			<span class="caret"></span>
+		</a>
+				<ul class="dropdown-menu level-2">
+	<li>
+		<a href="/new-member-training">
+			New Member Training Program
+		</a>
+
+	</li>
+	<li>
+		<a href="/scholarship-program">
+			Scholarship Program
+		</a>
+
+	</li>
+	<li>
+		<a href="/ota-workers-comp-program">
+			OTA Workers&#39; Comp Program
+		</a>
+
+	</li>
+	<li>
+		<a href="/leadership-academy">
+			Leadership Academy
+			<span class="caret"></span>
+		</a>
+				<ul class="dropdown-menu level-3">
+	<li>
+		<a href="/otala-1">
+			OTALA 1.0
+		</a>
+
+	</li>
+	<li>
+		<a href="/otala-2">
+			OTALA 2.0
+		</a>
+
+	</li>
+				</ul>
+
+	</li>
+				</ul>
+
+	</li>
+	<li>
+		<a href="javascript:void(0);">
+			Advocacy
+			<span class="caret"></span>
+		</a>
+				<ul class="dropdown-menu level-2">
+	<li>
+		<a href="/legislative-priorities">
+			Legislative Priorities
+		</a>
+
+	</li>
+	<li>
+		<a href="/billtracker">
+			Ohio Bill Tracker
+		</a>
+
+	</li>
+	<li>
+		<a href="/legislative-alerts">
+			Legislative Alerts
+		</a>
+
+	</li>
+	<li>
+		<a href="/find-a-legislator">
+			Find a Legislator
+		</a>
+
+	</li>
+	<li>
+		<a href="/natat">
+			NATaT
+		</a>
+
+	</li>
+				</ul>
+
+	</li>
+	<li>
+		<a href="javascript:void(0);">
+			Education
+			<span class="caret"></span>
+		</a>
+				<ul class="dropdown-menu level-2">
+	<li>
+		<a href="/annual-winter-conference">
+			Annual Winter Conference
+		</a>
+
+	</li>
+	<li>
+		<a href="/training-opportunities">
+			Training Opportunities
+			<span class="caret"></span>
+		</a>
+				<ul class="dropdown-menu level-3">
+	<li>
+		<a href="/fiscal-officer-training">
+			Fiscal Officer Training
+		</a>
+
+	</li>
+	<li>
+		<a href="/general-township-training">
+			General Township Training
+		</a>
+
+	</li>
+	<li>
+		<a href="/law-directors-group">
+			Law Directors Group
+		</a>
+
+	</li>
+	<li>
+		<a href="/otan">
+			OTAN
+		</a>
+
+	</li>
+	<li>
+		<a href="/trustee-training">
+			Trustee Training
+		</a>
+
+	</li>
+	<li>
+		<a href="/zoning-inspectors-group">
+			Zoning Inspectors Group
+		</a>
+
+	</li>
+				</ul>
+
+	</li>
+	<li>
+		<a href="/township-education-subscription">
+			Township Education Subscription
+		</a>
+
+	</li>
+	<li>
+		<a href="/webinar-archive">
+			Webinar Archive
+		</a>
+
+	</li>
+				</ul>
+
+	</li>
+	<li>
+		<a href="javascript:void(0);">
+			Township Functions
+			<span class="caret"></span>
+		</a>
+				<ul class="dropdown-menu level-2">
+	<li>
+		<a href="/american-rescue-plan-and-ohio-townships">
+			ARPA and Ohio Townships
+		</a>
+
+	</li>
+	<li>
+		<a href="/grants">
+			Grants
+		</a>
+
+	</li>
+	<li>
+		<a href="/cemeteries">
+			Cemeteries
+		</a>
+
+	</li>
+				</ul>
+
+	</li>
+	<li>
+		<a href="https://resources.ohiotownships.org/">
+			Resource Center
+		</a>
+
+	</li>
+
+
+
+                        </ul>
+
+                        <ul class="nav navbar-nav c-nav-utility-mobile hidden-md hidden-lg">
+                            <hr class="navbar-navigation__hr" />
+
+        <li class="visible-xs visible-sm">
+            <a href="#join-modal" data-toggle="modal" id="mobile-join-link" class="c-nav-utility__link c-nav-utility__join-link">
+                <span class="novicon novicon-handshake join-modal-link" aria-hidden="true"></span>
+                <span class="join-modal-link c-nav-utility__span c-nav-utility__join">
+                    Join
+                </span>
+            </a>
+        </li>
+    <li class="visible-xs visible-sm">
+        <a href="
+/login" class="c-nav-utility__link c-nav-utility__login-link">
+            <span class="novicon novicon-login" aria-hidden="true"></span>
+            <span class="c-nav-utility__span c-nav-utility__login">
+                Login
+            </span>
+        </a>
+    </li>
+<!-- LOGIN/USER END -->
+<li class="visible-xs visible-sm">
+    <!-- CONTACT US BEGIN -->
+    <a href="/contact-us" class="c-nav-utility__link c-nav-utility__contact-link">
+        <span class="c-nav-utility__span c-nav-utility__contact">
+            Contact Us
+        </span>
+    </a>
+    <!-- CONTACT US END -->
+
+</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    var novi = {};
+    novi.checkScroll = function () {
+
+        // Determine the viewport width your in using a media query from Javascript
+        var mediaQuery = window.matchMedia("(max-width: 992px)");
+
+        // Get the distance the user has scrolled from the top
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+
+        // We are determining if we need to recalculate the distance the #main-nav element is from the top based on
+        // the ternary if statements below. Basically we don't want the novi.navTop value to be calculated to the exact
+        // scroll top position and we want the #main-nav element to be a certain distance from the top of the page when
+        // the page is wide enough (hence the media query)
+        novi.navTop = mediaQuery.matches && novi.navTop < novi.nav.offset().top && novi.nav.offset().top < scrollTop
+            ? novi.nav.offset().top
+            : novi.navTop;
+
+        // If we have scrolled far enough down, we need to pin the navigation menu to the top (provided we're in a wide enough page for the navigation bar
+        // and not the hamburger menu button)
+        if (!mediaQuery.matches && scrollTop > novi.navTop && novi.navPlaceholder.css("display") === "none") {
+            novi.navPlaceholder.css("display", "block");
+            var height = novi.nav.outerHeight();
+            var navColorBarHeight = $(".navbar-collapse").height();
+
+            novi.navPlaceholder.css("height", height + "px");
+            novi.navBackground.addClass("nav-fixerbg");
+            novi.navBackground.css("height", (navColorBarHeight + 10) + "px");
+            novi.nav.addClass("nav-fixer");
+            novi.navBrand.addClass("nav-brand-show");
+        }
+        else if (mediaQuery.matches || scrollTop <= novi.navTop) {
+            novi.navPlaceholder.css("display", "none");
+            novi.navBackground.removeClass("nav-fixerbg");
+            novi.nav.removeClass("nav-fixer");
+            novi.navBrand.removeClass("nav-brand-show");
+            novi.navBackground.css("height", "auto");
+        }
+    };
+    document.addEventListener("DOMContentLoaded", function (event) {
+        novi.navPlaceholder = $("#nav-placeholder");
+        novi.nav = $("#main-nav");
+        novi.navBackground = $("#nav-background");
+        novi.navBrand = $("#nav-brand");
+
+        // NOTE [Brian Hall 2017-07-17]: This is a work around for when adding a member via the member-compass --> Staff area
+        var navOffset = novi.nav.offset();
+        novi.navTop = typeof (navOffset) === "undefined" || navOffset === null ? null : novi.nav.offset().top;
+
+        novi.navOffset = 0;
+        var adminBar = $("#admin-bar");
+        if (adminBar)
+            novi.navOffset = adminBar.outerHeight();
+        $(window).scroll(function () {
+            novi.checkScroll();
+        });
+        $(window).on("resize", function () {
+            novi.checkScroll();
+        });
+        novi.checkScroll();
+    });
+</script>
+
+        </header>
+
+    <div class="body-content c-body-content__ohio-townships-map" id="content">
+
+
+<div class="container default t-full-width c-ohio-townships-map">
+
+    <div class="c-breadcrumb c-breadcrumb__full-width c-breadcrumb-ohio-townships-map" role="region">
+        <div class="c-breadcrumb__wrapper">
+            <div class="container">
+
+
+            </div>
+        </div>
+    </div>
+
+    <div role="main">
+        <div class="header-ribbon">
+            <h1>
+<novi-content-wrapper>Ohio Townships Map</novi-content-wrapper></h1>
+
+<h2 class="subtitle" role="presentation"><novi-content-wrapper>Click on your county or scroll down to view the counties in alphabetical order. Township websites that have been provided to the OTA are linked to each individual township.&nbsp;</novi-content-wrapper></h2>
+        </div>
+        <div class="well box inner-content">
+
+<novi-content-wrapper><p><img alt="" border="0" height="972" id="Image-Maps-Com-image-maps-2020-09-30-161128" orgheight="972" orgwidth="900" src="https://assets-staging.noviams.com/novi-file-uploads/ota/images/cntymap_grey-min.jpg" style="display: block; margin-left: auto; margin-right: auto;" usemap="#image-maps-2020-09-30-161128" width="900"> <map id="ImageMapsCom-image-maps-2020-09-30-161128" name="image-maps-2020-09-30-161128">
+<area alt="Image Map" coords="898,970,900,972" href="http://www.image-maps.com/index.php?aff=mapped_users_83921" shape="rect" style="outline: none;" title="Image Map">
+
+<area alt="" coords="247,809,236,903,242,907,249,911,255,895,260,894,265,896,275,889,285,891,290,900,299,897,313,903,318,902,322,915,328,916,334,909,334,808,326,803,320,796,307,795,283,802" href="#Adams" shape="poly" style="outline: none;" target="_self" title="Adams County">
+
+<area alt="" coords="99,324,100,359,133,357,135,367,161,365,160,371,204,371,207,298,184,297,186,303,161,301,160,314,109,312,110,325" href="#Allen" shape="poly" style="outline: none;" target="_self" title="Allen County">
+
+<area alt="" coords="502,258,502,279,507,282,505,327,514,332,515,353,524,353,524,396,546,391,548,372,564,367,565,280,557,280,553,260" href="#Ashland" shape="poly" style="outline: none;" target="_self" title="Ashland County">
+
+<area alt="" coords="792,44,794,134,884,135,882,9" href="#Ashtabula" shape="poly" style="outline: none;" target="_self" title="Ashtabula County">
+
+<area alt="" coords="563,661,564,683,536,684,535,729,540,731,539,755,646,758,649,755,650,749,658,750,660,736,638,735,636,733,631,732,633,728,630,729,632,721,625,724,626,686,585,688,587,661" href="#Athens" shape="poly" style="outline: none;" target="_self" title="Athens County">
+
+<area alt="" coords="87,358,84,443,107,443,109,417,181,416,183,403,205,401,205,374,161,373,160,366,134,368,134,358" href="#Auglaize" shape="poly" style="outline: none;" target="_self" title="Auglaize County">
+
+<area alt="" coords="756,496,754,578,799,575,804,580,838,580,847,577,843,569,839,559,846,561,854,565,850,555,857,550,855,544,854,528,852,514,864,500" href="#Belmont" shape="poly" style="outline: none;" target="_self" title="Belmont County">
+
+<area alt="" coords="178,746,167,875,177,869,187,866,196,874,203,875,209,878,208,890,219,891,224,891,223,900,235,906,246,809,201,811,203,749" href="#Brown" shape="poly" style="outline: none;" target="_self" title="Brown County">
+
+<area alt="" coords="5,664,8,739,49,733,68,735,98,737,107,666,101,669,101,656,77,652,78,665" href="#Butler" shape="poly" style="outline: none;" target="_self" title="Butler County">
+
+<area alt="" coords="748,346,748,369,736,366,736,390,744,391,744,428,779,424,813,425,811,413,814,411,815,390,825,389,826,369,815,364,810,344" href="#Carroll" shape="poly" style="outline: none;" target="_self" title="Carroll County">
+
+<area alt="" coords="283,484,283,542,171,533,175,470,221,473,228,479" href="#Champaign" shape="poly" style="outline: none;" target="_self" title="Champaign County">
+
+<area alt="" coords="170,534,164,577,168,587,189,588,191,594,214,594,214,601,231,601,261,609,282,542" href="#Clark" shape="poly" style="outline: none;" target="_self" title="Clark County">
+
+<area alt="" coords="121,745,178,747,167,876,154,872,147,869,131,868,126,863,128,843,111,827,111,817,111,812,112,781,111,768,119,763,116,759,111,760,108,757" href="#Clermont" shape="poly" style="outline: none;" target="_self" title="Clermont County">
+
+<area alt="" coords="185,664,175,746,211,748,215,757,219,747,264,713,267,665" href="#Clinton" shape="poly" style="outline: none;" target="_self" title="Clinton County">
+
+<area alt="" coords="777,299,776,344,810,345,813,364,824,366,825,377,848,376,853,382,868,383,870,377,873,371,876,368,883,371,889,366,891,294,832,298,835,290,816,291,820,299" href="#Columbiana" shape="poly" style="outline: none;" target="_self" title="Columbiana County">
+
+<area alt="" coords="553,421,552,480,557,483,555,496,662,499,660,484,672,483,672,445,654,445,650,422" href="#Coshocton" shape="poly" style="outline: none;" target="_self" title="Coshocton County">
+
+<area alt="" coords="362,279,366,354,418,358,443,355,443,282" href="#Crawford" shape="poly" style="outline: none;" target="_self" title="Crawford County">
+
+<area alt="" coords="594,147,596,183,617,183,616,204,678,200,677,194,672,181,714,180,712,162,717,163,717,157,715,155,711,121,693,120,690,107,682,116,675,123,663,135,649,144,633,142,623,145,618,149" href="#Cuyahoga" shape="poly" style="outline: none;" target="_self" title="Cuyahoga County">
+
+<area alt="" coords="88,450,93,567,7,568,12,449" href="#Darke" shape="poly" style="outline: none;" target="_self" title="Darke County">
+
+<area alt="" coords="17,156,16,204,86,204,85,217,110,218,112,229,135,228,134,157" href="#Defiance" shape="poly" style="outline: none;" target="_self" title="Defiance County">
+
+<area alt="" coords="334,425,337,478,351,478,352,509,438,513,440,451,403,451,402,434,386,435,383,425" href="#Delaware" shape="poly" style="outline: none;" target="_self" title="Delaware County">
+
+<area alt="" coords="416,160,419,200,521,199,519,162,511,168,494,172,489,176,477,168,470,166,460,165,453,159,445,157,436,160,425,152" href="#Erie" shape="poly" style="outline: none;" target="_self" title="Erie County">
+
+<area alt="" coords="427,560,497,562,494,587,511,587,513,612,521,614,518,636,494,632,494,649,470,650,466,663,423,661,425,593,430,591,432,571,427,568" href="#Fairfield" shape="poly" style="outline: none;" target="_self" title="Fairfield County">
+
+<area alt="" coords="249,625,336,627,334,674,309,712,264,713,267,668,247,665" href="#Fayette" shape="poly" style="outline: none;" target="_self" title="Fayette County">
+
+<area alt="" coords="351,507,439,511,434,561,429,560,427,569,434,573,432,593,425,593,425,601,337,598,335,568,341,565,335,554,337,550,335,531,345,534,342,516,351,517" href="#Franklin" shape="poly" style="outline: none;" target="_self" title="Franklin County">
+
+<area alt="" coords="99,83,208,83,209,142,111,145,112,133,104,134,107,107,99,106" href="#Fulton" shape="poly" style="outline: none;" target="_self" title="Fulton County">
+
+<area alt="" coords="507,799,505,848,474,849,476,868,494,869,496,877,501,876,502,894,522,893,525,920,538,920,543,916,552,916,562,918,565,905,559,898,561,888,558,871,552,870,552,861,559,858,569,847,570,840,566,837,567,834,576,818,576,804,532,803,530,799" href="#Gallia" shape="poly" style="outline: none;" target="_self" title="Gallia County">
+
+<area alt="" coords="791,78,795,179,713,182,712,162,717,162,719,155,712,155,713,122,731,121,729,104,768,104,771,83" href="#Geauga" shape="poly" style="outline: none;" target="_self" title="Geauga County">
+
+<area alt="" coords="250,607,252,624,250,667,152,662,159,590,167,588,185,587,188,594,213,595,213,602,232,602,234,608" href="#Greene" shape="poly" style="outline: none;" target="_self" title="Greene County">
+
+<area alt="" coords="664,483,663,500,651,502,652,562,656,560,658,582,678,583,681,570,709,571,707,564,723,562,720,555,752,555,754,493,731,492,726,479" href="#Guernsey" shape="poly" style="outline: none;" target="_self" title="Guernsey County">
+
+<area alt="" coords="6,734,4,784,15,776,22,777,29,787,35,791,40,797,48,797,57,788,62,788,69,789,74,783,80,783,83,794,87,803,97,802,107,812,114,767,119,761,117,758,110,760,110,755,115,752,119,747,125,743,103,737,65,731,41,734" href="#Hamilton" shape="poly" style="outline: none;" target="_self" title="Hamilton County">
+
+<area alt="" coords="204,228,206,324,285,324,280,302,291,300,289,289,293,278,305,277,304,229" href="#Hancock" shape="poly" style="outline: none;" target="_self" title="Hancock County">
+
+<area alt="" coords="207,325,207,399,282,412,301,410,303,360,295,356,289,356,289,352,285,349,285,326" href="#Hardin" shape="poly" style="outline: none;" target="_self" title="Hardin County">
+
+<area alt="" coords="823,423,826,495,731,495,731,461,744,460,740,427" href="#Harrison" shape="poly" style="outline: none;" target="_self" title="Harrison County">
+
+<area alt="" coords="206,143,207,229,131,228,133,158,111,158,112,143" href="#Henry" shape="poly" style="outline: none;" target="_self" title="Henry County">
+
+<area alt="" coords="309,713,261,713,220,746,218,753,210,754,209,749,205,748,205,808,265,809,310,796,315,759,314,752,313,744,308,747,306,742,305,737,309,732,305,726,309,719" href="#Highland" shape="poly" style="outline: none;" target="_self" title="Highland County">
+
+<area alt="" coords="564,660,563,682,537,685,537,711,488,703,489,711,465,709,465,717,444,713,443,662,468,662,465,650,491,651,494,635,518,635,521,650,543,649,542,660" href="#Hocking" shape="poly" style="outline: none;" target="_self" title="Hocking County">
+
+<area alt="" coords="548,366,548,393,555,390,555,422,662,419,666,380,658,375,663,372,663,362" href="#Holmes" shape="poly" style="outline: none;" target="_self" title="Holmes County">
+
+<area alt="" coords="520,200,520,258,505,260,501,280,418,280,418,201" href="#Huron" shape="poly" style="outline: none;" target="_self" title="Huron County">
+
+<area alt="" coords="432,762,430,825,441,825,441,847,507,850,508,772,484,772,487,764,479,758,462,759,456,753,437,755,439,764" href="#Jackson" shape="poly" style="outline: none;" target="_self" title="Jackson County">
+
+<area alt="" coords="814,391,812,423,825,426,823,495,862,497,869,488,871,475,874,465,883,457,883,444,877,434,879,430,878,422,882,410,877,404,873,395,869,385,867,383,853,382,850,377,829,377,827,391" href="#Jefferson" shape="poly" style="outline: none;" target="_self" title="Jefferson County">
+
+<area alt="" coords="556,391,555,483,496,481,495,471,439,472,438,454,458,454,462,406,460,404,460,399,521,396" href="#Knox" shape="poly" style="outline: none;" target="_self" title="Knox County">
+
+<area alt="" coords="790,43,791,76,771,78,771,101,730,102,731,118,691,120,693,107,699,96,716,81" href="#Lake" shape="poly" style="outline: none;" target="_self" title="Lake County">
+
+<area alt="" coords="460,847,463,881,462,876,451,875,451,891,446,896,439,896,437,901,444,913,428,924,443,924,453,933,463,941,471,953,473,962,486,968,509,962,520,958,532,955,535,938,540,922,522,918,524,895,499,894,502,878,496,877,496,867,478,867,477,849" href="#Lawrence" shape="poly" style="outline: none;" target="_self" title="Lawrence County">
+
+<area alt="" coords="556,482,555,556,547,555,549,566,506,564,501,562,437,559,432,556,436,550,439,472,494,473,495,481" href="#Licking" shape="poly" style="outline: none;" target="_self" title="Licking County">
+
+<area alt="" coords="281,411,273,480,225,478,222,473,178,469,178,461,178,441,180,438,178,415,182,413,181,400,207,399" href="#Logan" shape="poly" style="outline: none;" target="_self" title="Logan County">
+
+<area alt="" coords="518,160,522,257,556,259,557,240,576,241,576,224,597,225,596,203,615,202,614,182,596,183,596,141,589,139,582,141,535,163" href="#Lorain" shape="poly" style="outline: none;" target="_self" title="Lorain County">
+
+<area alt="" coords="210,83,210,162,225,157,232,148,240,146,245,136,253,127,262,118,270,110,347,109,321,90,318,93,312,92,309,92,305,89,298,91,296,88,289,93,290,89,283,88,286,81" href="#Lucas" shape="poly" style="outline: none;" target="_self" title="Lucas County">
+
+<area alt="" coords="285,511,282,542,264,609,250,608,251,624,336,627,338,595,337,567,342,564,337,552,339,548,336,530,345,532,345,518" href="#Madison" shape="poly" style="outline: none;" target="_self" title="Madison County">
+
+<area alt="" coords="886,233,890,297,832,297,832,289,819,289,820,299,777,300,777,275,791,279,793,236" href="#Mahoning" shape="poly" style="outline: none;" target="_self" title="Mahoning County">
+
+<area alt="" coords="418,355,419,373,396,372,399,416,384,414,385,430,336,429,338,410,299,412,300,361,325,362,325,354" href="#Marion" shape="poly" style="outline: none;" target="_self" title="Marion County">
+
+<area alt="" coords="656,200,655,280,553,282,553,239,576,243,574,221,598,224,596,202" href="#Medina" shape="poly" style="outline: none;" target="_self" title="Medina County">
+
+<area alt="" coords="532,752,530,806,575,807,580,813,589,808,592,800,594,797,604,813,612,810,612,819,619,822,614,834,621,843,632,836,630,824,634,820,645,828,643,820,647,806,635,787,637,783,648,784,651,768,646,757" href="#Meigs" shape="poly" style="outline: none;" target="_self" title="Meigs County">
+
+<area alt="" coords="13,349,10,449,90,449,85,444,87,347" href="#Mercer" shape="poly" style="outline: none;" target="_self" title="Mercer County">
+
+<area alt="" coords="176,492,168,577,146,578,142,568,90,569,88,491" href="#Miami" shape="poly" style="outline: none;" target="_self" title="Miami County">
+
+<area alt="" coords="736,577,735,620,745,620,744,649,797,652,796,663,823,641,830,641,834,635,833,627,833,622,842,618,835,606,831,601,833,597,841,594,841,584,838,581,797,578" href="#Monroe" shape="poly" style="outline: none;" target="_self" title="Monroe County">
+
+<area alt="" coords="75,567,75,657,150,660,160,593,169,588,163,574,145,579,142,566" href="#Montgomery" shape="poly" style="outline: none;" target="_self" title="Montgomery County">
+
+<area alt="" coords="579,601,578,613,591,615,590,661,585,662,585,685,633,688,630,673,640,676,657,678,656,668,654,658,655,653,682,651,682,628,672,630,666,604" href="#Morgan" shape="poly" style="outline: none;" target="_self" title="Morgan County">
+
+<area alt="" coords="415,353,466,353,464,363,460,368,460,375,465,374,464,397,461,398,460,450,402,450,402,432,382,432,384,417,395,416,394,371,417,374" href="#Morrow" shape="poly" style="outline: none;" target="_self" title="Morrow County">
+
+<area alt="" coords="553,499,551,553,547,555,546,565,558,566,560,592,578,591,578,601,659,606,659,559,648,561,652,500" href="#Muskingum" shape="poly" style="outline: none;" target="_self" title="Muskingum County">
+
+<area alt="" coords="754,553,755,576,736,577,735,621,745,619,745,650,728,646,721,647,717,638,710,639,709,636,704,636,705,651,680,651,679,630,669,629,669,607,658,607,658,586,681,588,680,570,709,574,708,562,720,562,721,553" href="#Noble" shape="poly" style="outline: none;" target="_self" title="Noble County">
+
+<area alt="" coords="301,109,302,144,320,141,317,155,378,156,382,152,394,152,396,147,401,145,412,146,414,144,421,147,427,140,434,143,445,136,438,132,431,135,421,133,421,130,426,124,422,121,414,130,412,135,407,137,402,141,396,141,391,143,384,140,387,135,382,128,375,119,364,114,354,111" href="#Ottawa" shape="poly" style="outline: none;" target="_self" title="Ottawa County">
+
+<area alt="" coords="14,205,14,274,110,276,110,217,87,218,87,203" href="#Paulding" shape="poly" style="outline: none;" target="_self" title="Paulding County">
+
+<area alt="" coords="496,560,496,587,511,589,511,611,517,612,518,654,544,653,545,662,588,663,591,616,581,617,578,593,561,591,557,566,506,564" href="#Perry" shape="poly" style="outline: none;" target="_self" title="Perry County">
+
+<area alt="" coords="335,597,333,675,392,677,389,681,442,685,443,665,424,660,423,596" href="#Pickaway" shape="poly" style="outline: none;" target="_self" title="Pickaway County">
+
+<area alt="" coords="313,757,311,797,321,797,343,814,345,810,346,823,431,823,434,764" href="#Pike" shape="poly" style="outline: none;" target="_self" title="Pike County">
+
+<area alt="" coords="713,180,714,278,797,276,793,180" href="#Portage" shape="poly" style="outline: none;" target="_self" title="Portage County">
+
+<area alt="" coords="8,568,4,662,80,664,74,568" href="#Preble" shape="poly" style="outline: none;" target="_self" title="Preble County">
+
+<area alt="" coords="109,228,111,273,98,274,101,302,109,300,110,317,159,313,157,302,181,304,181,298,204,298,208,229" href="#Putnam" shape="poly" style="outline: none;" target="_self" title="Putnam County">
+
+<area alt="" coords="443,280,442,353,463,353,464,364,460,366,460,375,466,375,464,397,527,396,522,357,513,357,517,330,507,325,504,280" href="#Richland" shape="poly" style="outline: none;" target="_self" title="Richland County">
+
+<area alt="" coords="443,688,439,765,312,759,314,752,312,747,313,742,307,745,305,739,306,733,306,726,309,716,308,712,332,674,389,675,388,683" href="#Ross" shape="poly" style="outline: none;" target="_self" title="Ross County">
+
+<area alt="" coords="301,143,303,209,348,211,351,207,422,210,419,159,413,159,407,165,399,164,391,157,386,160,384,157,378,156,378,154,319,153,316,142" href="#Sandusky" shape="poly" style="outline: none;" target="_self" title="Sandusky County">
+
+<area alt="" coords="332,808,334,911,340,909,354,916,361,910,364,901,376,897,381,884,393,882,407,877,414,875,413,888,419,901,418,911,428,925,445,916,438,897,447,896,454,890,450,876,459,876,457,849,438,846,441,824,346,823,345,815" href="#Scioto" shape="poly" style="outline: none;" target="_self" title="Scioto County">
+
+<area alt="" coords="303,209,304,276,425,279,421,206,347,208,342,211" href="#Seneca" shape="poly" style="outline: none;" target="_self" title="Seneca County">
+
+<area alt="" coords="179,415,181,439,179,441,181,459,177,461,174,496,135,492,90,490,88,448,83,444,107,443,109,417" href="#Shelby" shape="poly" style="outline: none;" target="_self" title="Shelby County">
+
+<area alt="" coords="777,277,781,345,748,347,749,366,709,366,705,361,700,365,662,372,661,298,710,297,712,277" href="#Stark" shape="poly" style="outline: none;" target="_self" title="Stark County">
+
+<area alt="" coords="713,182,672,178,674,191,676,200,654,202,653,277,662,277,665,298,709,298,712,278" href="#Summit" shape="poly" style="outline: none;" target="_self" title="Summit County">
+
+<area alt="" coords="791,138,792,237,889,230,886,133" href="#Trumbull" shape="poly" style="outline: none;" target="_self" title="Trumbull County">
+
+<area alt="" coords="661,374,699,366,705,362,711,367,734,368,735,388,742,390,743,458,732,460,733,483,670,483,673,447,651,440,652,424,662,424" href="#Tuscarawas" shape="poly" style="outline: none;" target="_self" title="Tuscarawas County">
+
+<area alt="" coords="280,408,273,479,283,483,282,513,352,518,355,478,337,477,335,407" href="#Union" shape="poly" style="outline: none;" target="_self" title="Union County">
+
+<area alt="" coords="12,274,14,347,85,349,87,358,99,359,99,325,109,324,108,300,99,296,93,279" href="#VanWert" shape="poly" style="outline: none;" target="_self" title="Van Wert County">
+
+<area alt="" coords="440,715,437,755,455,754,460,759,479,760,485,764,485,771,506,772,506,800,531,799,535,754,542,755,542,733,535,730,534,709,490,704,489,714,465,709,462,715" href="#Vinton" shape="poly" style="outline: none;" target="_self" title="Vinton County">
+
+<area alt="" coords="98,657,185,663,178,747,124,744,119,739,101,735,106,666,101,668" href="#Warren" shape="poly" style="outline: none;" target="_self" title="Warren County">
+
+<area alt="" coords="632,677,633,686,625,689,626,723,634,728,637,735,654,734,657,749,662,736,673,733,686,740,691,722,692,714,697,711,705,701,716,701,722,711,732,715,739,709,750,703,757,702,764,698,770,689,783,681,792,672,795,661,795,655,749,655,746,650,732,650,722,647,718,644,719,637,711,639,711,635,707,636,707,653,657,651,653,656,655,666,654,675,653,681" href="#Washington" shape="poly" style="outline: none;" target="_self" title="Washington County">
+
+<area alt="" coords="564,281,564,366,664,363,665,275" href="#Wayne" shape="poly" style="outline: none;" target="_self" title="Wayne County">
+
+<area alt="" coords="19,82,17,155,111,158,112,134,107,134,103,105,99,107,98,86" href="#Williams" shape="poly" style="outline: none;" target="_self" title="Williams County">
+
+<area alt="" coords="303,110,302,231,203,227,203,166,222,160,229,148,239,151,241,137,250,129,273,112" href="#Wood" shape="poly" style="outline: none;" target="_self" title="Wood County">
+
+<area alt="" coords="293,275,363,279,364,358,326,355,326,363,298,360,293,357,288,356,287,350,285,348,283,327,280,302,294,304" href="#Wyandot" shape="poly" style="outline: none;" target="_self" title="Wyandot County">
+ </map></p>
+<hr>
+<p><map id="ImageMapsCom-image-maps-2020-09-30-130403" name="image-maps-2020-09-30-130403">
+<area alt="Image Map" coords="898,970,900,972" href="http://www.image-maps.com/index.php?aff=mapped_users_83921" shape="rect" style="outline: none;" title="Image Map">
+
+<area alt="" coords="247,809,236,903,242,907,249,911,255,895,260,894,265,896,275,889,285,891,290,900,299,897,313,903,318,902,322,915,328,916,334,909,334,808,326,803,320,796,307,795,283,802" href="/ohio-townships-map#collapse-1601484890423" shape="poly" style="outline: none;" target="_self" title="Adams County">
+ </map></p>
+<div id="Adams" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601484890423" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601484890423" role="button" aria-expanded="false"> Adams </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601484890423" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Bratton</li>
+<li>Brush Creek</li>
+<li>Franklin</li>
+<li>Green</li>
+<li>Jefferson</li>
+<li>Liberty</li>
+<li>Manchester</li>
+<li>Meigs</li>
+<li>Monroe</li>
+<li>Oliver</li>
+<li>Scott</li>
+<li>Sprigg</li>
+<li><a href="http://www.tiffintwpadams.us/" rel="noopener noreferrer" target="_blank"> Tiffin </a></li>
+<li>Wayne</li>
+<li>Winchester</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Allen" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601486141074" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601486141074" role="button" aria-expanded="false"> Allen </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601486141074" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Amanda</li>
+<li><a href="https://www.amertwp.us/" rel="noopener noreferrer" target="_blank"> American </a></li>
+<li>Auglaize</li>
+<li><a href="https://bathtwp.com/" rel="noopener noreferrer" target="_blank"> Bath </a></li>
+<li>Jackson</li>
+<li>Marion</li>
+<li>Monroe</li>
+<li><a href="https://perryallenohio.com/" rel="noopener noreferrer" target="_blank"> Perry </a></li>
+<li>Richland</li>
+<li><a href="http://www.shawneetownship.com/" rel="noopener noreferrer" target="_blank"> Shawnee </a></li>
+<li>Spencer</li>
+<li>Sugar Creek</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Ashland" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601486279457" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601486279457" role="button" aria-expanded="false"> Ashland </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601486279457" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Clear Creek</li>
+<li><a href="http://www.greentwp.us/" rel="noopener noreferrer" target="_blank"> Green </a></li>
+<li>Hanover</li>
+<li><a href="https://jacksontwpohio.com/" rel="noopener noreferrer" target="_blank"> Jackson </a></li>
+<li>Lake</li>
+<li>Mifflin</li>
+<li><a href="https://miltontwpohio.org/" rel="noopener noreferrer" target="_blank"> Milton </a></li>
+<li>Mohican</li>
+<li>Montgomery</li>
+<li>Orange</li>
+<li>Perry</li>
+<li>Ruggles</li>
+<li>Sullivan</li>
+<li><a href="http://www.troytwp.org/" rel="noopener noreferrer" target="_blank"> Troy </a></li>
+<li>Vermilion</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Ashtabula" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601489545861" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601489545861" role="button" aria-expanded="false"> Ashtabula </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601489545861" role="tabpanel" style="height: auto;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Andover</li>
+<li>Ashtabula</li>
+<li><a href="http://www.austinburgtownship.org/" target="_blank" rel="noopener noreferrer">Austinburg</a></li>
+<li>Cherry Valley</li>
+<li>Colebrook</li>
+<li>Denmark</li>
+<li>Dorset</li>
+<li>Geneva</li>
+<li><a href="https://www.harpersfield.us/" target="_blank" rel="noopener noreferrer">Harpersfield</a></li>
+<li><a href="http://hartsgrove.org/index.html" target="_blank" rel="noopener noreferrer">Hartsgrove</a></li>
+<li>Jefferson</li>
+<li><a href="https://www.kingsvilletwp.org/" target="_blank" rel="noopener noreferrer">Kingsville</a></li>
+<li>Lenox</li>
+<li>Monroe</li>
+<li>Morgan</li>
+<li>New Lyme</li>
+<li>Orwell</li>
+<li><a href="https://pierponttownship.com/" target="_blank" rel="noopener noreferrer">Pierpont</a></li>
+<li>Plymouth</li>
+<li>Richmond</li>
+<li>Rome</li>
+<li>Saybrook</li>
+<li><a href="http://www.sheffieldtwpash.com" target="_blank" rel="noopener noreferrer">Sheffield</a></li>
+<li>Trumbull</li>
+<li>Wayne</li>
+<li>Williamsfield</li>
+<li><a href="http://windsortownship.org/index.html" target="_blank" rel="noopener noreferrer">Windsor</a></li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Athens" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601490641112" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601490641112" role="button" aria-expanded="false"> Athens </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601490641112" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Alexander</li>
+<li><a href="https://www.sites.google.com/site/amestownship/" rel="noopener noreferrer" target="_blank"> Ames </a></li>
+<li><a href="https://athenstwp.com/" target="_blank" rel="noopener noreferrer">Athens</a></li>
+<li>Bern</li>
+<li><a href="https://canaantwpathensco.org/" rel="noopener noreferrer" target="_blank"> Canaan </a></li>
+<li>Carthage</li>
+<li><a href="https://dovertownship.net/" rel="noopener noreferrer" target="_blank" aria-invalid="true"> Dover </a></li>
+<li>Lee</li>
+<li><a href="http://www.loditownship.org/" rel="noopener noreferrer" target="_blank"> Lodi </a></li>
+<li>Rome</li>
+<li>Trimble</li>
+<li>Troy</li>
+<li>Waterloo</li>
+<li>York</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Auglaize" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601491621819" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601491621819" role="button" aria-expanded="false"> Auglaize </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601491621819" role="tabpanel" style="height: auto;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Clay</li>
+<li>Duchouquet</li>
+<li>German</li>
+<li>Goshen</li>
+<li>Jackson</li>
+<li>Logan</li>
+<li>Moulton</li>
+<li>Noble</li>
+<li>Pusheta</li>
+<li>Saint Marys</li>
+<li>Salem</li>
+<li>Union</li>
+<li>Washington</li>
+<li>Wayne</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Belmont" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601492099663" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601492099663" role="button" aria-expanded="false"> Belmont </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601492099663" role="tabpanel" style="height: auto;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Colerain</li>
+<li>Flushing</li>
+<li>Goshen</li>
+<li>Kirkwood</li>
+<li>Mead</li>
+<li>Pease</li>
+<li>Pultney</li>
+<li>Richland</li>
+<li>Smith</li>
+<li>Somerset</li>
+<li>Union</li>
+<li>Warren</li>
+<li>Washington</li>
+<li>Wayne</li>
+<li>Wheeling</li>
+<li>York</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Brown" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601492237245" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601492237245" role="button" aria-expanded="false"> Brown </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601492237245" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Byrd</li>
+<li>Clark</li>
+<li>Eagle</li>
+<li>Franklin</li>
+<li>Green</li>
+<li>Huntington</li>
+<li>Jackson</li>
+<li>Jefferson</li>
+<li>Lewis</li>
+<li>Perry</li>
+<li><a href="http://www.piketwp.org/" rel="noopener noreferrer" target="_blank"> Pike </a></li>
+<li>Pleasant</li>
+<li>Scott</li>
+<li><a href="https://www.sterlingtownship.us/" rel="noopener noreferrer" target="_blank"> Sterling </a></li>
+<li>Union</li>
+<li>Washington</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Butler" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601492386221" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601492386221" role="button" aria-expanded="false"> Butler </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601492386221" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li><a href="https://www.fairfieldtwp.org/" rel="noopener noreferrer" target="_blank"> Fairfield </a></li>
+<li><a href="http://www.hanovertownshipohio.org/" rel="noopener noreferrer" target="_blank" aria-invalid="true"> Hanover </a></li>
+<li>Lemon</li>
+<li><a href="http://www.liberty-township.com/" rel="noopener noreferrer" target="_blank"> Liberty </a></li>
+<li><a href="http://www.madisontownshiponline.com/" rel="noopener noreferrer" target="_blank"> Madison </a></li>
+<li><a href="http://www.milfordtownship.net/" rel="noopener noreferrer" target="_blank"> Milford </a></li>
+<li><a href="http://www.morgantownship.org/" rel="noopener noreferrer" target="_blank"> Morgan </a></li>
+<li><a href="https://sites.google.com/site/oxfordtownshipcrimealerts/" rel="noopener noreferrer" target="_blank"> Oxford </a></li>
+<li><a href="https://www.reilytownship.org/">Reily</a></li>
+<li><a href="https://www.rosstwp.org/" rel="noopener noreferrer" target="_blank"> Ross </a></li>
+<li><a href="http://www.stclairtownshipohio.org/" rel="noopener noreferrer" target="_blank"> Saint Clair </a></li>
+<li><a href="http://www.waynetownship.net/" rel="noopener noreferrer" target="_blank" aria-invalid="true"> Wayne </a></li>
+<li><a href="https://www.westchesteroh.org/" rel="noopener noreferrer" target="_blank"> West Chester </a></li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Carroll" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601492688338" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601492688338" role="button" aria-expanded="false"> Carroll </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601492688338" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Augusta</li>
+<li><a href="http://browntwp-carrollco.org/" rel="noopener noreferrer" target="_blank" aria-invalid="true"> Brown </a></li>
+<li>Center</li>
+<li>East</li>
+<li>Fox</li>
+<li>Harrison</li>
+<li>Lee</li>
+<li>Loudon</li>
+<li>Monroe</li>
+<li>Orange</li>
+<li>Perry</li>
+<li><a href="http://rosetownshipohio.com/" rel="noopener noreferrer" target="_blank"> Rose </a></li>
+<li>Union</li>
+<li>Washington</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Champaign" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601492806511" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601492806511" role="button" aria-expanded="false"> Champaign </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601492806511" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Adams</li>
+<li>Concord</li>
+<li>Goshen</li>
+<li>Harrison</li>
+<li>Jackson</li>
+<li>Johnson</li>
+<li><a href="http://madrivertwp.org/" rel="noopener noreferrer" target="_blank"> Mad River </a></li>
+<li><a href="https://www.rushtownship.us/" target="_blank" rel="noopener noreferrer">Rush</a></li>
+<li>Salem</li>
+<li>Union</li>
+<li>Urbana</li>
+<li><a href="https://www.waynetownship-champaigncounty.com/" target="_blank" rel="noopener noreferrer">Wayne</a></li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Clark" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601492912646" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601492912646" role="button" aria-expanded="false"> Clark </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601492912646" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li><a href="http://www.betheltownship.info/" rel="noopener noreferrer" target="_blank"> Bethel </a></li>
+<li><a href="https://germantownshipoh.com/" rel="noopener noreferrer" target="_blank"> German </a></li>
+<li>Green</li>
+<li>Harmony</li>
+<li><a href="https://madrivertownship.org/" rel="noopener noreferrer" target="_blank"> Mad River </a></li>
+<li>Madison</li>
+<li><a href="http://www.moorefieldtownship.com/" rel="noopener noreferrer" target="_blank"> Moorefield </a></li>
+<li>Pike</li>
+<li>Pleasant</li>
+<li><a href="https://www.spfldtwp.org/" rel="noopener noreferrer" target="_blank"> Springfield </a></li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Clermont" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601493071849" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601493071849" role="button" aria-expanded="false"> Clermont </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601493071849" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li><a href="http://www.bataviatownship.org/" rel="noopener noreferrer" target="_blank"> Batavia </a></li>
+<li><a href="https://franklintownshipoh.org/" rel="noopener noreferrer" target="_blank" aria-invalid="true"> Franklin </a></li>
+<li><a href="http://goshen-oh.gov/" rel="noopener noreferrer" target="_blank"> Goshen </a></li>
+<li><a href="http://www.jacksontwpclermont.org/" rel="noopener noreferrer" target="_blank" aria-invalid="true"> Jackson </a></li>
+<li><a href="https://www.miamitwpoh.gov/" rel="noopener noreferrer" target="_blank"> Miami </a></li>
+<li><a href="http://monroetwp-oh.gov/" rel="noopener noreferrer" target="_blank"> Monroe </a></li>
+<li><a href="http://www.ohiotownshipclermontcounty.org/" rel="noopener noreferrer" target="_blank"> Ohio </a></li>
+<li><a href="https://piercetownship.org/" rel="noopener noreferrer" target="_blank"> Pierce </a></li>
+<li><a href="http://www.stonelicktwp-oh.org/" rel="noopener noreferrer" target="_blank"> Stonelick </a></li>
+<li><a href="https://tatetownship.org/" rel="noopener noreferrer" target="_blank"> Tate </a></li>
+<li><a href="https://union-township.oh.us/" rel="noopener noreferrer" target="_blank" aria-invalid="true"> Union </a></li>
+<li><a href="https://washingtontwpclermont.org/" rel="noopener noreferrer" target="_blank"> Washington </a></li>
+<li>Wayne</li>
+<li><a href="http://williamsburgtownship.org/" rel="noopener noreferrer" target="_blank"> Williamsburg </a></li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Clinton" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601501146430" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601501146430" role="button" aria-expanded="false"> Clinton </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601501146430" role="tabpanel" style="height: auto;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Adams</li>
+<li>Chester</li>
+<li>Clark</li>
+<li>Green</li>
+<li>Jefferson</li>
+<li>Liberty</li>
+<li>Marion</li>
+<li>Richland</li>
+<li>Union</li>
+<li>Vernon</li>
+<li>Washington</li>
+<li>Wayne</li>
+<li>Wilson</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Columbiana" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601501205383" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601501205383" role="button" aria-expanded="false"> Columbiana </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601501205383" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li><a href="https://www.butlertownshipohio.org/" rel="noopener noreferrer" target="_blank"> Butler </a></li>
+<li><a href="https://www.centertwpohio.us/" target="_blank">Center</a></li>
+<li>Elk Run</li>
+<li><a href="https://sites.google.com/a/fairfieldtownshipohio.com/fairfieldtownshipohio/" rel="noopener noreferrer" target="_blank"> Fairfield </a></li>
+<li>Franklin</li>
+<li>Hanover</li>
+<li><a href="http://www.knoxtownship.org/" rel="noopener noreferrer" target="_blank" aria-invalid="true"> Knox </a></li>
+<li><a href="https://liverpooltownship.com/" rel="noopener noreferrer" target="_blank"> Liverpool </a></li>
+<li>Madison</li>
+<li>Middleton</li>
+<li>Perry</li>
+<li><a href="http://www.stclairtwp.com/" rel="noopener noreferrer" target="_blank"> Saint Clair </a></li>
+<li>Salem</li>
+<li>Unity</li>
+<li>Washington</li>
+<li>Wayne</li>
+<li>West</li>
+<li>Yellow Creek</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Coshocton" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601501306085" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601501306085" role="button" aria-expanded="false"> Coshocton </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601501306085" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Adams</li>
+<li>Bedford</li>
+<li>Bethlehem</li>
+<li>Clark</li>
+<li>Crawford</li>
+<li>Franklin</li>
+<li>Jackson</li>
+<li>Jefferson</li>
+<li>Keene</li>
+<li>Lafayette</li>
+<li>Linton</li>
+<li>Mill Creek</li>
+<li>Monroe</li>
+<li>New Castle</li>
+<li>Oxford</li>
+<li>Perry</li>
+<li>Pike</li>
+<li>Tiverton</li>
+<li>Tuscarawas</li>
+<li>Virginia</li>
+<li>Washington</li>
+<li>White Eyes</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Crawford" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601501326597" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601501326597" role="button" aria-expanded="false"> Crawford </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601501326597" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Auburn</li>
+<li>Bucyrus</li>
+<li>Chatfield</li>
+<li>Cranberry</li>
+<li>Dallas</li>
+<li>Holmes</li>
+<li>Jackson</li>
+<li>Jefferson</li>
+<li>Liberty</li>
+<li>Lykens</li>
+<li><a href="http://www.polktwp.net/" rel="noopener noreferrer" target="_blank"> Polk </a></li>
+<li>Sandusky</li>
+<li>Texas</li>
+<li><a href="http://todtownship.us/" rel="noopener noreferrer" target="_blank"> Tod </a></li>
+<li>Vernon</li>
+<li>Whetstone</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Cuyahoga" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601501417188" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601501417188" role="button" aria-expanded="false"> Cuyahoga </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601501417188" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Chagrin Falls</li>
+<li><a href="https://olmstedtownship.org/" rel="noopener noreferrer" target="_blank"> Olmsted </a></li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Darke" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601501463493" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601501463493" role="button" aria-expanded="false"> Darke </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601501463493" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Adams</li>
+<li>Allen</li>
+<li>Brown</li>
+<li><a href="http://www.butler-twp.net/" rel="noopener noreferrer" target="_blank"> Butler </a></li>
+<li>Franklin</li>
+<li><a href="http://townshipofgreenville.org/" rel="noopener noreferrer" target="_blank"> Greenville </a></li>
+<li>Harrison</li>
+<li>Jackson</li>
+<li>Liberty</li>
+<li>Mississinawa</li>
+<li>Monroe</li>
+<li>Neave</li>
+<li>Patterson</li>
+<li>Richland</li>
+<li>Twin</li>
+<li>Van Buren</li>
+<li>Wabash</li>
+<li>Washington</li>
+<li>Wayne</li>
+<li>York</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Defiance" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601501512460" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601501512460" role="button" aria-expanded="false"> Defiance </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601501512460" role="tabpanel" style="height: auto;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Adams</li>
+<li>Defiance</li>
+<li>Delaware</li>
+<li>Farmer</li>
+<li>Hicksville</li>
+<li>Highland</li>
+<li>Mark</li>
+<li>Milford</li>
+<li>Noble</li>
+<li>Richland</li>
+<li>Tiffin</li>
+<li>Washington</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Delaware" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601501552023" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601501552023" role="button" aria-expanded="false"> Delaware </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601501552023" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li><a href="https://www.berkshiretwp.org/" rel="noopener noreferrer" target="_blank"> Berkshire </a></li>
+<li><a href="https://www.berlintwp.us/" rel="noopener noreferrer" target="_blank"> Berlin </a></li>
+<li>Brown</li>
+<li><a href="https://www.concordtwp.org/index.html" rel="noopener noreferrer" target="_blank"> Concord </a></li>
+<li><a href="http://www.delawaretownshipohio.org/" rel="noopener noreferrer" target="_blank"> Delaware </a></li>
+<li><a href="https://www.genoatwp.com/" rel="noopener noreferrer" target="_blank"> Genoa </a></li>
+<li><a href="https://harlemtwp.com/" rel="noopener noreferrer" target="_blank"> Harlem </a></li>
+<li><a href="http://www.kingstontwp.org/" rel="noopener noreferrer" target="_blank"> Kingston </a></li>
+<li><a href="http://www.libertytwp.org/" rel="noopener noreferrer" target="_blank"> Liberty </a></li>
+<li>Marlboro</li>
+<li><a href="http://orangetwp.org/" rel="noopener noreferrer" target="_blank"> Orange </a></li>
+<li>Oxford</li>
+<li><a href="https://portertwp.org/" rel="noopener noreferrer" target="_blank"> Porter </a></li>
+<li>Radnor</li>
+<li><a href="http://www.sciototownshipohio.com/" rel="noopener noreferrer" target="_blank"> Scioto </a></li>
+<li>Thompson</li>
+<li>Trenton</li>
+<li>Troy</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Erie" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601501743702" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601501743702" role="button" aria-expanded="false"> Erie </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601501743702" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Berlin</li>
+<li><a href="https://www.florencetwp.com/" rel="noopener noreferrer" target="_blank"> Florence </a></li>
+<li><a href="https://www.grotontwp.com/" title="Groton Township Website" target="_blank">Groton</a></li>
+<li><a href="http://hurontwp.org/ecms/" rel="noopener noreferrer" target="_blank"> Huron </a></li>
+<li><a href="https://www.margarettatwp.org/" rel="noopener noreferrer" target="_blank"> Margaretta </a></li>
+<li><a href="https://milantwp.org/" rel="noopener noreferrer" target="_blank" aria-invalid="true"> Milan </a></li>
+<li>Oxford</li>
+<li><a href="https://www.perkinstownship.com/" rel="noopener noreferrer" target="_blank"> Perkins </a></li>
+<li><a href="https://www.vermiliontownship.com/" rel="noopener noreferrer" target="_blank"> Vermilion </a></li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Fairfield" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601501837237" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601501837237" role="button" aria-expanded="false"> Fairfield </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601501837237" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Amanda</li>
+<li>Berne</li>
+<li><a href="https://www.bloomtwp.org/" rel="noopener noreferrer" target="_blank"> Bloom </a></li>
+<li>Clear Creek</li>
+<li><a href="https://www.greenfieldtwp.org/" rel="noopener noreferrer" target="_blank"> Greenfield </a></li>
+<li><a href="http://www.hockingtownship.org/" rel="noopener noreferrer" target="_blank"> Hocking </a></li>
+<li><a href="http://www.fairfieldcountyohio-libertytownship.org/" rel="noopener noreferrer" target="_blank"> Liberty </a></li>
+<li>Madison</li>
+<li>Pleasant</li>
+<li><a href="http://www.richlandtownship.net/" rel="noopener noreferrer" target="_blank"> Richland </a></li>
+<li>Rush Creek</li>
+<li><a href="https://www.violet.oh.us/" rel="noopener noreferrer" target="_blank"> Violet </a></li>
+<li><a href="http://www.walnuttwp.com/" rel="noopener noreferrer" target="_blank"> Walnut </a></li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Fayette" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601502029573" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601502029573" role="button" aria-expanded="false"> Fayette </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601502029573" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Concord</li>
+<li>Green</li>
+<li>Jasper</li>
+<li><a href="https://jeffersontwpfayette.org/" rel="noopener noreferrer" target="_blank"> Jefferson </a></li>
+<li>Madison</li>
+<li>Marion</li>
+<li>Paint</li>
+<li>Perry</li>
+<li>Union</li>
+<li>Wayne</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Franklin" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601502075399" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601502075399" role="button" aria-expanded="false"> Franklin </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601502075399" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li><a href="https://www.blendontwp.org/" rel="noopener noreferrer" target="_blank"> Blendon </a></li>
+<li><a href="https://www.browntwp.org/" rel="noopener noreferrer" target="_blank"> Brown </a></li>
+<li><a href="http://clintontwp-columbus.org/" rel="noopener noreferrer" target="_blank"> Clinton </a></li>
+<li><a href="http://www.franklin-township.com/" rel="noopener noreferrer" target="_blank" aria-invalid="true"> Franklin </a></li>
+<li><a href="https://www.hamiltontownshipohio.org/" rel="noopener noreferrer" target="_blank" aria-invalid="true"> Hamilton </a></li>
+<li>Jackson</li>
+<li><a href="https://www.jeffersontownship.org/" rel="noopener noreferrer" target="_blank"> Jefferson </a></li>
+<li><a href="https://www.madisontownship.org/" rel="noopener noreferrer" target="_blank"> Madison </a></li>
+<li><a href="https://mifflin-oh.gov/" rel="noopener noreferrer" target="_blank"> Mifflin </a></li>
+<li><a href="https://www.norwichtownship.org/" rel="noopener noreferrer" target="_blank"> Norwich </a></li>
+<li><a href="https://perrytwp.org/" rel="noopener noreferrer" target="_blank"> Perry </a></li>
+<li><a href="https://plaintownship.org/" rel="noopener noreferrer" target="_blank"> Plain </a></li>
+<li><a href="https://www.pleasanttownship.org/" rel="noopener noreferrer" target="_blank"> Pleasant </a></li>
+<li><a href="http://www.prairietownship.org/" rel="noopener noreferrer" target="_blank"> Prairie </a></li>
+<li><a href="https://sharontwp.us/" rel="noopener noreferrer" target="_blank"> Sharon </a></li>
+<li><a href="http://www.trurotwp.org/" rel="noopener noreferrer" target="_blank"> Truro </a></li>
+<li><a href="https://wtwp.com/" rel="noopener noreferrer" target="_blank"> Washington </a></li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Fulton" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601502325211" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601502325211" role="button" aria-expanded="false"> Fulton </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601502325211" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Amboy</li>
+<li>Chesterfield</li>
+<li><a href="https://www.clintontownshipfultoncounty.com/" target="_blank" title="Clinton Township, Fulton County">Clinton</a></li>
+<li>Dover</li>
+<li>Franklin</li>
+<li>Fulton</li>
+<li>German</li>
+<li>Gorham</li>
+<li>Pike</li>
+<li>Royalton</li>
+<li><a href="https://swancreektwp.org/" rel="noopener noreferrer" target="_blank"> Swan Creek </a></li>
+<li>York</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Gallia" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601502392840" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601502392840" role="button" aria-expanded="false"> Gallia </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601502392840" role="tabpanel" style="height: auto;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Addison</li>
+<li>Cheshire</li>
+<li>Clay</li>
+<li>Gallipolis</li>
+<li>Green</li>
+<li>Greenfield</li>
+<li>Guyan</li>
+<li>Harrison</li>
+<li>Huntington</li>
+<li>Morgan</li>
+<li>Ohio</li>
+<li>Perry</li>
+<li>Raccoon</li>
+<li>Springfield</li>
+<li>Walnut</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Geauga" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601502414515" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601502414515" role="button" aria-expanded="false"> Geauga </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601502414515" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li><a href="https://auburntownship.com/" rel="noopener noreferrer" target="_blank"> Auburn </a></li>
+<li><a href="http://www.bainbridgetwp.com/" rel="noopener noreferrer" target="_blank"> Bainbridge </a></li>
+<li><a href="http://www.burtontownship.org/" rel="noopener noreferrer" target="_blank"> Burton </a></li>
+<li><a href="http://chardontownship.com/" rel="noopener noreferrer" target="_blank"> Chardon </a></li>
+<li><a href="http://www.chestertwp.com/" rel="noopener noreferrer" target="_blank"> Chester </a></li>
+<li><a href="http://www.claridontownship.com/" rel="noopener noreferrer" target="_blank" aria-invalid="true"> Claridon </a></li>
+<li><a href="http://www.hambdentownship.com/" rel="noopener noreferrer" target="_blank"> Hambden </a></li>
+<li><a href="https://co.geauga.oh.us/communities/huntsburg-township" rel="noopener noreferrer" target="_blank"> Huntsburg </a></li>
+<li><a href="https://co.geauga.oh.us/communities/middlefield-township" rel="noopener noreferrer" target="_blank" aria-invalid="true"> Middlefield </a></li>
+<li><a href="http://www.montvillegeauga.com/" rel="noopener noreferrer" target="_blank" aria-invalid="true"> Montville </a></li>
+<li><a href="http://www.munsontwp.com/" rel="noopener noreferrer" target="_blank"> Munson </a></li>
+<li>Newbury</li>
+<li><a href="http://parkmanohio.com/" rel="noopener noreferrer" target="_blank"> Parkman </a></li>
+<li><a href="https://www.russelltownship.us" rel="noopener noreferrer" target="_blank"> Russell </a></li>
+<li><a href="https://www.thompsonohio.org/" rel="noopener noreferrer" target="_blank"> Thompson </a></li>
+<li><a href="https://www.co.geauga.oh.us/communities/troy-township" rel="noopener noreferrer" target="_blank" aria-invalid="true"> Troy </a></li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Greene" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601502689143" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601502689143" role="button" aria-expanded="false"> Greene </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601502689143" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li><a href="http://www.bathtownshipgreenecountyohio.us/" rel="noopener noreferrer" target="_blank"> Bath </a></li>
+<li><a href="http://www.beavercreektownship.org/" rel="noopener noreferrer" target="_blank"> Beavercreek </a></li>
+<li>Caesarcreek</li>
+<li><a href="https://www.cedarvilletwp.us/" target="_blank">Cedarville</a></li>
+<li>Jefferson</li>
+<li><a href="http://www.miamitownship.net/" rel="noopener noreferrer" target="_blank"> Miami </a></li>
+<li>New Jasper</li>
+<li>Ross</li>
+<li>Silvercreek</li>
+<li><a href="http://svtwp.org/" rel="noopener noreferrer" target="_blank" aria-invalid="true"> Spring Valley </a></li>
+<li><a href="http://www.sugarcreektownship.com/" rel="noopener noreferrer" target="_blank"> Sugarcreek </a></li>
+<li><a href="http://www.xeniatownship.org/home.aspx" rel="noopener noreferrer" target="_blank"> Xenia </a></li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Guernsey" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601502803342" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601502803342" role="button" aria-expanded="false"> Guernsey </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601502803342" role="tabpanel" style="height: auto;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Adams</li>
+<li>Cambridge</li>
+<li>Center</li>
+<li>Jackson</li>
+<li>Jefferson</li>
+<li>Knox</li>
+<li>Liberty</li>
+<li>Londonderry</li>
+<li>Madison</li>
+<li>Millwood</li>
+<li>Monroe</li>
+<li>Oxford</li>
+<li>Richland</li>
+<li>Spencer</li>
+<li>Valley</li>
+<li>Washington</li>
+<li>Westland</li>
+<li>Wheeling</li>
+<li>Wills</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Hamilton" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601502852792" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601502852792" role="button" aria-expanded="false"> Hamilton </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601502852792" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li><a href="https://andersontownshipoh.gov/" rel="noopener noreferrer" target="_blank" aria-invalid="true"> Anderson </a></li>
+<li><a href="http://www.colerain.org" target="_blank" rel="noopener noreferrer">Colerain</a></li>
+<li><a href="http://www.columbiatwp.org/" rel="noopener noreferrer" target="_blank"> Columbia </a></li>
+<li><a href="http://www.crosbytwp.org/" rel="noopener noreferrer" target="_blank"> Crosby </a></li>
+<li><a href="https://delhi.oh.us/" rel="noopener noreferrer" target="_blank"> Delhi </a></li>
+<li><a href="https://greentwp.org/" rel="noopener noreferrer" target="_blank"> Green </a></li>
+<li><a href="http://www.harrisontownshipohio.com/" rel="noopener noreferrer" target="_blank"> Harrison </a></li>
+<li><a href="https://www.miamitownship.org/" rel="noopener noreferrer" target="_blank"> Miami </a></li>
+<li><a href="https://www.springfieldtwp.org/" rel="noopener noreferrer" target="_blank"> Springfield </a></li>
+<li><a href="https://www.sycamoretownship.org/" rel="noopener noreferrer" target="_blank"> Sycamore </a></li>
+<li><a href="https://www.symmestownship.org/" rel="noopener noreferrer" target="_blank"> Symmes </a></li>
+<li><a href="https://www.whitewatertwp.org/" target="_blank">Whitewater</a></li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Hancock" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601503043794" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601503043794" role="button" aria-expanded="false"> Hancock </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601503043794" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Allen</li>
+<li>Amanda</li>
+<li>Biglick</li>
+<li>Blanchard</li>
+<li>Cass</li>
+<li><a href="https://delawaretownshiphancockcountyohio.wordpress.com/" rel="noopener noreferrer" target="_blank"> Delaware </a></li>
+<li>Eagle</li>
+<li>Jackson</li>
+<li>Liberty</li>
+<li>Madison</li>
+<li>Marion</li>
+<li>Orange</li>
+<li>Pleasant</li>
+<li>Portage</li>
+<li>Union</li>
+<li>Van Buren</li>
+<li>Washington</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Hardin" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601503086144" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601503086144" role="button" aria-expanded="false"> Hardin </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601503086144" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Blanchard</li>
+<li>Buck</li>
+<li><a href="https://www.cessnatwp.org/" rel="noopener noreferrer" target="_blank"> Cessna </a></li>
+<li>Dudley</li>
+<li>Goshen</li>
+<li>Hale</li>
+<li>Jackson</li>
+<li>Liberty</li>
+<li>Lynn</li>
+<li>Marion</li>
+<li>Mc Donald</li>
+<li>Pleasant</li>
+<li>Roundhead</li>
+<li>Taylor Creek</li>
+<li>Washington</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Harrison" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601503124860" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601503124860" role="button" aria-expanded="false"> Harrison </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601503124860" role="tabpanel" style="height: auto;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Archer</li>
+<li>Athens</li>
+<li>Cadiz</li>
+<li>Franklin</li>
+<li>Freeport</li>
+<li>German</li>
+<li>Green</li>
+<li>Monroe</li>
+<li>Moorefield</li>
+<li>North</li>
+<li>Nottingham</li>
+<li>Rumley</li>
+<li>Short Creek</li>
+<li>Stock</li>
+<li>Washington</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Henry" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601503144797" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601503144797" role="button" aria-expanded="false"> Henry </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601503144797" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Bartlow</li>
+<li>Damascus</li>
+<li>Flatrock</li>
+<li>Freedom</li>
+<li>Harrison</li>
+<li>Liberty</li>
+<li>Marion</li>
+<li>Monroe</li>
+<li>Napoleon</li>
+<li>Pleasant</li>
+<li>Richfield</li>
+<li>Ridgeville</li>
+<li>Washington</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Highland" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601503202554" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601503202554" role="button" aria-expanded="false"> Highland </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601503202554" role="tabpanel" style="height: auto;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Brush Creek</li>
+<li>Clay</li>
+<li>Concord</li>
+<li>Dodson</li>
+<li>Fairfield</li>
+<li>Hamer</li>
+<li>Jackson</li>
+<li>Liberty</li>
+<li>Madison</li>
+<li>Marshall</li>
+<li>New Market</li>
+<li>Paint</li>
+<li>Penn</li>
+<li>Salem</li>
+<li>Union</li>
+<li>Washington</li>
+<li>White Oak</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Hocking" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601503224257" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601503224257" role="button" aria-expanded="false"> Hocking </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601503224257" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Benton</li>
+<li>Falls</li>
+<li>Good Hope</li>
+<li><a href="https://greentownship.wixsite.com/hocking" rel="noopener noreferrer" target="_blank"> Green </a></li>
+<li>Laurel</li>
+<li>Marion</li>
+<li>Perry</li>
+<li>Salt Creek</li>
+<li>Starr</li>
+<li>Ward</li>
+<li>Washington</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Holmes" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601503268543" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601503268543" role="button" aria-expanded="false"> Holmes </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601503268543" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Berlin</li>
+<li>Clark</li>
+<li><a href="https://www.hardytownship.com/" rel="noopener noreferrer" target="_blank"> Hardy </a></li>
+<li>Killbuck</li>
+<li>Knox</li>
+<li>Mechanic</li>
+<li>Monroe</li>
+<li>Paint</li>
+<li>Prairie</li>
+<li>Richland</li>
+<li>Ripley</li>
+<li>Salt Creek</li>
+<li>Walnut Creek</li>
+<li>Washington</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Huron" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601503382233" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601503382233" role="button" aria-expanded="false"> Huron </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601503382233" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Bronson</li>
+<li>Clarksfield</li>
+<li>Fairfield</li>
+<li>Fitchville</li>
+<li>Greenfield</li>
+<li>Greenwich</li>
+<li>Hartland</li>
+<li><a href="https://lymetownship.com/" rel="noopener noreferrer" target="_blank"> Lyme </a></li>
+<li><a href="http://www.newhaventownship.com/" rel="noopener noreferrer" target="_blank"> New Haven </a></li>
+<li>New London</li>
+<li>Norwalk</li>
+<li>Norwich</li>
+<li>Peru</li>
+<li>Richmond</li>
+<li>Ridgefield</li>
+<li>Ripley</li>
+<li>Sherman</li>
+<li>Townsend</li>
+<li>Wakeman</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Jackson" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601503441565" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601503441565" role="button" aria-expanded="false"> Jackson </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601503441565" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Bloomfield</li>
+<li>Coal</li>
+<li>Franklin</li>
+<li>Hamilton</li>
+<li>Jackson</li>
+<li>Jefferson</li>
+<li>Liberty</li>
+<li>Lick</li>
+<li>Madison</li>
+<li>Milton</li>
+<li>Scioto</li>
+<li>Washington</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Jefferson" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601503491037" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601503491037" role="button" aria-expanded="false"> Jefferson </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601503491037" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Brush Creek</li>
+<li>Cross Creek</li>
+<li>Island Creek</li>
+<li>Knox</li>
+<li>Mount Pleasant</li>
+<li>Ross</li>
+<li><a href="http://www.salemjeffoh.com/" rel="noopener noreferrer" target="_blank"> Salem </a></li>
+<li>Saline</li>
+<li>Smithfield</li>
+<li>Springfield</li>
+<li>Steubenville</li>
+<li>Warren</li>
+<li>Wayne</li>
+<li><a href="http://www.wellstownship.net/" rel="noopener noreferrer" target="_blank"> Wells </a></li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Knox" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601503546119" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601503546119" role="button" aria-expanded="false"> Knox </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601503546119" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Berlin</li>
+<li>Brown</li>
+<li>Butler</li>
+<li>Clay</li>
+<li>Clinton</li>
+<li><a href="http://www.collegetownshipoh.com/" rel="noopener noreferrer" target="_blank"> College </a></li>
+<li>Harrison</li>
+<li>Hilliar</li>
+<li>Howard</li>
+<li>Jackson</li>
+<li>Jefferson</li>
+<li>Liberty</li>
+<li>Middlebury</li>
+<li>Milford</li>
+<li>Miller</li>
+<li>Monroe</li>
+<li>Morgan</li>
+<li>Morris</li>
+<li>Pike</li>
+<li>Pleasant</li>
+<li>Union</li>
+<li>Wayne</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Lake" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601503773924" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601503773924" role="button" aria-expanded="false"> Lake </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601503773924" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li><a href="https://concordtwp.com/" rel="noopener noreferrer" target="_blank" aria-invalid="true"> Concord </a></li>
+<li><a href="https://leroyohio.com/" rel="noopener noreferrer" target="_blank"> Leroy </a></li>
+<li><a href="https://www.madisontownship.net/" rel="noopener noreferrer" target="_blank"> Madison </a></li>
+<li><a href="https://www.painesvilletwp.com/" rel="noopener noreferrer" target="_blank"> Painesville </a></li>
+<li><a href="http://perrytownship-lake.com/" rel="noopener noreferrer" target="_blank"> Perry </a></li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Lawrence" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601503873750" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601503873750" role="button" aria-expanded="false"> Lawrence </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601503873750" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Aid</li>
+<li>Decatur</li>
+<li>Elizabeth</li>
+<li>Fayette</li>
+<li>Hamilton</li>
+<li>Lawrence</li>
+<li>Mason</li>
+<li>Perry</li>
+<li><a href="https://www.rometwp.org/" rel="noopener noreferrer" target="_blank"> Rome </a></li>
+<li>Symmes</li>
+<li>Union</li>
+<li>Upper</li>
+<li>Washington</li>
+<li>Windsor</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Licking" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601504427540" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601504427540" role="button" aria-expanded="false"> Licking </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601504427540" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Bennington</li>
+<li>Bowling Green</li>
+<li>Burlington</li>
+<li>Eden</li>
+<li><a href="http://www.etnatownship.com/" rel="noopener noreferrer" target="_blank"> Etna </a></li>
+<li>Fallsbury</li>
+<li>Franklin</li>
+<li><a href="http://granvilletownship.org/" rel="noopener noreferrer" target="_blank"> Granville </a></li>
+<li>Hanover</li>
+<li><a href="https://harrisontownship.net/" rel="noopener noreferrer" target="_blank"> Harrison </a></li>
+<li><a href="http://hartfordtownship.net/" rel="noopener noreferrer" target="_blank"> Hartford </a></li>
+<li>Hopewell</li>
+<li>Jersey</li>
+<li><a href="https://www.libertytwplickingco.com" target="_blank" aria-invalid="true">Liberty</a></li>
+<li><a href="https://www.lickingtwp.com/" rel="noopener noreferrer" target="_blank"> Licking </a></li>
+<li><a href="http://www.madisontwplc.net/" rel="noopener noreferrer" target="_blank"> Madison </a></li>
+<li>Mary Ann</li>
+<li><a href="http://mckeantownship.net/" rel="noopener noreferrer" target="_blank"> Mc Kean </a></li>
+<li>Monroe</li>
+<li>Newark</li>
+<li><a href="http://newtontownshiplc.com/" rel="noopener noreferrer" target="_blank"> Newton </a></li>
+<li>Perry</li>
+<li><a href="http://www.stalbanstwp.org/" rel="noopener noreferrer" target="_blank"> Saint Albans </a></li>
+<li><a href="https://www.uniontownship-licking.com/" rel="noopener noreferrer" target="_blank" aria-invalid="true"> Union </a></li>
+<li>Washington</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Logan" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601504754874" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601504754874" role="button" aria-expanded="false"> Logan </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601504754874" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Bloomfield</li>
+<li>Bokes Creek</li>
+<li>Harrison</li>
+<li>Jefferson</li>
+<li>Lake</li>
+<li>Liberty</li>
+<li>Mc Arthur</li>
+<li>Miami</li>
+<li>Monroe</li>
+<li><a href="https://www.perrytownship.net/" rel="noopener noreferrer" target="_blank"> Perry </a></li>
+<li>Pleasant</li>
+<li>Richland</li>
+<li>Rush Creek</li>
+<li>Stokes</li>
+<li>Union</li>
+<li><a href="https://www.washtwp.net/" rel="noopener noreferrer" target="_blank"> Washington </a></li>
+<li><a href="https://www.zanetownship.org/" rel="noopener noreferrer" target="_blank"> Zane </a></li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Lorain" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601504849211" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601504849211" role="button" aria-expanded="false"> Lorain </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601504849211" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li><a href="https://amhersttownship.us/" rel="noopener noreferrer" target="_blank"> Amherst </a></li>
+<li><a href="https://www.brightontownshipohio.us/" target="_blank">Brighton</a></li>
+<li><a href="https://www.brownhelm.us/" rel="noopener noreferrer" target="_blank" title="Brownhelm Township, Lorain County"> Brownhelm </a></li>
+<li><a href="https://www.camdentwp.us/" rel="noopener noreferrer" target="_blank"> Camden </a></li>
+<li><a href="http://carlisletownship.com/" rel="noopener noreferrer" target="_blank"> Carlisle </a></li>
+<li><a href="https://www.columbiatwp.us/" rel="noopener noreferrer" target="_blank"> Columbia </a></li>
+<li><a href="https://eatontownship.org/" rel="noopener noreferrer" target="_blank"> Eaton </a></li>
+<li><a href="https://sites.google.com/view/elyriatownship/home" rel="noopener noreferrer" target="_blank"> Elyria </a></li>
+<li><a href="https://www.graftontwp.us/" rel="noopener noreferrer" target="_blank"> Grafton </a></li>
+<li><a href="https://www.henriettaohio.org/" rel="noopener noreferrer" target="_blank"> Henrietta </a></li>
+<li><a href="http://www.huntingtontwp.org/" rel="noopener noreferrer" target="_blank"> Huntington </a></li>
+<li><a href="https://www.lagrangetownshipohio.net/" rel="noopener noreferrer" target="_blank"> Lagrange </a></li>
+<li><a href="https://www.newrussiatownship-oh.gov/" rel="noopener noreferrer" target="_blank"> New Russia </a></li>
+<li><a href="http://www.penfieldtownship.com/" rel="noopener noreferrer" target="_blank"> Penfield </a></li>
+<li><a href="http://www.pittsfieldtwp.us/" rel="noopener noreferrer" target="_blank"> Pittsfield </a></li>
+<li><a href="http://www.rochesterohio.com/" rel="noopener noreferrer" target="_blank"> Rochester </a></li>
+<li><a href="https://sites.google.com/view/sheffieldtownship/" target="_blank" rel="noopener noreferrer">Sheffield</a></li>
+<li><a href="https://www.wellingtontownship.org/" rel="noopener noreferrer" target="_blank"> Wellington </a></li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Lucas" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601505947385" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601505947385" role="button" aria-expanded="false"> Lucas </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601505947385" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Harding</li>
+<li><a href="https://twp.jerusalem.oh.us/" rel="noopener noreferrer" target="_blank"> Jerusalem </a></li>
+<li><a href="https://monclovatwp.org/" rel="noopener noreferrer" target="_blank"> Monclova </a></li>
+<li>Providence</li>
+<li><a href="https://www.richfieldtwp.com/?doing_wp_cron=1601505919.7264690399169921875000" rel="noopener noreferrer" target="_blank"> Richfield </a></li>
+<li><a href="https://spencertownship.org/" rel="noopener noreferrer" target="_blank"> Spencer </a></li>
+<li><a href="https://www.springfieldtownship.net/" rel="noopener noreferrer" target="_blank"> Springfield </a></li>
+<li><a href="http://swantontwp.org/" rel="noopener noreferrer" target="_blank"> Swanton </a></li>
+<li><a href="http://www.sylvaniatownship.com/" rel="noopener noreferrer" target="_blank"> Sylvania </a></li>
+<li><a href="http://www.washington-twp.com/" rel="noopener noreferrer" target="_blank"> Washington </a></li>
+<li>Waterville</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Madison" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601506100023" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601506100023" role="button" aria-expanded="false"> Madison </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601506100023" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Canaan</li>
+<li>Darby</li>
+<li>Deer Creek</li>
+<li>Fairfield</li>
+<li>Jefferson</li>
+<li>Monroe</li>
+<li><a href="https://www.co.madison.oh.us/community/townships/oak_run/index.php" rel="noopener noreferrer" target="_blank"> Oak Run </a></li>
+<li>Paint</li>
+<li>Pike</li>
+<li>Pleasant</li>
+<li>Range</li>
+<li>Somerford</li>
+<li>Stokes</li>
+<li>Union</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Mahoning" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601506160937" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601506160937" role="button" aria-expanded="false"> Mahoning </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601506160937" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li><a href="https://www.austintowntwp.com/" rel="noopener noreferrer" target="_blank"> Austintown </a></li>
+<li>Beaver</li>
+<li>Berlin</li>
+<li><a href="https://www.boardmantwp.com/" rel="noopener noreferrer" target="_blank"> Boardman </a></li>
+<li><a href="https://canfieldtownship.org/" rel="noopener noreferrer" target="_blank"> Canfield </a></li>
+<li><a href="https://coitsvilletwp.org/" rel="noopener noreferrer" target="_blank"> Coitsville </a></li>
+<li><a href="http://www.ellsworthohio.com/" rel="noopener noreferrer" target="_blank"> Ellsworth </a></li>
+<li><a href="http://www.goshentownship.com/" rel="noopener noreferrer" target="_blank"> Goshen </a></li>
+<li>Green</li>
+<li>Jackson</li>
+<li><a href="http://www.miltontownshipohio.org/" rel="noopener noreferrer" target="_blank"> Milton </a></li>
+<li>Poland</li>
+<li>Smith</li>
+<li>Springfield</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Marion" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601506384229" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601506384229" role="button" aria-expanded="false"> Marion </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601506384229" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li><a href="http://bigislandtownship.org/" rel="noopener noreferrer" target="_blank"> Big Island </a></li>
+<li>Bowling Green</li>
+<li>Claridon</li>
+<li>Grand</li>
+<li>Grand Prairie</li>
+<li>Green Camp</li>
+<li><a href="https://www.mariontwp.org/" rel="noopener noreferrer" target="_blank"> Marion </a></li>
+<li>Montgomery</li>
+<li>Pleasant</li>
+<li>Prospect</li>
+<li><a href="https://www.mariontwp.org/" rel="noopener noreferrer" target="_blank"> Richland </a></li>
+<li>Salt Rock</li>
+<li>Scott</li>
+<li>Tully</li>
+<li>Waldo</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Medina" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601506531561" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601506531561" role="button" aria-expanded="false"> Medina </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601506531561" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li><a href="https://brunswickhillstwp.org/" rel="noopener noreferrer" target="_blank"> Brunswick Hills </a></li>
+<li><a href="https://www.chathamtwp.com/" rel="noopener noreferrer" target="_blank" aria-invalid="true"> Chatham </a></li>
+<li><a href="http://www.grangertwp.org/" rel="noopener noreferrer" target="_blank"> Granger </a></li>
+<li><a href="https://www.guilfordtownship.us/" rel="noopener noreferrer" target="_blank"> Guilford </a></li>
+<li><a href="http://www.harrisvilletwpohio.org/" rel="noopener noreferrer" target="_blank"> Harrisville </a></li>
+<li><a href="http://www.hinckleytwp.org/" rel="noopener noreferrer" target="_blank"> Hinckley </a></li>
+<li>Homer</li>
+<li><a href="https://www.lafayettetownship.com/" rel="noopener noreferrer" target="_blank" aria-invalid="true"> Lafayette </a></li>
+<li><a href="https://www.litchfieldtownship.com/" target="_blank">Litchfield</a></li>
+<li><a href="http://liverpooltwp.org/site-news/" rel="noopener noreferrer" target="_blank" aria-invalid="true"> Liverpool </a></li>
+<li><a href="https://medinatownship.com/" rel="noopener noreferrer" target="_blank"> Medina </a></li>
+<li><a href="https://montvilletwp.org/" rel="noopener noreferrer" target="_blank"> Montville </a></li>
+<li><a href="http://www.sharontwp.org/" rel="noopener noreferrer" target="_blank"> Sharon </a></li>
+<li>Spencer</li>
+<li><a href="http://www.wadsworthtownship.org/" rel="noopener noreferrer" target="_blank"> Wadsworth </a></li>
+<li><a href="http://www.westfieldtownship.org/" rel="noopener noreferrer" target="_blank"> Westfield </a></li>
+<li><a href="https://yorktwp.org/" rel="noopener noreferrer" target="_blank"> York </a></li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Meigs" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601506774566" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601506774566" role="button" aria-expanded="false"> Meigs </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601506774566" role="tabpanel" style="height: auto;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Bedford</li>
+<li>Chester</li>
+<li>Columbia</li>
+<li>Lebanon</li>
+<li>Letart</li>
+<li>Olive</li>
+<li>Orange</li>
+<li>Rutland</li>
+<li>Salem</li>
+<li>Salisbury</li>
+<li>Scipio</li>
+<li>Sutton</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Mercer" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601506809354" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601506809354" role="button" aria-expanded="false"> Mercer </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601506809354" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Black Creek</li>
+<li>Butler</li>
+<li>Center</li>
+<li>Dublin</li>
+<li><a href="http://www.franklintownship-mercercounty.org/" rel="noopener noreferrer" target="_blank"> Franklin </a></li>
+<li>Gibson</li>
+<li>Granville</li>
+<li>Hopewell</li>
+<li><a href="https://jeffersontwp.mercercountyoh.org/" rel="noopener noreferrer" target="_blank"> Jefferson </a></li>
+<li>Liberty</li>
+<li>Marion</li>
+<li>Recovery</li>
+<li>Union</li>
+<li>Washington</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Miami" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601506894184" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601506894184" role="button" aria-expanded="false"> Miami </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601506894184" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li><a href="http://www.betheltownship.org/" rel="noopener noreferrer" target="_blank"> Bethel </a></li>
+<li>Brown</li>
+<li><a href="http://concord-township.com/" rel="noopener noreferrer" target="_blank"> Concord </a></li>
+<li><a href="https://www.elizabethtownshipohio.com/" rel="noopener noreferrer" target="_blank"> Elizabeth </a></li>
+<li>Lost Creek</li>
+<li><a href="http://www.monroetownship-miamicounty-ohio.com/" rel="noopener noreferrer" target="_blank"> Monroe </a></li>
+<li>Newberry</li>
+<li>Newton</li>
+<li>Spring Creek</li>
+<li>Staunton</li>
+<li><a href="https://uniontwpmiamico.com/" rel="noopener noreferrer" target="_blank"> Union </a></li>
+<li>Washington</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Monroe" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601506993204" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601506993204" role="button" aria-expanded="false"> Monroe </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601506993204" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Adams</li>
+<li>Benton</li>
+<li>Bethel</li>
+<li>Center</li>
+<li>Franklin</li>
+<li>Green</li>
+<li>Jackson</li>
+<li><a href="https://leetownshipohio.org/" target="_blank" rel="noopener noreferrer">Lee</a></li>
+<li>Malaga</li>
+<li>Ohio</li>
+<li>Perry</li>
+<li>Salem</li>
+<li>Seneca</li>
+<li>Summit</li>
+<li>Sunsbury</li>
+<li>Switzerland</li>
+<li>Washington</li>
+<li>Wayne</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Montgomery" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601507050198" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601507050198" role="button" aria-expanded="false"> Montgomery </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601507050198" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li><a href="http://www.butlertownship.com/" rel="noopener noreferrer" target="_blank"> Butler </a></li>
+<li><a href="http://www.claytownshipoffices.com/" rel="noopener noreferrer" target="_blank"> Clay </a></li>
+<li><a href="http://www.german-township.org/" rel="noopener noreferrer" target="_blank"> German </a></li>
+<li><a href="http://www.harrisontownship.org/" rel="noopener noreferrer" target="_blank"> Harrison </a></li>
+<li><a href="https://www.jtwpmc.com/" rel="noopener noreferrer" target="_blank"> Jackson </a></li>
+<li><a href="https://www.jeffersontwp.net/" rel="noopener noreferrer" target="_blank" aria-invalid="true"> Jefferson </a></li>
+<li><a href="http://www.miamitownship.com/" rel="noopener noreferrer" target="_blank"> Miami </a></li>
+<li>Perry</li>
+<li><a href="https://www.washingtontwp.org/" rel="noopener noreferrer" target="_blank"> Washington </a></li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Morgan" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601507169474" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601507169474" role="button" aria-expanded="false"> Morgan </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601507169474" role="tabpanel" style="height: auto;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Bloom</li>
+<li>Bristol</li>
+<li>Center</li>
+<li>Deerfield</li>
+<li>Homer</li>
+<li>Malta</li>
+<li>Manchester</li>
+<li>Marion</li>
+<li>Meigsville</li>
+<li>Morgan</li>
+<li>Penn</li>
+<li>Union</li>
+<li>Windsor</li>
+<li>York</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Morrow" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601507198949" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601507198949" role="button" aria-expanded="false"> Morrow </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601507198949" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Bennington</li>
+<li><a href="https://www.canaantwp.org/" rel="noopener noreferrer" target="_blank"> Canaan </a></li>
+<li>Cardington</li>
+<li>Chester</li>
+<li>Congress</li>
+<li>Franklin</li>
+<li>Gilead</li>
+<li>Harmony</li>
+<li>Lincoln</li>
+<li>North Bloomfield</li>
+<li>Perry</li>
+<li>Peru</li>
+<li>South Bloomfield</li>
+<li>Troy</li>
+<li>Washington</li>
+<li><a href="https://www.westfieldtwp.org/" target="_blank">Westfield</a></li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Muskingum" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601507241908" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601507241908" role="button" aria-expanded="false"> Muskingum </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601507241908" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Adams</li>
+<li>Blue Rock</li>
+<li>Brush Creek</li>
+<li>Cass</li>
+<li>Clay</li>
+<li>Falls</li>
+<li>Harrison</li>
+<li>Highland</li>
+<li>Hopewell</li>
+<li>Jackson</li>
+<li>Jefferson</li>
+<li>Licking</li>
+<li>Madison</li>
+<li>Meigs</li>
+<li>Monroe</li>
+<li><a href="http://www.muskingumtownship.com/" rel="noopener noreferrer" target="_blank"> Muskingum </a></li>
+<li><a href="http://www.newtontownship.org/" rel="noopener noreferrer" target="_blank"> Newton </a></li>
+<li>Perry</li>
+<li>Rich Hill</li>
+<li>Salem</li>
+<li>Salt Creek</li>
+<li>Springfield</li>
+<li>Union</li>
+<li>Washington</li>
+<li>Wayne</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Noble" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601507292779" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601507292779" role="button" aria-expanded="false"> Noble </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601507292779" role="tabpanel" style="height: auto;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Beaver</li>
+<li>Brookfield</li>
+<li>Buffalo</li>
+<li>Center</li>
+<li>Elk</li>
+<li>Enoch</li>
+<li>Jackson</li>
+<li>Jefferson</li>
+<li>Marion</li>
+<li>Noble</li>
+<li>Olive</li>
+<li>Seneca</li>
+<li>Sharon</li>
+<li>Stock</li>
+<li>Wayne</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Ottawa" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601507320352" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601507320352" role="button" aria-expanded="false"> Ottawa </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601507320352" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li><a href="https://www.allentownship.us/" rel="noopener noreferrer" target="_blank"> Allen </a></li>
+<li><a href="http://www.baytownship.com/" rel="noopener noreferrer" target="_blank"> Bay </a></li>
+<li>Benton</li>
+<li>Carroll</li>
+<li><a href="http://www.catawbaislandtownship.com/" rel="noopener noreferrer" target="_blank"> Catawba Island </a></li>
+<li>Clay</li>
+<li><a href="https://danburytownship.com/" rel="noopener noreferrer" target="_blank"> Danbury </a></li>
+<li>Erie</li>
+<li><a href="http://www.harristownshipohio.com/" rel="noopener noreferrer" target="_blank"> Harris </a></li>
+<li><a href="http://www.portagetownship.net/" rel="noopener noreferrer" target="_blank"> Portage </a></li>
+<li>Put-In-Bay</li>
+<li>Salem</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Paulding" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601507433863" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601507433863" role="button" aria-expanded="false"> Paulding </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601507433863" role="tabpanel" style="height: auto;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li><a href="https://www.auglaizetwp.us/" target="_blank">Auglaize</a></li>
+<li>Benton</li>
+<li>Blue Creek</li>
+<li>Brown</li>
+<li>Carryall</li>
+<li>Crane</li>
+<li>Emerald</li>
+<li>Harrison</li>
+<li>Jackson</li>
+<li>Latty</li>
+<li>Paulding</li>
+<li>Washington</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Perry" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601507458467" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601507458467" role="button" aria-expanded="false"> Perry </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601507458467" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Bearfield</li>
+<li>Clayton</li>
+<li>Coal</li>
+<li>Harrison</li>
+<li><a href="https://hopewelltownship.net/" rel="noopener noreferrer" target="_blank"> Hopewell </a></li>
+<li>Jackson</li>
+<li>Madison</li>
+<li>Monday Creek</li>
+<li>Monroe</li>
+<li>Pike</li>
+<li>Pleasant</li>
+<li>Reading</li>
+<li>Salt Lick</li>
+<li><a href="http://www.thorntwp.com/" rel="noopener noreferrer" target="_blank" aria-invalid="true"> Thorn </a></li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Pickaway" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601507522226" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601507522226" role="button" aria-expanded="false"> Pickaway </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601507522226" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Circleville</li>
+<li><a href="https://www.darbytownship.us/" target="_blank">Darby</a></li>
+<li>Deer Creek</li>
+<li><a href="https://www.harrisonpickaway.com/" rel="noopener noreferrer" target="_blank"> Harrison </a></li>
+<li>Jackson</li>
+<li>Madison</li>
+<li>Monroe</li>
+<li><a href="https://www.muhlenbergtownship.com/" rel="noopener noreferrer" target="_blank"> Muhlenberg </a></li>
+<li>Perry</li>
+<li>Pickaway</li>
+<li>Salt Creek</li>
+<li>Scioto</li>
+<li>Walnut</li>
+<li>Washington</li>
+<li>Wayne</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Pike" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601507655644" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601507655644" role="button" aria-expanded="false"> Pike </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601507655644" role="tabpanel" style="height: auto;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Beaver</li>
+<li>Benton</li>
+<li>Camp Creek</li>
+<li>Jackson</li>
+<li>Marion</li>
+<li>Mifflin</li>
+<li>Newton</li>
+<li>Pebble</li>
+<li>Pee Pee</li>
+<li>Perry</li>
+<li>Scioto</li>
+<li>Seal</li>
+<li>Sunfish</li>
+<li>Union</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Portage" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601507708387" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601507708387" role="button" aria-expanded="false"> Portage </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601507708387" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li><a href="http://www.atwatertwp.net/" rel="noopener noreferrer" target="_blank"> Atwater </a></li>
+<li><a href="https://brimfieldohio.gov/" rel="noopener noreferrer" target="_blank"> Brimfield </a></li>
+<li>Charlestown</li>
+<li><a href="https://www.facebook.com/DeerfieldFireDepartment" rel="noopener noreferrer" target="_blank"> Deerfield </a></li>
+<li><a href="http://www.edinburgtownship.com/" rel="noopener noreferrer" target="_blank"> Edinburg </a></li>
+<li><a href="https://www.franklintownshipohio.org/" rel="noopener noreferrer" target="_blank"> Franklin </a></li>
+<li>Freedom</li>
+<li><a href="https://hiramtownship.org/" rel="noopener noreferrer" target="_blank"> Hiram </a></li>
+<li><a href="https://mantuatownshipohio.gov/" rel="noopener noreferrer" target="_blank"> Mantua </a></li>
+<li>Nelson</li>
+<li><a href="https://palmyratownship.com/" rel="noopener noreferrer" target="_blank"> Palmyra </a></li>
+<li><a href="https://paris-township.com/WP2019/" rel="noopener noreferrer" target="_blank"> Paris </a></li>
+<li><a href="https://randolphtownshipohio.com/" rel="noopener noreferrer" target="_blank" aria-invalid="true"> Randolph </a></li>
+<li><a href="http://www.ravennatownship.com/" rel="noopener noreferrer" target="_blank"> Ravenna </a></li>
+<li><a href="http://www.rootstowntwp.com/" rel="noopener noreferrer" target="_blank"> Rootstown </a></li>
+<li><a href="http://www.shalersvilletwp.com/" rel="noopener noreferrer" target="_blank"> Shalersville </a></li>
+<li><a href="http://www.suffieldtownshipohio.com/" rel="noopener noreferrer" target="_blank"> Suffield </a></li>
+<li>Windham</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Preble" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601507960711" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601507960711" role="button" aria-expanded="false"> Preble </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601507960711" role="tabpanel" style="height: auto;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Dixon</li>
+<li>Gasper</li>
+<li>Gratis</li>
+<li>Harrison</li>
+<li>Israel</li>
+<li>Jackson</li>
+<li>Jefferson</li>
+<li>Lanier</li>
+<li>Monroe</li>
+<li>Somers</li>
+<li>Twin</li>
+<li>Washington</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Putnam" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601507983648" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601507983648" role="button" aria-expanded="false"> Putnam </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601507983648" role="tabpanel" style="height: auto;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Blanchard</li>
+<li>Greensburg</li>
+<li>Jackson</li>
+<li>Jennings</li>
+<li>Liberty</li>
+<li>Monroe</li>
+<li>Monterey</li>
+<li>Ottawa</li>
+<li>Palmer</li>
+<li>Perry</li>
+<li>Pleasant</li>
+<li>Riley</li>
+<li>Sugar Creek</li>
+<li>Union</li>
+<li>Van Buren</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Richland" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601508019726" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601508019726" role="button" aria-expanded="false"> Richland </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601508019726" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Blooming Grove</li>
+<li>Butler</li>
+<li>Cass</li>
+<li>Franklin</li>
+<li>Jackson</li>
+<li>Jefferson</li>
+<li><a href="http://www.madisontwp.us/" rel="noopener noreferrer" target="_blank" aria-invalid="true"> Madison </a></li>
+<li>Mifflin</li>
+<li>Monroe</li>
+<li>Perry</li>
+<li>Plymouth</li>
+<li>Sandusky</li>
+<li><a href="https://www.facebook.com/pg/sharontwp/posts/" rel="noopener noreferrer" target="_blank"> Sharon </a></li>
+<li>Springfield</li>
+<li><a href="http://troyrichlandohio.org/" rel="noopener noreferrer" target="_blank"> Troy </a></li>
+<li><a href="http://washingtontwp.us/" rel="noopener noreferrer" target="_blank"> Washington </a></li>
+<li>Weller</li>
+<li>Worthington</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Ross" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601508144592" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601508144592" role="button" aria-expanded="false"> Ross </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601508144592" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Buckskin</li>
+<li>Colerain</li>
+<li>Concord</li>
+<li>Deerfield</li>
+<li>Franklin</li>
+<li><a href="http://www.greentwp.net/" rel="noopener noreferrer" target="_blank"> Green </a></li>
+<li>Harrison</li>
+<li>Huntington</li>
+<li>Jefferson</li>
+<li>Liberty</li>
+<li>Paint</li>
+<li>Paxton</li>
+<li>Scioto</li>
+<li>Springfield</li>
+<li>Twin</li>
+<li>Union</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Sandusky" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601508195081" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601508195081" role="button" aria-expanded="false"> Sandusky </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601508195081" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li><a href="https://www.ballville.org/" rel="noopener noreferrer" target="_blank"> Ballville </a></li>
+<li><a href="https://sites.google.com/site/greencreektownship/" rel="noopener noreferrer" target="_blank"> Green Creek </a></li>
+<li><a href="http://www.jackson-sandusky.com/" rel="noopener noreferrer" target="_blank"> Jackson </a></li>
+<li>Madison</li>
+<li><a href="http://ricetownship.com/" rel="noopener noreferrer" target="_blank"> Rice </a></li>
+<li>Riley</li>
+<li><a href="http://sanduskytownship.com/" rel="noopener noreferrer" target="_blank"> Sandusky </a></li>
+<li>Scott</li>
+<li>Townsend</li>
+<li>Washington</li>
+<li><a href="http://www.woodvilletownship.org/" rel="noopener noreferrer" target="_blank"> Woodville </a></li>
+<li><a href="http://www.yorktwp.com/index.html" rel="noopener noreferrer" target="_blank"> York </a></li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Scioto" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601508340257" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601508340257" role="button" aria-expanded="false"> Scioto </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601508340257" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Bloom</li>
+<li>Brush Creek</li>
+<li>Clay</li>
+<li>Green</li>
+<li>Harrison</li>
+<li><a href="https://sites.google.com/view/jeffersontownshipscioto/home" rel="noopener noreferrer" target="_blank"> Jefferson </a></li>
+<li>Madison</li>
+<li>Morgan</li>
+<li><a href="http://www.niletownship.org/" rel="noopener noreferrer" target="_blank"> Nile </a></li>
+<li><a href="http://www.portertwp.com/new/" rel="noopener noreferrer" target="_blank"> Porter </a></li>
+<li>Rarden</li>
+<li>Rush</li>
+<li>Union</li>
+<li><a href="https://valleytownship.us/" rel="noopener noreferrer" target="_blank"> Valley </a></li>
+<li>Vernon</li>
+<li>Washington</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Seneca" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601508443698" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601508443698" role="button" aria-expanded="false"> Seneca </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601508443698" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Adams</li>
+<li>Big Spring</li>
+<li>Bloom</li>
+<li><a href="https://clintontwpsenecacounty.com/" rel="noopener noreferrer" target="_blank"> Clinton </a></li>
+<li>Eden</li>
+<li>Hopewell</li>
+<li><a href="http://www.jacksontwp-seneca.com/" rel="noopener noreferrer" target="_blank"> Jackson </a></li>
+<li>Liberty</li>
+<li>Loudon</li>
+<li>Pleasant</li>
+<li>Reed</li>
+<li>Scipio</li>
+<li>Seneca</li>
+<li>Thompson</li>
+<li>Venice</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Shelby" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601508520315" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601508520315" role="button" aria-expanded="false"> Shelby </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601508520315" role="tabpanel" style="height: auto;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Clinton</li>
+<li>Cynthian</li>
+<li>Dinsmore</li>
+<li>Franklin</li>
+<li>Green</li>
+<li>Jackson</li>
+<li>Loramie</li>
+<li>Mc Lean</li>
+<li>Orange</li>
+<li>Perry</li>
+<li>Salem</li>
+<li>Turtle Creek</li>
+<li>Van Buren</li>
+<li>Washington</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Stark" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601508543044" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601508543044" role="button" aria-expanded="false"> Stark </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601508543044" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Bethlehem</li>
+<li><a href="https://www.cantontwp-oh.gov/" rel="noopener noreferrer" target="_blank"> Canton </a></li>
+<li><a href="http://www.jacksontwp.com/" rel="noopener noreferrer" target="_blank"> Jackson </a></li>
+<li><a href="https://www.laketwpstarkco.com/" rel="noopener noreferrer" target="_blank"> Lake </a></li>
+<li>Lawrence</li>
+<li><a href="http://lexingtontwpstarkco.com/" rel="noopener noreferrer" target="_blank"> Lexington </a></li>
+<li>Marlboro</li>
+<li><a href="http://www.nimishillentownship.com/" rel="noopener noreferrer" target="_blank"> Nimishillen </a></li>
+<li><a href="https://osnaburgtwp.com/" rel="noopener noreferrer" target="_blank" aria-invalid="true"> Osnaburg </a></li>
+<li>Paris</li>
+<li><a href="https://www.perrytwp.com/" rel="noopener noreferrer" target="_blank"> Perry </a></li>
+<li><a href="http://www.piketownship.com/" rel="noopener noreferrer" target="_blank"> Pike </a></li>
+<li><a href="https://www.plaintownship.com/" rel="noopener noreferrer" target="_blank"> Plain </a></li>
+<li>Sandy</li>
+<li>Sugar Creek</li>
+<li>Tuscarawas</li>
+<li><a href="https://www.wash-twp-stark-oh.us/" rel="noopener noreferrer" target="_blank"> Washington </a></li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Summit" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601508834097" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601508834097" role="button" aria-expanded="false"> Summit </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601508834097" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li><a href="https://www.bathtownship.org/" rel="noopener noreferrer" target="_blank"> Bath </a></li>
+<li><a href="http://www.bostontownship.org/" rel="noopener noreferrer" target="_blank"> Boston </a></li>
+<li><a href="https://www.copley.oh.us/" rel="noopener noreferrer" target="_blank"> Copley </a></li>
+<li><a href="https://coventrytownship.com/" rel="noopener noreferrer" target="_blank"> Coventry </a></li>
+<li><a href="https://www.northfieldcenter.com/" rel="noopener noreferrer" target="_blank"> Northfield Center </a></li>
+<li><a href="http://richfield-twp.org/" rel="noopener noreferrer" target="_blank"> Richfield </a></li>
+<li><a href="https://www.mysagamorehills.com/" rel="noopener noreferrer" target="_blank"> Sagamore Hills </a></li>
+<li><a href="https://www.springfieldtownship.us/" rel="noopener noreferrer" target="_blank"> Springfield </a></li>
+<li><a href="https://www.twinsburgtwp.com/" rel="noopener noreferrer" target="_blank"> Twinsburg </a></li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Trumbull" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601510088340" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601510088340" role="button" aria-expanded="false"> Trumbull </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601510088340" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li><a href="https://www.bazettatwp.org/" rel="noopener noreferrer" target="_blank"> Bazetta </a></li>
+<li>Bloomfield</li>
+<li>Braceville</li>
+<li><a href="http://www.bristoltownship.com/" rel="noopener noreferrer" target="_blank"> Bristol </a></li>
+<li><a href="http://www.brookfieldtwp.org/" rel="noopener noreferrer" target="_blank"> Brookfield </a></li>
+<li>Champion</li>
+<li>Farmington</li>
+<li><a href="https://www.fowlertownship.org/" rel="noopener noreferrer" target="_blank" aria-invalid="true"> Fowler </a></li>
+<li>Greene</li>
+<li>Gustavus</li>
+<li>Hartford</li>
+<li><a href="http://www.howlandtownship.org/" rel="noopener noreferrer" target="_blank"> Howland </a></li>
+<li><a href="https://www.hubbardtwpohio.us/" re;="noopener noreferrer" target="_blank">Hubbard</a></li>
+<li>Johnston</li>
+<li><a href="http://kinsmantownship.org/" rel="noopener noreferrer" target="_blank"> Kinsman </a></li>
+<li><a href="http://libertytwp.com/" rel="noopener noreferrer" target="_blank"> Liberty </a></li>
+<li>Mecca</li>
+<li>Mesopotamia</li>
+<li><a href="https://newtontwptc.org/" rel="noopener noreferrer" target="_blank"> Newton </a></li>
+<li><a href="https://southingtontownship.org/" rel="noopener noreferrer" target="_blank"> Southington </a></li>
+<li>Vernon</li>
+<li><a href="http://www.viennatownship.com/" rel="noopener noreferrer" target="_blank"> Vienna </a></li>
+<li>Warren</li>
+<li><a href="https://weathersfieldtwp.org/" rel="noopener noreferrer" target="_blank"> Weathersfield </a></li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Tuscarawas" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601510322793" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601510322793" role="button" aria-expanded="false"> Tuscarawas </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601510322793" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Auburn</li>
+<li>Bucks</li>
+<li>Clay</li>
+<li>Dover</li>
+<li>Fairfield</li>
+<li>Franklin</li>
+<li>Goshen</li>
+<li>Jefferson</li>
+<li><a href="http://www.lawrencetownship.org/" rel="noopener noreferrer" target="_blank"> Lawrence </a></li>
+<li>Mill</li>
+<li>Oxford</li>
+<li>Perry</li>
+<li>Rush</li>
+<li>Salem</li>
+<li>Sandy</li>
+<li>Sugar Creek</li>
+<li>Union</li>
+<li>Warren</li>
+<li>Warwick</li>
+<li>Washington</li>
+<li>Wayne</li>
+<li>York</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Union" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601510370276" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601510370276" role="button" aria-expanded="false"> Union </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601510370276" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li><a href="https://allentwp.org/" rel="noopener noreferrer" target="_blank"> Allen </a></li>
+<li>Claibourne</li>
+<li>Darby</li>
+<li>Dover</li>
+<li>Jackson</li>
+<li><a href="https://www.jerometownship.com/" target="_blank">Jerome</a></li>
+<li>Leesburg</li>
+<li><a href="http://www.libertytownshipunionco.com/" rel="noopener noreferrer" target="_blank"> Liberty </a></li>
+<li><a href="http://millcreektwpohio.us/" rel="noopener noreferrer" target="_blank"> Mill Creek </a></li>
+<li>Paris</li>
+<li>Taylor</li>
+<li>Union</li>
+<li>Washington</li>
+<li>York</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="VanWert" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601510443812" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601510443812" role="button" aria-expanded="false"> Van Wert </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601510443812" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Harrison</li>
+<li>Hoaglin</li>
+<li>Jackson</li>
+<li>Jennings</li>
+<li>Liberty</li>
+<li><a href="https://www.pleasanttownshipvw.com/" rel="noopener noreferrer" target="_blank"> Pleasant </a></li>
+<li><a href="https://www.ridgetownshipquarry.com/" rel="noopener noreferrer" target="_blank"> Ridge </a></li>
+<li>Tully</li>
+<li>Union</li>
+<li>Washington</li>
+<li>Willshire</li>
+<li>York</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Vinton" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601510505031" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601510505031" role="button" aria-expanded="false"> Vinton </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601510505031" role="tabpanel" style="height: auto;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Brown</li>
+<li>Clinton</li>
+<li>Eagle</li>
+<li>Elk</li>
+<li>Harrison</li>
+<li>Jackson</li>
+<li>Knox</li>
+<li>Madison</li>
+<li>Richland</li>
+<li>Swan</li>
+<li>Vinton</li>
+<li>Wilkesville</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Warren" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601510538497" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601510538497" role="button" aria-expanded="false"> Warren </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601510538497" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li><a href="https://www.clearcreektownship.com/" rel="noopener noreferrer" target="_blank"> Clear Creek </a></li>
+<li><a href="https://www.choosedeerfield.com/" rel="noopener noreferrer" target="_blank"> Deerfield </a></li>
+<li><a href="https://www.franklintownshipohio.us/" rel="noopener noreferrer" target="_blank"> Franklin </a></li>
+<li><a href="https://www.hamilton-township.org/" rel="noopener noreferrer" target="_blank"> Hamilton </a></li>
+<li>Harlan</li>
+<li><a href="http://www.massietownship.org/" rel="noopener noreferrer" target="_blank"> Massie </a></li>
+<li><a href="https://www.salemtownship-warrencounty.com/" rel="noopener noreferrer" target="_blank"> Salem </a></li>
+<li><a href="https://www.turtlecreektownship.org/" rel="noopener noreferrer" target="_blank"> Turtle Creek </a></li>
+<li><a href="http://uniontownshipwarrencounty.com/" rel="noopener noreferrer" target="_blank"> Union </a></li>
+<li><a href="https://wtwcoh.org/" rel="noopener noreferrer" target="_blank"> Washington </a></li>
+<li><a href="http://www.waynetownship.us/" rel="noopener noreferrer" target="_blank"> Wayne </a></li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Washington" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601510691191" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601510691191" role="button" aria-expanded="false"> Washington </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601510691191" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Adams</li>
+<li>Aurelius</li>
+<li>Barlow</li>
+<li>Belpre</li>
+<li>Decatur</li>
+<li>Dunham</li>
+<li>Fairfield</li>
+<li>Fearing</li>
+<li>Grandview</li>
+<li>Independence</li>
+<li>Lawrence</li>
+<li>Liberty</li>
+<li>Ludlow</li>
+<li>Marietta</li>
+<li><a href="http://www.muskingumtwp.org/" rel="noopener noreferrer" target="_blank"> Muskingum </a></li>
+<li>Newport</li>
+<li>Palmer</li>
+<li>Salem</li>
+<li>Warren</li>
+<li>Waterford</li>
+<li>Watertown</li>
+<li>Wesley</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Wayne" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601510780132" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601510780132" role="button" aria-expanded="false"> Wayne </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601510780132" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li><a href="http://www.baughmantownship.com/" rel="noopener noreferrer" target="_blank"> Baughman </a></li>
+<li><a href="https://www.canaantownship.us/" target="_blank" title="Canaan Township, Wayne County">Canaan</a></li>
+<li>Chester</li>
+<li><a href="https://chippewatwp.com/" rel="noopener noreferrer" target="_blank"> Chippewa </a></li>
+<li>Clinton</li>
+<li>Congress</li>
+<li><a href="https://oheut.com/" rel="noopener noreferrer" target="_blank"> East Union </a></li>
+<li><a href="https://franklintwp.webs.com/" rel="noopener noreferrer" target="_blank" aria-invalid="true"> Franklin </a></li>
+<li>Green</li>
+<li>Milton</li>
+<li>Paint</li>
+<li>Plain</li>
+<li>Salt Creek</li>
+<li>Sugar Creek</li>
+<li>Wayne</li>
+<li>Wooster</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Williams" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601511132342" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601511132342" role="button" aria-expanded="false"> Williams </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601511132342" role="tabpanel" style="height: auto;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Brady</li>
+<li>Bridgewater</li>
+<li>Center</li>
+<li>Florence</li>
+<li>Jefferson</li>
+<li>Madison</li>
+<li>Mill Creek</li>
+<li>Northwest</li>
+<li>Pulaski</li>
+<li>Saint Joseph</li>
+<li>Springfield</li>
+<li>Superior</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Wood" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601511178970" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601511178970" role="button" aria-expanded="false"> Wood </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601511178970" role="tabpanel" style="height: 0px;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Bloom</li>
+<li><a href="https://woodcountytownships.wordpress.com/" rel="noopener noreferrer" target="_blank" aria-invalid="true"> Center </a></li>
+<li>Freedom</li>
+<li>Grand Rapids</li>
+<li>Henry</li>
+<li>Jackson</li>
+<li>Lake</li>
+<li>Liberty</li>
+<li>Middleton</li>
+<li>Milton</li>
+<li>Montgomery</li>
+<li>Perry</li>
+<li>Perrysburg</li>
+<li>Plain</li>
+<li>Portage</li>
+<li>Troy</li>
+<li>Washington</li>
+<li>Webster</li>
+<li>Weston</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<div id="Wyandot" class="anchor-top-offset"></div>
+<novi-accordion data-openbydefault="false">
+<div class="panel panel-default bootstrap-accordion">
+<div class="panel-heading" id="heading-1601511265595" role="tab">
+<h4 class="panel-title"><a class="bootstrap-accordion-title collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapse-1601511265595" role="button" aria-expanded="false"> Wyandot </a></h4>
+</div>
+<div class="panel-collapse collapse" id="collapse-1601511265595" role="tabpanel" style="height: auto;">
+<div class="panel-body bootstrap-accordion-content">
+<ul>
+<li>Antrim</li>
+<li>Crane</li>
+<li>Crawford</li>
+<li>Eden</li>
+<li>Jackson</li>
+<li>Marseilles</li>
+<li>Mifflin</li>
+<li>Pitt</li>
+<li>Richland</li>
+<li>Ridge</li>
+<li>Salem</li>
+<li>Sycamore</li>
+<li>Tymochtee</li>
+</ul>
+</div>
+</div>
+</div>
+</novi-accordion>
+<p></p></novi-content-wrapper>
+
+        </div>
+    </div>
+</div>
+
+<div class="c-call-to-action-wrapper-ohio-townships-map" role="contentinfo">
+    <div class="c-call-to-action c-call-to-action__full-width">
+        <div class="container">
+
+
+        </div>
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<footer>
+
+
+<div class="color-strip" >
+    <span class="color-block color-one"></span><span class="color-block color-two"></span><span class="color-block color-three"></span><span class="color-block color-four"></span><span class="color-block color-five"></span>
+</div>
+
+    <div class="footer-cms-region">
+        <div class="container">
+
+
+        </div>
+    </div>
+    <div class="separator-strip"></div>
+    <div class="contact-area">
+        <div class="container">
+            <div class="col-md-4">
+                <h2>Contact</h2>
+                <p class="address">
+                    6500 Taylor Road, Suite A<br />Blacklick, OH 43004
+                </p>
+                <p class="phone">614-863-0045</p>
+                <div class="social-icons" role="list">
+                        <span role="listitem"><a href="https://www.facebook.com/OhioTownshipAssociation/" aria-label="Find us on Facebook" class="icon facebook" target="_blank"><span class="novicon novicon-facebook" aria-hidden="true"></span></a></span>
+                                                                <span role="listitem"><a href="https://www.linkedin.com/company/ohio-township-association" aria-label="Connect with us on LinkedIn" class="icon linked-in" target="_blank"><span class="novicon novicon-linked-in" aria-hidden="true"></span></a></span>
+                                                                <span role="listitem"><a href="https://www.youtube.com/channel/UCqeuw91f3t_8Jy8Fn-ALAZA/featured?view_as=subscriber" aria-label="Find us on YouTube" class="icon youtube" target="_blank"><span class="novicon novicon-youtube" aria-hidden="true"></span></a></span>
+                    <span role="listitem"><a href="/contact-us" aria-label="Contact Us via Email" class="icon facebook"><span class="novicon novicon-envelope" aria-hidden="true"></span></a></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+
+<novi-content-wrapper><h4>OTA Social Media Comments Policy</h4>
+<p>Please click <span style="text-decoration: underline;"><a href="https://www.ohiotownships.org/ota-social-media-comments-policy" target="_blank">here </a></span>to read the OTA's Social Media Comments Policy.</p></novi-content-wrapper>
+            </div>
+            <div class="col-md-4">
+
+<novi-content-wrapper><h4>Become an OTA Member</h4>
+<p>As a member of the Ohio Township Association, you'll receive legislative support, OTA publications, training opportunities, OTA event discounts, and more!</p>
+<p><a href="/become-an-ota-member" title="Join OTA" class="btn btn-primary">LEARN MORE</a></p></novi-content-wrapper>
+            </div>
+        </div>
+    </div>
+
+
+<div class="color-strip" >
+    <span class="color-block color-one"></span><span class="color-block color-two"></span><span class="color-block color-three"></span><span class="color-block color-four"></span><span class="color-block color-five"></span>
+</div>
+
+    <div class="affiliates-area">
+        <div class="container">
+            <div class="affiliates">
+
+<novi-content-wrapper><style><!--
+footer .affiliates-area .affiliates a img {
+		width: 150px;
+	}
+--></style>
+<h3 style="font-size: 1em;">Affiliate of:&nbsp;&nbsp; <a href="http://www.natat.org/" target="_blank" title="NATaT"><img src="https://assets.noviams.com/novi-file-uploads/ota/logos/affiliates/NATaT_2022_Logo.png" alt="NATaT" width="150" height="70" caption="false" /> </a></h3></novi-content-wrapper>
+            </div>
+            <a class="novi" href="http://www.noviams.com"><img alt="Novi AMS" src="/img/noviams-logo.png" class="img-responsive" /><br />Association Management Software</a>
+            <p>
+                Copyright &copy; 2024 - Ohio Township Association. <a href="/legal">Legal</a>
+            </p>
+        </div>
+    </div>
+</footer>
+<div class="modal fade sliced-corner" id="join-modal" tabindex="-1" role="dialog" aria-labelledby="modal-title">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<a href="javascript:void(0);" class="close" data-dismiss="modal" aria-label="Close" role="button"><span aria-hidden="true">&times;</span></a>
+				<h3 class="modal-title" id="modal-title" role="heading" aria-level="2">Membership &amp; Account Access</h3>
+			</div>
+			<div class="modal-body">
+				<div class="well">
+					<div class="row">
+						<div class="col-sm-6" style="display: flex; flex-direction: column; justify-content: space-between">
+
+<novi-content-wrapper><h6 style="text-align: center;"></h6></novi-content-wrapper>
+							<a href="/register?memberTypeID=null" class="btn btn-secondary create-account-link" role="button">Create an Account</a>
+						</div>
+						<div class="col-sm-6" style="display: flex; flex-direction: column; justify-content: space-between">
+
+
+							<a href="/membership-information" class="btn btn-secondary" role="button">View Membership Information</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.3/moment.js" integrity="sha256-Hoph9b1V7VGUmSQWx8r0nE1Ms2Eysh5/x4RWHl8gpjA=" crossorigin="anonymous"></script>
+    <script>
+        var serverTimeOffset = -4;
+        window.noviCmsNamespace = window.noviCmsNamespace || {};
+    </script>
+    <script src="/Scripts-fingerprint87189D3006FEEC595E0594A8FE04538C/knockout-3.4.0.js"></script>
+    <script src="/bundles/frontend/js?v=tX8B97Zls0yPzVppOtO3w9v8LxgtG2-rhj415y1xIQw1"></script>
+
+
+    <script>
+        imageMapResize();
+        $('[data-toggle="tooltip"]').tooltip({ container: "body" });
+        var isPageEditToggleUrl = "/AdminBar/SetIsPageEditToggled";
+        var getUsersToImpersonateUrl = "/Account/GetUsersToImpersonate";
+        var impersonateUserUrl = "/Account/ImpersonateUser";
+        var getStaticRegionRevisionsUrl = "/StaticPage/GetStaticRegionRevisions";
+
+        var pageID = 6385;
+        var staticPageRegionIds = [14433,14434,14705,13482,13483,13488,13535,13971,14584,15130,15162];
+        var noviSessionCookieValue = "d40bcfe1-f181-44a1-8822-4dc01f8801e0";
+        var getLinkedCustomerAccountsUrl = "/Account/GetLinkedCustomerAccounts";
+        var switchCustomerRecordUrl = "/Account/SwitchCustomerRecord";
+        var isAuthenticated = false;
+    </script>
+
+        <script>
+        var answerNpsSurveyUrl = "/Account/AnswerNpsSurvey";
+        var getNpsSurveyFormDataUrl = "/Account/GetNpsSurveyFormData";
+        var submitNpsSurveyFeedbackUrl = "/Account/SubmitNpsSurveyFeedback";
+        var snoozeNpsSurveyUrl = "/Account/SnoozeNpsSurvey";
+        var skipNpsSurveyUrl = "/Account/SkipNpsSurvey";
+        var npsSurveyId = null;
+        </script>
+
+
+
+
+        <div id="fb-root"></div>
+        <script>
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&autoLogAppEvents=1&version=v3.0&appId=682198771971182';
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
+
+
+    <script src="/bundles/slick/js?v=W43q7T8NJmCJe1RIColdv9qmaTSEMZQ-9El-Sqb9YAU1"></script>
+
+
+
+<script src="/bundles/nps-survey/js?v=y3l2pwJ7uyylfIoSzTAidBqB_O3-SADoZ24laSyDwdI1"></script>
+
+
+
+
+<script type="text/javascript">
+    window.noviCmsNamespace = window.noviNs || {};
+    window.noviCmsNamespace.isPageEditToggled = false;
+    window.noviCmsNamespace.contentRegionsLoadedEvent = 'contentRegionsLoaded';
+    window.noviCmsNamespace.waitToLoadTinyMce = false;
+</script>
+<script src="/client-apps/main/dist/js-fingerprint219A03DA325C440D1AC8C0868B175CC3/prism.js"></script>
+
+    <span style="display: none;">
+        <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TRTSWRV"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+    </span>
+</body>
+</html>
+

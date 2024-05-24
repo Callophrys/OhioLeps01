@@ -31,7 +31,7 @@
     /*-- Other */
 </script>
 
-<div class="flex flex-row space-x-2 text-sm fixed top-[134px] pl-10">
+<div class="flex flex-row space-x-2 text-sm fixed top-[102px] pl-10">
     <div class="flex items-center space-x-2" title="Highlight recently added/updated data">
         <label for="filterByCounty">
             <input id="filterByCounty" class="checkbox" type="checkbox" bind:checked={filterByCounty} />
