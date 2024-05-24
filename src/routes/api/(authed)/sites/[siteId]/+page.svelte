@@ -62,6 +62,10 @@
 
     /*-- Handlers */
     /*-- Methods */
+    function addSite() {
+        goto(`/api/sites/new/${currentCountyId}`);
+    }
+
     function addSiteDate() {
         goto(`/api/sitedates/new/${currentSiteId}`);
     }
@@ -112,6 +116,7 @@
         <SitePicker bind:currentCountyId bind:currentSiteId bind:currentSiteDateId bind:filterByCounty controlBody="scale-90" />
         <div class="flex flex-row">
             {#if $page.data?.user && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN')}
+                <button type="button" class="btn" onclick={addSite} title="Add new site"><span class="text-success-400">✚</span>&nbsp;Add site</button>
                 <button type="button" class="btn" onclick={addSiteDate} title="Add new site date observation"><span class="text-success-400">✚</span>&nbsp;Add site date</button>
             {/if}
             <SiteDatePicker bind:currentSiteId bind:currentSiteDateId controlBody="scale-90" buttonLeft="" buttonRight="" buttonYear="" buttonWeek="" dropdownShowDate={false} dropdownPointers={true} heading={null} yearPrefix="" weekPrefix="" controlOuter="" prefixYear="" prefixWeek="" suffixYear="" suffixWeek="" popupInner="" popupStyles="" labelledby="" />

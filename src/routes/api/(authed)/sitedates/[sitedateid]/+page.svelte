@@ -150,7 +150,7 @@
 
     /*-- Methods */
     function addSiteDate() {
-        goto(`/api/siteDates/new/${currentSiteId}`);
+        goto(`/api/sitedates/new/${currentSiteId}`);
     }
 
     /*-- Reactives (functional) */

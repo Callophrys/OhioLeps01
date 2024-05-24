@@ -738,7 +738,7 @@ pnpm install -D @tailwindcss/forms
 force pnpm update:
 corepack cache clean
 corepack enable
-corepace prepare pnpn@9.1.0 --activate
+corepack prepare pnpn@9.1.2 --activate
 
 -- SNIPPETS --
 ```
@@ -784,3 +784,8 @@ inner join sitedate sd on s.siteId = sd.siteId
 inner join county c on c.id = s.countyId
 order by 1, 2, 3;
 ```
+
+pnpm i -g pnpm
+
+TODO:
+Fix cancel on add site and add site date
