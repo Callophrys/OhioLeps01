@@ -1,7 +1,13 @@
 <script lang="ts">
     /*-- Imports */
     import Container from '$lib/components/layouts/Container.svelte';
-    import { setContext } from 'svelte';
+    import type { PageLoad } from './$types';
+
+    export const load: PageLoad = ({ params }) => {
+        return {
+            siteId: params.siteId,
+        };
+    };
 
     /*-- -- Data -- */
     /*-- Exports */
@@ -12,7 +18,6 @@
     // console.log('$page ***: ', $page);
 
     /*-- Context */
-    setContext('counties', data.counties);
 
     /*-- -- Styling -- */
     /*-- Properties (styles) */
@@ -24,8 +29,6 @@
     /*-- Constants (functional) */
 
     /*-- Properties (functional) */
-    let currentCountyId: number = $state(data?.refCountyId ?? -1);
-    let currentStateId: number = $state(data.counties.find((x) => x.id === currentCountyId)?.stateId ?? -1);
 
     // TODO make C to F of min max temps a thing
     // -89.3c  56.7c
@@ -43,10 +46,6 @@
     /*-- Methods */
 
     /*-- Reactives (functional) */
-    $effect(() => {
-        console.log('local currentCountyId:', currentCountyId);
-        console.log('local currentStateId:', currentStateId);
-    });
 
     /*-- Other */
 </script>
@@ -107,7 +106,7 @@
 
 {#snippet body()}
     <form method="POST" action="?/addSiteDate" id="addSiteDate" name="addSiteDate">
-        <!-- input type="hidden" id="siteId" name="siteId" bind:value= / -->
+        <input type="hidden" id="siteId" name="siteId" value={data.siteId} />
         <div class="w-[37em]">
             <div class="content">
                 {@render entryInput('recorder', 'Recorder', 'input')}

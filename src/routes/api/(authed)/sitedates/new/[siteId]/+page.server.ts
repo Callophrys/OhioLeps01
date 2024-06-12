@@ -1,13 +1,12 @@
 import { fail } from '@sveltejs/kit';
 import { browser } from '$app/environment';
 import { redirect } from '@sveltejs/kit';
-import type { Site, County } from '@prisma/client';
-import type { SiteCounty } from '$lib/types.js';
-import { getSitesByCounty, getSites } from '$lib/database/sites.js';
-import { getCountiesExpanded } from '$lib/database/counties.js';
+import type { SiteDate } from '@prisma/client';
 import type { Actions } from '@sveltejs/kit';
-import { addSite, exists } from '$lib/database/sites.js';
+import type { Weather } from '@prisma/client';
+import { addSiteDate } from '$lib/database/sitedates';
 
+/*
 export async function load({ cookies, url, params }) {
     // SECURITY - only checking session NOT user or role at this time
     if (!cookies.get('session')) {
@@ -24,72 +23,77 @@ export async function load({ cookies, url, params }) {
 
     return { counties: jsonResultC, refCountyId: countyId, countyId: params.countyId };
 }
+*/
 
 export const actions: Actions = {
-    addSite: async ({ request, locals }) => {
+    addSiteDate: async ({ request, locals }) => {
         const formData = await request.formData();
-        // console.log(formData);
-        // 
+        console.log(formData);
 
-        let siteName = String(formData.get('siteName'));
-        let countyId = Number(formData.get('countyId'));
+        const siteDate: SiteDate = {
+            siteDateId: -1,
+            //week Int
+            siteId: Number(formData.get('siteId')),
+            recordDate: new Date(String(formData.get('recordDate'))),
+            recorder: String(formData.get('recorder')),
+            startTime: new Date(String(formData.get('startTime'))),
+            endTime: new Date(String(formData.get('endTime'))),
+            startTemp: Number(formData.get('startTemp')),
+            endTemp: Number(formData.get('endTemp')),
+            startClouds: Number(formData.get('startClouds')),
+            endClouds: Number(formData.get('endClouds')),
+            startWindDir: String(formData.get('startWindDir')),
+            endWindDir: String(formData.get('endWindDir')),
+            startWindMPH: Number(formData.get('startWindMPH')),
+            endWindMPH: Number(formData.get('endWindMPH')),
+            w1: String(formData.get('w1')) as Weather,
+            w2: String(formData.get('w2')) as Weather,
+            w3: String(formData.get('w3')) as Weather,
+            w4: String(formData.get('w4')) as Weather,
+            w5: String(formData.get('w5')) as Weather,
+            w6: String(formData.get('w6')) as Weather,
+            w7: String(formData.get('w7')) as Weather,
+            w8: String(formData.get('w8')) as Weather,
+            w9: String(formData.get('w9')) as Weather,
+            w10: String(formData.get('w10')) as Weather,
+            w11: String(formData.get('w11')) as Weather,
+            w12: String(formData.get('w12')) as Weather,
+            w13: String(formData.get('w13')) as Weather,
+            w14: String(formData.get('w14')) as Weather,
+            w15: String(formData.get('w15')) as Weather,
+            lEsec1: String(formData.get('lEsec1')),
+            lEsec2: String(formData.get('lEsec2')),
+            lEsec3: String(formData.get('lEsec3')),
+            lEsec4: String(formData.get('lEsec4')),
+            lEsec5: String(formData.get('lEsec5')),
+            lEsec6: String(formData.get('lEsec6')),
+            lEsec7: String(formData.get('lEsec7')),
+            lEsec8: String(formData.get('lEsec8')),
+            lEsec9: String(formData.get('lEsec9')),
+            lEsec10: String(formData.get('lEsec10')),
+            lEsec11: String(formData.get('lEsec11')),
+            lEsec12: String(formData.get('lEsec12')),
+            lEsec13: String(formData.get('lEsec13')),
+            lEsec14: String(formData.get('lEsec14')),
+            lEsec15: String(formData.get('lEsec15')),
+            larvaObA: String(formData.get('larvaObA')),
+            larvaObB: String(formData.get('larvaObB')),
+            larvaObC: String(formData.get('larvaObC')),
+            larvaObD: String(formData.get('larvaObD')),
+            energySource1: String(formData.get('energySource1')),
+            energySource2: String(formData.get('energySource2')),
+            energySource3: String(formData.get('energySource3')),
+            energySource4: String(formData.get('energySource4')),
+            flowersInBloom: String(formData.get('flowersInBloom')),
+            fieldNotes: String(formData.get('fieldNotes')),
 
-        if (!siteName) {
-            console.log('Sitename missing');
-            return fail(400, { siteName, missing: true });
-        }
-
-        let result = await exists(siteName, countyId);
-        if (result) {
-            console.log('Sitename already exists');
-            return fail(400, { siteName, duplicate: true });
-        }
-
-        const site: Site = {
-            siteId: -1,
-            stateId: Number(formData.get('stateId')),
-            countyId: countyId,
-            siteName: siteName,
-            township: String(formData.get('township')),
-            locationZip: String(formData.get('locationZip')),
-            siteAddress: String(formData.get('siteAddress')),
-            siteAddress2: String(formData.get('siteAddress2')),
-            siteCityStateZip: String(formData.get('siteCityStateZip')),
-            person: String(formData.get('person')),
-            address: String(formData.get('address')),
-            address2: String(formData.get('address2')),
-            cityStateZip: String(formData.get('cityStateZip')),
-            phone: String(formData.get('phone')),
-            email: String(formData.get('email')),
-            latitudeStart: String(formData.get('latitudeStart')),
-            latitudeEnd: String(formData.get('latitudeEnd')),
-            longitudeStart: String(formData.get('longitudeStart')),
-            longitudeEnd: String(formData.get('longitudeEnd')),
-            altPerson: String(formData.get('altPerson')),
-            altAddress: String(formData.get('altAddress')),
-            altAddress2: String(formData.get('altAddress2')),
-            altCityStateZip: String(formData.get('altCityStateZip')),
-            altPhone: String(formData.get('altPhone')),
-            altEmail: String(formData.get('altEmail')),
-            otherParticipants: String(formData.get('otherParticipants')),
-            description: String(formData.get('description')),
-            s1995: 0,
-            s1996: 0,
-            s1997: 0,
-            s1998: 0,
-            s1999: 0,
-            s2000: 0,
-            s2001: 0,
-            s2002: 0,
-            s2003: 0,
-            s2004: 0,
             createdAt: new Date(),
             createdById: locals.user.id,
             updatedAt: null,
             updatedById: null,
         };
 
-        const newSite: Site = await addSite(site);
-        return { action: 'create', success: true, data: newSite };
+        const newSiteDate: SiteDate = await addSiteDate(siteDate);
+        return { action: 'create', success: true, data: newSiteDate };
     },
 };

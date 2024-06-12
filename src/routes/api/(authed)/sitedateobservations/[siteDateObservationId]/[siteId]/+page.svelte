@@ -17,7 +17,6 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     import SiteDatePicker from '$lib/components/datanavigation/SiteDatePicker.svelte';
     import SpeciesPicker from '$lib/components/datanavigation/SpeciesPicker.svelte';
     import { setContext } from 'svelte';
-    import { onMount } from 'svelte';
     import GoBack from '$lib/components/datanavigation/GoBack.svelte';
     //import GoNext from '$lib/components/datanavigation/GoNext.svelte';
     import { GOTYPE } from '$lib/types.js';
@@ -202,7 +201,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     let recordWeek = $derived(weekOfYearSince(new Date(currentSiteDateObservation.siteDate.recordDate)));
     let recordSdoCount = $derived(data.checklistsSiteDateObs.filter((o: any) => showDeletedData || !o.deleted).length);
 
-    let total: number = 0;
+    let total: number = $state(0);
     let sdoSections = $derived.by(() => {
         const result = Object.entries(currentSiteDateObservation)
             .filter((x) => x[0].startsWith('section'))
@@ -215,7 +214,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     //console.log(sdoSections);
 
     let nextSiteDateObservation = $derived(() => {
-        let currentIndex = data.siteDates.findIndex((x) => x === currentSiteDateObservation.siteDateId);
+        let currentIndex = data.siteDates.findIndex((x) => x.siteDateId === currentSiteDateObservation.siteDateId);
         let nextIndex = ++currentIndex % data.siteDates.length;
         return data.siteDates[nextIndex];
     });
