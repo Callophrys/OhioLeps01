@@ -789,3 +789,19 @@ pnpm i -g pnpm
 
 TODO:
 Fix cancel on add site and add site date
+
+
+corepack cache clean
+corepack enable
+corepack prepare pnpm@9.3.0 --activate
+
+pnpm i prisma@latest
+pnpm i @prisma/client@latest
+pnpm update @latest
+pnpm update svelte@5.0.0-next.155
+#pnpm i -g pnpm # seems to do nothing
+pnpm add -g pnpm  # updates package.json only
+npm install pnpm -g   # Works - but only if getting a new terminal/environment
+npx prisma generate
+
+

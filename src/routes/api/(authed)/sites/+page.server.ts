@@ -24,7 +24,7 @@ export const actions = {
     addSite: async ({ request } : any) => {
         console.log('addSite from /api/sites/+page.server.ts');
         const formData = await request.formData();
-        const site = String(formData.get('site'));
+        const site = formData.get('site');
 
         if (!site) {
             return fail(400, { site, missing: true });

@@ -45,7 +45,7 @@ async function updateOrganizations(): Promise<Organization> {
   });
 
   let mainOrganizationId = ll.id;
-  
+
   const uu = await db.organization.create({
     data: {
       name: 'Unauthenticated'
@@ -53,8 +53,8 @@ async function updateOrganizations(): Promise<Organization> {
   });
 
   let unauthOrganizationId = uu.id;
-  
-  
+
+
 
   console.log('Creating App Configs');
   await db.appConfig.createMany({

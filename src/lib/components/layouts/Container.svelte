@@ -22,7 +22,7 @@
     let config = $state({});
     $effect(() => {
         config = $page.data.config;
-        console.log('config:', config);
+        //console.log('config:', config);
     });
 
     // Should be 144 (with footer) or 128 but added 4px for just in case

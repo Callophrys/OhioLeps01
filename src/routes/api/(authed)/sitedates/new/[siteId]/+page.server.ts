@@ -34,17 +34,29 @@ export async function load({ cookies, url, params }) {
 
 export const actions: Actions = {
     addSiteDate: async ({ request, locals }) => {
+        console.log('made it here');
         const formData = await request.formData();
-        const siteId = Number(formData.get('siteId'));
-        // console.log(formData);
+        console.log(formData);
+        let recordDate = new Date(String(formData.get('recordDate')));
+        let tzOffset = 1000 * 60 * Number(formData.get('tzOffset'));
 
-        const siteDate: SiteDate = { siteDateId: -1,
+        let startTimeString = String(formData.get('startTime')).split(':');
+        let startTime = 1000 * 60 * (Number(startTimeString[0]) * 60 + Number(startTimeString[1]))
+        let startTimeDate = new Date(recordDate.valueOf() + startTime + tzOffset);
+
+        let endTimeString = String(formData.get('endTime')).split(':');
+        let endTime = 1000 * 60 * (Number(endTimeString[0]) * 60 + Number(endTimeString[1]))
+        let endTimeDate = new Date(recordDate.valueOf() + endTime + tzOffset);
+        console.log('startTimeDate', startTimeDate, 'endTimeDate', endTimeDate);
+
+        const siteDate: SiteDate = {
+            siteDateId: -1,
             //week Int
-            siteId: siteId,
-            recordDate: new Date(String(formData.get('recordDate'))),
+            siteId: Number(formData.get('siteId')),
+            recordDate: recordDate,
             recorder: String(formData.get('recorder')),
-            startTime: new Date(String(formData.get('startTime'))),
-            endTime: new Date(String(formData.get('endTime'))),
+            startTime: startTimeDate,
+            endTime: endTimeDate,
             startTemp: Number(formData.get('startTemp')),
             endTemp: Number(formData.get('endTemp')),
             startClouds: Number(formData.get('startClouds')),
@@ -99,7 +111,9 @@ export const actions: Actions = {
             updatedById: null,
         };
 
+        console.log(siteDate);
+
         const newSiteDate: SiteDate = await addSiteDate(siteDate);
-        return { action: 'create', success: true, data: newSiteDate };
+        return { 'siteDateId': newSiteDate.siteDateId ?? -1 };
     },
 };

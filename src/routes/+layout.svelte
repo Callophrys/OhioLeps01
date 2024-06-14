@@ -18,7 +18,7 @@
     let config = $state({});
     $effect(() => {
         config = $page.data.config;
-        console.log('config:', config);
+        // console.log('config:', config);
     });
 
     const wNavBar = 60;

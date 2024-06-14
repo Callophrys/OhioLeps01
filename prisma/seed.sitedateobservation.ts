@@ -16,15 +16,17 @@ export default async function () {
     //console.log(siteDateLookup);
     //return;
 
-    await db.siteDateObservation.create({ data: { hodges: "4197", idCode: "O", section1: 7, section10: 1, createdAt: (new Date("5/10/2000 11:10:33 AM GMT-5")).toISOString(), checklistId: checklistLookup["4197"] } });
-    await db.siteDateObservation.create({ data: { hodges: "4197", idCode: "O", section3: 2, section5: 3, section7: 3, section9: 1, section10: 5, createdAt: (new Date("7/24/2000 12:47:11 PM GMT-5")).toISOString(), checklistId: checklistLookup["4197"] } });
-    await db.siteDateObservation.create({ data: { hodges: "4437  a", idCode: "O", section5: 1, createdAt: (new Date("7/24/2000 12:47:38 PM GMT-5")).toISOString(), checklistId: checklistLookup["4437  a"] } });
-    await db.siteDateObservation.create({ data: { hodges: "4481", idCode: "O", section5: 1, section10: 1, createdAt: (new Date("7/24/2000 12:48:00 PM GMT-5")).toISOString(), checklistId: checklistLookup["4481"] } });
-    await db.siteDateObservation.create({ data: { hodges: "4159", idCode: "O", section5: 2, section6: 3, section10: 1, createdAt: (new Date("7/24/2000 12:48:26 PM GMT-5")).toISOString(), checklistId: checklistLookup["4159"] } });
-    await db.siteDateObservation.create({ data: { hodges: "4363", idCode: "O", section7: 0, section9: 4, section10: 1, createdAt: (new Date("7/24/2000 12:48:42 PM GMT-5")).toISOString(), checklistId: checklistLookup["4363"] } });
-    await db.siteDateObservation.create({ data: { hodges: "4176", idCode: "O", section9: 1, createdAt: (new Date("7/24/2000 12:49:06 PM GMT-5")).toISOString(), checklistId: checklistLookup["4176"] } });
-    await db.siteDateObservation.create({ data: { hodges: "4176", section1: 1, section9: 1, createdAt: (new Date("8/15/2000 3:19:54 PM GMT-5")).toISOString(), checklistId: checklistLookup["4176"] } });
-    await db.siteDateObservation.create({ data: { hodges: "4176", section1: 1, createdAt: (new Date("9/5/2000 2:21:45 PM GMT-5")).toISOString(), checklistId: checklistLookup["4176"] } });
+    /* These are missing site dates */
+    // await db.siteDateObservation.create({ data: { hodges: "4197", idCode: "O", section1: 7, section10: 1, createdAt: (new Date("5/10/2000 11:10:33 AM GMT-5")).toISOString(), checklistId: checklistLookup["4197"] } });
+    // await db.siteDateObservation.create({ data: { hodges: "4197", idCode: "O", section3: 2, section5: 3, section7: 3, section9: 1, section10: 5, createdAt: (new Date("7/24/2000 12:47:11 PM GMT-5")).toISOString(), checklistId: checklistLookup["4197"] } });
+    // await db.siteDateObservation.create({ data: { hodges: "4437  a", idCode: "O", section5: 1, createdAt: (new Date("7/24/2000 12:47:38 PM GMT-5")).toISOString(), checklistId: checklistLookup["4437  a"] } });
+    // await db.siteDateObservation.create({ data: { hodges: "4481", idCode: "O", section5: 1, section10: 1, createdAt: (new Date("7/24/2000 12:48:00 PM GMT-5")).toISOString(), checklistId: checklistLookup["4481"] } });
+    // await db.siteDateObservation.create({ data: { hodges: "4159", idCode: "O", section5: 2, section6: 3, section10: 1, createdAt: (new Date("7/24/2000 12:48:26 PM GMT-5")).toISOString(), checklistId: checklistLookup["4159"] } });
+    // await db.siteDateObservation.create({ data: { hodges: "4363", idCode: "O", section7: 0, section9: 4, section10: 1, createdAt: (new Date("7/24/2000 12:48:42 PM GMT-5")).toISOString(), checklistId: checklistLookup["4363"] } });
+    // await db.siteDateObservation.create({ data: { hodges: "4176", idCode: "O", section9: 1, createdAt: (new Date("7/24/2000 12:49:06 PM GMT-5")).toISOString(), checklistId: checklistLookup["4176"] } });
+    // await db.siteDateObservation.create({ data: { hodges: "4176", section1: 1, section9: 1, createdAt: (new Date("8/15/2000 3:19:54 PM GMT-5")).toISOString(), checklistId: checklistLookup["4176"] } });
+    // await db.siteDateObservation.create({ data: { hodges: "4176", section1: 1, createdAt: (new Date("9/5/2000 2:21:45 PM GMT-5")).toISOString(), checklistId: checklistLookup["4176"] } });
+
     await db.siteDateObservation.create({ data: { seqId: 54, hodges: "4197", idCode: "C", section1: 1, section3: 1, section13: 1, section14: 1, section15: 1, createdAt: (new Date("3/16/1999 10:30:59 AM GMT-5")).toISOString(), checklistId: checklistLookup["4197"], siteDateId: siteDateLookup["54"] } });
     await db.siteDateObservation.create({ data: { seqId: 54, hodges: "4437  a", idCode: "O", section3: 1, createdAt: (new Date("3/16/1999 10:33:00 AM GMT-5")).toISOString(), checklistId: checklistLookup["4437  a"], siteDateId: siteDateLookup["54"] } });
     await db.siteDateObservation.create({ data: { seqId: 54, hodges: "4432", idCode: "N", section8: 1, section13: 1, createdAt: (new Date("3/16/1999 10:32:19 AM GMT-5")).toISOString(), checklistId: checklistLookup["4432"], siteDateId: siteDateLookup["54"] } });

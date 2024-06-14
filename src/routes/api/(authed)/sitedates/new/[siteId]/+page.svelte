@@ -2,6 +2,8 @@
     // import type { PageLoad } from '../../../sites/$types';
     import Container from '$lib/components/layouts/Container.svelte';
     import { weekOfYearSince } from '$lib/utils.js';
+    import { enhance } from '$app/forms';
+    import { goto } from '$app/navigation';
 
     /*-- -- Data -- */
     /*-- Exports */
@@ -43,15 +45,98 @@
     /*-- Reactives (functional) */
 
     /*-- Other */
+
+    const handleSubmit = async (e: any) => {
+        try {
+            e.preventDefault();
+            console.log(e);
+            const form = e.target;
+            const formData = new FormData(form);
+            formData.append('tzOffset', new Date().getTimezoneOffset().toString());
+
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: formData, });
+
+            const rd = await response.json();
+            console.log(rd.status);
+            if (rd.status === 200) {
+                const rdata = JSON.parse(rd.data);
+                console.log(rdata[rdata[0].siteDateId]);
+                let siteDateId = rdata[rdata[0].siteDateId];
+                goto('/api/sitedates/' + siteDateId);
+            }
+        } catch {}
+    };
+
+    setTimeout(() => {
+        (() => {
+            if (typeof document === 'object') {
+                (document.getElementById('recordDate') as HTMLInputElement).value = '2024-06-12';
+                (document.getElementById('recorder') as HTMLInputElement).value = 'Mortimer Snerd';
+                (document.getElementById('startTime') as HTMLInputElement).value = '10:15';
+                (document.getElementById('endTime') as HTMLInputElement).value = '13:30';
+                (document.getElementById('startTemp') as HTMLInputElement).value = '82';
+                (document.getElementById('endTemp') as HTMLInputElement).value = '90';
+                (document.getElementById('startClouds') as HTMLInputElement).value = '5';
+                (document.getElementById('endClouds') as HTMLInputElement).value = '0';
+                (document.getElementById('startWindDir') as HTMLInputElement).value = 'E';
+                (document.getElementById('endWindDir') as HTMLInputElement).value = 'SE';
+                (document.getElementById('startWindMPH') as HTMLInputElement).value = '3';
+                (document.getElementById('endWindMPH') as HTMLInputElement).value = '4';
+                (document.getElementById('w1') as HTMLInputElement).value = 'S';
+                (document.getElementById('w2') as HTMLInputElement).value = 'O';
+                (document.getElementById('w3') as HTMLInputElement).value = 'S';
+                (document.getElementById('w4') as HTMLInputElement).value = 'S';
+                (document.getElementById('w5') as HTMLInputElement).value = 'O';
+                (document.getElementById('w6') as HTMLSelectElement).selectedIndex = 1;
+                (document.getElementById('w7') as HTMLSelectElement).selectedIndex = 1;
+                (document.getElementById('w8') as HTMLSelectElement).selectedIndex = 1;
+                (document.getElementById('w9') as HTMLSelectElement).selectedIndex = 1;
+                (document.getElementById('w10') as HTMLSelectElement).selectedIndex = 1;
+                (document.getElementById('w11') as HTMLSelectElement).selectedIndex = 1;
+                (document.getElementById('w12') as HTMLSelectElement).selectedIndex = 1;
+                (document.getElementById('w13') as HTMLSelectElement).selectedIndex = 1;
+                (document.getElementById('w14') as HTMLSelectElement).selectedIndex = 1;
+                (document.getElementById('w15') as HTMLSelectElement).selectedIndex = 1;
+                (document.getElementById('lEsec1') as HTMLInputElement).value = 'Clover';
+                (document.getElementById('lEsec2') as HTMLInputElement).value = 'Baptisia';
+                (document.getElementById('lEsec3') as HTMLInputElement).value = 'Sedges';
+                (document.getElementById('lEsec4') as HTMLInputElement).value = 'Clover, Grasses and sedges';
+                (document.getElementById('lEsec5') as HTMLInputElement).value = '';
+                (document.getElementById('lEsec6') as HTMLInputElement).value = '';
+                (document.getElementById('lEsec7') as HTMLInputElement).value = '';
+                (document.getElementById('lEsec8') as HTMLInputElement).value = '';
+                (document.getElementById('lEsec9') as HTMLInputElement).value = '';
+                (document.getElementById('lEsec10') as HTMLInputElement).value = '';
+                (document.getElementById('lEsec11') as HTMLInputElement).value = '';
+                (document.getElementById('lEsec12') as HTMLInputElement).value = '';
+                (document.getElementById('lEsec13') as HTMLInputElement).value = '';
+                (document.getElementById('lEsec14') as HTMLInputElement).value = '';
+                (document.getElementById('lEsec15') as HTMLInputElement).value = '';
+                (document.getElementById('larvaObA') as HTMLInputElement).value = 'none';
+                (document.getElementById('larvaObB') as HTMLInputElement).value = 'none';
+                (document.getElementById('larvaObC') as HTMLInputElement).value = 'some on clover';
+                (document.getElementById('larvaObD') as HTMLInputElement).value = '';
+                (document.getElementById('energySource1') as HTMLInputElement).value = 'vibernum';
+                (document.getElementById('energySource2') as HTMLInputElement).value = 'rose';
+                (document.getElementById('energySource3') as HTMLInputElement).value = 'nicotiana';
+                (document.getElementById('energySource4') as HTMLInputElement).value = '';
+                (document.getElementById('flowersInBloom') as HTMLInputElement).value = '';
+                (document.getElementById('fieldNotes') as HTMLInputElement).value = 'Test by me.';
+            }
+        })();
+    }, 3000);
+
 </script>
 
 {#snippet head()}
     <div class="flex flex-row gap-1 md:gap-2">
-        <button type="submit" class="btn variant-filled" form="addSite">
+        <button type="submit" class="btn variant-filled" form="addSiteDate">
             Save Site Date
             <span class="pl-2">✎</span>
         </button>
-        <button type="button" class="btn variant-filled" form="addSite">
+        <button type="button" class="btn variant-filled" form="addSiteDate">
             Cancel
             <span class="pl-2">✎</span>
         </button>
@@ -100,7 +185,7 @@
 {/snippet}
 
 {#snippet body()}
-    <form method="POST" action="?/addSiteDate" id="addSiteDate" name="addSiteDate">
+    <form method="POST" action="?/addSiteDate" id="addSiteDate" name="addSiteDate" onsubmit={handleSubmit} use:enhance>
         <input type="hidden" id="siteId" name="siteId" value={data.siteId} />
         <div class="w-[37em]">
             <div class="content">
@@ -176,3 +261,4 @@
 {/snippet}
 
 <Container {head} {body} tail={null} />
+

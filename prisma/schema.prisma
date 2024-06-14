@@ -308,25 +308,25 @@ model SiteDateObservation {
     deleted Boolean @default(false)
     confirmed Boolean @default(false)
 
-	createdAt DateTime?
-	updatedAt DateTime?
-	confirmAt DateTime?
+    createdAt DateTime?
+    updatedAt DateTime?
+    confirmAt DateTime?
 
     // User relations
-	createdBy User? @relation("CreateUserOfSiteDateObservation", fields: [createdById], references: [id])
-	createdById String? // Probably should never be null
-	updatedBy User? @relation("UpdateUserOfSiteDateObservation", fields: [updatedById], references: [id])
-	updatedById String?
-	confirmBy User? @relation("ConfirmUserOfSiteDateObservation", fields: [confirmById], references: [id])
-	confirmById String?
+    createdBy User? @relation("CreateUserOfSiteDateObservation", fields: [createdById], references: [id])
+    createdById String? // Probably should never be null
+    updatedBy User? @relation("UpdateUserOfSiteDateObservation", fields: [updatedById], references: [id])
+    updatedById String?
+    confirmBy User? @relation("ConfirmUserOfSiteDateObservation", fields: [confirmById], references: [id])
+    confirmById String?
 
     // Parent Relation
     checklist Checklist? @relation(fields: [checklistId], references: [checklistId])
     checklistId Int? // Probably should never be null
 
     // Parent Relation
-    siteDate SiteDate? @relation(fields: [siteDateId], references: [siteDateId])
-    siteDateId Int? // Should never be null
+    siteDate SiteDate @relation(fields: [siteDateId], references: [siteDateId])
+    siteDateId Int // Should never be null
 
     //@@index([checklistId]); // error on run
     //@@index([siteDateId]);  // error on run
@@ -367,8 +367,7 @@ enum Weather {
 }
 
 model SiteDate {
-    siteDateId Int @id // @default(autoincrement())
-    siteId Int
+    siteDateId Int @id @default(autoincrement())
     seqId Int? // temp and will be query key
     recordDate DateTime // was "date", a reserved word
     week Int
@@ -441,7 +440,7 @@ model SiteDate {
 
     // Parent Relation
     site Site @relation(fields: [siteId], references: [siteId])
-    // provided by load: siteId Int //@default(0)
+    siteId Int
 
     // Child Relation
     siteDateObservations SiteDateObservation[]
