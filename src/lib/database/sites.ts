@@ -7,7 +7,7 @@ import type { Site } from '@prisma/client';
  * @returns
  */
 export async function getSite(siteId: number) {
-    console.log('/lib/api/entry/sites.ts > getSite', siteId);
+    // console.log('/lib/api/entry/sites.ts > getSite', siteId);
 
     const site = await prisma.site.findUnique({
         where: {
@@ -51,14 +51,14 @@ export async function getSitesByCounty(countyId: number) {
 }
 
 export async function getSites(idList: number[] | null) {
-    console.log('/lib/api/entry/sites.ts > getSites');
+    // console.log('/lib/api/entry/sites.ts > getSites');
 
-    let whereClause =
-        idList && idList.length
-            ? {
-                  id: { in: idList },
-              }
-            : true;
+    // let whereClause =
+    //     idList && idList.length
+    //         ? {
+    //               id: { in: idList },
+    //           }
+    //         : true;
 
     const sites = await prisma.site.findMany({
         where: {
@@ -107,6 +107,10 @@ export async function addSite(site: Site) {
             siteName: site.siteName,
             township: site.township,
             locationZip: site.locationZip,
+            latitudeStart: site.latitudeStart,
+            latitudeEnd: site.latitudeEnd,
+            longitudeStart: site.longitudeStart,
+            longitudeEnd: site.longitudeEnd,
             siteAddress: site.siteAddress,
             siteAddress2: site.siteAddress2,
             siteCity: site.siteCity,
@@ -120,10 +124,6 @@ export async function addSite(site: Site) {
             personZip: site.personZip,
             personPhone: site.personPhone,
             personEmail: site.personEmail,
-            latitudeStart: site.latitudeStart,
-            latitudeEnd: site.latitudeEnd,
-            longitudeStart: site.longitudeStart,
-            longitudeEnd: site.longitudeEnd,
             altPerson: site.altPerson,
             altPersonAddress: site.altPersonAddress,
             altPersonAddress2: site.altPersonAddress2,

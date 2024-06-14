@@ -156,7 +156,7 @@
     /*-- Reactives (functional) */
     let recordDate: Date = $state(new Date(data.siteDate.recordDate));
     let recordYear: number = $state(new Date(data.siteDate.recordDate).getFullYear());
-    let recordWeek: number = $state(weekOfYearSince(new Date(data.siteDate.recordDate)));
+    let recordWeek: number | null = $state(weekOfYearSince(new Date(data.siteDate.recordDate)));
     let recordSdoCount: number = $state(data.siteDate.siteDateObservations.filter((o: any) => showDeletedData || !o.deleted).length);
 
     let currentSiteId: number = $state(data.siteDate.siteId);

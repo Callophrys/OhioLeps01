@@ -6,26 +6,14 @@ type TimeZone = Intl.DateTimeFormatOptions['timeZone'];
 
 export function convertFtoC(f: number | null) {
     if (f === null) return;
-    return Math.floor((f - 32) * 5 / 9);
+    return Math.floor(((f - 32) * 5) / 9);
 }
 
 export function daysIntoYear(date: Date): number {
-    return (
-        (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) -
-            Date.UTC(date.getFullYear(), 0, 0)) /
-        24 /
-        60 /
-        60 /
-        1000
-    );
+    return (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(date.getFullYear(), 0, 0)) / 24 / 60 / 60 / 1000;
 }
 
-export function formatDate(date: string,
-    dateStyle: DateStyle = undefined,
-    timeStyle: TimeStyle = undefined,
-    timeZone: TimeZone = undefined,
-    locales: string = 'en-US'): string {
-
+export function formatDate(date: string, dateStyle: DateStyle = undefined, timeStyle: TimeStyle = undefined, timeZone: TimeZone = undefined, locales: string = 'en-US'): string {
     const dateToFormat = new Date(date);
     const dateFormatter = new Intl.DateTimeFormat(locales, { dateStyle, timeStyle, timeZone });
     /*
@@ -55,37 +43,43 @@ export function compareYearWeek(a: DateTracking, b: DateTracking) {
 }
 
 //export const sortByNumericProperty = <K extends string, T extends Record<K, any>>(
-export const sortByNumericProperty = (
-    items: any[],
-    propertyName: string,
-    ascending: boolean | null = true
-) => items.sort((a, b) => (a[propertyName] - b[propertyName]) * (ascending ? 1 : -1));
+export const sortByNumericProperty = (items: any[], propertyName: string, ascending: boolean | null = true) => items.sort((a, b) => (a[propertyName] - b[propertyName]) * (ascending ? 1 : -1));
 
 //export const sortByStringProperty = <K extends string, T extends Record<K, any>>(
-export const sortByStringProperty = (
-    items: any[],
-    propertyName: string,
-    ascending: boolean | null = true
-) => items.sort((a, b) => {
-    if (a[propertyName] > b[propertyName]) return 1 * (ascending ? 1 : -1);
-    if (a[propertyName] < b[propertyName]) return -1 * (ascending ? 1 : -1);
-    return 0;
-});
+export const sortByStringProperty = (items: any[], propertyName: string, ascending: boolean | null = true) =>
+    items.sort((a, b) => {
+        if (a[propertyName] > b[propertyName]) return 1 * (ascending ? 1 : -1);
+        if (a[propertyName] < b[propertyName]) return -1 * (ascending ? 1 : -1);
+        return 0;
+    });
+
+export const isDate = (d: any) => d instanceof Date && isFinite(Number(d));
 
 // Do not forget month is 0 to 11
-export function weekOfYearSince(
-    weekOfDate: Date,
-    sinceDate: Date = new Date(1999, 3, 1),
-    useSameYear: boolean = true
-): number {
+
+/**
+ * @param weekOfDate
+ * @param [sinceDate=new Date(1999, 3, 1)]
+ * @param [useSameYear=true]
+ * @returns Week of the year for the survey entry (weekOfDate).
+ * @description Week is determined from the sinceDate argument.
+ */
+export function weekOfYearSince(weekOfDate: Date, sinceDate: Date = new Date(1999, 3, 1), useSameYear: boolean = true): number | null {
     //console.log(typeof weekOfDate, weekOfDate);
-    if (useSameYear) sinceDate.setFullYear(weekOfDate.getFullYear());
+    if (!isDate(weekOfDate)) {
+        return null;
+    }
+    if (useSameYear) {
+        sinceDate.setFullYear(weekOfDate.getFullYear());
+    }
     let daysPassed = (weekOfDate.getTime() - sinceDate.getTime()) / 24 / 60 / 60 / 1000;
     return 1 + Math.floor(daysPassed / 7);
 }
 
 export function isEmpty(obj: object): boolean {
-    for (var x in obj) { return false; }
+    for (let _ in obj) {
+        return false;
+    }
     return true;
 }
 
@@ -131,21 +125,27 @@ export function toBool(value: any) {
     if (typeof value === 'undefined') return false;
     let val = String(value);
     switch (val) {
-        case 'false': return false;
-        case 'true': return true;
-        case 'on': return true;
-        case '0': return false;
-        case '1': return true;
-        case '-1': return true;
-        default: return false;
+        case 'false':
+            return false;
+        case 'true':
+            return true;
+        case 'on':
+            return true;
+        case '0':
+            return false;
+        case '1':
+            return true;
+        case '-1':
+            return true;
+        default:
+            return false;
     }
 }
 
-export const setDifferenceByProp = (a: any, b: any, prop: string) => new Set([...a].filter(x => !b.some((z: any) => z[prop] === x[prop])));
-export const setDifference = (a: any, b: any) => new Set([...a].filter(x => !b.has(x)));
-export const setIntersection = (a: any, b: any) => new Set([...a].filter(x => b.has(x)));
+export const setDifferenceByProp = (a: any, b: any, prop: string) => new Set([...a].filter((x) => !b.some((z: any) => z[prop] === x[prop])));
+export const setDifference = (a: any, b: any) => new Set([...a].filter((x) => !b.has(x)));
+export const setIntersection = (a: any, b: any) => new Set([...a].filter((x) => b.has(x)));
 export const setUnion = (a: any, b: any) => new Set([...a, ...b]);
-
 
 export function getTaxonIndent(taxonType: string) {
     if (taxonType === 'SF') return 'indent-4';
@@ -154,4 +154,3 @@ export function getTaxonIndent(taxonType: string) {
     if (taxonType === 'SS') return 'indent-20';
     return '';
 }
-

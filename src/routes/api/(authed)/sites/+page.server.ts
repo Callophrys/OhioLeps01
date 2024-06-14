@@ -1,9 +1,9 @@
-import type { SiteCountyState } from '$lib/types';
 import { fail } from '@sveltejs/kit';
 import { redirect } from '@sveltejs/kit';
 import { addSite, getSite, getSites, removeSite } from '$lib/database/sites.js';
+import type { SiteCountyState } from '$lib/types';
 
-export async function load({ cookies, url }) {
+export async function load({ cookies, url } : { cookies: any; url: any; }) {
     // TODO: fix the issue where user refreshes and 500 error appears
     console.log('Load from /api/sites/+page.server.ts');
 
@@ -16,12 +16,12 @@ export async function load({ cookies, url }) {
     const json = JSON.stringify(sites);
     const jsonResult: SiteCountyState[] = JSON.parse(json);
 
-    //console.log(jsonResult);
+    // console.log(jsonResult);
     return { sites: jsonResult };
 }
 
 export const actions = {
-    addSite: async ({ request }) => {
+    addSite: async ({ request } : any) => {
         console.log('addSite from /api/sites/+page.server.ts');
         const formData = await request.formData();
         const site = String(formData.get('site'));
@@ -34,7 +34,7 @@ export const actions = {
         return { success: true };
     },
 
-    getSite: async ({ request }) => {
+    getSite: async ({ request } : any) => {
         console.log('getSite from /api/sites/+page.server.ts');
         const formData = await request.formData();
         let siteId: number = Number(formData.get('siteId') ?? 0);
@@ -43,7 +43,7 @@ export const actions = {
         return { success: true, data: site };
     },
 
-    removeSite: async ({ request }) => {
+    removeSite: async ({ request } : any) => {
         console.log('removeSite from /api/sites/+page.server.ts');
         const formData = await request.formData();
         const siteId = Number(formData.get('siteId') ?? 0);

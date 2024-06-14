@@ -1,5 +1,4 @@
 import prisma from '$lib/prisma'
-import { isDate } from 'util/types';
 import type { SpeciesSearchParams, CountySpecimen } from '$lib/types';
 import { getCountySpecimens } from './counties';
 import type { Checklist } from '@prisma/client';

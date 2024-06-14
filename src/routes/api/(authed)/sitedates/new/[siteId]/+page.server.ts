@@ -1,10 +1,17 @@
-import { fail } from '@sveltejs/kit';
-import { browser } from '$app/environment';
-import { redirect } from '@sveltejs/kit';
+// import { fail } from '@sveltejs/kit';
+// import { browser } from '$app/environment';
+// import { redirect } from '@sveltejs/kit';
 import type { SiteDate } from '@prisma/client';
 import type { Actions } from '@sveltejs/kit';
 import type { Weather } from '@prisma/client';
 import { addSiteDate } from '$lib/database/sitedates';
+
+export async function load({ params } : any) {
+    console.log(params);
+    return {
+        siteId: params.siteId,
+    };
+}
 
 /*
 export async function load({ cookies, url, params }) {
@@ -28,12 +35,12 @@ export async function load({ cookies, url, params }) {
 export const actions: Actions = {
     addSiteDate: async ({ request, locals }) => {
         const formData = await request.formData();
-        console.log(formData);
+        const siteId = Number(formData.get('siteId'));
+        // console.log(formData);
 
-        const siteDate: SiteDate = {
-            siteDateId: -1,
+        const siteDate: SiteDate = { siteDateId: -1,
             //week Int
-            siteId: Number(formData.get('siteId')),
+            siteId: siteId,
             recordDate: new Date(String(formData.get('recordDate'))),
             recorder: String(formData.get('recorder')),
             startTime: new Date(String(formData.get('startTime'))),
@@ -86,7 +93,6 @@ export const actions: Actions = {
             energySource4: String(formData.get('energySource4')),
             flowersInBloom: String(formData.get('flowersInBloom')),
             fieldNotes: String(formData.get('fieldNotes')),
-
             createdAt: new Date(),
             createdById: locals.user.id,
             updatedAt: null,

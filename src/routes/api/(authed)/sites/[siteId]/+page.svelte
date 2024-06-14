@@ -2,6 +2,7 @@
     /* TODO: figure out what site statuses in info block was all about - this was never returned and return type and results will need to change */
     /* TODO: after back action from sdo the sdo picker should update its selection to last visited sdo */
 
+
     /*-- Imports */
     import type { SiteCountySiteDatesSiteStatuses } from '$lib/types.js';
     import type { SiteCountyState } from '$lib/types.js';
@@ -23,6 +24,8 @@
 
     /*-- Context */
     setContext('counties', data.counties);
+
+    // data.sites is type SiteCountySiteDatesSiteStatuses which is site, county, siteDates
     setContext('sites', data.sites);
     setContext('siteDates', data.site.siteDates);
 
@@ -75,10 +78,11 @@
     let currentCountyId: number = $state(data.site.countyId);
     let currentSiteId: number = $state(data.site.siteId);
     let currentSiteDateId: number = $state(data.site.siteDates.length ? data.site.siteDates[0].siteDateId : -1);
-    $inspect(currentCountyId, currentSiteId, currentSiteDateId);
+    // $inspect(currentCountyId, currentSiteId, currentSiteDateId);
 
     let currentSite: SiteCountyState | undefined = $derived(data.sites.find((x) => x.siteId === currentSiteId));
-    $inspect(currentSite);
+    // $inspect(currentSite);
+
     /*-- Other */
 
     // const updateCounty = () => {

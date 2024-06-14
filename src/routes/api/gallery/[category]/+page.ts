@@ -36,7 +36,7 @@ import GA0222 from '$lib/assets/gallery/other/DSCF0222.jpg';
 import GA0189 from '$lib/assets/gallery/other/DSCF0189.jpg';
 
 /** @type {import('./$types').PageLoad} */
-export function load({ params }) {
+export function load({ params } : any) {
     const unsplashIds: string[] = [];
 
     switch (String(params.category)) {

@@ -1,24 +1,36 @@
 <script lang="ts">
-    import { GOTYPE } from '$lib/types.js';
-    import Container from '$lib/components/layouts/Container.svelte';
-    import { formatDate } from '$lib/utils';
-    import { popup } from '@skeletonlabs/skeleton';
     //import type { PopupSettings } from '@skeletonlabs/skeleton';
+    import Container from '$lib/components/layouts/Container.svelte';
+    import { popup } from '@skeletonlabs/skeleton';
     import { page } from '$app/stores';
     //import { enhance } from '$app/forms';
-    import { isEmpty } from '$lib/utils';
+    // import { isEmpty, camelToFriendly } from '$lib/utils';
+    // import { formatDate } from '$lib/utils';
     import GoBack from '$lib/components/datanavigation/GoBack.svelte';
     // import GoNext from '$lib/components/datanavigation/GoNext.svelte';
+    import { GOTYPE } from '$lib/types.js';
 
-    let { data, form } = $props();
-    let targetId = $state(data.sites && data.sites.length ? data.sites[0].countyId : -1);
+    let { data, form }: { data: any; form: any | null } = $props();
+
+    // console.log(data.sites[0]);
+
+    let targetId = $state(data?.sites?.length ? data.sites[0].countyId : -1);
+    let targetIdSecondary = -1;
+
+    function isEmpty(x: any) {
+        return typeof x === 'undefined' || !!x;
+    }
+
+    function formatDate(_: any) {
+        return 'XYZ';
+    }
 </script>
 
 {#snippet head()}
     <div class="">
         <GoBack bind:targetId targetType={GOTYPE.COUNTYSITES} targetIdSecondary={-1} controlBody="scale-90" buttonCenter="" scriptCenter="" labelledby="Select site-date" />
         {#if ($page.data.user?.role === 'ADMIN' || $page.data.user?.role === 'SUPER') && typeof form === 'object' && !isEmpty(form?.data)}
-            <span>Site X of {data.sites?.length}: {form?.data?.siteName} </span>
+            <span>Site X of {data?.sites.length}: {form?.data?.siteName} </span>
             <button type="submit"> ➜ Next site</button>
 
             <div class="flex gap-2">
@@ -58,10 +70,10 @@
     {/if}
     -->
         {:else if typeof form === 'object' && !isEmpty(form?.data)}
-            <span>Site X of {data.sites?.length}: {form?.data?.siteName} </span>
+            <span>Site X of {data?.sites.length}: {form?.data?.siteName} </span>
             <button type="submit"> ➜ Next site</button>
         {:else}
-            <span>Sites: {data.sites?.length}</span>
+            <span>Sites: {data?.sites.length}</span>
         {/if}
     </div>
 {/snippet}
@@ -158,7 +170,6 @@
                     <div class="text-right w-40">Person Email</div>
                     <div>{form.data.personEmail}</div>
                 </div>
-
                 <div class="grid grid-cols-2 space-x-2 w-max">
                     <div class="text-right w-40">Alt. Person</div>
                     <div>{form.data.altPerson}</div>
@@ -191,7 +202,6 @@
                     <div class="text-right w-40">Alt Person Email</div>
                     <div>{form.data.altPersonEmail}</div>
                 </div>
-
                 <div class="grid grid-cols-2 space-x-2 w-max">
                     <div class="text-right w-40">OtherParticipants</div>
                     <div>{form.data.otherParticipants}</div>
@@ -207,7 +217,7 @@
                     <div>{form.data.createdAt.toString()}</div>
                 </div>
             </div>
-        {:else if typeof data === 'object' && !isEmpty(data)}
+        {:else if typeof data?.sites === 'object'}
             <div>
                 <div class="flex flex-wrap gap-2">
                     {#each data.sites as site}
@@ -262,10 +272,10 @@
                             }}>
                             <h3>{site.siteName}</h3>
                             <div>
-                                {site.siteAddress ?? ''}{#if site.siteCityStateZip}
+                                {site.siteAddress ?? ''}{#if site.siteCity || site.siteState || site.siteZip}
                                     {site.siteAddress ? ',' : ''}
-                                    {@html site.siteCityStateZip + '&nbsp;&#124;&nbsp;'}{/if}
-                                {site.county.state} (County: {site.county.county})
+                                    {@html site.siteCity + ', ' + site.siteState + ' ' + site.siteZip + '&nbsp;&#124;&nbsp;'}{/if}
+                                {site.county.state.name} (County: {site.county.name})
                             </div>
                         </div>
 

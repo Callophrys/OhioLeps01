@@ -1,21 +1,13 @@
 <script lang="ts">
-    /*-- Imports */
+    // import type { PageLoad } from '../../../sites/$types';
     import Container from '$lib/components/layouts/Container.svelte';
-    import type { PageLoad } from './$types';
-
-    export const load: PageLoad = ({ params }) => {
-        return {
-            siteId: params.siteId,
-        };
-    };
+    import { weekOfYearSince } from '$lib/utils.js';
 
     /*-- -- Data -- */
     /*-- Exports */
     let { data } = $props();
 
-    // export let data../$types.js;
-    // console.log('data ***: ', data);
-    // console.log('$page ***: ', $page);
+    console.log('data ***: ', data);
 
     /*-- Context */
 
@@ -38,6 +30,9 @@
     let maxTemp = $derived(useCelcius ? 56.7 : 135);
 
     let useMph = $state(true);
+
+    let recordDate: Date | null = $state(null);
+    let rxRecordDate = $derived(recordDate ? weekOfYearSince(recordDate) : null);
 
     /*-- Variables and objects */
     /*-- Run first stuff */
@@ -110,7 +105,16 @@
         <div class="w-[37em]">
             <div class="content">
                 {@render entryInput('recorder', 'Recorder', 'input')}
-                {@render entryInput('recorderDate', 'Record Date', 'date')}
+
+                <label class="label">
+                    <span>Record Date:</span>
+                    <input type="date" class="input" id="recordDate" name="recordDate" title="Record date" bind:value={recordDate} />
+                </label>
+
+                <label class="label">
+                    <span>Week of Year: {rxRecordDate}</span>
+                    <input type="number" class="input" id="week" name="week" readonly title="Survey period week of the year for the record" />
+                </label>
 
                 {@render entryInput('startTime', 'Start Time', 'time')}
                 {@render entryInput('endTime', 'End Time', 'time')}
