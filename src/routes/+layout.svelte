@@ -12,10 +12,11 @@
     import Fluttering from '$lib/components/appbar/Fluttering.svelte';
     import Themer from '$lib/components/appbar/Themer.svelte';
     import SiteNavigation from '$lib/components/SiteNavigation.svelte';
+    import { setInitialClassState } from '@skeletonlabs/skeleton';
 
     let { children }: { children: Snippet } = $props();
 
-    let config = $state({});
+    let config: any = $state({});
     $effect(() => {
         config = $page.data.config;
         // console.log('config:', config);
@@ -48,6 +49,7 @@
 </script>
 
 <svelte:head>
+    {@html '<script>(' + setInitialClassState.toString() + ')();</script>'}
     {#if config.modeDebug}
         <title>Testing</title>
     {:else}

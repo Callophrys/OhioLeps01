@@ -146,7 +146,7 @@
     <!-- svelte-ignore a11y-no-static-element-interactions -->
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div bind:this={elemCarousel} on:wheel={wheelZoom} on:click={clickZoom} class={classesCarousel}>
-        {#each urls as url, i}
+        {#each urls as url}
             <img class="snap-center object-cover min-w-full rounded-container-token" src={url} alt={url} loading="lazy" />
         {/each}
     </div>

@@ -37,7 +37,7 @@
     /*-- Reactives (functional) */
 </script>
 
-<!-- svelte-ignore a11y-mouse-events-have-key-events -->
+<!-- svelte-ignore a11y_mouse_events_have_key_events -->
 <nav class={classesNavBar}>
     <ul>
         <li><a href="/" class={cAnchorIndentedPl2}>Home</a></li>

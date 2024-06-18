@@ -57,7 +57,7 @@
 
 <div data-popup="popupComboTheme">
     <div class="card w-36 shadow-xl py-2">
-        <!-- svelte-ignore a11y-label-has-associated-control -->
+        <!-- svelte-ignore a11y_label_has_associated_control -->
         <label class="content-center flex justify-between px-2 pb-1">
             <span class="my-auto pl-2">Mode</span>
             <LightSwitch />
