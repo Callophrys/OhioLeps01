@@ -374,6 +374,8 @@ http://wedgefoundation.org/publications_paypal.asp
 ✐
 ✎
 ✔
+➖
+➕
 💥
 🧽
 ❗
@@ -391,6 +393,8 @@ http://wedgefoundation.org/publications_paypal.asp
 🔬
 🔭
 🦋
+📁
+📝
 ⨞
 ▶
 ◀
