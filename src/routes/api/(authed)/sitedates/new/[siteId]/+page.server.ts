@@ -6,7 +6,7 @@ import type { Actions } from '@sveltejs/kit';
 import type { Weather } from '@prisma/client';
 import { addSiteDate } from '$lib/database/sitedates';
 
-export async function load({ params } : any) {
+export async function load({ params }: any) {
     console.log(params);
     return {
         siteId: params.siteId,
@@ -37,17 +37,20 @@ export const actions: Actions = {
         console.log('made it here');
         const formData = await request.formData();
         console.log(formData);
-        let recordDate = new Date(String(formData.get('recordDate')));
-        let tzOffset = 1000 * 60 * Number(formData.get('tzOffset'));
 
+        // Adjust record date
+        let tzOffset = 1000 * 60 * Number(formData.get('tzOffset'));
+        let recordDate = new Date(new Date(String(formData.get('recordDate'))).valueOf() + tzOffset);
+
+        // Convert times to adjusted dates
         let startTimeString = String(formData.get('startTime')).split(':');
-        let startTime = 1000 * 60 * (Number(startTimeString[0]) * 60 + Number(startTimeString[1]))
-        let startTimeDate = new Date(recordDate.valueOf() + startTime + tzOffset);
+        let startTime = 1000 * 60 * (Number(startTimeString[0]) * 60 + Number(startTimeString[1]));
+        let startTimeDate = new Date(recordDate.valueOf() + startTime);
 
         let endTimeString = String(formData.get('endTime')).split(':');
-        let endTime = 1000 * 60 * (Number(endTimeString[0]) * 60 + Number(endTimeString[1]))
-        let endTimeDate = new Date(recordDate.valueOf() + endTime + tzOffset);
-        console.log('startTimeDate', startTimeDate, 'endTimeDate', endTimeDate);
+        let endTime = 1000 * 60 * (Number(endTimeString[0]) * 60 + Number(endTimeString[1]));
+        let endTimeDate = new Date(recordDate.valueOf() + endTime);
+        console.log('recordDate', recordDate, 'startTimeDate', startTimeDate, 'endTimeDate', endTimeDate);
 
         const siteDate: SiteDate = {
             siteDateId: -1,
@@ -114,6 +117,6 @@ export const actions: Actions = {
         console.log(siteDate);
 
         const newSiteDate: SiteDate = await addSiteDate(siteDate);
-        return { 'siteDateId': newSiteDate.siteDateId ?? -1 };
+        return { siteDateId: newSiteDate.siteDateId ?? -1 };
     },
 };

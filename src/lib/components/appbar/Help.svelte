@@ -74,6 +74,9 @@
                     <li>
                         <a href="https://www.skeleton.dev/elements/forms" target="_blank" class="hover:rounded-none">SkeletonUI</a>
                     </li>
+                    <li>
+                        <a href="https://next.skeleton.dev/docs/get-started/introduction" target="_blank" class="hover:rounded-none">SkeletonUI 3</a>
+                    </li>
                     <li class="">
                         <a href="https://svelte.dev/docs/introduction" target="_blank" class="hover:rounded-none">Svelte</a>
                     </li>

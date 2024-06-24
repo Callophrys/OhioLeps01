@@ -7,7 +7,7 @@
 
     /*-- -- Data -- */
     /*-- Exports */
-    let { data } = $props();
+    let { data, form } = $props();
 
     console.log('data ***: ', data);
 
@@ -49,14 +49,15 @@
     const handleSubmit = async (e: any) => {
         try {
             e.preventDefault();
-            console.log(e);
+            console.log('e:', e);
             const form = e.target;
             const formData = new FormData(form);
             formData.append('tzOffset', new Date().getTimezoneOffset().toString());
 
             const response = await fetch(form.action, {
                 method: form.method,
-                body: formData, });
+                body: formData,
+            });
 
             const rd = await response.json();
             console.log(rd.status);
@@ -127,12 +128,11 @@
             }
         })();
     }, 3000);
-
 </script>
 
 {#snippet head()}
     <div class="flex flex-row gap-1 md:gap-2">
-        <button type="submit" class="btn variant-filled" form="addSiteDate">
+        <button type="button" class="btn variant-filled" form="addSiteDate" onclick={handleSubmit}>
             Save Site Date
             <span class="pl-2">✎</span>
         </button>
@@ -261,4 +261,3 @@
 {/snippet}
 
 <Container {head} {body} tail={null} />
-

@@ -201,14 +201,14 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     let recordWeek = $derived(weekOfYearSince(new Date(currentSiteDateObservation.siteDate.recordDate)));
     let recordSdoCount = $derived(data.checklistsSiteDateObs.filter((o: any) => showDeletedData || !o.deleted).length);
 
-    let total: number = $state(0);
     let sdoSections = $derived.by(() => {
         const result = Object.entries(currentSiteDateObservation)
             .filter((x) => x[0].startsWith('section'))
             .map(([k, v]) => ({ label: `${k.substring(0, 1).toLocaleUpperCase()}${k.substring(1, 7)} ${k.substring(7)}`, name: k, value: v }));
-        total = result.reduce((t: number, o: any) => t + (isNaN(o.value) ? 0 : Number(o.value)), 0);
         return result;
     });
+
+    let total: number = $derived(sdoSections.reduce((t: number, o: any) => t + (isNaN(o.value) ? 0 : Number(o.value)), 0));
 
     // let total = $derived(sdoSections.reduce((t: number, o: any) => t + (isNaN(o.value) ? 0 : Number(o.value)), 0));
     //console.log(sdoSections);
@@ -246,28 +246,28 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                 </div>
                 <SpeciesPicker currentSdoChecklistItemId={currentSiteDateObservation.siteDateObservationId} {isAdding} {isEditing} {isViewAll} {showDeletedData} controlBody="scale-90" />
                 <!-- older one <SiteDatePicker currentSiteId={data.siteDateObservation.siteDate.siteId} currentSiteDateId={data.siteDateObservation.siteDateId ?? -1} controlBody="scale-90" /> -->
+                <SiteDatePicker
+                    bind:currentSiteId={currentSiteDateObservation.siteId}
+                    bind:currentSiteDateId={currentSiteDateObservation.siteDateId}
+                    controlBody="scale-90"
+                    buttonLeft=""
+                    buttonRight=""
+                    buttonYear=""
+                    buttonWeek=""
+                    dropdownShowDate={false}
+                    dropdownPointers={false}
+                    heading={null}
+                    yearPrefix=""
+                    weekPrefix=""
+                    controlOuter=""
+                    prefixYear=""
+                    prefixWeek=""
+                    suffixYear=""
+                    suffixWeek=""
+                    popupInner=""
+                    popupStyles=""
+                    labelledby="" />
                 <!-- newer one
-                    <SiteDatePicker
-                        bind:currentSiteId={currentSiteDateObservation.siteId}
-                        bind:currentSiteDateId={currentSiteDateObservation.siteDateId}
-                        controlBody="scale-90"
-                        buttonLeft=""
-                        buttonRight=""
-                        buttonYear=""
-                        buttonWeek=""
-                        dropdownShowDate={false}
-                        dropdownPointers={false}
-                        heading={null}
-                        yearPrefix=""
-                        weekPrefix=""
-                        controlOuter=""
-                        prefixYear=""
-                        prefixWeek=""
-                        suffixYear=""
-                        suffixWeek=""
-                        popupInner=""
-                        popupStyles=""
-                        labelledby="" />
                 -->
             </div>
 
