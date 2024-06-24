@@ -154,12 +154,13 @@
     }
 
     /*-- Reactives (functional) */
-    let recordDate: Date = $state(new Date(data.siteDate.recordDate));
-    let recordYear: number = $state(new Date(data.siteDate.recordDate).getFullYear());
-    let recordWeek: number | null = $state(weekOfYearSince(new Date(data.siteDate.recordDate)));
-    let recordSdoCount: number = $state(data.siteDate.siteDateObservations.filter((o: any) => showDeletedData || !o.deleted).length);
+    let recordDate: string = $derived(formatDate(new Date(data.siteDate.recordDate).toISOString(), 'short', undefined));
+    let recordYear: number = $derived(new Date(data.siteDate.recordDate).getFullYear());
+    let recordWeek: number | null = $derived(weekOfYearSince(new Date(data.siteDate.recordDate)));
+    let recordSdoCount: number = $derived(data.siteDate.siteDateObservations.filter((o: any) => showDeletedData || !o.deleted).length);
 
     let currentSiteId: number = $state(data.siteDate.siteId);
+    $inspect(currentSiteId);
 
     let firstSdoId = $derived(recordSdoCount > 0 ? data.siteDate.siteDateObservations[0].siteDateObservationId : -1);
 
@@ -171,9 +172,12 @@
 
     /*-- Other */
     let currentSiteDateId = $state(data.siteDate.siteDateId);
+    $inspect(currentSiteDateId);
+
+    console.log(data.siteDate);
 </script>
 
-<YearWeek bind:year={recordYear} bind:week={recordWeek} bind:sdoCount={recordSdoCount} />
+<YearWeek year={recordYear} week={recordWeek} sdoCount={recordSdoCount} />
 <DataOptions bind:showRecentEdits bind:showDeletedData />
 
 <DoubledContainer basisLeft="basis-2/5" basisRight="basis-3/5">
@@ -181,7 +185,7 @@
         <h2 class="flex flex-row justify-between pb-2">
             <div class="overflow-hidden text-ellipsis text-nowrap w-80">{data.siteDate.siteName}</div>
             <div class="text-nowrap text-right">
-                Record Date: {formatDate(recordDate.toISOString(), 'short', undefined)}
+                Record Date: {recordDate}
             </div>
         </h2>
         <hr />
@@ -426,7 +430,7 @@
             </div>
             <div class="flex flex-row">
                 <button type="button" class="btn" onclick={addSiteDate} title="Add new site date observation"><span class="text-success-400">✚</span>&nbsp;Add site date</button>
-                <SiteDatePicker bind:currentSiteId bind:currentSiteDateId controlBody="scale-90" buttonLeft="" buttonRight="" buttonYear="" buttonWeek="" dropdownShowDate={false} dropdownPointers={false} heading={null} yearPrefix="" weekPrefix="" controlOuter="" prefixYear="" prefixWeek="" suffixYear="" suffixWeek="" popupInner="" popupStyles="" labelledby="" />
+                <SiteDatePicker {currentSiteId} {currentSiteDateId} controlBody="scale-90" buttonLeft="" buttonRight="" buttonYear="" buttonWeek="" dropdownShowDate={false} dropdownPointers={false} heading={null} yearPrefix="" weekPrefix="" controlOuter="" prefixYear="" prefixWeek="" suffixYear="" suffixWeek="" popupInner="" popupStyles="" labelledby="" />
             </div>
             <!-- below version breaks -->
             <!--     <SiteDatePicker -->
