@@ -5,10 +5,11 @@ import { isNullOrWhiteSpace } from '$lib/utils.js';
 import type { SiteDateObservationChecklist, SiteCounty, SiteDateYear, ChecklistScientificName } from '$lib/types.js';
 import type { Actions } from '@sveltejs/kit';
 import { getChecklistsBySiteId, getChecklists } from '$lib/database/checklists.js';
+import type { SiteDateObservation } from '@prisma/client';
 
 // params: siteDateObservationId and siteId
 export async function load({ params }: { params: any }) {
-    console.log('.....', params);
+    // console.log('.....', params);
 
     let siteId = Number(params.siteId);
 
@@ -30,12 +31,7 @@ export async function load({ params }: { params: any }) {
     const jsonResultD: SiteDateYear[] = JSON.parse(jsonD);
 
     if (siteDateObservation?.siteDateId) {
-
-		const [siteDateObservations, checklistsForSite, checklistsAll,] = await Promise.all([
-			getSiteDateObservationsBySiteDate(siteDateObservation?.siteDateId),
-			getChecklistsBySiteId(siteId),
-			getChecklists()
-		]);
+        const [siteDateObservations, checklistsForSite, checklistsAll] = await Promise.all([getSiteDateObservationsBySiteDate(siteDateObservation?.siteDateId), getChecklistsBySiteId(siteId), getChecklists()]);
 
         // 1. SiteDateObservations by current siteDate - this gets all checklist species for this siteDate
         const jsonC = JSON.stringify(siteDateObservations);
@@ -232,11 +228,35 @@ export const actions: Actions = {
     },
 
     addSiteDateObservation: async ({ request, locals }) => {
-		//console.log('ddd');
+        // console.log('addSiteDateObservation');
         const formData: any = await request.formData();
-        console.log(formData);
-        // hodges checklistId siteDateId createdById createdAt
-        await createSiteDateObservation(formData);
+
+        const sdo: SiteDateObservation = {
+            siteDateObservationId: -1,
+            siteDateId: Number(formData.get('siteDateId')),
+            checklistId: Number(formData.get('checklistId')),
+            seqId: -1,
+            hodges: String(formData.get('hodges')),
+            idCode: String(formData.get('idCode')),
+            section1: Number(formData.get('section1')),
+            section2: Number(formData.get('section2')),
+            section3: Number(formData.get('section3')),
+            section4: Number(formData.get('section4')),
+            section5: Number(formData.get('section5')),
+            section6: Number(formData.get('section6')),
+            section7: Number(formData.get('section7')),
+            section8: Number(formData.get('section8')),
+            section9: Number(formData.get('section9')),
+            section10: Number(formData.get('section10')),
+            section11: Number(formData.get('section11')),
+            section12: Number(formData.get('section12')),
+            section13: Number(formData.get('section13')),
+            section14: Number(formData.get('section14')),
+            section15: Number(formData.get('section15')),
+            createdAt: new Date(),
+            createdById: locals.user.id,
+        };
+        await createSiteDateObservation(sdo);
         return { action: 'create', success: true };
     },
 

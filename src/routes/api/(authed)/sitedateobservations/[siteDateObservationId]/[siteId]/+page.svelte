@@ -6,6 +6,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     /*-- Imports */
     import type { ModalSettings, ModalComponent } from '@skeletonlabs/skeleton';
     import type { SiteDateObservationChecklist } from '$lib/types.js';
+    import type { SiteDateObservation } from '@prisma/client';
     import ModalSdoAdd from '$lib/components/ModalSdoAdd.svelte';
     import Container from '$lib/components/layouts/Container.svelte';
     import { formatDate, isNullOrWhiteSpace, weekOfYearSince } from '$lib/utils';
@@ -137,8 +138,24 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
             component: c,
             title: 'Add Specimen to Observations',
             body: 'Complete the form below and then press submit.',
-            value: { checklist: data.checklistsAll, year: 2024, week: 8 },
-            response: (r) => console.log('response:', r),
+            value: { checklist: data.checklistsAll, year: 2024, week: 8, siteDateId: data.siteDateObservation.siteDateId },
+            response: (r) => {
+
+                const formData = new FormData();
+                for (const [key, val] of Object.entries(r)) formData.append(key, val);
+
+                fetch('?/addSiteDateObservation', {
+                    method: 'POST',
+                    body: formData,
+                })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        console.log('Success:', data);
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+            },
         };
         modalStore.trigger(modal);
     }

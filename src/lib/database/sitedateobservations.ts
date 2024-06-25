@@ -25,11 +25,7 @@ export async function getSiteDateObservationsBySiteDate(siteDateId: number) {
             checklist: true,
             siteDate: true,
         },
-        orderBy: [
-            { checklist: { genus: 'asc' } },
-            { checklist: { species: 'asc' } },
-            { checklist: { subspecies: { sort: 'asc', nulls: 'first' } } },
-        ]
+        orderBy: [{ checklist: { genus: 'asc' } }, { checklist: { species: 'asc' } }, { checklist: { subspecies: { sort: 'asc', nulls: 'first' } } }],
     });
     return siteDateObservations;
 }
@@ -72,7 +68,6 @@ export async function getSiteDateObservation(siteDateObservationId: number) {
 }
 
 export async function getSiteDateObservationBySiteDateObservation(siteDateObservationId: number) {
-    console.log('DDD');
     const siteDateObservation = await prisma.siteDateObservation.findUnique({
         where: {
             siteDateObservationId: siteDateObservationId,
@@ -105,7 +100,30 @@ export async function getSiteDateObservationsAll(siteId: number) {
 
 export async function createSiteDateObservation(siteDateObservation: SiteDateObservation) {
     const createdSiteDateObservation = await prisma.siteDateObservation.create({
-        data: siteDateObservation,
+        data: {
+            siteDateId: siteDateObservation.siteDateId,
+            seqId: siteDateObservation.seqId,
+            checklistId: siteDateObservation.checklistId,
+            hodges: siteDateObservation.hodges,
+            idCode: siteDateObservation.idCode,
+            section1: siteDateObservation.section1,
+            section2: siteDateObservation.section2,
+            section3: siteDateObservation.section3,
+            section4: siteDateObservation.section4,
+            section5: siteDateObservation.section5,
+            section6: siteDateObservation.section6,
+            section7: siteDateObservation.section7,
+            section8: siteDateObservation.section8,
+            section9: siteDateObservation.section9,
+            section10: siteDateObservation.section10,
+            section11: siteDateObservation.section11,
+            section12: siteDateObservation.section12,
+            section13: siteDateObservation.section13,
+            section14: siteDateObservation.section14,
+            section15: siteDateObservation.section15,
+            createdAt: siteDateObservation.createdAt,
+            createdById: siteDateObservation.createdById,
+        },
     });
     return createdSiteDateObservation;
 }

@@ -315,8 +315,10 @@ model SiteDateObservation {
     // User relations
     createdBy User? @relation("CreateUserOfSiteDateObservation", fields: [createdById], references: [id])
     createdById String? // Probably should never be null
+
     updatedBy User? @relation("UpdateUserOfSiteDateObservation", fields: [updatedById], references: [id])
     updatedById String?
+
     confirmBy User? @relation("ConfirmUserOfSiteDateObservation", fields: [confirmById], references: [id])
     confirmById String?
 

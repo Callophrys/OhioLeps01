@@ -13,24 +13,25 @@
     // Form Data
     // Hodges, idCode, siteDateId, section1..15
     const formData = {
+        siteDateId: $modalStore[0].value.siteDateId,
         hodges: '&nbsp;',
         idCode: null, //how id'ed:  O observ, N net, P photo, C collected
         checklistId: null,
-        section1: 0,
-        section2: 0,
-        section3: 0,
-        section4: 0,
-        section5: 0,
-        section6: 0,
-        section7: 0,
-        section8: 0,
-        section9: 0,
-        section10: 0,
-        section11: 0,
-        section12: 0,
-        section13: 0,
-        section14: 0,
-        section15: 0,
+        section1: null,
+        section2: null,
+        section3: null,
+        section4: null,
+        section5: null,
+        section6: null,
+        section7: null,
+        section8: null,
+        section9: null,
+        section10: null,
+        section11: null,
+        section12: null,
+        section13: null,
+        section14: null,
+        section15: null,
     };
 
     let checklist = $modalStore[0].value.checklist;
@@ -89,21 +90,21 @@
                 </select>
             </label>
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
-                <label class="label"><span class="w-20 inline-block">Section 1</span><input class="input w-16" type="number" bind:value={formData.section1} placeholder="Section 1..." /></label>
-                <label class="label"><span class="w-20 inline-block">Section 2</span><input class="input w-16" type="number" bind:value={formData.section2} placeholder="Section 2..." /></label>
-                <label class="label"><span class="w-20 inline-block">Section 3</span><input class="input w-16" type="number" bind:value={formData.section3} placeholder="Section 3..." /></label>
-                <label class="label"><span class="w-20 inline-block">Section 4</span><input class="input w-16" type="number" bind:value={formData.section4} placeholder="Section 4..." /></label>
-                <label class="label"><span class="w-20 inline-block">Section 5</span><input class="input w-16" type="number" bind:value={formData.section5} placeholder="Section 5..." /></label>
-                <label class="label"><span class="w-20 inline-block">Section 6</span><input class="input w-16" type="number" bind:value={formData.section6} placeholder="Section 6..." /></label>
-                <label class="label"><span class="w-20 inline-block">Section 7</span><input class="input w-16" type="number" bind:value={formData.section7} placeholder="Section 7..." /></label>
-                <label class="label"><span class="w-20 inline-block">Section 8</span><input class="input w-16" type="number" bind:value={formData.section8} placeholder="Section 8..." /></label>
-                <label class="label"><span class="w-20 inline-block">Section 9</span><input class="input w-16" type="number" bind:value={formData.section9} placeholder="Section 9..." /></label>
-                <label class="label"><span class="w-20 inline-block">Section 10</span><input class="input w-16" type="number" bind:value={formData.section10} placeholder="Section 10..." /></label>
-                <label class="label"><span class="w-20 inline-block">Section 11</span><input class="input w-16" type="number" bind:value={formData.section11} placeholder="Section 11..." /></label>
-                <label class="label"><span class="w-20 inline-block">Section 12</span><input class="input w-16" type="number" bind:value={formData.section12} placeholder="Section 12..." /></label>
-                <label class="label"><span class="w-20 inline-block">Section 13</span><input class="input w-16" type="number" bind:value={formData.section13} placeholder="Section 13..." /></label>
-                <label class="label"><span class="w-20 inline-block">Section 14</span><input class="input w-16" type="number" bind:value={formData.section14} placeholder="Section 14..." /></label>
-                <label class="label"><span class="w-20 inline-block">Section 15</span><input class="input w-16" type="number" bind:value={formData.section15} placeholder="Section 15..." /></label>
+                <label class="label"><span class="w-20 inline-block">Section 1</span><input class="input w-16" type="number" min="0" bind:value={formData.section1} placeholder="∅" /></label>
+                <label class="label"><span class="w-20 inline-block">Section 2</span><input class="input w-16" type="number" min="0" bind:value={formData.section2} placeholder="∅" /></label>
+                <label class="label"><span class="w-20 inline-block">Section 3</span><input class="input w-16" type="number" min="0" bind:value={formData.section3} placeholder="∅" /></label>
+                <label class="label"><span class="w-20 inline-block">Section 4</span><input class="input w-16" type="number" min="0" bind:value={formData.section4} placeholder="∅" /></label>
+                <label class="label"><span class="w-20 inline-block">Section 5</span><input class="input w-16" type="number" min="0" bind:value={formData.section5} placeholder="∅" /></label>
+                <label class="label"><span class="w-20 inline-block">Section 6</span><input class="input w-16" type="number" min="0" bind:value={formData.section6} placeholder="∅" /></label>
+                <label class="label"><span class="w-20 inline-block">Section 7</span><input class="input w-16" type="number" min="0" bind:value={formData.section7} placeholder="∅" /></label>
+                <label class="label"><span class="w-20 inline-block">Section 8</span><input class="input w-16" type="number" min="0" bind:value={formData.section8} placeholder="∅" /></label>
+                <label class="label"><span class="w-20 inline-block">Section 9</span><input class="input w-16" type="number" min="0" bind:value={formData.section9} placeholder="∅" /></label>
+                <label class="label"><span class="w-20 inline-block">Section 10</span><input class="input w-16" type="number" min="0" bind:value={formData.section10} placeholder="∅" /></label>
+                <label class="label"><span class="w-20 inline-block">Section 11</span><input class="input w-16" type="number" min="0" bind:value={formData.section11} placeholder="∅" /></label>
+                <label class="label"><span class="w-20 inline-block">Section 12</span><input class="input w-16" type="number" min="0" bind:value={formData.section12} placeholder="∅" /></label>
+                <label class="label"><span class="w-20 inline-block">Section 13</span><input class="input w-16" type="number" min="0" bind:value={formData.section13} placeholder="∅" /></label>
+                <label class="label"><span class="w-20 inline-block">Section 14</span><input class="input w-16" type="number" min="0" bind:value={formData.section14} placeholder="∅" /></label>
+                <label class="label"><span class="w-20 inline-block">Section 15</span><input class="input w-16" type="number" min="0" bind:value={formData.section15} placeholder="∅" /></label>
             </div>
         </form>
         <!-- prettier-ignore -->
