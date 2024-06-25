@@ -221,6 +221,12 @@
     /*-- Other */
 
     async function fetchData(siteId: number) {
+        if (isNaN(siteId)) {
+            console.log('siteId in SiteDatePicker is NaN');
+	    return;
+	}
+
+        console.log('siteId in SiteDatePicker is ', siteId);
         let sdpath = `/api/sitedates/c/${siteId}`;
         isDisabled = true;
         recordYear = '...';

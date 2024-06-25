@@ -4,8 +4,9 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 -->
 <script lang="ts">
     /*-- Imports */
-    import { type ModalSettings } from '@skeletonlabs/skeleton';
+    import type { ModalSettings, ModalComponent } from '@skeletonlabs/skeleton';
     import type { SiteDateObservationChecklist } from '$lib/types.js';
+    import ModalSdoAdd from '$lib/components/ModalSdoAdd.svelte';
     import Container from '$lib/components/layouts/Container.svelte';
     import { formatDate, isNullOrWhiteSpace, weekOfYearSince } from '$lib/utils';
     import { getModalStore } from '@skeletonlabs/skeleton';
@@ -128,6 +129,19 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
             }
         },
     };
+
+    function modalComponentForm(): void {
+        const c: ModalComponent = { ref: ModalSdoAdd };
+        const modal: ModalSettings = {
+            type: 'component',
+            component: c,
+            title: 'Add Specimen to Observations',
+            body: 'Complete the form below and then press submit.',
+            value: { checklist: data.checklistsAll, year: 2024, week: 8 },
+            response: (r) => console.log('response:', r),
+        };
+        modalStore.trigger(modal);
+    }
 
     /*-- Properties (functional) */
     // let formReview: HTMLFormElement = $state(document.createElement('form'));
@@ -435,17 +449,14 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                             <span class="pl-2 text-red-700 dark:text-red-600 text-2xl">↺</span>
                         </button>
                     {:else}
-                        <button
-                            type="button"
-                            class={cButtonAddView}
-                            onclick={() => {
-                                modalStore.trigger(modalAdd);
-                                return true;
-                            }}
-                            disabled={isEditing || data.siteDateObservation.confirmed}>
+                        <button type="button" class={cButtonAddView} onclick={modalComponentForm} disabled={isEditing || data.siteDateObservation.confirmed}>
                             <span>Add species</span>
                             <span class="text-green-900 dark:text-green-200 text-2xl before:content-['✚']"></span>
                         </button>
+                        <!-- onclick={() => { -->
+                        <!--     modalStore.trigger(modalComponentForm); -->
+                        <!--     return true; -->
+                        <!-- }} -->
                     {/if}
                 </div>
             </div>
@@ -533,7 +544,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                 {:else}<!-- VIEWING Multiple species observation recordings -->
 
                     {#each availableObservations as chkSdo}
-                        <div class={`${chkSdo.deleted ? 'odd:variant-ghost-warning even:variant-ghost-error' : 'odd:bg-gray-200 odd:dark:bg-red-700'}`}>
+                        <div class={`${chkSdo.deleted ? 'odd:variant-ghost-warning even:variant-ghost-error' : 'odd:bg-slate-200 odd:dark:bg-gray-700'}`}>
                             <div class={`pl-1 flex flex-row ${chkSdo.deleted ? '[&>:not(:first-of-type)]:line-through' : ''}`}>
                                 <div class="w-6">{chkSdo.deleted ? '❌' : chkSdo.confirmed ? '✔' : '✎'}</div>
                                 <div class="w-56 truncate">{chkSdo.checklist.commonName}</div>

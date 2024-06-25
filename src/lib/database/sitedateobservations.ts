@@ -1,5 +1,5 @@
 import { updated } from '$app/stores';
-import prisma from '$lib/prisma'
+import prisma from '$lib/prisma';
 import type { SiteDateObservation } from '@prisma/client';
 
 export async function getSiteDateObservations(siteDateId: number = 0, checklistId: number = 0, siteId: number = 0) {
@@ -72,6 +72,7 @@ export async function getSiteDateObservation(siteDateObservationId: number) {
 }
 
 export async function getSiteDateObservationBySiteDateObservation(siteDateObservationId: number) {
+    console.log('DDD');
     const siteDateObservation = await prisma.siteDateObservation.findUnique({
         where: {
             siteDateObservationId: siteDateObservationId,
@@ -81,7 +82,7 @@ export async function getSiteDateObservationBySiteDateObservation(siteDateObserv
             createdBy: true,
             updatedBy: true,
             confirmBy: true,
-            siteDate: true
+            siteDate: true,
         },
     });
 
@@ -92,19 +93,19 @@ export async function getSiteDateObservationsAll(siteId: number) {
     const siteDateObservations = await prisma.siteDateObservation.findMany({
         where: {
             siteDate: {
-                siteId: siteId
-            }
+                siteId: siteId,
+            },
         },
         include: {
-            siteDate: true
-        }
+            siteDate: true,
+        },
     });
     return siteDateObservations;
 }
 
 export async function createSiteDateObservation(siteDateObservation: SiteDateObservation) {
     const createdSiteDateObservation = await prisma.siteDateObservation.create({
-        data: siteDateObservation
+        data: siteDateObservation,
     });
     return createdSiteDateObservation;
 }
@@ -112,13 +113,13 @@ export async function createSiteDateObservation(siteDateObservation: SiteDateObs
 export async function deleteSiteDateObservation(siteDateObservationId: number, deleteState: boolean, userId: string) {
     return await prisma.siteDateObservation.update({
         where: {
-            siteDateObservationId: siteDateObservationId
+            siteDateObservationId: siteDateObservationId,
         },
         data: {
             deleted: deleteState,
             updatedAt: new Date().toISOString(),
-            updatedById: userId
-        }
+            updatedById: userId,
+        },
     });
 }
 
@@ -126,17 +127,17 @@ async function siteDateObservationBySiteDateChecklist(siteDateId: number, checkl
     const siteDateObservation = await prisma.siteDateObservation.findFirst({
         where: {
             siteDateId: siteDateId,
-            checklistId: checklistId
+            checklistId: checklistId,
         },
         include: {
-            checklist: true
-        }
-    })
+            checklist: true,
+        },
+    });
     return siteDateObservation;
 }
 
 export async function nextOrLastSiteDateObservationByCommon(siteDateId: number, currentChecklistId: number | null) {
-    const sss = "select lead(c.checklistId) over (order by c.commonname) checklistId from siteDateObservation o inner join checklist c on c.checklistid = o.checklistid where o.siteDateId = " + siteDateId;
+    const sss = 'select lead(c.checklistId) over (order by c.commonname) checklistId from siteDateObservation o inner join checklist c on c.checklistid = o.checklistid where o.siteDateId = ' + siteDateId;
     const result = await prisma.$queryRaw<number>`${sss}`;
     console.log('result***', result);
 
@@ -145,7 +146,6 @@ export async function nextOrLastSiteDateObservationByCommon(siteDateId: number, 
 }
 
 export async function nextOrLastSiteDateObservationByLatin(siteDateId: number, currentChecklistId: number) {
-
     const obj = await prisma.$queryRaw<number[]>`select coalesce(z.checklistIdTgt, z.checklistId) result from (select o.siteDateObservationId, o.checklistId, lead(c.checklistId) over (order by c.commonname) checklistIdTgt from siteDateObservation o inner join checklist c on c.checklistid = o.checklistid where o.siteDateId = ${siteDateId}) z where z.checklistId = ${currentChecklistId}`;
     console.log('result***', obj);
     const foo = obj?.shift();
@@ -158,7 +158,7 @@ export async function nextOrLastSiteDateObservationByLatin(siteDateId: number, c
 }
 
 export async function prevOrFirstSiteDateObservationByCommon(siteDateId: number, currentChecklistId: number) {
-    const sss = "select lag(c.checklistId) over (order by c.commonname) checklistId from siteDateObservation o inner join checklist c on c.checklistid = o.checklistid where o.siteDateId = " + siteDateId;
+    const sss = 'select lag(c.checklistId) over (order by c.commonname) checklistId from siteDateObservation o inner join checklist c on c.checklistid = o.checklistid where o.siteDateId = ' + siteDateId;
     const result = await prisma.$queryRaw<number>`${sss}`;
     console.log('result***', result);
 
@@ -167,7 +167,7 @@ export async function prevOrFirstSiteDateObservationByCommon(siteDateId: number,
 }
 
 export async function prevOrFirstSiteDateObservationByLatin(siteDateId: number, currentChecklistId: number) {
-    const sss = "select lag(c.checklistId) over (order by c.genus, c.species, c.subspecies) checklistId from siteDateObservation o inner join checklist c on c.checklistid = o.checklistid where o.siteDateId = " + siteDateId;
+    const sss = 'select lag(c.checklistId) over (order by c.genus, c.species, c.subspecies) checklistId from siteDateObservation o inner join checklist c on c.checklistid = o.checklistid where o.siteDateId = ' + siteDateId;
     const result = await prisma.$queryRaw<number>`${sss}`;
     console.log('result***', result);
 
@@ -178,13 +178,13 @@ export async function prevOrFirstSiteDateObservationByLatin(siteDateId: number, 
 export async function reviewSiteDateObservation(siteDateObservationId: number, confirm: boolean, userId: string) {
     const siteDateObservation = await prisma.siteDateObservation.update({
         where: {
-            siteDateObservationId: siteDateObservationId
+            siteDateObservationId: siteDateObservationId,
         },
         data: {
             confirmed: confirm,
             confirmAt: new Date().toISOString(),
-            confirmById: userId
-        }
+            confirmById: userId,
+        },
     });
     return siteDateObservation;
 }
@@ -192,7 +192,7 @@ export async function reviewSiteDateObservation(siteDateObservationId: number, c
 export async function updateSiteDateObservation(siteDateObservation: SiteDateObservation) {
     const updatedSiteDateObservation = await prisma.siteDateObservation.update({
         where: {
-            siteDateObservationId: siteDateObservation.siteDateObservationId
+            siteDateObservationId: siteDateObservation.siteDateObservationId,
         },
         data: {
             section1: siteDateObservation.section1,
@@ -211,8 +211,8 @@ export async function updateSiteDateObservation(siteDateObservation: SiteDateObs
             section14: siteDateObservation.section14,
             section15: siteDateObservation.section15,
             updatedAt: siteDateObservation.updatedAt,
-            updatedById: siteDateObservation.updatedById
-        }
+            updatedById: siteDateObservation.updatedById,
+        },
     });
     return updatedSiteDateObservation;
 }
