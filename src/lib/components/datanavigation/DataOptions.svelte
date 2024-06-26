@@ -56,16 +56,16 @@
     <!-- </label> -->
     <label class={cLabel} title="Toggle between single or mutilple rows for viewing or editing">
         <!-- TODO Make label message toggle and convert checkbox to toggle switch -->
-        <span class={cControlDisabled}>View Multiple/Single</span>
+        <span class={cControlDisabled}>View Multiple</span>
         <input class={cCheckboxMultiple} type="checkbox" disabled={showMultipleRowsDisabled} bind:checked={showMultipleRows} />
     </label>
     <label class={cLabel} title="Highlight recently added/updated data">
-        <span>Recently updated</span>
+        <span>Highlight Recent</span>
         <input class="checkbox" type="checkbox" bind:checked={showRecentEdits} />
     </label>
     {#if $page.data.user && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'REVIEWER' || $page.data.user.role === 'ENTRY')}
         <label class={cLabel} title="Display deleted data">
-            <span>Deleted data</span>
+            <span>Show Deleted</span>
             <input class="checkbox" type="checkbox" bind:checked={showDeletedData} />
         </label>
     {:else}<!-- TODO: Show my deleted (or other actioned on) data is not supported at this time; Roadmapped; -->
