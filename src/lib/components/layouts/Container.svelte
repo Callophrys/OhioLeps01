@@ -1,4 +1,5 @@
 <script lang="ts">
+    import type { CssClasses } from '@skeletonlabs/skeleton';
     import type { Snippet } from 'svelte';
     import { showFooter } from '$lib/config';
     import { page } from '$app/stores';
@@ -16,7 +17,7 @@
     //console.log(Configs.showFooter);
 
     const cHeadClasses = 'pr-4';
-    const cBodyClasses = 'space-y-2 h-full overflow-y-auto';
+    const cBodyClasses = 'space-y-2 h-full';
     const cTailClasses = 'pr-4';
 
     let config = $state({});
@@ -35,11 +36,15 @@
         head = null,
         body,
         tail = null,
+        bodyClasses = 'overflow-y-auto',
     }: {
         head: Snippet | null;
         body: Snippet;
         tail: Snippet | null;
+        bodyClasses: CssClasses | null;
     } = $props();
+
+    let classesBody = `${cBodyClasses} ${bodyClasses}`;
 </script>
 
 <div class={classesOuterBody}>
@@ -50,7 +55,7 @@
             </Head>
         {/if}
         {#if body}
-            <Body classes={cBodyClasses}>
+            <Body classes={classesBody}>
                 {@render body()}
             </Body>
         {/if}

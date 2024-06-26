@@ -382,6 +382,8 @@ http://wedgefoundation.org/publications_paypal.asp
 ❕
 ❓
 ❔
+␡
+⨉
 ❌
 ✘
 ✚

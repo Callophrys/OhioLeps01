@@ -22,6 +22,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     //import GoNext from '$lib/components/datanavigation/GoNext.svelte';
     import { GOTYPE } from '$lib/types.js';
     import { goto } from '$app/navigation';
+    import Configs from '$lib/components/data/Configs.svelte';
 
     /*-- -- Data -- */
     /*-- Exports */
@@ -126,6 +127,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     // let showHodges = $state(true);
     // let showP3 = $state(true);
 
+    let isNamingReversed: boolean = $state(false);
     let isViewAll: boolean = $state(false);
     let showRecentEdits: boolean = $state(false);
     let showDeletedData: boolean = $state(false);
@@ -138,6 +140,8 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     /*-- onMount */
     $effect(() => {
         let x: string;
+        x = localStorage?.isNamingReversed;
+        isNamingReversed = x && x.length ? x === 'true' : false;
         x = localStorage?.isViewAll;
         isViewAll = x && x.length ? x === 'true' : false;
         x = localStorage?.showRecentEdits;
@@ -148,6 +152,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 
     // afterUpdate
     $effect(() => {
+        localStorage.setItem('isNamingReversed', isNamingReversed.toString());
         localStorage.setItem('isViewAll', isViewAll.toString());
         localStorage.setItem('showRecentEdits', showRecentEdits.toString());
         localStorage.setItem('showDeletedData', showDeletedData.toString());
@@ -159,6 +164,12 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
         //total = total;
         return true;
     };
+
+    function onClickNames(e: Event) {
+        let isForard = (e.currentTarget as HTMLDivElement).classList.contains('flex-row');
+        (e.currentTarget as HTMLDivElement).classList.toggle('flex-row', !isForard);
+        (e.currentTarget as HTMLDivElement).classList.toggle('flex-row-reverse', isForard);
+    }
 
     /*-- Methods */
     function modalComponentForm(): void {
@@ -212,6 +223,10 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     /*-- Reactives (functional) */
     // let total = $derived(getTotal());
     let currentSiteDateObservation = $derived(data.siteDateObservation as SiteDateObservationChecklist);
+
+    const htmlHodges = (h: string | null) => (!h || h === 'null' ? '&varnothing;' : h);
+    const htmlIdCode = (c: string | null) => (!c || c === 'null' ? '&varnothing;' : c === 'O' ? 'Observed' : c === 'C' ? 'Collected' : c === 'N' ? 'Net' : c === 'P' ? 'Photo' : 'Unknown');
+
     let recordYear = $derived(new Date(currentSiteDateObservation.siteDate.recordDate).getFullYear());
     let recordWeek = $derived(weekOfYearSince(new Date(currentSiteDateObservation.siteDate.recordDate)));
     let recordSdoCount = $derived(data.checklistsSiteDateObs.filter((o: any) => showDeletedData || !o.deleted).length);
@@ -466,7 +481,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
             {#if form.action === 'save'}
                 Successful update ✔.
             {:else if form.action === 'review'}
-                Successful {@html form.siteDateObservation?.confirmed ? 'LOCK 🔐' : 'UNLOCK 🔓'} of record.
+                Successful {@html form.siteDateObservation?.confirmed ? 'LOCK 🔐' : 'UNLOCK 🔓'}.
             {:else if form.action === 'delete'}
                 Successful delete 💥.
             {:else if form.action === 'undelete'}
@@ -488,21 +503,21 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                         <div class="w-6">{chkSdo.deleted ? '❌' : chkSdo.confirmed ? '🔐' : '🔓'}</div>
                         <div class="w-56 truncate">{chkSdo.checklist.commonName}</div>
                         <div class="w-64">{chkSdo.checklist.scientificName}</div>
-                        <div class="w-36">Hodges: {chkSdo.hodges}</div>
+                        <div class="w-36">Hodges: {@html htmlHodges(chkSdo.hodges)}</div>
 
                         {#if chkSdo.deleted}
-                            <div class="w-28 pr-2 pb-0.5">ID Code: {@html chkSdo.idCode ?? '&varnothing;'}</div>
+                            <div class="w-28 pr-2 pb-0.5">ID Method: {@html chkSdo.idCode ?? '&varnothing;'}</div>
                         {:else if chkSdo.confirmed}
                             <div class="w-28 pr-2 pb-0.5">
                                 <div class={cSectionClasses}>
-                                    <span class={cSectionSpanClasses}>ID Code:</span>
+                                    <span class={cSectionSpanClasses}>ID Method:</span>
                                     <input type="text" class="w-8 text-center text-black" value={chkSdo.idCode} disabled />
                                 </div>
                             </div>
                         {:else}
                             <div class="w-28 pr-2 pb-0.5">
                                 <label class={cSectionClasses}>
-                                    <span class={cSectionSpanClasses}>ID Code:</span>
+                                    <span class={cSectionSpanClasses}>ID Method:</span>
                                     <input type="text" name={`${chkSdo.siteDateObservationId}_idcode`} class="w-8 text-center text-black" value={chkSdo.idCode} />
                                 </label>
                                 <input type="hidden" name={`${chkSdo.siteDateObservationId}_idcode_orig`} value={chkSdo.idCode} />
@@ -541,28 +556,37 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     {:else}<!-- VIEWING Multiple species observation recordings -->
 
         {#each availableObservations as chkSdo}
-            <div class={`${chkSdo.deleted ? 'odd:variant-ghost-warning even:variant-ghost-error' : 'odd:bg-slate-200 odd:dark:bg-gray-700'} ${!chkSdo.deleted && showRecentEdits ? cHighlightRecent : ''}`}>
-                <div class={`pl-1 flex flex-row ${chkSdo.deleted ? '[&>:not(:first-of-type)]:line-through' : ''}`}>
-                    <div class="w-6">{chkSdo.deleted ? '❌' : chkSdo.confirmed ? '✔' : '✎'}</div>
-                    <div class="w-56 truncate">{chkSdo.checklist.commonName}</div>
-                    <div class="w-64">{chkSdo.checklist.scientificName}</div>
-                    <div class="w-36">Hodges: {chkSdo.hodges}</div>
-                    <div class="w-28 pr-2 pb-0.5">ID Code: {@html chkSdo.idCode ?? '&varnothing;'}</div>
-                    <div class="w-36">(Total: {chkSdo.total})</div>
+            <div class={`flex flex-row ${chkSdo.deleted ? 'odd:variant-ghost-warning even:variant-ghost-error' : 'odd:bg-slate-200 odd:dark:bg-gray-700'} ${!chkSdo.deleted && showRecentEdits ? cHighlightRecent : ''}`}>
+                <div class="basis-6">
+                    <div class={`w-6 text-center ${chkSdo.confirmed ? 'text-green-400' : ''}`}>{chkSdo.confirmed ? '✔' : '✎'}</div>
+                    <div class="w-6 text-center">{chkSdo.confirmed ? '🔓' : '🔐'}</div>
+                    <div class={`w-6 text-center ${chkSdo.confirmed ? 'grayscale' : ''}`}>❌</div>
                 </div>
 
-                <div class={`pl-8 flex flex-wrap ${chkSdo.deleted ? 'line-through' : ''}`}>
-                    {#each Object.entries(chkSdo)
-                        .filter((x) => x[0].startsWith('section'))
-                        .map(([k, v]) => ({ label: `${k.substring(0, 1).toLocaleUpperCase()}${k.substring(1, 7)} ${k.substring(7)}`, name: k, value: v })) as { label, value }}
-                        <div class={cSectionClasses}>
-                            <div class={cSectionSpanClasses}>{label}:</div>
-                            <div class="w-8">{@html value ?? '&varnothing;'}</div>
+                <div class="">
+                    <div class={`pl-1 flex flex-row justify-between ${chkSdo.deleted ? '[&>:not(:first-of-type)]:line-through' : ''}`}>
+                        <div class="flex flex-row">
+                            <div class="w-56 truncate">{chkSdo.checklist.commonName}</div>
+                            <div class="w-64">{chkSdo.checklist.scientificName}</div>
                         </div>
-                    {/each}
+                        <div class="w-32">Hodges: {@html htmlHodges(chkSdo.hodges)}</div>
+                        <div class="w-40 pr-2 pb-0.5">ID Method: {@html htmlIdCode(chkSdo.idCode)}</div>
+                        <div class="w-36">(Total: {chkSdo.total})</div>
+                    </div>
+
+                    <div class={`pl-8 flex flex-wrap ${chkSdo.deleted ? 'line-through' : ''}`}>
+                        {#each Object.entries(chkSdo)
+                            .filter((x) => x[0].startsWith('section'))
+                            .map(([k, v]) => ({ label: `${k.substring(0, 1).toLocaleUpperCase()}${k.substring(1, 7)} ${k.substring(7)}`, name: k, value: v })) as { label, value }}
+                            <div class={cSectionClasses}>
+                                <div class={cSectionSpanClasses}>{label}:</div>
+                                <div class="w-8">{@html value ?? '&varnothing;'}</div>
+                            </div>
+                        {/each}
+                    </div>
                 </div>
-                <hr />
             </div>
+            <hr />
         {/each}
     {/if}
 {/snippet}
@@ -587,29 +611,29 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 {#snippet dataSingle()}
     <div class={`${data.siteDateObservation.deleted ? 'line-through variant-ghost-error' : showRecentEdits ? cHighlightRecent : ''}`}>
         <!-- DATA Heading -->
-        <div class="flex flex-row justify-between font-bold">
-            <div>
+        <div class="flex flex-row justify-between font-bold" onclick={onClickNames}>
+            <div class="basis-1/2 text-left">
                 {data.siteDateObservation.checklist.scientificName}
             </div>
-            <div>
+            <div class="basis-1/2 text-right">
                 {data.siteDateObservation.checklist.commonName}
             </div>
         </div>
 
         <div class="flex flex-row space-x-4">
             {#if isEditing}
-                <div class="w-32">Hodges: {currentSiteDateObservation.hodges}</div>
+                <div class="w-32">Hodges: {@html htmlHodges(currentSiteDateObservation.hodges)}</div>
                 <div class="w-28 pr-2 pb-0.5">
                     <label class={cSectionClasses}>
-                        <span class={cSectionSpanClasses}>ID Code:</span>
+                        <span class={cSectionSpanClasses}>ID Method:</span>
                         <input type="text" name={`${currentSiteDateObservation.siteDateObservationId}_idcode`} class="w-8 text-center text-black" value={currentSiteDateObservation.idCode} />
                     </label>
                     <input type="hidden" name={`${currentSiteDateObservation.siteDateObservationId}_idcode_orig`} value={currentSiteDateObservation.idCode} />
                 </div>
                 <div class="w-28 text-amber-700 dark:text-amber-400">(Total: {total})</div>
             {:else}
-                <div class="w-32">Hodges: {currentSiteDateObservation.hodges}</div>
-                <div class="w-28">Id Code: {@html currentSiteDateObservation.idCode ?? '&varnothing;'}</div>
+                <div class="w-32">Hodges: {@html htmlHodges(currentSiteDateObservation.hodges)}</div>
+                <div class="w-28">ID Method: {@html htmlIdCode(currentSiteDateObservation.idCode)}</div>
                 <div class="w-28">(Total: {currentSiteDateObservation.total})</div>
             {/if}
         </div>
@@ -656,28 +680,29 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 
 {#snippet body()}
     {#if $page.data.user}
-        <div class="pr-4">
-            <!-- Header and options -->
-            {@render controlsNavigation()}
+        <div></div>
+        <!-- Header and options -->
+        {@render controlsNavigation()}
 
-            <!-- Main controls -->
-            {@render controlsData()}
+        <!-- Main controls -->
+        {@render controlsData()}
 
-            <!-- Action messages -->
-            {@render actionMessages()}
+        <!-- Action messages -->
+        {@render actionMessages()}
 
-            <!-- START Data controls group -->
-            {#if isViewAll}
-                <!-- Multiple species observation recordings -->
-                {@render dataMultiple()}
-            {:else}
-                <!-- Single speices observation recordings -->
-                {@render dataSingle()}
-            {/if}
-            <!-- END Data controls group -->
+        <div class="pr-4 overflow-y-auto h-full">
+            <div>
+                {#if isViewAll}
+                    <!-- Multiple species observation recordings -->
+                    {@render dataMultiple()}
+                {:else}
+                    <!-- Single speices observation recordings -->
+                    {@render dataSingle()}
+                {/if}
+            </div>
         </div>
     {/if}
 {/snippet}
 
 {@render controlsOutside()}
-<Container head={null} {body} tail={null} />
+<Container head={null} {body} bodyClasses="overflow-hidden" tail={null} />
