@@ -256,8 +256,8 @@ export const actions: Actions = {
             createdAt: new Date(),
             createdById: locals.user.id,
         };
-        await createSiteDateObservation(sdo);
-        return { action: 'create', success: true };
+        const result = await createSiteDateObservation(sdo);
+        return { action: 'create', success: true, siteDateObservationId: result.siteDateObservationId };
     },
 
     reviewSiteDateObservation: async ({ request, locals }) => {

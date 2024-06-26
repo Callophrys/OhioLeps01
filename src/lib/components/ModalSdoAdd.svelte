@@ -1,17 +1,24 @@
 <script lang="ts">
     import type { SvelteComponent } from 'svelte';
+    import type { ChecklistScientificName } from '$lib/types';
 
-    // Stores
     import { getModalStore } from '@skeletonlabs/skeleton';
-    import SpeciesPicker from './datanavigation/SpeciesPicker.svelte';
+
+    // import { page } from '$app/stores';
+    // import { getContext } from 'svelte';
+    // import SpeciesPicker from './datanavigation/SpeciesPicker.svelte';
+    // const config: any = $page.data.config ?? {};
+    // let speciesChecklist: ChecklistScientificName[] = getContext('speciesList');
+    // console.log('speciesChecklsit', speciesChecklist);
 
     // Props
     /** Exposes parent props to this component. */
     let { parent }: { parent: SvelteComponent } = $props();
 
     const modalStore = getModalStore();
+    let checklist: ChecklistScientificName[] = $modalStore[0].value.checklist as ChecklistScientificName[];
 
-    const formData = {
+    const formData = $state({
         siteDateId: $modalStore[0].value.siteDateId,
         idCode: null, //how id'ed:  O observ, N net, P photo, C collected
         checklistId: null,
@@ -30,21 +37,13 @@
         section13: null,
         section14: null,
         section15: null,
-    };
+    });
 
-    let checklist: any[] = $modalStore[0].value.checklist;
-    let checklistId = $derived(formData.checklistId);
-    let hodges = $state('');
+    let hodges = $derived(checklist.find((x: ChecklistScientificName) => x.checklistId === formData.checklistId)?.hodges);
 
-    let handleChange = () => {
-        hodges =
-            Array.from<any>(checklist).find((x: any) => {
-                x === checklistId;
-            }).hodges && '&nbsp;';
-    };
-
-    // We've created a custom submit function to pass the response and close the modal.
-    function onFormSubmit(): void {
+    // Custom submit function to pass the response and close the modal.
+    function onFormSubmit(e: Event): void {
+        e.preventDefault();
         if ($modalStore[0].response) {
             // console.log(formData);
             $modalStore[0].response(formData);
@@ -75,7 +74,7 @@
                 </div>
                 <div>
                     <span>Hodges</span><!-- Could make this enterable and an auto-complete in case people know specimens by number -->
-                    <div class="input w-16 min-h-6 py-2 px-3 mt-1">{hodges}</div>
+                    <div class="input w-24 min-h-6 py-2 px-3 mt-1">{hodges}</div>
                 </div>
                 <label class="label flex flex-col">
                     <span>Id Method</span>
@@ -89,12 +88,13 @@
             </div>
             <label class="label">
                 <span>Name</span>
-                <select class="input" bind:value={formData.checklistId} placeholder="Select specimen..." onchange={handleChange}>
+                <select class="input" bind:value={formData.checklistId} placeholder="Select specimen...">
                     {#each checklist as specimen}
                         <option value={specimen.checklistId}>{specimen.commonName} - {specimen.scientificName}</option>
                     {/each}
                 </select>
             </label>
+            <!-- <SpeciesPicker currentSdoChecklistItemId={formData.checklistId} initialUseLatinChoice={Number(config.initialUseLatinChoice)} /> -->
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
                 <label class="label"><span class="w-20 inline-block">Section 1</span><input class="input w-16" type="number" min="0" bind:value={formData.section1} placeholder="∅" /></label>
                 <label class="label"><span class="w-20 inline-block">Section 2</span><input class="input w-16" type="number" min="0" bind:value={formData.section2} placeholder="∅" /></label>

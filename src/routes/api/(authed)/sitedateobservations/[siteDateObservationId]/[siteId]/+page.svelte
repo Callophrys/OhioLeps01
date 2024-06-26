@@ -22,6 +22,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     import GoBack from '$lib/components/datanavigation/GoBack.svelte';
     //import GoNext from '$lib/components/datanavigation/GoNext.svelte';
     import { GOTYPE } from '$lib/types.js';
+    import { goto } from '$app/navigation';
 
     /*-- -- Data -- */
     /*-- Exports */
@@ -116,21 +117,6 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
         },
     };
 
-    const modalAdd: ModalSettings = {
-        type: 'prompt',
-        title: 'Add new (sub)species observation',
-        body: 'Create new species record for this site and date.',
-        value: 'Add new species observation',
-        valueAttr: { type: 'text', minlength: 0, maxlength: 256, required: true },
-        buttonTextSubmit: 'Yes',
-        buttonTextConfirm: 'Bar',
-        response: (r: string) => {
-            if (r) {
-                isAdding = !isAdding;
-            }
-        },
-    };
-
     function modalComponentForm(): void {
         const c: ModalComponent = { ref: ModalSdoAdd };
         const modal: ModalSettings = {
@@ -140,21 +126,26 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
             body: 'Complete the form below and then press submit.',
             value: { checklist: data.checklistsAll, year: 2024, week: 8, siteDateId: data.siteDateObservation.siteDateId },
             response: (r) => {
+                if (typeof r === 'object') {
+                    const formData = new FormData();
+                    for (const [key, val] of Object.entries(r)) formData.append(key, val);
 
-                const formData = new FormData();
-                for (const [key, val] of Object.entries(r)) formData.append(key, val);
-
-                fetch('?/addSiteDateObservation', {
-                    method: 'POST',
-                    body: formData,
-                })
-                    .then((response) => response.json())
-                    .then((data) => {
-                        console.log('Success:', data);
+                    fetch('?/addSiteDateObservation', {
+                        method: 'POST',
+                        body: formData,
                     })
-                    .catch((error) => {
-                        console.error('Error:', error);
-                    });
+                        .then((response) => response.json())
+                        .then((data) => {
+                            if (data.status === 200) {
+                                const rdata = JSON.parse(data.data);
+                                let siteDateObservationId = rdata[rdata[0].siteDateObservationId];
+                                goto('/api/sitedateobservations/' + siteDateObservationId + '/' + siteId);
+                            }
+                        })
+                        .catch((error) => {
+                            console.error('Error:', error);
+                        });
+                }
             },
         };
         modalStore.trigger(modal);
@@ -231,6 +222,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     let recordYear = $derived(new Date(currentSiteDateObservation.siteDate.recordDate).getFullYear());
     let recordWeek = $derived(weekOfYearSince(new Date(currentSiteDateObservation.siteDate.recordDate)));
     let recordSdoCount = $derived(data.checklistsSiteDateObs.filter((o: any) => showDeletedData || !o.deleted).length);
+    let siteId = data.siteDateObservation.siteDate.siteId;
 
     let sdoSections = $derived.by(() => {
         const result = Object.entries(currentSiteDateObservation)
