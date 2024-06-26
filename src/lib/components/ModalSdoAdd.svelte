@@ -7,14 +7,12 @@
 
     // Props
     /** Exposes parent props to this component. */
-    export let parent: SvelteComponent;
+    let { parent }: { parent: SvelteComponent } = $props();
 
     const modalStore = getModalStore();
-    // Form Data
-    // Hodges, idCode, siteDateId, section1..15
+
     const formData = {
         siteDateId: $modalStore[0].value.siteDateId,
-        hodges: '&nbsp;',
         idCode: null, //how id'ed:  O observ, N net, P photo, C collected
         checklistId: null,
         section1: null,
@@ -34,13 +32,21 @@
         section15: null,
     };
 
-    let checklist = $modalStore[0].value.checklist;
+    let checklist: any[] = $modalStore[0].value.checklist;
+    let checklistId = $derived(formData.checklistId);
+    let hodges = $state('');
+
+    let handleChange = () => {
+        hodges =
+            Array.from<any>(checklist).find((x: any) => {
+                x === checklistId;
+            }).hodges && '&nbsp;';
+    };
 
     // We've created a custom submit function to pass the response and close the modal.
     function onFormSubmit(): void {
         if ($modalStore[0].response) {
-            formData.hodges = formData.hodges.replace('&nbsp;', '');
-            console.log(formData);
+            // console.log(formData);
             $modalStore[0].response(formData);
         }
         modalStore.close();
@@ -69,7 +75,7 @@
                 </div>
                 <div>
                     <span>Hodges</span><!-- Could make this enterable and an auto-complete in case people know specimens by number -->
-                    <div class="input w-16 min-h-6 py-2 px-3 mt-1">{@html formData.hodges}</div>
+                    <div class="input w-16 min-h-6 py-2 px-3 mt-1">{hodges}</div>
                 </div>
                 <label class="label flex flex-col">
                     <span>Id Method</span>
@@ -83,7 +89,7 @@
             </div>
             <label class="label">
                 <span>Name</span>
-                <select class="input" bind:value={formData.checklistId} placeholder="Select specimen...">
+                <select class="input" bind:value={formData.checklistId} placeholder="Select specimen..." onchange={handleChange}>
                     {#each checklist as specimen}
                         <option value={specimen.checklistId}>{specimen.commonName} - {specimen.scientificName}</option>
                     {/each}
@@ -109,8 +115,8 @@
         </form>
         <!-- prettier-ignore -->
         <footer class="{parent.regionFooter}">
-            <button class="btn {parent.buttonNeutral}" on:click={parent.onClose}>{parent.buttonTextCancel}</button>
-            <button class="btn {parent.buttonPositive}" on:click={onFormSubmit}>Submit Form</button>
+            <button class="btn {parent.buttonNeutral}" onclick={parent.onClose}>{parent.buttonTextCancel}</button>
+            <button class="btn {parent.buttonPositive}" onclick={onFormSubmit}>Submit Form</button>
         </footer>
     </div>
 {/if}
