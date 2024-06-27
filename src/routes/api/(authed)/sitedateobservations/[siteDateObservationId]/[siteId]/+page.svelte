@@ -22,7 +22,8 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     //import GoNext from '$lib/components/datanavigation/GoNext.svelte';
     import { GOTYPE } from '$lib/types.js';
     import { goto } from '$app/navigation';
-    import Configs from '$lib/components/data/Configs.svelte';
+    import { isRecent } from '$lib/utils';
+    // import Configs from '$lib/components/data/Configs.svelte';
 
     /*-- -- Data -- */
     /*-- Exports */
@@ -287,8 +288,8 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
         <SpeciesPicker currentSdoChecklistItemId={currentSiteDateObservation.siteDateObservationId} {isEditing} {isViewAll} {showDeletedData} controlBody="scale-90" />
         <!-- older one <SiteDatePicker currentSiteId={data.siteDateObservation.siteDate.siteId} currentSiteDateId={data.siteDateObservation.siteDateId ?? -1} controlBody="scale-90" /> -->
         <SiteDatePicker
-            bind:currentSiteId={currentSiteDateObservation.siteId}
-            bind:currentSiteDateId={currentSiteDateObservation.siteDateId}
+            bind:currentSiteId={data.siteDateObservation.siteId}
+            bind:currentSiteDateId={data.siteDateObservation.siteDateId}
             controlBody="scale-90"
             buttonLeft=""
             buttonRight=""
@@ -310,49 +311,57 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     </div>
 {/snippet}
 
+{#snippet editSpecimenEditing()}
+    <!-- SAVE UPDATE(s) Action -->
+    <!-- <button type="button" class={cButtonStandard} onclick={() => formEdit?.submit()}> -->
+    <button type="button" class={cButtonStandard}>
+        {isViewAll ? 'Save All' : 'Save'}
+        <span class="pl-2">✎</span>
+    </button>
+
+    <!-- UNDO/REDO(s) Action -->
+    <!-- TODO: Make undo-redo work, maybe go with left-right group button -->
+    <form name="undo" id="formUndo" method="POST" action="?/undoRedoSiteDateObservation" use:enhance>
+        <!-- UNDO/REDO undo last action, edit or delete done by entry or reviewer - of course permissions matter -->
+        <!-- TODO toggle undo and redo on same control -->
+        <div class="btn-group variant-soft">
+            <button disabled>
+                <span class="pr-2 font-extrabold text-amber-700 dark:text-amber-400 group-disabled:text-inherit !group-disabled:font-extrabold">↺</span>
+                Undo
+            </button>
+            <button disabled>
+                Redo
+                <span class="pl-2 font-extrabold text-amber-700 dark:text-amber-400 group-disabled:text-inherit !group-disabled:font-extrabold">↻</span>
+            </button>
+        </div>
+    </form>
+
+    <button type="button" class={cButtonCancel} onclick={() => (isEditing = false)}>
+        Cancel
+        <span class="pl-2 text-red-700 dark:text-red-600 text-2xl">↺</span>
+    </button>
+{/snippet}
+
+{#snippet editSpecimenViewing()}
+    {#if data.siteDateObservation.confirmed}
+        <button type="button" class={cButtonStandard} disabled>
+            {isViewAll ? 'Edit All' : 'Edit'}
+            <span class="pl-2">✎</span>
+        </button>
+    {:else}
+        <button type="button" class={cButtonStandard} onclick={() => (isEditing = true)}>
+            {isViewAll ? 'Edit All' : 'Edit'}
+            <span class="pl-2">✎</span>
+        </button>
+    {/if}
+{/snippet}
+
 {#snippet editSpecimen()}
     {#if $page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'ENTRY' || $page.data.user.role === 'REVIEWER'}
         {#if !isEditing}
-            {#if data.siteDateObservation.confirmed}
-                <button type="button" class={cButtonStandard} disabled>
-                    {isViewAll ? 'Edit All' : 'Edit'}
-                    <span class="pl-2">✎</span>
-                </button>
-            {:else}
-                <button type="button" class={cButtonStandard} onclick={() => (isEditing = true)}>
-                    {isViewAll ? 'Edit All' : 'Edit'}
-                    <span class="pl-2">✎</span>
-                </button>
-            {/if}
+            {@render editSpecimenViewing()}
         {:else}
-            <!-- SAVE UPDATE(s) Action -->
-            <!-- <button type="button" class={cButtonStandard} onclick={() => formEdit?.submit()}> -->
-            <button type="button" class={cButtonStandard}>
-                {isViewAll ? 'Save All' : 'Save'}
-                <span class="pl-2">✎</span>
-            </button>
-
-            <!-- UNDO/REDO(s) Action -->
-            <!-- TODO: Make undo-redo work, maybe go with left-right group button -->
-            <form name="undo" id="formUndo" method="POST" action="?/undoRedoSiteDateObservation" use:enhance>
-                <!-- UNDO/REDO undo last action, edit or delete done by entry or reviewer - of course permissions matter -->
-                <!-- TODO toggle undo and redo on same control -->
-                <div class="btn-group variant-soft">
-                    <button disabled>
-                        <span class="pr-2 font-extrabold text-amber-700 dark:text-amber-400 group-disabled:text-inherit !group-disabled:font-extrabold">↺</span>
-                        Undo
-                    </button>
-                    <button disabled>
-                        Redo
-                        <span class="pl-2 font-extrabold text-amber-700 dark:text-amber-400 group-disabled:text-inherit !group-disabled:font-extrabold">↻</span>
-                    </button>
-                </div>
-            </form>
-
-            <button type="button" class={cButtonCancel} onclick={() => (isEditing = false)}>
-                Cancel
-                <span class="pl-2 text-red-700 dark:text-red-600 text-2xl">↺</span>
-            </button>
+            {@render editSpecimenEditing()}
         {/if}
     {/if}
 {/snippet}
@@ -439,7 +448,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 
 {#snippet deleteSpecimen()}
     {#if !data.siteDateObservation.confirmed && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || ($page.data.user.role === 'ENTRY' && (data.siteDateObservation.createdBy.id === $page.data.user.id || data.siteDateObservation.updatedBy.id === $page.data.user.id)))}
-        <form name="delete" id="formDelete" method="POST" action="?/deleteSiteDateObservation" use:enhance>
+        <form name="delete" method="POST" action="?/deleteSiteDateObservation" use:enhance>
             {#if !data.siteDateObservation.deleted}
                 <button type="button" class={cButtonStandard} onclick={() => modalStore.trigger(modalDelete)}>Delete<span class="pl-2">❌</span></button>
                 <input hidden name="deleteOn" value={true} />
@@ -509,7 +518,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 
         <form name="edit" id="formEdit" method="POST" action="?/saveSiteDateObservation" use:enhance>
             {#each availableObservations as chkSdo}
-                <div class={`${chkSdo.deleted ? 'line-through odd:variant-ghost-warning even:variant-ghost-error' : 'odd:bg-gray-200 odd:dark:bg-red-700'} ${showRecentEdits ? cHighlightRecent : ''}`}>
+                <div class={`${chkSdo.deleted ? 'line-through odd:variant-ghost-warning even:variant-ghost-error' : 'odd:bg-gray-200 odd:dark:bg-red-700'} ${!chkSdo.deleted && showRecentEdits && isRecent(chkSdo, 10) ? cHighlightRecent : ''}`}>
                     <div class="pl-1 flex flex-row">
                         <div class="w-6">{chkSdo.deleted ? '❌' : chkSdo.confirmed ? '🔐' : '🔓'}</div>
                         <div class="w-56 truncate">{chkSdo.checklist.commonName}</div>
@@ -567,7 +576,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     {:else}<!-- VIEWING Multiple species observation recordings -->
 
         {#each availableObservations as chkSdo}
-            <div class={`flex flex-row ${chkSdo.deleted ? 'odd:variant-ghost-warning even:variant-ghost-error' : 'odd:bg-slate-200 odd:dark:bg-gray-700'} ${!chkSdo.deleted && showRecentEdits ? cHighlightRecent : ''}`}>
+            <div class={`flex flex-row ${chkSdo.deleted ? 'odd:variant-ghost-warning even:variant-ghost-error' : 'odd:bg-slate-200 odd:dark:bg-gray-700'} ${!chkSdo.deleted && showRecentEdits && isRecent(chkSdo, 10) ? cHighlightRecent : ''}`}>
                 <div class="basis-6">
                     <div class={`w-6 text-center ${chkSdo.confirmed ? 'text-green-400' : ''}`}>{chkSdo.confirmed ? '✔' : '✎'}</div>
                     <div class="w-6 text-center">{chkSdo.confirmed ? '🔓' : '🔐'}</div>
@@ -639,10 +648,10 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 {/snippet}
 
 {#snippet dataSingle()}
-    <div class={`${data.siteDateObservation.deleted ? 'line-through variant-ghost-error' : showRecentEdits ? cHighlightRecent : ''}`}>
+    <div class={`${data.siteDateObservation.deleted ? 'line-through variant-ghost-error' : showRecentEdits && isRecent(data.siteDateObservation, 10) ? cHighlightRecent : ''}`}>
         <!-- DATA Heading -->
         <!-- svelte-ignore a11y_mouse_events_have_key_events -->
-        <div class="flex flex-row justify-between font-bold" onclick={onClickNames} role="button" tabindex="0">
+        <div class="flex flex-row justify-between font-bold mb-4" onclick={onClickNames} role="button" tabindex="0">
             <div>
                 {data.siteDateObservation.checklist.scientificName}
             </div>
@@ -651,9 +660,9 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
             </div>
         </div>
 
-        <div class="flex flex-row space-x-4">
+        <div class="flex flex-row space-x-4 mb-2">
             {#if isEditing}
-                <div class="w-32">Hodges: {@html htmlHodges(currentSiteDateObservation.hodges)}</div>
+                <div class="w-32">Hodges: {@html htmlHodges(currentSiteDateObservation.checklist.hodges)}</div>
                 <div class="w-28 pr-2 pb-0.5">
                     <label class={cSectionClasses}>
                         <span class={cSectionSpanClasses}>ID Method:</span>
@@ -663,7 +672,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                 </div>
                 <div class="w-28 text-amber-700 dark:text-amber-400">(Total: {total})</div>
             {:else}
-                <div class="w-32">Hodges: {@html htmlHodges(currentSiteDateObservation.hodges)}</div>
+                <div class="w-32">Hodges: {@html htmlHodges(currentSiteDateObservation.checklist.hodges)}</div>
                 <div class="w-28">ID Method: {@html htmlIdCode(currentSiteDateObservation.idCode)}</div>
                 <div class="w-28">(Total: {currentSiteDateObservation.total})</div>
             {/if}

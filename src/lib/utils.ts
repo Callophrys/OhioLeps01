@@ -1,4 +1,5 @@
 import type { DateTracking } from '$lib/types.js';
+import type { SiteDateObservation } from '@prisma/client';
 
 type DateStyle = Intl.DateTimeFormatOptions['dateStyle'];
 type TimeStyle = Intl.DateTimeFormatOptions['timeStyle'];
@@ -54,6 +55,12 @@ export const sortByStringProperty = (items: any[], propertyName: string, ascendi
     });
 
 export const isDate = (d: any) => d instanceof Date && isFinite(Number(d));
+
+export const isRecent = (sdo: SiteDateObservation, days: number) => {
+    let c = Date.now().valueOf() - days * 24 * 60 * 60 * 1000;
+    let x = Math.max(new Date(sdo.createdAt ?? 0).valueOf(), new Date(sdo.updatedAt ?? 0).valueOf(), new Date(sdo.confirmAt ?? 0).valueOf());
+    return x > c;
+};
 
 // Do not forget month is 0 to 11
 

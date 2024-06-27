@@ -16,7 +16,6 @@
     let { parent }: { parent: SvelteComponent } = $props();
 
     const modalStore = getModalStore();
-    let checklist: ChecklistScientificName[] = $modalStore[0].value.checklist as ChecklistScientificName[];
 
     const formData = $state({
         siteDateId: $modalStore[0].value.siteDateId,
@@ -39,7 +38,7 @@
         section15: null,
     });
 
-    let hodges = $derived(checklist.find((x: ChecklistScientificName) => x.checklistId === formData.checklistId)?.hodges);
+    const htmlHodges = (h: string | null | undefined) => (!h || h === 'null' ? '&varnothing;' : h);
 
     // Custom submit function to pass the response and close the modal.
     function onFormSubmit(e: Event): void {
@@ -55,6 +54,9 @@
     const cBase = 'card p-4 w-modal shadow-xl space-y-4';
     const cHeader = 'text-2xl font-bold';
     const cForm = 'border border-surface-500 p-4 space-y-4 rounded-container-token';
+
+    let checklist: ChecklistScientificName[] = $modalStore[0].value.checklist as ChecklistScientificName[];
+    let hodges = $derived(htmlHodges(checklist.find((x: ChecklistScientificName) => x.checklistId === formData.checklistId)?.hodges));
 </script>
 
 {#if $modalStore[0]}

@@ -11,6 +11,7 @@
     import GoNext from '$lib/components/datanavigation/GoNext.svelte';
     import { GOTYPE } from '$lib/types.js';
     import { goto } from '$app/navigation';
+    import { isRecent } from '$lib/utils';
 
     /*-- -- Data -- */
     /*-- Exports */
@@ -464,11 +465,9 @@
                     ${(() => {
                         let classes = 'hover:variant-soft-primary active:variant-filled-primary';
                         if (siteDateObservation.deleted) {
-                            classes += showDeletedData ? cClassesObservation + ' line-through variant-ghost-error' : ' hidden';
-                        } else if (showRecentEdits && siteDateObservation.updatedAt) {
-                            let x = new Date();
-                            x = new Date(x.getUTCFullYear(), x.getUTCMonth(), x.getUTCDate() - 10);
-                            classes += new Date(siteDateObservation.updatedAt).getTime() > x.getTime() ? cClassesObservation + ' variant-ghost-warning' : '';
+                            classes += !showDeletedData ? ' hidden' : cClassesObservation + ' line-through variant-ghost-error';
+                        } else if (showRecentEdits && isRecent(siteDateObservation, 10)) {
+                            classes += cClassesObservation + ' variant-ghost-warning';
                         }
                         return classes;
                     })()}`}>
@@ -482,7 +481,7 @@
                         </div>
                         <div class="w-56">{siteDateObservation.checklist.commonName ?? ''}</div>
                         <div class="w-56">{siteDateObservation.checklist.scientificName}</div>
-                        <div class="w-16">total: {siteDateObservation.total}</div>
+                        <div class="w-20">total: {siteDateObservation.total}</div>
                     </a>
                 </div>
             {/each}
