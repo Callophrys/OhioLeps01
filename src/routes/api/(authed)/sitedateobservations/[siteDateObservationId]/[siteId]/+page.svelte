@@ -171,6 +171,17 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
         (e.currentTarget as HTMLDivElement).classList.toggle('flex-row-reverse', isForard);
     }
 
+    function onSubmitDelete(e: Event) {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget as HTMLFormElement);
+        if (formData.get('deleteOn') === 'true') {
+            // modalStore.trigger(modalDelete);
+        } else {
+            // modalStore.trigger(modalUndelete);
+        }
+        return false;
+    }
+
     /*-- Methods */
     function modalComponentForm(): void {
         const c: ModalComponent = { ref: ModalSdoAdd };
@@ -560,7 +571,26 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                 <div class="basis-6">
                     <div class={`w-6 text-center ${chkSdo.confirmed ? 'text-green-400' : ''}`}>{chkSdo.confirmed ? '✔' : '✎'}</div>
                     <div class="w-6 text-center">{chkSdo.confirmed ? '🔓' : '🔐'}</div>
-                    <div class={`w-6 text-center ${chkSdo.confirmed ? 'grayscale' : ''}`}>❌</div>
+                    <div class="w-6 text-center">
+                        <form method="POST" action="?/deleteSiteDateObservation" onsubmit={onSubmitDelete}>
+                            <!-- <button type="submit" title="Delete" class={`${chkSdo.confirmed ? 'grayscale' : ''}`}>❌</button> -->
+                            {#if !data.siteDateObservation.deleted}
+                                <!-- <button type="submit" class={cButtonStandard} onclick={() => modalStore.trigger(modalDelete)}>Delete<span class="pl-2">❌</span></button> -->
+                                <button type="submit" class="">❌</button>
+                                <input hidden name="deleteOn" value={true} />
+                            {:else}
+                                <!-- <button type="submit" class={cButtonStandard} onclick={() => modalStore.trigger(modalUndelete)}>Undelete<span class="pl-2">↺</span></button> -->
+                                <button type="submit" class="">↺</button>
+                                <input hidden name="deleteOn" value={false} />
+                            {/if}
+                            <input hidden name="siteDateObservationId" value={data.siteDateObservation.siteDateObservationId} />
+                            <input hidden name="siteDateId" value={data.siteDateObservation.siteDateId} />
+                            <input hidden name="checklistId" value={data.siteDateObservation.checklistId} />
+                            <input hidden name="useLatinSort" value={true} />
+                            <input hidden name="sortDirection" value="asc" />
+                            <input hidden name="advanceRecord" value={true} />
+                        </form>
+                    </div>
                 </div>
 
                 <div class="">
@@ -611,11 +641,12 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 {#snippet dataSingle()}
     <div class={`${data.siteDateObservation.deleted ? 'line-through variant-ghost-error' : showRecentEdits ? cHighlightRecent : ''}`}>
         <!-- DATA Heading -->
-        <div class="flex flex-row justify-between font-bold" onclick={onClickNames}>
-            <div class="basis-1/2 text-left">
+        <!-- svelte-ignore a11y_mouse_events_have_key_events -->
+        <div class="flex flex-row justify-between font-bold" onclick={onClickNames} role="button" tabindex="0">
+            <div>
                 {data.siteDateObservation.checklist.scientificName}
             </div>
-            <div class="basis-1/2 text-right">
+            <div>
                 {data.siteDateObservation.checklist.commonName}
             </div>
         </div>
