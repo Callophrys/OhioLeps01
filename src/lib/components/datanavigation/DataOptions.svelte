@@ -1,8 +1,7 @@
 <script lang="ts">
     /*-- Imports */
+    import { ROLE } from '$lib/types';
     import { page } from '$app/stores';
-    import AppConfigControl from '../AppConfigControl.svelte';
-    import CCounty from '../CCounty.svelte';
 
     /*-- -- Data -- */
     /*-- Exports */
@@ -11,11 +10,15 @@
         showMultipleRowsDisabled = $bindable(false),
         showRecentEdits = $bindable(false),
         showDeletedData = $bindable(false),
+        showMyDataOnly = $bindable(false),
+        showUnreviewedOnly = $bindable(false),
     }: {
         showMultipleRows: boolean;
         showMultipleRowsDisabled: boolean;
         showRecentEdits: boolean;
         showDeletedData: boolean;
+        showMyDataOnly: boolean;
+        showUnreviewedOnly: boolean;
     } = $props();
 
     // TODO: Implement swapping for Hodges, P3, and phylogenic identifiers
@@ -46,32 +49,48 @@
 </script>
 
 <div class="flex flex-row space-x-2 text-sm fixed top-[102px] right-10">
-    <!-- <label class={cLabel} title="Highlight recently added/updated data"> -->
-    <!--     <p>Show Hodges</p> -->
-    <!--     <input class="checkbox" type="checkbox" bind:checked={showHodges} /> -->
-    <!-- </label> -->
-    <!-- <label class={cLabel} title="Highlight recently added/updated data"> -->
-    <!--     <p>Show P3</p> -->
-    <!--     <input class="checkbox" type="checkbox" bind:checked={showP3} /> -->
-    <!-- </label> -->
+    <!-- Single or multiple -->
     <label class={cLabel} title="Toggle between single or mutilple rows for viewing or editing">
         <!-- TODO Make label message toggle and convert checkbox to toggle switch -->
         <span class={cControlDisabled}>View Multiple</span>
         <input class={cCheckboxMultiple} type="checkbox" disabled={showMultipleRowsDisabled} bind:checked={showMultipleRows} />
     </label>
-    <label class={cLabel} title="Highlight recently added/updated data">
-        <span>Highlight Recent</span>
-        <input class="checkbox" type="checkbox" bind:checked={showRecentEdits} />
-    </label>
-    {#if $page.data.user && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'REVIEWER' || $page.data.user.role === 'ENTRY')}
-        <label class={cLabel} title="Display deleted data">
-            <span>Show Deleted</span>
-            <input class="checkbox" type="checkbox" bind:checked={showDeletedData} />
+    {#if $page.data?.user}
+        <!-- Highlight recent created, edited and reviewed data (and deletes if option to show is on) -->
+        <label class={cLabel} title="Highlight recently added/updated data">
+            <span>Highlight Recent</span>
+            <input class="checkbox" type="checkbox" bind:checked={showRecentEdits} />
         </label>
-    {:else}<!-- TODO: Show my deleted (or other actioned on) data is not supported at this time; Roadmapped; -->
-        <label class={cLabel} title="Display my deleted data">
-            <span>My deleted data</span>
-            <input class="checkbox" type="checkbox" bind:checked={showDeletedData} />
-        </label>
+        <!-- Filter for only data only -->
+        {#if $page.data.user.role === ROLE.SUPER || $page.data.user.role === ROLE.ADMIN || $page.data.user.role === ROLE.REVIEWER}
+            <label class={cLabel} title="Display only records that I created, edited or reviewed">
+                <p>My Data</p>
+                <input class="checkbox" type="checkbox" bind:checked={showMyDataOnly} />
+            </label>
+        {:else}
+            <label class={cLabel} title="Display only records that I created or edited">
+                <p>My Data</p>
+                <input class="checkbox" type="checkbox" bind:checked={showMyDataOnly} />
+            </label>
+        {/if}
+        <!-- Filter for unreviewed -->
+        {#if $page.data.user.role === ROLE.SUPER || $page.data.user.role === ROLE.ADMIN || $page.data.user.role === ROLE.REVIEWER}
+            <label class={cLabel} title="Display unreviewed data only">
+                <p>Unreviewed</p>
+                <input class="checkbox" type="checkbox" bind:checked={showUnreviewedOnly} />
+            </label>
+        {/if}
+        <!-- Show deleted -->
+        {#if $page.data.user.role === ROLE.SUPER || $page.data.user.role === ROLE.ADMIN || $page.data.user.role === ROLE.REVIEWER}
+            <label class={cLabel} title="Display deleted data">
+                <span>Show Deleted</span>
+                <input class="checkbox" type="checkbox" bind:checked={showDeletedData} />
+            </label>
+        {:else if $page.data.user.role === ROLE.ENTRY}
+            <label class={cLabel} title="Display my deleted data">
+                <span>Show Deleted</span>
+                <input class="checkbox" type="checkbox" bind:checked={showDeletedData} />
+            </label>
+        {/if}
     {/if}
 </div>

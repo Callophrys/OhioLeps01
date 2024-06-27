@@ -4,26 +4,24 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 -->
 <script lang="ts">
     /*-- Imports */
+    import { GOTYPE, ROLE } from '$lib/types.js';
     import type { ModalSettings, ModalComponent } from '@skeletonlabs/skeleton';
     import type { SiteDateObservationChecklist } from '$lib/types.js';
-    import ModalSdoAdd from '$lib/components/ModalSdoAdd.svelte';
     import Container from '$lib/components/layouts/Container.svelte';
-    import { formatDate, isNullOrWhiteSpace, weekOfYearSince } from '$lib/utils';
-    import { getModalStore } from '@skeletonlabs/skeleton';
-    import { page } from '$app/stores';
-    import { enhance } from '$app/forms';
     import DataOptions from '$lib/components/datanavigation/DataOptions.svelte';
-    import YearWeek from '$lib/components/datanavigation/YearWeek.svelte';
-    import SitePicker from '$lib/components/datanavigation/SitePicker.svelte';
-    import SiteDatePicker from '$lib/components/datanavigation/SiteDatePicker.svelte';
-    import SpeciesPicker from '$lib/components/datanavigation/SpeciesPicker.svelte';
-    import { setContext } from 'svelte';
     import GoBack from '$lib/components/datanavigation/GoBack.svelte';
     //import GoNext from '$lib/components/datanavigation/GoNext.svelte';
-    import { GOTYPE } from '$lib/types.js';
+    import ModalSdoAdd from '$lib/components/ModalSdoAdd.svelte';
+    import SiteDatePicker from '$lib/components/datanavigation/SiteDatePicker.svelte';
+    import SitePicker from '$lib/components/datanavigation/SitePicker.svelte';
+    import SpeciesPicker from '$lib/components/datanavigation/SpeciesPicker.svelte';
+    import YearWeek from '$lib/components/datanavigation/YearWeek.svelte';
+    import { enhance } from '$app/forms';
+    import { formatDate, isEditable, isReviewable, isNullOrWhiteSpace, isRecent, weekOfYearSince } from '$lib/utils';
+    import { getModalStore } from '@skeletonlabs/skeleton';
     import { goto } from '$app/navigation';
-    import { isRecent } from '$lib/utils';
-    // import Configs from '$lib/components/data/Configs.svelte';
+    import { page } from '$app/stores';
+    import { setContext } from 'svelte';
 
     /*-- -- Data -- */
     /*-- Exports */
@@ -52,6 +50,8 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     const cHighlightRecent = 'shadow-inner shadow-fuchsia-200';
 
     /*-- Variables (styles) */
+    let targetForm: HTMLFormElement;
+
     /*-- Reactives (styles) */
     /*-- -- Coding -- */
     /*-- Enums */
@@ -67,9 +67,8 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
         // Returns the updated response value
         response: (r: any) => {
             console.log('response:', r);
-            if (r) {
-                // formReview.submit();
-                (document.getElementById('formReview') as HTMLFormElement).submit();
+            if (typeof r === 'object') {
+                targetForm.submit();
             }
         },
     };
@@ -85,9 +84,8 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
         // Returns the updated response value
         response: (r: string) => {
             console.log('response:', r);
-            if (r) {
-                // formReview.submit();
-                (document.getElementById('formReview') as HTMLFormElement).submit();
+            if (typeof r === 'object') {
+                targetForm.submit();
             }
         },
     };
@@ -99,9 +97,8 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
         value: 'Deleting data due to...',
         valueAttr: { type: 'text', minlength: 0, maxlength: 256, required: true },
         response: (r: string) => {
-            if (r) {
-                // formDelete.submit();
-                (document.getElementById('formDelete') as HTMLFormElement).submit();
+            if (typeof r === 'object') {
+                targetForm.submit();
             }
         },
     };
@@ -113,9 +110,8 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
         value: 'Undeleting data due to...',
         valueAttr: { type: 'text', minlength: 0, maxlength: 256, required: true },
         response: (r: string) => {
-            if (r) {
-                (document.getElementById('formDelete') as HTMLFormElement).submit();
-                // formDelete.submit();
+            if (typeof r === 'object') {
+                targetForm.submit();
             }
         },
     };
@@ -172,13 +168,24 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
         (e.currentTarget as HTMLDivElement).classList.toggle('flex-row-reverse', isForard);
     }
 
-    function onSubmitDelete(e: Event) {
+    function onSubmitReview(e: Event & { currentTarget: EventTarget & HTMLFormElement }) {
         e.preventDefault();
-        const formData = new FormData(e.currentTarget as HTMLFormElement);
-        if (formData.get('deleteOn') === 'true') {
-            // modalStore.trigger(modalDelete);
+        targetForm = e.currentTarget;
+        if ((targetForm.elements.namedItem('confirm') as HTMLInputElement).value === 'true') {
+            modalStore.trigger(modalReviewerLock);
         } else {
-            // modalStore.trigger(modalUndelete);
+            modalStore.trigger(modalReviewerUnlock);
+        }
+        return false;
+    }
+
+    function onSubmitDelete(e: Event & { currentTarget: EventTarget & HTMLFormElement }) {
+        e.preventDefault();
+        targetForm = e.currentTarget;
+        if ((targetForm.elements.namedItem('deleteOn') as HTMLInputElement).value === 'true') {
+            modalStore.trigger(modalDelete);
+        } else {
+            modalStore.trigger(modalUndelete);
         }
         return false;
     }
@@ -241,7 +248,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 
     let recordYear = $derived(new Date(currentSiteDateObservation.siteDate.recordDate).getFullYear());
     let recordWeek = $derived(weekOfYearSince(new Date(currentSiteDateObservation.siteDate.recordDate)));
-    let recordSdoCount = $derived(data.checklistsSiteDateObs.filter((o: any) => showDeletedData || !o.deleted).length);
+    let recordSdoCount = $derived(data.checklistsSiteDateObs.filter((o: SiteDateObservationChecklist) => !o.deleted || showDeletedData).length);
 
     let sdoSections = $derived.by(() => {
         const result = Object.entries(currentSiteDateObservation)
@@ -252,15 +259,29 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 
     let total: number = $derived(sdoSections.reduce((t: number, o: any) => t + (isNaN(o.value) ? 0 : Number(o.value)), 0));
 
+    const specimenClassesMultiple = (sdo: SiteDateObservationChecklist) => {
+        if (sdo.deleted) {
+            return 'line-through odd:variant-ghost-warning even:variant-ghost-error';
+        }
+
+        let c = 'odd:bg-gray-200 odd:dark:bg-red-700';
+        return showRecentEdits && isRecent(sdo, 10) ? `${c} ${cHighlightRecent}` : c;
+    };
+
     // let total = $derived(sdoSections.reduce((t: number, o: any) => t + (isNaN(o.value) ? 0 : Number(o.value)), 0));
     //console.log(sdoSections);
 
     let nextSiteDateObservation = $derived(() => {
-        let currentIndex = data.siteDates.findIndex((x) => x.siteDateId === currentSiteDateObservation.siteDateId);
+        let currentIndex = data.siteDates.findIndex((x: any) => x.siteDateId === currentSiteDateObservation.siteDateId);
         let nextIndex = ++currentIndex % data.siteDates.length;
         return data.siteDates[nextIndex];
     });
-    let availableObservations = $derived(data.checklistsSiteDateObs.filter((x: SiteDateObservationChecklist) => showDeletedData || !x.deleted));
+
+    let availableObservations = $derived(
+        data.checklistsSiteDateObs.filter((x: SiteDateObservationChecklist) => {
+            return !x.deleted || showDeletedData;
+        })
+    );
 
     /*-- Other */
 
@@ -356,7 +377,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     {/if}
 {/snippet}
 
-{#snippet editSpecimen()}
+{#snippet editSpecimenControls()}
     {#if $page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'ENTRY' || $page.data.user.role === 'REVIEWER'}
         {#if !isEditing}
             {@render editSpecimenViewing()}
@@ -366,65 +387,65 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     {/if}
 {/snippet}
 
-{#snippet reviewElevatedUser()}
-    {#if isNullOrWhiteSpace(data.siteDateObservation.confirmBy?.id)}
+{#snippet reviewElevatedUser(sdo: SiteDateObservationChecklist)}
+    {#if isNullOrWhiteSpace(sdo.confirmBy?.id)}
         {#if isViewAll}
             <input hidden name="confirm_lock_all" value="true" />
-            <button type="button" class={cButtonWider} onclick={() => modalStore.trigger(modalReviewerLock)}>
+            <button type="submit" class={cButtonWider}>
                 Review All
                 <span class="pl-2">🌎</span>
             </button>
             <input hidden name="confirm_unlock_all" value="true" />
-            <button type="button" class={cButtonWider} onclick={() => modalStore.trigger(modalReviewerLock)}>
+            <button type="submit" class={cButtonWider}>
                 Unlock All
                 <span class="pl-2">🔒</span>
             </button>
         {:else}
             <input hidden name="confirm" value="true" />
-            <button type="button" class={cButtonWider} onclick={() => modalStore.trigger(modalReviewerLock)}>
+            <button type="submit" class={cButtonWider}>
                 Review
                 <span class="pl-2">🌎</span>
             </button>
         {/if}
-    {:else if !data.siteDateObservation.confirmed}
+    {:else if !sdo.confirmed}
         {#if isViewAll}
             <input hidden name="confirm_lock_all" value="true" />
-            <button type="button" class={cButtonWider} onclick={() => modalStore.trigger(modalReviewerLock)}>
+            <button type="submit" class={cButtonWider}>
                 Lock All
                 <span class="pl-2">🔒</span>
             </button>
             <input hidden name="confirm_unlock_all" value="true" />
-            <button type="button" class={cButtonWider} onclick={() => modalStore.trigger(modalReviewerLock)}>
+            <button type="submit" class={cButtonWider}>
                 Unlock All
                 <span class="pl-2">🔒</span>
             </button>
         {:else}
             <input hidden name="confirm" value="true" />
-            <button type="button" class={cButtonWider} onclick={() => modalStore.trigger(modalReviewerLock)}>
+            <button type="submit" class={cButtonWider}>
                 Lock
                 <span class="pl-2">🔒</span>
             </button>
         {/if}
     {:else if isViewAll}
         <input hidden name="confirm_unlock_all" value="false" />
-        <button type="button" class={cButtonWider} onclick={() => modalStore.trigger(modalReviewerUnlock)}>
+        <button type="submit" class={cButtonWider}>
             Unlock All
             <span class="pl-2">🔑</span>
         </button>
     {:else}
         <input hidden name="confirm" value="false" />
-        <button type="button" class={cButtonWider} onclick={() => modalStore.trigger(modalReviewerUnlock)}>
+        <button type="submit" class={cButtonWider}>
             Unlock
             <span class="pl-2">🔑</span>
         </button>
     {/if}
 {/snippet}
 
-{#snippet reviewStandardUser()}
-    <button type="button" class={cButtonStandard} disabled>
-        {#if typeof data.siteDateObservation.confirmBy !== 'object'}
+{#snippet reviewStandardUser(sdo: SiteDateObservationChecklist)}
+    <button type="submit" class={cButtonStandard} disabled>
+        {#if typeof sdo.confirmBy !== 'object'}
             <div>Needs review <span class="pl-2">🌎</span></div>
-        {:else if data.siteDateObservation.confirmed}
+        {:else if sdo.confirmed}
             <div>Locked<span class="pl-2">🔐</span></div>
         {:else}
             <div>Unlocked<span class="pl-2">🔓</span></div>
@@ -432,33 +453,75 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     </button>
 {/snippet}
 
-{#snippet reviewSpecimen()}
-    <form name="review" id="formReview" method="POST" action="?/reviewSiteDateObservation" use:enhance>
-        <!-- LOCK/UNLOCK Mark data as reviewed, aka valid and locked; Can unlock -->
-        {#if $page.data.user && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'REVIEWER')}
-            {#if $page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || ($page.data.user.role === 'REVIEWER' && (!data.siteDateObservation.confirmBy || data.siteDateObservation.confirmBy === $page.data.user.id))}
-                {@render reviewElevatedUser()}
+{#snippet reviewSpecimenViewMultiple(sdo: SiteDateObservationChecklist)}
+    {#if sdo.deleted}
+        <button type="button" disabled class="cursor-not-allowed">&nbsp;</button>
+    {:else if isReviewable(sdo, $page.data.user)}
+        <form method="POST" action="?/reviewSiteDateObservation" onsubmit={onSubmitReview} use:enhance>
+            {#if !sdo.confirmById}
+                <button type="submit" title="Needs review" class="">🌎</button>
+                <input hidden name="confirm" value={true} />
+            {:else if sdo.confirmed}
+                <button type="submit" title="Reviewed" class="">🔐</button>
+                <input hidden name="confirm" value={false} />
             {:else}
-                {@render reviewStandardUser()}
+                <button type="submit" title="Review status has been revoked" class="">🔓</button>
+                <input hidden name="confirm" value={true} />
             {/if}
+            <input hidden name="siteDateObservationId" value={sdo.siteDateObservationId} />
+        </form>
+    {/if}
+{/snippet}
+
+{#snippet reviewSpecimenViewSingle(sdo: SiteDateObservationChecklist)}
+    <form method="POST" action="?/reviewSiteDateObservation" onsubmit={onSubmitReview} use:enhance>
+        <!-- LOCK/UNLOCK Mark data as reviewed, aka valid and locked; Can unlock -->
+        {#if isReviewable(sdo, $page.data.user)}
+            {@render reviewElevatedUser(sdo)}
+        {:else}
+            {@render reviewStandardUser(sdo)}
         {/if}
-        <input hidden name="siteDateObservationId" value={data.siteDateObservation.siteDateObservationId} />
+        <input hidden name="siteDateObservationId" value={sdo.siteDateObservationId} />
     </form>
 {/snippet}
 
-{#snippet deleteSpecimen()}
-    {#if !data.siteDateObservation.confirmed && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || ($page.data.user.role === 'ENTRY' && (data.siteDateObservation.createdBy.id === $page.data.user.id || data.siteDateObservation.updatedBy.id === $page.data.user.id)))}
-        <form name="delete" method="POST" action="?/deleteSiteDateObservation" use:enhance>
-            {#if !data.siteDateObservation.deleted}
-                <button type="button" class={cButtonStandard} onclick={() => modalStore.trigger(modalDelete)}>Delete<span class="pl-2">❌</span></button>
+{#snippet deleteSpecimenViewMultiple(sdo: SiteDateObservationChecklist)}
+    {#if isEditable(sdo, $page.data.user)}
+        {#if sdo.confirmed}
+            <button type="button" title="Delete disabled" disabled class="grayscale cursor-not-allowed">❌</button>
+        {:else}
+            <form method="POST" action="?/deleteSiteDateObservation" onsubmit={onSubmitDelete} use:enhance>
+                {#if !sdo.deleted}
+                    <button type="submit" title="Delete">❌</button>
+                    <input hidden name="deleteOn" value={true} />
+                {:else}
+                    <button type="submit" title="Undelete" class="text-2xl">↺</button>
+                    <input hidden name="deleteOn" value={false} />
+                {/if}
+                <input hidden name="siteDateObservationId" value={sdo.siteDateObservationId} />
+                <input hidden name="siteDateId" value={sdo.siteDateId} />
+                <input hidden name="checklistId" value={sdo.checklistId} />
+                <input hidden name="useLatinSort" value={true} />
+                <input hidden name="sortDirection" value="asc" />
+                <input hidden name="advanceRecord" value={false} />
+            </form>
+        {/if}
+    {/if}
+{/snippet}
+
+{#snippet deleteSpecimenViewSingle(sdo: SiteDateObservationChecklist)}
+    {#if !sdo.confirmed && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || ($page.data.user.role === 'ENTRY' && (sdo.createdById === $page.data.user.id || sdo.updatedById === $page.data.user.id)))}
+        <form method="POST" action="?/deleteSiteDateObservation" onsubmit={onSubmitDelete} use:enhance>
+            {#if !sdo.deleted}
+                <button type="submit" class={cButtonStandard}>Delete<span class="pl-2">❌</span></button>
                 <input hidden name="deleteOn" value={true} />
             {:else}
-                <button type="button" class={cButtonStandard} onclick={() => modalStore.trigger(modalUndelete)}>Undelete<span class="pl-2">↺</span></button>
+                <button type="submit" class={cButtonStandard} onclick={() => modalStore.trigger(modalUndelete)}>Undelete<span class="ml-2 mb-1 text-2xl">↺</span></button>
                 <input hidden name="deleteOn" value={false} />
             {/if}
-            <input hidden name="siteDateObservationId" value={data.siteDateObservation.siteDateObservationId} />
-            <input hidden name="siteDateId" value={data.siteDateObservation.siteDateId} />
-            <input hidden name="checklistId" value={data.siteDateObservation.checklistId} />
+            <input hidden name="siteDateObservationId" value={sdo.siteDateObservationId} />
+            <input hidden name="siteDateId" value={sdo.siteDateId} />
+            <input hidden name="checklistId" value={sdo.checklistId} />
             <input hidden name="useLatinSort" value={true} />
             <input hidden name="sortDirection" value="asc" />
             <input hidden name="advanceRecord" value={true} />
@@ -475,18 +538,18 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     </div>
 {/snippet}
 
-{#snippet controlsData()}
+{#snippet controlsOperations()}
     <div class="px-4 flex flex-auto justify-between gap-2">
         <div class="flex flex-row justify-start gap-2">
             <!-- EDIT(s) Action -->
-            {@render editSpecimen()}
+            {@render editSpecimenControls()}
 
             {#if !isEditing}
                 <!-- REVIEW(LOCK)/UNLOCK Actions -->
-                {@render reviewSpecimen()}
+                {@render reviewSpecimenViewSingle(data.siteDateObservation)}
 
                 <!-- DELETE Action(s) -->
-                {@render deleteSpecimen()}
+                {@render deleteSpecimenViewSingle(data.siteDateObservation)}
             {/if}
         </div>
 
@@ -496,7 +559,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 {/snippet}
 
 {#snippet actionMessages()}
-    <div class="text-success-900-50-token h-6">
+    <div class="text-success-900-50-token h-6 fixed -mt-4">
         {#if form?.success}
             {#if form.action === 'save'}
                 Successful update ✔.
@@ -518,7 +581,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 
         <form name="edit" id="formEdit" method="POST" action="?/saveSiteDateObservation" use:enhance>
             {#each availableObservations as chkSdo}
-                <div class={`${chkSdo.deleted ? 'line-through odd:variant-ghost-warning even:variant-ghost-error' : 'odd:bg-gray-200 odd:dark:bg-red-700'} ${!chkSdo.deleted && showRecentEdits && isRecent(chkSdo, 10) ? cHighlightRecent : ''}`}>
+                <div class={specimenClassesMultiple(chkSdo)}>
                     <div class="pl-1 flex flex-row">
                         <div class="w-6">{chkSdo.deleted ? '❌' : chkSdo.confirmed ? '🔐' : '🔓'}</div>
                         <div class="w-56 truncate">{chkSdo.checklist.commonName}</div>
@@ -576,30 +639,35 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     {:else}<!-- VIEWING Multiple species observation recordings -->
 
         {#each availableObservations as chkSdo}
-            <div class={`flex flex-row ${chkSdo.deleted ? 'odd:variant-ghost-warning even:variant-ghost-error' : 'odd:bg-slate-200 odd:dark:bg-gray-700'} ${!chkSdo.deleted && showRecentEdits && isRecent(chkSdo, 10) ? cHighlightRecent : ''}`}>
+            <div class={`flex flex-row ${specimenClassesMultiple(chkSdo)}`}>
                 <div class="basis-6">
-                    <div class={`w-6 text-center ${chkSdo.confirmed ? 'text-green-400' : ''}`}>{chkSdo.confirmed ? '✔' : '✎'}</div>
-                    <div class="w-6 text-center">{chkSdo.confirmed ? '🔓' : '🔐'}</div>
-                    <div class="w-6 text-center">
-                        <form method="POST" action="?/deleteSiteDateObservation" onsubmit={onSubmitDelete}>
-                            <!-- <button type="submit" title="Delete" class={`${chkSdo.confirmed ? 'grayscale' : ''}`}>❌</button> -->
-                            {#if !data.siteDateObservation.deleted}
-                                <!-- <button type="submit" class={cButtonStandard} onclick={() => modalStore.trigger(modalDelete)}>Delete<span class="pl-2">❌</span></button> -->
-                                <button type="submit" class="">❌</button>
-                                <input hidden name="deleteOn" value={true} />
-                            {:else}
-                                <!-- <button type="submit" class={cButtonStandard} onclick={() => modalStore.trigger(modalUndelete)}>Undelete<span class="pl-2">↺</span></button> -->
-                                <button type="submit" class="">↺</button>
-                                <input hidden name="deleteOn" value={false} />
-                            {/if}
-                            <input hidden name="siteDateObservationId" value={data.siteDateObservation.siteDateObservationId} />
-                            <input hidden name="siteDateId" value={data.siteDateObservation.siteDateId} />
-                            <input hidden name="checklistId" value={data.siteDateObservation.checklistId} />
-                            <input hidden name="useLatinSort" value={true} />
-                            <input hidden name="sortDirection" value="asc" />
-                            <input hidden name="advanceRecord" value={true} />
-                        </form>
-                    </div>
+                    {#if $page.data.user.role === ROLE.USER}
+                        {#if !chkSdo.confirmById}
+                            <button type="button" title="Disabled/Needs review" disabled class="grayscale cursor-not-allowed">🌎</button>
+                        {:else if chkSdo.confirmed}
+                            <button type="button" title="Disabled/Reviewed" class="grayscale cursor-not-allowed">🔐</button>
+                        {:else}
+                            <button type="button" title="Disabled/Review status has been revoked" class="grayscale cursor-not-allowed">🔓</button>
+                        {/if}
+                    {:else}
+                        {#if chkSdo.deleted}
+                            <div class="w-6"><button disabled class="cursor-not-allowed">&nbsp;</button></div>
+                        {:else}
+                            <div class="w-6 text-center">
+                                {#if chkSdo.confirmed}
+                                    <button title="Observation is reviewed and locked to editing">✔</button>
+                                {:else}
+                                    <button title="Edit this observation">✎</button>
+                                {/if}
+                            </div>
+                        {/if}
+                        <div class="w-6 text-center">
+                            {@render reviewSpecimenViewMultiple(chkSdo)}
+                        </div>
+                        <div class="w-6 text-center">
+                            {@render deleteSpecimenViewMultiple(chkSdo)}
+                        </div>
+                    {/if}
                 </div>
 
                 <div class="">
@@ -673,7 +741,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                 <div class="w-28 text-amber-700 dark:text-amber-400">(Total: {total})</div>
             {:else}
                 <div class="w-32">Hodges: {@html htmlHodges(currentSiteDateObservation.checklist.hodges)}</div>
-                <div class="w-28">ID Method: {@html htmlIdCode(currentSiteDateObservation.idCode)}</div>
+                <div class="w-36">ID Method: {@html htmlIdCode(currentSiteDateObservation.idCode)}</div>
                 <div class="w-28">(Total: {currentSiteDateObservation.total})</div>
             {/if}
         </div>
@@ -720,15 +788,14 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 
 {#snippet body()}
     {#if $page.data.user}
-        <div></div>
+        <!-- Action messages -->
+        {@render actionMessages()}
+
         <!-- Header and options -->
         {@render controlsNavigation()}
 
         <!-- Main controls -->
-        {@render controlsData()}
-
-        <!-- Action messages -->
-        {@render actionMessages()}
+        {@render controlsOperations()}
 
         <div class="pr-4 overflow-y-auto h-full">
             <div>

@@ -1,5 +1,6 @@
+import { ROLE } from '$lib/types.js';
 import type { DateTracking } from '$lib/types.js';
-import type { SiteDateObservation } from '@prisma/client';
+import type { SiteDateObservation, User } from '@prisma/client';
 
 type DateStyle = Intl.DateTimeFormatOptions['dateStyle'];
 type TimeStyle = Intl.DateTimeFormatOptions['timeStyle'];
@@ -55,6 +56,14 @@ export const sortByStringProperty = (items: any[], propertyName: string, ascendi
     });
 
 export const isDate = (d: any) => d instanceof Date && isFinite(Number(d));
+
+export const isEditable = (sdo: SiteDateObservation, user: any) => {
+    return user.role === ROLE.SUPER || user.role === ROLE.ADMIN || (user.role === ROLE.ENTRY && sdo.createdById === user.id);
+};
+
+export const isReviewable = (sdo: SiteDateObservation, user: any) => {
+    return user.role === ROLE.SUPER || user.role === ROLE.ADMIN || (user.role === ROLE.REVIEWER && (!sdo.confirmById || sdo.confirmById === user.id));
+};
 
 export const isRecent = (sdo: SiteDateObservation, days: number) => {
     let c = Date.now().valueOf() - days * 24 * 60 * 60 * 1000;

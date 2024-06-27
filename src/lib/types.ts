@@ -1,6 +1,6 @@
-import type { AppConfig, County, State, Checklist, Region, Site, SiteDate, SiteDateObservation, Taxonomy, User, SiteStatus, StatusCode } from '@prisma/client';
+import type { AppConfig, County, State, Checklist, Region, Site, SiteDate, SiteDateObservation, Taxonomy, User, Role, SiteStatus, StatusCode } from '@prisma/client';
 
-export enum Role {
+export enum ROLE {
     USER = 'USER', // can browse data and run reports, delete own unsigned data
     ENTRY = 'ENTRY', // can enter observation data, can download data
     LEAD = 'LEAD', // can edit,add,delete root information.
@@ -45,7 +45,7 @@ export type CountyComplete = CountyMonitored & { region: Region; sites: Site[] }
 export type CountyMonitored = County & { isMonitored: boolean; siteCount: number; state: State };
 export type CountySites = County & { sites: Site[] };
 export type CountyState = County & { state: State };
-export type UserComplete = User & { firstLast: string; lastFirst: string };
+export type UserComplete = User & { firstLast: string; lastFirst: string; role: Role };
 export type SiteDateSiteName = SiteDate & { site: Site };
 export type SiteDateObservationChecklist = SiteDateObservation & {
     checklist: ChecklistScientificName;

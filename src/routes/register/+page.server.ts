@@ -1,7 +1,7 @@
 import { fail, redirect } from '@sveltejs/kit';
 import type { Action, Actions, PageServerLoad } from './$types';
 import bcrypt from 'bcrypt';
-import { Role } from '$lib/types';
+import { ROLE } from '$lib/types';
 import { getOrganizationByName } from '$lib/database/organizations';
 import { defaultOrganization } from '$lib/config';
 import prisma from '$lib/prisma';
@@ -44,7 +44,7 @@ const register: Action = async ({ request }) => {
             lastName,
             passwordHash: await bcrypt.hash(password, 10),
             userAuthToken: crypto.randomUUID(),
-            role: { connect: { name: Role.USER } },
+            role: { connect: { name: ROLE.USER } },
             organizationId: organization?.id ?? undefined,
         },
     });
