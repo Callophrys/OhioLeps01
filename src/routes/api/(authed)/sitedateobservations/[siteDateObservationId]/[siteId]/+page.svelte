@@ -293,7 +293,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     <YearWeek year={new Date(data.siteDateObservation.siteDate.recordDate).getFullYear()} week={weekOfYearSince(new Date(data.siteDateObservation.siteDate.recordDate))} sdoCount={recordSdoCount} />
     <!-- Hodges and P3 are not implemented yet -->
     <!-- <DataOptions bind:showRecentEdits bind:showDeletedData bind:showHodges bind:showP3 /> -->
-    <DataOptions bind:showMultipleRows={isViewAll} bind:showMultipleRowsDisabled={isEditing} bind:showRecentEdits bind:showDeletedData />
+    <DataOptions bind:showMultipleRows={isViewAll} bind:isEditing bind:showRecentEdits bind:showDeletedData />
 {/snippet}
 
 {#snippet controlsNavigation()}
@@ -492,10 +492,10 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
         {:else}
             <form method="POST" action="?/deleteSiteDateObservation" onsubmit={onSubmitDelete} use:enhance>
                 {#if !sdo.deleted}
-                    <button type="submit" title="Delete">❌</button>
+                    <button type="submit" title="Delete this observation">❌</button>
                     <input hidden name="deleteOn" value={true} />
                 {:else}
-                    <button type="submit" title="Undelete" class="text-2xl">↺</button>
+                    <button type="submit" title="Undelete this observation" class="text-2xl">↺</button>
                     <input hidden name="deleteOn" value={false} />
                 {/if}
                 <input hidden name="siteDateObservationId" value={sdo.siteDateObservationId} />
@@ -589,19 +589,24 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                         <div class="w-36">Hodges: {@html htmlHodges(chkSdo.hodges)}</div>
 
                         {#if chkSdo.deleted}
-                            <div class="w-28 pr-2 pb-0.5">ID Method: {@html chkSdo.idCode ?? '&varnothing;'}</div>
+                            <div class="w-44 pr-2 pb-0.5">ID Method: {@html chkSdo.idCode ?? '&varnothing;'}</div>
                         {:else if chkSdo.confirmed}
-                            <div class="w-28 pr-2 pb-0.5">
+                            <div class="w-44 pr-2 pb-0.5">
                                 <div class={cSectionClasses}>
                                     <span class={cSectionSpanClasses}>ID Method:</span>
                                     <input type="text" class="w-8 text-center text-black" value={chkSdo.idCode} disabled />
                                 </div>
                             </div>
                         {:else}
-                            <div class="w-28 pr-2 pb-0.5">
+                            <div class="w-44 pr-2 pb-0.5">
                                 <label class={cSectionClasses}>
                                     <span class={cSectionSpanClasses}>ID Method:</span>
-                                    <input type="text" name={`${chkSdo.siteDateObservationId}_idcode`} class="w-8 text-center text-black" value={chkSdo.idCode} />
+                                    <select class="input" name={`${chkSdo.siteDateObservationId}_idcode`} value={chkSdo.idCode}>
+                                        <option value="O">Observed</option>
+                                        <option value="C">Collected</option>
+                                        <option value="N">Net</option>
+                                        <option value="P">Photo</option>
+                                    </select>
                                 </label>
                                 <input type="hidden" name={`${chkSdo.siteDateObservationId}_idcode_orig`} value={chkSdo.idCode} />
                             </div>
@@ -643,21 +648,21 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                 <div class="basis-6">
                     {#if $page.data.user.role === ROLE.USER}
                         {#if !chkSdo.confirmById}
-                            <button type="button" title="Disabled/Needs review" disabled class="grayscale cursor-not-allowed">🌎</button>
+                            <button type="button" title="Disabled/Needs review" disabled class="">🌎</button>
                         {:else if chkSdo.confirmed}
-                            <button type="button" title="Disabled/Reviewed" class="grayscale cursor-not-allowed">🔐</button>
+                            <button type="button" title="Disabled/Reviewed" class="">🔐</button>
                         {:else}
-                            <button type="button" title="Disabled/Review status has been revoked" class="grayscale cursor-not-allowed">🔓</button>
+                            <button type="button" title="Disabled/Review status has been revoked" class="">🔓</button>
                         {/if}
                     {:else}
                         {#if chkSdo.deleted}
                             <div class="w-6"><button disabled class="cursor-not-allowed">&nbsp;</button></div>
                         {:else}
-                            <div class="w-6 text-center">
+                            <div class="w-6 text-center content-[2714]">
                                 {#if chkSdo.confirmed}
-                                    <button title="Observation is reviewed and locked to editing">✔</button>
+                                    <button title="Observation is reviewed and locked to editing" class="text-green-700">✔</button>
                                 {:else}
-                                    <button title="Edit this observation">✎</button>
+                                    <button title="Edit this observation" class="text-yellow-500">✎</button>
                                 {/if}
                             </div>
                         {/if}
@@ -677,7 +682,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                             <div class="w-64">{chkSdo.checklist.scientificName}</div>
                         </div>
                         <div class="w-32">Hodges: {@html htmlHodges(chkSdo.hodges)}</div>
-                        <div class="w-40 pr-2 pb-0.5">ID Method: {@html htmlIdCode(chkSdo.idCode)}</div>
+                        <div class="w-44 pr-2 pb-0.5">ID Method: {@html htmlIdCode(chkSdo.idCode)}</div>
                         <div class="w-36">(Total: {chkSdo.total})</div>
                     </div>
 
@@ -730,18 +735,23 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 
         <div class="flex flex-row space-x-4 mb-2">
             {#if isEditing}
-                <div class="w-32">Hodges: {@html htmlHodges(currentSiteDateObservation.checklist.hodges)}</div>
-                <div class="w-28 pr-2 pb-0.5">
+                <div class="w-32 my-auto">Hodges: {@html htmlHodges(currentSiteDateObservation.checklist.hodges)}</div>
+                <div class="pr-2 pb-0.5">
                     <label class={cSectionClasses}>
-                        <span class={cSectionSpanClasses}>ID Method:</span>
-                        <input type="text" name={`${currentSiteDateObservation.siteDateObservationId}_idcode`} class="w-8 text-center text-black" value={currentSiteDateObservation.idCode} />
+                        <span class={`${cSectionSpanClasses} my-auto whitespace-nowrap`}>ID Method:</span>
+                        <select class="input" name={`${currentSiteDateObservation.siteDateObservationId}_idcode`} value={currentSiteDateObservation.idCode}>
+                            <option value="O">Observed</option>
+                            <option value="C">Collected</option>
+                            <option value="N">Net</option>
+                            <option value="P">Photo</option>
+                        </select>
                     </label>
-                    <input type="hidden" name={`${currentSiteDateObservation.siteDateObservationId}_idcode_orig`} value={currentSiteDateObservation.idCode} />
+                    <input type="hidden" name={`${currentSiteDateObservation.siteDateObservationId}_idcode`} value={currentSiteDateObservation.idCode} />
                 </div>
-                <div class="w-28 text-amber-700 dark:text-amber-400">(Total: {total})</div>
+                <div class="w-28 my-auto text-amber-700 dark:text-amber-400">(Total: {total})</div>
             {:else}
                 <div class="w-32">Hodges: {@html htmlHodges(currentSiteDateObservation.checklist.hodges)}</div>
-                <div class="w-36">ID Method: {@html htmlIdCode(currentSiteDateObservation.idCode)}</div>
+                <div class="w-44">ID Method: {@html htmlIdCode(currentSiteDateObservation.idCode)}</div>
                 <div class="w-28">(Total: {currentSiteDateObservation.total})</div>
             {/if}
         </div>
@@ -759,7 +769,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                         <div class={cDatumClasses}>
                             <label class={cSectionClasses}>
                                 <span class={cSectionSpanClasses}>{section.label}:</span>
-                                <input type="text" name={`${data.siteDateObservation.siteDateObservationId}_${section.name}`} value={section.value} class="w-8 text-center text-black" />
+                                <input type="number" name={`${data.siteDateObservation.siteDateObservationId}_${section.name}`} value={section.value} class="w-20 text-center text-black" />
                                 <input type="hidden" name={`${data.siteDateObservation.siteDateObservationId}_${section.name}_orig`} value={section.value} oninput={handleChange} />
                             </label>
                         </div>
