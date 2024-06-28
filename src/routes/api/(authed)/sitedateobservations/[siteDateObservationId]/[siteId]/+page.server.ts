@@ -1,8 +1,8 @@
+import { ROLE } from '$lib/types.js';
 import { getSiteDateObservation, getSiteDateObservationBySiteDateObservation, getSiteDateObservationsBySiteDate, reviewSiteDateObservation, updateSiteDateObservation, deleteSiteDateObservation, nextOrLastSiteDateObservationByCommon, nextOrLastSiteDateObservationByLatin, prevOrFirstSiteDateObservationByLatin, createSiteDateObservation } from '$lib/database/sitedateobservations.js';
 import { getSites } from '$lib/database/sites.js';
 import { getSiteDates } from '$lib/database/sitedates.js';
-import { isNullOrWhiteSpace } from '$lib/utils.js';
-import type { SiteDateObservationChecklist, SiteCounty, SiteDateYear, ChecklistScientificName } from '$lib/types.js';
+import type { SiteDateObservationChecklist, SiteCounty, SiteDateYear } from '$lib/types.js';
 import type { Actions } from '@sveltejs/kit';
 import { getChecklistsBySiteId, getChecklists } from '$lib/database/checklists.js';
 import type { SiteDateObservation } from '@prisma/client';
@@ -70,19 +70,21 @@ export async function load({ params }: { params: any }) {
 
 export const actions: Actions = {
     saveSiteDateObservation: async ({ request, locals }) => {
+        console.log('saveSiteDateObservation');
+        if (locals.user.role !== ROLE.SUPER && locals.user.role !== ROLE.ADMIN && locals.user.role !== ROLE.ENTRY) {
+            return; // TODO: log this and throw some kind of error
+        }
+
         const userId = locals.user.id;
 
-        const getDbData = async (sdoId: number): Promise<T> => {
+        const getDbData = async (sdoId: number): Promise<{ sdoId: number; sdo: SiteDateObservation }> => {
             const dbSdo: any = await getSiteDateObservation(sdoId);
             return { sdoId: sdoId, sdo: dbSdo };
-            //return {[sdoId]: dbSdo};
         };
-
-        //console.log('aaa');
 
         // Add form data
         const formData: any = await request.formData();
-        //console.log(formData);
+        // console.log(formData);
 
         const sdoIds: number[] = [
             ...new Set(
@@ -99,8 +101,9 @@ export const actions: Actions = {
         });
 
         const dbData = await Promise.all(promises);
+        // console.log('dbData', dbData);
 
-        const preparedData = {};
+        const preparedData: any = {};
         dbData.forEach((item) => {
             preparedData[item.sdoId] = {
                 db: item.sdo,
@@ -108,22 +111,21 @@ export const actions: Actions = {
                 orig: {},
             };
         });
-        //console.log(preparedData);
+        // console.log('preparedData', preparedData);
 
-        Array.from(formData).forEach(([k, v]) => {
+        Array.from(formData).forEach(([k, v]: any) => {
             const parts = k.split('_');
             preparedData[parts[0]][parts.length < 3 ? 'edit' : 'orig'][parts[1]] = v;
         });
-
-        console.log(preparedData);
-        //console.log(dbData);
+        // console.log('formData', formData);
 
         promises.length = 0;
         sdoIds.forEach((sdoId) => {
             const sdo = preparedData[sdoId].db;
             let saveThis = false;
-            Object.entries(preparedData[sdoId].edit).forEach(([k, v]) => {
-                //console.log(`${sdoId} - k: ${k}, sdo[k]: ${sdo[k]}, v: '${v}', typeof(sdo[k]): ${typeof sdo[k]}, typeof(v): ${typeof v}`);
+
+            for (const [k, v] of Object.entries(preparedData[sdoId].edit as [string, string])) {
+                // console.log(`${sdoId} - k: ${k}, sdo[k]: '${sdo[k]}', v: '${v}', typeof(sdo[k]): ${typeof sdo[k]}, typeof(v): ${typeof v}`);
 
                 // TODO: if _orig <> _db then throw
                 //       this indicates data has changed on the server
@@ -131,33 +133,34 @@ export const actions: Actions = {
                 // { throw 'Data integrity error'; }
 
                 if (k.startsWith('section')) {
-                    let vv = Number(v);
-                    if (vv >= 0) {
-                        if (sdo[k] == null && vv > 0) {
+                    if (v.length) {
+                        if (sdo[k] !== v) {
                             saveThis = true;
-                            sdo[k] = vv;
-                        } else if (sdo[k] != null && vv === 0) {
-                            saveThis = true;
-                            sdo[k] = null;
+                            sdo[k] = Number(v);
                         }
+                    } else if ((sdo[k] ?? '').length) {
+                        saveThis = true;
+                        sdo[k] = null;
                     }
                 } else {
-                    let vv = String(v);
-                    if (typeof sdo[k] === 'undefined') {
-                        if (vv.length > 0) {
-                            saveThis = true;
-                            sdo[k] = vv;
-                        }
-                    } else {
-                        if (sdo[k] !== vv) {
-                            saveThis = true;
-                            sdo[k] = null;
-                        }
+                    // TODO see if this block jives with above, 20240628
+
+                    // console.log('sdo[k]', sdo[k], 'vv', vv);
+                    if (!sdo[k] && v) {
+                        saveThis = true;
+                        sdo[k] = v;
+                    } else if (sdo[k] && !v) {
+                        saveThis = true;
+                        sdo[k] = null;
+                    } else if (sdo[k] !== v) {
+                        saveThis = true;
+                        sdo[k] = v;
                     }
                 }
-            });
+            }
 
             if (saveThis) {
+                // console.log('sdo to save', sdo);
                 sdo.updatedById = userId;
                 sdo.updatedAt = new Date();
                 promises.push(updateSiteDateObservation(sdo));
@@ -168,7 +171,7 @@ export const actions: Actions = {
             return { action: 'save', success: false, message: 'No changes to save' };
         }
 
-        const savedData = await Promise.all(promises);
+        await Promise.all(promises);
 
         // TODO: if any promise fails ... should rollback or at least report something
 
@@ -176,17 +179,14 @@ export const actions: Actions = {
     },
 
     undoRedoSiteDateObservation: async ({ request, locals }) => {
-        //console.log('bbb');
+        console.log(locals.user.id);
         const formData: any = await request.formData();
-        //console.log(formData);
+        console.log(formData);
         return { success: true };
     },
 
     deleteSiteDateObservation: async ({ request, locals }) => {
-        //console.log('ccc');
         const formData: any = await request.formData();
-        //console.log(formData);
-
         const deleteOn = formData.get('deleteOn') === 'true';
         const siteDateObservationId = Number(formData.get('siteDateObservationId'));
         const siteDateId = Number(formData.get('siteDateId'));
@@ -231,12 +231,11 @@ export const actions: Actions = {
         // console.log('addSiteDateObservation');
         const formData: any = await request.formData();
 
-        const sdo: SiteDateObservation = {
+        const sdo = {
             siteDateObservationId: -1,
             siteDateId: Number(formData.get('siteDateId')),
             checklistId: Number(formData.get('checklistId')),
             seqId: -1,
-            hodges: String(formData.get('hodges')),
             idCode: String(formData.get('idCode')),
             section1: Number(formData.get('section1')),
             section2: Number(formData.get('section2')),
@@ -255,7 +254,7 @@ export const actions: Actions = {
             section15: Number(formData.get('section15')),
             createdAt: new Date(),
             createdById: locals.user.id,
-        };
+        } as SiteDateObservation;
         const result = await createSiteDateObservation(sdo);
         return { action: 'create', success: true, siteDateObservationId: result.siteDateObservationId };
     },

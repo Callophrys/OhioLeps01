@@ -213,6 +213,7 @@ export async function updateSiteDateObservation(siteDateObservation: SiteDateObs
             siteDateObservationId: siteDateObservation.siteDateObservationId,
         },
         data: {
+            idCode: siteDateObservation.idCode,
             section1: siteDateObservation.section1,
             section2: siteDateObservation.section2,
             section3: siteDateObservation.section3,

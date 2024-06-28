@@ -117,10 +117,8 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     };
 
     /*-- Properties (functional) */
-    // let formReview: HTMLFormElement = $state(document.createElement('form'));
-    // let formDelete: HTMLFormElement = $state(document.createElement('form'));
-
     let isEditing = $state(false);
+    let editingTotal = $state(data.siteDateObservation.total);
     // let showHodges = $state(true);
     // let showP3 = $state(true);
 
@@ -156,16 +154,31 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     });
 
     /*-- Handlers */
-    const handleChange = () => {
+    const handleChange = (e: Event & { currentTarget: EventTarget & HTMLInputElement }) => {
         // total = getTotal();
         //total = total;
+        //     return document && frm ? Array.from(frm.querySelectorAll('[type=text]')).reduce((t: number, o: any) => t + (isNaN(o.value) ? 0 : Number(o.value)), 0) : 0;
+        const frm = e.currentTarget.form;
+        editingTotal = frm ? Array.from(frm.querySelectorAll('[type=number]')).reduce((t: number, o: any) => t + (isNaN(o.value) ? 0 : Number(o.value)), 0) : 0;
         return true;
     };
 
-    function onClickNames(e: Event) {
-        let isForard = (e.currentTarget as HTMLDivElement).classList.contains('flex-row');
-        (e.currentTarget as HTMLDivElement).classList.toggle('flex-row', !isForard);
-        (e.currentTarget as HTMLDivElement).classList.toggle('flex-row-reverse', isForard);
+    function onClickNames(e: Event & { currentTarget: EventTarget & HTMLDivElement }) {
+        let isForard = e.currentTarget.classList.contains('flex-row');
+        e.currentTarget.classList.toggle('flex-row', !isForard);
+        e.currentTarget.classList.toggle('flex-row-reverse', isForard);
+    }
+
+    let formEdit: HTMLFormElement;
+
+    function saveEditSingle(e: Event) {
+        e.preventDefault();
+        formEdit.submit(); // Submit form without raising submit event
+    }
+
+    function onSubmitEdit(e: Event & { currentTarget: EventTarget & HTMLFormElement }) {
+        console.log('onSubmitEdit');
+        return true;
     }
 
     function onSubmitReview(e: Event & { currentTarget: EventTarget & HTMLFormElement }) {
@@ -229,16 +242,6 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     //     return Array.from(formAdd.querySelectorAll('[type=text]')).forEach((c: any) => (c.value = ''));
     // };
 
-    // const sumCounts = (frm: Element) => {
-    //     if (typeof document === 'undefined' && typeof frm === 'undefined') return false;
-    //     return document && frm ? Array.from(frm.querySelectorAll('[type=text]')).reduce((t: number, o: any) => t + (isNaN(o.value) ? 0 : Number(o.value)), 0) : 0;
-    // };
-
-    // const getTotal = () => {
-    //     if (isEditing) return sumCounts(document.getElementById('formEdit') as Element);
-    //     else return data.siteDateObservation.total;
-    // };
-
     /*-- Reactives (functional) */
     // let total = $derived(getTotal());
     let currentSiteDateObservation = $derived(data.siteDateObservation as SiteDateObservationChecklist);
@@ -268,9 +271,6 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
         return showRecentEdits && isRecent(sdo, 10) ? `${c} ${cHighlightRecent}` : c;
     };
 
-    // let total = $derived(sdoSections.reduce((t: number, o: any) => t + (isNaN(o.value) ? 0 : Number(o.value)), 0));
-    //console.log(sdoSections);
-
     let nextSiteDateObservation = $derived(() => {
         let currentIndex = data.siteDates.findIndex((x: any) => x.siteDateId === currentSiteDateObservation.siteDateId);
         let nextIndex = ++currentIndex % data.siteDates.length;
@@ -293,7 +293,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     <YearWeek year={new Date(data.siteDateObservation.siteDate.recordDate).getFullYear()} week={weekOfYearSince(new Date(data.siteDateObservation.siteDate.recordDate))} sdoCount={recordSdoCount} />
     <!-- Hodges and P3 are not implemented yet -->
     <!-- <DataOptions bind:showRecentEdits bind:showDeletedData bind:showHodges bind:showP3 /> -->
-    <DataOptions bind:showMultipleRows={isViewAll} bind:isEditing bind:showRecentEdits bind:showDeletedData />
+    <DataOptions bind:showMultipleRows={isViewAll} bind:isEditing bind:showRecentEdits bind:showDeletedData showMyDataOnly showUnreviewedOnly />
 {/snippet}
 
 {#snippet controlsNavigation()}
@@ -335,7 +335,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 {#snippet editSpecimenEditing()}
     <!-- SAVE UPDATE(s) Action -->
     <!-- <button type="button" class={cButtonStandard} onclick={() => formEdit?.submit()}> -->
-    <button type="button" class={cButtonStandard}>
+    <button type="button" class={cButtonStandard} onclick={saveEditSingle}>
         {isViewAll ? 'Save All' : 'Save'}
         <span class="pl-2">✎</span>
     </button>
@@ -378,12 +378,10 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 {/snippet}
 
 {#snippet editSpecimenControls()}
-    {#if $page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'ENTRY' || $page.data.user.role === 'REVIEWER'}
-        {#if !isEditing}
-            {@render editSpecimenViewing()}
-        {:else}
-            {@render editSpecimenEditing()}
-        {/if}
+    {#if !isEditing}
+        {@render editSpecimenViewing()}
+    {:else}
+        {@render editSpecimenEditing()}
     {/if}
 {/snippet}
 
@@ -510,7 +508,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 {/snippet}
 
 {#snippet deleteSpecimenViewSingle(sdo: SiteDateObservationChecklist)}
-    {#if !sdo.confirmed && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || ($page.data.user.role === 'ENTRY' && (sdo.createdById === $page.data.user.id || sdo.updatedById === $page.data.user.id)))}
+    {#if isEditable(sdo, $page.data.user)}
         <form method="POST" action="?/deleteSiteDateObservation" onsubmit={onSubmitDelete} use:enhance>
             {#if !sdo.deleted}
                 <button type="submit" class={cButtonStandard}>Delete<span class="pl-2">❌</span></button>
@@ -538,7 +536,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     </div>
 {/snippet}
 
-{#snippet controlsOperations()}
+{#snippet controlsOperations(sdo: SiteDateObservationChecklist)}
     <div class="px-4 flex flex-auto justify-between gap-2">
         <div class="flex flex-row justify-start gap-2">
             <!-- EDIT(s) Action -->
@@ -546,10 +544,10 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 
             {#if !isEditing}
                 <!-- REVIEW(LOCK)/UNLOCK Actions -->
-                {@render reviewSpecimenViewSingle(data.siteDateObservation)}
+                {@render reviewSpecimenViewSingle(sdo)}
 
                 <!-- DELETE Action(s) -->
-                {@render deleteSpecimenViewSingle(data.siteDateObservation)}
+                {@render deleteSpecimenViewSingle(sdo)}
             {/if}
         </div>
 
@@ -579,7 +577,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 
     {#if isEditing}<!-- EDITING Multiple species observation recordings -->
 
-        <form name="edit" id="formEdit" method="POST" action="?/saveSiteDateObservation" use:enhance>
+        <form id="formEdit" method="POST" action="?/saveSiteDateObservation" use:enhance>
             {#each availableObservations as chkSdo}
                 <div class={specimenClassesMultiple(chkSdo)}>
                     <div class="pl-1 flex flex-row">
@@ -703,96 +701,104 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     {/if}
 {/snippet}
 
-{#snippet dataSingleAudit()}
+{#snippet dataSingleAudit(sdo: SiteDateObservationChecklist)}
     <div class="flex flex-row flex-wrap justify-between">
         <div class="flex flex-col basis-60">
-            <div>Created At: {data.siteDateObservation.createdAt ? formatDate(new Date(data.siteDateObservation.createdAt).toISOString(), 'short', 'short') : ''}</div>
-            <div class="">Created By: {data.siteDateObservation.createdBy?.lastFirst ?? ''}</div>
+            <div>Created At: {sdo.createdAt ? formatDate(new Date(sdo.createdAt).toISOString(), 'short', 'short') : ''}</div>
+            <div class="">Created By: {sdo.createdBy?.lastFirst ?? ''}</div>
         </div>
         <div class="flex flex-col basis-60">
-            <div>Updated At: {data.siteDateObservation.updatedAt ? formatDate(new Date(data.siteDateObservation.updatedAt).toISOString(), 'short', 'short') : ''}</div>
-            <div class="">Updated By: {data.siteDateObservation.updatedBy?.lastFirst ?? ''}</div>
+            <div>Updated At: {sdo.updatedAt ? formatDate(new Date(sdo.updatedAt).toISOString(), 'short', 'short') : ''}</div>
+            <div class="">Updated By: {sdo.updatedBy?.lastFirst ?? ''}</div>
         </div>
         <div class="flex flex-col basis-60">
-            <div>Confirm At: {data.siteDateObservation.confirmAt ? formatDate(new Date(data.siteDateObservation.confirmAt).toISOString(), 'short', 'short') : ''}</div>
-            <div class="">Confirm By: {data.siteDateObservation.confirmBy?.lastFirst ?? ''}</div>
+            <div>Confirm At: {sdo.confirmAt ? formatDate(new Date(sdo.confirmAt).toISOString(), 'short', 'short') : ''}</div>
+            <div class="">Confirm By: {sdo.confirmBy?.lastFirst ?? ''}</div>
         </div>
     </div>
 {/snippet}
 
-{#snippet dataSingle()}
-    <div class={`${data.siteDateObservation.deleted ? 'line-through variant-ghost-error' : showRecentEdits && isRecent(data.siteDateObservation, 10) ? cHighlightRecent : ''}`}>
-        <!-- DATA Heading -->
-        <!-- svelte-ignore a11y_mouse_events_have_key_events -->
-        <div class="flex flex-row justify-between font-bold mb-4" onclick={onClickNames} role="button" tabindex="0">
-            <div>
-                {data.siteDateObservation.checklist.scientificName}
-            </div>
-            <div>
-                {data.siteDateObservation.checklist.commonName}
-            </div>
-        </div>
-
+{#snippet dataSingleEdit(sdo: SiteDateObservationChecklist)}
+    <!-- LOOKAT: https://stackoverflow.com/questions/77420975/svelte-store-calculate-total-value-of-items-in-array-of-objects -->
+    <!-- TODO: Indicate when data has changed -->
+    <form id="formEdit" bind:this={formEdit} method="POST" action="?/saveSiteDateObservation" onsubmit={onSubmitEdit} use:enhance>
         <div class="flex flex-row space-x-4 mb-2">
-            {#if isEditing}
-                <div class="w-32 my-auto">Hodges: {@html htmlHodges(currentSiteDateObservation.checklist.hodges)}</div>
-                <div class="pr-2 pb-0.5">
-                    <label class={cSectionClasses}>
-                        <span class={`${cSectionSpanClasses} my-auto whitespace-nowrap`}>ID Method:</span>
-                        <select class="input" name={`${currentSiteDateObservation.siteDateObservationId}_idcode`} value={currentSiteDateObservation.idCode}>
-                            <option value="O">Observed</option>
-                            <option value="C">Collected</option>
-                            <option value="N">Net</option>
-                            <option value="P">Photo</option>
-                        </select>
-                    </label>
-                    <input type="hidden" name={`${currentSiteDateObservation.siteDateObservationId}_idcode`} value={currentSiteDateObservation.idCode} />
-                </div>
-                <div class="w-28 my-auto text-amber-700 dark:text-amber-400">(Total: {total})</div>
-            {:else}
-                <div class="w-32">Hodges: {@html htmlHodges(currentSiteDateObservation.checklist.hodges)}</div>
-                <div class="w-44">ID Method: {@html htmlIdCode(currentSiteDateObservation.idCode)}</div>
-                <div class="w-28">(Total: {currentSiteDateObservation.total})</div>
-            {/if}
+            <div class="w-32 my-auto">Hodges: {@html htmlHodges(sdo.checklist.hodges)}</div>
+            <div class="pr-2 pb-0.5">
+                <label class={cSectionClasses}>
+                    <span class={`${cSectionSpanClasses} my-auto whitespace-nowrap`}>ID Method:</span>
+                    <select class="input" name={`${sdo.siteDateObservationId}_idCode`} value={sdo.idCode}>
+                        <option value="O">Observed</option>
+                        <option value="C">Collected</option>
+                        <option value="N">Net</option>
+                        <option value="P">Photo</option>
+                    </select>
+                </label>
+                <input type="hidden" name={`${sdo.siteDateObservationId}_idCode_orig`} value={sdo.idCode} />
+            </div>
+            <div class="w-28 my-auto text-amber-700 dark:text-amber-400">(Total: {editingTotal})</div>
         </div>
-        <!-- LOOKAT: https://stackoverflow.com/questions/77420975/svelte-store-calculate-total-value-of-items-in-array-of-objects -->
 
         <hr />
 
-        <!-- DATA Details -->
-        {#if isEditing}
-            <!-- TODO: Indicate when data has changed -->
-            <form name="edit" id="formEdit" method="POST" action="?/saveSiteDateObservation" use:enhance>
-                <!-- <input type="hidden" name={`${data.siteDateObservation.siteDateObservationId}_siteDateObservationId`} value={data.siteDateObservation.siteDateObservationId} /> -->
-                <div class={cDataClasses}>
-                    {#each sdoSections as section}
-                        <div class={cDatumClasses}>
-                            <label class={cSectionClasses}>
-                                <span class={cSectionSpanClasses}>{section.label}:</span>
-                                <input type="number" name={`${data.siteDateObservation.siteDateObservationId}_${section.name}`} value={section.value} class="w-20 text-center text-black" />
-                                <input type="hidden" name={`${data.siteDateObservation.siteDateObservationId}_${section.name}_orig`} value={section.value} oninput={handleChange} />
-                            </label>
-                        </div>
-                    {/each}
+        <div class={cDataClasses}>
+            {#each sdoSections as section}
+                <div class={cDatumClasses}>
+                    <label class={cSectionClasses}>
+                        <span class={cSectionSpanClasses}>{section.label}:</span>
+                        <input type="number" name={`${sdo.siteDateObservationId}_${section.name}`} value={section.value} min="0" class="w-20 text-center text-black" oninput={handleChange} />
+                        <input type="hidden" name={`${sdo.siteDateObservationId}_${section.name}_orig`} value={section.value} />
+                    </label>
                 </div>
-            </form>
-        {:else}
-            <div class={cDataClasses}>
-                {#each sdoSections as { label, value }}
-                    <div class={cDatumClasses}>
-                        <div class={cSectionClasses}>
-                            <div class={cSectionSpanClasses}>{label}:</div>
-                            <div class="w-8">{@html value ?? '&varnothing;'}</div>
-                        </div>
-                    </div>
-                {/each}
+            {/each}
+        </div>
+    </form>
+{/snippet}
+
+{#snippet dataSingleRead(sdo: SiteDateObservationChecklist)}
+    <!-- DATA Details -->
+    <div class="flex flex-row space-x-4 mb-2">
+        <div class="w-32">Hodges: {@html htmlHodges(sdo.checklist.hodges)}</div>
+        <div class="w-44">ID Method: {@html htmlIdCode(sdo.idCode)}</div>
+        <div class="w-28">(Total: {sdo.total})</div>
+    </div>
+
+    <hr />
+
+    <div class={cDataClasses}>
+        {#each sdoSections as { label, value }}
+            <div class={cDatumClasses}>
+                <div class={cSectionClasses}>
+                    <div class={cSectionSpanClasses}>{label}:</div>
+                    <div class="w-8">{@html value ?? '&varnothing;'}</div>
+                </div>
             </div>
+        {/each}
+    </div>
+{/snippet}
+
+{#snippet dataSingle(sdo: SiteDateObservationChecklist)}
+    <div class={`${sdo.deleted ? 'line-through variant-ghost-error' : showRecentEdits && isRecent(sdo, 10) ? cHighlightRecent : ''}`}>
+        <!-- DATA Heading -->
+        <div class="flex flex-row justify-between font-bold mb-4" onclick={onClickNames} onkeydown={() => {}} role="button" tabindex="0">
+            <div>
+                {sdo.checklist.scientificName}
+            </div>
+            <div>
+                {sdo.checklist.commonName}
+            </div>
+        </div>
+
+        {#if isEditing}
+            {@render dataSingleEdit(sdo)}
+        {:else}
+            {@render dataSingleRead(sdo)}
         {/if}
 
         <hr />
 
         <!-- AUDIT Summary -->
-        {@render dataSingleAudit()}
+        {@render dataSingleAudit(sdo)}
     </div>
 {/snippet}
 
@@ -804,8 +810,10 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
         <!-- Header and options -->
         {@render controlsNavigation()}
 
-        <!-- Main controls -->
-        {@render controlsOperations()}
+        {#if $page.data.user.role === ROLE.SUPER || $page.data.user.role === ROLE.ADMIN || $page.data.user.role === ROLE.REVIEWER || $page.data.user.role === ROLE.ENTRY}
+            <!-- Main controls -->
+            {@render controlsOperations(data.siteDateObservation)}
+        {/if}
 
         <div class="pr-4 overflow-y-auto h-full">
             <div>
@@ -814,7 +822,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                     {@render dataMultiple()}
                 {:else}
                     <!-- Single speices observation recordings -->
-                    {@render dataSingle()}
+                    {@render dataSingle(data.siteDateObservation)}
                 {/if}
             </div>
         </div>

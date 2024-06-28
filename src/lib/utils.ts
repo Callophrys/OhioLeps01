@@ -1,6 +1,6 @@
 import { ROLE } from '$lib/types.js';
 import type { DateTracking } from '$lib/types.js';
-import type { SiteDateObservation, User } from '@prisma/client';
+import type { SiteDateObservation } from '@prisma/client';
 
 type DateStyle = Intl.DateTimeFormatOptions['dateStyle'];
 type TimeStyle = Intl.DateTimeFormatOptions['timeStyle'];
@@ -57,10 +57,18 @@ export const sortByStringProperty = (items: any[], propertyName: string, ascendi
 
 export const isDate = (d: any) => d instanceof Date && isFinite(Number(d));
 
+/**
+    Return if data entry can edit the current data.  Has to be one's own data and not marked reviewed.
+    NOTE: Might want to allow reviewers to edit one another's data.
+*/
 export const isEditable = (sdo: SiteDateObservation, user: any) => {
-    return user.role === ROLE.SUPER || user.role === ROLE.ADMIN || (user.role === ROLE.ENTRY && sdo.createdById === user.id);
+    return !sdo.confirmed && (user.role === ROLE.SUPER || user.role === ROLE.ADMIN || (user.role === ROLE.ENTRY && sdo.createdById === user.id));
 };
 
+/**
+    Return if reviewer can confirm unreviewed data and set or unset reveiwed status on own data.
+    NOTE: Might want to allow reviewers to edit one another's data.
+*/
 export const isReviewable = (sdo: SiteDateObservation, user: any) => {
     return user.role === ROLE.SUPER || user.role === ROLE.ADMIN || (user.role === ROLE.REVIEWER && (!sdo.confirmById || sdo.confirmById === user.id));
 };

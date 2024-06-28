@@ -286,7 +286,6 @@ model SiteDateObservation {
     siteDateObservationId Int @id @default(autoincrement())
     // ** use siteDateObservationId as real key now - and later just drop 'seqId Int?'
     seqId Int?
-    hodges String? // hodges + siteDateId would be unique
     idCode String? // @db.String(1)  // in { how id'ed:  O observ, N net, P photo, C collected }
     section1 Int?        // counts of CheckList species per section
     section2 Int?
@@ -324,7 +323,8 @@ model SiteDateObservation {
 
     // Parent Relation
     checklist Checklist? @relation(fields: [checklistId], references: [checklistId])
-    checklistId Int? // Probably should never be null
+    checklistId Int? // Should never be null 
+    // TODO find and fix obs that are missing checklists
 
     // Parent Relation
     siteDate SiteDate @relation(fields: [siteDateId], references: [siteDateId])
