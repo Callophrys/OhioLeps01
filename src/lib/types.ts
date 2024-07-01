@@ -114,11 +114,11 @@ export type TaxonomyComplete = Taxonomy & {
 export type SiteRecordDate = { siteDateId: number; recordDate: Date };
 
 export type DateTracking = {
-    siteDateId: number;
-    year: number;
-    week: number;
-    recordDate: Date;
-    fDate: string;
+    siteDateId: number | null;
+    year: number | null;
+    week: number | null;
+    recordDate: Date | null;
+    fDate: string | null;
 };
 
 export type DateTrackingSet = {

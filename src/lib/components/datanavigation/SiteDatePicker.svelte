@@ -63,10 +63,8 @@
 
     //console.log('SiteDatePicker:currentSiteId', currentSiteId, 'currentSiteDateId', currentSiteDateId);
 
-    /** Show down arrow with year and week labels to indicate dropdown.  Default: true */
-    // export let dropdownPointers: boolean = true;
-    /** Includes date in weeks dropdown.  Default: false */
-    // export let dropdownShowDate: boolean = false;
+    /* Show down arrow with year and week labels to indicate dropdown.  Default: true */
+    /* Includes date in weeks dropdown.  Default: false */
 
     /*-- Context */
 
@@ -80,22 +78,9 @@
 
     /*-- -- Styling -- */
     /*-- Properties (styles) */
-    // export let controlOuter: CssClasses = '';
-    // export let controlBody: CssClasses = '';
-    // export let buttonLeft: CssClasses = '';
-    // export let buttonYear: CssClasses = dropdownPointers ? ($$slots.prefixYear ? 'w-28' : 'w-20') : $$slots.prefixYear ? 'w-24' : 'w-16';
-    // export let buttonWeek: CssClasses = dropdownPointers ? ($$slots.prefixYear ? 'w-28' : 'w-20') : $$slots.prefixYear ? 'w-24' : 'w-16';
-    // export let buttonRight: CssClasses = '';
-    // export let prefixYear: CssClasses = '';
-    // export let prefixWeek: CssClasses = '';
-    // export let suffixYear: CssClasses = dropdownPointers ? "before:content-['↓']" : '';
-    // export let suffixWeek: CssClasses = dropdownPointers ? "before:content-['↓']" : '';
-    // export let popupInner: CssClasses = '';
-    // export let popupStyles: string = '';
 
     // Properties (a11y)
     /** Provide the ARIA labelledby value.  Default: "Select site-date" */
-    // export let labelledby = 'Select site-date';
 
     /*-- Constants (styles) */
     const cControlOuter = 'block lg:flex lg:flex-row gap-0 md:gap-1 lg:gap-2';
@@ -112,6 +97,7 @@
     const cPopupStyles = 'max-height: calc(100vh - 272px);';
 
     /*-- Reactives (styles) */
+    // (Post-SV4) Does not support native class atribute anymore, TODO: see about restoring this in SV5
     let classesControlOuter = $derived.by(() => `${cControlOuter} ${controlOuter}`); // ${this.className ?? ''}`);
     let classesControlBody = $derived(`${cControlBody} ${controlBody}`); // ${this.className ?? ''}`);
     let classesButtonLeft = $derived(`${cButtonLeft} ${buttonLeft}`); // ${this.className ?? ''}`);
@@ -174,7 +160,7 @@
     /*-- Handlers */
     function handleSelectYear(event: any) {
         let targetYear = event.currentTarget.value.toString();
-        let idx = trackedWeeks.findIndex((x) => x.year.toString() === targetYear);
+        let idx = trackedWeeks.findIndex((x) => (x.year ?? -1).toString() === targetYear);
         console.log('yearDates', yearDates.slice(0, 2));
 
         if (idx > -1) {
@@ -206,9 +192,9 @@
     function updatePerHandler(idx: number) {
         console.log('updatePerHandler.idx:', idx);
         const tw = trackedWeeks[idx];
-        recordYear = tw.year.toString();
-        recordWeek = tw.week.toString();
-        currentSiteDateId = tw.siteDateId;
+        recordYear = (tw.year ?? -1).toString();
+        recordWeek = (tw.week ?? -1).toString();
+        currentSiteDateId = tw.siteDateId ?? -1;
         goto('/api/sitedates/' + tw.siteDateId);
     }
 
@@ -223,8 +209,8 @@
     async function fetchData(siteId: number) {
         if (isNaN(siteId)) {
             console.log('siteId in SiteDatePicker is NaN');
-	    return;
-	}
+            return;
+        }
 
         console.log('siteId in SiteDatePicker is ', siteId);
         let sdpath = `/api/sitedates/c/${siteId}`;
@@ -246,7 +232,7 @@
                 ...Array.from(siteDates)
                     .map<DateTracking>((w: SiteDateYearSiteDates) => ({
                         siteDateId: w.siteDateId,
-                        year: w.year,
+                        year: w.year ?? -1,
                         week: w.recordDate ? weekOfYearSince(new Date(w.recordDate)) : -1,
                         recordDate: new Date(w.recordDate),
                         fDate: w.recordDate ? formatDate(new Date(w.recordDate).toISOString()) : '',

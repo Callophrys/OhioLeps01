@@ -206,6 +206,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     /*-- Methods */
     function modalComponentForm(): void {
         const c: ModalComponent = { ref: ModalSdoAdd };
+        // TODO: supply a filtered checklist.  I.e. checklist minus current subset in use.
         const modal: ModalSettings = {
             type: 'component',
             component: c,
@@ -215,7 +216,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
             response: (r) => {
                 if (typeof r === 'object') {
                     const formData = new FormData();
-                    for (const [key, val] of Object.entries(r)) formData.append(key, val);
+                    for (const [k, v] of Object.entries(r) as [string, any]) formData.append(k, v);
 
                     fetch('?/addSiteDateObservation', {
                         method: 'POST',
@@ -244,7 +245,9 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 
     /*-- Reactives (functional) */
     // let total = $derived(getTotal());
-    let currentSiteDateObservation = $derived(data.siteDateObservation as SiteDateObservationChecklist);
+    let currentSiteDateObservation = $state(data.siteDateObservation as SiteDateObservationChecklist);
+    let currentSiteId: number = $state(data.siteDateObservation.siteDate.siteId);
+    let currentSiteDateId: number = $state(data.siteDateObservation.siteDateId);
 
     const htmlHodges = (h: string | null) => (!h || h === 'null' ? '&varnothing;' : h);
     const htmlIdCode = (c: string | null) => (!c || c === 'null' ? '&varnothing;' : c === 'O' ? 'Observed' : c === 'C' ? 'Collected' : c === 'N' ? 'Net' : c === 'P' ? 'Photo' : 'Unknown');
@@ -300,35 +303,15 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     <!-- TODO: make this flex better for responsive sizings -->
     <div class="flex flex-col lg:flex-row lg:justify-between gap-1 lg:gap-2 pb-2 text-surface-600-300-token">
         <div class="flex flex-row">
-            <GoBack targetId={data.siteDateObservation.siteDate.siteDateId} targetType={GOTYPE.SITEDATES} controlBody="scale-90" />
+            <GoBack targetId={data.siteDateObservation.siteDate.siteDateId} targetIdSecondary={null} targetType={GOTYPE.SITEDATES} controlBody="scale-90" buttonCenter="" scriptCenter="" labelledby="" />
             <!--
                 <GoNext targetId={nextSiteDateObservation.siteDateId} targetIdSecondary={data.siteDateObservation.siteId} targetType={GOTYPE.SITEDATEOBSERVATIONS} targetIdSecondary={data.siteDate.siteId} controlBody="scale-90" controlDisabled={firstSdoId < 0} />
                 -->
-            <SitePicker currentSiteId={data.siteDateObservation.siteDate.siteId} controlBody="scale-90" />
+            <SitePicker {currentSiteId} controlBody="scale-90" />
         </div>
         <SpeciesPicker currentSdoChecklistItemId={currentSiteDateObservation.siteDateObservationId} {isEditing} {isViewAll} {showDeletedData} controlBody="scale-90" />
         <!-- older one <SiteDatePicker currentSiteId={data.siteDateObservation.siteDate.siteId} currentSiteDateId={data.siteDateObservation.siteDateId ?? -1} controlBody="scale-90" /> -->
-        <SiteDatePicker
-            bind:currentSiteId={data.siteDateObservation.siteId}
-            bind:currentSiteDateId={data.siteDateObservation.siteDateId}
-            controlBody="scale-90"
-            buttonLeft=""
-            buttonRight=""
-            buttonYear=""
-            buttonWeek=""
-            dropdownShowDate={false}
-            dropdownPointers={false}
-            heading={null}
-            yearPrefix=""
-            weekPrefix=""
-            controlOuter=""
-            prefixYear=""
-            prefixWeek=""
-            suffixYear=""
-            suffixWeek=""
-            popupInner=""
-            popupStyles=""
-            labelledby="" />
+        <SiteDatePicker bind:currentSiteId bind:currentSiteDateId controlBody="scale-90" buttonLeft="" buttonRight="" buttonYear="" buttonWeek="" dropdownShowDate={false} dropdownPointers={false} heading={null} yearPrefix="" weekPrefix="" controlOuter="" prefixYear="" prefixWeek="" suffixYear="" suffixWeek="" popupInner="" popupStyles="" labelledby="" />
     </div>
 {/snippet}
 
@@ -529,7 +512,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 
 {#snippet addSpecimen()}
     <div class="flex flex-row gap-2">
-        <button type="button" class={cButtonAddView} onclick={modalComponentForm} disabled={isEditing}>
+        <button type="button" class={cButtonAddView} onclick={modalComponentForm} disabled={isEditing} title="Add new species observation">
             <span>Add species</span>
             <span class="text-green-900 dark:text-green-200 text-2xl before:content-['✚']"></span>
         </button>

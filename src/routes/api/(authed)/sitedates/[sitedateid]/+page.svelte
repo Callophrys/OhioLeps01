@@ -179,7 +179,7 @@
 </script>
 
 <YearWeek year={recordYear} week={recordWeek} sdoCount={recordSdoCount} />
-<DataOptions bind:showRecentEdits bind:showDeletedData />
+<DataOptions bind:showRecentEdits bind:showDeletedData showMultipleRows={false} showMyDataOnly={false} showUnreviewedOnly={false} isEditing={false} />
 
 <DoubledContainer basisLeft="basis-2/5" basisRight="basis-3/5">
     <svelte:fragment slot="leftHead">
@@ -426,12 +426,12 @@
         <div class="flex flex-row justify-between mb-2">
             <div class="flex flex-row">
                 <div class="my-auto mr-4">{data.siteDate.siteName}</div>
-                <GoBack targetId={data.siteDate.siteId} targetType={GOTYPE.SITES} controlBody="scale-90" />
+                <GoBack targetId={data.siteDate.siteId} targetType={GOTYPE.SITES} targetIdSecondary={null} controlBody="scale-90" buttonCenter="" scriptCenter="" labelledby="" />
                 <GoNext targetId={firstSdoId} targetType={GOTYPE.SITEDATEOBSERVATIONS} targetIdSecondary={data.siteDate.siteId} controlBody="scale-90" controlDisabled={firstSdoId < 0} />
             </div>
             <div class="flex flex-row">
                 <button type="button" class="btn" onclick={addSiteDate} title="Add new site date observation"><span class="text-success-400">✚</span>&nbsp;Add site date</button>
-                <SiteDatePicker {currentSiteId} {currentSiteDateId} controlBody="scale-90" buttonLeft="" buttonRight="" buttonYear="" buttonWeek="" dropdownShowDate={false} dropdownPointers={false} heading={null} yearPrefix="" weekPrefix="" controlOuter="" prefixYear="" prefixWeek="" suffixYear="" suffixWeek="" popupInner="" popupStyles="" labelledby="" />
+                <SiteDatePicker bind:currentSiteId bind:currentSiteDateId controlBody="scale-90" buttonLeft="" buttonRight="" buttonYear="" buttonWeek="" dropdownShowDate={false} dropdownPointers={false} heading={null} yearPrefix="" weekPrefix="" controlOuter="" prefixYear="" prefixWeek="" suffixYear="" suffixWeek="" popupInner="" popupStyles="" labelledby="" />
             </div>
             <!-- below version breaks -->
             <!--     <SiteDatePicker -->
