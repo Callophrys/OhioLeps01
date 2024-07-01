@@ -5,9 +5,11 @@
     import { enhance } from '$app/forms';
     import { goto } from '$app/navigation';
 
+    // TODO: handle cancel
+
     /*-- -- Data -- */
     /*-- Exports */
-    let { data, form } = $props();
+    let { data } = $props();
 
     console.log('data ***: ', data);
 
@@ -31,10 +33,12 @@
     let minTemp = $derived(useCelcius ? -89.3 : -129);
     let maxTemp = $derived(useCelcius ? 56.7 : 135);
 
+    // TODO: choose storage unit and handle choice and conversion somewhere
     let useMph = $state(true);
 
-    let recordDate: Date | null = $state(null);
-    let rxRecordDate = $derived(recordDate ? weekOfYearSince(recordDate) : null);
+    let recordDate: string | null = $state(null);
+    let rxRecordDate = $derived(recordDate ? weekOfYearSince(new Date(recordDate)) : null);
+    let targetForm: HTMLFormElement;
 
     /*-- Variables and objects */
     /*-- Run first stuff */
@@ -46,16 +50,16 @@
 
     /*-- Other */
 
-    const handleSubmit = async (e: any) => {
-        try {
-            e.preventDefault();
-            console.log('e:', e);
-            const form = e.target;
-            const formData = new FormData(form);
-            formData.append('tzOffset', new Date().getTimezoneOffset().toString());
+    const handleSubmit = async (e: Event) => {
+        e.preventDefault();
+        console.log('e:', e);
+        const formData = new FormData(targetForm);
+        console.log('formDate:', formData);
+        formData.append('tzOffset', new Date().getTimezoneOffset().toString());
 
-            const response = await fetch(form.action, {
-                method: form.method,
+        try {
+            const response = await fetch(targetForm.action, {
+                method: targetForm.method,
                 body: formData,
             });
 
@@ -73,8 +77,9 @@
     setTimeout(() => {
         (() => {
             if (typeof document === 'object') {
-                (document.getElementById('recordDate') as HTMLInputElement).value = '2024-06-12';
                 (document.getElementById('recorder') as HTMLInputElement).value = 'Mortimer Snerd';
+                (document.getElementById('recordDate') as HTMLInputElement).value = '2024-06-12';
+                (document.getElementById('week') as HTMLInputElement).value = weekOfYearSince(new Date('2024-06-12'))?.toString() ?? '';
                 (document.getElementById('startTime') as HTMLInputElement).value = '10:15';
                 (document.getElementById('endTime') as HTMLInputElement).value = '13:30';
                 (document.getElementById('startTemp') as HTMLInputElement).value = '82';
@@ -159,14 +164,20 @@
 {#snippet entryInput(fullId, fullLabel, inputType)}
     <label class="label">
         <span>{fullLabel}:</span>
-        <input type={inputType} class="input" id={fullId} name={fullId} title={fullLabel} />
+        {#if inputType === 'number'}
+            <input type="number" class="input" id={fullId} name={fullId} min="0" />
+        {:else if inputType === 'input'}
+            <input type="input" class="input pl-2.5" id={fullId} name={fullId} />
+        {:else}
+            <input type={inputType} class="input" id={fullId} name={fullId} />
+        {/if}
     </label>
 {/snippet}
 
 {#snippet entryInputForSets(rootId, idKey, rootLabel, inputType)}
     <label class="label">
         <span>{rootLabel} {idKey}:</span>
-        <input type={inputType} class="input" id="{rootId}{idKey}" name="{rootId}{idKey}" title="{rootLabel} {idKey}" />
+        <input type={inputType} class="input pl-2.5" id="{rootId}{idKey}" name="{rootId}{idKey}" title="{rootLabel} {idKey}" />
     </label>
 {/snippet}
 
@@ -185,7 +196,7 @@
 {/snippet}
 
 {#snippet body()}
-    <form method="POST" action="?/addSiteDate" id="addSiteDate" name="addSiteDate" onsubmit={handleSubmit} use:enhance>
+    <form method="POST" action="?/addSiteDate" id="addSiteDate" name="addSiteDate" bind:this={targetForm} use:enhance>
         <input type="hidden" id="siteId" name="siteId" value={data.siteId} />
         <div class="w-[37em]">
             <div class="content">
@@ -197,8 +208,8 @@
                 </label>
 
                 <label class="label">
-                    <span>Week of Year: {rxRecordDate}</span>
-                    <input type="number" class="input" id="week" name="week" readonly title="Survey period week of the year for the record" />
+                    <span>Week of Year:</span>
+                    <input type="number" class="input" id="week" name="week" readonly title="Calculated period week of the year for the record" value={rxRecordDate} />
                 </label>
 
                 {@render entryInput('startTime', 'Start Time', 'time')}
@@ -213,15 +224,8 @@
                 {@render entryInput('startWindDir', 'Start Wind Direction', 'input')}
                 {@render entryInput('endWindDir', 'End Wind Direction', 'input')}
 
-                <label class="label">
-                    <span>Start Wind Speed ({useMph ? 'mph' : 'km'})</span>
-                    <input type="number" min="0" class="input" id="startWindMPH" name="startWindMPH" title="Start Wind Speed" />
-                </label>
-
-                <label class="label">
-                    <span>End Wind Speed ({useMph ? 'mph' : 'km'})</span>
-                    <input type="number" min="0" class="input" id="endWindMPH" name="endWindMPH" title="End Wind Speed" />
-                </label>
+                {@render entryInput('startWindMPH', `Start Wind Speed (${useMph ? 'mph' : 'km'})`, 'number')}
+                {@render entryInput('endWindMPH', `End Wind Speed (${useMph ? 'mph' : 'km'})`, 'number')}
 
                 <div class="mt-4">
                     <div class="text-center">Weather</div>
@@ -260,4 +264,4 @@
     </form>
 {/snippet}
 
-<Container {head} {body} tail={null} />
+<Container {head} {body} bodyClasses={null} tail={null} />

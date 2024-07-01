@@ -18,6 +18,13 @@ export enum SORTORDER {
     DSC = 2,
 }
 
+export enum WEATHER {
+    U = 'Unknown',
+    O = 'Overcast',
+    R = 'Rain',
+    S = 'Sun',
+}
+
 export enum ZOOM_DIR {
     SHRINK = -1,
     ENLARGE = 1,

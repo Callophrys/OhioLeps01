@@ -1,4 +1,4 @@
-import { ROLE } from '$lib/types.js';
+import { ROLE, WEATHER } from '$lib/types.js';
 import type { DateTracking } from '$lib/types.js';
 import type { SiteDateObservation } from '@prisma/client';
 
@@ -6,9 +6,31 @@ type DateStyle = Intl.DateTimeFormatOptions['dateStyle'];
 type TimeStyle = Intl.DateTimeFormatOptions['timeStyle'];
 type TimeZone = Intl.DateTimeFormatOptions['timeZone'];
 
-export function convertFtoC(f: number | null) {
-    if (f === null) return;
-    return Math.floor(((f - 32) * 5) / 9);
+export function convertFtoC(f: number | null): string {
+    if (!f) return '';
+    return (((f - 32) * 5) / 9).toFixed(1);
+}
+
+export function convertMphToKm(f: number | null): string {
+    if (!f) return '';
+    // numeric: Math.round(val * 100) / 100
+    return (f * 1.609344).toFixed(1);
+}
+
+export function decodeWeather(k: string | null): string {
+    if (!k) return '';
+    switch (k) {
+        case 'U':
+            return WEATHER.U;
+        case 'O':
+            return WEATHER.O;
+        case 'R':
+            return WEATHER.R;
+        case 'S':
+            return WEATHER.S;
+        default:
+            return '';
+    }
 }
 
 export function daysIntoYear(date: Date): number {
@@ -96,7 +118,7 @@ export function weekOfYearSince(weekOfDate: Date, sinceDate: Date = new Date(199
     if (useSameYear) {
         sinceDate.setFullYear(weekOfDate.getFullYear());
     }
-    let daysPassed = (weekOfDate.getTime() - sinceDate.getTime()) / 24 / 60 / 60 / 1000;
+    let daysPassed = (weekOfDate.valueOf() - sinceDate.valueOf()) / 24 / 60 / 60 / 1000;
     return 1 + Math.floor(daysPassed / 7);
 }
 

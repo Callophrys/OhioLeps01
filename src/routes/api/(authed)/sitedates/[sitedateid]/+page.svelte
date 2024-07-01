@@ -3,7 +3,7 @@
     import DoubledContainer from '$lib/components/DoubledContainer.svelte';
     import { Accordion, AccordionItem, RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
     import { setContext } from 'svelte';
-    import { formatDate, weekOfYearSince, convertFtoC } from '$lib/utils';
+    import { formatDate, weekOfYearSince, convertFtoC, convertMphToKm, isRecent, decodeWeather } from '$lib/utils';
     import DataOptions from '$lib/components/datanavigation/DataOptions.svelte';
     import SiteDatePicker from '$lib/components/datanavigation/SiteDatePicker.svelte';
     import YearWeek from '$lib/components/datanavigation/YearWeek.svelte';
@@ -11,37 +11,34 @@
     import GoNext from '$lib/components/datanavigation/GoNext.svelte';
     import { GOTYPE } from '$lib/types.js';
     import { goto } from '$app/navigation';
-    import { isRecent } from '$lib/utils';
+    import ToggleTemp from '$lib/components/data/ToggleTemp.svelte';
 
     /*-- -- Data -- */
     /*-- Exports */
     let {
         data,
-        initialUseFarenheit = 0,
-        accA = true,
-        accB = false,
-        accC = false,
-        accD = false,
-        accE = false,
-        accF = false,
-        accG = false,
-        accH = false,
-        accI = false,
-        accJ = false,
     }: {
         data: any;
-        initialUseFarenheit: number;
-        accA: boolean;
-        accB: boolean;
-        accC: boolean;
-        accD: boolean;
-        accE: boolean;
-        accF: boolean;
-        accG: boolean;
-        accH: boolean;
-        accI: boolean;
-        accJ: boolean;
     } = $props();
+
+    let useFarenheit: string = $state('F');
+    let startTemp = $derived(useFarenheit === 'F' ? data.siteDate.startTemp : convertFtoC(data.siteDate.startTemp));
+    let endTemp = $derived(useFarenheit === 'F' ? data.siteDate.endTemp : convertFtoC(data.siteDate.endTemp));
+
+    let useMphX: string = $state('M');
+    let startWindMph = $derived(useMphX === 'M' ? data.siteDate.startWindMPH : convertMphToKm(data.siteDate.startWindMPH));
+    let endWindMph = $derived(useMphX === 'M' ? data.siteDate.endWindMPH : convertMphToKm(data.siteDate.endWindMPH));
+
+    let accA: boolean = $state(false);
+    let accB: boolean = $state(false);
+    let accC: boolean = $state(false);
+    let accD: boolean = $state(false);
+    let accE: boolean = $state(false);
+    let accF: boolean = $state(false);
+    let accG: boolean = $state(false);
+    let accH: boolean = $state(false);
+    let accI: boolean = $state(false);
+    let accJ: boolean = $state(false);
 
     /*-- Context */
     setContext('sites', data.sites);
@@ -59,7 +56,6 @@
     /*-- Constants (functional) */
     /*-- Properties (functional) */
     //let currentSiteDate: SiteDateYear = data.siteDate;
-    let useFarenheit: number = $state(0);
     let optAccA: boolean = $state(false);
     let optAccB: boolean = $state(false);
     let optAccC: boolean = $state(false);
@@ -88,28 +84,26 @@
     $effect(() => {
         let x: string;
 
-        x = localStorage?.useFarenheit;
-        useFarenheit = x && x.length ? parseInt(x) : initialUseFarenheit;
         x = localStorage?.optAccA;
-        optAccA = x && x.length ? x === 'true' : accA;
+        optAccA = x ? x === 'true' : accA;
         x = localStorage?.optAccB;
-        optAccB = x && x.length ? x === 'true' : accB;
+        optAccB = x ? x === 'true' : accB;
         x = localStorage?.optAccC;
-        optAccC = x && x.length ? x === 'true' : accC;
+        optAccC = x ? x === 'true' : accC;
         x = localStorage?.optAccD;
-        optAccD = x && x.length ? x === 'true' : accD;
+        optAccD = x ? x === 'true' : accD;
         x = localStorage?.optAccE;
-        optAccE = x && x.length ? x === 'true' : accE;
+        optAccE = x ? x === 'true' : accE;
         x = localStorage?.optAccF;
-        optAccF = x && x.length ? x === 'true' : accF;
+        optAccF = x ? x === 'true' : accF;
         x = localStorage?.optAccG;
-        optAccG = x && x.length ? x === 'true' : accG;
+        optAccG = x ? x === 'true' : accG;
         x = localStorage?.optAccH;
-        optAccH = x && x.length ? x === 'true' : accH;
+        optAccH = x ? x === 'true' : accH;
         x = localStorage?.optAccI;
-        optAccI = x && x.length ? x === 'true' : accI;
+        optAccI = x ? x === 'true' : accI;
         x = localStorage?.optAccJ;
-        optAccJ = x && x.length ? x === 'true' : accJ;
+        optAccJ = x ? x === 'true' : accJ;
 
         x = localStorage?.showRecentEdits;
         if (x && x.length) {
@@ -123,7 +117,6 @@
     });
 
     $effect(() => {
-        localStorage.setItem('useFarenheit', useFarenheit.toString());
         localStorage.setItem('optAccA', optAccA.toString());
         localStorage.setItem('optAccB', optAccB.toString());
         localStorage.setItem('optAccC', optAccC.toString());
@@ -218,21 +211,17 @@
                 <svelte:fragment slot="summary">
                     <div class="flex space-x-4">
                         <span class="my-auto">Temperature</span>
-                        <div class="scale-75 origin-right">
-                            <RadioGroup name="toggle-naming-group" active="variant-filled-primary" hover="hover:variant-soft-primary">
-                                <RadioItem onclick={handleRadioGroupClick} bind:group={useFarenheit} name="toggle-naming" value={1}>&deg;F</RadioItem>
-                                <RadioItem onclick={handleRadioGroupClick} bind:group={useFarenheit} name="toggle-naming" value={0}>&deg;C</RadioItem>
-                            </RadioGroup>
-                        </div>
+                        <ToggleTemp bind:toggleItem={useFarenheit} toggleName="useFarenheit" toggleList={{ F: '&deg;F', C: '&deg;C' }}></ToggleTemp>
                     </div>
                 </svelte:fragment>
                 <svelte:fragment slot="content">
                     <div class="pl-4">
-                        Start Temp: {useFarenheit ? data.siteDate.startTemp : convertFtoC(data.siteDate.startTemp)}
+                        Start Temp: {startTemp}
                     </div>
                     <div class="pl-4">
-                        End Temp: {useFarenheit ? data.siteDate.endTemp : convertFtoC(data.siteDate.endTemp)}
-                    </div></svelte:fragment>
+                        End Temp: {endTemp}
+                    </div>
+                </svelte:fragment>
             </AccordionItem>
             <AccordionItem bind:open={optAccC}>
                 <svelte:fragment slot="summary">Cloud cover (&percnt;)</svelte:fragment>
@@ -245,7 +234,12 @@
                     </div></svelte:fragment>
             </AccordionItem>
             <AccordionItem bind:open={optAccD}>
-                <svelte:fragment slot="summary">Wind</svelte:fragment>
+                <svelte:fragment slot="summary">
+                    <div class="flex space-x-4">
+                        <span class="my-auto">Wind</span>
+                        <ToggleTemp bind:toggleItem={useMphX} toggleName="useMphX" toggleList={{ M: 'Mph', K: 'Kmph' }}></ToggleTemp>
+                    </div>
+                </svelte:fragment>
                 <svelte:fragment slot="content">
                     <div class="pl-4">
                         Start Wind Dir: {data.siteDate.startWindDir}
@@ -254,59 +248,59 @@
                         End Wind Dir: {data.siteDate.endWindDir}
                     </div>
                     <div class="pl-4">
-                        Start Wind MPH: {data.siteDate.startWindMPH}
+                        Start Wind MPH: {startWindMph}
                     </div>
                     <div class="pl-4">
-                        End Wind MPH: {data.siteDate.endWindMPH}
+                        End Wind MPH: {endWindMph}
                     </div></svelte:fragment>
             </AccordionItem>
             <AccordionItem bind:open={optAccE}>
                 <svelte:fragment slot="summary">Weather</svelte:fragment>
                 <svelte:fragment slot="content">
                     <div class="pl-4">
-                        Weather 1: {data.siteDate.w1}
+                        Weather 1: {decodeWeather(data.siteDate.w1)}
                     </div>
                     <div class="pl-4">
-                        Weather 2: {data.siteDate.w2}
+                        Weather 2: {decodeWeather(data.siteDate.w2)}
                     </div>
                     <div class="pl-4">
-                        Weather 3: {data.siteDate.w3}
+                        Weather 3: {decodeWeather(data.siteDate.w3)}
                     </div>
                     <div class="pl-4">
-                        Weather 4: {data.siteDate.w4}
+                        Weather 4: {decodeWeather(data.siteDate.w4)}
                     </div>
                     <div class="pl-4">
-                        Weather 5: {data.siteDate.w5}
+                        Weather 5: {decodeWeather(data.siteDate.w5)}
                     </div>
                     <div class="pl-4">
-                        Weather 6: {data.siteDate.w6}
+                        Weather 6: {decodeWeather(data.siteDate.w6)}
                     </div>
                     <div class="pl-4">
-                        Weather 7: {data.siteDate.w7}
+                        Weather 7: {decodeWeather(data.siteDate.w7)}
                     </div>
                     <div class="pl-4">
-                        Weather 8: {data.siteDate.w8}
+                        Weather 8: {decodeWeather(data.siteDate.w8)}
                     </div>
                     <div class="pl-4">
-                        Weather 9: {data.siteDate.w9}
+                        Weather 9: {decodeWeather(data.siteDate.w9)}
                     </div>
                     <div class="pl-4">
-                        Weather 10: {data.siteDate.w10}
+                        Weather 10: {decodeWeather(data.siteDate.w10)}
                     </div>
                     <div class="pl-4">
-                        Weather 11: {data.siteDate.w11}
+                        Weather 11: {decodeWeather(data.siteDate.w11)}
                     </div>
                     <div class="pl-4">
-                        Weather 12: {data.siteDate.w12}
+                        Weather 12: {decodeWeather(data.siteDate.w12)}
                     </div>
                     <div class="pl-4">
-                        Weather 13: {data.siteDate.w13}
+                        Weather 13: {decodeWeather(data.siteDate.w13)}
                     </div>
                     <div class="pl-4">
-                        Weather 14: {data.siteDate.w14}
+                        Weather 14: {decodeWeather(data.siteDate.w14)}
                     </div>
                     <div class="pl-4">
-                        Weather 15: {data.siteDate.w15}
+                        Weather 15: {decodeWeather(data.siteDate.w15)}
                     </div>
                 </svelte:fragment>
             </AccordionItem>
@@ -392,7 +386,8 @@
                     </div>
                     <div class="pl-4">
                         Flowers in Bloom: {@html data.siteDate.flowersInBloom ?? '&varnothing;'}
-                    </div></svelte:fragment>
+                    </div>
+                </svelte:fragment>
             </AccordionItem>
             <div class="pl-4">
                 Field Notes: {data.siteDate.fieldNotes ?? ''}
@@ -417,7 +412,8 @@
                     </div>
                     <div class="pl-4">
                         Confirm At: {data.siteDate.confirmAt ?? ''}
-                    </div></svelte:fragment>
+                    </div>
+                </svelte:fragment>
             </AccordionItem>
         </Accordion>
     </svelte:fragment>

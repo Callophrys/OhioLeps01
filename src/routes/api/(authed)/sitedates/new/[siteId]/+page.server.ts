@@ -52,11 +52,12 @@ export const actions: Actions = {
         let endTimeDate = new Date(recordDate.valueOf() + endTime);
         console.log('recordDate', recordDate, 'startTimeDate', startTimeDate, 'endTimeDate', endTimeDate);
 
-        const siteDate: SiteDate = {
+        const siteDate = {
             siteDateId: -1,
             //week Int
             siteId: Number(formData.get('siteId')),
             recordDate: recordDate,
+            week: Number(formData.get('week')),
             recorder: String(formData.get('recorder')),
             startTime: startTimeDate,
             endTime: endTimeDate,
@@ -112,7 +113,7 @@ export const actions: Actions = {
             createdById: locals.user.id,
             updatedAt: null,
             updatedById: null,
-        };
+        } as SiteDate;
 
         console.log(siteDate);
 

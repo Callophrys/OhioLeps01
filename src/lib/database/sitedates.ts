@@ -81,9 +81,9 @@ export async function addSiteDate(siteDate: SiteDate) {
     console.log('/lib/api/entry/sitedates.ts > addSiteDate');
     const createdSiteDate = await prisma.siteDate.create({
         data: {
-            week: -1,
             siteId: siteDate.siteId,
             recordDate: siteDate.recordDate,
+            week: siteDate.week,
             recorder: siteDate.recorder,
             startTime: siteDate.startTime,
             endTime: siteDate.endTime,

@@ -159,7 +159,7 @@
 
     /*-- Handlers */
     function handleSelectYear(event: any) {
-        let targetYear = event.currentTarget.value.toString();
+        let targetYear = event.currentTarget.value;
         let idx = trackedWeeks.findIndex((x) => (x.year ?? -1).toString() === targetYear);
         console.log('yearDates', yearDates.slice(0, 2));
 
@@ -306,7 +306,7 @@
 {#snippet sListBoxWeeks()}
     <ListBox rounded="rounded-none" labelledby="Weeks in timeframe">
         {#each yearDates as week}
-            <ListBoxItem bind:group={currentSiteDateId} name="weeks" on:change={handleSelectWeek} value={week.siteDateId}>
+            <ListBoxItem bind:group={currentSiteDateId} name="weeks" on:change={handleSelectWeek} on:click={handleSelectWeek} value={week.siteDateId}>
                 {@render sPrefixWeek()}{`${week.week}${dropdownShowDate ? ' - ' + week.fDate : ''}`}
             </ListBoxItem>
         {/each}
