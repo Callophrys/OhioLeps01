@@ -24,10 +24,12 @@
     let useFarenheit: string = $state('F');
     let startTemp = $derived(useFarenheit === 'F' ? data.siteDate.startTemp : convertFtoC(data.siteDate.startTemp));
     let endTemp = $derived(useFarenheit === 'F' ? data.siteDate.endTemp : convertFtoC(data.siteDate.endTemp));
+    let tempUnit = $derived(useFarenheit === 'F' ? '&deg;F' : '&deg;C');
 
     let useMphX: string = $state('M');
     let startWindMph = $derived(useMphX === 'M' ? data.siteDate.startWindMPH : convertMphToKm(data.siteDate.startWindMPH));
     let endWindMph = $derived(useMphX === 'M' ? data.siteDate.endWindMPH : convertMphToKm(data.siteDate.endWindMPH));
+    let windUnit = $derived(useMphX === 'M' ? 'Mph' : 'Kmph');
 
     let accA: boolean = $state(false);
     let accB: boolean = $state(false);
@@ -217,9 +219,11 @@
                 <svelte:fragment slot="content">
                     <div class="pl-4">
                         Start Temp: {startTemp}
+                        {@html tempUnit}
                     </div>
                     <div class="pl-4">
                         End Temp: {endTemp}
+                        {@html tempUnit}
                     </div>
                 </svelte:fragment>
             </AccordionItem>
@@ -248,10 +252,10 @@
                         End Wind Dir: {data.siteDate.endWindDir}
                     </div>
                     <div class="pl-4">
-                        Start Wind MPH: {startWindMph}
+                        Start Wind: {startWindMph} ({windUnit})
                     </div>
                     <div class="pl-4">
-                        End Wind MPH: {endWindMph}
+                        End Wind: {endWindMph} ({windUnit})
                     </div></svelte:fragment>
             </AccordionItem>
             <AccordionItem bind:open={optAccE}>

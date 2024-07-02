@@ -47,6 +47,8 @@ export const handle: Handle = (async ({ event, resolve }) => {
             lastName: true,
             role: true,
             organizationId: true,
+            disabled: true,
+            createdAt: true,
         },
     });
 
@@ -59,6 +61,8 @@ export const handle: Handle = (async ({ event, resolve }) => {
             lastFirst: user.lastName + ', ' + user.firstName,
             role: user.role?.name ?? '',
             organizationId: user.organizationId ?? '',
+            disabled: user.disabled,
+            createdAt: user.createdAt,
         };
 
         appConfigs = await getAppConfigsByOrgId(user.organizationId ?? '');
@@ -94,4 +98,3 @@ export const handle: Handle = (async ({ event, resolve }) => {
     // load page as normal
     return await resolve(event);
 }) satisfies Handle;
-

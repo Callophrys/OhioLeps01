@@ -18,6 +18,8 @@ declare global {
                 lastFirst: string;
                 role: string;
                 organizationId: string;
+                disabled: boolean;
+                createdAt: date;
             };
             config: {};
         }
@@ -43,4 +45,3 @@ declare namespace App {
 */
 
 export {};
-
