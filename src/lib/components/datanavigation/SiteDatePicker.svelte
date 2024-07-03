@@ -127,14 +127,20 @@
         closeQuery: '.listbox-item',
     };
 
+    let pps: boolean = false;
+
     const popupSiteDateWeeks: PopupSettings = {
         event: 'focus-click',
         target: 'popupComboSiteDateWeeks',
         placement: 'bottom',
         closeQuery: '.listbox-item',
+        state: (e: Record<string, boolean>) => {
+            if (e.state) pps = !e.state;
+        },
     };
 
     /*-- Properties (functional) */
+    let cmbWeeks: HTMLDivElement;
 
     const uniqueYears: string[] = $state([]);
     const yearDates: any = $derived(
@@ -173,6 +179,16 @@
         if (idx > -1) {
             updatePerHandler(idx);
         }
+    }
+
+    function handleClickWeek(event: Event) {
+        console.log('op:', cmbWeeks.style);
+        console.log('psw', pps);
+        if (cmbWeeks.style.opacity) {
+            event.preventDefault();
+            return true;
+        }
+        return false;
     }
 
     function handleClickPrior() {
@@ -323,7 +339,7 @@
             <span>{recordYear}</span>
             <span class={classesSuffixYear}></span>
         </button>
-        <button type="button" class={classesButtonWeek} use:popup={popupSiteDateWeeks} disabled={isDisabled}>
+        <button type="button" class={classesButtonWeek} use:popup={popupSiteDateWeeks} disabled={isDisabled} onclick={handleClickWeek} onkeydown={handleClickWeek}>
             {@render sPrefixWeek()}
             <span>{recordWeek}</span>
             <span class={classesSuffixWeek}></span>
@@ -337,7 +353,7 @@
         </div>
     </div>
 
-    <div data-popup="popupComboSiteDateWeeks">
+    <div data-popup="popupComboSiteDateWeeks" bind:this={cmbWeeks}>
         {#if yearDates}
             <div class={`${classesPopupInner} ${dropdownShowDate ? 'w-44' : 'w-28'}`} style={stylesPopup}>
                 {@render sListBoxWeeks()}
