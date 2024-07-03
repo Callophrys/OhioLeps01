@@ -814,3 +814,26 @@ npx prisma generate
 
     let handleChange = (e: Event & { currentTarget: EventTarget & HTMLSelectElement }) => {
 
+```typescript
+
+    import { untrack } from 'svelte';
+    let defaultSetting: boolean = false;
+    let namePositionSetting: boolean = $state(defaultSetting);
+    const settingName = {
+        get name() {
+            return Object.keys({ namePositionSetting })[0];
+        },
+    }.name;
+
+    $effect(() => {
+        let value: string;
+        value = localStorage.get(settingName) ?? untrack(() => namePositionSetting);
+        namePositionSetting = value ? value === 'true' : defaultSetting;
+    });
+
+    $effect(() => {
+        localStorage.setItem(settingName, namePositionSetting ? 'true' : 'false');
+    });
+
+
+

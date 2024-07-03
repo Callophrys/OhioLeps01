@@ -11,7 +11,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     import DataOptions from '$lib/components/datanavigation/DataOptions.svelte';
     import GoBack from '$lib/components/datanavigation/GoBack.svelte';
     //import GoNext from '$lib/components/datanavigation/GoNext.svelte';
-    import ModalSdoAdd from '$lib/components/ModalSdoAdd.svelte';
+    import ModalSdoEdit from '$lib/components/ModalSdoEdit.svelte';
     import SiteDatePicker from '$lib/components/datanavigation/SiteDatePicker.svelte';
     import SitePicker from '$lib/components/datanavigation/SitePicker.svelte';
     import SpeciesPicker from '$lib/components/datanavigation/SpeciesPicker.svelte';
@@ -37,15 +37,17 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     /*-- -- Styling -- */
     /*-- Properties (styles) */
     /*-- Constants (styles) */
-    const cSectionClasses = 'flex flex-row space-x-2';
-    const cSectionSpanClasses = 'w-24';
     const cDataClasses = 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1 md:gap-2';
     const cDatumClasses = 'flex flex-row space-x-2';
-    const cButtonStandard = 'btn w-24 md:w-28 h-8 sm:h-10 md:h-11 pb-2 variant-filled-surface';
-    const cButtonWider = 'btn w-28 md:w-36 h-8 sm:h-10 md:h-11 pb-2 variant-filled-surface';
-    const cButtonSuccess = 'btn w-24 md:w-28 h-8 sm:h-10 md:h-11 pb-2 variant-soft-success';
-    const cButtonCancel = 'btn w-24 md:w-28 h-8 sm:h-10 md:h-11 pb-2 variant-filled-error';
-    const cButtonAddView = 'btn w-44         h-8 sm:h-10 md:h-11 pb-2 variant-filled-surface';
+    const cSectionClasses = 'flex flex-row pr-2';
+    const cSectionSpanClasses = 'w-24';
+
+    const cButtonBase = 'btn h-8 sm:h-10 md:h-11 pb-2';
+    const cButtonStandard = `${cButtonBase} w-24 md:w-28 variant-filled-surface`;
+    const cButtonWider = `${cButtonBase} w-28 md:w-36 variant-filled-surface`;
+    // const cButtonSuccess = `${cButtonBase} 'w-24 md:w-28 variant-soft-success`;
+    const cButtonCancel = `${cButtonBase} w-24 md:w-28 variant-filled-error`;
+    const cButtonAddView = `${cButtonBase} w-44 variant-filled-surface`;
 
     const cHighlightRecent = 'shadow-inner shadow-fuchsia-200';
 
@@ -164,9 +166,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     };
 
     function onClickNames(e: Event & { currentTarget: EventTarget & HTMLDivElement }) {
-        let isForard = e.currentTarget.classList.contains('flex-row');
-        e.currentTarget.classList.toggle('flex-row', !isForard);
-        e.currentTarget.classList.toggle('flex-row-reverse', isForard);
+        isNamingReversed = e.currentTarget.classList.contains('flex-row');
     }
 
     let formEdit: HTMLFormElement;
@@ -176,7 +176,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
         formEdit.submit(); // Submit form without raising submit event
     }
 
-    function onSubmitEdit(e: Event & { currentTarget: EventTarget & HTMLFormElement }) {
+    function onSubmitEdit() {
         console.log('onSubmitEdit');
         return true;
     }
@@ -204,8 +204,8 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     }
 
     /*-- Methods */
-    function modalComponentForm(): void {
-        const c: ModalComponent = { ref: ModalSdoAdd };
+    function modalComponentAdd(): void {
+        const c: ModalComponent = { ref: ModalSdoEdit };
         // TODO: supply a filtered checklist.  I.e. checklist minus current subset in use.
         const modal: ModalSettings = {
             type: 'component',
@@ -219,6 +219,43 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                     for (const [k, v] of Object.entries(r) as [string, any]) formData.append(k, v);
 
                     fetch('?/addSiteDateObservation', {
+                        method: 'POST',
+                        body: formData,
+                    })
+                        .then((response) => response.json())
+                        .then((data) => {
+                            if (data.status === 200) {
+                                const rdata = JSON.parse(data.data);
+                                let siteDateObservationId = rdata[rdata[0].siteDateObservationId];
+                                goto('/api/sitedateobservations/' + siteDateObservationId + '/' + siteId);
+                            }
+                        })
+                        .catch((error) => {
+                            console.error('Error:', error);
+                        });
+                }
+            },
+        };
+        modalStore.trigger(modal);
+    }
+
+    function modalComponentEdit(e: Event & { currentTarget: EventTarget & HTMLButtonElement }): void {
+        const c: ModalComponent = { ref: ModalSdoEdit };
+        // TODO: supply a filtered checklist.  I.e. checklist minus current subset in use.
+        const sdoId = Number(e.currentTarget.dataset.sitedateobservationid) ?? data.siteDateObservation.siteDateObservationId;
+        const sdo = data.checklistsSiteDateObs.find((x: SiteDateObservationChecklist) => x.siteDateObservationId === sdoId) ?? data.siteDateObservation;
+        const modal: ModalSettings = {
+            type: 'component',
+            component: c,
+            title: 'Edit Specimen Observation',
+            body: 'Complete the form below and then press submit.',
+            value: { checklist: data.checklistsAll, year: 2024, week: 8, siteDateId: sdoId, siteDateObservation: sdo },
+            response: (r) => {
+                if (typeof r === 'object') {
+                    const formData = new FormData();
+                    for (const [k, v] of Object.entries(r) as [string, any]) formData.append(k, v);
+
+                    fetch('?/saveSiteDateObservation', {
                         method: 'POST',
                         body: formData,
                     })
@@ -512,7 +549,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 
 {#snippet addSpecimen()}
     <div class="flex flex-row gap-2">
-        <button type="button" class={cButtonAddView} onclick={modalComponentForm} disabled={isEditing} title="Add new species observation">
+        <button type="button" class={cButtonAddView} onclick={modalComponentAdd} disabled={isEditing} title="Add new species observation">
             <span>Add species</span>
             <span class="text-green-900 dark:text-green-200 text-2xl before:content-['✚']"></span>
         </button>
@@ -641,9 +678,9 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                         {:else}
                             <div class="w-6 text-center content-[2714]">
                                 {#if chkSdo.confirmed}
-                                    <button title="Observation is reviewed and locked to editing" class="text-green-700">✔</button>
+                                    <button type="button" title="Observation is reviewed and locked to editing" disabled class="text-green-700">✔</button>
                                 {:else}
-                                    <button title="Edit this observation" class="text-yellow-500">✎</button>
+                                    <button type="button" title="Edit this observation" class="text-yellow-500" onclick={modalComponentEdit} disabled={isEditing} data-siteDateObservationId={chkSdo.siteDateObservationId}>✎</button>
                                 {/if}
                             </div>
                         {/if}
@@ -662,7 +699,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                             <div class="w-56 truncate">{chkSdo.checklist.commonName}</div>
                             <div class="w-64">{chkSdo.checklist.scientificName}</div>
                         </div>
-                        <div class="w-32">Hodges: {@html htmlHodges(chkSdo.hodges)}</div>
+                        <div class="w-32">Hodges: {@html htmlHodges(chkSdo.checklist.hodges)}</div>
                         <div class="w-44 pr-2 pb-0.5">ID Method: {@html htmlIdCode(chkSdo.idCode)}</div>
                         <div class="w-36">(Total: {chkSdo.total})</div>
                     </div>
@@ -673,7 +710,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                             .map(([k, v]) => ({ label: `${k.substring(0, 1).toLocaleUpperCase()}${k.substring(1, 7)} ${k.substring(7)}`, name: k, value: v })) as { label, value }}
                             <div class={cSectionClasses}>
                                 <div class={cSectionSpanClasses}>{label}:</div>
-                                <div class="w-8">{@html value ?? '&varnothing;'}</div>
+                                <div class="w-8 variant-soft">{@html value ?? '&varnothing;'}</div>
                             </div>
                         {/each}
                     </div>
@@ -753,7 +790,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
             <div class={cDatumClasses}>
                 <div class={cSectionClasses}>
                     <div class={cSectionSpanClasses}>{label}:</div>
-                    <div class="w-8">{@html value ?? '&varnothing;'}</div>
+                    <div class="w-8 variant-soft">{@html value ?? '&varnothing;'}</div>
                 </div>
             </div>
         {/each}
@@ -763,7 +800,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 {#snippet dataSingle(sdo: SiteDateObservationChecklist)}
     <div class={`${sdo.deleted ? 'line-through variant-ghost-error' : showRecentEdits && isRecent(sdo, 10) ? cHighlightRecent : ''}`}>
         <!-- DATA Heading -->
-        <div class="flex flex-row justify-between font-bold mb-4" onclick={onClickNames} onkeydown={() => {}} role="button" tabindex="0">
+        <div class={`flex ${isNamingReversed ? 'flex-row-reverse' : 'flex-row'} justify-between font-bold mb-4`} onclick={onClickNames} onkeydown={() => {}} role="button" tabindex="0">
             <div>
                 {sdo.checklist.scientificName}
             </div>
