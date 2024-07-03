@@ -3,6 +3,42 @@
     import AppConfigControl from '$lib/components/AppConfigControl.svelte';
     import Container from '$lib/components/layouts/Container.svelte';
     import { setContext } from 'svelte';
+    import Papa from 'papaparse';
+
+    async function fetchData() {
+        // Your Prisma data fetching code here
+    }
+
+    // https://www.basedash.com/blog/how-to-use-papaparse-with-typescript
+    // https://www.papaparse.com/docs#json-to-csv
+    async function exportToCSV() {
+        try {
+            // TODO: replace test json with return set from Prisma
+            // TODO: figure out the upload-reverse
+            //       Note upload will require a lot of data verification and cleaning code
+            //
+            //const data = await fetchData();
+
+            const csv = Papa.unparse([{ a: 'hi' }], {
+                header: true,
+                skipEmptyLines: true,
+            });
+
+            let csvData: string = '';
+            csvData = csv;
+
+            const csvContent = `data:text/csv;charset=utf-8,${csvData}`;
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement('a');
+            link.setAttribute('href', encodedUri);
+            link.setAttribute('download', 'export.csv');
+            document.body.appendChild(link); // Required for Firefox
+            link.click();
+        } catch (error) {
+            console.error('Error exporting to CSV:', error);
+        }
+    }
 
     let { data } = $props();
     setContext('appConfigs', data.appConfigs);
@@ -28,6 +64,7 @@
 {/snippet}
 
 {#snippet body()}
+    <button type="button" class="btn variant-soft" onclick={exportToCSV}>Export to CSV</button>
     <form method="POST" action="?/updateAppConfigs" id="appConfigs" name="appConfigs">
         <div class="flex flex-col space-y-2">
             <AppConfigControl />

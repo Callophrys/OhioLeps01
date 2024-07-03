@@ -104,7 +104,6 @@ export async function createSiteDateObservation(siteDateObservation: SiteDateObs
             siteDateId: siteDateObservation.siteDateId,
             seqId: siteDateObservation.seqId,
             checklistId: siteDateObservation.checklistId,
-            hodges: siteDateObservation.hodges,
             idCode: siteDateObservation.idCode,
             section1: siteDateObservation.section1,
             section2: siteDateObservation.section2,
