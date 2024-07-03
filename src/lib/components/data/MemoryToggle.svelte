@@ -9,10 +9,9 @@
     }: {
         toggleItem: string;
         toggleName: string;
-        toggleList: object;
+        toggleList: { [key: string]: string };
     } = $props();
 
-    console.log(toggleList);
     const keys = Object.keys(toggleList);
     const values = Object.values(toggleList);
 

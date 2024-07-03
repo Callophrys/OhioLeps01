@@ -11,7 +11,7 @@
     import GoNext from '$lib/components/datanavigation/GoNext.svelte';
     import { GOTYPE } from '$lib/types.js';
     import { goto } from '$app/navigation';
-    import ToggleTemp from '$lib/components/data/ToggleTemp.svelte';
+    import MemoryToggle from '$lib/components/data/MemoryToggle.svelte';
 
     /*-- -- Data -- */
     /*-- Exports */
@@ -22,14 +22,18 @@
     } = $props();
 
     let useFarenheit: string = $state('F');
-    let startTemp = $derived(useFarenheit === 'F' ? data.siteDate.startTemp : convertFtoC(data.siteDate.startTemp));
-    let endTemp = $derived(useFarenheit === 'F' ? data.siteDate.endTemp : convertFtoC(data.siteDate.endTemp));
-    let tempUnit = $derived(useFarenheit === 'F' ? '&deg;F' : '&deg;C');
+    const temperatureSetting = 'useFarenheit';
+    const temperatureUnits = { F: '&deg;F', C: '&deg;C' };
+    let temperatureStart = $derived(useFarenheit === 'F' ? data.siteDate.startTemp : convertFtoC(data.siteDate.startTemp));
+    let temperatureEnd = $derived(useFarenheit === 'F' ? data.siteDate.endTemp : convertFtoC(data.siteDate.endTemp));
+    let temperatureUnit = $derived(new Map(Object.entries(temperatureUnits)).get(useFarenheit));
 
-    let useMphX: string = $state('M');
-    let startWindMph = $derived(useMphX === 'M' ? data.siteDate.startWindMPH : convertMphToKm(data.siteDate.startWindMPH));
-    let endWindMph = $derived(useMphX === 'M' ? data.siteDate.endWindMPH : convertMphToKm(data.siteDate.endWindMPH));
-    let windUnit = $derived(useMphX === 'M' ? 'Mph' : 'Kmph');
+    let useMph: string = $state('M');
+    const windSetting = 'useMph';
+    const windUnits = { M: 'Mph', K: 'Kmph' };
+    let windStart = $derived(useMph === 'M' ? data.siteDate.startWindMPH : convertMphToKm(data.siteDate.startWindMPH));
+    let windEnd = $derived(useMph === 'M' ? data.siteDate.endWindMPH : convertMphToKm(data.siteDate.endWindMPH));
+    let windUnit = $derived(new Map(Object.entries(windUnits)).get(useMph));
 
     let accA: boolean = $state(false);
     let accB: boolean = $state(false);
@@ -213,17 +217,17 @@
                 <svelte:fragment slot="summary">
                     <div class="flex space-x-4">
                         <span class="my-auto">Temperature</span>
-                        <ToggleTemp bind:toggleItem={useFarenheit} toggleName="useFarenheit" toggleList={{ F: '&deg;F', C: '&deg;C' }}></ToggleTemp>
+                        <MemoryToggle bind:toggleItem={useFarenheit} toggleName={temperatureSetting.name} toggleList={temperatureUnits}></MemoryToggle>
                     </div>
                 </svelte:fragment>
                 <svelte:fragment slot="content">
                     <div class="pl-4">
-                        Start Temp: {startTemp}
-                        {@html tempUnit}
+                        Start Temp: {temperatureStart}
+                        {@html temperatureUnit}
                     </div>
                     <div class="pl-4">
-                        End Temp: {endTemp}
-                        {@html tempUnit}
+                        End Temp: {temperatureEnd}
+                        {@html temperatureUnit}
                     </div>
                 </svelte:fragment>
             </AccordionItem>
@@ -241,7 +245,7 @@
                 <svelte:fragment slot="summary">
                     <div class="flex space-x-4">
                         <span class="my-auto">Wind</span>
-                        <ToggleTemp bind:toggleItem={useMphX} toggleName="useMphX" toggleList={{ M: 'Mph', K: 'Kmph' }}></ToggleTemp>
+                        <MemoryToggle bind:toggleItem={useMph} toggleName={windSetting.name} toggleList={windUnits}></MemoryToggle>
                     </div>
                 </svelte:fragment>
                 <svelte:fragment slot="content">
@@ -252,10 +256,10 @@
                         End Wind Dir: {data.siteDate.endWindDir}
                     </div>
                     <div class="pl-4">
-                        Start Wind: {startWindMph} ({windUnit})
+                        Start Wind: {windStart} ({windUnit})
                     </div>
                     <div class="pl-4">
-                        End Wind: {endWindMph} ({windUnit})
+                        End Wind: {windEnd} ({windUnit})
                     </div></svelte:fragment>
             </AccordionItem>
             <AccordionItem bind:open={optAccE}>
