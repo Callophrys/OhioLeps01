@@ -1,7 +1,7 @@
-import { redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
-import { getAppConfigsByOrgId, updateAllAppConfigs, getTemplateAppConfigs, resetAllAppConfigs } from '$lib/database/appconfig';
 import type { AppConfigFormKeyChecked } from '$lib/types';
+import { getAppConfigsByOrgId, updateAllAppConfigs, getTemplateAppConfigs, resetAllAppConfigs } from '$lib/database/appconfig';
+import { redirect } from '@sveltejs/kit';
 
 export const load: PageServerLoad = async ({ locals }) => {
     // redirect user if not logged in
@@ -19,7 +19,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 };
 
 export const actions = {
-    updateAppConfigs: async ({ request, locals }) => {
+    updateAppConfigs: async ({ request, locals }: { request: any; locals: any }) => {
         console.log('updateAppConfigs from /api/admin/+page.server.ts');
         const formData = await request.formData();
         console.log(formData);
@@ -56,7 +56,7 @@ export const actions = {
         return { success: true, appConfigs: jsonResult };
     },
 
-    resetAppConfigs: async ({ locals }) => {
+    resetAppConfigs: async ({ locals }: { locals: any }) => {
         console.log('resetAppConfigs from /api/admin/+page.server.ts');
 
         const appConfigs = (await resetAllAppConfigs(locals.user.organizationId)) as AppConfigFormKeyChecked[];

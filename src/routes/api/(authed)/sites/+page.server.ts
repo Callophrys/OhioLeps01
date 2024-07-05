@@ -3,7 +3,7 @@ import { redirect } from '@sveltejs/kit';
 import { addSite, getSite, getSites, removeSite } from '$lib/database/sites.js';
 import type { SiteCountyState } from '$lib/types';
 
-export async function load({ cookies, url } : { cookies: any; url: any; }) {
+export async function load({ cookies, url }: { cookies: any; url: any }) {
     // TODO: fix the issue where user refreshes and 500 error appears
     console.log('Load from /api/sites/+page.server.ts');
 
@@ -20,8 +20,25 @@ export async function load({ cookies, url } : { cookies: any; url: any; }) {
     return { sites: jsonResult };
 }
 
+// export async function GET({ params }: any) {
+//     //console.log('sitedates - params', params);
+//
+//     let siteId = Number(params.siteid);
+//     const siteDates = await getSiteDates(siteId);
+//
+//     //console.log('siteDates', siteDates);
+//
+//     const jsonYW = JSON.stringify(siteDates);
+//     const jsonResultYW: SiteDateYearSiteDates[] = JSON.parse(jsonYW);
+//
+//     return json({
+//         success: true,
+//         siteDates: jsonResultYW,
+//     });
+// }
+
 export const actions = {
-    addSite: async ({ request } : any) => {
+    addSite: async ({ request }: { request: any }) => {
         console.log('addSite from /api/sites/+page.server.ts');
         const formData = await request.formData();
         const site = formData.get('site');
@@ -34,16 +51,15 @@ export const actions = {
         return { success: true };
     },
 
-    getSite: async ({ request } : any) => {
+    getSite: async ({ request, params }: { request: any; params: any }) => {
         console.log('getSite from /api/sites/+page.server.ts');
-        const formData = await request.formData();
-        let siteId: number = Number(formData.get('siteId') ?? 0);
+        let siteId: number = Number(params.siteId);
         const site = await getSite(siteId);
 
         return { success: true, data: site };
     },
 
-    removeSite: async ({ request } : any) => {
+    removeSite: async ({ request }: { request: any }) => {
         console.log('removeSite from /api/sites/+page.server.ts');
         const formData = await request.formData();
         const siteId = Number(formData.get('siteId') ?? 0);

@@ -3,7 +3,7 @@ import { getSiteDate, getSiteDateSiteDates } from '$lib/database/sitedates';
 import { getSiteDateObservationsBySiteDate } from '$lib/database/sitedateobservations.js';
 import type { SiteDateYearSdo, SiteDateYearSiteDates, SiteDateObservationChecklist, SiteCounty } from '$lib/types.js';
 
-export async function load({ params }) {
+export async function load({ params }: { params: any }) {
     console.log('sitedates - params', params);
 
     let siteDateId = Number(params.sitedateid);

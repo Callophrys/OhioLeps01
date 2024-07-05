@@ -1,6 +1,7 @@
 <script lang="ts">
     import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
     import { untrack } from 'svelte';
+    //TODO: See why temp and wind speed don't default right in site date
     //TODO: Get default from Organization default or User options - if and/or once those exist
     let {
         toggleItem = $bindable(),

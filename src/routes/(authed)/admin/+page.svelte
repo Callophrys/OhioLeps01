@@ -5,8 +5,15 @@
     import { setContext } from 'svelte';
     import Papa from 'papaparse';
 
-    async function fetchData() {
-        // Your Prisma data fetching code here
+    async function fetchSiteData(siteId: number) {
+        let sdpath = `/admin/c/${siteId}`;
+        try {
+            const response = await fetch(`${sdpath}`);
+            const data = await response.json();
+            return data.siteData;
+        } catch (error) {
+            console.error('Error fetching data:', error, 'from sdpath', sdpath);
+        }
     }
 
     // https://www.basedash.com/blog/how-to-use-papaparse-with-typescript
@@ -17,11 +24,20 @@
             // TODO: figure out the upload-reverse
             //       Note upload will require a lot of data verification and cleaning code
             //
-            //const data = await fetchData();
+            const siteData = await fetchSiteData(35);
+            // console.log(siteData);
+            // debugger;
+            // const jsonD = JSON.stringify(data);
 
-            const csv = Papa.unparse([{ a: 'hi' }], {
+            // const csv = Papa.unparse(JSON.parse(jsonD), {
+            const csv = Papa.unparse(siteData, {
+                quotes: false,
+                quoteChar: '"',
+                escapeChar: '"',
+                delimiter: ',',
                 header: true,
-                skipEmptyLines: true,
+                newline: '\r\n',
+                skipEmptyLines: false,
             });
 
             let csvData: string = '';
