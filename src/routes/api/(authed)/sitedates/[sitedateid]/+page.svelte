@@ -434,7 +434,7 @@
                 <GoNext targetId={firstSdoId} targetType={GOTYPE.SITEDATEOBSERVATIONS} targetIdSecondary={data.siteDate.siteId} controlBody="scale-90" controlDisabled={firstSdoId < 0} />
             </div>
             <div class="flex flex-row">
-                <button type="button" class="btn" onclick={addSiteDate} title="Add new site date observation"><span class="text-success-400">✚</span>&nbsp;Add site date</button>
+                <button type="button" class="btn variant-soft scale-90 translate-x-2" onclick={addSiteDate} title="Add new site date observation"><span class="text-success-400">✚</span>&nbsp;Add site date</button>
                 <SiteDatePicker bind:currentSiteId bind:currentSiteDateId controlBody="scale-90" buttonLeft="" buttonRight="" buttonYear="" buttonWeek="" dropdownShowDate={false} dropdownPointers={false} heading={null} yearPrefix="" weekPrefix="" controlOuter="" prefixYear="" prefixWeek="" suffixYear="" suffixWeek="" popupInner="" popupStyles="" labelledby="" />
             </div>
             <!-- below version breaks -->

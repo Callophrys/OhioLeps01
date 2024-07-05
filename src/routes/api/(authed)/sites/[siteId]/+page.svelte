@@ -2,7 +2,6 @@
     /* TODO: figure out what site statuses in info block was all about - this was never returned and return type and results will need to change */
     /* TODO: after back action from sdo the sdo picker should update its selection to last visited sdo */
 
-
     /*-- Imports */
     import type { SiteCountySiteDatesSiteStatuses } from '$lib/types.js';
     import type { SiteCountyState } from '$lib/types.js';
@@ -17,6 +16,58 @@
     import { GOTYPE, type SiteDateYearSdo } from '$lib/types.js';
     import { page } from '$app/stores';
     import { goto } from '$app/navigation';
+    import Papa from 'papaparse';
+
+    async function fetchSiteData(siteId: number) {
+        let sdpath = `/admin/${siteId}`;
+        try {
+            const response = await fetch(`${sdpath}`);
+            const data = await response.json();
+            return data.siteData;
+        } catch (error) {
+            console.error('Error fetching data:', error, 'from sdpath', sdpath);
+        }
+    }
+
+    // https://www.basedash.com/blog/how-to-use-papaparse-with-typescript
+    // https://www.papaparse.com/docs#json-to-csv
+    async function exportToCSV() {
+        try {
+            // TODO: replace test json with return set from Prisma
+            // TODO: figure out the upload-reverse
+            //       Note upload will require a lot of data verification and cleaning code
+            //
+            const siteData = await fetchSiteData(currentSiteId);
+            // console.log(siteData);
+            // debugger;
+            // const jsonD = JSON.stringify(data);
+
+            // const csv = Papa.unparse(JSON.parse(jsonD), {
+            const csv = Papa.unparse(siteData, {
+                quotes: false,
+                quoteChar: '"',
+                escapeChar: '"',
+                delimiter: ',',
+                header: true,
+                newline: '\r\n',
+                skipEmptyLines: false,
+            });
+
+            let csvData: string = '';
+            csvData = csv;
+
+            const csvContent = `data:text/csv;charset=utf-8,${csvData}`;
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement('a');
+            link.setAttribute('href', encodedUri);
+            link.setAttribute('download', 'export.csv');
+            document.body.appendChild(link); // Required for Firefox
+            link.click();
+        } catch (error) {
+            console.error('Error exporting to CSV:', error);
+        }
+    }
 
     /*-- -- Data -- */
     /*-- Exports */
@@ -114,17 +165,13 @@
 
 {#snippet head()}
     <div class="flex flex-row justify-between gap-1 md:gap-2">
-        <GoBack bind:targetId={currentCountyId} bind:targetType={GOTYPE.COUNTYSITES} targetIdSecondary={null} controlBody="scale-90" buttonCenter="" scriptCenter="" labelledby="" />
-        <GoNext targetId={currentSiteDateId} targetType={GOTYPE.SITEDATES} targetIdSecondary={currentSiteId} controlBody="scale-90" controlDisabled={data.site.siteDates.length < 1} />
-        <CountyPicker bind:currentCountyId bind:currentSiteId bind:filterByCounty />
-        <SitePicker bind:currentCountyId bind:currentSiteId bind:currentSiteDateId bind:filterByCounty controlBody="scale-90" />
         <div class="flex flex-row">
-            {#if $page.data?.user && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN')}
-                <button type="button" class="btn" onclick={addSite} title="Add new site"><span class="text-success-400">✚</span>&nbsp;Add site</button>
-                <button type="button" class="btn" onclick={addSiteDate} title="Add new site date observation"><span class="text-success-400">✚</span>&nbsp;Add site date</button>
-            {/if}
-            <SiteDatePicker bind:currentSiteId bind:currentSiteDateId controlBody="scale-90" buttonLeft="" buttonRight="" buttonYear="" buttonWeek="" dropdownShowDate={false} dropdownPointers={true} heading={null} yearPrefix="" weekPrefix="" controlOuter="" prefixYear="" prefixWeek="" suffixYear="" suffixWeek="" popupInner="" popupStyles="" labelledby="" />
+            <GoBack bind:targetId={currentCountyId} bind:targetType={GOTYPE.COUNTYSITES} targetIdSecondary={null} controlBody="scale-90" buttonCenter="" scriptCenter="" labelledby="" />
+            <GoNext targetId={currentSiteDateId} targetType={GOTYPE.SITEDATES} targetIdSecondary={currentSiteId} controlBody="scale-90" controlDisabled={data.site.siteDates.length < 1} />
+            <CountyPicker bind:currentCountyId bind:currentSiteId bind:filterByCounty controlBody="scale-90 -translate-x-2" heading={null} dropdownPointers={null} controlOuter={null} buttonLeft={null} buttonCenter={null} buttonRight={null} prefixCenter={null} scriptCenter={null} suffixCenter={null} popupInner={null} popupStyles={null} labelledby={null} />
+            <SitePicker bind:currentCountyId bind:currentSiteId bind:currentSiteDateId bind:filterByCounty dropdownPointers={true} heading={null} controlOuter="" controlBody="scale-90 -translate-x-8" buttonLeft="" buttonCenter="" buttonRight="" prefixCenter="" scriptCenter="" suffixCenter="" popupInner="" popupStyles="" labelledby="Selectsite-date" />
         </div>
+        <SiteDatePicker bind:currentSiteId bind:currentSiteDateId controlBody="scale-90" buttonLeft="" buttonRight="" buttonYear="" buttonWeek="" dropdownShowDate={false} dropdownPointers={true} heading={null} yearPrefix="" weekPrefix="" controlOuter="" prefixYear="" prefixWeek="" suffixYear="" suffixWeek="" popupInner="" popupStyles="" labelledby="" />
     </div>
 
     <!-- <div class="w-1/2 text-right my-auto">Observations (year/week)</div> -->
@@ -161,7 +208,7 @@
 {/snippet}
 
 {#snippet body()}
-    <div class="max-w-[600px]">
+    <div class="w-full flex flex-row justify-between">
         <div class="content">
             <div>siteName: {currentSite?.siteName ?? ''}</div>
             <div>county: {currentSite?.county.name ?? ''}</div>
@@ -209,7 +256,14 @@
                 updated at {currentSite?.updatedAt ?? ''}
             </div>
         </div>
+        <div class="mr-4 flex flex-col md:flex-row space-x-2">
+            {#if $page.data?.user && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN')}
+                <button type="button" class="btn h-10 variant-soft" onclick={addSite} title="Add new site"><span class="text-success-400">✚</span>&nbsp;Add site</button>
+                <button type="button" class="btn h-10 variant-soft" onclick={addSiteDate} title="Add new site date observation"><span class="text-success-400">✚</span>&nbsp;Add site date</button>
+            {/if}
+            <button type="button" class="btn h-10 variant-soft" onclick={exportToCSV}><span class="text-success-400">✚</span>&nbsp;Export to CSV</button>
+        </div>
     </div>
 {/snippet}
 
-<Container {head} {body} tail={null} />
+<Container {head} {body} bodyClasses="overflow-y-auto" tail={null} />

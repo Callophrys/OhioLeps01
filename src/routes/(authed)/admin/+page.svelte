@@ -6,7 +6,7 @@
     import Papa from 'papaparse';
 
     async function fetchSiteData(siteId: number) {
-        let sdpath = `/admin/c/${siteId}`;
+        let sdpath = `/admin/${siteId}`;
         try {
             const response = await fetch(`${sdpath}`);
             const data = await response.json();

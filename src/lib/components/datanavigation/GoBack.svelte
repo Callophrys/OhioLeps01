@@ -28,7 +28,7 @@
     /** Provide the ARIA labelledby value.  Default: "Select site-date" */
 
     /*-- Constants (styles) */
-    const cControlBody = 'btn-group w-16 variant-soft my-auto';
+    const cControlBody = 'btn-group w-fit variant-soft my-auto';
     const cButtonCenter = '';
     const cScriptCenter = 'w-full my-auto text-center truncate overflow-hidden text-ellipsis';
 

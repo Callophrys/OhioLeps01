@@ -42,12 +42,12 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     const cSectionClasses = 'flex flex-row pr-2';
     const cSectionSpanClasses = 'w-24';
 
-    const cButtonBase = 'btn h-8 sm:h-10 md:h-11 pb-2';
-    const cButtonStandard = `${cButtonBase} w-24 md:w-28 variant-filled-surface`;
-    const cButtonWider = `${cButtonBase} w-28 md:w-36 variant-filled-surface`;
+    const cButtonBase = 'btn h-8 sm:h-10 md:h-11 pb-2 scale-90 -translate-y-2';
+    const cButtonStandard = `${cButtonBase} w-24 md:w-28 variant-soft -translate-x-1`;
+    const cButtonWider = `${cButtonBase} w-28 md:w-36 variant-soft`;
     // const cButtonSuccess = `${cButtonBase} 'w-24 md:w-28 variant-soft-success`;
     const cButtonCancel = `${cButtonBase} w-24 md:w-28 variant-filled-error`;
-    const cButtonAddView = `${cButtonBase} w-44 variant-filled-surface`;
+    const cButtonAddView = `${cButtonBase} w-44 variant-soft translate-x-3`;
 
     const cHighlightRecent = 'shadow-inner shadow-fuchsia-200';
 
@@ -557,7 +557,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 {/snippet}
 
 {#snippet controlsOperations(sdo: SiteDateObservationChecklist)}
-    <div class="px-4 flex flex-auto justify-between gap-2">
+    <div class="pr-4 flex flex-auto justify-between gap-2">
         <div class="flex flex-row justify-start gap-2">
             <!-- EDIT(s) Action -->
             {@render editSpecimenControls()}
@@ -835,7 +835,9 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
             {@render controlsOperations(data.siteDateObservation)}
         {/if}
 
-        <div class="pr-4 overflow-y-auto h-full">
+        <!-- Data -->
+
+        <div class={`pr-4 overflow-y-auto ${$page.data.user.role === ROLE.SUPER || $page.data.user.role === ROLE.ADMIN || $page.data.user.role === ROLE.REVIEWER || $page.data.user.role === ROLE.ENTRY ? 'h-[calc(100%_-_8rem)]' : 'h-[calc(100%_-_4.5rem)]'}`}>
             <div>
                 {#if isViewAll}
                     <!-- Multiple species observation recordings -->

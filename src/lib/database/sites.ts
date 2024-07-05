@@ -86,8 +86,8 @@ select s.siteName
 , a.name state
 , s.createdAt siteCreatedAt
 , s.updatedAt siteUpdatedAt
-, s.createdById siteCreatedBy
-, s.updatedById siteUpdatedBy
+, usc.username siteCreatedBy
+, usu.username siteUpdatedBy
 , d.recordDate
 , d.week
 , d.recorder
@@ -146,9 +146,9 @@ select s.siteName
 , d.createdAt weeklyRecordCreatedAt
 , d.updatedAt weeklyRecordUpdatedAt
 , d.confirmAt weeklyRecordConfirmAt
-, d.createdById weeklyRecordCreatedById
-, d.updatedById weeklyRecordUpdatedById
-, d.confirmById weeklyRecordConfirmById
+, udc.username weeklyRecordCreatedById
+, udu.username weeklyRecordUpdatedById
+, udr.username weeklyRecordConfirmById
 , o.idCode
 , o.section1
 , o.section2
@@ -171,9 +171,9 @@ select s.siteName
 , o.createdAt speciesRecordCreatedAt
 , o.updatedAt speciesRecordUpdatedAt
 , o.confirmAt speciesRecordConfirmAt
-, o.createdById speciesRecordCreatedById
-, o.updatedById speciesRecordUpdatedById
-, o.confirmById speciesRecordConfirmById
+, uoc.username speciesRecordCreatedById
+, uou.username speciesRecordUpdatedById
+, uor.username speciesRecordConfirmById
 , l.hodges
 , l.genus
 , l.species
@@ -196,13 +196,21 @@ select s.siteName
 , c.code statusCode
 , c.description statusDescription
 from site s
-inner join siteDate d on d.siteId = s.siteId
-inner join siteDateObservation o on o.siteDateId = d.siteDateId
-inner join checklist l on l.checklistId = o.checklistId
-inner join siteStatus t on t.siteId = s.siteId
-inner join statusCode c on c.statusCodeId = t.statusCodeId
-inner join county y on y.id = s.countyId
-inner join state  a on a.id = s.stateId
+join siteDate d on d.siteId = s.siteId
+join siteDateObservation o on o.siteDateId = d.siteDateId
+join checklist l on l.checklistId = o.checklistId
+join siteStatus t on t.siteId = s.siteId
+join statusCode c on c.statusCodeId = t.statusCodeId
+join county y on y.id = s.countyId
+join state  a on a.id = s.stateId
+left outer join User usc on usc.id = s.createdById
+left outer join User usu on usu.id = s.updatedById
+left outer join User udc on udc.id = d.createdById
+left outer join User udu on udu.id = d.updatedById
+left outer join User udr on udr.id = d.confirmById
+left outer join User uoc on uoc.id = o.createdById
+left outer join User uou on uou.id = o.updatedById
+left outer join User uor on uor.id = o.confirmById
 where s.siteId = ${siteId}`;
     console.log('result***', result);
 
