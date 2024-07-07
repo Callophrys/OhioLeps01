@@ -116,10 +116,6 @@
 
     /*-- Handlers */
     /*-- Methods */
-    function addSite() {
-        goto(`/api/sites/new/${currentCountyId}`);
-    }
-
     function addSiteDate() {
         goto(`/api/sitedates/new/${currentSiteId}`);
     }
@@ -258,7 +254,6 @@
         </div>
         <div class="mr-4 flex flex-col md:flex-row space-x-2">
             {#if $page.data?.user && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN')}
-                <button type="button" class="btn h-10 variant-soft" onclick={addSite} title="Add new site"><span class="text-success-400">✚</span>&nbsp;Add site</button>
                 <button type="button" class="btn h-10 variant-soft" onclick={addSiteDate} title="Add new site date observation"><span class="text-success-400">✚</span>&nbsp;Add site date</button>
             {/if}
             <button type="button" class="btn h-10 variant-soft" onclick={exportToCSV}><span class="text-success-400">✚</span>&nbsp;Export to CSV</button>

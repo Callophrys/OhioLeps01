@@ -2,6 +2,7 @@
     //import type { PopupSettings } from '@skeletonlabs/skeleton';
     import Container from '$lib/components/layouts/Container.svelte';
     import { popup } from '@skeletonlabs/skeleton';
+    import { goto } from '$app/navigation';
     import { page } from '$app/stores';
     //import { enhance } from '$app/forms';
     // import { isEmpty, camelToFriendly } from '$lib/utils';
@@ -23,6 +24,10 @@
 
     function formatDate(_: any) {
         return 'XYZ';
+    }
+
+    function addSite() {
+        goto(`/api/sites/new/-1`);
     }
 </script>
 
@@ -74,6 +79,9 @@
             <button type="submit"> ➜ Next site</button>
         {:else}
             <span>Sites: {data?.sites.length}</span>
+        {/if}
+        {#if $page.data?.user && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN')}
+            <button type="button" class="btn h-10 variant-soft" onclick={addSite} title="Add new site"><span class="text-success-400">✚</span>&nbsp;Add site</button>
         {/if}
     </div>
 {/snippet}

@@ -26,7 +26,7 @@
 
     /*-- Properties (functional) */
     let currentCountyId: number = $state(data?.refCountyId ?? -1);
-    let currentStateId: number = $state(data.counties.find((x) => x.id === currentCountyId)?.stateId ?? -1);
+    let currentStateId: number = $state((data?.refCountyId !== -1 ? data.counties.find((x) => x.id === currentCountyId)?.stateId : data.states.find((x) => x.abbreviation === 'OH')?.id) ?? -1);
 
     /*-- Variables and objects */
     /*-- Run first stuff */
@@ -64,6 +64,17 @@
     </label>
 {/snippet}
 
+{#snippet entrySelect(fullId, fullLabel)}
+    <label class="label">
+        <span>{fullLabel}:</span>
+        <select class="select" id={fullId} name={fullId} title={fullLabel} bind:value={currentStateId}>
+            {#each data.states as state}
+                <option value={state.id}>{state.name}</option>
+            {/each}
+        </select>
+    </label>
+{/snippet}
+
 {#snippet entryTextarea(fullId, fullLabel, rows)}
     <label class="label">
         <span>{fullLabel}:</span>
@@ -83,7 +94,7 @@
                 {@render entryInput('siteAddress', 'Site Address', 'text')}
                 {@render entryInput('siteAddress2', 'Site Address 2', 'text')}
                 {@render entryInput('siteCity', 'Site City', 'text')}
-                {@render entryInput('siteState', 'Site State', 'text')}
+                {@render entrySelect('siteState', 'Site State')}
                 {@render entryInput('siteZip', 'Site Zip', 'text')}
                 {@render entryInput('person', 'Person', 'text')}
                 {@render entryInput('personAddress', 'Person Address', 'text')}
@@ -114,4 +125,4 @@
     </form>
 {/snippet}
 
-<Container {head} {body} tail={null} />
+<Container {head} {body} bodyClasses={null} tail={null} />

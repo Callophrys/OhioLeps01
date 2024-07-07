@@ -1,14 +1,11 @@
 import { fail } from '@sveltejs/kit';
-import { browser } from '$app/environment';
 import { redirect } from '@sveltejs/kit';
-import type { Site, County } from '@prisma/client';
-import type { SiteCounty } from '$lib/types.js';
-import { getSitesByCounty, getSites } from '$lib/database/sites.js';
-import { getCountiesExpanded } from '$lib/database/counties.js';
+import type { Site, County, State } from '@prisma/client';
+import { getCountiesExpanded, getStates } from '$lib/database/counties.js';
 import type { Actions } from '@sveltejs/kit';
 import { addSite, exists } from '$lib/database/sites.js';
 
-export async function load({ cookies, url, params }) {
+export async function load({ cookies, url, params }: { cookies: any; url: any; params: any }) {
     // SECURITY - only checking session NOT user or role at this time
     if (!cookies.get('session')) {
         throw redirect(303, `/login?redirectTo=${url.pathname}`);
@@ -22,14 +19,19 @@ export async function load({ cookies, url, params }) {
     const jsonResultC: County[] = JSON.parse(jsonC);
     // console.log(jsonResultC);
 
-    return { counties: jsonResultC, refCountyId: countyId, countyId: params.countyId };
+    const states = await getStates();
+
+    const jsonS = JSON.stringify(states);
+    const jsonResultS: State[] = JSON.parse(jsonS);
+
+    return { counties: jsonResultC, states: jsonResultS, refCountyId: countyId, countyId: params.countyId };
 }
 
 export const actions: Actions = {
     addSite: async ({ request, locals }) => {
         const formData = await request.formData();
         // console.log(formData);
-        // 
+        //
 
         let siteName = String(formData.get('siteName'));
         let countyId = Number(formData.get('countyId'));
@@ -54,23 +56,31 @@ export const actions: Actions = {
             locationZip: String(formData.get('locationZip')),
             siteAddress: String(formData.get('siteAddress')),
             siteAddress2: String(formData.get('siteAddress2')),
-            siteCityStateZip: String(formData.get('siteCityStateZip')),
+            siteCity: String(formData.get('siteCity')),
+            siteState: String(formData.get('siteState')),
+            siteZip: String(formData.get('siteZip')),
             person: String(formData.get('person')),
-            address: String(formData.get('address')),
-            address2: String(formData.get('address2')),
-            cityStateZip: String(formData.get('cityStateZip')),
-            phone: String(formData.get('phone')),
-            email: String(formData.get('email')),
+            personAddress: String(formData.get('Address')),
+            personAddress2: String(formData.get('Address2')),
+            personCity: String(formData.get('City')),
+            personState: String(formData.get('State')),
+            personZip: String(formData.get('Zip')),
+            personPhone: String(formData.get('personPhone')),
+            personPhone2: String(formData.get('personPhone2')),
+            personEmail: String(formData.get('personEmail')),
             latitudeStart: String(formData.get('latitudeStart')),
             latitudeEnd: String(formData.get('latitudeEnd')),
             longitudeStart: String(formData.get('longitudeStart')),
             longitudeEnd: String(formData.get('longitudeEnd')),
             altPerson: String(formData.get('altPerson')),
-            altAddress: String(formData.get('altAddress')),
-            altAddress2: String(formData.get('altAddress2')),
-            altCityStateZip: String(formData.get('altCityStateZip')),
-            altPhone: String(formData.get('altPhone')),
-            altEmail: String(formData.get('altEmail')),
+            altPersonAddress: String(formData.get('altPersonAddress')),
+            altPersonAddress2: String(formData.get('altPersonAddress2')),
+            altPersonCity: String(formData.get('altPersonCity')),
+            altPersonState: String(formData.get('altPersonState')),
+            altPersonZip: String(formData.get('altPersonZip')),
+            altPersonPhone: String(formData.get('altPersonPhone')),
+            altPersonPhone2: String(formData.get('altPersonPhone2')),
+            altPersonEmail: String(formData.get('altPersonEmail')),
             otherParticipants: String(formData.get('otherParticipants')),
             description: String(formData.get('description')),
             s1995: 0,
