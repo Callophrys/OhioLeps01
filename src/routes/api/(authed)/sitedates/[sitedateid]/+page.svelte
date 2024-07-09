@@ -1,7 +1,10 @@
 <script lang="ts">
     /*-- Imports */
+    import type { ModalSettings, ModalComponent } from '@skeletonlabs/skeleton';
+    import ModalSdoEdit from '$lib/components/ModalSdoEdit.svelte';
     import DoubledContainer from '$lib/components/DoubledContainer.svelte';
-    import { Accordion, AccordionItem, RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
+    import { getModalStore } from '@skeletonlabs/skeleton';
+    import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
     import { setContext } from 'svelte';
     import { formatDate, weekOfYearSince, convertFtoC, convertMphToKm, isRecent, decodeWeather } from '$lib/utils';
     import DataOptions from '$lib/components/datanavigation/DataOptions.svelte';
@@ -61,7 +64,8 @@
     /*-- Enums */
     /*-- Constants (functional) */
     /*-- Properties (functional) */
-    //let currentSiteDate: SiteDateYear = data.siteDate;
+    let isEditing = $state(false);
+
     let optAccA: boolean = $state(false);
     let optAccB: boolean = $state(false);
     let optAccC: boolean = $state(false);
@@ -79,12 +83,14 @@
     /*-- Variables and objects */
 
     /*-- Run first stuff */
-    //console.log('sd ##', data.siteDates);
-    //console.log(data.siteDateSiteDates);
-    //console.log(uniqueYears);
-    //console.log(trackedWeeks);
-
-    //console.log(data.siteDateObservations[0]);
+    const modalStore = getModalStore();
+    let siteId = data.siteDate.siteId;
+    // console.log('sd', data.siteDate);
+    // console.log('sd ##', data.siteDates);
+    // console.log(data.siteDateSiteDates);
+    // console.log(uniqueYears);
+    // console.log(trackedWeeks);
+    // console.log(data.siteDateObservations[0]);
 
     /*-- onMount, beforeUpdate, afterUpdate */
     $effect(() => {
@@ -139,18 +145,47 @@
     });
 
     /*-- Handlers */
-    function handleRadioGroupClick() {
-        var ooo = document.getElementById('ftoc');
-        console.log('was here', ooo?.getAttribute('open'));
-        if (optAccB) {
-            optAccB = false;
-        }
-        return true;
-    }
-
     /*-- Methods */
     function addSiteDate() {
         goto(`/api/sitedates/new/${currentSiteId}`);
+    }
+
+    let inUse = $derived(data.siteDateObservations.filter((x: any) => !x.isDeleted).map((x: any) => x.checklistId));
+    let availableChecklistItems = $derived(data.checklistsAll.filter((x: any) => !inUse.includes(x.checklistId)));
+
+    function modalComponentAdd(): void {
+        const c: ModalComponent = { ref: ModalSdoEdit };
+        // TODO: supply a filtered checklist.  I.e. checklist minus current subset in use.
+        const modal: ModalSettings = {
+            type: 'component',
+            component: c,
+            title: 'Add Specimen to Observations',
+            body: 'Complete the form below and then press submit.',
+            value: { checklist: availableChecklistItems, year: data.siteDate.year, week: data.siteDate.week, siteDateId: data.siteDate.siteDateId },
+            response: (r) => {
+                if (typeof r === 'object') {
+                    const formData = new FormData();
+                    for (const [k, v] of Object.entries(r) as [string, any]) formData.append(k, v);
+
+                    fetch('?/addSiteDateObservation', {
+                        method: 'POST',
+                        body: formData,
+                    })
+                        .then((response) => response.json())
+                        .then((data) => {
+                            if (data.status === 200) {
+                                const rdata = JSON.parse(data.data);
+                                let siteDateObservationId = rdata[rdata[0].siteDateObservationId];
+                                goto('/api/sitedateobservations/' + siteDateObservationId + '/' + siteId);
+                            }
+                        })
+                        .catch((error) => {
+                            console.error('Error:', error);
+                        });
+                }
+            },
+        };
+        modalStore.trigger(modal);
     }
 
     /*-- Reactives (functional) */
@@ -160,21 +195,21 @@
     let recordSdoCount: number = $derived(data.siteDate.siteDateObservations.filter((o: any) => showDeletedData || !o.deleted).length);
 
     let currentSiteId: number = $state(data.siteDate.siteId);
-    $inspect(currentSiteId);
+    // $inspect(currentSiteId);
 
     let firstSdoId = $derived(recordSdoCount > 0 ? data.siteDate.siteDateObservations[0].siteDateObservationId : -1);
 
     // let startTemp = $derived(String(data.siteDate.startTemp));
     // let endTemp = $derived(String(data.siteDate.endTemp));
 
-    $inspect(showRecentEdits);
-    $inspect(showDeletedData);
+    // $inspect(showRecentEdits);
+    // $inspect(showDeletedData);
 
     /*-- Other */
     let currentSiteDateId = $state(data.siteDate.siteDateId);
-    $inspect(currentSiteDateId);
+    // $inspect(currentSiteDateId);
 
-    console.log(data.siteDate);
+    // console.log(data.siteDate);
 </script>
 
 <YearWeek year={recordYear} week={recordWeek} sdoCount={recordSdoCount} />
@@ -184,16 +219,22 @@
     <svelte:fragment slot="leftHead">
         <h2 class="flex flex-row justify-between pb-2">
             <div class="overflow-hidden text-ellipsis text-nowrap w-80">{data.siteDate.siteName}</div>
-            <div class="text-nowrap text-right">
-                Record Date: {recordDate}
-            </div>
+            <button type="button" class="btn variant-soft scale-90 translate-x-2" onclick={addSiteDate} title="Add new record date for observations">
+                <span class="text-green-700 dark:text-green-400 text-xl before:content-['✚']"></span>
+                <span>Add record</span>
+            </button>
         </h2>
         <hr />
     </svelte:fragment>
 
     <svelte:fragment slot="leftBody">
-        <div>
-            recorder: {data.siteDate.recorder}
+        <div class="flex flex-row justify-between">
+            <div class="text-nowrap">
+                Recorder: {data.siteDate.recorder}
+            </div>
+            <div class="text-nowrap text-right pr-3">
+                Record Date: {recordDate}
+            </div>
         </div>
         <Accordion>
             <AccordionItem bind:open={optAccA}>
@@ -217,7 +258,7 @@
                 <svelte:fragment slot="summary">
                     <div class="flex space-x-4">
                         <span class="my-auto">Temperature</span>
-                        <MemoryToggle bind:toggleItem={useFarenheit} toggleName={temperatureSetting.name} toggleList={temperatureUnits}></MemoryToggle>
+                        <MemoryToggle bind:toggleItem={useFarenheit} toggleName={temperatureSetting} toggleList={temperatureUnits} isHidden={!optAccB}></MemoryToggle>
                     </div>
                 </svelte:fragment>
                 <svelte:fragment slot="content">
@@ -245,7 +286,7 @@
                 <svelte:fragment slot="summary">
                     <div class="flex space-x-4">
                         <span class="my-auto">Wind</span>
-                        <MemoryToggle bind:toggleItem={useMph} toggleName={windSetting.name} toggleList={windUnits}></MemoryToggle>
+                        <MemoryToggle bind:toggleItem={useMph} toggleName={windSetting} toggleList={windUnits} isHidden={!optAccD}></MemoryToggle>
                     </div>
                 </svelte:fragment>
                 <svelte:fragment slot="content">
@@ -404,19 +445,19 @@
                 <svelte:fragment slot="summary">Change history</svelte:fragment>
                 <svelte:fragment slot="content">
                     <div class="pl-4">
-                        Created By: {data.siteDate.createdBy.lastFirst ?? ''}
+                        Created By: {data.siteDate.createdBy?.lastFirst ?? ''}
                     </div>
                     <div class="pl-4">
                         Created At: {data.siteDate.createdAt ? formatDate(new Date(data.siteDate.createdAt).toISOString(), 'medium', 'medium') : ''}
                     </div>
                     <div class="pl-4">
-                        Updated By: {data.siteDate.updatedBy.lastFirst ?? ''}
+                        Updated By: {data.siteDate.updatedBy?.lastFirst ?? ''}
                     </div>
                     <div class="pl-4">
                         Updated At: {data.siteDate.updatedAt ?? ''}
                     </div>
                     <div class="pl-4">
-                        Confirm By: {data.siteDate.confirmBy.lastFirst ?? ''}
+                        Confirm By: {data.siteDate.confirmBy?.lastFirst ?? ''}
                     </div>
                     <div class="pl-4">
                         Confirm At: {data.siteDate.confirmAt ?? ''}
@@ -429,13 +470,14 @@
     <svelte:fragment slot="rightBody">
         <div class="flex flex-row justify-between mb-2">
             <div class="flex flex-row">
-                <button type="button" class="btn variant-soft scale-90 -translate-x-2" onclick={addSiteDate} title="Add new site date observation"><span class="text-success-400">✚</span>&nbsp;Add site date</button>
-                <div class="my-auto mr-4 text-nowrap text-ellipsis overflow-hidden">{data.siteDate.siteName}</div>
-                <GoBack targetId={data.siteDate.siteId} targetType={GOTYPE.SITES} targetIdSecondary={null} controlBody="scale-90" buttonCenter="" scriptCenter="" labelledby="" />
-                <GoNext targetId={firstSdoId} targetType={GOTYPE.SITEDATEOBSERVATIONS} targetIdSecondary={data.siteDate.siteId} controlBody="scale-90" controlDisabled={firstSdoId < 0} />
+                <button type="button" class="btn variant-soft scale-90 -translate-x-2" onclick={modalComponentAdd} disabled={isEditing} title="Add new species observation">
+                    <span class="text-green-700 dark:text-green-400 text-xl before:content-['✚']"></span>
+                    <span>Add species</span>
+                </button>
             </div>
             <div class="flex flex-row">
-                <button type="button" class="btn variant-soft scale-90 translate-x-2" onclick={addSiteDate} title="Add new site date observation"><span class="text-success-400">✚</span>&nbsp;Add site date</button>
+                <GoBack targetId={data.siteDate.siteId} targetType={GOTYPE.SITES} targetIdSecondary={null} controlBody="scale-90 -translate-x-2" buttonCenter="" scriptCenter="" labelledby="" />
+                <GoNext targetId={firstSdoId} targetType={GOTYPE.SITEDATEOBSERVATIONS} targetIdSecondary={data.siteDate.siteId} controlBody="scale-90 -translate-x-1" controlDisabled={firstSdoId < 0} buttonCenter="" scriptCenter="" labelledby="Go to specimen(s)" />
                 <SiteDatePicker bind:currentSiteId bind:currentSiteDateId controlBody="scale-90" buttonLeft="" buttonRight="" buttonYear="" buttonWeek="" dropdownShowDate={false} dropdownPointers={false} heading={null} yearPrefix="" weekPrefix="" controlOuter="" prefixYear="" prefixWeek="" suffixYear="" suffixWeek="" popupInner="" popupStyles="" labelledby="" />
             </div>
             <!-- below version breaks -->

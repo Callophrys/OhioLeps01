@@ -17,4 +17,4 @@
         {/each}
     </div>
 {/snippet}
-<Container {head} {body} tail={null} />
+<Container {head} {body} bodyClasses="" tail={null} />

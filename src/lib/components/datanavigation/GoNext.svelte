@@ -3,30 +3,41 @@
     import { GOTYPE } from '$lib/types';
     import { goto } from '$app/navigation';
 
-    export let targetId: number;
-    export let targetType: GOTYPE;
-    export let targetIdSecondary: number = -1;
-    export let controlDisabled: boolean = false;
+    let {
+        targetId,
+        targetType,
+        targetIdSecondary = -1,
+        controlDisabled = false,
+        controlBody = '',
+        buttonCenter = '',
+        scriptCenter = '',
+        labelledby = 'Go toward data',
+    }: {
+        targetId: number;
+        targetType: GOTYPE;
+        targetIdSecondary: number;
+        controlDisabled: boolean;
+        controlBody: CssClasses;
+        buttonCenter: CssClasses;
+        scriptCenter: CssClasses;
+        labelledby: string;
+    } = $props();
 
     /*-- -- Styling -- */
     /*-- Properties (styles) */
-    export let controlBody: CssClasses = '';
-    export let buttonCenter: CssClasses = '';
-    export let scriptCenter: CssClasses = '';
 
     // Properties (a11y)
     /** Provide the ARIA labelledby value.  Default: "Select site-date" */
-    export let labelledby = 'Select site-date';
 
     /*-- Constants (styles) */
     const cControlBody = 'btn-group w-fit variant-soft my-auto';
     const cButtonCenter = '';
-    const cScriptCenter = 'w-full my-auto text-center truncate overflow-hidden text-ellipsis';
+    const cScriptCenter = "w-full my-auto text-center truncate overflow-hidden text-ellipsis before:content-['▶']";
 
     /*-- Reactives (styles) */
-    $: classesControlBody = `${cControlBody} ${controlBody} ${$$props.class ?? ''}`;
-    $: classesButtonCenter = `${cButtonCenter} ${buttonCenter} ${$$props.class ?? ''}`;
-    $: classesScriptCenter = `${cScriptCenter} ${scriptCenter} ${$$props.class ?? ''}`;
+    let classesControlBody = $derived(`${cControlBody} ${controlBody}`);
+    let classesButtonCenter = $derived(`${cButtonCenter} ${buttonCenter}`);
+    let classesScriptCenter = $derived(`${cScriptCenter} ${scriptCenter}`);
 
     /*-- Handlers */
     function handleClick() {
@@ -63,7 +74,7 @@
 </script>
 
 <div class={classesControlBody} aria-labelledby={labelledby}>
-    <button type="button" class={classesButtonCenter} on:click={handleClick} title={`Proceed to ${GOTYPE[targetType]}`} disabled={controlDisabled || targetType === GOTYPE.UNKNOWN}>
-        <span class={classesScriptCenter}>▶</span>
+    <button type="button" class={classesButtonCenter} onclick={handleClick} title={`Proceed to ${GOTYPE[targetType]}`} disabled={controlDisabled || targetType === GOTYPE.UNKNOWN}>
+        <span class={classesScriptCenter}></span>
     </button>
 </div>

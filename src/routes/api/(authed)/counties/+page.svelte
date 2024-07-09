@@ -1,13 +1,13 @@
 <script lang="ts">
     import { GOTYPE } from '$lib/types.js';
     import type { CssClasses } from '@skeletonlabs/skeleton';
-    import Container from '$lib/components/layouts/Container.svelte';
     import { goto } from '$app/navigation';
     import { setContext } from 'svelte';
-    import CountyFilter from '$lib/components/counties/countyFilter.svelte';
-    import CountySort from '$lib/components/counties/countySort.svelte';
+    import Container from '$lib/components/layouts/Container.svelte';
     import GoBack from '$lib/components/datanavigation/GoBack.svelte';
     import GoNext from '$lib/components/datanavigation/GoNext.svelte';
+    import CountyFilter from '$lib/components/counties/countyFilter.svelte';
+    import CountySort from '$lib/components/counties/countySort.svelte';
 
     let { data } = $props();
     setContext('counties', data.counties);
@@ -39,13 +39,31 @@
     };
 
     let controlDisabled = $derived(counties.length === 0);
+    const cClassesElementEins = "my-auto before:content-['Counties:'] before:lg:content-['County_count:']";
 </script>
+
+<div class="text-sm fixed top-[102px] pl-8">
+    <span class="before:content-['County_count:']"></span>
+    <span>{data.counties.length}</span>
+</div>
+
+<div class="text-sm fixed top-[102px] pl-40">
+    <span class="before:content-['Monitored_counties:']"></span>
+    <span>{data.counties.filter((c) => c.isMonitored).length}</span>
+</div>
+
+<div class="text-sm fixed top-[102px] pl-80">
+    <span class="before:content-['Unmonitored_counties:']"></span>
+    <span>{data.counties.filter((c) => !c.isMonitored).length}</span>
+</div>
 
 <!-- Counties -->
 {#snippet head()}
     <div class="bg-red flex flex-col lg:flex-row justify-between">
-        <GoBack targetId={-1} targetType={GOTYPE.HOME} controlBody="scale-90" />
-        <GoNext targetId={goNextCountyId()} targetType={goNextTargetType()} controlBody="scale-90" {controlDisabled} />
+        <div class="flex flex-row">
+            <GoBack targetId={-1} targetIdSecondary={null} targetType={GOTYPE.HOME} controlBody="scale-90" />
+            <GoNext targetId={goNextCountyId()} targetIdSecondary={-1} targetType={goNextTargetType()} controlBody="scale-90" {controlDisabled} />
+        </div>
         <CountySort bind:counties controlBody="scale-90 origin-left" />
         <CountyFilter bind:vButtonGroupClasses controlBody="scale-90 origin-left" />
     </div>
@@ -68,4 +86,4 @@
         {/each}
     </div>
 {/snippet}
-<Container {head} {body} tail={null} />
+<Container {head} {body} bodyClasses="" tail={null} />

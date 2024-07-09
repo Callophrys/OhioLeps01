@@ -204,6 +204,9 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     }
 
     /*-- Methods */
+    let inUse = $derived(data.checklistsSiteDateObs.filter((x: any) => !x.isDeleted).map((x: any) => x.checklistId));
+    let availableChecklistItems = $derived(data.checklistsAll.filter((x: any) => !inUse.includes(x.checklistId)));
+
     function modalComponentAdd(): void {
         const c: ModalComponent = { ref: ModalSdoEdit };
         // TODO: supply a filtered checklist.  I.e. checklist minus current subset in use.
@@ -212,7 +215,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
             component: c,
             title: 'Add Specimen to Observations',
             body: 'Complete the form below and then press submit.',
-            value: { checklist: data.checklistsAll, year: 2024, week: 8, siteDateId: data.siteDateObservation.siteDateId },
+            value: { checklist: availableChecklistItems, year: recordYear, week: recordWeek, siteDateId: data.siteDateObservation.siteDateId },
             response: (r) => {
                 if (typeof r === 'object') {
                     const formData = new FormData();
@@ -300,7 +303,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
         return result;
     });
 
-    let total: number = $derived(sdoSections.reduce((t: number, o: any) => t + (isNaN(o.value) ? 0 : Number(o.value)), 0));
+    // let total: number = $derived(sdoSections.reduce((t: number, o: any) => t + (isNaN(o.value) ? 0 : Number(o.value)), 0));
 
     const specimenClassesMultiple = (sdo: SiteDateObservationChecklist) => {
         if (sdo.deleted) {
@@ -311,11 +314,11 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
         return showRecentEdits && isRecent(sdo, 10) ? `${c} ${cHighlightRecent}` : c;
     };
 
-    let nextSiteDateObservation = $derived(() => {
-        let currentIndex = data.siteDates.findIndex((x: any) => x.siteDateId === currentSiteDateObservation.siteDateId);
-        let nextIndex = ++currentIndex % data.siteDates.length;
-        return data.siteDates[nextIndex];
-    });
+    // let nextSiteDateObservation = $derived(() => {
+    //     let currentIndex = data.siteDates.findIndex((x: any) => x.siteDateId === currentSiteDateObservation.siteDateId);
+    //     let nextIndex = ++currentIndex % data.siteDates.length;
+    //     return data.siteDates[nextIndex];
+    // });
 
     let availableObservations = $derived(
         data.checklistsSiteDateObs.filter((x: SiteDateObservationChecklist) => {
@@ -344,7 +347,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
             <!--
                 <GoNext targetId={nextSiteDateObservation.siteDateId} targetIdSecondary={data.siteDateObservation.siteId} targetType={GOTYPE.SITEDATEOBSERVATIONS} targetIdSecondary={data.siteDate.siteId} controlBody="scale-90" controlDisabled={firstSdoId < 0} />
                 -->
-            <SitePicker {currentSiteId} controlBody="scale-90" />
+            <SitePicker {currentSiteId} currentCountyId={-1} currentSiteDateId={-1} filterByCounty={false} controlOuter="" heading={null} controlBody="scale-90" dropdownPointers={true} buttonLeft="" buttonCenter="" buttonRight="" scriptCenter="" suffixCenter="" popupInner="" popupStyles="" labelledby="" />
         </div>
         <SpeciesPicker currentSdoChecklistItemId={currentSiteDateObservation.siteDateObservationId} {isEditing} {isViewAll} {showDeletedData} controlBody="scale-90" />
         <!-- older one <SiteDatePicker currentSiteId={data.siteDateObservation.siteDate.siteId} currentSiteDateId={data.siteDateObservation.siteDateId ?? -1} controlBody="scale-90" /> -->
@@ -605,6 +608,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                         <div class="w-56 truncate">{chkSdo.checklist.commonName}</div>
                         <div class="w-64">{chkSdo.checklist.scientificName}</div>
                         <div class="w-36">Hodges: {@html htmlHodges(chkSdo.hodges)}</div>
+                        <div inert class="opacity-0">{chkSdo.checklist.checkListId}</div>
 
                         {#if chkSdo.deleted}
                             <div class="w-44 pr-2 pb-0.5">ID Method: {@html chkSdo.idCode ?? '&varnothing;'}</div>
@@ -700,6 +704,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                             <div class="w-64">{chkSdo.checklist.scientificName}</div>
                         </div>
                         <div class="w-32">Hodges: {@html htmlHodges(chkSdo.checklist.hodges)}</div>
+                        <div class="hidden">{chkSdo.checklist.checklistId}</div>
                         <div class="w-44 pr-2 pb-0.5">ID Method: {@html htmlIdCode(chkSdo.idCode)}</div>
                         <div class="w-36">(Total: {chkSdo.total})</div>
                     </div>

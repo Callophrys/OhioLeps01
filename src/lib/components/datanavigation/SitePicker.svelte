@@ -1,7 +1,7 @@
 <script lang="ts">
     /* TODO Added overall control isDisabled or something for when there is no data or just want it off */
     /*-- Imports */
-    import type { County, Site } from '@prisma/client';
+    import type { Site } from '@prisma/client';
     import type { SiteDateYearSiteDates } from '$lib/types.js';
     import type { Snippet } from 'svelte';
     import type { PopupSettings } from '@skeletonlabs/skeleton';
@@ -9,8 +9,6 @@
     import { goto } from '$app/navigation';
     import { popup, ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
     import { getContext } from 'svelte';
-    import SiteNavigation from '../SiteNavigation.svelte';
-    import SiteDatePicker from './SiteDatePicker.svelte';
 
     /*-- -- Data -- */
     /*-- Exports */
@@ -26,7 +24,6 @@
         buttonLeft = '',
         buttonCenter = '',
         buttonRight = '',
-        prefixCenter = '',
         scriptCenter = '',
         suffixCenter = '',
         popupInner = '',
@@ -44,7 +41,6 @@
         buttonLeft: CssClasses;
         buttonCenter: CssClasses;
         buttonRight: CssClasses;
-        prefixCenter: CssClasses;
         scriptCenter: CssClasses;
         suffixCenter: CssClasses;
         popupInner: CssClasses;
@@ -74,9 +70,7 @@
     const cButtonLeft = '';
     const cButtonCenter = 'w-32 md:w-44 lg:w-56 xl:w-64';
     const cButtonRight = '';
-    const cPrefixCenter = '';
     const cScriptCenter = 'w-full text-left truncate overflow-hidden text-ellipsis';
-    const cSuffixCenter = '';
     const cPopupInner = 'card w-48 shadow-xl py-2 overflow-y-auto';
     const cPopupStyles = 'max-height: calc(100vh - 272px);';
 
@@ -86,9 +80,9 @@
     let classesButtonLeft = $derived(`${cButtonLeft} ${buttonLeft}`); // } ${$$props.class ?? ''}`;
     let classesButtonCenter = $derived(`${cButtonCenter} ${buttonCenter}`); // } ${$$props.class ?? ''}`;
     let classesButtonRight = $derived(`${cButtonRight} ${buttonRight}`); // } ${$$props.class ?? ''}`;
-    let classesPrefixCenter = $derived(`${cPrefixCenter} ${prefixCenter}`); // } ${$$props.class ?? ''}`;
+    // let classesPrefixCenter = $derived(`${cPrefixCenter} ${prefixCenter}`); // } ${$$props.class ?? ''}`;
     let classesScriptCenter = $derived(`${cScriptCenter} ${scriptCenter}`); // } ${$$props.class ?? ''}`;
-    let classesSuffixCenter = $derived(`${cSuffixCenter} ${suffixCenter}`); // } ${$$props.class ?? ''}`;
+    // let classesSuffixCenter = $derived(`${cSuffixCenter} ${suffixCenter}`); // } ${$$props.class ?? ''}`;
     let classesPopupInner = $derived(`${cPopupInner} ${popupInner}`); // } ${$$props.class ?? ''}`;
     let stylesPopup = $derived(`${cPopupStyles} ${popupStyles}`); // } ${$$props.style ?? ''}`;
 

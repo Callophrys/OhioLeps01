@@ -52,7 +52,7 @@
         </div>
         <div class="flex flex-row">
             <GoBack targetId={-1} targetIdSecondary={null} targetType={GOTYPE.COUNTIES} controlBody="scale-90" buttonCenter="" scriptCenter="" labelledby="" />
-            <GoNext targetId={goNextSiteId} targetType={GOTYPE.SITES} controlBody="scale-90" controlDisabled={goNextSiteId === -1} />
+            <GoNext targetId={goNextSiteId} targetIdSecondary={-1} targetType={GOTYPE.SITES} controlBody="scale-90" controlDisabled={goNextSiteId === -1} buttonCenter="" scriptCenter="" labelledby="Go to sites" />
             <select class="select scale-90" bind:value={countyId} onchange={handleSiteSelect}>
                 <option value="-1">ALL SITES</option>
                 {#each data.counties as county}

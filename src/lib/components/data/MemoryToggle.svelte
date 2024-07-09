@@ -7,10 +7,12 @@
         toggleItem = $bindable(),
         toggleName,
         toggleList,
+        isHidden = $bindable(false),
     }: {
         toggleItem: string;
         toggleName: string;
         toggleList: { [key: string]: string };
+        isHidden: boolean;
     } = $props();
 
     const keys = Object.keys(toggleList);
@@ -26,7 +28,7 @@
     });
 </script>
 
-<div class="scale-75 origin-right">
+<div class={`scale-75 origin-right ${isHidden ? 'opacity-0' : ''}`} inert={isHidden}>
     <RadioGroup name="toggle-group" active="variant-filled-primary" hover="hover:variant-soft-primary">
         <RadioItem bind:group={toggleItem} name="toggle" value={keys[0]}>{@html values[0]}</RadioItem>
         <RadioItem bind:group={toggleItem} name="toggle" value={keys[1]}>{@html values[1]}</RadioItem>

@@ -2,7 +2,7 @@ import prisma from '$lib/prisma';
 import type { SiteDate } from '@prisma/client';
 
 export async function getSiteDate(siteDateId: number) {
-    console.log('ok');
+    // console.log('getSiteDate');
     const siteDate = await prisma.siteDate.findFirst({
         where: {
             siteDateId: siteDateId,
@@ -14,6 +14,9 @@ export async function getSiteDate(siteDateId: number) {
                 },
             },
             siteDateObservations: true,
+            createdBy: true,
+            updatedBy: true,
+            confirmBy: true,
         },
     });
 

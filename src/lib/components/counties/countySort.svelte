@@ -6,13 +6,12 @@
 
     type CountySortProps = {
         counties: CountyComplete[];
-        elementEins: CssClasses;
         elementZwei: CssClasses;
         elementDrei: CssClasses;
         controlBody: CssClasses | null;
     };
 
-    let { counties = $bindable(), elementEins = 'pr-2', elementZwei = '-mr-9', elementDrei = '', controlBody = null }: CountySortProps = $props();
+    let { counties = $bindable(), elementZwei = '-mr-9', elementDrei = '', controlBody = null }: CountySortProps = $props();
 
     /*-- -- Data -- */
     /*-- Exports */
@@ -21,13 +20,11 @@
     /*-- Properties (styles) */
 
     /*-- Constants (styles) */
-    const cClassesElementEins = "my-auto before:content-['Counties:'] before:lg:content-['County_count:']";
     const cClassesElementZwei = 'flex flex-row space-x-2';
     const cClassesElementDrei = "my-auto text-right before:content-[''] md:before:content-['Sort_by'] lg:before:content-['Sort_by_County/Region:']";
     const cControlBody = '';
 
     /*-- Reactives (styles) */
-    let classesElementEins = $derived(`${cClassesElementEins} ${elementEins}`); // ${$$props.class ?? ''}`);
     let classesElementZwei = $derived(`${cClassesElementZwei} ${elementZwei}`); // ${$$props.class ?? ''}`);
     let classesElementDrei = $derived(`${cClassesElementDrei} ${elementDrei}`); // ${$$props.class ?? ''}`);
     let classesControlBody = $derived(`${cControlBody} ${controlBody}`); //${$$props.class ?? ''}`);
@@ -110,9 +107,6 @@
     /*-- Reactives (functional) */
 </script>
 
-<div class={classesElementEins}>
-    &nbsp;{counties.length}
-</div>
 <div class={classesElementZwei}>
     <span class={classesElementDrei}></span>
     <div class={classesControlBody}>

@@ -154,7 +154,7 @@
     );
 
     const trackedWeeks: DateTracking[] = [];
-    $inspect(trackedWeeks);
+    // $inspect(trackedWeeks);
 
     /*-- Variables and objects */
     let recordYear: string = $state('');

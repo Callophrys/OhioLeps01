@@ -7,13 +7,12 @@
 
     type CountyFilterProps = {
         vButtonGroupClasses: CssClasses;
-        elementEins: CssClasses;
         elementZwei: CssClasses;
         elementDrei: CssClasses;
         controlBody: CssClasses | null;
     };
 
-    let { vButtonGroupClasses = $bindable(''), elementEins = 'pr-2', elementZwei = '', elementDrei = '-mr-16', controlBody = null }: CountyFilterProps = $props();
+    let { vButtonGroupClasses = $bindable(''), elementZwei = '', elementDrei = '-mr-16', controlBody = null }: CountyFilterProps = $props();
 
     /*-- -- Data -- */
     /*-- Exports */
@@ -25,13 +24,11 @@
     /*-- Properties (styles) */
 
     /*-- Constants (styles) */
-    const cClassesElementEins = "my-auto before:content-['Monitored_counties:'] before:lg:content-['Counties_with_monitored_sites:']";
     const cClassesElementZwei = "my-auto text-right before:content-[''] sm:before:content-['Filter_by:'] lg:before:content-['Filter_by_monitor_status:']";
     const cClassesElementDrei = 'flex flex-row space-x-2';
     const cControlBody = '';
 
     /*-- Reactives (styles) */
-    let classesElementEins = $derived(`${cClassesElementEins} ${elementEins}`); // ${$$props.class ?? ''}`);
     let classesElementZwei = $derived(`${cClassesElementZwei} ${elementZwei}`); // ${$$props.class ?? ''}`);
     let classesElementDrei = $derived(`${cClassesElementDrei} ${elementDrei}`); // ${$$props.class ?? ''}`);
     let classesControlBody = $derived(`${cControlBody} ${controlBody}`); //${$$props.class ?? ''}`);
@@ -78,9 +75,6 @@
     /*-- Reactives (functional) */
 </script>
 
-<div class={classesElementEins}>
-    &nbsp;{counties.filter((c) => c.isMonitored).length}
-</div>
 <div class="flex flex-row space-x-2">
     <div class={classesElementZwei}></div>
     <div class={classesElementDrei}>
