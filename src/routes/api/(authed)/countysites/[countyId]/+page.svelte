@@ -43,15 +43,15 @@
 
 {#snippet head()}
     <div class="flex flex-row justify-between">
-        <div class="flex">
+        <div class="flex flex-row space-x-2">
             <div class="my-auto">All sites in county: {county.name}</div>
 
             {#if $page.data?.user && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN')}
-                <button type="button" class="btn" onclick={addSite}><span class="text-success-400">✚</span>&nbsp;Add new site</button>
+                <button type="button" class="btn h-10 variant-soft" onclick={addSite}><span class="text-success-400">✚</span>&nbsp;Add new site</button>
             {/if}
         </div>
         <div class="flex flex-row">
-            <GoBack targetId={-1} targetType={GOTYPE.COUNTIES} controlBody="scale-90" />
+            <GoBack targetId={-1} targetIdSecondary={null} targetType={GOTYPE.COUNTIES} controlBody="scale-90" buttonCenter="" scriptCenter="" labelledby="" />
             <GoNext targetId={goNextSiteId} targetType={GOTYPE.SITES} controlBody="scale-90" controlDisabled={goNextSiteId === -1} />
             <select class="select scale-90" bind:value={countyId} onchange={handleSiteSelect}>
                 <option value="-1">ALL SITES</option>
@@ -65,7 +65,7 @@
 {#snippet body()}
     <div>
         <div class="flex flex-wrap gap-2">
-            {#each data.sites as site, i}
+            {#each data.sites as site}
                 <a href="/api/sites/{site.siteId}">
                     <div class="card relative grid w-56 h-32 p-0 m-0 text-wrap hover:variant-soft">
                         <div class="absolute top-2 left-2">🔍</div>
@@ -85,5 +85,5 @@
         </div>
     </div>
 {/snippet}
-{#snippet tail()}{/snippet}
-<Container {head} {body} tail={null} />
+<!-- {#snippet tail()}{/snippet} -->
+<Container {head} {body} bodyClasses={null} tail={null} />

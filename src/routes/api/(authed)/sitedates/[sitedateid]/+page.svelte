@@ -429,7 +429,8 @@
     <svelte:fragment slot="rightBody">
         <div class="flex flex-row justify-between mb-2">
             <div class="flex flex-row">
-                <div class="my-auto mr-4">{data.siteDate.siteName}</div>
+                <button type="button" class="btn variant-soft scale-90 -translate-x-2" onclick={addSiteDate} title="Add new site date observation"><span class="text-success-400">✚</span>&nbsp;Add site date</button>
+                <div class="my-auto mr-4 text-nowrap text-ellipsis overflow-hidden">{data.siteDate.siteName}</div>
                 <GoBack targetId={data.siteDate.siteId} targetType={GOTYPE.SITES} targetIdSecondary={null} controlBody="scale-90" buttonCenter="" scriptCenter="" labelledby="" />
                 <GoNext targetId={firstSdoId} targetType={GOTYPE.SITEDATEOBSERVATIONS} targetIdSecondary={data.siteDate.siteId} controlBody="scale-90" controlDisabled={firstSdoId < 0} />
             </div>
