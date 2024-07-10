@@ -174,6 +174,7 @@
         console.log('yearDates', yearDates.slice(0, 2));
 
         if (idx > -1) {
+            event.preventDefault();
             updatePerHandler(idx);
         }
     };
@@ -181,6 +182,7 @@
     const handleSelectWeek = (event: Event & { currentTarget: any }) => {
         let idx = trackedWeeks.findIndex((x) => x.siteDateId === parseInt(event.currentTarget.value));
         if (idx > -1) {
+            event.preventDefault();
             updatePerHandler(idx);
         }
     };
@@ -204,16 +206,18 @@
         return false;
     };
 
-    const handleClickPrior = () => {
+    const handleClickPrior = (event: Event) => {
         let idx = trackedWeeks.findIndex((x) => x.siteDateId === currentSiteDateId);
         if (idx > 0) {
+            event.preventDefault();
             updatePerHandler(idx - 1);
         }
     };
 
-    const handleClickNext = () => {
+    const handleClickNext = (event: Event) => {
         let idx = trackedWeeks.findIndex((x) => x.siteDateId === currentSiteDateId);
         if (idx < trackedWeeks.length - 1) {
+            event.preventDefault();
             updatePerHandler(idx + 1);
         }
     };

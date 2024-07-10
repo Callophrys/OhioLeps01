@@ -26,6 +26,11 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     /*-- Exports */
     let { data, form }: { data: any; form: any } = $props();
 
+    let config: any = $state({});
+    $effect(() => {
+        config = $page.data.config;
+    });
+
     /*-- Context */
     setContext('sites', data.sites);
     setContext('siteDates', data.siteDates);
@@ -39,7 +44,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     const cDataClasses = 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1 md:gap-2';
     const cDatumClasses = 'flex flex-row space-x-2';
     const cSectionClasses = 'flex flex-row pr-2';
-    const cSectionSpanClasses = 'w-24';
+    const cSectionSpanClasses = 'w-24 my-auto';
 
     const cButtonBase = 'btn h-8 sm:h-10 md:h-11 pb-2 scale-90 -translate-y-2';
     const cButtonStandard = `${cButtonBase} w-24 md:w-28 variant-soft -translate-x-1`;
@@ -128,6 +133,9 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     let showRecentEdits: boolean = $state(false);
     let showDeletedData: boolean = $state(false);
 
+    let classesNameScientific = $derived(`w-full transition-all duration-500 ease-in-out ${isNamingReversed ? 'translate-x-full text-right' : 'translate-x-0 text-left'}`);
+    let classesNameCommon = $derived(`w-full transition-all duration-500 ease-in-out ${isNamingReversed ? '-translate-x-full text-left' : 'translate-x-0 text-right'}`);
+
     /*-- Variables and objects */
     /*-- Run first stuff */
     const modalStore = getModalStore();
@@ -164,15 +172,11 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
         return true;
     };
 
-    function onClickNames(e: Event & { currentTarget: EventTarget & HTMLDivElement }) {
-        isNamingReversed = e.currentTarget.classList.contains('flex-row');
-    }
+    let formEdit: HTMLFormElement | undefined = $state();
 
-    let formEdit: HTMLFormElement;
-
-    function saveEditSingle(e: Event) {
+    function saveUpdates(e: Event) {
         e.preventDefault();
-        formEdit.submit(); // Submit form without raising submit event
+        formEdit?.submit(); // Submit form without raising submit event
     }
 
     function onSubmitEdit() {
@@ -288,7 +292,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     let currentSiteId: number = $state(data.siteDateObservation.siteDate.siteId);
     let currentSiteDateId: number = $state(data.siteDateObservation.siteDateId);
 
-    const htmlHodges = (h: string | null) => {console.log('h', h, !h, !!h, h === 'null'); return (!h || h === 'null' ? '&varnothing;' : h)};
+    const htmlHodges = (h: string | null) => (!h || h === 'null' ? '&varnothing;' : h);
     const htmlIdCode = (c: string | null) => (!c || c === 'null' ? '&varnothing;' : c === 'O' ? 'Observed' : c === 'C' ? 'Collected' : c === 'N' ? 'Net' : c === 'P' ? 'Photo' : 'Unknown');
 
     let recordYear = $derived(new Date(currentSiteDateObservation.siteDate.recordDate).getFullYear());
@@ -342,7 +346,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     <!-- TODO: make this flex better for responsive sizings -->
     <div class="flex flex-col lg:flex-row lg:justify-between gap-1 lg:gap-2 pb-2 text-surface-600-300-token">
         <div class="flex flex-row">
-            <GoBack targetId={data.siteDateObservation.siteDate.siteDateId} targetIdSecondary={null} targetType={GOTYPE.SITEDATES} controlBody="scale-90" buttonCenter="" scriptCenter="" labelledby="" />
+            <GoBack bind:targetId={data.siteDateObservation.siteDate.siteDateId} targetIdSecondary={null} targetType={GOTYPE.SITEDATES} controlBody="scale-90" buttonCenter="" scriptCenter="" labelledby="" />
             <!--
                 <GoNext targetId={nextSiteDateObservation.siteDateId} targetIdSecondary={data.siteDateObservation.siteId} targetType={GOTYPE.SITEDATEOBSERVATIONS} targetIdSecondary={data.siteDate.siteId} controlBody="scale-90" controlDisabled={firstSdoId < 0} />
                 -->
@@ -357,7 +361,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 {#snippet editSpecimenEditing()}
     <!-- SAVE UPDATE(s) Action -->
     <!-- <button type="button" class={cButtonStandard} onclick={() => formEdit?.submit()}> -->
-    <button type="button" class={cButtonStandard} onclick={saveEditSingle}>
+    <button type="button" class={cButtonStandard} onclick={saveUpdates}>
         {isViewAll ? 'Save All' : 'Save'}
         <span class="pl-2">✎</span>
     </button>
@@ -386,7 +390,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 {/snippet}
 
 {#snippet editSpecimenViewing()}
-    {#if data.siteDateObservation.confirmed}
+    {#if data.siteDateObservation.confirmed || data.siteDateObservation.deleted}
         <button type="button" class={cButtonStandard} disabled>
             {isViewAll ? 'Edit All' : 'Edit'}
             <span class="pl-2">✎</span>
@@ -533,10 +537,15 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     {#if isEditable(sdo, $page.data.user)}
         <form method="POST" action="?/deleteSiteDateObservation" onsubmit={onSubmitDelete} use:enhance>
             {#if !sdo.deleted}
-                <button type="submit" class={cButtonStandard}>Delete<span class="pl-2">❌</span></button>
+                <button type="submit" class={cButtonStandard}>
+                    {isViewAll ? 'Delete All' : 'Delete'}
+                    <span class="pl-2">❌</span>
+                </button>
                 <input hidden name="deleteOn" value={true} />
-            {:else}
-                <button type="submit" class={cButtonStandard} onclick={() => modalStore.trigger(modalUndelete)}>Undelete<span class="ml-2 mb-1 text-2xl">↺</span></button>
+            {:else if showDeletedData}
+                <button type="submit" class={cButtonStandard} onclick={() => modalStore.trigger(modalUndelete)}>
+                    {isViewAll ? 'Undelete All' : 'Undelete'}
+                    <span class="ml-2 mb-1 text-2xl">↺</span></button>
                 <input hidden name="deleteOn" value={false} />
             {/if}
             <input hidden name="siteDateObservationId" value={sdo.siteDateObservationId} />
@@ -599,7 +608,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 
     {#if isEditing}<!-- EDITING Multiple species observation recordings -->
 
-        <form id="formEdit" method="POST" action="?/saveSiteDateObservation" use:enhance>
+        <form id="formEdit" bind:this={formEdit} method="POST" action="?/saveSiteDateObservation" onsubmit={onSubmitEdit} use:enhance>
             {#each availableObservations as chkSdo}
                 <div class={specimenClassesMultiple(chkSdo)}>
                     <div class="pl-1 flex flex-row justify-between">
@@ -608,7 +617,10 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                             <div class="w-56 truncate">{chkSdo.checklist.commonName}</div>
                             <div class="w-64 truncate">{chkSdo.checklist.scientificName}</div>
                             <div class="w-28 text-right">Hodges: {@html htmlHodges(chkSdo.hodges)}</div>
-                            <div class="hidden">{chkSdo.checklist.checkListId}</div>
+                            {#if config.modeDebug}
+                                <div class="hidden" data-name="siteDateObservationId">{chkSdo.siteDateObservationId}</div>
+                                <div class="hidden" data-name="checklistId">{chkSdo.checklistId}</div>
+                            {/if}
 
                             {#if chkSdo.deleted}
                                 <div class="w-44 pr-2 pb-0.5 text-right">ID Method: {@html chkSdo.idCode ?? '&varnothing;'}</div>
@@ -644,17 +656,17 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                             {#if chkSdo.deleted}
                                 <div class={cSectionClasses}>
                                     <div class={cSectionSpanClasses}>{section.label}:</div>
-                                    <div class="w-8">{@html section.value ?? '&varnothing;'}</div>
+                                    <div class="w-16">{@html section.value ?? '&varnothing;'}</div>
                                 </div>
                             {:else if chkSdo.confirmed}
                                 <div class={cSectionClasses}>
                                     <span class={cSectionSpanClasses}>{section.label}:</span>
-                                    <input type="text" value={section.value} class="w-8 mb-0.5 text-center text-black" disabled />
+                                    <input type="text" value={section.value} class="w-16 mb-0.5 text-center text-black" disabled />
                                 </div>
                             {:else}
                                 <label class={cSectionClasses}>
                                     <span class={cSectionSpanClasses}>{section.label}:</span>
-                                    <input type="text" name={`${chkSdo.siteDateObservationId}_${section.name}`} value={section.value} class="w-8 mb-0.5 text-center text-black" />
+                                    <input type="text" name={`${chkSdo.siteDateObservationId}_${section.name}`} value={section.value} class="w-12 mb-0.5 leading-4 text-right text-black" />
                                     <input type="hidden" name={`${chkSdo.siteDateObservationId}_${section.name}_orig`} value={section.value} />
                                 </label>
                             {/if}
@@ -705,7 +717,10 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                             <div class="w-64">{chkSdo.checklist.scientificName}</div>
                         </div>
                         <div class="w-32">Hodges: {@html htmlHodges(chkSdo.checklist.hodges)}</div>
-                        <div class="hidden">{chkSdo.checklist.checklistId}</div>
+                        {#if config.modeDebug}
+                            <div class="hidden" data-name="siteDateObservationId">{chkSdo.siteDateObservationId}</div>
+                            <div class="hidden" data-name="checklistId">{chkSdo.checklistId}</div>
+                        {/if}
                         <div class="w-44 pb-0.5">ID Method: {@html htmlIdCode(chkSdo.idCode)}</div>
                         <div class="w-36 text-right">(Total: {chkSdo.total})</div>
                     </div>
@@ -806,11 +821,11 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 {#snippet dataSingle(sdo: SiteDateObservationChecklist)}
     <div class={`${sdo.deleted ? 'line-through variant-ghost-error' : showRecentEdits && isRecent(sdo, 10) ? cHighlightRecent : ''}`}>
         <!-- DATA Heading -->
-        <div class={`flex ${isNamingReversed ? 'flex-row-reverse' : 'flex-row'} justify-between font-bold mb-4`} onclick={onClickNames} onkeydown={() => {}} role="button" tabindex="0">
-            <div>
+        <div class="flex flex-row justify-between font-bold hover:text-purple-700 dark:hover:text-purple-200 mb-4" onclick={() => (isNamingReversed = !isNamingReversed)} onkeydown={() => {}} role="button" tabindex="0">
+            <div class={classesNameScientific}>
                 {sdo.checklist.scientificName}
             </div>
-            <div>
+            <div class={classesNameCommon}>
                 {sdo.checklist.commonName}
             </div>
         </div>
