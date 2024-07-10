@@ -162,6 +162,10 @@
 
     /*-- Run first stuff */
     /*-- onMount, beforeUpdate, afterUpdate */
+    let isSdo = false;
+    $effect(() => {
+        isSdo = document.location.pathname.toLowerCase().includes('sitedateobservations');
+    });
 
     /*-- Handlers */
     const handleSelectYear = (event: Event & { currentTarget: any }) => {
@@ -189,7 +193,11 @@
             popupWeeksOpenCount = 0;
             cmbWeeks.inert = true;
             cmbWeeks.style.opacity = '0';
-            goto('/api/sitedates/' + currentSiteDateId);
+            if (isSdo) {
+                goto(`/api/sitedateobservations/${currentSiteDateId}/${currentSiteId}`);
+            } else {
+                goto(`/api/sitedates/${currentSiteDateId}`);
+            }
             return true;
         }
         popupWeeksOpenCount++;
@@ -216,7 +224,11 @@
         recordYear = (tw.year ?? -1).toString();
         recordWeek = (tw.week ?? -1).toString();
         currentSiteDateId = tw.siteDateId ?? -1;
-        goto('/api/sitedates/' + tw.siteDateId);
+        if (isSdo) {
+            goto(`/api/sitedateobservations/${currentSiteDateId}/${currentSiteId}`);
+        } else {
+            goto(`/api/sitedates/${tw.siteDateId}`);
+        }
     }
 
     /*-- Methods */
@@ -349,13 +361,13 @@
         <button type="button" class={classesButtonRight} onclick={handleClickNext} disabled={isDisabled || nextDisabled}>▶</button>
     </div>
 
-    <div data-popup="popupComboSiteDateYears">
+    <div data-popup="popupComboSiteDateYears" class="z-10">
         <div class={classesPopupInner} style={stylesPopup}>
             {@render sListBoxYears()}
         </div>
     </div>
 
-    <div data-popup="popupComboSiteDateWeeks" bind:this={cmbWeeks}>
+    <div data-popup="popupComboSiteDateWeeks" bind:this={cmbWeeks} class="z-20">
         {#if yearDates}
             <div class={`${classesPopupInner} ${dropdownShowDate ? 'w-44' : 'w-28'}`} style={stylesPopup}>
                 {@render sListBoxWeeks()}

@@ -10,7 +10,6 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     import Container from '$lib/components/layouts/Container.svelte';
     import DataOptions from '$lib/components/datanavigation/DataOptions.svelte';
     import GoBack from '$lib/components/datanavigation/GoBack.svelte';
-    //import GoNext from '$lib/components/datanavigation/GoNext.svelte';
     import ModalSdoEdit from '$lib/components/ModalSdoEdit.svelte';
     import SiteDatePicker from '$lib/components/datanavigation/SiteDatePicker.svelte';
     import SitePicker from '$lib/components/datanavigation/SitePicker.svelte';
@@ -289,7 +288,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     let currentSiteId: number = $state(data.siteDateObservation.siteDate.siteId);
     let currentSiteDateId: number = $state(data.siteDateObservation.siteDateId);
 
-    const htmlHodges = (h: string | null) => (!h || h === 'null' ? '&varnothing;' : h);
+    const htmlHodges = (h: string | null) => {console.log('h', h, !h, !!h, h === 'null'); return (!h || h === 'null' ? '&varnothing;' : h)};
     const htmlIdCode = (c: string | null) => (!c || c === 'null' ? '&varnothing;' : c === 'O' ? 'Observed' : c === 'C' ? 'Collected' : c === 'N' ? 'Net' : c === 'P' ? 'Photo' : 'Unknown');
 
     let recordYear = $derived(new Date(currentSiteDateObservation.siteDate.recordDate).getFullYear());
@@ -307,10 +306,10 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 
     const specimenClassesMultiple = (sdo: SiteDateObservationChecklist) => {
         if (sdo.deleted) {
-            return 'line-through odd:variant-ghost-warning even:variant-ghost-error';
+            return 'odd:variant-ghost-warning even:variant-ghost-error';
         }
 
-        let c = 'odd:bg-gray-200 odd:dark:bg-red-700';
+        let c = 'odd:variant-soft space-x-2'; // 'odd:bg-gray-200 odd:dark:bg-red-700';
         return showRecentEdits && isRecent(sdo, 10) ? `${c} ${cHighlightRecent}` : c;
     };
 
@@ -365,7 +364,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 
     <!-- UNDO/REDO(s) Action -->
     <!-- TODO: Make undo-redo work, maybe go with left-right group button -->
-    <form name="undo" id="formUndo" method="POST" action="?/undoRedoSiteDateObservation" use:enhance>
+    <form name="undo" id="formUndo" class="scale-90 -translate-y-2" method="POST" action="?/undoRedoSiteDateObservation" use:enhance>
         <!-- UNDO/REDO undo last action, edit or delete done by entry or reviewer - of course permissions matter -->
         <!-- TODO toggle undo and redo on same control -->
         <div class="btn-group variant-soft">
@@ -603,37 +602,39 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
         <form id="formEdit" method="POST" action="?/saveSiteDateObservation" use:enhance>
             {#each availableObservations as chkSdo}
                 <div class={specimenClassesMultiple(chkSdo)}>
-                    <div class="pl-1 flex flex-row">
-                        <div class="w-6">{chkSdo.deleted ? '❌' : chkSdo.confirmed ? '🔐' : '🔓'}</div>
-                        <div class="w-56 truncate">{chkSdo.checklist.commonName}</div>
-                        <div class="w-64">{chkSdo.checklist.scientificName}</div>
-                        <div class="w-36">Hodges: {@html htmlHodges(chkSdo.hodges)}</div>
-                        <div inert class="opacity-0">{chkSdo.checklist.checkListId}</div>
+                    <div class="pl-1 flex flex-row justify-between">
+                        <div class="flex flex-row justify-start">
+                            <div class="w-6">{chkSdo.deleted ? '❌' : chkSdo.confirmed ? '🔐' : '🔓'}</div>
+                            <div class="w-56 truncate">{chkSdo.checklist.commonName}</div>
+                            <div class="w-64 truncate">{chkSdo.checklist.scientificName}</div>
+                            <div class="w-28 text-right">Hodges: {@html htmlHodges(chkSdo.hodges)}</div>
+                            <div class="hidden">{chkSdo.checklist.checkListId}</div>
 
-                        {#if chkSdo.deleted}
-                            <div class="w-44 pr-2 pb-0.5">ID Method: {@html chkSdo.idCode ?? '&varnothing;'}</div>
-                        {:else if chkSdo.confirmed}
-                            <div class="w-44 pr-2 pb-0.5">
-                                <div class={cSectionClasses}>
-                                    <span class={cSectionSpanClasses}>ID Method:</span>
-                                    <input type="text" class="w-8 text-center text-black" value={chkSdo.idCode} disabled />
+                            {#if chkSdo.deleted}
+                                <div class="w-44 pr-2 pb-0.5 text-right">ID Method: {@html chkSdo.idCode ?? '&varnothing;'}</div>
+                            {:else if chkSdo.confirmed}
+                                <div class="w-44 pr-2 pb-0.5 text-right">
+                                    <div class={cSectionClasses}>
+                                        <span class={cSectionSpanClasses}>ID Method:</span>
+                                        <input type="text" class="w-8 text-center text-black" value={chkSdo.idCode} disabled />
+                                    </div>
                                 </div>
-                            </div>
-                        {:else}
-                            <div class="w-44 pr-2 pb-0.5">
-                                <label class={cSectionClasses}>
-                                    <span class={cSectionSpanClasses}>ID Method:</span>
-                                    <select class="input" name={`${chkSdo.siteDateObservationId}_idcode`} value={chkSdo.idCode}>
-                                        <option value="O">Observed</option>
-                                        <option value="C">Collected</option>
-                                        <option value="N">Net</option>
-                                        <option value="P">Photo</option>
-                                    </select>
-                                </label>
-                                <input type="hidden" name={`${chkSdo.siteDateObservationId}_idcode_orig`} value={chkSdo.idCode} />
-                            </div>
-                        {/if}
-                        <div class="w-36">(Total: {chkSdo.total})</div>
+                            {:else}
+                                <div class="pl-4 pr-2 pb-0.5 text-right">
+                                    <label class={cSectionClasses}>
+                                        <span class={cSectionSpanClasses}>ID Method:</span>
+                                        <select class="input w-32 scale-90" name={`${chkSdo.siteDateObservationId}_idcode`} value={chkSdo.idCode}>
+                                            <option value="O">Observed</option>
+                                            <option value="C">Collected</option>
+                                            <option value="N">Net</option>
+                                            <option value="P">Photo</option>
+                                        </select>
+                                    </label>
+                                    <input type="hidden" name={`${chkSdo.siteDateObservationId}_idcode_orig`} value={chkSdo.idCode} />
+                                </div>
+                            {/if}
+                        </div>
+                        <div class="w-32 pr-4 text-right">(Total: {chkSdo.total})</div>
                     </div>
 
                     <div class="pl-8 flex flex-wrap">
@@ -705,8 +706,8 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                         </div>
                         <div class="w-32">Hodges: {@html htmlHodges(chkSdo.checklist.hodges)}</div>
                         <div class="hidden">{chkSdo.checklist.checklistId}</div>
-                        <div class="w-44 pr-2 pb-0.5">ID Method: {@html htmlIdCode(chkSdo.idCode)}</div>
-                        <div class="w-36">(Total: {chkSdo.total})</div>
+                        <div class="w-44 pb-0.5">ID Method: {@html htmlIdCode(chkSdo.idCode)}</div>
+                        <div class="w-36 text-right">(Total: {chkSdo.total})</div>
                     </div>
 
                     <div class={`pl-8 flex flex-wrap ${chkSdo.deleted ? 'line-through' : ''}`}>
