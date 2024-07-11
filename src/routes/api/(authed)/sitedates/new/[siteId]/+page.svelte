@@ -161,15 +161,15 @@
     </label>
 {/snippet}
 
-{#snippet entryInput(fullId, fullLabel, inputType)}
-    <label class="label">
+{#snippet entryInput(fullId, fullLabel, inputType, classesOuter, classesInner)}
+    <label class={`label ${classesOuter}`}>
         <span>{fullLabel}:</span>
         {#if inputType === 'number'}
-            <input type="number" class="input" id={fullId} name={fullId} min="0" />
+            <input type="number" class={`input ${classesInner}`} id={fullId} name={fullId} min="0" />
         {:else if inputType === 'input'}
-            <input type="input" class="input pl-2.5" id={fullId} name={fullId} />
+            <input type="input" class={`input pl-2.5 ${classesInner}`} id={fullId} name={fullId} />
         {:else}
-            <input type={inputType} class="input" id={fullId} name={fullId} />
+            <input type={inputType} class={`input ${classesInner}`} id={fullId} name={fullId} />
         {/if}
     </label>
 {/snippet}
@@ -181,10 +181,10 @@
     </label>
 {/snippet}
 
-{#snippet entryTemperature(fullId, fullLabel)}
-    <label class="label">
+{#snippet entryTemperature(fullId, fullLabel, classesOuter, classesInner)}
+    <label class={`label ${classesOuter}`}>
         <span>{fullLabel} &deg;{useCelcius ? 'C' : 'F'}:</span>
-        <input type="number" class="input" min={minTemp} max={maxTemp} step="0.1" id={fullId} name={fullId} title={fullLabel} />
+        <input type="number" class={`input ${classesInner}`} min={minTemp} max={maxTemp} step="0.1" id={fullId} name={fullId} title={fullLabel} />
     </label>
 {/snippet}
 
@@ -200,33 +200,44 @@
         <input type="hidden" id="siteId" name="siteId" value={data.siteId} />
         <div class="w-[37em]">
             <div class="content">
-                {@render entryInput('recorder', 'Recorder', 'input')}
+                {@render entryInput('recorder', 'Recorder', 'input', '', '')}
 
-                <label class="label">
-                    <span>Record Date:</span>
-                    <input type="date" class="input" id="recordDate" name="recordDate" title="Record date" bind:value={recordDate} />
-                </label>
+                <div class="flex flex-row justify-between">
+                    <label class="label w-1/2">
+                        <span>Record Date:</span>
+                        <input type="date" class="input" id="recordDate" name="recordDate" title="Record date" bind:value={recordDate} />
+                    </label>
 
-                <label class="label">
-                    <span>Week of Year:</span>
-                    <input type="number" class="input" id="week" name="week" readonly title="Calculated period week of the year for the record" value={rxRecordDate} />
-                </label>
+                    <label class="label w-1/4 text-right">
+                        <span>Week of Year:</span>
+                        <input class="input text-right w-16" id="week" name="week" readonly title="Calculated period week of the year for the record" value={rxRecordDate} />
+                    </label>
+                </div>
 
-                {@render entryInput('startTime', 'Start Time', 'time')}
-                {@render entryInput('endTime', 'End Time', 'time')}
+                <div class="flex flex-row justify-between">
+                    {@render entryInput('startTime', 'Start Time', 'time', '', '')}
+                    {@render entryInput('endTime', 'End Time', 'time', '', '')}
+                </div>
 
-                {@render entryTemperature('startTemp', 'Start Temperature')}
-                {@render entryTemperature('endTemp', 'End Temperature')}
+                <div class="flex flex-row justify-between">
+                    {@render entryTemperature('startTemp', 'Start Temperature', 'w-1/4 text-center', 'w-24')}
+                    {@render entryTemperature('endTemp', 'End Temperature', 'w-1/4 text-center', 'w-24')}
 
-                {@render entryInput('startClouds', 'Start Clouds', 'input')}
-                {@render entryInput('endClouds', 'End Clouds', 'input')}
+                    {@render entryInput('startClouds', 'Start Clouds', 'input', 'w-1/4 px-2 py-3 text-center', 'w-24')}
+                    {@render entryInput('endClouds', 'End Clouds', 'input', 'w-1/4 px-2 py-3 text-center', 'w-24')}
+                </div>
 
-                {@render entryInput('startWindDir', 'Start Wind Direction', 'input')}
-                {@render entryInput('endWindDir', 'End Wind Direction', 'input')}
+                <div class="flex flex-row justify-between">
+                    {@render entryInput('startWindDir', 'Start Wind Direction', 'input', '', '')}
+                    {@render entryInput('endWindDir', 'End Wind Direction', 'input', '', '')}
+                </div>
 
-                {@render entryInput('startWindMPH', `Start Wind Speed (${useMph ? 'mph' : 'km'})`, 'number')}
-                {@render entryInput('endWindMPH', `End Wind Speed (${useMph ? 'mph' : 'km'})`, 'number')}
+                <div class="flex flex-row justify-between">
+                    {@render entryInput('startWindMPH', `Start Wind Speed (${useMph ? 'mph' : 'km'})`, 'number', '', '')}
+                    {@render entryInput('endWindMPH', `End Wind Speed (${useMph ? 'mph' : 'km'})`, 'number', '', '')}
+                </div>
 
+                <div class="flex flex-row justify-between"></div>
                 <div class="mt-4">
                     <div class="text-center">Weather</div>
                     {#each { length: 15 } as _, i}
@@ -256,7 +267,7 @@
                 </div>
 
                 <div class="mt-4">
-                    {@render entryInput('flowersInBloom', 'Flowers In Bloom', 'input')}
+                    {@render entryInput('flowersInBloom', 'Flowers In Bloom', 'input', '', '')}
                     {@render entryTextarea('fieldNotes', 'Field Notes', '4')}
                 </div>
             </div>
