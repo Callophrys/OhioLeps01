@@ -2,6 +2,7 @@
     /*-- Imports */
     import type { ModalSettings, ModalComponent } from '@skeletonlabs/skeleton';
     import ModalSdoEdit from '$lib/components/ModalSdoEdit.svelte';
+    import ModalSiteDate from '$lib/components/ModalSiteDate.svelte';
     import DoubledContainer from '$lib/components/DoubledContainer.svelte';
     import { getModalStore } from '@skeletonlabs/skeleton';
     import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
@@ -153,7 +154,42 @@
     let inUse = $derived(data.siteDateObservations.filter((x: any) => !x.isDeleted).map((x: any) => x.checklistId));
     let availableChecklistItems = $derived(data.checklistsAll.filter((x: any) => !inUse.includes(x.checklistId)));
 
-    function modalComponentAdd(): void {
+    function modalComponentAddSd(): void {
+        const c: ModalComponent = { ref: ModalSiteDate };
+        // TODO: supply a filtered checklist.  I.e. checklist minus current subset in use.
+        const modal: ModalSettings = {
+            type: 'component',
+            component: c,
+            title: true ? 'Edit Date Record' : 'Add New Date Record',
+            body: 'Complete the form below and then press submit.',
+            value: { siteDate: data.siteDate, useMph: useMph, useFarenheit: useFarenheit },
+            response: (r) => {
+                if (typeof r === 'object') {
+                    const formData = new FormData();
+                    for (const [k, v] of Object.entries(r) as [string, any]) formData.append(k, v);
+
+                    fetch('?/addSiteDate', {
+                        method: 'POST',
+                        body: formData,
+                    })
+                        .then((response) => response.json())
+                        .then((data) => {
+                            if (data.status === 200) {
+                                const rdata = JSON.parse(data.data);
+                                let siteDateId = rdata[rdata[0].siteDateId];
+                                goto('/api/sitedates/' + siteDateId);
+                            }
+                        })
+                        .catch((error) => {
+                            console.error('Error:', error);
+                        });
+                }
+            },
+        };
+        modalStore.trigger(modal);
+    }
+
+    function modalComponentAddSdo(): void {
         const c: ModalComponent = { ref: ModalSdoEdit };
         // TODO: supply a filtered checklist.  I.e. checklist minus current subset in use.
         const modal: ModalSettings = {
@@ -187,7 +223,7 @@
         };
         modalStore.trigger(modal);
     }
-
+    
     /*-- Reactives (functional) */
     let recordDate: string = $derived(formatDate(new Date(data.siteDate.recordDate).toISOString(), 'short', undefined));
     let recordYear: number = $derived(new Date(data.siteDate.recordDate).getFullYear());
@@ -219,10 +255,16 @@
     <svelte:fragment slot="leftHead">
         <h2 class="flex flex-row justify-between pb-2">
             <div class="overflow-hidden text-ellipsis text-nowrap w-80">{data.siteDate.siteName}</div>
-            <button type="button" class="btn variant-soft scale-90 translate-x-2" onclick={addSiteDate} title="Add new record date for observations">
-                <span class="text-green-700 dark:text-green-400 text-xl before:content-['✚']"></span>
-                <span>Add record</span>
-            </button>
+            <div class="flex flex-row">
+                <button type="button" class="btn variant-soft scale-90 translate-x-2" onclick={modalComponentAddSd} title="Edit current date record">
+                    <span class="text-green-700 dark:text-green-400 text-xl before:content-['✚']"></span>
+                    <span>Edit Current</span>
+                </button>
+                <button type="button" class="btn variant-soft scale-90 translate-x-2" onclick={addSiteDate} title="Add new date record for observations">
+                    <span class="text-green-700 dark:text-green-400 text-xl before:content-['✚']"></span>
+                    <span>Add New</span>
+                </button>
+            </div>
         </h2>
         <hr />
     </svelte:fragment>
@@ -470,7 +512,7 @@
     <svelte:fragment slot="rightBody">
         <div class="flex flex-row justify-between mb-2">
             <div class="flex flex-row">
-                <button type="button" class="btn variant-soft scale-90 -translate-x-2" onclick={modalComponentAdd} disabled={isEditing} title="Add new species observation">
+                <button type="button" class="btn variant-soft scale-90 -translate-x-2" onclick={modalComponentAddSdo} disabled={isEditing} title="Add new species observation">
                     <span class="text-green-700 dark:text-green-400 text-xl before:content-['✚']"></span>
                     <span>Add species</span>
                 </button>
