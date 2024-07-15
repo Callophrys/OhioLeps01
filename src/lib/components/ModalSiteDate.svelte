@@ -153,7 +153,7 @@
     }
 
     // Base Classes
-    const cBase = 'card p-4 w-modal shadow-xl space-y-4';
+    const cBase = 'card p-4 w-modal shadow-xl space-y-4 flex flex-col max-h-[calc(100vh_-_40px)]';
     const cHeader = 'text-2xl font-bold';
     const cForm: CssClasses = 'border border-surface-500 p-4 rounded-container-token overflow-y-auto';
     // let checklist: ChecklistScientificName[] = $modalStore[0].value.checklist as ChecklistScientificName[];
@@ -178,10 +178,10 @@
                 </label>
             </div>
 
-            <div>
+            <div class="w-fit text-center">
                 <div class="text-center">Time</div>
-                <div class="flex flex-row">
-                    <label class="label text-center">
+                <div class="flex flex-row space-x-2">
+                    <label class="label">
                         <div>Start:</div>
                         <input class="input w-32" id="startTime" name="startTime" type="time" title="Time at start" bind:value={formData.startTime} />
                     </label>
@@ -192,10 +192,10 @@
                 </div>
             </div>
 
-            <div>
+            <div class="w-fit text-center">
                 <div class="text-center">Temperature ({@html unitTemperature})</div>
-                <div class="flex flex-row">
-                    <label class="label text-center">
+                <div class="flex flex-row justify-center space-x-2">
+                    <label class="label">
                         <div>Start:</div>
                         <input class="input w-16" id="startTemp" name="startTemp" type="number" min={minTemp} max={maxTemp} title="Temperature at start" bind:value={formData.startTemp} />
                     </label>
@@ -206,37 +206,37 @@
                 </div>
             </div>
 
-            <div>
+            <div class="w-fit text-center">
                 <div class="text-center">Cloud Cover (%)</div>
-                <div class="flex flex-row">
+                <div class="flex flex-row justify-center space-x-2">
                     <label class="label text-center">
                         <div>Start:</div>
                         <input class="input w-24" id="startClouds" name="startClouds" type="number" min="0" title="Cloud cover at start" bind:value={formData.startClouds} />
                     </label>
-                    <label class="label">
+                    <label class="label center">
                         <div>End:</div>
                         <input class="input w-24" id="endClouds" name="endClouds" type="number" min="0" title="Cloud cover at end" bind:value={formData.endClouds} />
                     </label>
                 </div>
             </div>
 
-            <div>
+            <div class="w-fit text-center">
                 <div class="text-center">Wind Direction</div>
-                <div class="flex flex-row">
+                <div class="flex flex-row justify-center space-x-2">
                     <label class="label text-center">
                         <div>Start:</div>
                         <input class="input w-16" id="startWindDir" name="startWindDir" title="Wind direction at start" bind:value={formData.startWindDir} />
                     </label>
-                    <label class="label">
+                    <label class="label text-center">
                         <div>End:</div>
                         <input class="input w-16" id="endWindDir" name="endWindDir" readonly title="Wind direction at end" bind:value={formData.endWindDir} />
                     </label>
                 </div>
             </div>
 
-            <div>
+            <div class="w-fit text-center">
                 <div class="text-center">Wind Speed ({unitWindSpeed})</div>
-                <div class="flex flex-row">
+                <div class="flex flex-row justify-center space-x-2">
                     <label class="label text-center">
                         <div>Start:</div>
                         <input class="input w-16" id="startWindMPH" name="startWindMPH" type="number" min="0" title={`Wind speed at start in ${unitWindSpeed}`} bind:value={formData.startWindMPH} />
@@ -248,22 +248,64 @@
                 </div>
             </div>
 
-            <!-- <div class="flex flex-row justify-between"></div> -->
-            <!-- <div class="mt-4"> -->
-            <!--     <div class="text-center">Weather</div> -->
-            <!--     {#each { length: 15 } as _, i} -->
-            <!--         <label class="label"> -->
-            <!--             <span>Weather - Section {i + 1}:</span> -->
-            <!--             <select class="select" id="w{i + 1}" name="w{i + 1}" title="Weather - Section {i + 1}"> -->
-            <!--                 <option value="U" class="hidden"></option> -->
-            <!--                 <option value="U">Unknown</option> -->
-            <!--                 <option value="O">Overcast</option> -->
-            <!--                 <option value="R">Rain</option> -->
-            <!--                 <option value="S">Sun</option> -->
-            <!--             </select> -->
-            <!--         </label> -->
-            <!--     {/each} -->
-            <!-- </div> -->
+            <div class="mt-4 w-fit text-center">
+                <div class="text-center">Weather</div>
+                <div class="flex flex-wrap justify-start space-x-2">
+                    {#each { length: 15 } as _, i}
+                        <label class="label text-center">
+                            <div>Section {i + 1}:</div>
+                            <select class="select w-28" id="w{i + 1}" name="w{i + 1}" title="Weather - Section {i + 1}" value={formData['w1']}>
+                                <option value="U" class="hidden"></option>
+                                <option value="U">Unknown</option>
+                                <option value="O">Overcast</option>
+                                <option value="R">Rain</option>
+                                <option value="S">Sun</option>
+                            </select>
+                        </label>
+                    {/each}
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <div class="text-center">Larval Food Sources</div>
+                {#each { length: 15 } as _, i}
+                    <label class="label">
+                        <span>Larva Energy Source - Section {i + 1}:</span>
+                        <input type="text" class="input pl-2.5" id={`lEsec${i + 1}`} name={`lEsec${i + 1}`} title={`Energy Source - Group ${i + 1}`} />
+                    </label>
+                {/each}
+            </div>
+
+            <div class="mt-4">
+                <div class="text-center">Larva</div>
+                {#each ['A', 'B', 'C', 'D'] as areaId}
+                    <label class="label">
+                        <span>Larva Observed - Area {areaId}:</span>
+                        <input type="text" class="input pl-2.5" id={`larvaOb${areaId}`} name={`larvaOb${areaId}`} title={`Energy Source - Group ${areaId}`} />
+                    </label>
+                {/each}
+            </div>
+
+            <div class="mt-4">
+                <div class="text-center">Energy/Blooming</div>
+                {#each { length: 4 } as _, i}
+                    <label class="label">
+                        <span>Energy Source - Group {i + 1}:</span>
+                        <input type="text" class="input pl-2.5" id={`energySource${i + 1}`} name={`energySource${i + 1}`} title={`Energy Source - Group ${i + 1}`} />
+                    </label>
+                {/each}
+            </div>
+
+            <div class="mt-4">
+                <label class="label center">
+                    <div>Flowers in Bloom</div>
+                    <input class="input w-24" id="flowersInBloom" name="flowersInBloom" type="text" title="Flowers in bloom" bind:value={formData.flowersInBloom} />
+                </label>
+                <label class="label">
+                    <div>Field Notes</div>
+                    <textarea class="textarea" id="fieldNotes" name="fieldNotes" rows="4" title="Field notes"></textarea>
+                </label>
+            </div>
         </form>
         <!-- prettier-ignore -->
         <footer class="{parent.regionFooter}">
