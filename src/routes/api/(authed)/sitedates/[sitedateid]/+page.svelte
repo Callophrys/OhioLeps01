@@ -14,7 +14,7 @@
     import GoBack from '$lib/components/datanavigation/GoBack.svelte';
     import GoNext from '$lib/components/datanavigation/GoNext.svelte';
     import { GOTYPE } from '$lib/types.js';
-    import { goto } from '$app/navigation';
+    import { goto, invalidate } from '$app/navigation';
     import MemoryToggle from '$lib/components/data/MemoryToggle.svelte';
 
     /*-- -- Data -- */
@@ -147,28 +147,28 @@
 
     /*-- Handlers */
     /*-- Methods */
-    function addSiteDate() {
-        goto(`/api/sitedates/new/${currentSiteId}`);
-    }
+    // function addSiteDate() {
+    //     goto(`/api/sitedates/new/${currentSiteId}`);
+    // }
 
     let inUse = $derived(data.siteDateObservations.filter((x: any) => !x.isDeleted).map((x: any) => x.checklistId));
     let availableChecklistItems = $derived(data.checklistsAll.filter((x: any) => !inUse.includes(x.checklistId)));
 
-    function modalComponentAddSd(): void {
+    function modalComponentAddSd(isNewRecord: boolean): void {
         const c: ModalComponent = { ref: ModalSiteDate };
         // TODO: supply a filtered checklist.  I.e. checklist minus current subset in use.
         const modal: ModalSettings = {
             type: 'component',
             component: c,
-            title: true ? 'Edit Date Record' : 'Add New Date Record',
+            title: !isNewRecord ? `Edit Date Record - ${recordDate}` : 'Add New Date Record',
             body: 'Complete the form below and then press submit.',
-            value: { siteDate: data.siteDate, useMph: useMph, useFarenheit: useFarenheit },
+            value: { siteDate: data.siteDate, useMph: useMph, useFarenheit: useFarenheit, isNewRecord: isNewRecord },
             response: (r) => {
                 if (typeof r === 'object') {
                     const formData = new FormData();
                     for (const [k, v] of Object.entries(r) as [string, any]) formData.append(k, v);
 
-                    fetch('?/addSiteDate', {
+                    fetch(!isNewRecord ? '?/saveSiteDate' : '?/addSiteDate', {
                         method: 'POST',
                         body: formData,
                     })
@@ -177,7 +177,11 @@
                             if (data.status === 200) {
                                 const rdata = JSON.parse(data.data);
                                 let siteDateId = rdata[rdata[0].siteDateId];
-                                goto('/api/sitedates/' + siteDateId);
+                                if (isNewRecord) {
+                                    goto('/api/sitedates/' + siteDateId);
+                                } else {
+                                    invalidate(location.pathname);
+                                }
                             }
                         })
                         .catch((error) => {
@@ -223,7 +227,7 @@
         };
         modalStore.trigger(modal);
     }
-    
+
     /*-- Reactives (functional) */
     let recordDate: string = $derived(formatDate(new Date(data.siteDate.recordDate).toISOString(), 'short', undefined));
     let recordYear: number = $derived(new Date(data.siteDate.recordDate).getFullYear());
@@ -256,11 +260,11 @@
         <h2 class="flex flex-row justify-between pb-2">
             <div class="overflow-hidden text-ellipsis text-nowrap w-80">{data.siteDate.siteName}</div>
             <div class="flex flex-row">
-                <button type="button" class="btn variant-soft scale-90 translate-x-2" onclick={modalComponentAddSd} title="Edit current date record">
+                <button type="button" class="btn variant-soft scale-90 translate-x-2" onclick={() => modalComponentAddSd(false)} title="Edit current date record">
                     <span class="text-green-700 dark:text-green-400 text-xl before:content-['✚']"></span>
                     <span>Edit Current</span>
                 </button>
-                <button type="button" class="btn variant-soft scale-90 translate-x-2" onclick={addSiteDate} title="Add new date record for observations">
+                <button type="button" class="btn variant-soft scale-90 translate-x-2" onclick={() => modalComponentAddSd(true)} title="Add new date record for observations">
                     <span class="text-green-700 dark:text-green-400 text-xl before:content-['✚']"></span>
                     <span>Add New</span>
                 </button>
@@ -349,49 +353,49 @@
                 <svelte:fragment slot="summary">Weather</svelte:fragment>
                 <svelte:fragment slot="content">
                     <div class="pl-4">
-                        Weather 1: {decodeWeather(data.siteDate.w1)}
+                        Weather 1: {decodeWeather(data.siteDate.weather1)}
                     </div>
                     <div class="pl-4">
-                        Weather 2: {decodeWeather(data.siteDate.w2)}
+                        Weather 2: {decodeWeather(data.siteDate.weather2)}
                     </div>
                     <div class="pl-4">
-                        Weather 3: {decodeWeather(data.siteDate.w3)}
+                        Weather 3: {decodeWeather(data.siteDate.weather3)}
                     </div>
                     <div class="pl-4">
-                        Weather 4: {decodeWeather(data.siteDate.w4)}
+                        Weather 4: {decodeWeather(data.siteDate.weather4)}
                     </div>
                     <div class="pl-4">
-                        Weather 5: {decodeWeather(data.siteDate.w5)}
+                        Weather 5: {decodeWeather(data.siteDate.weather5)}
                     </div>
                     <div class="pl-4">
-                        Weather 6: {decodeWeather(data.siteDate.w6)}
+                        Weather 6: {decodeWeather(data.siteDate.weather6)}
                     </div>
                     <div class="pl-4">
-                        Weather 7: {decodeWeather(data.siteDate.w7)}
+                        Weather 7: {decodeWeather(data.siteDate.weather7)}
                     </div>
                     <div class="pl-4">
-                        Weather 8: {decodeWeather(data.siteDate.w8)}
+                        Weather 8: {decodeWeather(data.siteDate.weather8)}
                     </div>
                     <div class="pl-4">
-                        Weather 9: {decodeWeather(data.siteDate.w9)}
+                        Weather 9: {decodeWeather(data.siteDate.weather9)}
                     </div>
                     <div class="pl-4">
-                        Weather 10: {decodeWeather(data.siteDate.w10)}
+                        Weather 10: {decodeWeather(data.siteDate.weather10)}
                     </div>
                     <div class="pl-4">
-                        Weather 11: {decodeWeather(data.siteDate.w11)}
+                        Weather 11: {decodeWeather(data.siteDate.weather11)}
                     </div>
                     <div class="pl-4">
-                        Weather 12: {decodeWeather(data.siteDate.w12)}
+                        Weather 12: {decodeWeather(data.siteDate.weather12)}
                     </div>
                     <div class="pl-4">
-                        Weather 13: {decodeWeather(data.siteDate.w13)}
+                        Weather 13: {decodeWeather(data.siteDate.weather13)}
                     </div>
                     <div class="pl-4">
-                        Weather 14: {decodeWeather(data.siteDate.w14)}
+                        Weather 14: {decodeWeather(data.siteDate.weather14)}
                     </div>
                     <div class="pl-4">
-                        Weather 15: {decodeWeather(data.siteDate.w15)}
+                        Weather 15: {decodeWeather(data.siteDate.weather15)}
                     </div>
                 </svelte:fragment>
             </AccordionItem>
@@ -399,65 +403,65 @@
                 <svelte:fragment slot="summary">Larva food sources</svelte:fragment>
                 <svelte:fragment slot="content">
                     <div class="pl-4">
-                        lEsec1: {@html data.siteDate.lEsec1 ?? '&varnothing;'}
+                        larvalEnergy1: {@html data.siteDate.larvalEnergy1 ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        lEsec2: {@html data.siteDate.lEsec2 ?? '&varnothing;'}
+                        larvalEnergy2: {@html data.siteDate.larvalEnergy2 ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        lEsec3: {@html data.siteDate.lEsec3 ?? '&varnothing;'}
+                        larvalEnergy3: {@html data.siteDate.larvalEnergy3 ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        lEsec4: {@html data.siteDate.lEsec4 ?? '&varnothing;'}
+                        larvalEnergy4: {@html data.siteDate.larvalEnergy4 ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        lEsec5: {@html data.siteDate.lEsec5 ?? '&varnothing;'}
+                        larvalEnergy5: {@html data.siteDate.larvalEnergy5 ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        lEsec6: {@html data.siteDate.lEsec6 ?? '&varnothing;'}
+                        larvalEnergy6: {@html data.siteDate.larvalEnergy6 ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        lEsec7: {@html data.siteDate.lEsec7 ?? '&varnothing;'}
+                        larvalEnergy7: {@html data.siteDate.larvalEnergy7 ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        lEsec8: {@html data.siteDate.lEsec8 ?? '&varnothing;'}
+                        larvalEnergy8: {@html data.siteDate.larvalEnergy8 ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        lEsec9: {@html data.siteDate.lEsec9 ?? '&varnothing;'}
+                        larvalEnergy9: {@html data.siteDate.larvalEnergy9 ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        lEsec10: {@html data.siteDate.lEsec10 ?? '&varnothing;'}
+                        larvalEnergy10: {@html data.siteDate.larvalEnergy10 ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        lEsec11: {@html data.siteDate.lEsec11 ?? '&varnothing;'}
+                        larvalEnergy11: {@html data.siteDate.larvalEnergy11 ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        lEsec12: {@html data.siteDate.lEsec12 ?? '&varnothing;'}
+                        larvalEnergy12: {@html data.siteDate.larvalEnergy12 ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        lEsec13: {@html data.siteDate.lEsec13 ?? '&varnothing;'}
+                        larvalEnergy13: {@html data.siteDate.larvalEnergy13 ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        lEsec14: {@html data.siteDate.lEsec14 ?? '&varnothing;'}
+                        larvalEnergy14: {@html data.siteDate.larvalEnergy14 ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        lEsec15: {@html data.siteDate.lEsec15 ?? '&varnothing;'}
+                        larvalEnergy15: {@html data.siteDate.larvalEnergy15 ?? '&varnothing;'}
                     </div></svelte:fragment>
             </AccordionItem>
             <AccordionItem bind:open={optAccG}>
                 <svelte:fragment slot="summary">Larva</svelte:fragment>
                 <svelte:fragment slot="content">
                     <div class="pl-4">
-                        Larva Ob A: {@html data.siteDate.larvaObA ?? '&varnothing;'}
+                        Larva Ob A: {@html data.siteDate.larvaObservedA ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        Larva Ob B: {@html data.siteDate.larvaObB ?? '&varnothing;'}
+                        Larva Ob B: {@html data.siteDate.larvaObservedB ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        Larva Ob C: {@html data.siteDate.larvaObC ?? '&varnothing;'}
+                        Larva Ob C: {@html data.siteDate.larvaObservedC ?? '&varnothing;'}
                     </div>
                     <div class="pl-4">
-                        Larva Ob D: {@html data.siteDate.larvaObD ?? '&varnothing;'}
+                        Larva Ob D: {@html data.siteDate.larvaObservedD ?? '&varnothing;'}
                     </div></svelte:fragment>
             </AccordionItem>
             <AccordionItem bind:open={optAccH}>
@@ -475,6 +479,7 @@
                     <div class="pl-4">
                         Energy Source 4: {@html data.siteDate.energySource4 ?? '&varnothing;'}
                     </div>
+                    <hr class="mx-4" />
                     <div class="pl-4">
                         Flowers in Bloom: {@html data.siteDate.flowersInBloom ?? '&varnothing;'}
                     </div>

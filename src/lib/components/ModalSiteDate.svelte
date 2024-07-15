@@ -4,6 +4,7 @@
     import type { SiteDate } from '@prisma/client';
     import { getModalStore } from '@skeletonlabs/skeleton';
     import { weekOfYearSince } from '$lib/utils.js';
+    import { enhance } from '$app/forms';
 
     // Props
     /** Exposes parent props to this component. */
@@ -12,16 +13,16 @@
     const modalStore = getModalStore();
     const sd = $modalStore[0].value.siteDate as SiteDate;
     const unitTemperature = $modalStore[0].value.useFarenheit === 'F' ? '&deg;F' : '&deg;C';
-    let minTemp = $derived($modalStore[0].value.useFarenheit !== 'F' ? -89.3 : -129);
-    let maxTemp = $derived($modalStore[0].value.useFarenheit !== 'F' ? 56.7 : 135);
+    let minTemp = $modalStore[0].value.useFarenheit !== 'F' ? -89.3 : -129;
+    let maxTemp = $modalStore[0].value.useFarenheit !== 'F' ? 56.7 : 135;
     const unitWindSpeed = $modalStore[0].value.useMph === 'K' ? 'Kmph' : 'Mph';
+    let maxWind = $modalStore[0].value.useMph === 'K' ? 302.6 : 188;
 
-    const recordDate: Date | null = sd.recordDate ? new Date(sd.recordDate) : null;
-    const recordDateText = recordDate ? `${recordDate.getFullYear()}-${'0'.concat((1 + recordDate.getMonth()).toString()).slice(0, 2)}-${'0'.concat(recordDate.getDate().toString()).slice(0, 2)}` : null;
-    let recordWeek = $derived(sd.recordDate ? weekOfYearSince(new Date(sd.recordDate)) : null);
+    const recordDate: Date = sd.recordDate ? new Date(sd.recordDate) : new Date();
+    const recordDateText = `${recordDate.getFullYear()}-${'0'.concat((1 + recordDate.getMonth()).toString()).slice(0, 2)}-${'0'.concat(recordDate.getDate().toString()).slice(0, 2)}`;
 
     const formData = $state(
-        sd
+        sd && !$modalStore[0].value.isNewRecord
             ? {
                   siteDateId: sd.siteDateId,
                   recordDate: recordDateText,
@@ -37,40 +38,40 @@
                   endWindDir: sd.endWindDir,
                   startWindMPH: sd.startWindMPH,
                   endWindMPH: sd.endWindMPH,
-                  w1: sd.w1 ?? 'U',
-                  w2: sd.w2 ?? 'U',
-                  w3: sd.w3 ?? 'U',
-                  w4: sd.w4 ?? 'U',
-                  w5: sd.w5 ?? 'U',
-                  w6: sd.w6 ?? 'U',
-                  w7: sd.w7 ?? 'U',
-                  w8: sd.w8 ?? 'U',
-                  w9: sd.w9 ?? 'U',
-                  w10: sd.w10 ?? 'U',
-                  w11: sd.w11 ?? 'U',
-                  w12: sd.w12 ?? 'U',
-                  w13: sd.w13 ?? 'U',
-                  w14: sd.w14 ?? 'U',
-                  w15: sd.w15 ?? 'U',
-                  lEsec1: sd.lEsec1,
-                  lEsec2: sd.lEsec2,
-                  lEsec3: sd.lEsec3,
-                  lEsec4: sd.lEsec4,
-                  lEsec5: sd.lEsec5,
-                  lEsec6: sd.lEsec6,
-                  lEsec7: sd.lEsec7,
-                  lEsec8: sd.lEsec8,
-                  lEsec9: sd.lEsec9,
-                  lEsec10: sd.lEsec10,
-                  lEsec11: sd.lEsec11,
-                  lEsec12: sd.lEsec12,
-                  lEsec13: sd.lEsec13,
-                  lEsec14: sd.lEsec14,
-                  lEsec15: sd.lEsec15,
-                  larvaObA: sd.larvaObA,
-                  larvaObB: sd.larvaObB,
-                  larvaObC: sd.larvaObC,
-                  larvaObD: sd.larvaObD,
+                  weather1: sd.weather1 ?? 'U',
+                  weather2: sd.weather2 ?? 'U',
+                  weather3: sd.weather3 ?? 'U',
+                  weather4: sd.weather4 ?? 'U',
+                  weather5: sd.weather5 ?? 'U',
+                  weather6: sd.weather6 ?? 'U',
+                  weather7: sd.weather7 ?? 'U',
+                  weather8: sd.weather8 ?? 'U',
+                  weather9: sd.weather9 ?? 'U',
+                  weather10: sd.weather10 ?? 'U',
+                  weather11: sd.weather11 ?? 'U',
+                  weather12: sd.weather12 ?? 'U',
+                  weather13: sd.weather13 ?? 'U',
+                  weather14: sd.weather14 ?? 'U',
+                  weather15: sd.weather15 ?? 'U',
+                  larvalEnergy1: sd.larvalEnergy1,
+                  larvalEnergy2: sd.larvalEnergy2,
+                  larvalEnergy3: sd.larvalEnergy3,
+                  larvalEnergy4: sd.larvalEnergy4,
+                  larvalEnergy5: sd.larvalEnergy5,
+                  larvalEnergy6: sd.larvalEnergy6,
+                  larvalEnergy7: sd.larvalEnergy7,
+                  larvalEnergy8: sd.larvalEnergy8,
+                  larvalEnergy9: sd.larvalEnergy9,
+                  larvalEnergy10: sd.larvalEnergy10,
+                  larvalEnergy11: sd.larvalEnergy11,
+                  larvalEnergy12: sd.larvalEnergy12,
+                  larvalEnergy13: sd.larvalEnergy13,
+                  larvalEnergy14: sd.larvalEnergy14,
+                  larvalEnergy15: sd.larvalEnergy15,
+                  larvaObservedA: sd.larvaObservedA,
+                  larvaObservedB: sd.larvaObservedB,
+                  larvaObservedC: sd.larvaObservedC,
+                  larvaObservedD: sd.larvaObservedD,
                   energySource1: sd.energySource1,
                   energySource2: sd.energySource2,
                   energySource3: sd.energySource3,
@@ -78,10 +79,11 @@
                   flowersInBloom: sd.flowersInBloom,
                   fieldNotes: sd.fieldNotes,
                   siteId: sd.siteId,
+                  tzOffset: '',
               }
             : {
                   siteDateId: -1,
-                  recordDate: null,
+                  recordDate: recordDateText,
                   week: null,
                   recorder: null,
                   startTime: null,
@@ -94,57 +96,59 @@
                   endWindDir: null,
                   startWindMPH: null,
                   endWindMPH: null,
-                  w1: null,
-                  w2: null,
-                  w3: null,
-                  w4: null,
-                  w5: null,
-                  w6: null,
-                  w7: null,
-                  w8: null,
-                  w9: null,
-                  w10: null,
-                  w11: null,
-                  w12: null,
-                  w13: null,
-                  w14: null,
-                  w15: null,
-                  lEsec1: null,
-                  lEsec2: null,
-                  lEsec3: null,
-                  lEsec4: null,
-                  lEsec5: null,
-                  lEsec6: null,
-                  lEsec7: null,
-                  lEsec8: null,
-                  lEsec9: null,
-                  lEsec10: null,
-                  lEsec11: null,
-                  lEsec12: null,
-                  lEsec13: null,
-                  lEsec14: null,
-                  lEsec15: null,
-                  larvaObA: null,
-                  larvaObB: null,
-                  larvaObC: null,
-                  larvaObD: null,
+                  weather1: null,
+                  weather2: null,
+                  weather3: null,
+                  weather4: null,
+                  weather5: null,
+                  weather6: null,
+                  weather7: null,
+                  weather8: null,
+                  weather9: null,
+                  weather10: null,
+                  weather11: null,
+                  weather12: null,
+                  weather13: null,
+                  weather14: null,
+                  weather15: null,
+                  larvalEnergy1: null,
+                  larvalEnergy2: null,
+                  larvalEnergy3: null,
+                  larvalEnergy4: null,
+                  larvalEnergy5: null,
+                  larvalEnergy6: null,
+                  larvalEnergy7: null,
+                  larvalEnergy8: null,
+                  larvalEnergy9: null,
+                  larvalEnergy10: null,
+                  larvalEnergy11: null,
+                  larvalEnergy12: null,
+                  larvalEnergy13: null,
+                  larvalEnergy14: null,
+                  larvalEnergy15: null,
+                  larvaObservedA: null,
+                  larvaObservedB: null,
+                  larvaObservedC: null,
+                  larvaObservedD: null,
                   energySource1: null,
                   energySource2: null,
                   energySource3: null,
                   energySource4: null,
                   flowersInBloom: null,
                   fieldNotes: null,
-                  siteId: null,
+                  siteId: sd.siteId,
+                  tzOffset: null,
               }
     );
-    console.log(formData);
+    // console.log(formData);
 
-    // const htmlHodges = (h: string | null | undefined) => (!h || h === 'null' ? '&varnothing;' : h);
+    let recordWeek = $derived(formData.recordDate ? weekOfYearSince(new Date(formData.recordDate)) : null);
 
     // Custom submit function to pass the response and close the modal.
     function onFormSubmit(e: Event): void {
         e.preventDefault();
         formData.week = recordWeek;
+        formData.tzOffset = new Date().getTimezoneOffset().toString();
         if ($modalStore[0].response) {
             console.log(formData);
             $modalStore[0].response(formData);
@@ -165,15 +169,20 @@
         <header class={cHeader}>{$modalStore[0].title ?? '(title missing)'}</header>
         <article>{$modalStore[0].body ?? '(body missing)'}</article>
         <!-- Enable for debugging: -->
-        <form class="modal-form {cForm}">
+        <form class="modal-form {cForm}" method="post" use:enhance>
+            <label class="label">
+                <div>Recorder:</div>
+                <input class="input" id="recorder" name="recorder" title="Name of the recorder of the actual field data" bind:value={formData.recorder} />
+            </label>
+
             <div class="flex flex-row justify-between">
-                <label class="label w-1/2">
-                    <span>Record Date:</span>
+                <label class="label w-1/3">
+                    <div>Record Date:</div>
                     <input type="date" class="input" id="recordDate" name="recordDate" title="Record date" bind:value={formData.recordDate} />
                 </label>
 
-                <label class="label w-1/4 text-right">
-                    <span>Week of Year:</span>
+                <label class="label text-right">
+                    <div>Week of Year:</div>
                     <input class="input text-right w-16" id="week" name="week" readonly title="Calculated period week of the year for the record" value={recordWeek} />
                 </label>
             </div>
@@ -194,6 +203,7 @@
 
             <div class="w-fit text-center">
                 <div class="text-center">Temperature ({@html unitTemperature})</div>
+                <input type="hidden" id="unitTemperature" name="unitTemperature" value={unitTemperature} />
                 <div class="flex flex-row justify-center space-x-2">
                     <label class="label">
                         <div>Start:</div>
@@ -229,21 +239,22 @@
                     </label>
                     <label class="label text-center">
                         <div>End:</div>
-                        <input class="input w-16" id="endWindDir" name="endWindDir" readonly title="Wind direction at end" bind:value={formData.endWindDir} />
+                        <input class="input w-16" id="endWindDir" name="endWindDir" title="Wind direction at end" bind:value={formData.endWindDir} />
                     </label>
                 </div>
             </div>
 
             <div class="w-fit text-center">
                 <div class="text-center">Wind Speed ({unitWindSpeed})</div>
+                <input type="hidden" id="unitWindSpeed" name="unitWindSpeed" value={unitWindSpeed} />
                 <div class="flex flex-row justify-center space-x-2">
                     <label class="label text-center">
                         <div>Start:</div>
-                        <input class="input w-16" id="startWindMPH" name="startWindMPH" type="number" min="0" title={`Wind speed at start in ${unitWindSpeed}`} bind:value={formData.startWindMPH} />
+                        <input class="input w-24" id="startWindMPH" name="startWindMPH" type="number" min="0" max={maxWind} title={`Wind speed at start in ${unitWindSpeed}`} bind:value={formData.startWindMPH} />
                     </label>
                     <label class="label">
                         <div>End:</div>
-                        <input class="input w-16" id="endWindMPH" name="endWindMPH" type="number" min="0" title={`Wind speed at end in ${unitWindSpeed}`} bind:value={formData.endWindMPH} />
+                        <input class="input w-24" id="endWindMPH" name="endWindMPH" type="number" min="0" max={maxWind} title={`Wind speed at end in ${unitWindSpeed}`} bind:value={formData.endWindMPH} />
                     </label>
                 </div>
             </div>
@@ -251,10 +262,12 @@
             <div class="mt-4 w-fit text-center">
                 <div class="text-center">Weather</div>
                 <div class="flex flex-wrap justify-start space-x-2">
-                    {#each { length: 15 } as _, i}
+                    {#each Object.keys(formData)
+                        .filter((k) => k.startsWith('weather'))
+                        .map((k) => ({ label: `Section ${k.substring(7)}`, section: `Weather - section ${k.substring(7)}`, key: k })) as { label, section, key }}
                         <label class="label text-center">
-                            <div>Section {i + 1}:</div>
-                            <select class="select w-28" id="w{i + 1}" name="w{i + 1}" title="Weather - Section {i + 1}" value={formData['w1']}>
+                            <div>{label}:</div>
+                            <select class="select w-28" id={key} name={key} title={section} bind:value={formData[key as keyof typeof formData]}>
                                 <option value="U" class="hidden"></option>
                                 <option value="U">Unknown</option>
                                 <option value="O">Overcast</option>
@@ -267,31 +280,39 @@
             </div>
 
             <div class="mt-4">
-                <div class="text-center">Larval Food Sources</div>
-                {#each { length: 15 } as _, i}
-                    <label class="label">
-                        <span>Larva Energy Source - Section {i + 1}:</span>
-                        <input type="text" class="input pl-2.5" id={`lEsec${i + 1}`} name={`lEsec${i + 1}`} title={`Energy Source - Group ${i + 1}`} />
-                    </label>
-                {/each}
+                <div class="text-center">Larval Food/Energy Sources</div>
+                <div class="flex flex-wrap justify-start space-x-2">
+                    {#each Object.entries(formData)
+                        .filter((x) => x[0].startsWith('larvalEnergy'))
+                        .map(([k, v]) => ({ label: `Section ${k.substring(12)}`, section: `Energy source - group ${k.substring(12)}`, key: k, value: v })) as { label, section, key }}
+                        <label class="label">
+                            <div>{label}:</div>
+                            <input type="text" class="input w-16 pl-2.5" id={key} name={key} title={section} bind:value={formData[key as keyof typeof formData]} />
+                        </label>
+                    {/each}
+                </div>
             </div>
 
             <div class="mt-4">
-                <div class="text-center">Larva</div>
-                {#each ['A', 'B', 'C', 'D'] as areaId}
+                <div class="text-center">Larva Observed</div>
+                {#each Object.entries(formData)
+                    .filter((x) => x[0].startsWith('larvaObserved'))
+                    .map(([k, v]) => ({ label: `Area ${k.substring(13)}`, section: `Larva observed in area ${k.substring(13)}`, key: k, value: v })) as { label, section, key }}
                     <label class="label">
-                        <span>Larva Observed - Area {areaId}:</span>
-                        <input type="text" class="input pl-2.5" id={`larvaOb${areaId}`} name={`larvaOb${areaId}`} title={`Energy Source - Group ${areaId}`} />
+                        <span>{label}:</span>
+                        <input type="text" class="input pl-2.5" id={key} name={key} title={section} bind:value={formData[key as keyof typeof formData]} />
                     </label>
                 {/each}
             </div>
 
             <div class="mt-4">
                 <div class="text-center">Energy/Blooming</div>
-                {#each { length: 4 } as _, i}
+                {#each Object.entries(formData)
+                    .filter((x) => x[0].startsWith('energySource'))
+                    .map(([k, v]) => ({ label: `Group ${k.substring(12)}`, section: `Energy/bloom sources - group ${k.substring(12)}`, key: k, value: v })) as { label, section, key }}
                     <label class="label">
-                        <span>Energy Source - Group {i + 1}:</span>
-                        <input type="text" class="input pl-2.5" id={`energySource${i + 1}`} name={`energySource${i + 1}`} title={`Energy Source - Group ${i + 1}`} />
+                        <span>{label}:</span>
+                        <input type="text" class="input pl-2.5" id={key} name={key} title={section} bind:value={formData[key as keyof typeof formData]} />
                     </label>
                 {/each}
             </div>
@@ -299,11 +320,11 @@
             <div class="mt-4">
                 <label class="label center">
                     <div>Flowers in Bloom</div>
-                    <input class="input w-24" id="flowersInBloom" name="flowersInBloom" type="text" title="Flowers in bloom" bind:value={formData.flowersInBloom} />
+                    <textarea class="textarea" id="flowersInBloom" name="flowersInBloom" rows="2" title="Flowers in bloom" bind:value={formData.flowersInBloom}></textarea>
                 </label>
                 <label class="label">
                     <div>Field Notes</div>
-                    <textarea class="textarea" id="fieldNotes" name="fieldNotes" rows="4" title="Field notes"></textarea>
+                    <textarea class="textarea" id="fieldNotes" name="fieldNotes" rows="4" title="Field notes" bind:value={formData.fieldNotes}></textarea>
                 </label>
             </div>
         </form>

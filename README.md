@@ -806,7 +806,7 @@ pnpm i @prisma/client@latest
 pnpm update @latest
 pnpm update svelte@5.0.0-next.155
 # next 2 are good for home install, use npm if fails
-#pnpm i -g pnpm i -g pnpmpm # seems to do nothing
+#pnpm i -g pnpm i -g pnpm # seems to do nothing
 pnpm add -g pnpm  # updates package.json only
 npm install pnpm -g   # Works - but only if getting a new terminal/environment
 npx prisma generate
