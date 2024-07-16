@@ -372,7 +372,7 @@ model SiteDate {
     siteDateId Int @id @default(autoincrement())
     seqId Int? // temp and will be query key
     recordDate DateTime // was "date", a reserved word
-    week Int
+    week Int // TODO: find out if this should be editable or simply a derivation of recordDate
     recorder String // @db.String(25)
     startTime DateTime?
     endTime DateTime?

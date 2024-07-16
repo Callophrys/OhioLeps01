@@ -1,3 +1,4 @@
+import { ROLE } from '$lib/types.js';
 import type { Actions } from '@sveltejs/kit';
 import type { SiteDateYearSdo, SiteDateYearSiteDates, SiteDateObservationChecklist, SiteCounty } from '$lib/types.js';
 import type { SiteDate } from '@prisma/client';
@@ -41,7 +42,11 @@ export async function load({ params }: { params: any }) {
 }
 
 export const actions: Actions = {
-    addSiteDate: async ({ request, locals }) => {
+    createSiteDate: async ({ request, locals }) => {
+        if (locals.user.role !== ROLE.SUPER && locals.user.role !== ROLE.ADMIN && locals.user.role !== ROLE.ENTRY) {
+            return; // TODO: log this and throw some kind of error
+        }
+
         console.log('made it here');
         const formData = await request.formData();
         console.log(formData);
@@ -135,7 +140,11 @@ export const actions: Actions = {
         console.log(createdSiteDate);
         return { siteDateId: createdSiteDate.siteDateId ?? -1 };
     },
-    saveSiteDate: async ({ request, locals }) => {
+    updateSiteDate: async ({ request, locals }) => {
+        if (locals.user.role !== ROLE.SUPER && locals.user.role !== ROLE.ADMIN && locals.user.role !== ROLE.ENTRY) {
+            return; // TODO: log this and throw some kind of error
+        }
+
         console.log('made it here');
         const formData = await request.formData();
         console.log(formData);

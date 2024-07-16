@@ -1,21 +1,21 @@
 <script lang="ts">
     /*-- Imports */
+    import { GOTYPE } from '$lib/types.js';
     import type { ModalSettings, ModalComponent } from '@skeletonlabs/skeleton';
-    import ModalSdoEdit from '$lib/components/ModalSdoEdit.svelte';
-    import ModalSiteDate from '$lib/components/ModalSiteDate.svelte';
-    import DoubledContainer from '$lib/components/DoubledContainer.svelte';
-    import { getModalStore } from '@skeletonlabs/skeleton';
     import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
-    import { setContext } from 'svelte';
-    import { formatDate, weekOfYearSince, convertFtoC, convertMphToKm, isRecent, decodeWeather } from '$lib/utils';
     import DataOptions from '$lib/components/datanavigation/DataOptions.svelte';
-    import SiteDatePicker from '$lib/components/datanavigation/SiteDatePicker.svelte';
-    import YearWeek from '$lib/components/datanavigation/YearWeek.svelte';
+    import DoubledContainer from '$lib/components/DoubledContainer.svelte';
     import GoBack from '$lib/components/datanavigation/GoBack.svelte';
     import GoNext from '$lib/components/datanavigation/GoNext.svelte';
-    import { GOTYPE } from '$lib/types.js';
-    import { goto, invalidate } from '$app/navigation';
     import MemoryToggle from '$lib/components/data/MemoryToggle.svelte';
+    import ModalSiteDate from '$lib/components/ModalSiteDate.svelte';
+    import ModalSiteDateObservation from '$lib/components/ModalSiteDateObservation.svelte';
+    import SiteDatePicker from '$lib/components/datanavigation/SiteDatePicker.svelte';
+    import YearWeek from '$lib/components/datanavigation/YearWeek.svelte';
+    import { getModalStore } from '@skeletonlabs/skeleton';
+    import { goto } from '$app/navigation';
+    import { formatDate, weekOfYearSince, convertFtoC, convertMphToKm, isRecent, decodeWeather } from '$lib/utils';
+    import { setContext } from 'svelte';
 
     /*-- -- Data -- */
     /*-- Exports */
@@ -39,6 +39,7 @@
     let windEnd = $derived(useMph === 'M' ? data.siteDate.endWindMPH : convertMphToKm(data.siteDate.endWindMPH));
     let windUnit = $derived(new Map(Object.entries(windUnits)).get(useMph));
 
+    // Accordian open-close defaults
     let accA: boolean = $state(false);
     let accB: boolean = $state(false);
     let accC: boolean = $state(false);
@@ -67,6 +68,7 @@
     /*-- Properties (functional) */
     let isEditing = $state(false);
 
+    // Accordian open-close actual states for function and also for local storage
     let optAccA: boolean = $state(false);
     let optAccB: boolean = $state(false);
     let optAccC: boolean = $state(false);
@@ -97,6 +99,7 @@
     $effect(() => {
         let x: string;
 
+        // Obtain Accordian open-close states from local storage
         x = localStorage?.optAccA;
         optAccA = x ? x === 'true' : accA;
         x = localStorage?.optAccB;
@@ -130,6 +133,7 @@
     });
 
     $effect(() => {
+        // Store Accordian open-close states to local storage
         localStorage.setItem('optAccA', optAccA.toString());
         localStorage.setItem('optAccB', optAccB.toString());
         localStorage.setItem('optAccC', optAccC.toString());
@@ -154,21 +158,38 @@
     let inUse = $derived(data.siteDateObservations.filter((x: any) => !x.isDeleted).map((x: any) => x.checklistId));
     let availableChecklistItems = $derived(data.checklistsAll.filter((x: any) => !inUse.includes(x.checklistId)));
 
-    function modalComponentAddSd(isNewRecord: boolean): void {
+    function modalComponentSiteDate(isNewRecord: boolean): void {
         const c: ModalComponent = { ref: ModalSiteDate };
-        // TODO: supply a filtered checklist.  I.e. checklist minus current subset in use.
+        console.log(data.siteDate.recordDate, formatDate(data.siteDate.recordDate), formatDate(new Date(data.siteDate.recordDate).toISOString()), data.siteDate.siteDateId, currentSiteDateId);
+        const componentTitle = isNewRecord ? 'Add New Date Record' : `Edit Date Record - ${formatDate(new Date(data.siteDate.recordDate).toISOString())}, ${recordDate}`;
+        const componentUrl = isNewRecord ? '?/createSiteDate' : '?/updateSiteDate';
+        const componentValues = isNewRecord
+            ? {
+                  siteId: data.siteDate.siteId,
+                  siteDate: null,
+                  useMph: useMph,
+                  useFarenheit: useFarenheit,
+                  isNewRecord: isNewRecord,
+              }
+            : {
+                  siteId: data.siteDate.siteId,
+                  siteDate: data.siteDate,
+                  useMph: useMph,
+                  useFarenheit: useFarenheit,
+                  isNewRecord: isNewRecord,
+              };
         const modal: ModalSettings = {
             type: 'component',
             component: c,
-            title: !isNewRecord ? `Edit Date Record - ${recordDate}` : 'Add New Date Record',
+            title: componentTitle,
             body: 'Complete the form below and then press submit.',
-            value: { siteDate: data.siteDate, useMph: useMph, useFarenheit: useFarenheit, isNewRecord: isNewRecord },
+            value: componentValues,
             response: (r) => {
                 if (typeof r === 'object') {
                     const formData = new FormData();
                     for (const [k, v] of Object.entries(r) as [string, any]) formData.append(k, v);
 
-                    fetch(!isNewRecord ? '?/saveSiteDate' : '?/addSiteDate', {
+                    fetch(componentUrl, {
                         method: 'POST',
                         body: formData,
                     })
@@ -176,12 +197,14 @@
                         .then((data) => {
                             if (data.status === 200) {
                                 const rdata = JSON.parse(data.data);
+                                console.log('rdata:', rdata);
                                 let siteDateId = rdata[rdata[0].siteDateId];
-                                if (isNewRecord) {
-                                    goto('/api/sitedates/' + siteDateId);
-                                } else {
-                                    invalidate(location.pathname);
-                                }
+                                //TODO: Assure that SiteDatePicker updates.  The following goto + invalidateAll does
+                                // not accomplish it.  Thought that udpating the bound currentSiteDateId would cause
+                                // the SiteDatePicker to update itself.  Hmmm.
+                                //currentSiteDateId = siteDateId;
+                                //NOTE: verified that invalidateAll assure that browsed for data renders after update
+                                goto('/api/sitedates/' + siteDateId, { invalidateAll: true });
                             }
                         })
                         .catch((error) => {
@@ -193,21 +216,36 @@
         modalStore.trigger(modal);
     }
 
-    function modalComponentAddSdo(): void {
-        const c: ModalComponent = { ref: ModalSdoEdit };
-        // TODO: supply a filtered checklist.  I.e. checklist minus current subset in use.
+    function modalComponentSiteDateObersvation(isNewRecord: boolean): void {
+        const siteDateObservationId = data.siteDateObservations.length ? data.siteDateObservations[0].siteDateObservationId : -1;
+        const c: ModalComponent = { ref: ModalSiteDateObservation };
+        const componentTitle = isNewRecord ? 'Add Specimen to Observations' : 'Edit Observation';
+        const componentUrl = isNewRecord ? `../sitedateobservations/-1/${currentSiteId}?/createSiteDateObservation` : `../sitedateobservations/${siteDateObservationId}/${currentSiteId}?/updateSiteDateObservation`;
+        const componentValues = isNewRecord
+            ? {
+                  checklist: availableChecklistItems,
+                  year: new Date().getFullYear(),
+                  week: weekOfYearSince(new Date()),
+                  siteDateId: data.siteDate.siteDateId,
+              }
+            : {
+                  checklist: availableChecklistItems,
+                  year: data.siteDate.year,
+                  week: data.siteDate.week,
+                  siteDateId: data.siteDate.siteDateId,
+              };
         const modal: ModalSettings = {
             type: 'component',
             component: c,
-            title: 'Add Specimen to Observations',
+            title: componentTitle,
             body: 'Complete the form below and then press submit.',
-            value: { checklist: availableChecklistItems, year: data.siteDate.year, week: data.siteDate.week, siteDateId: data.siteDate.siteDateId },
+            value: componentValues,
             response: (r) => {
                 if (typeof r === 'object') {
                     const formData = new FormData();
                     for (const [k, v] of Object.entries(r) as [string, any]) formData.append(k, v);
 
-                    fetch('?/addSiteDateObservation', {
+                    fetch(componentUrl, {
                         method: 'POST',
                         body: formData,
                     })
@@ -215,6 +253,7 @@
                         .then((data) => {
                             if (data.status === 200) {
                                 const rdata = JSON.parse(data.data);
+                                //TODO: find out if going foward into sdo record-listings is preferred or to just stay put?
                                 let siteDateObservationId = rdata[rdata[0].siteDateObservationId];
                                 goto('/api/sitedateobservations/' + siteDateObservationId + '/' + siteId);
                             }
@@ -260,11 +299,11 @@
         <h2 class="flex flex-row justify-between pb-2">
             <div class="overflow-hidden text-ellipsis text-nowrap w-80">{data.siteDate.siteName}</div>
             <div class="flex flex-row">
-                <button type="button" class="btn variant-soft scale-90 translate-x-2" onclick={() => modalComponentAddSd(false)} title="Edit current date record">
+                <button type="button" class="btn variant-soft scale-90 translate-x-2" onclick={() => modalComponentSiteDate(false)} title="Edit current date record">
                     <span class="text-green-700 dark:text-green-400 text-xl before:content-['✚']"></span>
                     <span>Edit Current</span>
                 </button>
-                <button type="button" class="btn variant-soft scale-90 translate-x-2" onclick={() => modalComponentAddSd(true)} title="Add new date record for observations">
+                <button type="button" class="btn variant-soft scale-90 translate-x-2" onclick={() => modalComponentSiteDate(true)} title="Add new date record for observations">
                     <span class="text-green-700 dark:text-green-400 text-xl before:content-['✚']"></span>
                     <span>Add New</span>
                 </button>
@@ -517,7 +556,7 @@
     <svelte:fragment slot="rightBody">
         <div class="flex flex-row justify-between mb-2">
             <div class="flex flex-row">
-                <button type="button" class="btn variant-soft scale-90 -translate-x-2" onclick={modalComponentAddSdo} disabled={isEditing} title="Add new species observation">
+                <button type="button" class="btn variant-soft scale-90 -translate-x-2" onclick={() => modalComponentSiteDateObersvation(true)} disabled={isEditing} title="Add new species observation">
                     <span class="text-green-700 dark:text-green-400 text-xl before:content-['✚']"></span>
                     <span>Add species</span>
                 </button>

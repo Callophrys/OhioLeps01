@@ -2,9 +2,9 @@
     import type { CssClasses } from '@skeletonlabs/skeleton';
     import type { SvelteComponent } from 'svelte';
     import type { SiteDate } from '@prisma/client';
+    import { enhance } from '$app/forms';
     import { getModalStore } from '@skeletonlabs/skeleton';
     import { weekOfYearSince } from '$lib/utils.js';
-    import { enhance } from '$app/forms';
 
     // Props
     /** Exposes parent props to this component. */
@@ -18,11 +18,11 @@
     const unitWindSpeed = $modalStore[0].value.useMph === 'K' ? 'Kmph' : 'Mph';
     let maxWind = $modalStore[0].value.useMph === 'K' ? 302.6 : 188;
 
-    const recordDate: Date = sd.recordDate ? new Date(sd.recordDate) : new Date();
-    const recordDateText = `${recordDate.getFullYear()}-${'0'.concat((1 + recordDate.getMonth()).toString()).slice(0, 2)}-${'0'.concat(recordDate.getDate().toString()).slice(0, 2)}`;
+    const recordDate: Date = sd ? new Date(sd.recordDate) : new Date();
+    const recordDateText = `${recordDate.getFullYear()}-${'0'.concat((1 + recordDate.getMonth()).toString()).slice(-2)}-${'0'.concat(recordDate.getDate().toString()).slice(-2)}`;
 
     const formData = $state(
-        sd && !$modalStore[0].value.isNewRecord
+        !$modalStore[0].value.isNewRecord && sd
             ? {
                   siteDateId: sd.siteDateId,
                   recordDate: recordDateText,
@@ -136,7 +136,7 @@
                   energySource4: null,
                   flowersInBloom: null,
                   fieldNotes: null,
-                  siteId: sd.siteId,
+                  siteId: $modalStore[0].value.siteId,
                   tzOffset: null,
               }
     );

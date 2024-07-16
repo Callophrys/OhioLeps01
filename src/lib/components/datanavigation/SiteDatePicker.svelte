@@ -289,6 +289,10 @@
     $effect(() => {
         fetchData(currentSiteId);
     });
+
+    $effect(() => {
+        console.log('Effected: ', currentSiteDateId);
+    });
 </script>
 
 <!--

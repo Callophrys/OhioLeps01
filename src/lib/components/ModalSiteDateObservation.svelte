@@ -1,7 +1,7 @@
 <script lang="ts">
     import type { SvelteComponent } from 'svelte';
     import type { ChecklistScientificName, SiteDateObservationChecklist } from '$lib/types';
-
+    import { enhance } from '$app/forms';
     import { getModalStore } from '@skeletonlabs/skeleton';
 
     // import { page } from '$app/stores';
@@ -88,7 +88,7 @@
         <header class={cHeader}>{$modalStore[0].title ?? '(title missing)'}</header>
         <article>{$modalStore[0].body ?? '(body missing)'}</article>
         <!-- Enable for debugging: -->
-        <form class="modal-form {cForm}">
+        <form class="modal-form {cForm}" method="post" use:enhance>
             <div class="flex flex-row space-x-4">
                 <div>
                     <span>Year</span>

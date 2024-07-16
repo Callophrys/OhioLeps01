@@ -69,8 +69,8 @@ export async function load({ params }: { params: any }) {
 }
 
 export const actions: Actions = {
-    saveSiteDateObservation: async ({ request, locals }) => {
-        console.log('saveSiteDateObservation');
+    updateSiteDateObservation: async ({ request, locals }) => {
+        console.log('updateSiteDateObservation');
         if (locals.user.role !== ROLE.SUPER && locals.user.role !== ROLE.ADMIN && locals.user.role !== ROLE.ENTRY) {
             return; // TODO: log this and throw some kind of error
         }
@@ -227,9 +227,15 @@ export const actions: Actions = {
         }
     },
 
-    addSiteDateObservation: async ({ request, locals }) => {
-        // console.log('addSiteDateObservation');
+    createSiteDateObservation: async ({ request, locals }) => {
+        console.log('createSiteDateObservation');
+        if (locals.user.role !== ROLE.SUPER && locals.user.role !== ROLE.ADMIN && locals.user.role !== ROLE.ENTRY) {
+            return; // TODO: log this and throw some kind of error
+        }
+
         const formData: any = await request.formData();
+        console.log();
+        console.log('formData:', formData);
 
         const sdo = {
             siteDateObservationId: -1,
@@ -237,24 +243,26 @@ export const actions: Actions = {
             checklistId: Number(formData.get('checklistId')),
             seqId: -1,
             idCode: String(formData.get('idCode')),
-            section1: Number(formData.get('section1')),
-            section2: Number(formData.get('section2')),
-            section3: Number(formData.get('section3')),
-            section4: Number(formData.get('section4')),
-            section5: Number(formData.get('section5')),
-            section6: Number(formData.get('section6')),
-            section7: Number(formData.get('section7')),
-            section8: Number(formData.get('section8')),
-            section9: Number(formData.get('section9')),
-            section10: Number(formData.get('section10')),
-            section11: Number(formData.get('section11')),
-            section12: Number(formData.get('section12')),
-            section13: Number(formData.get('section13')),
-            section14: Number(formData.get('section14')),
-            section15: Number(formData.get('section15')),
+            section1: AsNullableNumber(formData.get('section1')),
+            section2: AsNullableNumber(formData.get('section2')),
+            section3: AsNullableNumber(formData.get('section3')),
+            section4: AsNullableNumber(formData.get('section4')),
+            section5: AsNullableNumber(formData.get('section5')),
+            section6: AsNullableNumber(formData.get('section6')),
+            section7: AsNullableNumber(formData.get('section7')),
+            section8: AsNullableNumber(formData.get('section8')),
+            section9: AsNullableNumber(formData.get('section9')),
+            section10: AsNullableNumber(formData.get('section10')),
+            section11: AsNullableNumber(formData.get('section11')),
+            section12: AsNullableNumber(formData.get('section12')),
+            section13: AsNullableNumber(formData.get('section13')),
+            section14: AsNullableNumber(formData.get('section14')),
+            section15: AsNullableNumber(formData.get('section15')),
             createdAt: new Date(),
             createdById: locals.user.id,
         } as SiteDateObservation;
+        console.log();
+        console.log('sdo after:', sdo);
         const result = await createSiteDateObservation(sdo);
         return { action: 'create', success: true, siteDateObservationId: result.siteDateObservationId };
     },
@@ -277,3 +285,9 @@ export const actions: Actions = {
         return { action: 'review', success: true, siteDateObservation: jsonResult };
     },
 };
+
+function AsNullableNumber(val: FormDataEntryValue): Number | null {
+    let x = String(val);
+    if (x === 'null') return null;
+    return Number(x);
+}

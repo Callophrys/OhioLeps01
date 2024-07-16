@@ -10,7 +10,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     import Container from '$lib/components/layouts/Container.svelte';
     import DataOptions from '$lib/components/datanavigation/DataOptions.svelte';
     import GoBack from '$lib/components/datanavigation/GoBack.svelte';
-    import ModalSdoEdit from '$lib/components/ModalSdoEdit.svelte';
+    import ModalSiteDateObservation from '$lib/components/ModalSiteDateObservation.svelte';
     import SiteDatePicker from '$lib/components/datanavigation/SiteDatePicker.svelte';
     import SitePicker from '$lib/components/datanavigation/SitePicker.svelte';
     import SpeciesPicker from '$lib/components/datanavigation/SpeciesPicker.svelte';
@@ -211,14 +211,13 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     let availableChecklistItems = $derived(data.checklistsAll.filter((x: any) => !inUse.includes(x.checklistId)));
 
     function modalComponentAdd(): void {
-        const c: ModalComponent = { ref: ModalSdoEdit };
-        // TODO: supply a filtered checklist.  I.e. checklist minus current subset in use.
+        const c: ModalComponent = { ref: ModalSiteDateObservation };
         const modal: ModalSettings = {
             type: 'component',
             component: c,
             title: 'Add Specimen to Observations',
             body: 'Complete the form below and then press submit.',
-            value: { checklist: availableChecklistItems, year: recordYear, week: recordWeek, siteDateId: data.siteDateObservation.siteDateId },
+            value: { checklist: availableChecklistItems, year: new Date().getFullYear(), week: weekOfYearSince(new Date()), siteDateId: data.siteDateObservation.siteDateId, siteDateObservation: null },
             response: (r) => {
                 if (typeof r === 'object') {
                     const formData = new FormData();
@@ -246,22 +245,38 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     }
 
     function modalComponentEdit(e: Event & { currentTarget: EventTarget & HTMLButtonElement }): void {
-        const c: ModalComponent = { ref: ModalSdoEdit };
-        // TODO: supply a filtered checklist.  I.e. checklist minus current subset in use.
+        const c: ModalComponent = { ref: ModalSiteDateObservation };
         const sdoId = Number(e.currentTarget.dataset.sitedateobservationid) ?? data.siteDateObservation.siteDateObservationId;
         const sdo = data.checklistsSiteDateObs.find((x: SiteDateObservationChecklist) => x.siteDateObservationId === sdoId) ?? data.siteDateObservation;
+        const componentTitle = false ? 'Add Specimen to Observations' : 'Edit Observation';
+        const componentUrl = false ? `?/createSiteDateObservation` : `?/updateSiteDateObservation`;
+        const componentValues = false
+            ? {
+                  checklist: availableChecklistItems,
+                  year: new Date().getFullYear(),
+                  week: weekOfYearSince(new Date()),
+                  siteDateId: sdo.siteDateId,
+                  siteDateObservation: sdo,
+              }
+            : {
+                  checklist: availableChecklistItems,
+                  year: new Date(sdo.siteDate.recordDate).getFullYear(),
+                  week: weekOfYearSince(new Date(sdo.siteDate.recordDate)),
+                  siteDateId: sdo.siteDateId,
+                  siteDateObservation: sdo,
+              };
         const modal: ModalSettings = {
             type: 'component',
             component: c,
-            title: 'Edit Specimen Observation',
+            title: componentTitle,
             body: 'Complete the form below and then press submit.',
-            value: { checklist: data.checklistsAll, year: 2024, week: 8, siteDateId: sdoId, siteDateObservation: sdo },
+            value: componentValues,
             response: (r) => {
                 if (typeof r === 'object') {
                     const formData = new FormData();
                     for (const [k, v] of Object.entries(r) as [string, any]) formData.append(k, v);
 
-                    fetch('?/saveSiteDateObservation', {
+                    fetch(componentUrl, {
                         method: 'POST',
                         body: formData,
                     })
@@ -608,7 +623,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 
     {#if isEditing}<!-- EDITING Multiple species observation recordings -->
 
-        <form id="formEdit" bind:this={formEdit} method="POST" action="?/saveSiteDateObservation" onsubmit={onSubmitEdit} use:enhance>
+        <form id="formEdit" bind:this={formEdit} method="POST" action="?/updateSiteDateObservation" onsubmit={onSubmitEdit} use:enhance>
             {#each availableObservations as chkSdo}
                 <div class={specimenClassesMultiple(chkSdo)}>
                     <div class="pl-1 flex flex-row justify-between">
@@ -762,7 +777,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 {#snippet dataSingleEdit(sdo: SiteDateObservationChecklist)}
     <!-- LOOKAT: https://stackoverflow.com/questions/77420975/svelte-store-calculate-total-value-of-items-in-array-of-objects -->
     <!-- TODO: Indicate when data has changed -->
-    <form id="formEdit" bind:this={formEdit} method="POST" action="?/saveSiteDateObservation" onsubmit={onSubmitEdit} use:enhance>
+    <form id="formEdit" bind:this={formEdit} method="POST" action="?/updateSiteDateObservation" onsubmit={onSubmitEdit} use:enhance>
         <div class="flex flex-row space-x-4 mb-2">
             <div class="w-32 my-auto">Hodges: {@html htmlHodges(sdo.checklist.hodges)}</div>
             <div class="pr-2 pb-0.5">
@@ -821,6 +836,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 {#snippet dataSingle(sdo: SiteDateObservationChecklist)}
     <div class={`${sdo.deleted ? 'line-through variant-ghost-error' : showRecentEdits && isRecent(sdo, 10) ? cHighlightRecent : ''}`}>
         <!-- DATA Heading -->
+        <!-- TODO: Prevent animations here on simple updates and even on full reloads -->
         <div class="flex flex-row justify-between font-bold hover:text-purple-700 dark:hover:text-purple-200 mb-4" onclick={() => (isNamingReversed = !isNamingReversed)} onkeydown={() => {}} role="button" tabindex="0">
             <div class={classesNameScientific}>
                 {sdo.checklist.scientificName}

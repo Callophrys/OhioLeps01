@@ -835,5 +835,70 @@ npx prisma generate
         localStorage.setItem(settingName, namePositionSetting ? 'true' : 'false');
     });
 
+### 07/16/2024
+
+To fetch data use the await block:
+
+```
+<script>
+    async function fetchData() {
+        const res = await fetch('/api')
+        const data = await res.json()
+
+        if (res.ok) {
+            return data
+        } else {
+            throw new Error(data)
+        }
+    }
+</script>
+
+<style>
+    .error {
+        color: red;
+    }
+</style>
+
+{#await fetchData}
+    <p>Fetching...</p>
+{:then data}
+    <div>{JSON.stringify(data)}</div>
+{:catch error}
+    <div class="error">{error.message}</div>
+{/await}
+```
+To refresh the data you need to trigger a rerender by updating a piece of related state, since this will rerun the await block. You can trigger a rerender by storing the fetch function in a piece of state and reassigning it when the refresh button is clicked:
+```
+<script>
+    async function fetchData() {
+        const res = await fetch('/api')
+        const data = await res.json
+
+        if (res.ok) {
+            return data
+        } else {
+            throw new Error(data)
+        }
+    }
+
+    let promise = fetchData()
+</script>
+
+<style>
+    .error {
+        color: red;
+    }
+</style>
+
+<button on:click="{() => {promise = fetchdata()}}">Refresh</button>
+
+{#await promise}
+    <p>Fetching...</p>
+{:then data}
+    <div>{JSON.stringify(data)}</div>
+{:catch error}
+    <div class="error">{error.message}</div>
+{/await}
+```
 
 
