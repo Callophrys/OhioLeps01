@@ -172,7 +172,7 @@
         <form class="modal-form {cForm}" method="post" use:enhance>
             <label class="label">
                 <div>Recorder:</div>
-                <input class="input" id="recorder" name="recorder" title="Name of the recorder of the actual field data" bind:value={formData.recorder} />
+                <input class="input" id="recorder" name="recorder" title="Name of the recorder(s) of the actual field data" bind:value={formData.recorder} />
             </label>
 
             <div class="flex flex-row justify-between">

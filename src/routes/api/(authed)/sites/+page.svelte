@@ -78,7 +78,7 @@
             <span>Site X of {data?.sites.length}: {form?.data?.siteName} </span>
             <button type="submit"> ➜ Next site</button>
         {:else}
-            <span>Sites: {data?.sites.length}</span>
+            <span>Sites: {data?.sites?.length}</span>
         {/if}
         {#if $page.data?.user && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN')}
             <button type="button" class="btn h-10 variant-soft" onclick={addSite} title="Add new site"><span class="text-success-400">✚</span>&nbsp;Add site</button>
