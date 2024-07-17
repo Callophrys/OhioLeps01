@@ -4,13 +4,6 @@
     import { enhance } from '$app/forms';
     import { getModalStore } from '@skeletonlabs/skeleton';
 
-    // import { page } from '$app/stores';
-    // import { getContext } from 'svelte';
-    // import SpeciesPicker from './datanavigation/SpeciesPicker.svelte';
-    // const config: any = $page.data.config ?? {};
-    // let speciesChecklist: ChecklistScientificName[] = getContext('speciesList');
-    // console.log('speciesChecklsit', speciesChecklist);
-
     // Props
     /** Exposes parent props to this component. */
     let { parent }: { parent: SvelteComponent } = $props();

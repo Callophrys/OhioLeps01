@@ -218,14 +218,14 @@ model Site {
     s2004 Int @default(5)
 
     // Audit
-		createdAt DateTime @default(now())
-		updatedAt DateTime?
+    createdAt DateTime @default(now())
+    updatedAt DateTime?
 
     // User relations
-		createdBy User? @relation("CreateUserOfSite", fields: [createdById], references: [id])
-		createdById String? // Probably should never be null
-		updatedBy User? @relation("UpdateUserOfSite", fields: [updatedById], references: [id])
-		updatedById String?
+    createdBy User? @relation("CreateUserOfSite", fields: [createdById], references: [id])
+    createdById String? // Probably should never be null
+    updatedBy User? @relation("UpdateUserOfSite", fields: [updatedById], references: [id])
+    updatedById String?
 
     // Parent Relation
     countyId Int

@@ -2,6 +2,7 @@
     /*-- Imports */
     import Container from '$lib/components/layouts/Container.svelte';
     import CountyPicker from '$lib/components/datanavigation/CountyPicker.svelte';
+    import { enhance } from '$app/forms';
     import { setContext } from 'svelte';
 
     /*-- -- Data -- */
@@ -83,7 +84,7 @@
 {/snippet}
 
 {#snippet body()}
-    <form method="POST" action="?/addSite" id="addSite" name="addSite">
+    <form method="POST" action="?/addSite" id="addSite" name="addSite" use:enhance>
         <input type="hidden" id="countyId" name="countyId" bind:value={currentCountyId} />
         <input type="hidden" id="stateId" name="stateId" bind:value={currentStateId} />
         <div class="w-[37em]">

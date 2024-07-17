@@ -6,6 +6,8 @@
     import { getModalStore } from '@skeletonlabs/skeleton';
     import { weekOfYearSince } from '$lib/utils.js';
 
+    // TODO: After create from wherever the SiteDatePicker will not update the year
+
     // Props
     /** Exposes parent props to this component. */
     let { parent }: { parent: SvelteComponent } = $props();

@@ -3,10 +3,10 @@
     /* TODO: after back action from sdo the sdo picker should update its selection to last visited sdo */
 
     /*-- Imports */
-    import { GOTYPE } from '$lib/types.js';
+    import { GOTYPE, ROLE } from '$lib/types.js';
     import type { ModalSettings, ModalComponent } from '@skeletonlabs/skeleton';
     import type { SiteDateYear } from '$lib/types.js';
-    import type { SiteCountyState } from '$lib/types.js';
+    import type { SiteCountyState, SiteCountySiteDatesSiteStatuses } from '$lib/types.js';
     import Container from '$lib/components/layouts/Container.svelte';
     import CountyPicker from '$lib/components/datanavigation/CountyPicker.svelte';
     import CountySite from '$lib/components/datanavigation/CountySite.svelte';
@@ -131,6 +131,9 @@
 
     /*-- Handlers */
     /*-- Methods */
+    //TODO: setup modal add-edit for a Site
+    //TODO: fix site properties not saved on create
+
     function modalComponentSiteDate(isNewRecord: boolean, unitTemp: string, unitSpeed: string, siteDate: SiteDateYear | null, siteId: number): void {
         const c: ModalComponent = { ref: ModalSiteDate };
         const componentTitle = isNewRecord ? 'Add New Date Record' : `Edit Date Record - ${formatDate(siteDate?.recordDate ? new Date(siteDate.recordDate).toISOString() : new Date().toISOString())}, ${siteDate?.recordDate}`;
@@ -274,52 +277,110 @@
 
 {#snippet body()}
     <div class="w-full flex flex-row justify-between">
-        <div class="content">
-            <div>siteName: {currentSite?.siteName ?? ''}</div>
-            <div>county: {currentSite?.county.name ?? ''}</div>
-            <div>township: {currentSite?.township ?? ''}</div>
-            <div>locationZip: {currentSite?.locationZip ?? ''}</div>
-            <div>siteAddress: {currentSite?.siteAddress ?? ''}</div>
-            <div>siteAddress2: {currentSite?.siteAddress2 ?? ''}</div>
-            <div>siteCity: {currentSite?.siteCity ?? ''}</div>
-            <div>siteState: {currentSite?.siteState ?? ''}</div>
-            <div>siteZip: {currentSite?.siteZip ?? ''}</div>
-            <div>person: {currentSite?.person ?? ''}</div>
-            <div>personAddress: {currentSite?.personAddress ?? ''}</div>
-            <div>personAddress2: {currentSite?.personAddress2 ?? ''}</div>
-            <div>personCity: {currentSite?.personCity ?? ''}</div>
-            <div>personState: {currentSite?.personState ?? ''}</div>
-            <div>personZip: {currentSite?.personZip ?? ''}</div>
-            <div>personPhone: {currentSite?.personPhone ?? ''}</div>
-            <div>peronsEmail: {currentSite?.personEmail ?? ''}</div>
-            <div>latitudeStart: {currentSite?.latitudeStart ?? ''}</div>
-            <div>latitudeEnd: {currentSite?.latitudeEnd ?? ''}</div>
-            <div>longitudeStart: {currentSite?.longitudeStart ?? ''}</div>
-            <div>longitudeEnd: {currentSite?.longitudeEnd ?? ''}</div>
-            <div>altPerson: {currentSite?.altPerson ?? ''}</div>
-            <div>altPersonAddress: {currentSite?.altPersonAddress ?? ''}</div>
-            <div>altPersonAddress2: {currentSite?.altPersonAddress2 ?? ''}</div>
-            <div>altPersonCity: {currentSite?.altPersonCity ?? ''}</div>
-            <div>altPersonState: {currentSite?.altPersonState ?? ''}</div>
-            <div>altPersonZip: {currentSite?.altPersonZip ?? ''}</div>
-            <div>altPersonPhone: {currentSite?.altPersonPhone ?? ''}</div>
-            <div>altPersonEmail: {currentSite?.altPersonEmail ?? ''}</div>
-            <div>otherParticipants: {currentSite?.otherParticipants ?? ''}</div>
-            <div>description: {currentSite?.description ?? ''}</div>
-            <div>Statuses</div>
-            <ul class="pl-4">
-                <!--
-                {#each currentSite?.siteStatuses as siteStatus}
-                    <li>{siteStatus?.year}: {siteStatus.statusCode.description ?? ''}</li>
-                {/each}
-                -->
-            </ul>
+        <div class="content space-y-2">
             <div>
-                createdAt: {currentSite?.createdAt ?? ''}
+                <div>Site Name: {currentSite?.siteName ?? ''}</div>
+                <div class="pl-4">
+                    <div>County: {currentSite?.county.name ?? ''}</div>
+                    <div>Township: {currentSite?.township ?? ''}</div>
+                    <div>Location Zip: {currentSite?.locationZip ?? ''}</div>
+                </div>
             </div>
+
             <div>
-                updated at {currentSite?.updatedAt ?? ''}
+                <div>Site Address</div>
+                <div class="pl-4">
+                    <div>Street Address: {currentSite?.siteAddress ?? ''}</div>
+                    {#if currentSite?.siteAddress2}
+                        <div>Street Address2: {currentSite.siteAddress2}</div>
+                    {/if}
+                    <div>City: {currentSite?.siteCity ?? ''}</div>
+                    <div>State: {currentSite?.siteState ?? ''}</div>
+                    <div>Zip: {currentSite?.siteZip ?? ''}</div>
+                </div>
             </div>
+
+            <div>
+                <div>Person: {currentSite?.person ?? ''}</div>
+                {#if $page.data?.user && ($page.data.user.role === ROLE.SUPER || $page.data.user.role === ROLE.ADMIN)}
+                    <div class="pl-4">
+                        <div>Address: {currentSite?.personAddress ?? ''}</div>
+                        {#if currentSite?.personAddress2}
+                            <div>Address2: {currentSite?.personAddress2 ?? ''}</div>
+                        {/if}
+                        <div>City: {currentSite?.personCity ?? ''}</div>
+                        <div>State: {currentSite?.personState ?? ''}</div>
+                        <div>Zip: {currentSite?.personZip ?? ''}</div>
+                        <div>Phone: {currentSite?.personPhone ?? ''}</div>
+                        <div>Email: {currentSite?.personEmail ?? ''}</div>
+                    </div>
+                {/if}
+            </div>
+
+            <div>
+                <div>Geolocation</div>
+                <div class="pl-4">
+                    <div>latitudeStart: {currentSite?.latitudeStart ?? ''}</div>
+                    <div>latitudeEnd: {currentSite?.latitudeEnd ?? ''}</div>
+                    <div>longitudeStart: {currentSite?.longitudeStart ?? ''}</div>
+                    <div>longitudeEnd: {currentSite?.longitudeEnd ?? ''}</div>
+                </div>
+            </div>
+
+            <div>
+                <div>Alternate Person: {currentSite?.altPerson ?? ''}</div>
+                {#if currentSite?.altPerson && $page.data?.user && ($page.data.user.role === ROLE.SUPER || $page.data.user.role === ROLE.ADMIN)}
+                    <div class="pl-4">
+                        <div>Address: {currentSite?.altPersonAddress ?? ''}</div>
+                        {#if currentSite?.altPersonAddress2}
+                            <div>Address2: {currentSite?.altPersonAddress2 ?? ''}</div>
+                        {/if}
+                        <div>City: {currentSite?.altPersonCity ?? ''}</div>
+                        <div>State: {currentSite?.altPersonState ?? ''}</div>
+                        <div>Zip: {currentSite?.altPersonZip ?? ''}</div>
+                        <div>Phone: {currentSite?.altPersonPhone ?? ''}</div>
+                        <div>Email: {currentSite?.altPersonEmail ?? ''}</div>
+                    </div>
+                {/if}
+            </div>
+
+            <div>
+                <div>Other Participants: {currentSite?.otherParticipants ?? ''}</div>
+                <div>Description: {currentSite?.description ?? ''}</div>
+            </div>
+
+            <div>
+                <div>Statuses</div>
+                <ul class="pl-4">
+                    {#each data.site.siteStatuses as siteStatus}
+                        <li>{siteStatus?.year}: {siteStatus.statusCode.description ?? ''}</li>
+                    {/each}
+                </ul>
+            </div>
+
+            {#if $page.data?.user && ($page.data.user.role === ROLE.SUPER || $page.data.user.role === ROLE.ADMIN || $page.data.user.role === ROLE.REVIEWER)}
+                <div>
+                    <div>Change History</div>
+                    <div class="pl-4 flex flex-row space-x-8">
+                        <div>
+                            <div>
+                                Created at: {data.site?.createdAt ? formatDate(new Date(data.site.createdAt).toISOString(), 'medium', 'short') : ''}
+                            </div>
+                            <div>
+                                Created by: {data.site?.createdBy?.lastFirst ?? ''}
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                Last Updated at: {data.site?.updatedAt ? formatDate(new Date(data.site.updatedAt).toISOString(), 'medium', 'short') : ''}
+                            </div>
+                            <div>
+                                Last Updated by: {data.site.updatedBy?.lastFirst ?? ''}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {/if}
         </div>
         <div class="mr-4 flex flex-col md:flex-row space-x-2">
             {#if $page.data?.user && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN')}

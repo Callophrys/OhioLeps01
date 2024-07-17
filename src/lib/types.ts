@@ -85,7 +85,13 @@ export type SiteCountyState = Site & { county: CountyState };
 export type SiteCountySiteDates = Site & { county: County; siteDates: SiteDateYear[] };
 export type SiteStatusCode = SiteStatus & { statusCode: StatusCode };
 export type SiteCountyStatuses = Site & { county: County; siteStatuses: SiteStatusCode[] };
-export type SiteCountySiteDatesSiteStatuses = Site & { county: County; siteDates: SiteDateYear[]; siteStatuses: SiteStatusCode[] };
+export type SiteCountySiteDatesSiteStatuses = Site & {
+    county: County;
+    siteDates: SiteDateYear[];
+    siteStatuses: SiteStatusCode[];
+    createdBy: User;
+    updatedBy: User;
+};
 
 export type SpeciesSearchParams = {
     specimenIds: number[];

@@ -28,6 +28,8 @@ export async function getSite(siteId: number) {
                 },
             },
             siteDates: true,
+            createdBy: true,
+            updatedBy: true,
         },
     });
 

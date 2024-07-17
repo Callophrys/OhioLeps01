@@ -184,13 +184,14 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
         return true;
     }
 
-    function onSubmitReview(e: Event & { currentTarget: EventTarget & HTMLFormElement }) {
-        e.preventDefault();
-        targetForm = e.currentTarget;
-        if ((targetForm.elements.namedItem('confirm') as HTMLInputElement).value === 'true') {
-            modalStore.trigger(modalReviewerLock);
-        } else {
-            modalStore.trigger(modalReviewerUnlock);
+    function clickSubmitReview(e: any) {
+        if (e.currentTarget?.form) {
+            targetForm = e.currentTarget.form;
+            if ((targetForm.elements.namedItem('confirm') as HTMLInputElement).value === 'true') {
+                modalStore.trigger(modalReviewerLock);
+            } else {
+                modalStore.trigger(modalReviewerUnlock);
+            }
         }
         return false;
     }
@@ -263,7 +264,6 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                   year: new Date(sdo.siteDate.recordDate).getFullYear(),
                   week: weekOfYearSince(new Date(sdo.siteDate.recordDate)),
                   siteDateId: sdo.siteDateId,
-                  siteDateObservation: sdo,
               };
         const modal: ModalSettings = {
             type: 'component',
@@ -496,15 +496,15 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     {#if sdo.deleted}
         <button type="button" disabled class="cursor-not-allowed">&nbsp;</button>
     {:else if isReviewable(sdo, $page.data.user)}
-        <form method="POST" action="?/reviewSiteDateObservation" onsubmit={onSubmitReview} use:enhance>
+        <form method="POST" action="?/reviewSiteDateObservation" onsubmit={() => false} use:enhance>
             {#if !sdo.confirmById}
-                <button type="submit" title="Needs review" class="">🌎</button>
+                <button type="submit" title="Needs review" onclick={clickSubmitReview}>🌎</button>
                 <input hidden name="confirm" value={true} />
             {:else if sdo.confirmed}
-                <button type="submit" title="Reviewed" class="">🔐</button>
+                <button type="submit" title="Reviewed" onclick={clickSubmitReview}>🔐</button>
                 <input hidden name="confirm" value={false} />
             {:else}
-                <button type="submit" title="Review status has been revoked" class="">🔓</button>
+                <button type="submit" title="Review status has been revoked" onclick={clickSubmitReview}>🔓</button>
                 <input hidden name="confirm" value={true} />
             {/if}
             <input hidden name="siteDateObservationId" value={sdo.siteDateObservationId} />
@@ -513,7 +513,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 {/snippet}
 
 {#snippet reviewSpecimenViewSingle(sdo: SiteDateObservationChecklist)}
-    <form method="POST" action="?/reviewSiteDateObservation" onsubmit={onSubmitReview} use:enhance>
+    <form method="POST" action="?/reviewSiteDateObservation" onsubmit={clickSubmitReview} use:enhance>
         <!-- LOCK/UNLOCK Mark data as reviewed, aka valid and locked; Can unlock -->
         {#if isReviewable(sdo, $page.data.user)}
             {@render reviewElevatedUser(sdo)}
