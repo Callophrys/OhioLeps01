@@ -214,6 +214,7 @@
     }
 
     function modalComponentSiteDateObersvation(isNewRecord: boolean): void {
+        let isSiteDate = true;
         const siteDateObservationId = data.siteDateObservations.length ? data.siteDateObservations[0].siteDateObservationId : -1;
         const c: ModalComponent = { ref: ModalSiteDateObservation };
         const componentTitle = isNewRecord ? 'Add Specimen to Observations' : 'Edit Observation';
@@ -221,8 +222,8 @@
         const componentValues = isNewRecord
             ? {
                   checklist: availableChecklistItems,
-                  year: new Date().getFullYear(),
-                  week: weekOfYearSince(new Date()),
+                  year: isSiteDate ? data.siteDate.year : new Date().getFullYear(),
+                  week: isSiteDate ? data.siteDate.week : weekOfYearSince(new Date()),
                   siteDateId: data.siteDate.siteDateId,
               }
             : {

@@ -383,7 +383,7 @@
             {/if}
         </div>
         <div class="mr-4 flex flex-col md:flex-row space-x-2">
-            {#if $page.data?.user && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN')}
+            {#if $page.data?.user && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'ENTRY')}
                 <button type="button" class="btn h-10 variant-soft" onclick={() => modalComponentSiteDate(true, unitTemp, unitSpeed, currentSiteDate, currentSiteId)} title="Add new date record for observations"><span class="text-success-400">✚</span>&nbsp;Add observations date</button>
             {/if}
             <button type="button" class="btn h-10 variant-soft" onclick={exportToCSV}><span class="text-success-400">✚</span>&nbsp;Export to CSV</button>
