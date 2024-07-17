@@ -100,7 +100,7 @@
                 </div>
                 <div>
                     <span>Hodges</span><!-- Could make this enterable and an auto-complete in case people know specimens by number -->
-                    <div class="input w-24 min-h-6 py-2 px-3 mt-1">{@html hodges}</div>
+                    <div class="input w-24 min-h-6 py-2 px-3 mt-1 cursor-not-allowed" title="Hodges number that matches the selected species">{@html hodges}</div>
                 </div>
                 <label class="label flex flex-col">
                     <span>Id Method</span>

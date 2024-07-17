@@ -2,6 +2,7 @@
     /*-- Imports */
     import { GOTYPE } from '$lib/types.js';
     import type { ModalSettings, ModalComponent } from '@skeletonlabs/skeleton';
+    import type { SiteDateYear } from '$lib/types.js';
     import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
     import DataOptions from '$lib/components/datanavigation/DataOptions.svelte';
     import DoubledContainer from '$lib/components/DoubledContainer.svelte';
@@ -151,31 +152,27 @@
 
     /*-- Handlers */
     /*-- Methods */
-    // function addSiteDate() {
-    //     goto(`/api/sitedates/new/${currentSiteId}`);
-    // }
-
     let inUse = $derived(data.siteDateObservations.filter((x: any) => !x.isDeleted).map((x: any) => x.checklistId));
     let availableChecklistItems = $derived(data.checklistsAll.filter((x: any) => !inUse.includes(x.checklistId)));
 
-    function modalComponentSiteDate(isNewRecord: boolean): void {
+    function modalComponentSiteDate(isNewRecord: boolean, unitTemp: string, unitSpeed: string, siteDate: SiteDateYear | null, siteId: number): void {
         const c: ModalComponent = { ref: ModalSiteDate };
         console.log(data.siteDate.recordDate, formatDate(data.siteDate.recordDate), formatDate(new Date(data.siteDate.recordDate).toISOString()), data.siteDate.siteDateId, currentSiteDateId);
         const componentTitle = isNewRecord ? 'Add New Date Record' : `Edit Date Record - ${formatDate(new Date(data.siteDate.recordDate).toISOString())}, ${recordDate}`;
         const componentUrl = isNewRecord ? '?/createSiteDate' : '?/updateSiteDate';
         const componentValues = isNewRecord
             ? {
-                  siteId: data.siteDate.siteId,
+                  siteId: siteId,
                   siteDate: null,
-                  useMph: useMph,
-                  useFarenheit: useFarenheit,
+                  useMph: unitSpeed,
+                  useFarenheit: unitTemp,
                   isNewRecord: isNewRecord,
               }
             : {
-                  siteId: data.siteDate.siteId,
-                  siteDate: data.siteDate,
-                  useMph: useMph,
-                  useFarenheit: useFarenheit,
+                  siteId: siteId,
+                  siteDate: siteDate?.recordDate,
+                  useMph: unitSpeed,
+                  useFarenheit: unitTemp,
                   isNewRecord: isNewRecord,
               };
         const modal: ModalSettings = {
@@ -299,11 +296,11 @@
         <h2 class="flex flex-row justify-between pb-2">
             <div class="overflow-hidden text-ellipsis text-nowrap w-80">{data.siteDate.siteName}</div>
             <div class="flex flex-row">
-                <button type="button" class="btn variant-soft scale-90 translate-x-2" onclick={() => modalComponentSiteDate(false)} title="Edit current date record">
+                <button type="button" class="btn variant-soft scale-90 translate-x-2" onclick={() => modalComponentSiteDate(false, useMph, useFarenheit, data.siteDate, currentSiteId)} title="Edit current date record">
                     <span class="text-green-700 dark:text-green-400 text-xl before:content-['✚']"></span>
                     <span>Edit Current</span>
                 </button>
-                <button type="button" class="btn variant-soft scale-90 translate-x-2" onclick={() => modalComponentSiteDate(true)} title="Add new date record for observations">
+                <button type="button" class="btn variant-soft scale-90 translate-x-2" onclick={() => modalComponentSiteDate(true, useMph, useFarenheit, null, currentSiteId)} title="Add new date record for observations">
                     <span class="text-green-700 dark:text-green-400 text-xl before:content-['✚']"></span>
                     <span>Add New</span>
                 </button>

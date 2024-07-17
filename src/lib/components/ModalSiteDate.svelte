@@ -79,7 +79,9 @@
                   flowersInBloom: sd.flowersInBloom,
                   fieldNotes: sd.fieldNotes,
                   siteId: sd.siteId,
-                  tzOffset: '',
+                  tzOffset: new Date().getTimezoneOffset().toString(),
+                  unitWindSpeed: unitWindSpeed,
+                  unitTemperature: unitTemperature,
               }
             : {
                   siteDateId: -1,
@@ -137,7 +139,9 @@
                   flowersInBloom: null,
                   fieldNotes: null,
                   siteId: $modalStore[0].value.siteId,
-                  tzOffset: null,
+                  tzOffset: new Date().getTimezoneOffset().toString(),
+                  unitWindSpeed: unitWindSpeed,
+                  unitTemperature: unitTemperature,
               }
     );
     // console.log(formData);
@@ -148,7 +152,6 @@
     function onFormSubmit(e: Event): void {
         e.preventDefault();
         formData.week = recordWeek;
-        formData.tzOffset = new Date().getTimezoneOffset().toString();
         if ($modalStore[0].response) {
             console.log(formData);
             $modalStore[0].response(formData);

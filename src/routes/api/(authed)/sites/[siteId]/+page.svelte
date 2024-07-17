@@ -3,20 +3,24 @@
     /* TODO: after back action from sdo the sdo picker should update its selection to last visited sdo */
 
     /*-- Imports */
-    import type { SiteCountySiteDatesSiteStatuses } from '$lib/types.js';
+    import { GOTYPE } from '$lib/types.js';
+    import type { ModalSettings, ModalComponent } from '@skeletonlabs/skeleton';
+    import type { SiteDateYear } from '$lib/types.js';
     import type { SiteCountyState } from '$lib/types.js';
     import Container from '$lib/components/layouts/Container.svelte';
     import CountyPicker from '$lib/components/datanavigation/CountyPicker.svelte';
-    import SitePicker from '$lib/components/datanavigation/SitePicker.svelte';
-    import SiteDatePicker from '$lib/components/datanavigation/SiteDatePicker.svelte';
     import CountySite from '$lib/components/datanavigation/CountySite.svelte';
-    import { setContext } from 'svelte';
     import GoBack from '$lib/components/datanavigation/GoBack.svelte';
     import GoNext from '$lib/components/datanavigation/GoNext.svelte';
-    import { GOTYPE, type SiteDateYearSdo } from '$lib/types.js';
-    import { page } from '$app/stores';
-    import { goto } from '$app/navigation';
+    import ModalSiteDate from '$lib/components/ModalSiteDate.svelte';
     import Papa from 'papaparse';
+    import SitePicker from '$lib/components/datanavigation/SitePicker.svelte';
+    import SiteDatePicker from '$lib/components/datanavigation/SiteDatePicker.svelte';
+    import { formatDate, weekOfYearSince, convertFtoC, convertMphToKm, isRecent, decodeWeather } from '$lib/utils';
+    import { getModalStore } from '@skeletonlabs/skeleton';
+    import { goto } from '$app/navigation';
+    import { page } from '$app/stores';
+    import { setContext } from 'svelte';
 
     async function fetchSiteData(siteId: number) {
         let sdpath = `/admin/${siteId}`;
@@ -93,7 +97,11 @@
     let filterByCounty: boolean = $state(false);
 
     /*-- Variables and objects */
+    let unitTemp: string = $state('F');
+    let unitSpeed: string = $state('M');
+
     /*-- Run first stuff */
+    const modalStore = getModalStore();
 
     /***************************************************************/
     /* TODO - see about updating SDO list on site change
@@ -114,16 +122,77 @@
         localStorage.setItem('filterByCounty', filterByCounty ? '1' : '0');
     });
 
+    $effect(() => {
+        let x = localStorage?.useFarenheit;
+        if (x) unitTemp = x;
+        x = localStorage?.useMph;
+        if (x) unitSpeed = x;
+    });
+
     /*-- Handlers */
     /*-- Methods */
-    function addSiteDate() {
-        goto(`/api/sitedates/new/${currentSiteId}`);
+    function modalComponentSiteDate(isNewRecord: boolean, unitTemp: string, unitSpeed: string, siteDate: SiteDateYear | null, siteId: number): void {
+        const c: ModalComponent = { ref: ModalSiteDate };
+        const componentTitle = isNewRecord ? 'Add New Date Record' : `Edit Date Record - ${formatDate(siteDate?.recordDate ? new Date(siteDate.recordDate).toISOString() : new Date().toISOString())}, ${siteDate?.recordDate}`;
+        const componentUrl = isNewRecord ? '../sitedates/-1?/createSiteDate' : `../sitedates/${siteDate?.siteDateId}?/updateSiteDate`;
+        const componentValues = isNewRecord
+            ? {
+                  siteId: siteId,
+                  siteDate: null,
+                  useMph: unitSpeed,
+                  useFarenheit: unitTemp,
+                  isNewRecord: isNewRecord,
+              }
+            : {
+                  siteId: siteId,
+                  siteDate: siteDate?.recordDate,
+                  useMph: unitSpeed,
+                  useFarenheit: unitTemp,
+                  isNewRecord: isNewRecord,
+              };
+        const modal: ModalSettings = {
+            type: 'component',
+            component: c,
+            title: componentTitle,
+            body: 'Complete the form below and then press submit.',
+            value: componentValues,
+            response: (r) => {
+                if (typeof r === 'object') {
+                    const formData = new FormData();
+                    for (const [k, v] of Object.entries(r) as [string, any]) formData.append(k, v);
+
+                    fetch(componentUrl, {
+                        method: 'POST',
+                        body: formData,
+                    })
+                        .then((response) => response.json())
+                        .then((data) => {
+                            if (data.status === 200) {
+                                const rdata = JSON.parse(data.data);
+                                console.log('rdata:', rdata);
+                                let siteDateId = rdata[rdata[0].siteDateId];
+                                //TODO: Assure that SiteDatePicker updates.  The following goto + invalidateAll does
+                                // not accomplish it.  Thought that udpating the bound currentSiteDateId would cause
+                                // the SiteDatePicker to update itself.  Hmmm.
+                                //currentSiteDateId = siteDateId;
+                                //NOTE: verified that invalidateAll assure that browsed for data renders after update
+                                goto('/api/sitedates/' + siteDateId, { invalidateAll: true });
+                            }
+                        })
+                        .catch((error) => {
+                            console.error('Error:', error);
+                        });
+                }
+            },
+        };
+        modalStore.trigger(modal);
     }
 
     /*-- Reactives (functional) */
 
     let currentCountyId: number = $state(data.site.countyId);
     let currentSiteId: number = $state(data.site.siteId);
+    let currentSiteDate: SiteDateYear | null = $state(data.site.siteDates.length ? data.site.siteDates[0] : null);
     let currentSiteDateId: number = $state(data.site.siteDates.length ? data.site.siteDates[0].siteDateId : -1);
     // $inspect(currentCountyId, currentSiteId, currentSiteDateId);
 
@@ -163,9 +232,9 @@
     <div class="flex flex-row justify-between gap-1 md:gap-2">
         <div class="flex flex-row">
             <GoBack bind:targetId={currentCountyId} bind:targetType={GOTYPE.COUNTYSITES} targetIdSecondary={null} controlBody="scale-90" buttonCenter="" scriptCenter="" labelledby="" />
-            <GoNext targetId={currentSiteDateId} targetType={GOTYPE.SITEDATES} targetIdSecondary={currentSiteId} controlBody="scale-90" controlDisabled={data.site.siteDates.length < 1} />
+            <GoNext targetId={currentSiteDateId} targetType={GOTYPE.SITEDATES} targetIdSecondary={currentSiteId} controlBody="scale-90" controlDisabled={data.site.siteDates.length < 1} buttonCenter="" scriptCenter="" labelledby="" />
             <CountyPicker bind:currentCountyId bind:currentSiteId bind:filterByCounty controlBody="scale-90 -translate-x-2" heading={null} dropdownPointers={null} controlOuter={null} buttonLeft={null} buttonCenter={null} buttonRight={null} prefixCenter={null} scriptCenter={null} suffixCenter={null} popupInner={null} popupStyles={null} labelledby={null} />
-            <SitePicker bind:currentCountyId bind:currentSiteId bind:currentSiteDateId bind:filterByCounty dropdownPointers={true} heading={null} controlOuter="" controlBody="scale-90 -translate-x-8" buttonLeft="" buttonCenter="" buttonRight="" prefixCenter="" scriptCenter="" suffixCenter="" popupInner="" popupStyles="" labelledby="Selectsite-date" />
+            <SitePicker bind:currentCountyId bind:currentSiteId bind:currentSiteDateId bind:filterByCounty dropdownPointers={true} heading={null} controlOuter="" controlBody="scale-90 -translate-x-8" buttonLeft="" buttonCenter="" buttonRight="" scriptCenter="" suffixCenter="" popupInner="" popupStyles="" labelledby="Selectsite-date" />
         </div>
         <SiteDatePicker bind:currentSiteId bind:currentSiteDateId controlBody="scale-90" buttonLeft="" buttonRight="" buttonYear="" buttonWeek="" dropdownShowDate={false} dropdownPointers={true} heading={null} yearPrefix="" weekPrefix="" controlOuter="" prefixYear="" prefixWeek="" suffixYear="" suffixWeek="" popupInner="" popupStyles="" labelledby="" />
     </div>
@@ -254,7 +323,7 @@
         </div>
         <div class="mr-4 flex flex-col md:flex-row space-x-2">
             {#if $page.data?.user && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN')}
-                <button type="button" class="btn h-10 variant-soft" onclick={addSiteDate} title="Add new date record for observations"><span class="text-success-400">✚</span>&nbsp;Add observations date</button>
+                <button type="button" class="btn h-10 variant-soft" onclick={() => modalComponentSiteDate(true, unitTemp, unitSpeed, currentSiteDate, currentSiteId)} title="Add new date record for observations"><span class="text-success-400">✚</span>&nbsp;Add observations date</button>
             {/if}
             <button type="button" class="btn h-10 variant-soft" onclick={exportToCSV}><span class="text-success-400">✚</span>&nbsp;Export to CSV</button>
         </div>

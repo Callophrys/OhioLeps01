@@ -63,6 +63,8 @@ export function compareNumeric(a: number, b: number) {
 }
 
 export function compareYearWeek(a: DateTracking, b: DateTracking) {
+    if (!a.recordDate) return -1;
+    if (!b.recordDate) return 1;
     return compareNumeric(a.recordDate.getTime(), b.recordDate.getTime());
 }
 

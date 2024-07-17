@@ -1,5 +1,5 @@
 import type { County } from '@prisma/client';
-import type { SiteCountyState, SiteDateYearSiteDates, SiteCountySiteDatesSiteStatuses } from '$lib/types.js';
+import type { SiteCountyState, SiteCountySiteDatesSiteStatuses } from '$lib/types.js';
 import { error } from '@sveltejs/kit';
 import { getCounties } from '$lib/database/counties.js';
 import { getSite, getSites } from '$lib/database/sites';
