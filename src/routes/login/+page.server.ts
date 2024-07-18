@@ -1,8 +1,9 @@
-import { fail, redirect } from '@sveltejs/kit';
-import bcrypt from 'bcrypt';
 import type { Action, Actions, PageServerLoad } from './$types';
-
+import type { Audit } from '@prisma/client';
+import bcrypt from 'bcrypt';
 import prisma from '$lib/prisma';
+import { createAudit } from '$lib/database/audit';
+import { fail, redirect } from '@sveltejs/kit';
 
 export const load: PageServerLoad = async ({ locals }) => {
     // redirect user if logged in
@@ -24,12 +25,26 @@ const login: Action = async ({ cookies, request }) => {
     const user = await prisma.user.findUnique({ where: { username } });
 
     if (!user) {
+        await createAudit({
+            id: -1,
+            auditType: 'Login Fail',
+            ipAddress: 'localhost',
+            userName: username,
+            description: 'Invalid username',
+        } as Audit);
         return fail(400, { credentials: true });
     }
 
     const userPassword = await bcrypt.compare(password, user.passwordHash);
 
     if (!userPassword) {
+        await createAudit({
+            id: -1,
+            auditType: 'Login Fail',
+            ipAddress: 'localhost',
+            userName: username,
+            description: 'Invalid password',
+        } as Audit);
         return fail(400, { credentials: true });
     }
 
@@ -58,6 +73,13 @@ const login: Action = async ({ cookies, request }) => {
     });
 
     //console.log('log in....okay?', user);
+    await createAudit({
+        id: -1,
+        auditType: 'Login Success',
+        ipAddress: 'localhost',
+        userName: username,
+        description: 'Successful login',
+    } as Audit);
 
     // redirect the user
     throw redirect(302, '/');

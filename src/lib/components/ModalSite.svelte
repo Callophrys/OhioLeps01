@@ -1,8 +1,9 @@
 <script lang="ts">
     import type { CssClasses } from '@skeletonlabs/skeleton';
     import type { SvelteComponent } from 'svelte';
-    import type { SiteDate } from '@prisma/client';
+    import type { County, Site, State } from '@prisma/client';
     import { enhance } from '$app/forms';
+    import { getContext } from 'svelte';
     import { getModalStore } from '@skeletonlabs/skeleton';
     import { weekOfYearSince } from '$lib/utils.js';
 
@@ -13,26 +14,120 @@
     let { parent }: { parent: SvelteComponent } = $props();
 
     const modalStore = getModalStore();
-    const sd = $modalStore[0].value.siteDate as SiteDate;
-    const unitGps = $modalStore[0].value.unitGps === 'DD' ? '&deg;F' : '&deg;C';
-    let minTemp = $modalStore[0].value.useFarenheit !== 'F' ? -89.3 : -129;
-    let maxTemp = $modalStore[0].value.useFarenheit !== 'F' ? 56.7 : 135;
+    const site = $modalStore[0].value.site as Site;
+    const unitGps = $modalStore[0].value.unitGps;
+    const countyId = $modalStore[0].value.countyId;
+    const stateId = $modalStore[0].value.stateId;
 
-    const recordDate: Date = sd ? new Date(sd.recordDate) : new Date();
-    const recordDateText = `${recordDate.getFullYear()}-${'0'.concat((1 + recordDate.getMonth()).toString()).slice(-2)}-${'0'.concat(recordDate.getDate().toString()).slice(-2)}`;
+    const states: State[] = getContext('states');
+    const counties: County[] = getContext('counties');
+
+    console.log('modal site', site);
 
     const formData = $state(
-        !$modalStore[0].value.isNewRecord && sd
+        !$modalStore[0].value.isNewRecord && site
             ? {
-                  siteId: sd.siteId,
-                  tzOffset: new Date().getTimezoneOffset().toString(),
+                  siteId: site.siteId,
+                  countyId: countyId,
+                  stateId: stateId,
+
+                  siteName: site.siteName,
+                  township: site.township,
+                  locationZip: site.locationZip,
+
+                  siteAddress: site.siteAddress,
+                  siteAddress2: site.siteAddress2,
+                  siteCity: site.siteCity,
+                  siteState: site.siteState,
+                  siteZip: site.siteZip,
+
+                  person: site.person,
+                  personAddress: site.personAddress,
+                  personAddress2: site.personAddress2,
+                  personCity: site.personCity,
+                  personState: site.personState,
+                  personZip: site.personZip,
+                  personPhone: site.personPhone,
+                  personPhone2: site.personPhone2,
+                  personEmail: site.personEmail,
+
+                  latitudeStart: site.latitudeStart,
+                  latitudeEnd: site.latitudeEnd,
+                  longitudeStart: site.longitudeStart,
+                  longitudeEnd: site.longitudeEnd,
+
+                  altPerson: site.altPerson,
+                  altPersonAddress: site.altPersonAddress,
+                  altPersonAddress2: site.altPersonAddress2,
+                  altPersonCity: site.altPersonCity,
+                  altPersonState: site.altPersonState,
+                  altPersonZip: site.altPersonZip,
+                  altPersonPhone: site.altPersonPhone,
+                  altPersonPhone2: site.altPersonPhone2,
+                  altPersonEmail: site.altPersonEmail,
+
+                  otherParticipants: site.otherParticipants,
+                  description: site.description,
+
+                  unitGps: unitGps,
               }
             : {
                   siteId: -1,
-                  tzOffset: new Date().getTimezoneOffset().toString(),
+                  countyId: countyId,
+                  stateId: stateId,
+
+                  township: null,
+                  locationZip: null,
+
+                  siteAddress: null,
+                  siteAddress2: null,
+                  siteCity: null,
+                  siteState: null,
+                  siteZip: null,
+
+                  person: null,
+                  personAddress: null,
+                  personAddress2: null,
+                  personCity: null,
+                  personState: null,
+                  personZip: null,
+                  personPhone: null,
+                  personPhone2: null,
+                  personEmail: null,
+
+                  latitudeStart: null,
+                  latitudeEnd: null,
+                  longitudeStart: null,
+                  longitudeEnd: null,
+
+                  altPerson: null,
+                  altPersonAddress: null,
+                  altPersonAddress2: null,
+                  altPersonCity: null,
+                  altPersonState: null,
+                  altPersonZip: null,
+                  altPersonPhone: null,
+                  altPersonPhone2: null,
+                  altPersonEmail: null,
+
+                  otherParticipants: null,
+                  description: null,
+
+                  unitGps: unitGps,
               }
     );
     // console.log(formData);
+
+    // s1995 Int @default(5)
+    // s1996 Int @default(5)
+    // s1997 Int @default(5)
+    // s1998 Int @default(5)
+    // s1999 Int @default(5)
+    // s2000 Int @default(5)
+    // s2001 Int @default(5)
+    // s2002 Int @default(5)
+    // s2003 Int @default(5)
+    // s2004 Int @default(5)
 
     // Custom submit function to pass the response and close the modal.
     function onFormSubmit(e: Event): void {
@@ -52,52 +147,103 @@
     // let hodges = $derived(htmlHodges(checklist.find((x: ChecklistScientificName) => x.checklistId === formData.checklistId)?.hodges));
 </script>
 
+{#snippet entryInput(fullId: string, fullLabel: string, inputType: string)}
+    <label class="label">
+        <div>{fullLabel}:</div>
+        <input type={inputType} class="input" id={fullId} name={fullId} title={fullLabel} bind:value={formData[fullId as keyof typeof formData]} />
+    </label>
+{/snippet}
+
+{#snippet entrySelect(fullId: string, fullLabel: string)}
+    <label class="label">
+        <div>{fullLabel}:</div>
+        <select class="select" id={fullId} name={fullId} title={fullLabel} bind:value={formData[fullId as keyof typeof formData]}>
+            {#each states as state}
+                <option value={state.id}>{state.name}</option>
+            {/each}
+        </select>
+    </label>
+{/snippet}
+
+{#snippet entryTextarea(fullId, fullLabel, rows)}
+    <label class="label">
+        <div>{fullLabel}:</div>
+        <textarea class="textarea" id={fullId} name={fullId} {rows} title={fullLabel} bind:value={formData[fullId as keyof typeof formData]}></textarea>
+    </label>
+{/snippet}
+
 {#if $modalStore[0]}
     <div class={cBase}>
         <header class={cHeader}>{$modalStore[0].title ?? '(title missing)'}</header>
         <article>{$modalStore[0].body ?? '(body missing)'}</article>
         <!-- Enable for debugging: -->
         <form class="modal-form {cForm}" method="post" use:enhance>
-            <label class="label">
-                <div>Recorder:</div>
-                <input class="input" id="recorder" name="recorder" title="Name of the recorder(s) of the actual field data" bind:value={formData.recorder} />
-            </label>
-
-            <div class="flex flex-row justify-between">
-                <label class="label w-1/3">
-                    <div>Record Date:</div>
-                    <input type="date" class="input" id="recordDate" name="recordDate" title="Record date" bind:value={formData.recordDate} />
-                </label>
-
-                <label class="label text-right">
-                    <div>Week of Year:</div>
-                    <input class="input text-right w-16" id="week" name="week" readonly title="Calculated period week of the year for the record" value={recordWeek} />
-                </label>
-            </div>
-
-            <div class="w-fit text-center">
-                <div class="text-center">Time</div>
-                <div class="flex flex-row space-x-2">
-                    <label class="label">
-                        <div>Start:</div>
-                        <input class="input w-32" id="startTime" name="startTime" type="time" title="Time at start" bind:value={formData.startTime} />
-                    </label>
-                    <label class="label">
-                        <div>End:</div>
-                        <input class="input w-32" id="endTime" name="endTime" type="time" title="Time at end" bind:value={formData.endTime} />
-                    </label>
+            <div>
+                {@render entryInput('siteName', 'Site Name', 'text')}
+                <div class="pl-8">
+                    {@render entrySelect('county', 'County')}
+                    {@render entryInput('township', 'Township', 'text')}
+                    {@render entryInput('locationZip', 'Location Zip', 'text')}
                 </div>
             </div>
-
-            <div class="mt-4">
-                <label class="label center">
-                    <div>Flowers in Bloom</div>
-                    <textarea class="textarea" id="flowersInBloom" name="flowersInBloom" rows="2" title="Flowers in bloom" bind:value={formData.flowersInBloom}></textarea>
-                </label>
-                <label class="label">
-                    <div>Field Notes</div>
-                    <textarea class="textarea" id="fieldNotes" name="fieldNotes" rows="4" title="Field notes" bind:value={formData.fieldNotes}></textarea>
-                </label>
+            <div>
+                <div>Proper Address</div>
+                <div class="pl-8">
+                    {@render entryInput('siteAddress', 'Address', 'text')}
+                    {@render entryInput('siteAddress2', 'Address 2', 'text')}
+                    {@render entryInput('siteCity', 'City', 'text')}
+                    {@render entrySelect('siteState', 'State')}
+                    {@render entryInput('siteZip', 'Zip', 'text')}
+                </div>
+            </div>
+            <div>
+                {@render entryInput('person', 'Person', 'text')}
+                <div class="pl-8">
+                    {@render entryInput('personAddress', 'Address', 'text')}
+                    {@render entryInput('personAddress2', 'Address 2', 'text')}
+                    {@render entryInput('personCity', 'City', 'text')}
+                    {@render entryInput('personState', 'State', 'text')}
+                    {@render entryInput('personZip', 'Zip', 'text')}
+                    {@render entryInput('personPhone', 'Phone', 'text')}
+                    {@render entryInput('personPhone2', 'Phone 2', 'text')}
+                    {@render entryInput('personEmail', 'Email', 'text')}
+                </div>
+            </div>
+            <div>
+                <div>GPS</div>
+                <div class="pl-8 flex flex-row space-x-2">
+                    <div class="text-center">
+                        <div>Range - From</div>
+                        <div class="flex flex-row space-x-2">
+                            {@render entryInput('latitudeStart', 'Latitude', 'text')}
+                            {@render entryInput('longitudeStart', 'Longitude', 'text')}
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <div>Range - To</div>
+                        <div class="flex flex-row space-x-2">
+                            {@render entryInput('latitudeEnd', 'Latitude', 'text')}
+                            {@render entryInput('longitudeEnd', 'Longitude', 'text')}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                {@render entryInput('altPerson', 'Alternate Person', 'text')}
+                <div class="pl-8">
+                    {@render entryInput('altPersonAddress', 'Address', 'text')}
+                    {@render entryInput('altPersonAddress2', 'Address 2', 'text')}
+                    {@render entryInput('altPersonCity', 'City', 'text')}
+                    {@render entryInput('altPersonState', 'State', 'text')}
+                    {@render entryInput('altPersonZip', 'Zip', 'text')}
+                    {@render entryInput('altPersonPhone', 'Phone', 'text')}
+                    {@render entryInput('altPersonPhone2', 'Phone 2', 'text')}
+                    {@render entryInput('altPersonEmail', 'Email', 'text')}
+                </div>
+            </div>
+            <div>
+                {@render entryTextarea('otherParticipants', 'Other Participants', '2')}
+                {@render entryTextarea('description', 'Description', '4')}
             </div>
         </form>
         <!-- prettier-ignore -->

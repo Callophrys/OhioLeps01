@@ -11,11 +11,11 @@ export const handle: Handle = (async ({ event, resolve }) => {
     if (!session) {
         // if there is no session load page as normal
         appConfigs = await getAppConfigsByOrgName(defaultOrganization);
-        console.log(`appConfigs by defaultOrganzition (${defaultOrganization})`, appConfigs);
+        // console.log(`appConfigs by defaultOrganzition (${defaultOrganization})`, appConfigs);
 
         if (typeof appConfigs === 'undefined' || appConfigs.length === 0) {
             appConfigs = await getTemplateAppConfigs();
-            console.log('appConfigs of TEMPLATE', appConfigs);
+            // console.log('appConfigs of TEMPLATE', appConfigs);
         }
 
         if (appConfigs) {

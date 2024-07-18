@@ -4,6 +4,7 @@
 
     /*-- Imports */
     import { GOTYPE, ROLE } from '$lib/types.js';
+    import type { Site } from '@prisma/client';
     import type { ModalSettings, ModalComponent } from '@skeletonlabs/skeleton';
     import type { SiteDateYear } from '$lib/types.js';
     import type { SiteCountyState, SiteCountySiteDatesSiteStatuses } from '$lib/types.js';
@@ -12,6 +13,7 @@
     import CountySite from '$lib/components/datanavigation/CountySite.svelte';
     import GoBack from '$lib/components/datanavigation/GoBack.svelte';
     import GoNext from '$lib/components/datanavigation/GoNext.svelte';
+    import ModalSite from '$lib/components/ModalSite.svelte';
     import ModalSiteDate from '$lib/components/ModalSiteDate.svelte';
     import Papa from 'papaparse';
     import SitePicker from '$lib/components/datanavigation/SitePicker.svelte';
@@ -79,6 +81,7 @@
 
     /*-- Context */
     setContext('counties', data.counties);
+    setContext('states', data.states);
 
     // data.sites is type SiteCountySiteDatesSiteStatuses which is site, county, siteDates
     setContext('sites', data.sites);
@@ -99,6 +102,7 @@
     /*-- Variables and objects */
     let unitTemp: string = $state('F');
     let unitSpeed: string = $state('M');
+    let unitGps: string = $state('DMS'); // {DMS, DMM, DD}
 
     /*-- Run first stuff */
     const modalStore = getModalStore();
@@ -127,12 +131,73 @@
         if (x) unitTemp = x;
         x = localStorage?.useMph;
         if (x) unitSpeed = x;
+        x = localStorage?.unitGps;
+        if (x) unitGps = x;
     });
 
     /*-- Handlers */
     /*-- Methods */
     //TODO: setup modal add-edit for a Site
     //TODO: fix site properties not saved on create
+
+    function modalComponentSite(isNewRecord: boolean, unitGps: string, site: Site | null, countyId: number, stateId: number): void {
+        const c: ModalComponent = { ref: ModalSite };
+        const componentTitle = isNewRecord ? 'Add New Site' : `Edit Site - ${site?.siteName}`;
+        const componentUrl = isNewRecord ? '../site/-1?/createSite' : `../site/${site?.siteId}?/updateSite`;
+        const componentValues = isNewRecord
+            ? {
+                  site: null,
+                  siteId: -1,
+                  countyId: countyId,
+                  stateId: stateId,
+                  unitGps: unitGps,
+                  isNewRecord: isNewRecord,
+              }
+            : {
+                  site: site,
+                  siteId: site?.siteId,
+                  countyId: countyId,
+                  stateId: stateId,
+                  unitGps: unitGps,
+                  isNewRecord: isNewRecord,
+              };
+        const modal: ModalSettings = {
+            type: 'component',
+            component: c,
+            title: componentTitle,
+            body: 'Complete the form below and then press submit.',
+            value: componentValues,
+            response: (r) => {
+                if (typeof r === 'object') {
+                    const formData = new FormData();
+                    for (const [k, v] of Object.entries(r) as [string, any]) formData.append(k, v);
+
+                    fetch(componentUrl, {
+                        method: 'POST',
+                        body: formData,
+                    })
+                        .then((response) => response.json())
+                        .then((data) => {
+                            if (data.status === 200) {
+                                const rdata = JSON.parse(data.data);
+                                console.log('rdata:', rdata);
+                                let siteDateId = rdata[rdata[0].siteDateId];
+                                //TODO: Assure that SiteDatePicker updates.  The following goto + invalidateAll does
+                                // not accomplish it.  Thought that udpating the bound currentSiteDateId would cause
+                                // the SiteDatePicker to update itself.  Hmmm.
+                                //currentSiteDateId = siteDateId;
+                                //NOTE: verified that invalidateAll assure that browsed for data renders after update
+                                goto('/api/sitedates/' + siteDateId, { invalidateAll: true });
+                            }
+                        })
+                        .catch((error) => {
+                            console.error('Error:', error);
+                        });
+                }
+            },
+        };
+        modalStore.trigger(modal);
+    }
 
     function modalComponentSiteDate(isNewRecord: boolean, unitTemp: string, unitSpeed: string, siteDate: SiteDateYear | null, siteId: number): void {
         const c: ModalComponent = { ref: ModalSiteDate };
@@ -194,6 +259,8 @@
     /*-- Reactives (functional) */
 
     let currentCountyId: number = $state(data.site.countyId);
+    let currentStateId: number = $state(data.site.stateId);
+
     let currentSiteId: number = $state(data.site.siteId);
     let currentSiteDate: SiteDateYear | null = $state(data.site.siteDates.length ? data.site.siteDates[0] : null);
     let currentSiteDateId: number = $state(data.site.siteDates.length ? data.site.siteDates[0].siteDateId : -1);
@@ -383,10 +450,14 @@
             {/if}
         </div>
         <div class="mr-4 flex flex-col md:flex-row space-x-2">
-            {#if $page.data?.user && ($page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'ENTRY')}
-                <button type="button" class="btn h-10 variant-soft" onclick={() => modalComponentSiteDate(true, unitTemp, unitSpeed, currentSiteDate, currentSiteId)} title="Add a new site"><span class="text-success-400">✚</span>&nbsp;Add Site</button>
-                <button type="button" class="btn h-10 variant-soft" onclick={() => modalComponentSiteDate(true, unitTemp, unitSpeed, currentSiteDate, currentSiteId)} title="for observations"><span class="text-success-400">✚</span>&nbsp;Edit Site</button>
-                <button type="button" class="btn h-10 variant-soft" onclick={() => modalComponentSiteDate(true, unitTemp, unitSpeed, currentSiteDate, currentSiteId)} title="Add new date record for observations"><span class="text-success-400">✚</span>&nbsp;Add observations date</button>
+            {#if $page.data?.user}
+                {#if $page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN'}
+                    <button type="button" class="btn h-10 variant-soft" onclick={() => modalComponentSite(true, unitGps, null, currentCountyId, currentStateId)} title="Add a new site"><span class="text-success-400">✚</span>&nbsp;Add Site</button>
+                    <button type="button" class="btn h-10 variant-soft" onclick={() => modalComponentSite(false, unitGps, data.site, currentCountyId, currentStateId)} title="for observations"><span class="text-success-400">✚</span>&nbsp;Edit Site</button>
+                {/if}
+                {#if $page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'ENTRY'}
+                    <button type="button" class="btn h-10 variant-soft" onclick={() => modalComponentSiteDate(true, unitTemp, unitSpeed, currentSiteDate, currentSiteId)} title="Add new date record for observations"><span class="text-success-400">✚</span>&nbsp;Add observations date</button>
+                {/if}
             {/if}
             <button type="button" class="btn h-10 variant-soft" onclick={exportToCSV}><span class="text-success-400">✚</span>&nbsp;Export to CSV</button>
         </div>

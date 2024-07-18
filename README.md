@@ -293,6 +293,7 @@ DROP TABLE IF EXISTS country;
 DROP TABLE IF EXISTS continent;
 DROP TABLE IF EXISTS appconfig;
 DROP TABLE IF EXISTS organization;
+DROP TABLE IF EXISTS audit;
 
 END //
 DELIMITER ;
@@ -906,5 +907,28 @@ To refresh the data you need to trigger a rerender by updating a piece of relate
 WGS84 bounds:
 -180.0 -90.0
 180.0 90.0
+
+DD
+DMS = Degree minute second, with base-60 notation where 1degree = 60' = 3600"
+0 to 180 E
+0 to 180 W
+90 at North Pole
+-90 at South Pole
+
+
+Degrees, Minutes, And Seconds (DMS)
+Degrees, minutes, and seconds (DMS) is a format that divides the space between each line of latitude or longitude into 60 minutes and divides each minute into 60 seconds. This concept can seem confusing because it associates coordinates (which are unchanging) with time, but it’s a very common system.
+
+In this format, the coordinates of the Eiffel Tower are 48°51’30.24″N, 2°17’40.2″E. You’d read these coordinates as 48 degrees, 51 minutes, 30.24 seconds north and 2 degrees, 17 minutes, and 40.2 east.
+
+Degrees And Decimal Minutes (DMM)
+Degrees and decimal minutes (DMM) is another format that can be used to express GPS coordinates. It divides the space between each line of latitude or longitude into 60 minutes and divides each minute into decimals.
+
+In this format, the coordinates of the Eiffel Tower are 48° 51.504′ N, 2° 17.67′ E. You’d read these coordinates as 48 degrees, 51.504 minutes north and 2 degrees, 17.67 minutes east. Without counting minutes and seconds separately, these coordinates roll off the tongue with a bit more ease, but this is actually the least common format for displaying GPS coordinates.
+
+Decimal Degrees (DD)
+Decimal degrees (DD) is the third, simplest, and perhaps most common format for expressing a pair of GPS coordinates. This format divides the space between each line of latitude or longitude into 60 decimals, avoiding the confusion of minutes or seconds, although it can result in a long fractional portion.
+
+In this format, the coordinates of the Eiffel Tower are simply 48.8584 N, 2.2945 E. You’d read these coordinates as 48.8584 degrees north and 2.2945 degrees east. With no minutes or seconds at all, these coordinates are, by far, the easiest to communicate.
 
 

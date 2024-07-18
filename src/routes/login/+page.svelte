@@ -28,7 +28,7 @@
         {/if}
 
         {#if form?.credentials}
-            <p class="error">You have entered the wrong credentials.</p>
+            <p class="error">Login unsuccessful.</p>
         {/if}
 
         <button type="submit" class="btn variant-filled">Log in</button>
@@ -41,4 +41,4 @@
     </div>
 {/snippet}
 
-<Container head={null} {body} tail={null} />
+<Container head={null} {body} bodyClasses={null} tail={null} />

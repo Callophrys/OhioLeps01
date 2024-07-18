@@ -38,4 +38,4 @@
     </form>
 {/snippet}
 
-<Container head={null} {body} tail={null} />
+<Container head={null} {body} bodyClasses={null} tail={null} />

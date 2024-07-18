@@ -51,14 +51,14 @@ model AppConfig {
     configType String
     configValue String
 
-	createdAt DateTime @default(now())
-	updatedAt DateTime?
+    createdAt DateTime @default(now())
+    updatedAt DateTime?
 
     // User relations
-	createdBy User? @relation("CreateUserOfAppConfig", fields: [createdById], references: [id])
-	createdById String? // Probably should never be null
-	updatedBy User? @relation("UpdateUserOfAppConfig", fields: [updatedById], references: [id])
-	updatedById String?
+    createdBy User? @relation("CreateUserOfAppConfig", fields: [createdById], references: [id])
+    createdById String? // Probably should never be null
+    updatedBy User? @relation("UpdateUserOfAppConfig", fields: [updatedById], references: [id])
+    updatedById String?
 
     organizationId String
     organization Organization @relation("ConfigOfOrganization", fields: [organizationId], references: [id])
@@ -80,22 +80,22 @@ model User {
     delayedRetries  Int      @default(0) // if 3 times inside 3 days then disable account; Report to admins with user and IP and maybe headers too
     passwordExpires DateTime?
 
-// maxLoginRetries', configType: 'number', configValue: '12', organizationId: templateOrganizationId ,
-// attemptsBeforeDelay', configType: 'number', configValue: '3', organizationId: templateOrganizationId ,
-// loginDelayTime', configType: 'number', configValue: '90', organizationId: templateOrganizationId ,
-// maxLoginFailures', configType: 'number', configValue: '30', organizationId: templateOrganizationId ,
-// maxLoginFailuresDays', configType: 'number', configValue: '30', organizationId: templateOrganizationId ,
-// maxLoginDelays', configType: 'number', configValue: '3', organizationId: templateOrganizationId ,
-// maxLoginDelaysDays', configType: 'number', configValue: '3', organizationId: templateOrganizationId ,
+    // maxLoginRetries', configType: 'number', configValue: '12', organizationId: templateOrganizationId ,
+    // attemptsBeforeDelay', configType: 'number', configValue: '3', organizationId: templateOrganizationId ,
+    // loginDelayTime', configType: 'number', configValue: '90', organizationId: templateOrganizationId ,
+    // maxLoginFailures', configType: 'number', configValue: '30', organizationId: templateOrganizationId ,
+    // maxLoginFailuresDays', configType: 'number', configValue: '30', organizationId: templateOrganizationId ,
+    // maxLoginDelays', configType: 'number', configValue: '3', organizationId: templateOrganizationId ,
+    // maxLoginDelaysDays', configType: 'number', configValue: '3', organizationId: templateOrganizationId ,
 
     createdAt DateTime @default(now())
     updatedAt DateTime?
 
     // User relations
-	createdBy User? @relation("CreateUserOfUser", fields: [createdById], references: [id])
-	createdById String? // Probably should never be null
-	updatedBy User? @relation("UpdateUserOfUser", fields: [updatedById], references: [id])
-	updatedById String?
+    createdBy User? @relation("CreateUserOfUser", fields: [createdById], references: [id])
+    createdById String? // Probably should never be null
+    updatedBy User? @relation("UpdateUserOfUser", fields: [updatedById], references: [id])
+    updatedById String?
 
     roleId String?
     role   Role? @relation(fields: [roleId], references: [id])
@@ -534,7 +534,7 @@ model Region {
 
 model County {
     id Int @id @default(autoincrement())
-		countyNumber Int @default(0) // Most states in USA have these as these as count per sort order
+    countyNumber Int @default(0) // Most states in USA have these as these as count per sort order
     name String
 
     // Parent Relation
@@ -548,3 +548,16 @@ model County {
     // Child Relation
     sites Site[] @relation("SiteOfCounty")
 }
+
+model Audit {
+    id Int @id @default(autoincrement())
+    auditType String?
+    ipAddress String?
+    userName String?
+    userId String?
+    organizationId String?
+    siteId Int?
+    description String?
+    createdAt DateTime? @default(now())
+}
+

@@ -46,7 +46,7 @@
 
 {#snippet head()}
     <div class="flex flex-row gap-1 md:gap-2">
-        <CountyPicker bind:currentCountyId controlBody="scale-90" controlOuter="w-auto" />
+        <CountyPicker bind:currentCountyId controlBody="scale-90" controlOuter="w-auto" currentSiteId={-1} filterByCounty={false} dropdownPointers={false} buttonLeft="" buttonCenter="" buttonRight="" prefixCenter="" scriptCenter="" suffixCenter="" popupInner="" popupStyles="" labelledby="" heading={null} />
         <button type="submit" class="btn variant-filled" form="addSite">
             Save New Site
             <span class="pl-2">✎</span>
