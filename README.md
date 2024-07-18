@@ -900,5 +900,11 @@ To refresh the data you need to trigger a rerender by updating a piece of relate
     <div class="error">{error.message}</div>
 {/await}
 ```
+ Center coordinates
+0.0 0.0
+
+WGS84 bounds:
+-180.0 -90.0
+180.0 90.0
 
 
