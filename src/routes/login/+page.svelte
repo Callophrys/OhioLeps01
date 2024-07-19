@@ -41,4 +41,4 @@
     </div>
 {/snippet}
 
-<Container head={null} {body} bodyClasses={null} tail={null} />
+<Container head={null} {body} bodyClasses={''} tail={null} />

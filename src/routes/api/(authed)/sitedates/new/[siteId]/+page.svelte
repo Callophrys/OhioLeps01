@@ -275,4 +275,4 @@
     </form>
 {/snippet}
 
-<Container {head} {body} bodyClasses={null} tail={null} />
+<Container {head} {body} bodyClasses={''} tail={null} />

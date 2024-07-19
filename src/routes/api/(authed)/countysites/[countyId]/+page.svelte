@@ -86,4 +86,4 @@
     </div>
 {/snippet}
 <!-- {#snippet tail()}{/snippet} -->
-<Container {head} {body} bodyClasses={null} tail={null} />
+<Container {head} {body} bodyClasses={''} tail={null} />

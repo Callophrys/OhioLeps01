@@ -4,7 +4,7 @@
 
     /*-- Imports */
     import { GOTYPE, ROLE } from '$lib/types.js';
-    import type { Site } from '@prisma/client';
+    import type { County, Site, State } from '@prisma/client';
     import type { ModalSettings, ModalComponent } from '@skeletonlabs/skeleton';
     import type { SiteDateYear } from '$lib/types.js';
     import type { SiteCountyState, SiteCountySiteDatesSiteStatuses } from '$lib/types.js';
@@ -81,7 +81,6 @@
 
     /*-- Context */
     setContext('counties', data.counties);
-    setContext('states', data.states);
 
     // data.sites is type SiteCountySiteDatesSiteStatuses which is site, county, siteDates
     setContext('sites', data.sites);
@@ -140,27 +139,33 @@
     //TODO: setup modal add-edit for a Site
     //TODO: fix site properties not saved on create
 
-    function modalComponentSite(isNewRecord: boolean, unitGps: string, site: Site | null, countyId: number, stateId: number): void {
+    function modalComponentSite(isNewRecord: boolean, unitGps: string, site: Site | null, countyId: number, counties: County[], stateId: number, states: State[]): void {
         const c: ModalComponent = { ref: ModalSite };
         const componentTitle = isNewRecord ? 'Add New Site' : `Edit Site - ${site?.siteName}`;
-        const componentUrl = isNewRecord ? '../site/-1?/createSite' : `../site/${site?.siteId}?/updateSite`;
+        const componentUrl = isNewRecord ? '../sites/-1?/createSite' : `../sites/${site?.siteId ?? '-1'}?/updateSite`;
+
         const componentValues = isNewRecord
             ? {
                   site: null,
                   siteId: -1,
                   countyId: countyId,
+                  counties: data.counties,
                   stateId: stateId,
+                  states: data.states,
                   unitGps: unitGps,
                   isNewRecord: isNewRecord,
               }
             : {
                   site: site,
-                  siteId: site?.siteId,
+                  siteId: site?.siteId ?? -1,
                   countyId: countyId,
+                  counties: data.counties,
                   stateId: stateId,
+                  states: data.states,
                   unitGps: unitGps,
                   isNewRecord: isNewRecord,
               };
+
         const modal: ModalSettings = {
             type: 'component',
             component: c,
@@ -172,6 +177,8 @@
                     const formData = new FormData();
                     for (const [k, v] of Object.entries(r) as [string, any]) formData.append(k, v);
 
+                    console.log('vv', r, componentUrl);
+
                     fetch(componentUrl, {
                         method: 'POST',
                         body: formData,
@@ -181,13 +188,15 @@
                             if (data.status === 200) {
                                 const rdata = JSON.parse(data.data);
                                 console.log('rdata:', rdata);
-                                let siteDateId = rdata[rdata[0].siteDateId];
+                                let dataIndex = rdata[0].data;
+                                let valueIndex = rdata[dataIndex].siteId;
+                                let siteId = rdata[valueIndex];
                                 //TODO: Assure that SiteDatePicker updates.  The following goto + invalidateAll does
                                 // not accomplish it.  Thought that udpating the bound currentSiteDateId would cause
                                 // the SiteDatePicker to update itself.  Hmmm.
                                 //currentSiteDateId = siteDateId;
                                 //NOTE: verified that invalidateAll assure that browsed for data renders after update
-                                goto('/api/sitedates/' + siteDateId, { invalidateAll: true });
+                                goto('/api/sites/' + siteId, { invalidateAll: true });
                             }
                         })
                         .catch((error) => {
@@ -203,6 +212,7 @@
         const c: ModalComponent = { ref: ModalSiteDate };
         const componentTitle = isNewRecord ? 'Add New Date Record' : `Edit Date Record - ${formatDate(siteDate?.recordDate ? new Date(siteDate.recordDate).toISOString() : new Date().toISOString())}, ${siteDate?.recordDate}`;
         const componentUrl = isNewRecord ? '../sitedates/-1?/createSiteDate' : `../sitedates/${siteDate?.siteDateId}?/updateSiteDate`;
+
         const componentValues = isNewRecord
             ? {
                   siteId: siteId,
@@ -218,6 +228,7 @@
                   useFarenheit: unitTemp,
                   isNewRecord: isNewRecord,
               };
+
         const modal: ModalSettings = {
             type: 'component',
             component: c,
@@ -452,8 +463,8 @@
         <div class="mr-4 flex flex-col md:flex-row space-x-2">
             {#if $page.data?.user}
                 {#if $page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN'}
-                    <button type="button" class="btn h-10 variant-soft" onclick={() => modalComponentSite(true, unitGps, null, currentCountyId, currentStateId)} title="Add a new site"><span class="text-success-400">✚</span>&nbsp;Add Site</button>
-                    <button type="button" class="btn h-10 variant-soft" onclick={() => modalComponentSite(false, unitGps, data.site, currentCountyId, currentStateId)} title="for observations"><span class="text-success-400">✚</span>&nbsp;Edit Site</button>
+                    <button type="button" class="btn h-10 variant-soft" onclick={() => modalComponentSite(true, unitGps, null, currentCountyId, data.counties, currentStateId, data.states)} title="Add a new site"><span class="text-success-400">✚</span>&nbsp;Add Site</button>
+                    <button type="button" class="btn h-10 variant-soft" onclick={() => modalComponentSite(false, unitGps, data.site, currentCountyId, data.counties, currentStateId, data.states)} title="for observations"><span class="text-success-400">✚</span>&nbsp;Edit Site</button>
                 {/if}
                 {#if $page.data.user.role === 'SUPER' || $page.data.user.role === 'ADMIN' || $page.data.user.role === 'ENTRY'}
                     <button type="button" class="btn h-10 variant-soft" onclick={() => modalComponentSiteDate(true, unitTemp, unitSpeed, currentSiteDate, currentSiteId)} title="Add new date record for observations"><span class="text-success-400">✚</span>&nbsp;Add observations date</button>

@@ -138,3 +138,5 @@ export type DateTrackingSet = {
     id: number;
     children: DateTracking[];
 };
+
+export type ChangelessSite = Omit<Site, 'changedAt' | 'changedById' | 'updatedAt' | 'updatedById'>;

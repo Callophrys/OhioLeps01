@@ -5,7 +5,7 @@
     import { enhance } from '$app/forms';
     import { getContext } from 'svelte';
     import { getModalStore } from '@skeletonlabs/skeleton';
-    import { weekOfYearSince } from '$lib/utils.js';
+    import CountySite from './datanavigation/CountySite.svelte';
 
     // TODO: After create from wherever the SiteDatePicker will not update the year
 
@@ -19,8 +19,8 @@
     const countyId = $modalStore[0].value.countyId;
     const stateId = $modalStore[0].value.stateId;
 
-    const states: State[] = getContext('states');
-    const counties: County[] = getContext('counties');
+    const states: State[] = $modalStore[0].value.states;
+    const counties: County[] = $modalStore[0].value.counties;
 
     console.log('modal site', site);
 
@@ -154,12 +154,13 @@
     </label>
 {/snippet}
 
-{#snippet entrySelect(fullId: string, fullLabel: string)}
+<!-- works for county and state -->
+{#snippet entrySelect(fullId: string, fullLabel: string, valueName: string, textName: string, items: any[])}
     <label class="label">
         <div>{fullLabel}:</div>
         <select class="select" id={fullId} name={fullId} title={fullLabel} bind:value={formData[fullId as keyof typeof formData]}>
-            {#each states as state}
-                <option value={state.id}>{state.name}</option>
+            {#each items as item}
+                <option value={item[valueName]}>{item[textName]}</option>
             {/each}
         </select>
     </label>
@@ -181,7 +182,7 @@
             <div>
                 {@render entryInput('siteName', 'Site Name', 'text')}
                 <div class="pl-8">
-                    {@render entrySelect('county', 'County')}
+                    {@render entrySelect('countyId', 'County', 'id', 'name', counties)}
                     {@render entryInput('township', 'Township', 'text')}
                     {@render entryInput('locationZip', 'Location Zip', 'text')}
                 </div>
@@ -192,7 +193,7 @@
                     {@render entryInput('siteAddress', 'Address', 'text')}
                     {@render entryInput('siteAddress2', 'Address 2', 'text')}
                     {@render entryInput('siteCity', 'City', 'text')}
-                    {@render entrySelect('siteState', 'State')}
+                    {@render entrySelect('siteState', 'State', 'name', 'name', states)}
                     {@render entryInput('siteZip', 'Zip', 'text')}
                 </div>
             </div>
@@ -202,7 +203,7 @@
                     {@render entryInput('personAddress', 'Address', 'text')}
                     {@render entryInput('personAddress2', 'Address 2', 'text')}
                     {@render entryInput('personCity', 'City', 'text')}
-                    {@render entryInput('personState', 'State', 'text')}
+                    {@render entrySelect('personState', 'State', 'name', 'name', states)}
                     {@render entryInput('personZip', 'Zip', 'text')}
                     {@render entryInput('personPhone', 'Phone', 'text')}
                     {@render entryInput('personPhone2', 'Phone 2', 'text')}
@@ -234,7 +235,7 @@
                     {@render entryInput('altPersonAddress', 'Address', 'text')}
                     {@render entryInput('altPersonAddress2', 'Address 2', 'text')}
                     {@render entryInput('altPersonCity', 'City', 'text')}
-                    {@render entryInput('altPersonState', 'State', 'text')}
+                    {@render entrySelect('altPersonState', 'State', 'name', 'name', states)}
                     {@render entryInput('altPersonZip', 'Zip', 'text')}
                     {@render entryInput('altPersonPhone', 'Phone', 'text')}
                     {@render entryInput('altPersonPhone2', 'Phone 2', 'text')}

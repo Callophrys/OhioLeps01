@@ -1,7 +1,9 @@
+import type { AppConfig, User } from '@prisma/client';
+import type { AppConfigFormKeyChecked, UserComplete } from '$lib/types';
 import type { PageServerLoad } from './$types';
-import type { AppConfigFormKeyChecked } from '$lib/types';
 import { getAppConfigsByOrgId, updateAllAppConfigs, getTemplateAppConfigs, resetAllAppConfigs } from '$lib/database/appconfig';
 import { redirect } from '@sveltejs/kit';
+import { getUsers } from '$lib/database/users.js';
 
 export const load: PageServerLoad = async ({ locals }) => {
     // redirect user if not logged in
@@ -11,11 +13,16 @@ export const load: PageServerLoad = async ({ locals }) => {
         throw redirect(302, '/');
     }
 
-    const appConfigs: AppConfigFormKeyChecked[] = await getAppConfigsByOrgId(locals.user.organizationId);
+    const appConfigs: AppConfig[] = await getAppConfigsByOrgId(locals.user.organizationId);
+    const users: User[] = await getUsers(locals.user.role === 'SUPER' || locals.user.role === 'ADMIN' ? null : locals.user.organizationId);
 
     const json = JSON.stringify(appConfigs);
     const jsonResult: AppConfigFormKeyChecked[] = JSON.parse(json);
-    return { appConfigs: jsonResult };
+
+    const jsonUsers = JSON.stringify(users);
+    const jsonResultUsers: UserComplete[] = JSON.parse(jsonUsers);
+
+    return { appConfigs: jsonResult, users: jsonResultUsers };
 };
 
 export const actions = {

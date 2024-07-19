@@ -1,4 +1,5 @@
 import prisma from '$lib/prisma';
+import type { ChangelessSite } from '$lib/types';
 import type { Site } from '@prisma/client';
 
 /**
@@ -299,7 +300,7 @@ export async function existsInState(siteName: string, stateId: number): Promise<
     return site !== null;
 }
 
-export async function createSite(site: Site) {
+export async function createSite(site: ChangelessSite, userId: string) {
     console.log('/lib/api/entry/sites.ts > createSite');
     const createdSite = await prisma.site.create({
         data: {
@@ -335,16 +336,16 @@ export async function createSite(site: Site) {
             altPersonEmail: site.altPersonEmail,
             otherParticipants: site.otherParticipants,
             description: site.description,
-            createdAt: site.createdAt,
-            createdById: site.createdById,
+            createdAt: new Date(),
+            createdById: userId,
         },
     });
 
     return createdSite;
 }
 
-export async function updateSite(site: Site) {
-    console.log('/lib/api/entry/sites.ts > updateSite');
+export async function updateSite(site: ChangelessSite, userId: string) {
+    // console.log('/lib/api/entry/sites.ts > updateSite', site);
     const updatedSite = await prisma.site.update({
         where: {
             siteId: site.siteId,
@@ -382,8 +383,8 @@ export async function updateSite(site: Site) {
             altPersonEmail: site.altPersonEmail,
             otherParticipants: site.otherParticipants,
             description: site.description,
-            updatedAt: site.updatedAt,
-            updatedById: site.updatedById,
+            updatedAt: new Date(),
+            updatedById: userId,
         },
     });
 

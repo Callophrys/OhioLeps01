@@ -1,7 +1,7 @@
 import { ROLE } from '$lib/types.js';
 import type { Actions } from '@sveltejs/kit';
 import type { Audit, County, Site, State } from '@prisma/client';
-import type { SiteCountyState, SiteCountySiteDatesSiteStatuses } from '$lib/types.js';
+import type { SiteCountyState, SiteCountySiteDatesSiteStatuses, ChangelessSite } from '$lib/types.js';
 import { createAudit } from '$lib/database/audit';
 import { createSite, existsInState, updateSite } from '$lib/database/sites.js';
 import { error, fail } from '@sveltejs/kit';
@@ -53,7 +53,7 @@ async function lockOutUser(locals: any, issue: string) {
     ]);
 }
 
-function prepareSite(formData: FormData, siteId: number, siteName: string, userId: string): Site {
+function prepareSite(formData: FormData, siteId: number, siteName: string): any {
     return {
         siteId: siteId,
         stateId: Number(formData.get('stateId')),
@@ -100,10 +100,6 @@ function prepareSite(formData: FormData, siteId: number, siteName: string, userI
         s2002: 0,
         s2003: 0,
         s2004: 0,
-        createdAt: new Date(),
-        createdById: userId,
-        updatedAt: null,
-        updatedById: null,
     };
 }
 
@@ -132,8 +128,8 @@ export const actions: Actions = {
             return fail(400, { siteName, duplicate: true });
         }
 
-        const site: Site = prepareSite(formData, -1, siteName, locals.user.id);
-        const newSite: Site = await createSite(site);
+        const site: ChangelessSite = prepareSite(formData, -1, siteName);
+        const newSite: Site = await createSite(site, locals.user.id);
 
         await createAudit({
             id: -1,
@@ -152,7 +148,6 @@ export const actions: Actions = {
     updateSite: async ({ request, locals }) => {
         const formData = await request.formData();
         // console.log(formData);
-        //
 
         if (locals.user.role !== ROLE.SUPER && locals.user.role !== ROLE.ADMIN) {
             // It would take some hacking or trickery to get here.  Lock them out.
@@ -167,14 +162,9 @@ export const actions: Actions = {
             return fail(400, { siteName, missing: true });
         }
 
-        let stateId = Number(formData.get('stateId'));
-        if (await existsInState(siteName, stateId)) {
-            console.log('Sitename already exists in state');
-            return fail(400, { siteName, duplicate: true });
-        }
-
-        const site: Site = prepareSite(formData, -1, siteName, locals.user.id);
-        const newSite: Site = await updateSite(site);
+        const siteId = Number(formData.get('siteId'));
+        const site: ChangelessSite = prepareSite(formData, siteId, siteName);
+        const updatedSite: Site = await updateSite(site, locals.user.id);
 
         await createAudit({
             id: -1,
@@ -182,11 +172,11 @@ export const actions: Actions = {
             ipAddress: 'localhost',
             userName: locals.user.name,
             userId: locals.user.id,
-            siteId: newSite.siteId,
+            siteId: updatedSite.siteId,
             organizationId: locals.user.organizationId,
-            description: `Site '${newSite.siteName}' updated`,
+            description: `Site '${updatedSite.siteName}' updated`,
         } as Audit);
 
-        return { action: 'create', success: true, data: newSite };
+        return { action: 'create', success: true, data: updatedSite };
     },
 };

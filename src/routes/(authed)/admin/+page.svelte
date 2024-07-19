@@ -1,9 +1,12 @@
 <script lang="ts">
-    import { page } from '$app/stores';
     import AppConfigControl from '$lib/components/AppConfigControl.svelte';
     import Container from '$lib/components/layouts/Container.svelte';
-    import { setContext } from 'svelte';
     import Papa from 'papaparse';
+    import { page } from '$app/stores';
+    import { setContext } from 'svelte';
+
+    let { data } = $props();
+    setContext('appConfigs', data.appConfigs);
 
     async function fetchSiteData(siteId: number) {
         let sdpath = `/admin/${siteId}`;
@@ -56,9 +59,6 @@
         }
     }
 
-    let { data } = $props();
-    setContext('appConfigs', data.appConfigs);
-
     //$: console.log(data.appConfigs);
     //$: configEntries = new Map(Object.entries(config));
     //$: console.log(configEntries);
@@ -95,6 +95,15 @@
             <button type="submit" form="appConfigs" class="btn w-32 variant-filled" formaction="?/resetAppConfigs">Reset All</button>
         </div>
     </div>
+    {#each data.users as user}
+        <div class="flex flex-row">
+            <div class="w-36">{user.username}</div>
+            <div class="w-24">{user.disabled ? 'Disabled' : 'Active'}</div>
+            <div class="w-36">{user.firstName}</div>
+            <div class="w-36">{user.lastName}</div>
+            <div>{user.role.name}</div>
+        </div>
+    {/each}
 {/snippet}
 
-<Container {head} {body} bodyClasses={null} {tail} />
+<Container {head} {body} bodyClasses="overflow-y-auto" {tail} />

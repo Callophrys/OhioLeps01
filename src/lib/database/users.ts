@@ -14,6 +14,25 @@ export async function getUser(userId: string) {
     return user;
 }
 
+export async function getUsers(organizationId: string | null) {
+    if (organizationId) {
+        return await prisma.user.findMany({
+            where: {
+                organizationId: organizationId,
+            },
+            include: {
+                role: true,
+            },
+        });
+    } else {
+        return await prisma.user.findMany({
+            include: {
+                role: true,
+            },
+        });
+    }
+}
+
 export async function createUser(user: User, roleName: string) {
     const role = await prisma.role.findFirst({
         where: { name: roleName },
