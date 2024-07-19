@@ -36,3 +36,14 @@ export async function createUser(user: User, roleName: string) {
 
     return newUser;
 }
+
+export async function lockUser(userId: string, lockStatus: boolean) {
+    await prisma.user.update({
+        where: {
+            id: userId,
+        },
+        data: {
+            disabled: lockStatus,
+        },
+    });
+}

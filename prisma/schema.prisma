@@ -499,6 +499,8 @@ model Country {
 
     // Child Relation
     states State[] @relation("CountryOfState")
+
+    @@unique([name, continentId])
 }
 
 model State {
@@ -518,8 +520,13 @@ model State {
 
     // Child Relation
     sites Site[] @relation("SiteOfState")
+
+    @@unique([name, countryId])
 }
 
+// Supports intra-state regions, e.g. sets of counties
+// TODO: Think about supporting additional regions either as a generic
+//       relations or setup as separate named models.  Prefer the former.
 model Region {
     id Int @id @default(autoincrement())
     name String
@@ -534,7 +541,7 @@ model Region {
 
 model County {
     id Int @id @default(autoincrement())
-    countyNumber Int @default(0) // Most states in USA have these as these as count per sort order
+    countyNumber Int @default(0) // Most states in USA have this as 1-to-n per sorted order
     name String
 
     // Parent Relation
@@ -547,6 +554,8 @@ model County {
 
     // Child Relation
     sites Site[] @relation("SiteOfCounty")
+
+    @@unique([name, stateId])
 }
 
 model Audit {

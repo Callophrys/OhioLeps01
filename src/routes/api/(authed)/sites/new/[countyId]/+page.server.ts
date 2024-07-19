@@ -1,9 +1,12 @@
-import { fail } from '@sveltejs/kit';
-import { redirect } from '@sveltejs/kit';
-import type { Site, County, State } from '@prisma/client';
-import { getCountiesExpanded, getStates } from '$lib/database/counties.js';
+import { ROLE } from '$lib/types';
 import type { Actions } from '@sveltejs/kit';
-import { addSite, exists } from '$lib/database/sites.js';
+import type { Audit } from '@prisma/client';
+import type { Site, County, State } from '@prisma/client';
+import { createSite, existsInState, updateSite } from '$lib/database/sites.js';
+import { createAudit } from '$lib/database/audit';
+import { fail, redirect } from '@sveltejs/kit';
+import { lockUser } from '$lib/database/users';
+import { getCountiesExpanded, getStates } from '$lib/database/counties.js';
 
 export async function load({ cookies, url, params }: { cookies: any; url: any; params: any }) {
     // SECURITY - only checking session NOT user or role at this time
@@ -28,22 +31,40 @@ export async function load({ cookies, url, params }: { cookies: any; url: any; p
 }
 
 export const actions: Actions = {
-    addSite: async ({ request, locals }) => {
+    createSite: async ({ request, locals }) => {
         const formData = await request.formData();
         // console.log(formData);
         //
 
+        if (locals.user.role !== ROLE.SUPER && locals.user.role !== ROLE.ADMIN) {
+            await Promise.all([
+                lockUser(locals.user.id, true),
+                createAudit({
+                    id: -1,
+                    auditType: 'Security',
+                    ipAddress: 'localhost',
+                    userName: locals.user.name,
+                    userId: locals.user.id,
+                    organizationId: locals.user.organizationId,
+                    description: `Illegal site create attempt by user '${locals.user.name}' with role ${locals.user.role}`,
+                } as Audit),
+            ]);
+
+            return fail(400, { invalid: true });
+        }
+
         let siteName = String(formData.get('siteName'));
         let countyId = Number(formData.get('countyId'));
+        let stateId = Number(formData.get('stateId'));
 
         if (!siteName) {
             console.log('Sitename missing');
             return fail(400, { siteName, missing: true });
         }
 
-        let result = await exists(siteName, countyId);
+        let result = await existsInState(siteName, stateId);
         if (result) {
-            console.log('Sitename already exists');
+            console.log('Sitename already exists in state');
             return fail(400, { siteName, duplicate: true });
         }
 
@@ -99,7 +120,18 @@ export const actions: Actions = {
             updatedById: null,
         };
 
-        const newSite: Site = await addSite(site);
+        const newSite: Site = await createSite(site);
+
+        await createAudit({
+            id: -1,
+            auditType: 'Site Create',
+            ipAddress: 'localhost',
+            userName: locals.user.name,
+            userId: locals.user.id,
+            siteId: newSite.siteId,
+            description: `New site '${newSite.siteName}' created`,
+        } as Audit);
+
         return { action: 'create', success: true, data: newSite };
     },
 };

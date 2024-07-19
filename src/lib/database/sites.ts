@@ -271,13 +271,13 @@ export async function getSites(idList: number[] | null) {
     return sites;
 }
 
-export async function exists(siteName: string, countyId: number): Promise<boolean> {
+export async function existsInCounty(siteName: string, countyId: number): Promise<boolean> {
     const site = await prisma.site.findFirst({
         select: {
             siteId: true,
         },
         where: {
-            siteName: siteName,
+            siteName: siteName.trim(),
             countyId: countyId,
         },
     });
@@ -285,8 +285,22 @@ export async function exists(siteName: string, countyId: number): Promise<boolea
     return site !== null;
 }
 
-export async function addSite(site: Site) {
-    console.log('/lib/api/entry/sites.ts > addSite');
+export async function existsInState(siteName: string, stateId: number): Promise<boolean> {
+    const site = await prisma.site.findFirst({
+        select: {
+            siteId: true,
+        },
+        where: {
+            siteName: siteName,
+            stateId: stateId,
+        },
+    });
+
+    return site !== null;
+}
+
+export async function createSite(site: Site) {
+    console.log('/lib/api/entry/sites.ts > createSite');
     const createdSite = await prisma.site.create({
         data: {
             countyId: site.countyId,
@@ -327,6 +341,53 @@ export async function addSite(site: Site) {
     });
 
     return createdSite;
+}
+
+export async function updateSite(site: Site) {
+    console.log('/lib/api/entry/sites.ts > updateSite');
+    const updatedSite = await prisma.site.update({
+        where: {
+            siteId: site.siteId,
+        },
+        data: {
+            countyId: site.countyId,
+            stateId: site.stateId,
+            siteName: site.siteName,
+            township: site.township,
+            locationZip: site.locationZip,
+            latitudeStart: site.latitudeStart,
+            latitudeEnd: site.latitudeEnd,
+            longitudeStart: site.longitudeStart,
+            longitudeEnd: site.longitudeEnd,
+            siteAddress: site.siteAddress,
+            siteAddress2: site.siteAddress2,
+            siteCity: site.siteCity,
+            siteState: site.siteState,
+            siteZip: site.siteZip,
+            person: site.person,
+            personAddress: site.personAddress,
+            personAddress2: site.personAddress2,
+            personCity: site.personCity,
+            personState: site.personState,
+            personZip: site.personZip,
+            personPhone: site.personPhone,
+            personEmail: site.personEmail,
+            altPerson: site.altPerson,
+            altPersonAddress: site.altPersonAddress,
+            altPersonAddress2: site.altPersonAddress2,
+            altPersonCity: site.altPersonCity,
+            altPersonState: site.altPersonState,
+            altPersonZip: site.altPersonZip,
+            altPersonPhone: site.altPersonPhone,
+            altPersonEmail: site.altPersonEmail,
+            otherParticipants: site.otherParticipants,
+            description: site.description,
+            updatedAt: site.updatedAt,
+            updatedById: site.updatedById,
+        },
+    });
+
+    return updatedSite;
 }
 
 // Hard delete, we prob need the history and support for undos and auditing and so on.
