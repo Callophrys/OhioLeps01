@@ -21,7 +21,7 @@
 
     /*-- Constants (styles) */
     const cClassesElementZwei = 'flex flex-row space-x-2';
-    const cClassesElementDrei = "my-auto text-right before:content-[''] md:before:content-['Sort_by'] lg:before:content-['Sort_by_County/Region:']";
+    const cClassesElementDrei = "my-auto text-right before:content-[''] md:before:content-['Sort_by'] lg:before:content-['Sort_by_County/StateRegion:']";
     const cControlBody = '';
 
     /*-- Reactives (styles) */
@@ -33,26 +33,26 @@
     /*-- Enums */
     enum GEOGRAPHIC {
         COUNTY = 0,
-        REGION = 1,
+        STATEREGION = 1,
     }
 
     /*-- Constants (functional) */
     /*-- Properties (functional) */
     /*-- Variables and objects */
-    let valueCountyRegion: number = $state(GEOGRAPHIC.COUNTY);
+    let valueCountyStateRegion: number = $state(GEOGRAPHIC.COUNTY);
     let sortOrderCounty: SORTORDER = $state(SORTORDER.ASC);
-    let sortOrderRegion: SORTORDER = $state(SORTORDER.NONE);
+    let sortOrderStateRegion: SORTORDER = $state(SORTORDER.NONE);
     let sortIconCounty: string = $state('table-sort-asc');
-    let sortIconRegion: string = $state('');
+    let sortIconStateRegion: string = $state('');
 
     /*-- Run first stuff */
     /*-- onMount, beforeUpdate, afterUpdate */
     /*-- Handlers */
     function handleSortClick(e: any) {
-        console.log(valueCountyRegion, sortOrderCounty, sortOrderRegion, sortIconCounty, sortIconRegion);
+        console.log(valueCountyStateRegion, sortOrderCounty, sortOrderStateRegion, sortIconCounty, sortIconStateRegion);
 
         let sortCountyDir = 1;
-        let sortRegionDir = 1;
+        let sortStateRegionDir = 1;
 
         const compareCounty = (a: CountyComplete, b: CountyComplete) => {
             if (a.name > b.name) return 1 * sortCountyDir;
@@ -60,18 +60,18 @@
             return 0;
         };
 
-        const compareRegionFirst = (a: CountyComplete, b: CountyComplete) => {
-            if (a.region.name > b.region.name) return 1 * sortRegionDir;
-            if (a.region.name < b.region.name) return -1 * sortRegionDir;
+        const compareStateRegionFirst = (a: CountyComplete, b: CountyComplete) => {
+            if (a.stateRegion.name > b.stateRegion.name) return 1 * sortStateRegionDir;
+            if (a.stateRegion.name < b.stateRegion.name) return -1 * sortStateRegionDir;
             if (a.name > b.name) return 1 * sortCountyDir;
             if (a.name < b.name) return -1 * sortCountyDir;
             return 0;
         };
 
         if (e.target.name === 'toggle-sort-county') {
-            if (sortOrderRegion !== SORTORDER.NONE) {
-                sortOrderRegion = SORTORDER.NONE;
-                sortIconRegion = '';
+            if (sortOrderStateRegion !== SORTORDER.NONE) {
+                sortOrderStateRegion = SORTORDER.NONE;
+                sortIconStateRegion = '';
             } else {
                 if (sortOrderCounty !== SORTORDER.ASC) {
                     sortOrderCounty = SORTORDER.ASC;
@@ -85,18 +85,18 @@
             sortCountyDir = sortOrderCounty === SORTORDER.ASC ? 1 : -1;
             counties.sort(compareCounty);
         } else {
-            if (sortOrderRegion !== SORTORDER.ASC) {
-                sortOrderRegion = SORTORDER.ASC;
-                sortIconRegion = 'table-sort-asc';
-                sortRegionDir = 1;
+            if (sortOrderStateRegion !== SORTORDER.ASC) {
+                sortOrderStateRegion = SORTORDER.ASC;
+                sortIconStateRegion = 'table-sort-asc';
+                sortStateRegionDir = 1;
             } else {
-                sortOrderRegion = SORTORDER.DSC;
-                sortIconRegion = 'table-sort-dsc';
-                sortRegionDir = -1;
+                sortOrderStateRegion = SORTORDER.DSC;
+                sortIconStateRegion = 'table-sort-dsc';
+                sortStateRegionDir = -1;
             }
 
             sortCountyDir = sortOrderCounty === SORTORDER.ASC ? 1 : -1;
-            counties.sort(compareRegionFirst);
+            counties.sort(compareStateRegionFirst);
         }
 
         counties = counties;
@@ -111,8 +111,8 @@
     <span class={classesElementDrei}></span>
     <div class={classesControlBody}>
         <RadioGroup name="toggle-naming-group" active="variant-filled-primary" hover="hover:variant-soft-primary">
-            <RadioItem bind:group={valueCountyRegion} on:click={handleSortClick} class={sortIconCounty} name="toggle-sort-county" value={GEOGRAPHIC.COUNTY}>County</RadioItem>
-            <RadioItem bind:group={valueCountyRegion} on:click={handleSortClick} class={sortIconRegion} name="toggle-sort-region" value={GEOGRAPHIC.REGION}>Region</RadioItem>
+            <RadioItem bind:group={valueCountyStateRegion} on:click={handleSortClick} class={sortIconCounty} name="toggle-sort-county" value={GEOGRAPHIC.COUNTY}>County</RadioItem>
+            <RadioItem bind:group={valueCountyStateRegion} on:click={handleSortClick} class={sortIconStateRegion} name="toggle-sort-region" value={GEOGRAPHIC.STATEREGION}>StateRegion</RadioItem>
         </RadioGroup>
     </div>
 </div>

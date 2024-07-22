@@ -1,12 +1,12 @@
 <script lang="ts">
     /*-- Imports */
-    import type { Region } from '@prisma/client';
+    import type { StateRegion } from '@prisma/client';
     import { popup } from '@skeletonlabs/skeleton';
     import type { PopupSettings } from '@skeletonlabs/skeleton';
 
     /*-- -- Data -- */
     /*-- Exports */
-    export let currentRegion: Region;
+    export let currentStateRegion: StateRegion;
 
     /*-- Context */
     /*-- -- Styling -- */
@@ -16,9 +16,9 @@
     /*-- -- Coding -- */
     /*-- Enums */
     /*-- Constants (functional) */
-    const popupRegions: PopupSettings = {
+    const popupStateRegions: PopupSettings = {
         event: 'focus-click',
-        target: 'popupRegions',
+        target: 'popupStateRegions',
         placement: 'bottom',
     };
 
@@ -36,16 +36,16 @@
 {/if}
 <div class="btn-group variant-soft scale-90 my-auto">
     <button class="!px-2">◀</button>
-    <button class="w-24" use:popup={popupRegions}>
+    <button class="w-24" use:popup={popupStateRegions}>
         <span class="h-full text-nowrap overflow-hidden text-ellipsis">
-            {currentRegion.name}
+            {currentStateRegion.name}
         </span>
         <span>↓</span>
     </button>
     <button class="!px-2">▶</button>
 </div>
 
-<div data-popup="popupRegions">
+<div data-popup="popupStateRegions">
     <div class="card w-48 shadow-xl py-2">
         <slot />
     </div>

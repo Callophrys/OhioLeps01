@@ -156,7 +156,7 @@ model Organization {
 }
 
 // Could make this an enum
-// SUPER - Superuser     - Can do all other user functions and configure any organization and manager any user
+// SUPER - Superuser     - Can do all other user functions and configure any organization and manage any user
 // ADMIN - Administrator - Administrator of own organization; Can make some org changes; Can do all other user functions; Can reset accounts for users
 // REVIEWER - Reviewer   - Reviews and confirms that data is valid - Perhaps reviewer and entry can overlap.  E.g enter own data while another reviews it
 // ENTRY - Data Entry    - Data entry, can delete own data
@@ -229,11 +229,11 @@ model Site {
 
     // Parent Relation
     countyId Int
-    county County @relation("SiteOfCounty", fields: [countyId], references: [id])
+    county County @relation("SitesInCounty", fields: [countyId], references: [id])
 
     // Parent Relation
     stateId Int
-    state State @relation("SiteOfState", fields: [stateId], references: [id])
+    state State @relation("SitesInState", fields: [stateId], references: [id])
 
     // Child Relation
     siteDates SiteDate[]
@@ -485,7 +485,7 @@ model Continent {
     name String @unique
 
     // Child Relation
-    countries Country[] @relation("ContinentOfCountry")
+    countries Country[] @relation("CountriesInContinent")
 }
 
 model Country {
@@ -495,12 +495,29 @@ model Country {
 
     // Parent Relation
     continentId Int
-    continent Continent @relation("ContinentOfCountry", fields: [continentId], references: [id])
+    continent Continent @relation("CountriesInContinent", fields: [continentId], references: [id])
 
     // Child Relation
-    states State[] @relation("CountryOfState")
+    countryRegions CountryRegion[] @relation("CountryRegionsInCountry")
+    states State[] @relation("StatesInCountry")
 
     @@unique([name, continentId])
+}
+
+// TODO: Think about supporting additional regions either as a generic
+//       relations or setup as separate named models.  Prefer the former.
+
+// Supports intra-country regions, e.g. sets of states within a country 
+model CountryRegion {
+    id Int @id @default(autoincrement())
+    name String
+
+    // Parent Relation
+    countryId Int
+    country Country @relation("CountryRegionsInCountry", fields: [countryId], references: [id])
+
+    // Child Relation
+    states State[] @relation("StatesInCountryRegions")
 }
 
 model State {
@@ -510,33 +527,30 @@ model State {
 
     // Parent Relation
     countryId Int
-    country Country @relation("CountryOfState", fields: [countryId], references: [id])
+    country Country @relation("StatesInCountry", fields: [countryId], references: [id])
+
+    countryRegionId Int?
+    countryRegion CountryRegion? @relation("StatesInCountryRegions", fields: [countryRegionId], references: [id])
 
     // Child Relation
-    regions Region[] @relation("StateOfRegion")
-
-    // Child Relation
-    counties County[] @relation("StateOfCounty")
-
-    // Child Relation
-    sites Site[] @relation("SiteOfState")
+    stateRegions StateRegion[] @relation("StateRegionsInState")
+    counties County[] @relation("CountiesInState")
+    sites Site[] @relation("SitesInState")
 
     @@unique([name, countryId])
 }
 
-// Supports intra-state regions, e.g. sets of counties
-// TODO: Think about supporting additional regions either as a generic
-//       relations or setup as separate named models.  Prefer the former.
-model Region {
+// Supports intra-state regions, e.g. sets of counties within a state
+model StateRegion {
     id Int @id @default(autoincrement())
     name String
 
     // Parent Relation
     stateId Int
-    state State @relation("StateOfRegion", fields: [stateId], references: [id])
+    state State @relation("StateRegionsInState", fields: [stateId], references: [id])
 
     // Child Relation
-    counties County[] @relation("RegionOfCounty")
+    counties County[] @relation("CountiesInStateRegion")
 }
 
 model County {
@@ -545,15 +559,15 @@ model County {
     name String
 
     // Parent Relation
-    regionId Int
-    region Region @relation("RegionOfCounty", fields: [regionId], references: [id])
+    stateRegionId Int?
+    stateRegion StateRegion? @relation("CountiesInStateRegion", fields: [stateRegionId], references: [id])
 
     // Parent Relation
     stateId Int
-    state State @relation("StateOfCounty", fields: [stateId], references: [id])
+    state State @relation("CountiesInState", fields: [stateId], references: [id])
 
     // Child Relation
-    sites Site[] @relation("SiteOfCounty")
+    sites Site[] @relation("SitesInCounty")
 
     @@unique([name, stateId])
 }

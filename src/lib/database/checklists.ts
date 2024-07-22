@@ -127,7 +127,7 @@ export async function getChecklistsFiltered(filter: SpeciesSearchParams): Promis
 select distinct
 c.id countyId,
 c.name county,
-r.name region,
+r.name stateRegion,
 d.recordDate,
 l.checklistId,
 l.commonName,
@@ -135,7 +135,7 @@ l.genus,
 l.species,
 l.subSpecies
 from county c
-inner join region r on c.regionId = r.id
+inner join stateRegion r on c.stateRegionId = r.id
 inner join site s on s.countyId = c.id
 inner join sitedate d on s.siteid = d.siteid
 inner join siteDateObservation o on d.sitedateid = o.sitedateid

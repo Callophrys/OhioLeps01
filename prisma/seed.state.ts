@@ -1,8 +1,7 @@
-import { PrismaClient } from "@prisma/client"
-const db = new PrismaClient()
+import { PrismaClient } from '@prisma/client';
+const db = new PrismaClient();
 
 export default async function () {
-
     console.log('Creating country records');
     await db.continent.create({
         data: {
@@ -13,9 +12,9 @@ export default async function () {
                     { abbreviation: 'US', name: 'United States of America' },
                     { abbreviation: 'CA', name: 'Canada' },
                     { abbreviation: 'MX', name: 'Mexico' },
-                ]
-            }
-        }
+                ],
+            },
+        },
     });
 
     /*
@@ -31,7 +30,7 @@ export default async function () {
     console.log('Creating state records');
     await db.country.update({
         where: {
-            abbreviation: 'US'
+            abbreviation: 'US',
         },
         data: {
             states: {
@@ -88,15 +87,15 @@ export default async function () {
                         { abbreviation: 'WI', name: 'Wisconsin' },
                         { abbreviation: 'WV', name: 'West Virginia' },
                         { abbreviation: 'WY', name: 'Wyoming' },
-                    ]
-                }
-            }
-        }
+                    ],
+                },
+            },
+        },
     });
 
     await db.country.update({
         where: {
-            abbreviation: 'CA'
+            abbreviation: 'CA',
         },
         data: {
             states: {
@@ -115,16 +114,16 @@ export default async function () {
                         { abbreviation: 'QC', name: 'Quebec' },
                         { abbreviation: 'SK', name: 'Saskatchewan' },
                         { abbreviation: 'YT', name: 'Yukon' },
-                    ]
-                }
-            }
-        }
+                    ],
+                },
+            },
+        },
     });
 
     // pais > estado > mu
     await db.country.update({
         where: {
-            abbreviation: 'MX'
+            abbreviation: 'MX',
         },
         data: {
             states: {
@@ -162,20 +161,20 @@ export default async function () {
                         { abbreviation: 'VC', name: 'Veracruz' },
                         { abbreviation: 'YU', name: 'Yucatán' },
                         { abbreviation: 'ZA', name: 'Zacatecas' },
-                    ]
-                }
-            }
-        }
+                    ],
+                },
+            },
+        },
     });
 
     console.log('Creating region records');
     const ohio = await db.state.findFirst({
         where: {
-            abbreviation: 'OH'
+            abbreviation: 'OH',
         },
         select: {
-            id: true
-        }
+            id: true,
+        },
     });
 
     const ohioId: number = ohio?.id ?? 0;
@@ -183,204 +182,192 @@ export default async function () {
     console.log('Creating region records');
     const jalisco = await db.state.findFirst({
         where: {
-            abbreviation: 'JA'
+            abbreviation: 'JA',
         },
         select: {
-            id: true
-        }
+            id: true,
+        },
     });
 
     const jaliscoId: number = jalisco?.id ?? 0;
 
     await db.state.update({
         where: {
-            id: ohioId
+            id: ohioId,
         },
         data: {
-            regions: {
+            stateRegions: {
                 createMany: {
-                    data:
-                        [
-                            { name: 'Region1' },
-                            { name: 'Region2' },
-                            { name: 'Region3' },
-                            { name: 'Region4' },
-                            { name: 'Region5' },
-                        ]
-                }
-            }
-        }
+                    data: [{ name: 'Region1' }, { name: 'Region2' }, { name: 'Region3' }, { name: 'Region4' }, { name: 'Region5' }],
+                },
+            },
+        },
     });
 
     console.log('Creating county records');
-    const regions = await db.region.findMany();
-    const region1Id: number = regions.find((r: any) => r.name === 'Region1')?.id ?? 0;
-    const region2Id: number = regions.find((r: any) => r.name === 'Region2')?.id ?? 0;
-    const region3Id: number = regions.find((r: any) => r.name === 'Region3')?.id ?? 0;
-    const region4Id: number = regions.find((r: any) => r.name === 'Region4')?.id ?? 0;
-    const region5Id: number = regions.find((r: any) => r.name === 'Region5')?.id ?? 0;
+    const stateRegions = await db.stateRegion.findMany();
+    const region1Id: number = stateRegions.find((r: any) => r.name === 'Region1')?.id ?? 0;
+    const region2Id: number = stateRegions.find((r: any) => r.name === 'Region2')?.id ?? 0;
+    const region3Id: number = stateRegions.find((r: any) => r.name === 'Region3')?.id ?? 0;
+    const region4Id: number = stateRegions.find((r: any) => r.name === 'Region4')?.id ?? 0;
+    const region5Id: number = stateRegions.find((r: any) => r.name === 'Region5')?.id ?? 0;
 
-    await db.region.update({
+    await db.stateRegion.update({
         where: {
-            id: region1Id
+            id: region1Id,
         },
         data: {
             counties: {
                 createMany: {
-                    data:
-                        [
-                            { name: 'Champaign', stateId: ohioId },
-                            { name: 'Delaware', stateId: ohioId },
-                            { name: 'Fairfield', stateId: ohioId },
-                            { name: 'Fayette', stateId: ohioId },
-                            { name: 'Franklin', stateId: ohioId },
-                            { name: 'Knox', stateId: ohioId },
-                            { name: 'Licking', stateId: ohioId },
-                            { name: 'Logan', stateId: ohioId },
-                            { name: 'Madison', stateId: ohioId },
-                            { name: 'Marion', stateId: ohioId },
-                            { name: 'Morrow', stateId: ohioId },
-                            { name: 'Pickaway', stateId: ohioId },
-                            { name: 'Union', stateId: ohioId },
-                        ]
-                }
-            }
-        }
+                    data: [
+                        { name: 'Champaign', stateId: ohioId },
+                        { name: 'Delaware', stateId: ohioId },
+                        { name: 'Fairfield', stateId: ohioId },
+                        { name: 'Fayette', stateId: ohioId },
+                        { name: 'Franklin', stateId: ohioId },
+                        { name: 'Knox', stateId: ohioId },
+                        { name: 'Licking', stateId: ohioId },
+                        { name: 'Logan', stateId: ohioId },
+                        { name: 'Madison', stateId: ohioId },
+                        { name: 'Marion', stateId: ohioId },
+                        { name: 'Morrow', stateId: ohioId },
+                        { name: 'Pickaway', stateId: ohioId },
+                        { name: 'Union', stateId: ohioId },
+                    ],
+                },
+            },
+        },
     });
 
-    await db.region.update({
+    await db.stateRegion.update({
         where: {
-            id: region2Id
+            id: region2Id,
         },
         data: {
             counties: {
                 createMany: {
-                    data:
-                        [
-                            { name: 'Ashland', stateId: ohioId },
-                            { name: 'Ashtabula', stateId: ohioId },
-                            { name: 'Carroll', stateId: ohioId },
-                            { name: 'Columbiana', stateId: ohioId },
-                            { name: 'Cuyahoga', stateId: ohioId },
-                            { name: 'Geauga', stateId: ohioId },
-                            { name: 'Harrison', stateId: ohioId },
-                            { name: 'Holmes', stateId: ohioId },
-                            { name: 'Jefferson', stateId: ohioId },
-                            { name: 'Lake', stateId: ohioId },
-                            { name: 'Lorain', stateId: ohioId },
-                            { name: 'Mahoning', stateId: ohioId },
-                            { name: 'Medina', stateId: ohioId },
-                            { name: 'Portage', stateId: ohioId },
-                            { name: 'Stark', stateId: ohioId },
-                            { name: 'Summit', stateId: ohioId },
-                            { name: 'Trumbull', stateId: ohioId },
-                            { name: 'Tuscarawas', stateId: ohioId },
-                            { name: 'Wayne', stateId: ohioId },
-                        ]
-                }
-            }
-        }
+                    data: [
+                        { name: 'Ashland', stateId: ohioId },
+                        { name: 'Ashtabula', stateId: ohioId },
+                        { name: 'Carroll', stateId: ohioId },
+                        { name: 'Columbiana', stateId: ohioId },
+                        { name: 'Cuyahoga', stateId: ohioId },
+                        { name: 'Geauga', stateId: ohioId },
+                        { name: 'Harrison', stateId: ohioId },
+                        { name: 'Holmes', stateId: ohioId },
+                        { name: 'Jefferson', stateId: ohioId },
+                        { name: 'Lake', stateId: ohioId },
+                        { name: 'Lorain', stateId: ohioId },
+                        { name: 'Mahoning', stateId: ohioId },
+                        { name: 'Medina', stateId: ohioId },
+                        { name: 'Portage', stateId: ohioId },
+                        { name: 'Stark', stateId: ohioId },
+                        { name: 'Summit', stateId: ohioId },
+                        { name: 'Trumbull', stateId: ohioId },
+                        { name: 'Tuscarawas', stateId: ohioId },
+                        { name: 'Wayne', stateId: ohioId },
+                    ],
+                },
+            },
+        },
     });
 
-    await db.region.update({
+    await db.stateRegion.update({
         where: {
-            id: region3Id
+            id: region3Id,
         },
         data: {
             counties: {
                 createMany: {
-                    data:
-                        [
-                            { name: 'Allen', stateId: ohioId },
-                            { name: 'Crawford', stateId: ohioId },
-                            { name: 'Defiance', stateId: ohioId },
-                            { name: 'Erie', stateId: ohioId },
-                            { name: 'Fulton', stateId: ohioId },
-                            { name: 'Hancock', stateId: ohioId },
-                            { name: 'Hardin', stateId: ohioId },
-                            { name: 'Henry', stateId: ohioId },
-                            { name: 'Huron', stateId: ohioId },
-                            { name: 'Lucas', stateId: ohioId },
-                            { name: 'Ottawa', stateId: ohioId },
-                            { name: 'Paulding', stateId: ohioId },
-                            { name: 'Putnam', stateId: ohioId },
-                            { name: 'Richland', stateId: ohioId },
-                            { name: 'Sandusky', stateId: ohioId },
-                            { name: 'Seneca', stateId: ohioId },
-                            { name: 'Vanwert', stateId: ohioId },
-                            { name: 'Williams', stateId: ohioId },
-                            { name: 'Wood', stateId: ohioId },
-                            { name: 'Wyandot', stateId: ohioId },
-                        ]
-                }
-            }
-        }
+                    data: [
+                        { name: 'Allen', stateId: ohioId },
+                        { name: 'Crawford', stateId: ohioId },
+                        { name: 'Defiance', stateId: ohioId },
+                        { name: 'Erie', stateId: ohioId },
+                        { name: 'Fulton', stateId: ohioId },
+                        { name: 'Hancock', stateId: ohioId },
+                        { name: 'Hardin', stateId: ohioId },
+                        { name: 'Henry', stateId: ohioId },
+                        { name: 'Huron', stateId: ohioId },
+                        { name: 'Lucas', stateId: ohioId },
+                        { name: 'Ottawa', stateId: ohioId },
+                        { name: 'Paulding', stateId: ohioId },
+                        { name: 'Putnam', stateId: ohioId },
+                        { name: 'Richland', stateId: ohioId },
+                        { name: 'Sandusky', stateId: ohioId },
+                        { name: 'Seneca', stateId: ohioId },
+                        { name: 'Vanwert', stateId: ohioId },
+                        { name: 'Williams', stateId: ohioId },
+                        { name: 'Wood', stateId: ohioId },
+                        { name: 'Wyandot', stateId: ohioId },
+                    ],
+                },
+            },
+        },
     });
 
-    await db.region.update({
+    await db.stateRegion.update({
         where: {
-            id: region4Id
+            id: region4Id,
         },
         data: {
             counties: {
                 createMany: {
-                    data:
-                        [
-                            { name: 'Athens', stateId: ohioId },
-                            { name: 'Belmont', stateId: ohioId },
-                            { name: 'Coshocton', stateId: ohioId },
-                            { name: 'Gallia', stateId: ohioId },
-                            { name: 'Guernsey', stateId: ohioId },
-                            { name: 'Hocking', stateId: ohioId },
-                            { name: 'Jackson', stateId: ohioId },
-                            { name: 'Lawrence', stateId: ohioId },
-                            { name: 'Meigs', stateId: ohioId },
-                            { name: 'Monroe', stateId: ohioId },
-                            { name: 'Morgan', stateId: ohioId },
-                            { name: 'Muskingum', stateId: ohioId },
-                            { name: 'Noble', stateId: ohioId },
-                            { name: 'Perry', stateId: ohioId },
-                            { name: 'Pike', stateId: ohioId },
-                            { name: 'Ross', stateId: ohioId },
-                            { name: 'Scioto', stateId: ohioId },
-                            { name: 'Vinton', stateId: ohioId },
-                            { name: 'Washington', stateId: ohioId },
-                        ]
-                }
-            }
-        }
+                    data: [
+                        { name: 'Athens', stateId: ohioId },
+                        { name: 'Belmont', stateId: ohioId },
+                        { name: 'Coshocton', stateId: ohioId },
+                        { name: 'Gallia', stateId: ohioId },
+                        { name: 'Guernsey', stateId: ohioId },
+                        { name: 'Hocking', stateId: ohioId },
+                        { name: 'Jackson', stateId: ohioId },
+                        { name: 'Lawrence', stateId: ohioId },
+                        { name: 'Meigs', stateId: ohioId },
+                        { name: 'Monroe', stateId: ohioId },
+                        { name: 'Morgan', stateId: ohioId },
+                        { name: 'Muskingum', stateId: ohioId },
+                        { name: 'Noble', stateId: ohioId },
+                        { name: 'Perry', stateId: ohioId },
+                        { name: 'Pike', stateId: ohioId },
+                        { name: 'Ross', stateId: ohioId },
+                        { name: 'Scioto', stateId: ohioId },
+                        { name: 'Vinton', stateId: ohioId },
+                        { name: 'Washington', stateId: ohioId },
+                    ],
+                },
+            },
+        },
     });
 
-    await db.region.update({
+    await db.stateRegion.update({
         where: {
-            id: region5Id
+            id: region5Id,
         },
         data: {
             counties: {
                 createMany: {
-                    data:
-                        [
-                            { name: 'Adams', stateId: ohioId },
-                            { name: 'Auglaize', stateId: ohioId },
-                            { name: 'Brown', stateId: ohioId },
-                            { name: 'Butler', stateId: ohioId },
-                            { name: 'Clark', stateId: ohioId },
-                            { name: 'Clermont', stateId: ohioId },
-                            { name: 'Clinton', stateId: ohioId },
-                            { name: 'Darke', stateId: ohioId },
-                            { name: 'Greene', stateId: ohioId },
-                            { name: 'Hamilton', stateId: ohioId },
-                            { name: 'Highland', stateId: ohioId },
-                            { name: 'Mercer', stateId: ohioId },
-                            { name: 'Miami', stateId: ohioId },
-                            { name: 'Montgomery', stateId: ohioId },
-                            { name: 'Preble', stateId: ohioId },
-                            { name: 'Shelby', stateId: ohioId },
-                            { name: 'Warren', stateId: ohioId },
-                        ]
-                }
-            }
-        }
+                    data: [
+                        { name: 'Adams', stateId: ohioId },
+                        { name: 'Auglaize', stateId: ohioId },
+                        { name: 'Brown', stateId: ohioId },
+                        { name: 'Butler', stateId: ohioId },
+                        { name: 'Clark', stateId: ohioId },
+                        { name: 'Clermont', stateId: ohioId },
+                        { name: 'Clinton', stateId: ohioId },
+                        { name: 'Darke', stateId: ohioId },
+                        { name: 'Greene', stateId: ohioId },
+                        { name: 'Hamilton', stateId: ohioId },
+                        { name: 'Highland', stateId: ohioId },
+                        { name: 'Mercer', stateId: ohioId },
+                        { name: 'Miami', stateId: ohioId },
+                        { name: 'Montgomery', stateId: ohioId },
+                        { name: 'Preble', stateId: ohioId },
+                        { name: 'Shelby', stateId: ohioId },
+                        { name: 'Warren', stateId: ohioId },
+                    ],
+                },
+            },
+        },
     });
 
     /*

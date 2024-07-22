@@ -23,7 +23,7 @@ export async function getCountiesExpanded() {
     // filtering for OH by default
     const counties = await prisma.county.findMany({
         include: {
-            region: true,
+            stateRegion: true,
             sites: true,
             state: true,
         },
@@ -48,7 +48,7 @@ export async function getMonitoredCounties() {
     // filtering for OH by default
     const counties = await prisma.county.findMany({
         include: {
-            region: true,
+            stateRegion: true,
             sites: true,
             state: true,
         },
@@ -76,10 +76,10 @@ export async function getCountySpecimens() {
     const CountySpecimens = await prisma.$queryRaw`
 select distinct
 c.name county,
-r.name region,
+r.name stateRegion,
 l.commonname
 from county c
-inner join region r on c.regionId = r.id
+inner join stateRegion r on c.stateRegionId = r.id
 inner join site s on s.countyId = c.id
 inner join sitedate d on s.siteid = d.siteid
 inner join siteDateObservation o on d.sitedateid = o.sitedateid

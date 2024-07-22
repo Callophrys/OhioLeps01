@@ -19,7 +19,7 @@ export async function getSite(siteId: number) {
                 select: {
                     id: true,
                     name: true,
-                    regionId: true,
+                    stateRegionId: true,
                     stateId: true,
                 },
             },

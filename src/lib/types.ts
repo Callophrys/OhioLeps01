@@ -1,4 +1,4 @@
-import type { AppConfig, County, State, Checklist, Region, Site, SiteDate, SiteDateObservation, Taxonomy, User, Role, SiteStatus, StatusCode } from '@prisma/client';
+import type { AppConfig, County, State, Checklist, StateRegion, Site, SiteDate, SiteDateObservation, Taxonomy, User, Role, SiteStatus, StatusCode } from '@prisma/client';
 
 export enum ROLE {
     USER = 'USER', // can browse data and run reports, delete own unsigned data
@@ -48,7 +48,7 @@ export enum GOTYPE {
 
 export type AppConfigFormKeyChecked = AppConfig & { checked: boolean; formKey: string };
 export type ChecklistScientificName = Checklist & { scientificName: string };
-export type CountyComplete = CountyMonitored & { region: Region; sites: Site[] };
+export type CountyComplete = CountyMonitored & { stateRegion: StateRegion; sites: Site[] };
 export type CountyMonitored = County & { isMonitored: boolean; siteCount: number; state: State };
 export type CountySites = County & { sites: Site[] };
 export type CountyState = County & { state: State };
@@ -98,7 +98,7 @@ export type SpeciesSearchParams = {
     countyIds: number[];
     dateStart: Date | null;
     dateEnd: Date | null;
-    region: string | null;
+    stateRegion: string | null;
     year: number | null;
     week: number | null;
 };
@@ -106,7 +106,7 @@ export type SpeciesSearchParams = {
 export type CountySpecimen = {
     countyId: number;
     county: string;
-    region: string;
+    stateRegion: string;
     recordDate: Date;
     checklistId: number;
     commonName: string;

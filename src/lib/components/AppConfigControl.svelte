@@ -1,6 +1,4 @@
 <script lang="ts">
-    /* TODO (1) Make this work (2) Rethink how Svelt5 reactivity works here */
-
     /*-- Imports */
     import type { AppConfigFormKeyChecked } from '$lib/types';
     import { camelToFriendly, toBool } from '$lib/utils';
@@ -89,7 +87,7 @@
                     <input id={appConfig.formKey} name={appConfig.formKey} type="text" class="p-1 rounded-md variant-filled" bind:value={appConfig.configValue} />
                 {/if}
             {:else if appConfig.configType === 'number'}
-                <input id={appConfig.formKey} name={appConfig.formKey} type="number" class="p-1 rounded-md variant-filled" bind:value={appConfig.configValue} />
+                <input id={appConfig.formKey} name={appConfig.formKey} type="number" class="w-24 p-1 rounded-md variant-filled" bind:value={appConfig.configValue} min="0" />
             {:else if appConfig.configType === 'boolean'}
                 <input id={appConfig.formKey} name={appConfig.formKey} type="checkbox" bind:checked={appConfig.checked} />
             {:else if appConfig.configType === 'object'}

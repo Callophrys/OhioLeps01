@@ -264,10 +264,11 @@ ALTER TABLE sitestatus           DROP FOREIGN KEY SiteStatus_statusCodeId_fkey;
 ALTER TABLE sitedate             DROP FOREIGN KEY SiteDate_siteId_fkey;
 ALTER TABLE site                 DROP FOREIGN KEY Site_countyId_fkey;
 ALTER TABLE site                 DROP FOREIGN KEY Site_stateId_fkey;
-ALTER TABLE county               DROP FOREIGN KEY County_regionId_fkey;
+ALTER TABLE county               DROP FOREIGN KEY County_stateRegionId_fkey;
 ALTER TABLE county               DROP FOREIGN KEY County_stateId_fkey;
-ALTER TABLE region               DROP FOREIGN KEY Region_stateId_fkey;
+ALTER TABLE stateRegion          DROP FOREIGN KEY StateRegion_stateId_fkey;
 ALTER TABLE state                DROP FOREIGN KEY State_countryId_fkey;
+ALTER TABLE countryRegion        DROP FOREIGN KEY CountryRegion_countryId_fkey;
 ALTER TABLE country              DROP FOREIGN KEY Country_continentId_fkey;
 ALTER TABLE checklist            DROP FOREIGN KEY Checklist_taxonId_fkey;
 ALTER TABLE taxonomy             DROP FOREIGN KEY Taxonomy_baseTaxonId_fkey;
@@ -287,8 +288,9 @@ DROP TABLE IF EXISTS taxonomy;
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS role;
 DROP TABLE IF EXISTS county;
-DROP TABLE IF EXISTS region;
+DROP TABLE IF EXISTS countryRegion;
 DROP TABLE IF EXISTS state;
+DROP TABLE IF EXISTS stateRegion;
 DROP TABLE IF EXISTS country;
 DROP TABLE IF EXISTS continent;
 DROP TABLE IF EXISTS appconfig;
@@ -401,10 +403,19 @@ http://wedgefoundation.org/publications_paypal.asp
 ⨞
 ▶
 ◀
+🧹
 ▲
 ▼
 ∅
 ↤
+🧹
+🛠
+🔧
+👤
+🐞
+🪲
+🦎
+🦗
 Character	Numerical Code	Name of Character
 |	&#124;	vertical bar/pipe
 ¦	&#166;	broken vertical bar

@@ -1,9 +1,11 @@
-import type { AppConfig, User } from '@prisma/client';
+import type { AppConfig, User, Organization } from '@prisma/client';
 import type { AppConfigFormKeyChecked, UserComplete } from '$lib/types';
 import type { PageServerLoad } from './$types';
 import { getAppConfigsByOrgId, updateAllAppConfigs, getTemplateAppConfigs, resetAllAppConfigs } from '$lib/database/appconfig';
 import { redirect } from '@sveltejs/kit';
+import { getOrganizations } from '$lib/database/organizations';
 import { getUsers } from '$lib/database/users.js';
+import { promises } from 'dns';
 
 export const load: PageServerLoad = async ({ locals }) => {
     // redirect user if not logged in
@@ -13,8 +15,11 @@ export const load: PageServerLoad = async ({ locals }) => {
         throw redirect(302, '/');
     }
 
+    // const { appConfigs, users, organizations } = await Promise.all([getAppConfigsByOrgId(locals.user.organizationId), getUsers(locals.user.role === 'SUPER' || locals.user.role === 'ADMIN' ? null : locals.user.organizationId), getOrganizations()]);
+
     const appConfigs: AppConfig[] = await getAppConfigsByOrgId(locals.user.organizationId);
     const users: User[] = await getUsers(locals.user.role === 'SUPER' || locals.user.role === 'ADMIN' ? null : locals.user.organizationId);
+    const organizations: Organization[] = await getOrganizations();
 
     const json = JSON.stringify(appConfigs);
     const jsonResult: AppConfigFormKeyChecked[] = JSON.parse(json);
@@ -22,7 +27,11 @@ export const load: PageServerLoad = async ({ locals }) => {
     const jsonUsers = JSON.stringify(users);
     const jsonResultUsers: UserComplete[] = JSON.parse(jsonUsers);
 
-    return { appConfigs: jsonResult, users: jsonResultUsers };
+    const jsonOrganizations = JSON.stringify(organizations);
+    const jsonResultOrganizations: Organization[] = JSON.parse(jsonOrganizations);
+
+    console.log('done in server ');
+    return { appConfigs: jsonResult, users: jsonResultUsers, organziations: jsonResultOrganizations };
 };
 
 export const actions = {
