@@ -942,4 +942,19 @@ Decimal degrees (DD) is the third, simplest, and perhaps most common format for 
 
 In this format, the coordinates of the Eiffel Tower are simply 48.8584 N, 2.2945 E. You’d read these coordinates as 48.8584 degrees north and 2.2945 degrees east. With no minutes or seconds at all, these coordinates are, by far, the easiest to communicate.
 
+##ROADMAP
+1. Sites
+   a. Convert Site's "Person" to "Primary Contact".
+   b. Add field for relation to site. E.g. land owner, park director, trustee
+   c. Make addresses optional and able to add more than one, and by type.  E.g. Home, Mailing, Office x {1..n}
+   d. Make phone numbers optional and able to add more than one, and by type.  E.g. Mobile, Home, Office, Fax x {1..n}
+2. Users
+   a. Show days until expire.  Add expire now to admin users list. I.e. force them to reset.
+   b. Add enable/disable toggle to admin users.
+3. checklists
+   a. Allow admin to edit checklist and take from known list before adding add hoc
+   b. Allow admin to edit full known list
+4. SiteDateObservations
+   a. Add support for non-specific entries.  E.g. by genus or subfamily or common name group such as skippers
+
 

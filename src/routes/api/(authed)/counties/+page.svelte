@@ -39,7 +39,7 @@
     };
 
     let controlDisabled = $derived(counties.length === 0);
-    const cClassesElementEins = "my-auto before:content-['Counties:'] before:lg:content-['County_count:']";
+    // const cClassesElementEins = "my-auto before:content-['Counties:'] before:lg:content-['County_count:']";
 </script>
 
 <div class="text-sm fixed top-[102px] pl-8">
@@ -61,11 +61,11 @@
 {#snippet head()}
     <div class="bg-red flex flex-col lg:flex-row justify-between">
         <div class="flex flex-row">
-            <GoBack targetId={-1} targetIdSecondary={null} targetType={GOTYPE.HOME} controlBody="scale-90" />
-            <GoNext targetId={goNextCountyId()} targetIdSecondary={-1} targetType={goNextTargetType()} controlBody="scale-90" {controlDisabled} />
+            <GoBack targetId={-1} targetIdSecondary={null} targetType={GOTYPE.HOME} controlBody="scale-90" buttonCenter="" scriptCenter="" labelledby="" />
+            <GoNext targetId={goNextCountyId()} targetIdSecondary={-1} targetType={goNextTargetType()} controlBody="scale-90" {controlDisabled} buttonCenter="" scriptCenter="" labelledby="" />
         </div>
-        <CountySort bind:counties controlBody="scale-90 origin-left" />
-        <CountyFilter bind:vButtonGroupClasses controlBody="scale-90 origin-left" />
+        <CountySort bind:counties controlBody="scale-90 origin-left" elementZwei="" elementDrei="" />
+        <CountyFilter bind:vButtonGroupClasses controlBody="scale-90 origin-left" elementZwei="" elementDrei="" />
     </div>
 {/snippet}
 
@@ -86,4 +86,5 @@
         {/each}
     </div>
 {/snippet}
-<Container {head} {body} bodyClasses="" tail={null} />
+
+<Container {head} {body} bodyClasses="overflow-y-auto" tail={null} />
