@@ -7,6 +7,7 @@
     import { TabGroup, Tab } from '@skeletonlabs/skeleton';
     import { page } from '$app/stores';
     import { setContext } from 'svelte';
+    import { SlideToggle } from '@skeletonlabs/skeleton';
 
     let { data } = $props();
     setContext('appConfigs', data.appConfigs);
@@ -125,14 +126,22 @@
         <div class="w-36">First Name</div>
         <div class="w-36">Last Name</div>
         <div class="w-32">Role</div>
+        <div class="w-80"></div>
     </div>
     {#each data.users as user}
-        <div class="flex flex-row">
+        <div class="flex flex-row space-y-1">
             <div class="w-36">{user.username}</div>
-            <div class="w-24">{user.disabled ? 'Disabled' : 'Active'}</div>
+            <div class="pr-4">
+                <SlideToggle name="slide" size="sm" disabled checked={!user.disabled} />
+            </div>
+            <!-- <div class="w-24">{user.disabled ? 'Disabled' : 'Active'}</div> -->
             <div class="w-36">{user.firstName}</div>
             <div class="w-36">{user.lastName}</div>
             <div class="w-32">{user.role.name}</div>
+            <div class="">
+                <button class="btn variant-soft" disabled>Expire Password</button>
+                <button class="btn variant-soft" disabled>Reset Password</button>
+            </div>
         </div>
     {/each}
 {/snippet}
