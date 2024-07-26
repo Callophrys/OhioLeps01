@@ -782,3 +782,29 @@ Decimal degrees (DD) is the third, simplest, and perhaps most common format for 
 
 In this format, the coordinates of the Eiffel Tower are simply 48.8584 N, 2.2945 E. You’d read these coordinates as 48.8584 degrees north and 2.2945 degrees east. With no minutes or seconds at all, these coordinates are, by far, the easiest to communicate.
 
+## 7/26/24
+```
+git config --global --unset http.proxy
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+
+# uncomment stuff in .bashrc
+# run following
+setfattr -n user.pax.flags -v "mr" $NVM_DIR/nvm.sh
+
+nvm install v22.5.1
+
+# esp if on another version do this:
+nvm use v22.5.1
+
+nvm alias default v22.5.1
+
+# then:
+setfattr -n user.pax.flags -v "mr" $(find $NVM_DIR -type f -iname "node" -o -iname "npm" -o -iname "npx")
+
+#finally, this should work:
+npm -v 
+
+npm install --force
+```
+
+
