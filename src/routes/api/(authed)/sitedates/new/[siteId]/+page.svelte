@@ -67,8 +67,8 @@
             console.log(rd.status);
             if (rd.status === 200) {
                 const rdata = JSON.parse(rd.data);
-                console.log(rdata[rdata[0].siteDateId]);
-                let siteDateId = rdata[rdata[0].siteDateId];
+                console.log(rdata[rdata[0].id]);
+                let siteDateId = rdata[rdata[0].id];
                 goto('/api/sitedates/' + siteDateId);
             }
         } catch {}

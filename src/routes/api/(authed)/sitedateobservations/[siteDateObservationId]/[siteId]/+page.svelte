@@ -231,7 +231,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                         .then((data) => {
                             if (data.status === 200) {
                                 const rdata = JSON.parse(data.data);
-                                let siteDateObservationId = rdata[rdata[0].siteDateObservationId];
+                                let siteDateObservationId = rdata[rdata[0].id];
                                 goto('/api/sitedateobservations/' + siteDateObservationId + '/' + siteId);
                             }
                         })
@@ -283,7 +283,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                         .then((data) => {
                             if (data.status === 200) {
                                 const rdata = JSON.parse(data.data);
-                                let siteDateObservationId = rdata[rdata[0].siteDateObservationId];
+                                let siteDateObservationId = rdata[rdata[0].id];
                                 goto('/api/sitedateobservations/' + siteDateObservationId + '/' + siteId);
                             }
                         })

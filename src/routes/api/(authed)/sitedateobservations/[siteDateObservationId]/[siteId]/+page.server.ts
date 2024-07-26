@@ -264,7 +264,7 @@ export const actions: Actions = {
         console.log();
         console.log('sdo after:', sdo);
         const result = await createSiteDateObservation(sdo);
-        return { action: 'create', success: true, siteDateObservationId: result.id };
+        return { action: 'create', success: true, id: result.id };
     },
 
     reviewSiteDateObservation: async ({ request, locals }) => {

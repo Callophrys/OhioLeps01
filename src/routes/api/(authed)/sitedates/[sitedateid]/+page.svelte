@@ -195,7 +195,7 @@
                             if (data.status === 200) {
                                 const rdata = JSON.parse(data.data);
                                 console.log('rdata:', rdata);
-                                let siteDateId = rdata[rdata[0].siteDateId];
+                                let siteDateId = rdata[rdata[0].id];
                                 //TODO: Assure that SiteDatePicker updates.  The following goto + invalidateAll does
                                 // not accomplish it.  Thought that udpating the bound currentSiteDateId would cause
                                 // the SiteDatePicker to update itself.  Hmmm.
@@ -252,7 +252,7 @@
                             if (data.status === 200) {
                                 const rdata = JSON.parse(data.data);
                                 //TODO: find out if going foward into sdo record-listings is preferred or to just stay put?
-                                let siteDateObservationId = rdata[rdata[0].siteDateObservationId];
+                                let siteDateObservationId = rdata[rdata[0].id];
                                 goto('/api/sitedateobservations/' + siteDateObservationId + '/' + siteId);
                             }
                         })

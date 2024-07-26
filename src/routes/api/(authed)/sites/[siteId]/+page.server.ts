@@ -55,7 +55,7 @@ async function lockOutUser(locals: any, issue: string) {
 
 function prepareSite(formData: FormData, siteId: number, siteName: string): any {
     return {
-        siteId: siteId,
+        id: siteId,
         stateId: Number(formData.get('stateId')),
         countyId: Number(formData.get('countyId')),
         siteName: siteName,
@@ -137,7 +137,7 @@ export const actions: Actions = {
             ipAddress: 'localhost',
             userName: locals.user.name,
             userId: locals.user.id,
-            siteId: newSite.siteId,
+            siteId: newSite.id,
             organizationId: locals.user.organizationId,
             description: `New site '${newSite.siteName}' created`,
         } as Audit);
@@ -172,7 +172,7 @@ export const actions: Actions = {
             ipAddress: 'localhost',
             userName: locals.user.name,
             userId: locals.user.id,
-            siteId: updatedSite.siteId,
+            siteId: updatedSite.id,
             organizationId: locals.user.organizationId,
             description: `Site '${updatedSite.siteName}' updated`,
         } as Audit);

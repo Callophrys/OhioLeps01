@@ -27,7 +27,7 @@
     const formData = $state(
         !$modalStore[0].value.isNewRecord && site
             ? {
-                  siteId: site.siteId,
+                  siteId: site.id,
                   countyId: countyId,
                   stateId: stateId,
 

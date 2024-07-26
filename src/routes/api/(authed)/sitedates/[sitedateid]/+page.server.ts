@@ -138,7 +138,7 @@ export const actions: Actions = {
 
         const createdSiteDate: SiteDate = await addSiteDate(siteDate);
         console.log(createdSiteDate);
-        return { siteDateId: createdSiteDate.id ?? -1 };
+        return { id: createdSiteDate.id ?? -1 };
     },
     updateSiteDate: async ({ request, locals }) => {
         if (locals.user.role !== ROLE.SUPER && locals.user.role !== ROLE.ADMIN && locals.user.role !== ROLE.ENTRY) {
@@ -226,6 +226,6 @@ export const actions: Actions = {
         console.log(siteDate);
 
         const newSiteDate: SiteDate = await updateSiteDate(siteDate);
-        return { siteDateId: newSiteDate.id ?? -1 };
+        return { id: newSiteDate.id ?? -1 };
     },
 };

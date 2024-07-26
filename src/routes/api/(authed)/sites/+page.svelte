@@ -74,7 +74,7 @@
                                 const rdata = JSON.parse(data.data);
                                 console.log('rdata:', rdata);
                                 let dataIndex = rdata[0].data;
-                                let valueIndex = rdata[dataIndex].siteId;
+                                let valueIndex = rdata[dataIndex].id;
                                 let siteId = rdata[valueIndex];
                                 //TODO: Assure that SiteDatePicker updates.  The following goto + invalidateAll does
                                 // not accomplish it.  Thought that udpating the bound currentSiteDateId would cause

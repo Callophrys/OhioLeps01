@@ -81,9 +81,9 @@ l.commonname
 from county c
 inner join stateRegion r on c.stateRegionId = r.id
 inner join site s on s.countyId = c.id
-inner join sitedate d on s.siteid = d.siteid
-inner join siteDateObservation o on d.sitedateid = o.sitedateid
-inner join checklist l on o.checklistid = l.checklistid`;
+inner join sitedate d on s.id = d.siteid
+inner join siteDateObservation o on d.id = o.sitedateid
+inner join checklist l on o.checklistid = l.id`;
 
     return CountySpecimens;
 }

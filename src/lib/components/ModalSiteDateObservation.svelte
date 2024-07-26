@@ -73,7 +73,7 @@
     const cHeader = 'text-2xl font-bold';
     const cForm = 'border border-surface-500 p-4 space-y-4 rounded-container-token';
     let checklist: ChecklistScientificName[] = $modalStore[0].value.checklist as ChecklistScientificName[];
-    let hodges = $derived(htmlHodges(checklist.find((x: ChecklistScientificName) => x.checklistId === formData.checklistId)?.hodges));
+    let hodges = $derived(htmlHodges(checklist.find((x: ChecklistScientificName) => x.id === formData.checklistId)?.hodges));
 </script>
 
 {#if $modalStore[0]}
@@ -109,7 +109,7 @@
                 <span>Name</span>
                 <select class="input" bind:value={formData.checklistId} placeholder="Select specimen...">
                     {#each checklist as specimen}
-                        <option value={specimen.checklistId}>{specimen.commonName} - {specimen.scientificName}</option>
+                        <option value={specimen.id}>{specimen.commonName} - {specimen.scientificName}</option>
                     {/each}
                 </select>
             </label>

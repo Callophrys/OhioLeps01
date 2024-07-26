@@ -26,7 +26,7 @@
     const formData = $state(
         !$modalStore[0].value.isNewRecord && sd
             ? {
-                  siteDateId: sd.siteDateId,
+                  siteDateId: sd.id,
                   recordDate: recordDateText,
                   week: -1,
                   recorder: sd.recorder,

@@ -189,7 +189,7 @@
                                 const rdata = JSON.parse(data.data);
                                 console.log('rdata:', rdata);
                                 let dataIndex = rdata[0].data;
-                                let valueIndex = rdata[dataIndex].siteId;
+                                let valueIndex = rdata[dataIndex].id;
                                 let siteId = rdata[valueIndex];
                                 //TODO: Assure that SiteDatePicker updates.  The following goto + invalidateAll does
                                 // not accomplish it.  Thought that udpating the bound currentSiteDateId would cause
@@ -249,7 +249,7 @@
                             if (data.status === 200) {
                                 const rdata = JSON.parse(data.data);
                                 console.log('rdata:', rdata);
-                                let siteDateId = rdata[rdata[0].siteDateId];
+                                let siteDateId = rdata[rdata[0].id];
                                 //TODO: Assure that SiteDatePicker updates.  The following goto + invalidateAll does
                                 // not accomplish it.  Thought that udpating the bound currentSiteDateId would cause
                                 // the SiteDatePicker to update itself.  Hmmm.
