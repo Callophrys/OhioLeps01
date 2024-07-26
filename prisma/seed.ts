@@ -27,49 +27,94 @@ await updateRoles(organization);
 /*
  */
 await db.$executeRaw`
-insert into sectionObservation (sectionId, sitedateobservationid, value) select t.id, o.id, o.section1 from sitedateobservation o join sitedate d on o.id = d.id join site s on d.id = s.id join section t on s.id = t.id where t.sectionIndex = 1 and o.section1 is not null;
+insert into sectionObservation (sectionId, sitedateobservationid, value)
+select t.id, o.id, o.section1
+from sitedateobservation o join sitedate d on d.id = o.sitedateid join site s on d.siteid = s.id join section t on s.id = t.id
+where t.sectionIndex = 1 and o.section1 is not null;
 `;
 await db.$executeRaw`
-insert into sectionObservation (sectionId, sitedateobservationid, value) select t.id, o.id, o.section2 from sitedateobservation o join sitedate d on o.id = d.id join site s on d.id = s.id join section t on s.id = t.id where t.sectionIndex = 2 and o.section2 is not null;
+insert into sectionObservation (sectionId, sitedateobservationid, value)
+select t.id, o.id, o.section2
+from sitedateobservation o join sitedate d on d.id = o.sitedateid join site s on d.id = s.id join section t on s.id = t.id
+where t.sectionIndex = 2 and o.section2 is not null;
 `;
 await db.$executeRaw`
-insert into sectionObservation (sectionId, sitedateobservationid, value) select t.id, o.id, o.section3 from sitedateobservation o join sitedate d on o.id = d.id join site s on d.id = s.id join section t on s.id = t.id where t.sectionIndex = 3 and o.section3 is not null;
+insert into sectionObservation (sectionId, sitedateobservationid, value)
+select t.id, o.id, o.section3
+from sitedateobservation o join sitedate d on d.id = o.sitedateid join site s on d.id = s.id join section t on s.id = t.id
+where t.sectionIndex = 3 and o.section3 is not null;
 `;
 await db.$executeRaw`
-insert into sectionObservation (sectionId, sitedateobservationid, value) select t.id, o.id, o.section4 from sitedateobservation o join sitedate d on o.id = d.id join site s on d.id = s.id join section t on s.id = t.id where t.sectionIndex = 4 and o.section4 is not null;
+insert into sectionObservation (sectionId, sitedateobservationid, value)
+select t.id, o.id, o.section4
+from sitedateobservation o join sitedate d on d.id = o.sitedateid join site s on d.id = s.id join section t on s.id = t.id
+where t.sectionIndex = 4 and o.section4 is not null;
 `;
 await db.$executeRaw`
-insert into sectionObservation (sectionId, sitedateobservationid, value) select t.id, o.id, o.section5 from sitedateobservation o join sitedate d on o.id = d.id join site s on d.id = s.id join section t on s.id = t.id where t.sectionIndex = 5 and o.section5 is not null;
+insert into sectionObservation (sectionId, sitedateobservationid, value)
+select t.id, o.id, o.section5
+from sitedateobservation o join sitedate d on d.id = o.sitedateid join site s on d.id = s.id join section t on s.id = t.id
+where t.sectionIndex = 5 and o.section5 is not null;
 `;
 await db.$executeRaw`
-insert into sectionObservation (sectionId, sitedateobservationid, value) select t.id, o.id, o.section6 from sitedateobservation o join sitedate d on o.id = d.id join site s on d.id = s.id join section t on s.id = t.id where t.sectionIndex = 6 and o.section6 is not null;
+insert into sectionObservation (sectionId, sitedateobservationid, value)
+select t.id, o.id, o.section6
+from sitedateobservation o join sitedate d on d.id = o.sitedateid join site s on d.id = s.id join section t on s.id = t.id
+where t.sectionIndex = 6 and o.section6 is not null;
 `;
 await db.$executeRaw`
-insert into sectionObservation (sectionId, sitedateobservationid, value) select t.id, o.id, o.section7 from sitedateobservation o join sitedate d on o.id = d.id join site s on d.id = s.id join section t on s.id = t.id where t.sectionIndex = 7 and o.section7 is not null;
+insert into sectionObservation (sectionId, sitedateobservationid, value)
+select t.id, o.id, o.section7
+from sitedateobservation o join sitedate d on d.id = o.sitedateid join site s on d.id = s.id join section t on s.id = t.id
+where t.sectionIndex = 7 and o.section7 is not null;
 `;
 await db.$executeRaw`
-insert into sectionObservation (sectionId, sitedateobservationid, value) select t.id, o.id, o.section8 from sitedateobservation o join sitedate d on o.id = d.id join site s on d.id = s.id join section t on s.id = t.id where t.sectionIndex = 8 and o.section8 is not null;
+insert into sectionObservation (sectionId, sitedateobservationid, value)
+select t.id, o.id, o.section8
+from sitedateobservation o join sitedate d on d.id = o.sitedateid join site s on d.id = s.id join section t on s.id = t.id
+where t.sectionIndex = 8 and o.section8 is not null;
 `;
 await db.$executeRaw`
-insert into sectionObservation (sectionId, sitedateobservationid, value) select t.id, o.id, o.section9 from sitedateobservation o join sitedate d on o.id = d.id join site s on d.id = s.id join section t on s.id = t.id where t.sectionIndex = 9 and o.section9 is not null;
+insert into sectionObservation (sectionId, sitedateobservationid, value)
+select t.id, o.id, o.section9
+from sitedateobservation o join sitedate d on d.id = o.sitedateid join site s on d.id = s.id join section t on s.id = t.id
+where t.sectionIndex = 9 and o.section9 is not null;
 `;
 await db.$executeRaw`
-insert into sectionObservation (sectionId, sitedateobservationid, value) select t.id, o.id, o.section10 from sitedateobservation o join sitedate d on o.id = d.id join site s on d.id = s.id join section t on s.id = t.id where t.sectionIndex = 10 and o.section10 is not null;
+insert into sectionObservation (sectionId, sitedateobservationid, value)
+select t.id, o.id, o.section10
+from sitedateobservation o join sitedate d on d.id = o.sitedateid join site s on d.id = s.id join section t on s.id = t.id
+where t.sectionIndex = 10 and o.section10 is not null;
 `;
 await db.$executeRaw`
-insert into sectionObservation (sectionId, sitedateobservationid, value) select t.id, o.id, o.section11 from sitedateobservation o join sitedate d on o.id = d.id join site s on d.id = s.id join section t on s.id = t.id where t.sectionIndex = 11 and o.section11 is not null;
+insert into sectionObservation (sectionId, sitedateobservationid, value)
+select t.id, o.id, o.section11
+from sitedateobservation o join sitedate d on d.id = o.sitedateid join site s on d.id = s.id join section t on s.id = t.id
+where t.sectionIndex = 11 and o.section11 is not null;
 `;
 await db.$executeRaw`
-insert into sectionObservation (sectionId, sitedateobservationid, value) select t.id, o.id, o.section12 from sitedateobservation o join sitedate d on o.id = d.id join site s on d.id = s.id join section t on s.id = t.id where t.sectionIndex = 12 and o.section12 is not null;
+insert into sectionObservation (sectionId, sitedateobservationid, value)
+select t.id, o.id, o.section12
+from sitedateobservation o join sitedate d on d.id = o.sitedateid join site s on d.id = s.id join section t on s.id = t.id
+where t.sectionIndex = 12 and o.section12 is not null;
 `;
 await db.$executeRaw`
-insert into sectionObservation (sectionId, sitedateobservationid, value) select t.id, o.id, o.section13 from sitedateobservation o join sitedate d on o.id = d.id join site s on d.id = s.id join section t on s.id = t.id where t.sectionIndex = 13 and o.section13 is not null;
+insert into sectionObservation (sectionId, sitedateobservationid, value)
+select t.id, o.id, o.section13
+from sitedateobservation o join sitedate d on d.id = o.sitedateid join site s on d.id = s.id join section t on s.id = t.id
+where t.sectionIndex = 13 and o.section13 is not null;
 `;
 await db.$executeRaw`
-insert into sectionObservation (sectionId, sitedateobservationid, value) select t.id, o.id, o.section14 from sitedateobservation o join sitedate d on o.id = d.id join site s on d.id = s.id join section t on s.id = t.id where t.sectionIndex = 14 and o.section14 is not null;
+insert into sectionObservation (sectionId, sitedateobservationid, value)
+select t.id, o.id, o.section14
+from sitedateobservation o join sitedate d on d.id = o.sitedateid join site s on d.id = s.id join section t on s.id = t.id
+where t.sectionIndex = 14 and o.section14 is not null;
 `;
 await db.$executeRaw`
-insert into sectionObservation (sectionId, sitedateobservationid, value) select t.id, o.id, o.section15 from sitedateobservation o join sitedate d on o.id = d.id join site s on d.id = s.id join section t on s.id = t.id where t.sectionIndex = 15 and o.section15 is not null;
+insert into sectionObservation (sectionId, sitedateobservationid, value)
+select t.id, o.id, o.section15
+from sitedateobservation o join sitedate d on d.id = o.sitedateid join site s on d.id = s.id join section t on s.id = t.id
+where t.sectionIndex = 15 and o.section15 is not null;
 `;
 
 async function updateOrganizations(): Promise<Organization> {
