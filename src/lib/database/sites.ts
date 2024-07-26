@@ -12,7 +12,7 @@ export async function getSite(siteId: number) {
 
     const site = await prisma.site.findUnique({
         where: {
-            siteId: siteId,
+            id: siteId,
         },
         include: {
             county: {
@@ -41,7 +41,7 @@ export async function getSite(siteId: number) {
 export async function getSiteData(siteId: number) {
     const site = await prisma.site.findUnique({
         where: {
-            siteId: siteId,
+            id: siteId,
         },
         include: {
             siteDates: true,
@@ -200,11 +200,11 @@ select s.siteName
 , c.code statusCode
 , c.description statusDescription
 from site s
-join siteDate d on d.siteId = s.siteId
-join siteDateObservation o on o.siteDateId = d.siteDateId
-join checklist l on l.checklistId = o.checklistId
-join siteStatus t on t.siteId = s.siteId
-join statusCode c on c.statusCodeId = t.statusCodeId
+join siteDate d on d.siteId = s.id
+join siteDateObservation o on o.siteDateId = d.id
+join checklist l on l.id = o.checklistId
+join siteStatus t on t.siteId = s.id
+join statusCode c on c.id = t.statusCodeId
 join county y on y.id = s.countyId
 join state  a on a.id = s.stateId
 left outer join User usc on usc.id = s.createdById
@@ -215,7 +215,7 @@ left outer join User udr on udr.id = d.confirmById
 left outer join User uoc on uoc.id = o.createdById
 left outer join User uou on uou.id = o.updatedById
 left outer join User uor on uor.id = o.confirmById
-where s.siteId = ${siteId}`;
+where s.id = ${siteId}`;
     console.log('result***', result);
 
     return result;
@@ -251,7 +251,7 @@ export async function getSites(idList: number[] | null) {
 
     const sites = await prisma.site.findMany({
         where: {
-            ...(idList && idList.length ? { siteId: { in: idList } } : {}),
+            ...(idList && idList.length ? { id: { in: idList } } : {}),
         },
         include: {
             county: {
@@ -276,7 +276,7 @@ export async function getSites(idList: number[] | null) {
 export async function existsInCounty(siteName: string, countyId: number): Promise<boolean> {
     const site = await prisma.site.findFirst({
         select: {
-            siteId: true,
+            id: true,
         },
         where: {
             siteName: siteName.trim(),
@@ -290,7 +290,7 @@ export async function existsInCounty(siteName: string, countyId: number): Promis
 export async function existsInState(siteName: string, stateId: number): Promise<boolean> {
     const site = await prisma.site.findFirst({
         select: {
-            siteId: true,
+            id: true,
         },
         where: {
             siteName: siteName,
@@ -349,7 +349,7 @@ export async function updateSite(site: ChangelessSite, userId: string) {
     // console.log('/lib/api/entry/sites.ts > updateSite', site);
     const updatedSite = await prisma.site.update({
         where: {
-            siteId: site.siteId,
+            id: site.id,
         },
         data: {
             countyId: site.countyId,
@@ -407,7 +407,7 @@ export async function removeSite(siteId: number) {
     });
     await prisma.site.delete({
         where: {
-            siteId: siteId,
+            id: siteId,
         },
     });
 }

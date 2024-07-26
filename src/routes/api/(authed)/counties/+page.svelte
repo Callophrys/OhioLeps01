@@ -23,7 +23,7 @@
     const goNextCountyId = () => {
         if (counties.length) {
             if (counties[0].sites.length === 1) {
-                return counties[0].sites[0].siteId;
+                return counties[0].sites[0].id;
             } else {
                 return counties[0].id;
             }
@@ -72,7 +72,7 @@
 {#snippet body()}
     <div class={buttonGroupClasses}>
         {#each counties as county}
-            <button type="button" class={`${cButtonClasses} ${county.isMonitored ? 'group-[.hide-monitored]:hidden' : 'group-[.hide-unmonitored]:hidden'}`} onclick={() => (county.sites.length === 1 ? goto(`/api/sites/${county.sites[0].siteId}`) : goto(`/api/countysites/${county.id}`))}>
+            <button type="button" class={`${cButtonClasses} ${county.isMonitored ? 'group-[.hide-monitored]:hidden' : 'group-[.hide-unmonitored]:hidden'}`} onclick={() => (county.sites.length === 1 ? goto(`/api/sites/${county.sites[0].id}`) : goto(`/api/countysites/${county.id}`))}>
                 <div class="w-full text-left">🌎 {county.name}</div>
                 <div class="flex flex-row gap-4">
                     <div class="">{county.stateRegion.name}</div>

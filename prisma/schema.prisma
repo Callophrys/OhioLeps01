@@ -176,14 +176,14 @@ model Section {
 
     // Parent Relation
     siteId Int
-    site Site @relation("SectionsInSite", fields: [siteId], references: [siteId])
+    site Site @relation("SectionsInSite", fields: [siteId], references: [id])
 
     // Child Relations
     sectionObservations SectionObservation[] @relation(name: "SectionObservationsInSection")
 }
 
 model Site {
-    siteId Int @id @default(autoincrement())
+    id Int @id @default(autoincrement())
     siteName String // @db.String(30)
     township String? // @db.String(50)
     locationZip String? // @db.String(50)
@@ -261,7 +261,7 @@ model Site {
 
 // Will be one-to-one with big taxon data
 model Checklist {
-    checklistId Int @id @default(autoincrement())
+    id Int @id @default(autoincrement())
     hodges String @default("A000") // or similar, note if another system, e.g. Patterson number
     genus String // @db.String(20) // doomed
     species String // @db.String(20) // doomed
@@ -298,7 +298,7 @@ model Checklist {
 }
 
 model SiteDateObservation {
-    siteDateObservationId Int @id @default(autoincrement())
+    id Int @id @default(autoincrement())
     // ** use siteDateObservationId as real key now - and later just drop 'seqId Int?'
     seqId Int?
     idCode String? // @db.String(1)  // in { how id'ed:  O observ, N net, P photo, C collected }
@@ -337,12 +337,12 @@ model SiteDateObservation {
     confirmById String?
 
     // Parent Relation
-    checklist Checklist? @relation(fields: [checklistId], references: [checklistId])
+    checklist Checklist? @relation(fields: [checklistId], references: [id])
     checklistId Int? // Should never be null 
     // TODO find and fix obs that are missing checklists
 
     // Parent Relation
-    siteDate SiteDate @relation(fields: [siteDateId], references: [siteDateId])
+    siteDate SiteDate @relation(fields: [siteDateId], references: [id])
     siteDateId Int // Should never be null
 
     // Child Relations
@@ -362,13 +362,13 @@ model SectionObservation {
 
     // Parent Relation
     siteDateObservationId Int
-    siteDateObservation SiteDateObservation @relation(name: "SectionObservationsInSiteDateObservation", fields: [siteDateObservationId], references: [siteDateObservationId])
+    siteDateObservation SiteDateObservation @relation(name: "SectionObservationsInSiteDateObservation", fields: [siteDateObservationId], references: [id])
 
     @@unique([sectionId, siteDateObservationId])
 }
 
 model StatusCode {
-    statusCodeId Int @id
+    id Int @id
     code String
     description String
 
@@ -377,17 +377,17 @@ model StatusCode {
 }
 
 model SiteStatus {
-    siteStatusId Int @id @default(autoincrement())
+    id Int @id @default(autoincrement())
     siteId Int?
     statusCodeId Int?
     year Int
 
     // Parent Relation
-    statusCode StatusCode? @relation(fields: [statusCodeId], references: [statusCodeId])
+    statusCode StatusCode? @relation(fields: [statusCodeId], references: [id])
     // provided by load: 'statusCodeId Int'
 
     // Parent Relation
-    site Site? @relation(fields: [siteId], references: [siteId])
+    site Site? @relation(fields: [siteId], references: [id])
     // provided by load: 'siteId Int'
 
     @@unique([siteId, year])
@@ -402,7 +402,7 @@ enum Weather {
 }
 
 model SiteDate {
-    siteDateId Int @id @default(autoincrement())
+    id Int @id @default(autoincrement())
     seqId Int? // temp and will be query key
     recordDate DateTime // was "date", a reserved word
     week Int // TODO: find out if this should be editable or simply a derivation of recordDate
@@ -474,7 +474,7 @@ model SiteDate {
     confirmById String?
 
     // Parent Relation
-    site Site @relation(fields: [siteId], references: [siteId])
+    site Site @relation(fields: [siteId], references: [id])
     siteId Int
 
     // Child Relation
@@ -484,7 +484,7 @@ model SiteDate {
 }
 
 model NameAddress {
-    nameAddressId Int @id @default(autoincrement())
+    id Int @id @default(autoincrement())
     fullName String
     firstName String?
     lastName String?

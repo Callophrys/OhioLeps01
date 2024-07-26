@@ -6,7 +6,7 @@ import type { Checklist } from '@prisma/client';
 export async function getChecklist(checklistId: number) {
     const checklist = await prisma.checklist.findUnique({
         where: {
-            checklistId: checklistId,
+            id: checklistId,
         },
     });
 
@@ -36,7 +36,7 @@ export async function getChecklistsBySiteDateObsId(id: number) {
         select: {
             siteDateObservations: {
                 where: {
-                    siteDateObservationId: id,
+                    id: id,
                 },
                 select: {
                     siteDate: true,
@@ -89,7 +89,7 @@ export async function getChecklistsBySiteDateId(siteDateId: number) {
 
 export async function getChecklistsBySiteId(siteId: number): Promise<Checklist[]> {
     const checklists: Checklist[] = await prisma.$queryRaw<Checklist[]>`
-		select checklistId
+		select id 
 		, hodges
 		, genus
 		, species
@@ -111,11 +111,11 @@ export async function getChecklistsBySiteId(siteId: number): Promise<Checklist[]
 		, tmp_TotalCount
 		, tmp_HighCount
 		, taxonId
-		from checklist where checklistid in (
+		from checklist where id in (
 			select o.checklistid
 			from sitedate d
-			inner join sitedateobservation o on o.siteDateId = d.siteDateId
-			where d.siteId = ${siteId})`;
+			inner join sitedateobservation o on o.siteDateId = d.id
+			where d.id = ${siteId})`;
     return checklists;
 }
 
@@ -129,7 +129,7 @@ c.id countyId,
 c.name county,
 r.name stateRegion,
 d.recordDate,
-l.checklistId,
+l.id checklistId,
 l.commonName,
 l.genus,
 l.species,
@@ -137,9 +137,9 @@ l.subSpecies
 from county c
 inner join stateRegion r on c.stateRegionId = r.id
 inner join site s on s.countyId = c.id
-inner join sitedate d on s.siteid = d.siteid
-inner join siteDateObservation o on d.sitedateid = o.sitedateid
-inner join checklist l on o.checklistid = l.checklistid`;
+inner join sitedate d on d.siteid = s.id
+inner join siteDateObservation o on o.sitedateid = d.id
+inner join checklist l on l.id = o.checklistid`;
 
     let useSpecimens = filter && filter.specimenIds && filter.specimenIds.length;
     let useCounties = filter && filter.countyIds && filter.countyIds.length;

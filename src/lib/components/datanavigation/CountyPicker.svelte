@@ -97,7 +97,7 @@
             }) ?? -1;
 
         if (filteredSitesIndex > -1) {
-            currentSiteId = filteredSites[filteredSitesIndex].siteId;
+            currentSiteId = filteredSites[filteredSitesIndex].id;
             goto('/api/sites/' + currentSiteId);
         } else {
             currentSiteId = -1;
@@ -109,7 +109,7 @@
             currentCountyId = allCounties[allCountiesIndex - 1].id;
             let siteIndex = allSites.findLastIndex((s: any) => s.countyId === currentCountyId);
             if (siteIndex > 0) {
-                currentSiteId = allSites[siteIndex].siteId;
+                currentSiteId = allSites[siteIndex].id;
                 goto('/api/sites/' + currentSiteId);
             } else {
                 currentSiteId = -1;
@@ -122,7 +122,7 @@
             currentCountyId = allCounties[allCountiesIndex + 1].id;
             let siteIndex = allSites.findIndex((s) => s.countyId === currentCountyId);
             if (siteIndex > 0) {
-                currentSiteId = allSites[siteIndex].siteId;
+                currentSiteId = allSites[siteIndex].id;
                 goto('/api/sites/' + currentSiteId);
             } else {
                 currentSiteId = -1;
@@ -146,7 +146,7 @@
     //         if (cn < currentCounty.countyNumber) return allSites.find((x: any) => x.countyId === currentCountyId);
     //         return allSites.findLast((x: any) => x.countyId === currentCountyId);
     //     })();
-    //     if (site) currentSiteId = site.siteId; // this could cause nesting and looping infinitely
+    //     if (site) currentSiteId = site.id; // this could cause nesting and looping infinitely
     // })
 
     //$inspect(currentCountyId);

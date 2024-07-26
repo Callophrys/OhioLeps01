@@ -6,7 +6,7 @@ export async function getSiteDate(siteDateId: number) {
     // console.log('getSiteDate');
     const siteDate = await prisma.siteDate.findFirst({
         where: {
-            siteDateId: siteDateId,
+            id: siteDateId,
         },
         include: {
             site: {
@@ -67,7 +67,7 @@ export async function getSiteDatesAll() {
 export async function getSiteDateSiteDates(siteDateId: number) {
     const siteDateSiteDates = await prisma.siteDate.findUnique({
         where: {
-            siteDateId: siteDateId,
+            id: siteDateId,
         },
         include: {
             site: {
@@ -151,7 +151,7 @@ export async function updateSiteDate(siteDate: SiteDate) {
     console.log('/lib/api/entry/sitedates.ts > updateSiteDate');
     const updatedSiteDate = await prisma.siteDate.update({
         where: {
-            siteDateId: siteDate.siteDateId,
+            id: siteDate.id,
         },
         data: {
             recordDate: siteDate.recordDate,

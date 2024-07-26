@@ -142,7 +142,7 @@
     function modalComponentSite(isNewRecord: boolean, unitGps: string, site: Site | null, countyId: number, counties: County[], stateId: number, states: State[]): void {
         const c: ModalComponent = { ref: ModalSite };
         const componentTitle = isNewRecord ? 'Add New Site' : `Edit Site - ${site?.siteName}`;
-        const componentUrl = isNewRecord ? '../sites/-1?/createSite' : `../sites/${site?.siteId ?? '-1'}?/updateSite`;
+        const componentUrl = isNewRecord ? '../sites/-1?/createSite' : `../sites/${site?.id ?? '-1'}?/updateSite`;
 
         const componentValues = isNewRecord
             ? {
@@ -157,7 +157,7 @@
               }
             : {
                   site: site,
-                  siteId: site?.siteId ?? -1,
+                  siteId: site?.id ?? -1,
                   countyId: countyId,
                   counties: data.counties,
                   stateId: stateId,
@@ -211,7 +211,7 @@
     function modalComponentSiteDate(isNewRecord: boolean, unitTemp: string, unitSpeed: string, siteDate: SiteDateYear | null, siteId: number): void {
         const c: ModalComponent = { ref: ModalSiteDate };
         const componentTitle = isNewRecord ? 'Add New Date Record' : `Edit Date Record - ${formatDate(siteDate?.recordDate ? new Date(siteDate.recordDate).toISOString() : new Date().toISOString())}, ${siteDate?.recordDate}`;
-        const componentUrl = isNewRecord ? '../sitedates/-1?/createSiteDate' : `../sitedates/${siteDate?.siteDateId}?/updateSiteDate`;
+        const componentUrl = isNewRecord ? '../sitedates/-1?/createSiteDate' : `../sitedates/${siteDate?.id}?/updateSiteDate`;
 
         const componentValues = isNewRecord
             ? {
@@ -272,12 +272,12 @@
     let currentCountyId: number = $state(data.site.countyId);
     let currentStateId: number = $state(data.site.stateId);
 
-    let currentSiteId: number = $state(data.site.siteId);
+    let currentSiteId: number = $state(data.site.id);
     let currentSiteDate: SiteDateYear | null = $state(data.site.siteDates.length ? data.site.siteDates[0] : null);
-    let currentSiteDateId: number = $state(data.site.siteDates.length ? data.site.siteDates[0].siteDateId : -1);
+    let currentSiteDateId: number = $state(data.site.siteDates.length ? data.site.siteDates[0].id : -1);
     // $inspect(currentCountyId, currentSiteId, currentSiteDateId);
 
-    let currentSite: SiteCountyState | undefined = $derived(data.sites.find((x) => x.siteId === currentSiteId));
+    let currentSite: SiteCountyState | undefined = $derived(data.sites.find((x) => x.id === currentSiteId));
     // $inspect(currentSite);
 
     /*-- Other */
@@ -319,14 +319,6 @@
         </div>
         <SiteDatePicker bind:currentSiteId bind:currentSiteDateId controlBody="scale-90" buttonLeft="" buttonRight="" buttonYear="" buttonWeek="" dropdownShowDate={false} dropdownPointers={true} heading={null} yearPrefix="" weekPrefix="" controlOuter="" prefixYear="" prefixWeek="" suffixYear="" suffixWeek="" popupInner="" popupStyles="" labelledby="" />
     </div>
-
-    <!-- <div class="w-1/2 text-right my-auto">Observations (year/week)</div> -->
-    <!-- <div class="w-1/2"> -->
-    <!--     <button class="btn variant-soft w-40 justify-between" use:popup={popupComboSiteDate}> -->
-    <!--         <span class="capitalize">{comboboxValueSiteDate ? `${comboboxValueSiteDate.toString().slice(0, 4)} week ${comboboxValueSiteDate % 100}` : 'Year week'}</span> -->
-    <!--         <span>↓</span> -->
-    <!--     </button> -->
-    <!-- </div> -->
 
     <!-- TODO: Make this change the County by alphabetical -->
     <!--       Need to filter Sites where sites must indicate as such -->

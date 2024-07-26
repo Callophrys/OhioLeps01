@@ -10,8 +10,8 @@ export default async function () {
         db.siteDate.findMany()
     ]);
 
-    const checklistLookup = Object.assign({}, ...checklists.map((c: any) => ({ [c.hodges]: c.checklistId })));
-    const siteDateLookup = Object.assign({}, ...siteDates.map((s: any) => ({ [s.seqId]: s.siteDateId })));
+    const checklistLookup = Object.assign({}, ...checklists.map((c: any) => ({ [c.hodges]: c.id })));
+    const siteDateLookup = Object.assign({}, ...siteDates.map((s: any) => ({ [s.seqId]: s.id })));
     //console.log(checklistLookup);
     //console.log(siteDateLookup);
     //return;

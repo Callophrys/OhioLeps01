@@ -88,7 +88,7 @@
     /*-- Properties (functional) */
     const sdoCommon: sdoSpeciesObject[] = [];
     const sdoLatin: sdoSpeciesObject[] = [];
-    let currentSdoChecklistItem: SiteDateObservationChecklist = checklistsSiteDateObs.find((x) => x.siteDateObservationId === currentSdoChecklistItemId) as SiteDateObservationChecklist;
+    let currentSdoChecklistItem: SiteDateObservationChecklist = checklistsSiteDateObs.find((x) => x.id === currentSdoChecklistItemId) as SiteDateObservationChecklist;
 
     /*-- Variables and objects */
 
@@ -107,15 +107,15 @@
     }
 
     function handleClickPrior() {
-        let idx = sdoCommon.findIndex((o) => o.siteDateObservationId === currentSdoChecklistItem.siteDateObservationId);
+        let idx = sdoCommon.findIndex((o) => o.siteDateObservationId === currentSdoChecklistItem.id);
         if (idx > 0) {
             goto(`/api/sitedateobservations/${sdoCommon[idx - 1].siteDateObservationId}/${currentSdoChecklistItem.siteDate.siteId}`);
         }
     }
 
     function handleClickNext() {
-        let idx = sdoCommon.findIndex((o) => o.siteDateObservationId === currentSdoChecklistItem.siteDateObservationId);
-        console.log('x:', currentSdoChecklistItem.siteDateObservationId, 'idx:', idx, 'sdo', sdoCommon);
+        let idx = sdoCommon.findIndex((o) => o.siteDateObservationId === currentSdoChecklistItem.id);
+        console.log('x:', currentSdoChecklistItem.id, 'idx:', idx, 'sdo', sdoCommon);
         if (idx > -1 && idx < sdoCommon.length - 1) {
             goto(`/api/sitedateobservations/${sdoCommon[idx + 1].siteDateObservationId}/${currentSdoChecklistItem.siteDate.siteId}`);
         }
@@ -134,7 +134,7 @@
             sdoCommon.push(
                 ...new Set(
                     checklistsSiteDateObs.map((x: SiteDateObservationChecklist) => ({
-                        siteDateObservationId: x.siteDateObservationId,
+                        siteDateObservationId: x.id,
                         name: x.checklist.commonName ?? `(${x.checklist.scientificName})`,
                         deleted: x.deleted,
                     }))
@@ -144,7 +144,7 @@
             sdoLatin.push(
                 ...new Set(
                     checklistsSiteDateObs.map((x: SiteDateObservationChecklist) => ({
-                        siteDateObservationId: x.siteDateObservationId,
+                        siteDateObservationId: x.id,
                         name: x.checklist.scientificName,
                         deleted: x.deleted,
                     }))
@@ -190,7 +190,7 @@
                     checklistsSiteDateObs
                         .filter((x: SiteDateObservationChecklist) => !x.deleted)
                         .map((x: SiteDateObservationChecklist) => ({
-                            siteDateObservationId: x.siteDateObservationId,
+                            siteDateObservationId: x.id,
                             name: x.checklist.commonName ?? `(${x.checklist.scientificName})`,
                             deleted: false,
                         }))
@@ -202,7 +202,7 @@
                     checklistsSiteDateObs
                         .filter((x: SiteDateObservationChecklist) => !x.deleted)
                         .map((x: SiteDateObservationChecklist) => ({
-                            siteDateObservationId: x.siteDateObservationId,
+                            siteDateObservationId: x.id,
                             name: x.checklist.scientificName,
                             deleted: false,
                         }))
@@ -263,7 +263,7 @@
 
     // Does this actually obviated the need for onMount?
     // .... well maybe if an html element - user thing updates it
-    $: currentSdoChecklistItem = checklistsSiteDateObs.find((x) => x.siteDateObservationId === currentSdoChecklistItemId) as SiteDateObservationChecklist;
+    $: currentSdoChecklistItem = checklistsSiteDateObs.find((x) => x.id === currentSdoChecklistItemId) as SiteDateObservationChecklist;
 </script>
 
 <div class={classesControlOuter}>

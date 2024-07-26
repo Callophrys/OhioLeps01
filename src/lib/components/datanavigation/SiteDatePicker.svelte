@@ -147,9 +147,9 @@
         siteDates
             .filter((x: SiteDateYear) => x.year.toString() === recordYear)
             .map<SdoWeek>((y: SiteDateYear) => ({
-                week: y.week,
-                siteDateId: y.siteDateId,
                 fDate: y.recordDate ? formatDate(new Date(y.recordDate).toISOString()) : '',
+                siteDateId: y.id,
+                week: y.week,
             }))
     );
 
@@ -265,7 +265,7 @@
                 trackedWeeks.push(
                     ...Array.from(siteDates)
                         .map<DateTracking>((w: SiteDateYearSiteDates) => ({
-                            siteDateId: w.siteDateId,
+                            siteDateId: w.id,
                             year: w.year ?? -1,
                             week: w.recordDate ? weekOfYearSince(new Date(w.recordDate)) : -1,
                             recordDate: new Date(w.recordDate),

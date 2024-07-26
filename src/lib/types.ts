@@ -87,7 +87,7 @@ export type SiteStatusCode = SiteStatus & { statusCode: StatusCode };
 export type SiteCountyStatuses = Site & { county: County; siteStatuses: SiteStatusCode[] };
 export type SiteCountySiteDatesSiteStatuses = Site & {
     county: County;
-    sections: Section;
+    sections: Section[];
     siteDates: SiteDateYear[];
     siteStatuses: SiteStatusCode[];
     createdBy: User;

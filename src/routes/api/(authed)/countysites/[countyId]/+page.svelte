@@ -16,7 +16,7 @@
 
         /*
         if (id > -1 && data.counties.find((x: any) => x.id === id)?.sites.length === 1) {
-            goto(`/api/sites/${county.sites[0].siteId}`);
+            goto(`/api/sites/${county.sites[0].id}`);
         } else {
             goto(`/api/countysites/${county.id}`);
         }
@@ -38,7 +38,7 @@
     let county: County = $derived(data.counties.find((c: County) => c.id === countyId) as County);
     $inspect(county);
 
-    let goNextSiteId = $derived(data.sites.length ? data.sites[0].siteId : -1);
+    let goNextSiteId = $derived(data.sites.length ? data.sites[0].id : -1);
 </script>
 
 {#snippet head()}
@@ -66,7 +66,7 @@
     <div>
         <div class="flex flex-wrap gap-2">
             {#each data.sites as site}
-                <a href="/api/sites/{site.siteId}">
+                <a href="/api/sites/{site.id}">
                     <div class="card relative grid w-56 h-32 p-0 m-0 text-wrap hover:variant-soft">
                         <div class="absolute top-2 left-2">🔍</div>
                         <div class="px-2 pt-2 w-full text-center">

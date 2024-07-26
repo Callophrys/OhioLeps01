@@ -29,7 +29,7 @@
     function modalComponentSite(isNewRecord: boolean, unitGps: string, site: Site | null, countyId: number, stateId: number): void {
         const c: ModalComponent = { ref: ModalSite };
         const componentTitle = isNewRecord ? 'Add New Site' : `Edit Site - ${site?.siteName}`;
-        const componentUrl = isNewRecord ? '../api/sites/-1?/createSite' : `../api/sites/${site?.siteId ?? '-1'}?/updateSite`;
+        const componentUrl = isNewRecord ? '../api/sites/-1?/createSite' : `../api/sites/${site?.id ?? '-1'}?/updateSite`;
 
         const componentValues = isNewRecord
             ? {
@@ -44,7 +44,7 @@
               }
             : {
                   site: site,
-                  siteId: site?.siteId,
+                  siteId: site?.id,
                   countyId: countyId,
                   counties: data.counties,
                   stateId: stateId,
@@ -110,7 +110,7 @@
     <div class="">
         <div class="flex flex-wrap gap-2">
             {#each data.sites as site}
-                <a href="/api/sites/{site.siteId}">
+                <a href="/api/sites/{site.id}">
                     <div class="card relative grid w-56 h-32 p-0 m-0 text-wrap hover:variant-soft">
                         <div class="px-2 pt-2 w-full text-center">
                             <div class="flex flex-row justify-between">

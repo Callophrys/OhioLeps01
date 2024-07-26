@@ -5,7 +5,7 @@ export default async function() {
 	console.log('Creating siteDate records');
 	await db.siteDate.create({
         data: {
-            "siteDateId":1,
+            id:1,
             "seqId":97,
             "siteId":1,
             "recordDate":(new Date("4/20/1996 GMT")).toISOString(),
@@ -66,7 +66,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":2,
+            id:2,
             "seqId":98,
             "siteId":1,
             "recordDate":(new Date("4/21/1996 GMT")).toISOString(),
@@ -127,7 +127,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":3,
+            id:3,
             "seqId":99,
             "siteId":1,
             "recordDate":(new Date("4/27/1996 GMT")).toISOString(),
@@ -188,7 +188,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":4,
+            id:4,
             "seqId":100,
             "siteId":1,
             "recordDate":(new Date("5/5/1996 GMT")).toISOString(),
@@ -249,7 +249,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":5,
+            id:5,
             "seqId":101,
             "siteId":1,
             "recordDate":(new Date("6/8/1996 GMT")).toISOString(),
@@ -310,7 +310,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":6,
+            id:6,
             "seqId":102,
             "siteId":1,
             "recordDate":(new Date("6/16/1996 GMT")).toISOString(),
@@ -371,7 +371,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":7,
+            id:7,
             "seqId":103,
             "siteId":1,
             "recordDate":(new Date("6/22/1996 GMT")).toISOString(),
@@ -432,7 +432,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":8,
+            id:8,
             "seqId":104,
             "siteId":1,
             "recordDate":(new Date("6/29/1996 GMT")).toISOString(),
@@ -493,7 +493,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":9,
+            id:9,
             "seqId":105,
             "siteId":1,
             "recordDate":(new Date("7/4/1996 GMT")).toISOString(),
@@ -554,7 +554,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":10,
+            id:10,
             "seqId":107,
             "siteId":1,
             "recordDate":(new Date("7/13/1996 GMT")).toISOString(),
@@ -615,7 +615,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":11,
+            id:11,
             "seqId":106,
             "siteId":1,
             "recordDate":(new Date("7/14/1996 GMT")).toISOString(),
@@ -676,7 +676,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":12,
+            id:12,
             "seqId":108,
             "siteId":1,
             "recordDate":(new Date("7/21/1996 GMT")).toISOString(),
@@ -737,7 +737,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":13,
+            id:13,
             "seqId":109,
             "siteId":1,
             "recordDate":(new Date("7/28/1996 GMT")).toISOString(),
@@ -798,7 +798,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":14,
+            id:14,
             "seqId":110,
             "siteId":1,
             "recordDate":(new Date("8/2/1996 GMT")).toISOString(),
@@ -859,7 +859,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":15,
+            id:15,
             "seqId":111,
             "siteId":1,
             "recordDate":(new Date("8/25/1996 GMT")).toISOString(),
@@ -920,7 +920,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":16,
+            id:16,
             "seqId":113,
             "siteId":1,
             "recordDate":(new Date("8/31/1996 GMT")).toISOString(),
@@ -981,7 +981,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":17,
+            id:17,
             "seqId":114,
             "siteId":1,
             "recordDate":(new Date("9/2/1996 GMT")).toISOString(),
@@ -1042,7 +1042,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":18,
+            id:18,
             "seqId":115,
             "siteId":1,
             "recordDate":(new Date("9/15/1996 GMT")).toISOString(),
@@ -1103,7 +1103,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":19,
+            id:19,
             "seqId":116,
             "siteId":1,
             "recordDate":(new Date("9/21/1996 GMT")).toISOString(),
@@ -1164,7 +1164,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":20,
+            id:20,
             "seqId":117,
             "siteId":1,
             "recordDate":(new Date("9/29/1996 GMT")).toISOString(),
@@ -1225,7 +1225,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":21,
+            id:21,
             "seqId":118,
             "siteId":1,
             "recordDate":(new Date("4/6/1997 GMT")).toISOString(),
@@ -1286,7 +1286,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":22,
+            id:22,
             "seqId":119,
             "siteId":1,
             "recordDate":(new Date("4/20/1997 GMT")).toISOString(),
@@ -1347,7 +1347,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":23,
+            id:23,
             "seqId":120,
             "siteId":1,
             "recordDate":(new Date("4/26/1997 GMT")).toISOString(),
@@ -1408,7 +1408,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":24,
+            id:24,
             "seqId":121,
             "siteId":1,
             "recordDate":(new Date("5/4/1997 GMT")).toISOString(),
@@ -1469,7 +1469,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":25,
+            id:25,
             "seqId":122,
             "siteId":1,
             "recordDate":(new Date("5/11/1997 GMT")).toISOString(),
@@ -1530,7 +1530,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":26,
+            id:26,
             "seqId":123,
             "siteId":1,
             "recordDate":(new Date("5/18/1997 GMT")).toISOString(),
@@ -1591,7 +1591,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":27,
+            id:27,
             "seqId":124,
             "siteId":1,
             "recordDate":(new Date("5/24/1997 GMT")).toISOString(),
@@ -1652,7 +1652,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":28,
+            id:28,
             "seqId":125,
             "siteId":1,
             "recordDate":(new Date("6/8/1997 GMT")).toISOString(),
@@ -1713,7 +1713,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":29,
+            id:29,
             "seqId":126,
             "siteId":1,
             "recordDate":(new Date("6/15/1997 GMT")).toISOString(),
@@ -1774,7 +1774,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":30,
+            id:30,
             "seqId":127,
             "siteId":1,
             "recordDate":(new Date("6/17/1997 GMT")).toISOString(),
@@ -1835,7 +1835,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":31,
+            id:31,
             "seqId":128,
             "siteId":1,
             "recordDate":(new Date("6/25/1997 GMT")).toISOString(),
@@ -1896,7 +1896,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":32,
+            id:32,
             "seqId":129,
             "siteId":1,
             "recordDate":(new Date("7/6/1997 GMT")).toISOString(),
@@ -1957,7 +1957,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":33,
+            id:33,
             "seqId":130,
             "siteId":1,
             "recordDate":(new Date("7/13/1997 GMT")).toISOString(),
@@ -2018,7 +2018,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":34,
+            id:34,
             "seqId":131,
             "siteId":1,
             "recordDate":(new Date("7/20/1997 GMT")).toISOString(),
@@ -2079,7 +2079,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":35,
+            id:35,
             "seqId":132,
             "siteId":1,
             "recordDate":(new Date("7/27/1997 GMT")).toISOString(),
@@ -2140,7 +2140,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":36,
+            id:36,
             "seqId":133,
             "siteId":1,
             "recordDate":(new Date("7/29/1997 GMT")).toISOString(),
@@ -2201,7 +2201,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":37,
+            id:37,
             "seqId":134,
             "siteId":1,
             "recordDate":(new Date("8/9/1997 GMT")).toISOString(),
@@ -2262,7 +2262,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":38,
+            id:38,
             "seqId":135,
             "siteId":1,
             "recordDate":(new Date("8/18/1997 GMT")).toISOString(),
@@ -2323,7 +2323,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":39,
+            id:39,
             "seqId":136,
             "siteId":1,
             "recordDate":(new Date("8/25/1997 GMT")).toISOString(),
@@ -2384,7 +2384,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":40,
+            id:40,
             "seqId":137,
             "siteId":1,
             "recordDate":(new Date("9/1/1997 GMT")).toISOString(),
@@ -2445,7 +2445,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":41,
+            id:41,
             "seqId":138,
             "siteId":1,
             "recordDate":(new Date("9/2/1997 GMT")).toISOString(),
@@ -2506,7 +2506,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":42,
+            id:42,
             "seqId":139,
             "siteId":1,
             "recordDate":(new Date("9/14/1997 GMT")).toISOString(),
@@ -2567,7 +2567,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":43,
+            id:43,
             "seqId":140,
             "siteId":1,
             "recordDate":(new Date("9/21/1997 GMT")).toISOString(),
@@ -2628,7 +2628,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":44,
+            id:44,
             "seqId":141,
             "siteId":1,
             "recordDate":(new Date("9/27/1997 GMT")).toISOString(),
@@ -2689,7 +2689,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":45,
+            id:45,
             "seqId":54,
             "siteId":1,
             "recordDate":(new Date("4/12/1998 GMT")).toISOString(),
@@ -2750,7 +2750,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":46,
+            id:46,
             "seqId":55,
             "siteId":1,
             "recordDate":(new Date("4/18/1998 GMT")).toISOString(),
@@ -2811,7 +2811,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":47,
+            id:47,
             "seqId":56,
             "siteId":1,
             "recordDate":(new Date("4/25/1998 GMT")).toISOString(),
@@ -2872,7 +2872,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":48,
+            id:48,
             "seqId":57,
             "siteId":1,
             "recordDate":(new Date("5/3/1998 GMT")).toISOString(),
@@ -2933,7 +2933,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":49,
+            id:49,
             "seqId":58,
             "siteId":1,
             "recordDate":(new Date("5/10/1998 GMT")).toISOString(),
@@ -2994,7 +2994,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":50,
+            id:50,
             "seqId":59,
             "siteId":1,
             "recordDate":(new Date("5/17/1998 GMT")).toISOString(),
@@ -3055,7 +3055,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":51,
+            id:51,
             "seqId":60,
             "siteId":1,
             "recordDate":(new Date("5/23/1998 GMT")).toISOString(),
@@ -3116,7 +3116,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":52,
+            id:52,
             "seqId":61,
             "siteId":1,
             "recordDate":(new Date("5/30/1998 GMT")).toISOString(),
@@ -3177,7 +3177,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":53,
+            id:53,
             "seqId":62,
             "siteId":1,
             "recordDate":(new Date("6/7/1998 GMT")).toISOString(),
@@ -3238,7 +3238,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":54,
+            id:54,
             "seqId":63,
             "siteId":1,
             "recordDate":(new Date("6/14/1998 GMT")).toISOString(),
@@ -3299,7 +3299,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":55,
+            id:55,
             "seqId":64,
             "siteId":1,
             "recordDate":(new Date("6/20/1998 GMT")).toISOString(),
@@ -3360,7 +3360,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":56,
+            id:56,
             "seqId":65,
             "siteId":1,
             "recordDate":(new Date("6/24/1998 GMT")).toISOString(),
@@ -3421,7 +3421,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":57,
+            id:57,
             "seqId":66,
             "siteId":1,
             "recordDate":(new Date("7/5/1998 GMT")).toISOString(),
@@ -3482,7 +3482,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":58,
+            id:58,
             "seqId":67,
             "siteId":1,
             "recordDate":(new Date("7/11/1998 GMT")).toISOString(),
@@ -3543,7 +3543,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":59,
+            id:59,
             "seqId":68,
             "siteId":1,
             "recordDate":(new Date("7/19/1998 GMT")).toISOString(),
@@ -3604,7 +3604,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":60,
+            id:60,
             "seqId":69,
             "siteId":1,
             "recordDate":(new Date("7/26/1998 GMT")).toISOString(),
@@ -3665,7 +3665,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":61,
+            id:61,
             "seqId":70,
             "siteId":1,
             "recordDate":(new Date("8/2/1998 GMT")).toISOString(),
@@ -3726,7 +3726,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":62,
+            id:62,
             "seqId":71,
             "siteId":1,
             "recordDate":(new Date("8/8/1998 GMT")).toISOString(),
@@ -3787,7 +3787,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":63,
+            id:63,
             "seqId":72,
             "siteId":1,
             "recordDate":(new Date("8/15/1998 GMT")).toISOString(),
@@ -3848,7 +3848,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":64,
+            id:64,
             "seqId":73,
             "siteId":1,
             "recordDate":(new Date("8/22/1998 GMT")).toISOString(),
@@ -3909,7 +3909,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":65,
+            id:65,
             "seqId":74,
             "siteId":1,
             "recordDate":(new Date("8/30/1998 GMT")).toISOString(),
@@ -3970,7 +3970,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":66,
+            id:66,
             "seqId":75,
             "siteId":1,
             "recordDate":(new Date("9/6/1998 GMT")).toISOString(),
@@ -4031,7 +4031,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":67,
+            id:67,
             "seqId":76,
             "siteId":1,
             "recordDate":(new Date("9/13/1998 GMT")).toISOString(),
@@ -4092,7 +4092,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":68,
+            id:68,
             "seqId":77,
             "siteId":1,
             "recordDate":(new Date("9/20/1998 GMT")).toISOString(),
@@ -4153,7 +4153,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":69,
+            id:69,
             "seqId":78,
             "siteId":1,
             "recordDate":(new Date("9/26/1998 GMT")).toISOString(),
@@ -4214,7 +4214,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":70,
+            id:70,
             "seqId":965,
             "siteId":1,
             "recordDate":(new Date("4/3/1999 GMT")).toISOString(),
@@ -4275,7 +4275,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":71,
+            id:71,
             "seqId":966,
             "siteId":1,
             "recordDate":(new Date("4/8/1999 GMT")).toISOString(),
@@ -4336,7 +4336,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":72,
+            id:72,
             "seqId":967,
             "siteId":1,
             "recordDate":(new Date("4/25/1999 GMT")).toISOString(),
@@ -4397,7 +4397,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":73,
+            id:73,
             "seqId":968,
             "siteId":1,
             "recordDate":(new Date("5/2/1999 GMT")).toISOString(),
@@ -4458,7 +4458,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":74,
+            id:74,
             "seqId":969,
             "siteId":1,
             "recordDate":(new Date("5/9/1999 GMT")).toISOString(),
@@ -4519,7 +4519,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":75,
+            id:75,
             "seqId":970,
             "siteId":1,
             "recordDate":(new Date("5/16/1999 GMT")).toISOString(),
@@ -4580,7 +4580,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":76,
+            id:76,
             "seqId":971,
             "siteId":1,
             "recordDate":(new Date("5/30/1999 GMT")).toISOString(),
@@ -4641,7 +4641,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":77,
+            id:77,
             "seqId":972,
             "siteId":1,
             "recordDate":(new Date("6/5/1999 GMT")).toISOString(),
@@ -4702,7 +4702,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":78,
+            id:78,
             "seqId":973,
             "siteId":1,
             "recordDate":(new Date("6/13/1999 GMT")).toISOString(),
@@ -4763,7 +4763,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":79,
+            id:79,
             "seqId":974,
             "siteId":1,
             "recordDate":(new Date("6/19/1999 GMT")).toISOString(),
@@ -4824,7 +4824,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":80,
+            id:80,
             "seqId":975,
             "siteId":1,
             "recordDate":(new Date("6/26/1999 GMT")).toISOString(),
@@ -4885,7 +4885,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":81,
+            id:81,
             "seqId":976,
             "siteId":1,
             "recordDate":(new Date("7/5/1999 GMT")).toISOString(),
@@ -4946,7 +4946,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":82,
+            id:82,
             "seqId":977,
             "siteId":1,
             "recordDate":(new Date("7/11/1999 GMT")).toISOString(),
@@ -5007,7 +5007,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":83,
+            id:83,
             "seqId":978,
             "siteId":1,
             "recordDate":(new Date("7/17/1999 GMT")).toISOString(),
@@ -5068,7 +5068,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":84,
+            id:84,
             "seqId":979,
             "siteId":1,
             "recordDate":(new Date("7/25/1999 GMT")).toISOString(),
@@ -5129,7 +5129,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":85,
+            id:85,
             "seqId":980,
             "siteId":1,
             "recordDate":(new Date("7/31/1999 GMT")).toISOString(),
@@ -5190,7 +5190,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":86,
+            id:86,
             "seqId":981,
             "siteId":1,
             "recordDate":(new Date("8/8/1999 GMT")).toISOString(),
@@ -5251,7 +5251,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":87,
+            id:87,
             "seqId":982,
             "siteId":1,
             "recordDate":(new Date("8/15/1999 GMT")).toISOString(),
@@ -5312,7 +5312,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":88,
+            id:88,
             "seqId":983,
             "siteId":1,
             "recordDate":(new Date("8/22/1999 GMT")).toISOString(),
@@ -5373,7 +5373,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":89,
+            id:89,
             "seqId":984,
             "siteId":1,
             "recordDate":(new Date("8/29/1999 GMT")).toISOString(),
@@ -5434,7 +5434,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":90,
+            id:90,
             "seqId":985,
             "siteId":1,
             "recordDate":(new Date("9/5/1999 GMT")).toISOString(),
@@ -5495,7 +5495,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":91,
+            id:91,
             "seqId":986,
             "siteId":1,
             "recordDate":(new Date("9/12/1999 GMT")).toISOString(),
@@ -5556,7 +5556,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":92,
+            id:92,
             "seqId":987,
             "siteId":1,
             "recordDate":(new Date("9/19/1999 GMT")).toISOString(),
@@ -5617,7 +5617,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":93,
+            id:93,
             "seqId":988,
             "siteId":1,
             "recordDate":(new Date("9/26/1999 GMT")).toISOString(),
@@ -5678,7 +5678,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":94,
+            id:94,
             "seqId":989,
             "siteId":1,
             "recordDate":(new Date("10/2/1999 GMT")).toISOString(),
@@ -5739,7 +5739,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":95,
+            id:95,
             "seqId":990,
             "siteId":1,
             "recordDate":(new Date("10/9/1999 GMT")).toISOString(),
@@ -5800,7 +5800,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":96,
+            id:96,
             "seqId":991,
             "siteId":1,
             "recordDate":(new Date("10/15/1999 GMT")).toISOString(),
@@ -5861,7 +5861,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":97,
+            id:97,
             "seqId":993,
             "siteId":1,
             "recordDate":(new Date("10/30/1999 GMT")).toISOString(),
@@ -5922,7 +5922,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":98,
+            id:98,
             "seqId":473,
             "siteId":2,
             "recordDate":(new Date("4/18/1996 GMT")).toISOString(),
@@ -5983,7 +5983,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":99,
+            id:99,
             "seqId":474,
             "siteId":2,
             "recordDate":(new Date("5/2/1996 GMT")).toISOString(),
@@ -6044,7 +6044,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":100,
+            id:100,
             "seqId":475,
             "siteId":2,
             "recordDate":(new Date("5/9/1996 GMT")).toISOString(),
@@ -6105,7 +6105,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":101,
+            id:101,
             "seqId":476,
             "siteId":2,
             "recordDate":(new Date("5/21/1996 GMT")).toISOString(),
@@ -6166,7 +6166,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":102,
+            id:102,
             "seqId":477,
             "siteId":2,
             "recordDate":(new Date("5/31/1996 GMT")).toISOString(),
@@ -6227,7 +6227,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":103,
+            id:103,
             "seqId":478,
             "siteId":2,
             "recordDate":(new Date("6/13/1996 GMT")).toISOString(),
@@ -6288,7 +6288,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":104,
+            id:104,
             "seqId":479,
             "siteId":2,
             "recordDate":(new Date("6/19/1996 GMT")).toISOString(),
@@ -6349,7 +6349,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":105,
+            id:105,
             "seqId":480,
             "siteId":2,
             "recordDate":(new Date("6/25/1996 GMT")).toISOString(),
@@ -6410,7 +6410,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":106,
+            id:106,
             "seqId":481,
             "siteId":2,
             "recordDate":(new Date("7/2/1996 GMT")).toISOString(),
@@ -6471,7 +6471,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":107,
+            id:107,
             "seqId":482,
             "siteId":2,
             "recordDate":(new Date("7/11/1996 GMT")).toISOString(),
@@ -6532,7 +6532,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":108,
+            id:108,
             "seqId":483,
             "siteId":2,
             "recordDate":(new Date("7/17/1996 GMT")).toISOString(),
@@ -6593,7 +6593,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":109,
+            id:109,
             "seqId":484,
             "siteId":2,
             "recordDate":(new Date("7/23/1996 GMT")).toISOString(),
@@ -6654,7 +6654,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":110,
+            id:110,
             "seqId":921,
             "siteId":2,
             "recordDate":(new Date("8/13/1996 GMT")).toISOString(),
@@ -6715,7 +6715,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":111,
+            id:111,
             "seqId":486,
             "siteId":2,
             "recordDate":(new Date("8/20/1996 GMT")).toISOString(),
@@ -6776,7 +6776,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":112,
+            id:112,
             "seqId":487,
             "siteId":2,
             "recordDate":(new Date("8/29/1996 GMT")).toISOString(),
@@ -6837,7 +6837,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":113,
+            id:113,
             "seqId":488,
             "siteId":2,
             "recordDate":(new Date("9/13/1996 GMT")).toISOString(),
@@ -6898,7 +6898,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":114,
+            id:114,
             "seqId":489,
             "siteId":2,
             "recordDate":(new Date("4/30/1997 GMT")).toISOString(),
@@ -6959,7 +6959,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":115,
+            id:115,
             "seqId":490,
             "siteId":2,
             "recordDate":(new Date("5/7/1997 GMT")).toISOString(),
@@ -7020,7 +7020,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":116,
+            id:116,
             "seqId":491,
             "siteId":2,
             "recordDate":(new Date("5/22/1997 GMT")).toISOString(),
@@ -7081,7 +7081,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":117,
+            id:117,
             "seqId":492,
             "siteId":2,
             "recordDate":(new Date("6/4/1997 GMT")).toISOString(),
@@ -7142,7 +7142,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":118,
+            id:118,
             "seqId":493,
             "siteId":2,
             "recordDate":(new Date("6/9/1997 GMT")).toISOString(),
@@ -7203,7 +7203,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":119,
+            id:119,
             "seqId":494,
             "siteId":2,
             "recordDate":(new Date("6/17/1997 GMT")).toISOString(),
@@ -7264,7 +7264,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":120,
+            id:120,
             "seqId":495,
             "siteId":2,
             "recordDate":(new Date("6/23/1997 GMT")).toISOString(),
@@ -7325,7 +7325,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":121,
+            id:121,
             "seqId":497,
             "siteId":2,
             "recordDate":(new Date("6/30/1997 GMT")).toISOString(),
@@ -7386,7 +7386,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":122,
+            id:122,
             "seqId":498,
             "siteId":2,
             "recordDate":(new Date("7/6/1997 GMT")).toISOString(),
@@ -7447,7 +7447,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":123,
+            id:123,
             "seqId":499,
             "siteId":2,
             "recordDate":(new Date("7/14/1997 GMT")).toISOString(),
@@ -7508,7 +7508,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":124,
+            id:124,
             "seqId":500,
             "siteId":2,
             "recordDate":(new Date("7/25/1997 GMT")).toISOString(),
@@ -7569,7 +7569,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":125,
+            id:125,
             "seqId":501,
             "siteId":2,
             "recordDate":(new Date("7/28/1997 GMT")).toISOString(),
@@ -7630,7 +7630,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":126,
+            id:126,
             "seqId":502,
             "siteId":2,
             "recordDate":(new Date("8/4/1997 GMT")).toISOString(),
@@ -7691,7 +7691,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":127,
+            id:127,
             "seqId":503,
             "siteId":2,
             "recordDate":(new Date("8/14/1997 GMT")).toISOString(),
@@ -7752,7 +7752,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":128,
+            id:128,
             "seqId":504,
             "siteId":2,
             "recordDate":(new Date("8/19/1997 GMT")).toISOString(),
@@ -7813,7 +7813,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":129,
+            id:129,
             "seqId":505,
             "siteId":2,
             "recordDate":(new Date("8/27/1997 GMT")).toISOString(),
@@ -7874,7 +7874,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":130,
+            id:130,
             "seqId":506,
             "siteId":2,
             "recordDate":(new Date("9/2/1997 GMT")).toISOString(),
@@ -7935,7 +7935,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":131,
+            id:131,
             "seqId":507,
             "siteId":2,
             "recordDate":(new Date("9/9/1997 GMT")).toISOString(),
@@ -7996,7 +7996,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":132,
+            id:132,
             "seqId":509,
             "siteId":2,
             "recordDate":(new Date("9/15/1997 GMT")).toISOString(),
@@ -8057,7 +8057,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":133,
+            id:133,
             "seqId":511,
             "siteId":2,
             "recordDate":(new Date("9/25/1997 GMT")).toISOString(),
@@ -8118,7 +8118,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":134,
+            id:134,
             "seqId":452,
             "siteId":2,
             "recordDate":(new Date("6/3/1998 GMT")).toISOString(),
@@ -8179,7 +8179,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":135,
+            id:135,
             "seqId":453,
             "siteId":2,
             "recordDate":(new Date("6/9/1998 GMT")).toISOString(),
@@ -8240,7 +8240,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":136,
+            id:136,
             "seqId":454,
             "siteId":2,
             "recordDate":(new Date("6/13/1998 GMT")).toISOString(),
@@ -8301,7 +8301,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":137,
+            id:137,
             "seqId":455,
             "siteId":2,
             "recordDate":(new Date("6/18/1998 GMT")).toISOString(),
@@ -8362,7 +8362,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":138,
+            id:138,
             "seqId":456,
             "siteId":2,
             "recordDate":(new Date("6/25/1998 GMT")).toISOString(),
@@ -8423,7 +8423,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":139,
+            id:139,
             "seqId":457,
             "siteId":2,
             "recordDate":(new Date("7/2/1998 GMT")).toISOString(),
@@ -8484,7 +8484,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":140,
+            id:140,
             "seqId":458,
             "siteId":2,
             "recordDate":(new Date("7/7/1998 GMT")).toISOString(),
@@ -8545,7 +8545,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":141,
+            id:141,
             "seqId":459,
             "siteId":2,
             "recordDate":(new Date("7/14/1998 GMT")).toISOString(),
@@ -8606,7 +8606,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":142,
+            id:142,
             "seqId":460,
             "siteId":2,
             "recordDate":(new Date("7/23/1998 GMT")).toISOString(),
@@ -8667,7 +8667,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":143,
+            id:143,
             "seqId":461,
             "siteId":2,
             "recordDate":(new Date("7/30/1998 GMT")).toISOString(),
@@ -8728,7 +8728,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":144,
+            id:144,
             "seqId":462,
             "siteId":2,
             "recordDate":(new Date("8/6/1998 GMT")).toISOString(),
@@ -8789,7 +8789,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":145,
+            id:145,
             "seqId":463,
             "siteId":2,
             "recordDate":(new Date("8/13/1998 GMT")).toISOString(),
@@ -8850,7 +8850,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":146,
+            id:146,
             "seqId":464,
             "siteId":2,
             "recordDate":(new Date("8/19/1998 GMT")).toISOString(),
@@ -8911,7 +8911,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":147,
+            id:147,
             "seqId":465,
             "siteId":2,
             "recordDate":(new Date("8/28/1998 GMT")).toISOString(),
@@ -8972,7 +8972,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":148,
+            id:148,
             "seqId":466,
             "siteId":2,
             "recordDate":(new Date("9/2/1998 GMT")).toISOString(),
@@ -9033,7 +9033,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":149,
+            id:149,
             "seqId":467,
             "siteId":2,
             "recordDate":(new Date("9/11/1998 GMT")).toISOString(),
@@ -9094,7 +9094,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":150,
+            id:150,
             "seqId":468,
             "siteId":2,
             "recordDate":(new Date("9/17/1998 GMT")).toISOString(),
@@ -9155,7 +9155,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":151,
+            id:151,
             "seqId":470,
             "siteId":2,
             "recordDate":(new Date("9/25/1998 GMT")).toISOString(),
@@ -9216,7 +9216,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":152,
+            id:152,
             "seqId":471,
             "siteId":2,
             "recordDate":(new Date("9/29/1998 GMT")).toISOString(),
@@ -9277,7 +9277,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":153,
+            id:153,
             "seqId":1091,
             "siteId":2,
             "recordDate":(new Date("4/14/1999 GMT")).toISOString(),
@@ -9338,7 +9338,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":154,
+            id:154,
             "seqId":1092,
             "siteId":2,
             "recordDate":(new Date("4/26/1999 GMT")).toISOString(),
@@ -9399,7 +9399,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":155,
+            id:155,
             "seqId":1093,
             "siteId":2,
             "recordDate":(new Date("5/4/1999 GMT")).toISOString(),
@@ -9460,7 +9460,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":156,
+            id:156,
             "seqId":1094,
             "siteId":2,
             "recordDate":(new Date("5/12/1999 GMT")).toISOString(),
@@ -9521,7 +9521,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":157,
+            id:157,
             "seqId":1095,
             "siteId":2,
             "recordDate":(new Date("5/17/1999 GMT")).toISOString(),
@@ -9582,7 +9582,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":158,
+            id:158,
             "seqId":1096,
             "siteId":2,
             "recordDate":(new Date("5/27/1999 GMT")).toISOString(),
@@ -9643,7 +9643,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":159,
+            id:159,
             "seqId":1097,
             "siteId":2,
             "recordDate":(new Date("6/4/1999 GMT")).toISOString(),
@@ -9704,7 +9704,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":160,
+            id:160,
             "seqId":1098,
             "siteId":2,
             "recordDate":(new Date("6/8/1999 GMT")).toISOString(),
@@ -9765,7 +9765,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":161,
+            id:161,
             "seqId":1099,
             "siteId":2,
             "recordDate":(new Date("6/15/1999 GMT")).toISOString(),
@@ -9826,7 +9826,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":162,
+            id:162,
             "seqId":1100,
             "siteId":2,
             "recordDate":(new Date("6/22/1999 GMT")).toISOString(),
@@ -9887,7 +9887,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":163,
+            id:163,
             "seqId":1101,
             "siteId":2,
             "recordDate":(new Date("7/2/1999 GMT")).toISOString(),
@@ -9948,7 +9948,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":164,
+            id:164,
             "seqId":1102,
             "siteId":2,
             "recordDate":(new Date("7/6/1999 GMT")).toISOString(),
@@ -10009,7 +10009,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":165,
+            id:165,
             "seqId":1103,
             "siteId":2,
             "recordDate":(new Date("7/12/1999 GMT")).toISOString(),
@@ -10070,7 +10070,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":166,
+            id:166,
             "seqId":1104,
             "siteId":2,
             "recordDate":(new Date("7/20/1999 GMT")).toISOString(),
@@ -10131,7 +10131,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":167,
+            id:167,
             "seqId":1136,
             "siteId":2,
             "recordDate":(new Date("7/28/1999 GMT")).toISOString(),
@@ -10192,7 +10192,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":168,
+            id:168,
             "seqId":1137,
             "siteId":2,
             "recordDate":(new Date("8/2/1999 GMT")).toISOString(),
@@ -10253,7 +10253,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":169,
+            id:169,
             "seqId":1138,
             "siteId":2,
             "recordDate":(new Date("8/13/1999 GMT")).toISOString(),
@@ -10314,7 +10314,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":170,
+            id:170,
             "seqId":1139,
             "siteId":2,
             "recordDate":(new Date("8/18/1999 GMT")).toISOString(),
@@ -10375,7 +10375,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":171,
+            id:171,
             "seqId":1140,
             "siteId":2,
             "recordDate":(new Date("8/23/1999 GMT")).toISOString(),
@@ -10436,7 +10436,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":172,
+            id:172,
             "seqId":1141,
             "siteId":2,
             "recordDate":(new Date("8/30/1999 GMT")).toISOString(),
@@ -10497,7 +10497,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":173,
+            id:173,
             "seqId":1142,
             "siteId":2,
             "recordDate":(new Date("9/8/1999 GMT")).toISOString(),
@@ -10558,7 +10558,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":174,
+            id:174,
             "seqId":1143,
             "siteId":2,
             "recordDate":(new Date("9/15/1999 GMT")).toISOString(),
@@ -10619,7 +10619,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":175,
+            id:175,
             "seqId":512,
             "siteId":3,
             "recordDate":(new Date("5/22/1996 GMT")).toISOString(),
@@ -10680,7 +10680,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":176,
+            id:176,
             "seqId":513,
             "siteId":3,
             "recordDate":(new Date("5/31/1996 GMT")).toISOString(),
@@ -10741,7 +10741,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":177,
+            id:177,
             "seqId":514,
             "siteId":3,
             "recordDate":(new Date("6/5/1996 GMT")).toISOString(),
@@ -10802,7 +10802,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":178,
+            id:178,
             "seqId":515,
             "siteId":3,
             "recordDate":(new Date("6/18/1996 GMT")).toISOString(),
@@ -10863,7 +10863,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":179,
+            id:179,
             "seqId":516,
             "siteId":3,
             "recordDate":(new Date("6/25/1996 GMT")).toISOString(),
@@ -10924,7 +10924,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":180,
+            id:180,
             "seqId":517,
             "siteId":3,
             "recordDate":(new Date("7/9/1996 GMT")).toISOString(),
@@ -10985,7 +10985,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":181,
+            id:181,
             "seqId":518,
             "siteId":3,
             "recordDate":(new Date("7/17/1996 GMT")).toISOString(),
@@ -11046,7 +11046,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":182,
+            id:182,
             "seqId":519,
             "siteId":3,
             "recordDate":(new Date("7/23/1996 GMT")).toISOString(),
@@ -11107,7 +11107,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":183,
+            id:183,
             "seqId":520,
             "siteId":3,
             "recordDate":(new Date("8/13/1996 GMT")).toISOString(),
@@ -11168,7 +11168,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":184,
+            id:184,
             "seqId":521,
             "siteId":3,
             "recordDate":(new Date("8/20/1996 GMT")).toISOString(),
@@ -11229,7 +11229,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":185,
+            id:185,
             "seqId":522,
             "siteId":3,
             "recordDate":(new Date("8/27/1996 GMT")).toISOString(),
@@ -11290,7 +11290,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":186,
+            id:186,
             "seqId":523,
             "siteId":3,
             "recordDate":(new Date("9/3/1996 GMT")).toISOString(),
@@ -11351,7 +11351,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":187,
+            id:187,
             "seqId":524,
             "siteId":3,
             "recordDate":(new Date("9/18/1996 GMT")).toISOString(),
@@ -11412,7 +11412,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":188,
+            id:188,
             "seqId":526,
             "siteId":3,
             "recordDate":(new Date("5/22/1997 GMT")).toISOString(),
@@ -11473,7 +11473,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":189,
+            id:189,
             "seqId":527,
             "siteId":3,
             "recordDate":(new Date("5/27/1997 GMT")).toISOString(),
@@ -11534,7 +11534,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":190,
+            id:190,
             "seqId":528,
             "siteId":3,
             "recordDate":(new Date("6/4/1997 GMT")).toISOString(),
@@ -11595,7 +11595,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":191,
+            id:191,
             "seqId":529,
             "siteId":3,
             "recordDate":(new Date("6/9/1997 GMT")).toISOString(),
@@ -11656,7 +11656,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":192,
+            id:192,
             "seqId":530,
             "siteId":3,
             "recordDate":(new Date("6/17/1997 GMT")).toISOString(),
@@ -11717,7 +11717,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":193,
+            id:193,
             "seqId":531,
             "siteId":3,
             "recordDate":(new Date("6/24/1997 GMT")).toISOString(),
@@ -11778,7 +11778,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":194,
+            id:194,
             "seqId":532,
             "siteId":3,
             "recordDate":(new Date("7/2/1997 GMT")).toISOString(),
@@ -11839,7 +11839,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":195,
+            id:195,
             "seqId":533,
             "siteId":3,
             "recordDate":(new Date("7/7/1997 GMT")).toISOString(),
@@ -11900,7 +11900,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":196,
+            id:196,
             "seqId":534,
             "siteId":3,
             "recordDate":(new Date("7/14/1997 GMT")).toISOString(),
@@ -11961,7 +11961,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":197,
+            id:197,
             "seqId":535,
             "siteId":3,
             "recordDate":(new Date("7/24/1997 GMT")).toISOString(),
@@ -12022,7 +12022,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":198,
+            id:198,
             "seqId":536,
             "siteId":3,
             "recordDate":(new Date("7/30/1997 GMT")).toISOString(),
@@ -12083,7 +12083,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":199,
+            id:199,
             "seqId":537,
             "siteId":3,
             "recordDate":(new Date("8/5/1997 GMT")).toISOString(),
@@ -12144,7 +12144,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":200,
+            id:200,
             "seqId":538,
             "siteId":3,
             "recordDate":(new Date("8/14/1997 GMT")).toISOString(),
@@ -12205,7 +12205,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":201,
+            id:201,
             "seqId":539,
             "siteId":3,
             "recordDate":(new Date("8/19/1997 GMT")).toISOString(),
@@ -12266,7 +12266,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":202,
+            id:202,
             "seqId":540,
             "siteId":3,
             "recordDate":(new Date("8/27/1997 GMT")).toISOString(),
@@ -12327,7 +12327,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":203,
+            id:203,
             "seqId":541,
             "siteId":3,
             "recordDate":(new Date("9/2/1997 GMT")).toISOString(),
@@ -12388,7 +12388,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":204,
+            id:204,
             "seqId":542,
             "siteId":3,
             "recordDate":(new Date("9/9/1997 GMT")).toISOString(),
@@ -12449,7 +12449,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":205,
+            id:205,
             "seqId":543,
             "siteId":3,
             "recordDate":(new Date("9/15/1997 GMT")).toISOString(),
@@ -12510,7 +12510,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":206,
+            id:206,
             "seqId":544,
             "siteId":3,
             "recordDate":(new Date("9/26/1997 GMT")).toISOString(),
@@ -12571,7 +12571,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":207,
+            id:207,
             "seqId":716,
             "siteId":4,
             "recordDate":(new Date("4/3/1996 GMT")).toISOString(),
@@ -12632,7 +12632,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":208,
+            id:208,
             "seqId":717,
             "siteId":4,
             "recordDate":(new Date("4/18/1996 GMT")).toISOString(),
@@ -12693,7 +12693,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":209,
+            id:209,
             "seqId":718,
             "siteId":4,
             "recordDate":(new Date("5/10/1996 GMT")).toISOString(),
@@ -12754,7 +12754,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":210,
+            id:210,
             "seqId":719,
             "siteId":4,
             "recordDate":(new Date("5/26/1996 GMT")).toISOString(),
@@ -12815,7 +12815,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":211,
+            id:211,
             "seqId":721,
             "siteId":4,
             "recordDate":(new Date("5/31/1996 GMT")).toISOString(),
@@ -12876,7 +12876,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":212,
+            id:212,
             "seqId":722,
             "siteId":4,
             "recordDate":(new Date("6/14/1996 GMT")).toISOString(),
@@ -12937,7 +12937,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":213,
+            id:213,
             "seqId":723,
             "siteId":4,
             "recordDate":(new Date("6/28/1996 GMT")).toISOString(),
@@ -12998,7 +12998,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":214,
+            id:214,
             "seqId":726,
             "siteId":4,
             "recordDate":(new Date("7/11/1996 GMT")).toISOString(),
@@ -13059,7 +13059,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":215,
+            id:215,
             "seqId":727,
             "siteId":4,
             "recordDate":(new Date("7/25/1996 GMT")).toISOString(),
@@ -13120,7 +13120,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":216,
+            id:216,
             "seqId":728,
             "siteId":4,
             "recordDate":(new Date("8/3/1996 GMT")).toISOString(),
@@ -13181,7 +13181,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":217,
+            id:217,
             "seqId":724,
             "siteId":4,
             "recordDate":(new Date("8/8/1996 GMT")).toISOString(),
@@ -13242,7 +13242,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":218,
+            id:218,
             "seqId":725,
             "siteId":4,
             "recordDate":(new Date("8/14/1996 GMT")).toISOString(),
@@ -13303,7 +13303,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":219,
+            id:219,
             "seqId":729,
             "siteId":4,
             "recordDate":(new Date("8/18/1996 GMT")).toISOString(),
@@ -13364,7 +13364,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":220,
+            id:220,
             "seqId":730,
             "siteId":4,
             "recordDate":(new Date("8/26/1996 GMT")).toISOString(),
@@ -13425,7 +13425,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":221,
+            id:221,
             "seqId":731,
             "siteId":4,
             "recordDate":(new Date("9/9/1996 GMT")).toISOString(),
@@ -13486,7 +13486,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":222,
+            id:222,
             "seqId":732,
             "siteId":4,
             "recordDate":(new Date("9/12/1996 GMT")).toISOString(),
@@ -13547,7 +13547,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":223,
+            id:223,
             "seqId":733,
             "siteId":4,
             "recordDate":(new Date("9/18/1996 GMT")).toISOString(),
@@ -13608,7 +13608,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":224,
+            id:224,
             "seqId":734,
             "siteId":4,
             "recordDate":(new Date("9/25/1996 GMT")).toISOString(),
@@ -13669,7 +13669,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":225,
+            id:225,
             "seqId":735,
             "siteId":4,
             "recordDate":(new Date("9/30/1996 GMT")).toISOString(),
@@ -13730,7 +13730,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":226,
+            id:226,
             "seqId":738,
             "siteId":4,
             "recordDate":(new Date("4/2/1997 GMT")).toISOString(),
@@ -13791,7 +13791,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":227,
+            id:227,
             "seqId":739,
             "siteId":4,
             "recordDate":(new Date("5/27/1997 GMT")).toISOString(),
@@ -13852,7 +13852,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":228,
+            id:228,
             "seqId":740,
             "siteId":4,
             "recordDate":(new Date("6/5/1997 GMT")).toISOString(),
@@ -13913,7 +13913,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":229,
+            id:229,
             "seqId":741,
             "siteId":4,
             "recordDate":(new Date("6/10/1997 GMT")).toISOString(),
@@ -13974,7 +13974,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":230,
+            id:230,
             "seqId":742,
             "siteId":4,
             "recordDate":(new Date("6/17/1997 GMT")).toISOString(),
@@ -14035,7 +14035,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":231,
+            id:231,
             "seqId":743,
             "siteId":4,
             "recordDate":(new Date("6/25/1997 GMT")).toISOString(),
@@ -14096,7 +14096,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":232,
+            id:232,
             "seqId":744,
             "siteId":4,
             "recordDate":(new Date("7/2/1997 GMT")).toISOString(),
@@ -14157,7 +14157,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":233,
+            id:233,
             "seqId":745,
             "siteId":4,
             "recordDate":(new Date("7/13/1997 GMT")).toISOString(),
@@ -14218,7 +14218,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":234,
+            id:234,
             "seqId":746,
             "siteId":4,
             "recordDate":(new Date("7/18/1997 GMT")).toISOString(),
@@ -14279,7 +14279,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":235,
+            id:235,
             "seqId":747,
             "siteId":4,
             "recordDate":(new Date("7/24/1997 GMT")).toISOString(),
@@ -14340,7 +14340,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":236,
+            id:236,
             "seqId":748,
             "siteId":4,
             "recordDate":(new Date("7/29/1997 GMT")).toISOString(),
@@ -14401,7 +14401,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":237,
+            id:237,
             "seqId":749,
             "siteId":4,
             "recordDate":(new Date("8/7/1997 GMT")).toISOString(),
@@ -14462,7 +14462,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":238,
+            id:238,
             "seqId":750,
             "siteId":4,
             "recordDate":(new Date("8/16/1997 GMT")).toISOString(),
@@ -14523,7 +14523,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":239,
+            id:239,
             "seqId":751,
             "siteId":4,
             "recordDate":(new Date("8/27/1997 GMT")).toISOString(),
@@ -14584,7 +14584,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":240,
+            id:240,
             "seqId":752,
             "siteId":4,
             "recordDate":(new Date("9/1/1997 GMT")).toISOString(),
@@ -14645,7 +14645,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":241,
+            id:241,
             "seqId":753,
             "siteId":4,
             "recordDate":(new Date("9/16/1997 GMT")).toISOString(),
@@ -14706,7 +14706,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":242,
+            id:242,
             "seqId":754,
             "siteId":4,
             "recordDate":(new Date("9/23/1997 GMT")).toISOString(),
@@ -14767,7 +14767,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":243,
+            id:243,
             "seqId":420,
             "siteId":5,
             "recordDate":(new Date("5/21/1995 GMT")).toISOString(),
@@ -14828,7 +14828,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":244,
+            id:244,
             "seqId":421,
             "siteId":5,
             "recordDate":(new Date("5/26/1995 GMT")).toISOString(),
@@ -14889,7 +14889,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":245,
+            id:245,
             "seqId":422,
             "siteId":5,
             "recordDate":(new Date("5/31/1995 GMT")).toISOString(),
@@ -14950,7 +14950,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":246,
+            id:246,
             "seqId":423,
             "siteId":5,
             "recordDate":(new Date("6/4/1995 GMT")).toISOString(),
@@ -15011,7 +15011,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":247,
+            id:247,
             "seqId":424,
             "siteId":5,
             "recordDate":(new Date("6/10/1995 GMT")).toISOString(),
@@ -15072,7 +15072,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":248,
+            id:248,
             "seqId":425,
             "siteId":5,
             "recordDate":(new Date("6/11/1995 GMT")).toISOString(),
@@ -15133,7 +15133,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":249,
+            id:249,
             "seqId":426,
             "siteId":5,
             "recordDate":(new Date("6/17/1995 GMT")).toISOString(),
@@ -15194,7 +15194,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":250,
+            id:250,
             "seqId":427,
             "siteId":5,
             "recordDate":(new Date("6/18/1995 GMT")).toISOString(),
@@ -15255,7 +15255,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":251,
+            id:251,
             "seqId":428,
             "siteId":5,
             "recordDate":(new Date("6/24/1995 GMT")).toISOString(),
@@ -15316,7 +15316,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":252,
+            id:252,
             "seqId":429,
             "siteId":5,
             "recordDate":(new Date("6/25/1995 GMT")).toISOString(),
@@ -15377,7 +15377,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":253,
+            id:253,
             "seqId":430,
             "siteId":5,
             "recordDate":(new Date("7/1/1995 GMT")).toISOString(),
@@ -15438,7 +15438,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":254,
+            id:254,
             "seqId":431,
             "siteId":5,
             "recordDate":(new Date("7/2/1995 GMT")).toISOString(),
@@ -15499,7 +15499,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":255,
+            id:255,
             "seqId":432,
             "siteId":5,
             "recordDate":(new Date("7/4/1995 GMT")).toISOString(),
@@ -15560,7 +15560,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":256,
+            id:256,
             "seqId":433,
             "siteId":5,
             "recordDate":(new Date("7/9/1995 GMT")).toISOString(),
@@ -15621,7 +15621,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":257,
+            id:257,
             "seqId":434,
             "siteId":5,
             "recordDate":(new Date("7/11/1995 GMT")).toISOString(),
@@ -15682,7 +15682,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":258,
+            id:258,
             "seqId":435,
             "siteId":5,
             "recordDate":(new Date("7/15/1995 GMT")).toISOString(),
@@ -15743,7 +15743,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":259,
+            id:259,
             "seqId":436,
             "siteId":5,
             "recordDate":(new Date("7/19/1995 GMT")).toISOString(),
@@ -15804,7 +15804,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":260,
+            id:260,
             "seqId":437,
             "siteId":5,
             "recordDate":(new Date("7/29/1995 GMT")).toISOString(),
@@ -15865,7 +15865,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":261,
+            id:261,
             "seqId":438,
             "siteId":5,
             "recordDate":(new Date("7/30/1995 GMT")).toISOString(),
@@ -15926,7 +15926,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":262,
+            id:262,
             "seqId":439,
             "siteId":5,
             "recordDate":(new Date("8/6/1995 GMT")).toISOString(),
@@ -15987,7 +15987,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":263,
+            id:263,
             "seqId":440,
             "siteId":5,
             "recordDate":(new Date("8/11/1995 GMT")).toISOString(),
@@ -16048,7 +16048,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":264,
+            id:264,
             "seqId":441,
             "siteId":5,
             "recordDate":(new Date("8/12/1995 GMT")).toISOString(),
@@ -16109,7 +16109,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":265,
+            id:265,
             "seqId":442,
             "siteId":5,
             "recordDate":(new Date("8/20/1995 GMT")).toISOString(),
@@ -16170,7 +16170,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":266,
+            id:266,
             "seqId":443,
             "siteId":5,
             "recordDate":(new Date("8/26/1995 GMT")).toISOString(),
@@ -16231,7 +16231,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":267,
+            id:267,
             "seqId":444,
             "siteId":5,
             "recordDate":(new Date("9/1/1995 GMT")).toISOString(),
@@ -16292,7 +16292,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":268,
+            id:268,
             "seqId":445,
             "siteId":5,
             "recordDate":(new Date("9/4/1995 GMT")).toISOString(),
@@ -16353,7 +16353,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":269,
+            id:269,
             "seqId":446,
             "siteId":5,
             "recordDate":(new Date("9/9/1995 GMT")).toISOString(),
@@ -16414,7 +16414,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":270,
+            id:270,
             "seqId":447,
             "siteId":5,
             "recordDate":(new Date("9/16/1995 GMT")).toISOString(),
@@ -16475,7 +16475,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":271,
+            id:271,
             "seqId":448,
             "siteId":5,
             "recordDate":(new Date("9/24/1995 GMT")).toISOString(),
@@ -16536,7 +16536,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":272,
+            id:272,
             "seqId":449,
             "siteId":5,
             "recordDate":(new Date("9/29/1995 GMT")).toISOString(),
@@ -16597,7 +16597,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":273,
+            id:273,
             "seqId":546,
             "siteId":5,
             "recordDate":(new Date("4/20/1996 GMT")).toISOString(),
@@ -16658,7 +16658,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":274,
+            id:274,
             "seqId":547,
             "siteId":5,
             "recordDate":(new Date("5/4/1996 GMT")).toISOString(),
@@ -16719,7 +16719,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":275,
+            id:275,
             "seqId":548,
             "siteId":5,
             "recordDate":(new Date("5/17/1996 GMT")).toISOString(),
@@ -16780,7 +16780,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":276,
+            id:276,
             "seqId":549,
             "siteId":5,
             "recordDate":(new Date("5/25/1996 GMT")).toISOString(),
@@ -16841,7 +16841,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":277,
+            id:277,
             "seqId":550,
             "siteId":5,
             "recordDate":(new Date("6/1/1996 GMT")).toISOString(),
@@ -16902,7 +16902,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":278,
+            id:278,
             "seqId":551,
             "siteId":5,
             "recordDate":(new Date("6/8/1996 GMT")).toISOString(),
@@ -16963,7 +16963,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":279,
+            id:279,
             "seqId":552,
             "siteId":5,
             "recordDate":(new Date("6/15/1996 GMT")).toISOString(),
@@ -17024,7 +17024,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":280,
+            id:280,
             "seqId":553,
             "siteId":5,
             "recordDate":(new Date("6/23/1996 GMT")).toISOString(),
@@ -17085,7 +17085,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":281,
+            id:281,
             "seqId":554,
             "siteId":5,
             "recordDate":(new Date("6/30/1996 GMT")).toISOString(),
@@ -17146,7 +17146,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":282,
+            id:282,
             "seqId":555,
             "siteId":5,
             "recordDate":(new Date("7/6/1996 GMT")).toISOString(),
@@ -17207,7 +17207,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":283,
+            id:283,
             "seqId":556,
             "siteId":5,
             "recordDate":(new Date("7/13/1996 GMT")).toISOString(),
@@ -17268,7 +17268,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":284,
+            id:284,
             "seqId":557,
             "siteId":5,
             "recordDate":(new Date("7/27/1996 GMT")).toISOString(),
@@ -17329,7 +17329,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":285,
+            id:285,
             "seqId":558,
             "siteId":5,
             "recordDate":(new Date("8/3/1996 GMT")).toISOString(),
@@ -17390,7 +17390,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":286,
+            id:286,
             "seqId":559,
             "siteId":5,
             "recordDate":(new Date("8/10/1996 GMT")).toISOString(),
@@ -17451,7 +17451,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":287,
+            id:287,
             "seqId":560,
             "siteId":5,
             "recordDate":(new Date("8/17/1996 GMT")).toISOString(),
@@ -17512,7 +17512,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":288,
+            id:288,
             "seqId":561,
             "siteId":5,
             "recordDate":(new Date("8/25/1996 GMT")).toISOString(),
@@ -17573,7 +17573,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":289,
+            id:289,
             "seqId":562,
             "siteId":5,
             "recordDate":(new Date("8/31/1996 GMT")).toISOString(),
@@ -17634,7 +17634,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":290,
+            id:290,
             "seqId":563,
             "siteId":5,
             "recordDate":(new Date("9/8/1996 GMT")).toISOString(),
@@ -17695,7 +17695,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":291,
+            id:291,
             "seqId":564,
             "siteId":5,
             "recordDate":(new Date("9/21/1996 GMT")).toISOString(),
@@ -17756,7 +17756,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":292,
+            id:292,
             "seqId":565,
             "siteId":5,
             "recordDate":(new Date("9/29/1996 GMT")).toISOString(),
@@ -17817,7 +17817,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":293,
+            id:293,
             "seqId":634,
             "siteId":5,
             "recordDate":(new Date("5/18/1997 GMT")).toISOString(),
@@ -17878,7 +17878,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":294,
+            id:294,
             "seqId":635,
             "siteId":5,
             "recordDate":(new Date("5/24/1997 GMT")).toISOString(),
@@ -17939,7 +17939,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":295,
+            id:295,
             "seqId":636,
             "siteId":5,
             "recordDate":(new Date("6/6/1997 GMT")).toISOString(),
@@ -18000,7 +18000,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":296,
+            id:296,
             "seqId":637,
             "siteId":5,
             "recordDate":(new Date("6/14/1997 GMT")).toISOString(),
@@ -18061,7 +18061,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":297,
+            id:297,
             "seqId":638,
             "siteId":5,
             "recordDate":(new Date("6/21/1997 GMT")).toISOString(),
@@ -18122,7 +18122,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":298,
+            id:298,
             "seqId":639,
             "siteId":5,
             "recordDate":(new Date("6/29/1997 GMT")).toISOString(),
@@ -18183,7 +18183,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":299,
+            id:299,
             "seqId":640,
             "siteId":5,
             "recordDate":(new Date("7/6/1997 GMT")).toISOString(),
@@ -18244,7 +18244,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":300,
+            id:300,
             "seqId":641,
             "siteId":5,
             "recordDate":(new Date("7/12/1997 GMT")).toISOString(),
@@ -18305,7 +18305,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":301,
+            id:301,
             "seqId":642,
             "siteId":5,
             "recordDate":(new Date("8/1/1997 GMT")).toISOString(),
@@ -18366,7 +18366,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":302,
+            id:302,
             "seqId":643,
             "siteId":5,
             "recordDate":(new Date("8/9/1997 GMT")).toISOString(),
@@ -18427,7 +18427,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":303,
+            id:303,
             "seqId":644,
             "siteId":5,
             "recordDate":(new Date("8/16/1997 GMT")).toISOString(),
@@ -18488,7 +18488,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":304,
+            id:304,
             "seqId":645,
             "siteId":5,
             "recordDate":(new Date("8/30/1997 GMT")).toISOString(),
@@ -18549,7 +18549,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":305,
+            id:305,
             "seqId":646,
             "siteId":5,
             "recordDate":(new Date("9/1/1997 GMT")).toISOString(),
@@ -18610,7 +18610,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":306,
+            id:306,
             "seqId":647,
             "siteId":5,
             "recordDate":(new Date("9/7/1997 GMT")).toISOString(),
@@ -18671,7 +18671,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":307,
+            id:307,
             "seqId":648,
             "siteId":5,
             "recordDate":(new Date("9/13/1997 GMT")).toISOString(),
@@ -18732,7 +18732,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":308,
+            id:308,
             "seqId":158,
             "siteId":6,
             "recordDate":(new Date("4/12/1996 GMT")).toISOString(),
@@ -18793,7 +18793,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":309,
+            id:309,
             "seqId":159,
             "siteId":6,
             "recordDate":(new Date("4/19/1996 GMT")).toISOString(),
@@ -18854,7 +18854,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":310,
+            id:310,
             "seqId":160,
             "siteId":6,
             "recordDate":(new Date("5/10/1996 GMT")).toISOString(),
@@ -18915,7 +18915,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":311,
+            id:311,
             "seqId":161,
             "siteId":6,
             "recordDate":(new Date("5/18/1996 GMT")).toISOString(),
@@ -18976,7 +18976,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":312,
+            id:312,
             "seqId":162,
             "siteId":6,
             "recordDate":(new Date("5/25/1996 GMT")).toISOString(),
@@ -19037,7 +19037,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":313,
+            id:313,
             "seqId":163,
             "siteId":6,
             "recordDate":(new Date("6/3/1996 GMT")).toISOString(),
@@ -19098,7 +19098,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":314,
+            id:314,
             "seqId":164,
             "siteId":6,
             "recordDate":(new Date("6/10/1996 GMT")).toISOString(),
@@ -19159,7 +19159,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":315,
+            id:315,
             "seqId":165,
             "siteId":6,
             "recordDate":(new Date("6/17/1996 GMT")).toISOString(),
@@ -19220,7 +19220,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":316,
+            id:316,
             "seqId":713,
             "siteId":6,
             "recordDate":(new Date("6/23/1996 GMT")).toISOString(),
@@ -19281,7 +19281,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":317,
+            id:317,
             "seqId":166,
             "siteId":6,
             "recordDate":(new Date("7/1/1996 GMT")).toISOString(),
@@ -19342,7 +19342,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":318,
+            id:318,
             "seqId":167,
             "siteId":6,
             "recordDate":(new Date("7/7/1996 GMT")).toISOString(),
@@ -19403,7 +19403,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":319,
+            id:319,
             "seqId":168,
             "siteId":6,
             "recordDate":(new Date("7/22/1996 GMT")).toISOString(),
@@ -19464,7 +19464,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":320,
+            id:320,
             "seqId":169,
             "siteId":6,
             "recordDate":(new Date("8/7/1996 GMT")).toISOString(),
@@ -19525,7 +19525,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":321,
+            id:321,
             "seqId":170,
             "siteId":6,
             "recordDate":(new Date("8/16/1996 GMT")).toISOString(),
@@ -19586,7 +19586,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":322,
+            id:322,
             "seqId":171,
             "siteId":6,
             "recordDate":(new Date("8/22/1996 GMT")).toISOString(),
@@ -19647,7 +19647,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":323,
+            id:323,
             "seqId":172,
             "siteId":6,
             "recordDate":(new Date("9/1/1996 GMT")).toISOString(),
@@ -19708,7 +19708,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":324,
+            id:324,
             "seqId":173,
             "siteId":6,
             "recordDate":(new Date("9/8/1996 GMT")).toISOString(),
@@ -19769,7 +19769,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":325,
+            id:325,
             "seqId":142,
             "siteId":6,
             "recordDate":(new Date("5/18/1997 GMT")).toISOString(),
@@ -19830,7 +19830,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":326,
+            id:326,
             "seqId":143,
             "siteId":6,
             "recordDate":(new Date("5/27/1997 GMT")).toISOString(),
@@ -19891,7 +19891,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":327,
+            id:327,
             "seqId":144,
             "siteId":6,
             "recordDate":(new Date("6/5/1997 GMT")).toISOString(),
@@ -19952,7 +19952,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":328,
+            id:328,
             "seqId":145,
             "siteId":6,
             "recordDate":(new Date("6/10/1997 GMT")).toISOString(),
@@ -20013,7 +20013,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":329,
+            id:329,
             "seqId":146,
             "siteId":6,
             "recordDate":(new Date("6/16/1997 GMT")).toISOString(),
@@ -20074,7 +20074,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":330,
+            id:330,
             "seqId":147,
             "siteId":6,
             "recordDate":(new Date("6/20/1997 GMT")).toISOString(),
@@ -20135,7 +20135,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":331,
+            id:331,
             "seqId":148,
             "siteId":6,
             "recordDate":(new Date("7/6/1997 GMT")).toISOString(),
@@ -20196,7 +20196,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":332,
+            id:332,
             "seqId":149,
             "siteId":6,
             "recordDate":(new Date("7/12/1997 GMT")).toISOString(),
@@ -20257,7 +20257,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":333,
+            id:333,
             "seqId":150,
             "siteId":6,
             "recordDate":(new Date("7/20/1997 GMT")).toISOString(),
@@ -20318,7 +20318,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":334,
+            id:334,
             "seqId":151,
             "siteId":6,
             "recordDate":(new Date("7/27/1997 GMT")).toISOString(),
@@ -20379,7 +20379,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":335,
+            id:335,
             "seqId":152,
             "siteId":6,
             "recordDate":(new Date("8/3/1997 GMT")).toISOString(),
@@ -20440,7 +20440,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":336,
+            id:336,
             "seqId":153,
             "siteId":6,
             "recordDate":(new Date("8/18/1997 GMT")).toISOString(),
@@ -20501,7 +20501,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":337,
+            id:337,
             "seqId":154,
             "siteId":6,
             "recordDate":(new Date("8/23/1997 GMT")).toISOString(),
@@ -20562,7 +20562,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":338,
+            id:338,
             "seqId":155,
             "siteId":6,
             "recordDate":(new Date("8/31/1997 GMT")).toISOString(),
@@ -20623,7 +20623,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":339,
+            id:339,
             "seqId":156,
             "siteId":6,
             "recordDate":(new Date("9/5/1997 GMT")).toISOString(),
@@ -20684,7 +20684,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":340,
+            id:340,
             "seqId":157,
             "siteId":6,
             "recordDate":(new Date("9/22/1997 GMT")).toISOString(),
@@ -20745,7 +20745,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":341,
+            id:341,
             "seqId":863,
             "siteId":6,
             "recordDate":(new Date("4/13/1998 GMT")).toISOString(),
@@ -20806,7 +20806,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":342,
+            id:342,
             "seqId":79,
             "siteId":6,
             "recordDate":(new Date("4/23/1998 GMT")).toISOString(),
@@ -20867,7 +20867,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":343,
+            id:343,
             "seqId":80,
             "siteId":6,
             "recordDate":(new Date("5/6/1998 GMT")).toISOString(),
@@ -20928,7 +20928,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":344,
+            id:344,
             "seqId":81,
             "siteId":6,
             "recordDate":(new Date("5/14/1998 GMT")).toISOString(),
@@ -20989,7 +20989,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":345,
+            id:345,
             "seqId":82,
             "siteId":6,
             "recordDate":(new Date("5/23/1998 GMT")).toISOString(),
@@ -21050,7 +21050,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":346,
+            id:346,
             "seqId":83,
             "siteId":6,
             "recordDate":(new Date("5/29/1998 GMT")).toISOString(),
@@ -21111,7 +21111,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":347,
+            id:347,
             "seqId":84,
             "siteId":6,
             "recordDate":(new Date("6/5/1998 GMT")).toISOString(),
@@ -21172,7 +21172,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":348,
+            id:348,
             "seqId":85,
             "siteId":6,
             "recordDate":(new Date("6/18/1998 GMT")).toISOString(),
@@ -21233,7 +21233,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":349,
+            id:349,
             "seqId":86,
             "siteId":6,
             "recordDate":(new Date("6/26/1998 GMT")).toISOString(),
@@ -21294,7 +21294,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":350,
+            id:350,
             "seqId":88,
             "siteId":6,
             "recordDate":(new Date("7/3/1998 GMT")).toISOString(),
@@ -21355,7 +21355,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":351,
+            id:351,
             "seqId":87,
             "siteId":6,
             "recordDate":(new Date("7/14/1998 GMT")).toISOString(),
@@ -21416,7 +21416,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":352,
+            id:352,
             "seqId":89,
             "siteId":6,
             "recordDate":(new Date("7/27/1998 GMT")).toISOString(),
@@ -21477,7 +21477,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":353,
+            id:353,
             "seqId":90,
             "siteId":6,
             "recordDate":(new Date("8/2/1998 GMT")).toISOString(),
@@ -21538,7 +21538,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":354,
+            id:354,
             "seqId":91,
             "siteId":6,
             "recordDate":(new Date("8/17/1998 GMT")).toISOString(),
@@ -21599,7 +21599,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":355,
+            id:355,
             "seqId":92,
             "siteId":6,
             "recordDate":(new Date("8/23/1998 GMT")).toISOString(),
@@ -21660,7 +21660,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":356,
+            id:356,
             "seqId":93,
             "siteId":6,
             "recordDate":(new Date("9/1/1998 GMT")).toISOString(),
@@ -21721,7 +21721,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":357,
+            id:357,
             "seqId":94,
             "siteId":6,
             "recordDate":(new Date("9/13/1998 GMT")).toISOString(),
@@ -21782,7 +21782,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":358,
+            id:358,
             "seqId":95,
             "siteId":6,
             "recordDate":(new Date("9/19/1998 GMT")).toISOString(),
@@ -21843,7 +21843,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":359,
+            id:359,
             "seqId":96,
             "siteId":6,
             "recordDate":(new Date("9/26/1998 GMT")).toISOString(),
@@ -21904,7 +21904,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":360,
+            id:360,
             "seqId":1342,
             "siteId":6,
             "recordDate":(new Date("5/7/1999 GMT")).toISOString(),
@@ -21965,7 +21965,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":361,
+            id:361,
             "seqId":1343,
             "siteId":6,
             "recordDate":(new Date("5/15/1999 GMT")).toISOString(),
@@ -22026,7 +22026,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":362,
+            id:362,
             "seqId":1344,
             "siteId":6,
             "recordDate":(new Date("5/21/1999 GMT")).toISOString(),
@@ -22087,7 +22087,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":363,
+            id:363,
             "seqId":1345,
             "siteId":6,
             "recordDate":(new Date("6/5/1999 GMT")).toISOString(),
@@ -22148,7 +22148,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":364,
+            id:364,
             "seqId":1346,
             "siteId":6,
             "recordDate":(new Date("6/10/1999 GMT")).toISOString(),
@@ -22209,7 +22209,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":365,
+            id:365,
             "seqId":1347,
             "siteId":6,
             "recordDate":(new Date("6/23/1999 GMT")).toISOString(),
@@ -22270,7 +22270,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":366,
+            id:366,
             "seqId":1348,
             "siteId":6,
             "recordDate":(new Date("6/29/1999 GMT")).toISOString(),
@@ -22331,7 +22331,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":367,
+            id:367,
             "seqId":1349,
             "siteId":6,
             "recordDate":(new Date("7/7/1999 GMT")).toISOString(),
@@ -22392,7 +22392,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":368,
+            id:368,
             "seqId":1350,
             "siteId":6,
             "recordDate":(new Date("7/8/1999 GMT")).toISOString(),
@@ -22453,7 +22453,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":369,
+            id:369,
             "seqId":1351,
             "siteId":6,
             "recordDate":(new Date("8/3/1999 GMT")).toISOString(),
@@ -22514,7 +22514,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":370,
+            id:370,
             "seqId":1352,
             "siteId":6,
             "recordDate":(new Date("8/11/1999 GMT")).toISOString(),
@@ -22575,7 +22575,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":371,
+            id:371,
             "seqId":1353,
             "siteId":6,
             "recordDate":(new Date("8/13/1999 GMT")).toISOString(),
@@ -22636,7 +22636,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":372,
+            id:372,
             "seqId":1354,
             "siteId":6,
             "recordDate":(new Date("8/19/1999 GMT")).toISOString(),
@@ -22697,7 +22697,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":373,
+            id:373,
             "seqId":1355,
             "siteId":6,
             "recordDate":(new Date("8/27/1999 GMT")).toISOString(),
@@ -22758,7 +22758,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":374,
+            id:374,
             "seqId":1356,
             "siteId":6,
             "recordDate":(new Date("9/11/1999 GMT")).toISOString(),
@@ -22819,7 +22819,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":375,
+            id:375,
             "seqId":1357,
             "siteId":6,
             "recordDate":(new Date("9/20/1999 GMT")).toISOString(),
@@ -22880,7 +22880,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":376,
+            id:376,
             "seqId":1358,
             "siteId":6,
             "recordDate":(new Date("9/28/1999 GMT")).toISOString(),
@@ -22941,7 +22941,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":377,
+            id:377,
             "seqId":567,
             "siteId":7,
             "recordDate":(new Date("5/2/1996 GMT")).toISOString(),
@@ -23002,7 +23002,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":378,
+            id:378,
             "seqId":568,
             "siteId":7,
             "recordDate":(new Date("5/10/1996 GMT")).toISOString(),
@@ -23063,7 +23063,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":379,
+            id:379,
             "seqId":569,
             "siteId":7,
             "recordDate":(new Date("5/18/1996 GMT")).toISOString(),
@@ -23124,7 +23124,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":380,
+            id:380,
             "seqId":570,
             "siteId":7,
             "recordDate":(new Date("5/22/1996 GMT")).toISOString(),
@@ -23185,7 +23185,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":381,
+            id:381,
             "seqId":571,
             "siteId":7,
             "recordDate":(new Date("5/30/1996 GMT")).toISOString(),
@@ -23246,7 +23246,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":382,
+            id:382,
             "seqId":572,
             "siteId":7,
             "recordDate":(new Date("6/7/1996 GMT")).toISOString(),
@@ -23307,7 +23307,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":383,
+            id:383,
             "seqId":573,
             "siteId":7,
             "recordDate":(new Date("6/13/1996 GMT")).toISOString(),
@@ -23368,7 +23368,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":384,
+            id:384,
             "seqId":574,
             "siteId":7,
             "recordDate":(new Date("6/21/1996 GMT")).toISOString(),
@@ -23429,7 +23429,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":385,
+            id:385,
             "seqId":575,
             "siteId":7,
             "recordDate":(new Date("6/26/1996 GMT")).toISOString(),
@@ -23490,7 +23490,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":386,
+            id:386,
             "seqId":576,
             "siteId":7,
             "recordDate":(new Date("7/13/1996 GMT")).toISOString(),
@@ -23551,7 +23551,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":387,
+            id:387,
             "seqId":577,
             "siteId":7,
             "recordDate":(new Date("7/17/1996 GMT")).toISOString(),
@@ -23612,7 +23612,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":388,
+            id:388,
             "seqId":578,
             "siteId":7,
             "recordDate":(new Date("7/23/1996 GMT")).toISOString(),
@@ -23673,7 +23673,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":389,
+            id:389,
             "seqId":579,
             "siteId":7,
             "recordDate":(new Date("7/30/1996 GMT")).toISOString(),
@@ -23734,7 +23734,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":390,
+            id:390,
             "seqId":580,
             "siteId":7,
             "recordDate":(new Date("8/5/1996 GMT")).toISOString(),
@@ -23795,7 +23795,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":391,
+            id:391,
             "seqId":581,
             "siteId":7,
             "recordDate":(new Date("8/14/1996 GMT")).toISOString(),
@@ -23856,7 +23856,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":392,
+            id:392,
             "seqId":582,
             "siteId":7,
             "recordDate":(new Date("8/22/1996 GMT")).toISOString(),
@@ -23917,7 +23917,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":393,
+            id:393,
             "seqId":584,
             "siteId":7,
             "recordDate":(new Date("8/31/1996 GMT")).toISOString(),
@@ -23978,7 +23978,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":394,
+            id:394,
             "seqId":585,
             "siteId":7,
             "recordDate":(new Date("9/2/1996 GMT")).toISOString(),
@@ -24039,7 +24039,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":395,
+            id:395,
             "seqId":586,
             "siteId":7,
             "recordDate":(new Date("9/10/1996 GMT")).toISOString(),
@@ -24100,7 +24100,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":396,
+            id:396,
             "seqId":587,
             "siteId":7,
             "recordDate":(new Date("9/19/1996 GMT")).toISOString(),
@@ -24161,7 +24161,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":397,
+            id:397,
             "seqId":588,
             "siteId":7,
             "recordDate":(new Date("9/23/1996 GMT")).toISOString(),
@@ -24222,7 +24222,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":398,
+            id:398,
             "seqId":589,
             "siteId":7,
             "recordDate":(new Date("9/30/1996 GMT")).toISOString(),
@@ -24283,7 +24283,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":399,
+            id:399,
             "seqId":590,
             "siteId":7,
             "recordDate":(new Date("4/3/1997 GMT")).toISOString(),
@@ -24344,7 +24344,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":400,
+            id:400,
             "seqId":591,
             "siteId":7,
             "recordDate":(new Date("4/15/1997 GMT")).toISOString(),
@@ -24405,7 +24405,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":401,
+            id:401,
             "seqId":592,
             "siteId":7,
             "recordDate":(new Date("4/26/1997 GMT")).toISOString(),
@@ -24466,7 +24466,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":402,
+            id:402,
             "seqId":593,
             "siteId":7,
             "recordDate":(new Date("4/29/1997 GMT")).toISOString(),
@@ -24527,7 +24527,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":403,
+            id:403,
             "seqId":594,
             "siteId":7,
             "recordDate":(new Date("5/11/1997 GMT")).toISOString(),
@@ -24588,7 +24588,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":404,
+            id:404,
             "seqId":595,
             "siteId":7,
             "recordDate":(new Date("5/18/1997 GMT")).toISOString(),
@@ -24649,7 +24649,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":405,
+            id:405,
             "seqId":596,
             "siteId":7,
             "recordDate":(new Date("5/23/1997 GMT")).toISOString(),
@@ -24710,7 +24710,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":406,
+            id:406,
             "seqId":597,
             "siteId":7,
             "recordDate":(new Date("5/31/1997 GMT")).toISOString(),
@@ -24771,7 +24771,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":407,
+            id:407,
             "seqId":598,
             "siteId":7,
             "recordDate":(new Date("6/4/1997 GMT")).toISOString(),
@@ -24832,7 +24832,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":408,
+            id:408,
             "seqId":599,
             "siteId":7,
             "recordDate":(new Date("6/8/1997 GMT")).toISOString(),
@@ -24893,7 +24893,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":409,
+            id:409,
             "seqId":600,
             "siteId":7,
             "recordDate":(new Date("6/11/1997 GMT")).toISOString(),
@@ -24954,7 +24954,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":410,
+            id:410,
             "seqId":601,
             "siteId":7,
             "recordDate":(new Date("6/17/1997 GMT")).toISOString(),
@@ -25015,7 +25015,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":411,
+            id:411,
             "seqId":602,
             "siteId":7,
             "recordDate":(new Date("6/24/1997 GMT")).toISOString(),
@@ -25076,7 +25076,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":412,
+            id:412,
             "seqId":603,
             "siteId":7,
             "recordDate":(new Date("7/1/1997 GMT")).toISOString(),
@@ -25137,7 +25137,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":413,
+            id:413,
             "seqId":604,
             "siteId":7,
             "recordDate":(new Date("7/5/1997 GMT")).toISOString(),
@@ -25198,7 +25198,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":414,
+            id:414,
             "seqId":605,
             "siteId":7,
             "recordDate":(new Date("7/11/1997 GMT")).toISOString(),
@@ -25259,7 +25259,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":415,
+            id:415,
             "seqId":606,
             "siteId":7,
             "recordDate":(new Date("7/19/1997 GMT")).toISOString(),
@@ -25320,7 +25320,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":416,
+            id:416,
             "seqId":607,
             "siteId":7,
             "recordDate":(new Date("7/23/1997 GMT")).toISOString(),
@@ -25381,7 +25381,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":417,
+            id:417,
             "seqId":608,
             "siteId":7,
             "recordDate":(new Date("7/30/1997 GMT")).toISOString(),
@@ -25442,7 +25442,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":418,
+            id:418,
             "seqId":609,
             "siteId":7,
             "recordDate":(new Date("8/6/1997 GMT")).toISOString(),
@@ -25503,7 +25503,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":419,
+            id:419,
             "seqId":610,
             "siteId":7,
             "recordDate":(new Date("8/16/1997 GMT")).toISOString(),
@@ -25564,7 +25564,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":420,
+            id:420,
             "seqId":611,
             "siteId":7,
             "recordDate":(new Date("8/19/1997 GMT")).toISOString(),
@@ -25625,7 +25625,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":421,
+            id:421,
             "seqId":612,
             "siteId":7,
             "recordDate":(new Date("8/23/1997 GMT")).toISOString(),
@@ -25686,7 +25686,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":422,
+            id:422,
             "seqId":613,
             "siteId":7,
             "recordDate":(new Date("8/27/1997 GMT")).toISOString(),
@@ -25747,7 +25747,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":423,
+            id:423,
             "seqId":614,
             "siteId":7,
             "recordDate":(new Date("9/2/1997 GMT")).toISOString(),
@@ -25808,7 +25808,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":424,
+            id:424,
             "seqId":615,
             "siteId":7,
             "recordDate":(new Date("9/9/1997 GMT")).toISOString(),
@@ -25869,7 +25869,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":425,
+            id:425,
             "seqId":616,
             "siteId":7,
             "recordDate":(new Date("9/18/1997 GMT")).toISOString(),
@@ -25930,7 +25930,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":426,
+            id:426,
             "seqId":617,
             "siteId":7,
             "recordDate":(new Date("9/24/1997 GMT")).toISOString(),
@@ -25991,7 +25991,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":427,
+            id:427,
             "seqId":311,
             "siteId":7,
             "recordDate":(new Date("4/13/1998 GMT")).toISOString(),
@@ -26052,7 +26052,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":428,
+            id:428,
             "seqId":312,
             "siteId":7,
             "recordDate":(new Date("4/16/1998 GMT")).toISOString(),
@@ -26113,7 +26113,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":429,
+            id:429,
             "seqId":313,
             "siteId":7,
             "recordDate":(new Date("4/25/1998 GMT")).toISOString(),
@@ -26174,7 +26174,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":430,
+            id:430,
             "seqId":314,
             "siteId":7,
             "recordDate":(new Date("5/5/1998 GMT")).toISOString(),
@@ -26235,7 +26235,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":431,
+            id:431,
             "seqId":315,
             "siteId":7,
             "recordDate":(new Date("5/9/1998 GMT")).toISOString(),
@@ -26296,7 +26296,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":432,
+            id:432,
             "seqId":316,
             "siteId":7,
             "recordDate":(new Date("5/16/1998 GMT")).toISOString(),
@@ -26357,7 +26357,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":433,
+            id:433,
             "seqId":317,
             "siteId":7,
             "recordDate":(new Date("5/23/1998 GMT")).toISOString(),
@@ -26418,7 +26418,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":434,
+            id:434,
             "seqId":318,
             "siteId":7,
             "recordDate":(new Date("5/31/1998 GMT")).toISOString(),
@@ -26479,7 +26479,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":435,
+            id:435,
             "seqId":319,
             "siteId":7,
             "recordDate":(new Date("6/2/1998 GMT")).toISOString(),
@@ -26540,7 +26540,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":436,
+            id:436,
             "seqId":894,
             "siteId":7,
             "recordDate":(new Date("6/8/1998 GMT")).toISOString(),
@@ -26601,7 +26601,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":437,
+            id:437,
             "seqId":322,
             "siteId":7,
             "recordDate":(new Date("6/13/1998 GMT")).toISOString(),
@@ -26662,7 +26662,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":438,
+            id:438,
             "seqId":323,
             "siteId":7,
             "recordDate":(new Date("6/17/1998 GMT")).toISOString(),
@@ -26723,7 +26723,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":439,
+            id:439,
             "seqId":324,
             "siteId":7,
             "recordDate":(new Date("7/1/1998 GMT")).toISOString(),
@@ -26784,7 +26784,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":440,
+            id:440,
             "seqId":325,
             "siteId":7,
             "recordDate":(new Date("7/11/1998 GMT")).toISOString(),
@@ -26845,7 +26845,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":441,
+            id:441,
             "seqId":326,
             "siteId":7,
             "recordDate":(new Date("7/20/1998 GMT")).toISOString(),
@@ -26906,7 +26906,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":442,
+            id:442,
             "seqId":327,
             "siteId":7,
             "recordDate":(new Date("7/26/1998 GMT")).toISOString(),
@@ -26967,7 +26967,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":443,
+            id:443,
             "seqId":328,
             "siteId":7,
             "recordDate":(new Date("8/2/1998 GMT")).toISOString(),
@@ -27028,7 +27028,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":444,
+            id:444,
             "seqId":329,
             "siteId":7,
             "recordDate":(new Date("8/8/1998 GMT")).toISOString(),
@@ -27089,7 +27089,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":445,
+            id:445,
             "seqId":330,
             "siteId":7,
             "recordDate":(new Date("8/13/1998 GMT")).toISOString(),
@@ -27150,7 +27150,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":446,
+            id:446,
             "seqId":331,
             "siteId":7,
             "recordDate":(new Date("8/21/1998 GMT")).toISOString(),
@@ -27211,7 +27211,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":447,
+            id:447,
             "seqId":365,
             "siteId":7,
             "recordDate":(new Date("8/22/1998 GMT")).toISOString(),
@@ -27272,7 +27272,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":448,
+            id:448,
             "seqId":366,
             "siteId":7,
             "recordDate":(new Date("9/4/1998 GMT")).toISOString(),
@@ -27333,7 +27333,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":449,
+            id:449,
             "seqId":367,
             "siteId":7,
             "recordDate":(new Date("9/11/1998 GMT")).toISOString(),
@@ -27394,7 +27394,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":450,
+            id:450,
             "seqId":368,
             "siteId":7,
             "recordDate":(new Date("9/19/1998 GMT")).toISOString(),
@@ -27455,7 +27455,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":451,
+            id:451,
             "seqId":369,
             "siteId":7,
             "recordDate":(new Date("9/27/1998 GMT")).toISOString(),
@@ -27516,7 +27516,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":452,
+            id:452,
             "seqId":370,
             "siteId":7,
             "recordDate":(new Date("9/29/1998 GMT")).toISOString(),
@@ -27577,7 +27577,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":453,
+            id:453,
             "seqId":1437,
             "siteId":7,
             "recordDate":(new Date("4/3/1999 GMT")).toISOString(),
@@ -27638,7 +27638,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":454,
+            id:454,
             "seqId":1438,
             "siteId":7,
             "recordDate":(new Date("4/14/1999 GMT")).toISOString(),
@@ -27699,7 +27699,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":455,
+            id:455,
             "seqId":1439,
             "siteId":7,
             "recordDate":(new Date("4/26/1999 GMT")).toISOString(),
@@ -27760,7 +27760,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":456,
+            id:456,
             "seqId":1440,
             "siteId":7,
             "recordDate":(new Date("5/1/1999 GMT")).toISOString(),
@@ -27821,7 +27821,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":457,
+            id:457,
             "seqId":1441,
             "siteId":7,
             "recordDate":(new Date("5/2/1999 GMT")).toISOString(),
@@ -27882,7 +27882,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":458,
+            id:458,
             "seqId":1442,
             "siteId":7,
             "recordDate":(new Date("5/9/1999 GMT")).toISOString(),
@@ -27943,7 +27943,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":459,
+            id:459,
             "seqId":1443,
             "siteId":7,
             "recordDate":(new Date("5/15/1999 GMT")).toISOString(),
@@ -28004,7 +28004,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":460,
+            id:460,
             "seqId":1444,
             "siteId":7,
             "recordDate":(new Date("5/27/1999 GMT")).toISOString(),
@@ -28065,7 +28065,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":461,
+            id:461,
             "seqId":1445,
             "siteId":7,
             "recordDate":(new Date("5/29/1999 GMT")).toISOString(),
@@ -28126,7 +28126,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":462,
+            id:462,
             "seqId":1446,
             "siteId":7,
             "recordDate":(new Date("6/6/1999 GMT")).toISOString(),
@@ -28187,7 +28187,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":463,
+            id:463,
             "seqId":1447,
             "siteId":7,
             "recordDate":(new Date("6/11/1999 GMT")).toISOString(),
@@ -28248,7 +28248,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":464,
+            id:464,
             "seqId":1448,
             "siteId":7,
             "recordDate":(new Date("6/20/1999 GMT")).toISOString(),
@@ -28309,7 +28309,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":465,
+            id:465,
             "seqId":1449,
             "siteId":7,
             "recordDate":(new Date("6/26/1999 GMT")).toISOString(),
@@ -28370,7 +28370,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":466,
+            id:466,
             "seqId":1450,
             "siteId":7,
             "recordDate":(new Date("7/2/1999 GMT")).toISOString(),
@@ -28431,7 +28431,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":467,
+            id:467,
             "seqId":1451,
             "siteId":7,
             "recordDate":(new Date("7/9/1999 GMT")).toISOString(),
@@ -28492,7 +28492,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":468,
+            id:468,
             "seqId":1452,
             "siteId":7,
             "recordDate":(new Date("7/17/1999 GMT")).toISOString(),
@@ -28553,7 +28553,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":469,
+            id:469,
             "seqId":1453,
             "siteId":7,
             "recordDate":(new Date("7/24/1999 GMT")).toISOString(),
@@ -28614,7 +28614,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":470,
+            id:470,
             "seqId":1454,
             "siteId":7,
             "recordDate":(new Date("7/29/1999 GMT")).toISOString(),
@@ -28675,7 +28675,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":471,
+            id:471,
             "seqId":1455,
             "siteId":7,
             "recordDate":(new Date("8/7/1999 GMT")).toISOString(),
@@ -28736,7 +28736,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":472,
+            id:472,
             "seqId":1456,
             "siteId":7,
             "recordDate":(new Date("8/17/1999 GMT")).toISOString(),
@@ -28797,7 +28797,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":473,
+            id:473,
             "seqId":1457,
             "siteId":7,
             "recordDate":(new Date("8/23/1999 GMT")).toISOString(),
@@ -28858,7 +28858,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":474,
+            id:474,
             "seqId":1458,
             "siteId":7,
             "recordDate":(new Date("8/29/1999 GMT")).toISOString(),
@@ -28919,7 +28919,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":475,
+            id:475,
             "seqId":1555,
             "siteId":7,
             "recordDate":(new Date("9/2/1999 GMT")).toISOString(),
@@ -28980,7 +28980,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":476,
+            id:476,
             "seqId":1459,
             "siteId":7,
             "recordDate":(new Date("9/9/1999 GMT")).toISOString(),
@@ -29041,7 +29041,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":477,
+            id:477,
             "seqId":1460,
             "siteId":7,
             "recordDate":(new Date("9/16/1999 GMT")).toISOString(),
@@ -29102,7 +29102,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":478,
+            id:478,
             "seqId":1461,
             "siteId":7,
             "recordDate":(new Date("9/18/1999 GMT")).toISOString(),
@@ -29163,7 +29163,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":479,
+            id:479,
             "seqId":1463,
             "siteId":7,
             "recordDate":(new Date("10/1/1999 GMT")).toISOString(),
@@ -29224,7 +29224,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":480,
+            id:480,
             "seqId":1464,
             "siteId":7,
             "recordDate":(new Date("10/11/1999 GMT")).toISOString(),
@@ -29285,7 +29285,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":481,
+            id:481,
             "seqId":1465,
             "siteId":7,
             "recordDate":(new Date("10/15/1999 GMT")).toISOString(),
@@ -29346,7 +29346,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":482,
+            id:482,
             "seqId":1466,
             "siteId":7,
             "recordDate":(new Date("10/26/1999 GMT")).toISOString(),
@@ -29407,7 +29407,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":483,
+            id:483,
             "seqId":1573,
             "siteId":8,
             "recordDate":(new Date("4/21/1996 GMT")).toISOString(),
@@ -29468,7 +29468,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":484,
+            id:484,
             "seqId":1574,
             "siteId":8,
             "recordDate":(new Date("4/25/1996 GMT")).toISOString(),
@@ -29529,7 +29529,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":485,
+            id:485,
             "seqId":1575,
             "siteId":8,
             "recordDate":(new Date("4/28/1996 GMT")).toISOString(),
@@ -29590,7 +29590,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":486,
+            id:486,
             "seqId":1578,
             "siteId":8,
             "recordDate":(new Date("5/9/1996 GMT")).toISOString(),
@@ -29651,7 +29651,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":487,
+            id:487,
             "seqId":1579,
             "siteId":8,
             "recordDate":(new Date("5/17/1996 GMT")).toISOString(),
@@ -29712,7 +29712,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":488,
+            id:488,
             "seqId":1580,
             "siteId":8,
             "recordDate":(new Date("5/19/1996 GMT")).toISOString(),
@@ -29773,7 +29773,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":489,
+            id:489,
             "seqId":1581,
             "siteId":8,
             "recordDate":(new Date("5/20/1996 GMT")).toISOString(),
@@ -29834,7 +29834,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":490,
+            id:490,
             "seqId":1582,
             "siteId":8,
             "recordDate":(new Date("5/31/1996 GMT")).toISOString(),
@@ -29895,7 +29895,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":491,
+            id:491,
             "seqId":1584,
             "siteId":8,
             "recordDate":(new Date("6/8/1996 GMT")).toISOString(),
@@ -29956,7 +29956,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":492,
+            id:492,
             "seqId":1585,
             "siteId":8,
             "recordDate":(new Date("6/12/1996 GMT")).toISOString(),
@@ -30017,7 +30017,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":493,
+            id:493,
             "seqId":1586,
             "siteId":8,
             "recordDate":(new Date("6/19/1996 GMT")).toISOString(),
@@ -30078,7 +30078,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":494,
+            id:494,
             "seqId":1587,
             "siteId":8,
             "recordDate":(new Date("6/24/1996 GMT")).toISOString(),
@@ -30139,7 +30139,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":495,
+            id:495,
             "seqId":1588,
             "siteId":8,
             "recordDate":(new Date("7/11/1996 GMT")).toISOString(),
@@ -30200,7 +30200,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":496,
+            id:496,
             "seqId":1589,
             "siteId":8,
             "recordDate":(new Date("7/15/1996 GMT")).toISOString(),
@@ -30261,7 +30261,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":497,
+            id:497,
             "seqId":1590,
             "siteId":8,
             "recordDate":(new Date("7/22/1996 GMT")).toISOString(),
@@ -30322,7 +30322,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":498,
+            id:498,
             "seqId":1591,
             "siteId":8,
             "recordDate":(new Date("7/30/1996 GMT")).toISOString(),
@@ -30383,7 +30383,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":499,
+            id:499,
             "seqId":1592,
             "siteId":8,
             "recordDate":(new Date("8/6/1996 GMT")).toISOString(),
@@ -30444,7 +30444,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":500,
+            id:500,
             "seqId":1593,
             "siteId":8,
             "recordDate":(new Date("8/12/1996 GMT")).toISOString(),
@@ -30505,7 +30505,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":501,
+            id:501,
             "seqId":1594,
             "siteId":8,
             "recordDate":(new Date("8/19/1996 GMT")).toISOString(),
@@ -30566,7 +30566,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":502,
+            id:502,
             "seqId":1595,
             "siteId":8,
             "recordDate":(new Date("8/29/1996 GMT")).toISOString(),
@@ -30627,7 +30627,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":503,
+            id:503,
             "seqId":1596,
             "siteId":8,
             "recordDate":(new Date("9/3/1996 GMT")).toISOString(),
@@ -30688,7 +30688,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":504,
+            id:504,
             "seqId":1597,
             "siteId":8,
             "recordDate":(new Date("9/9/1996 GMT")).toISOString(),
@@ -30749,7 +30749,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":505,
+            id:505,
             "seqId":1598,
             "siteId":8,
             "recordDate":(new Date("9/19/1996 GMT")).toISOString(),
@@ -30810,7 +30810,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":506,
+            id:506,
             "seqId":1599,
             "siteId":8,
             "recordDate":(new Date("9/26/1996 GMT")).toISOString(),
@@ -30871,7 +30871,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":507,
+            id:507,
             "seqId":1600,
             "siteId":8,
             "recordDate":(new Date("9/30/1996 GMT")).toISOString(),
@@ -30932,7 +30932,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":508,
+            id:508,
             "seqId":1602,
             "siteId":8,
             "recordDate":(new Date("10/7/1996 GMT")).toISOString(),
@@ -30993,7 +30993,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":509,
+            id:509,
             "seqId":1601,
             "siteId":8,
             "recordDate":(new Date("10/12/1996 GMT")).toISOString(),
@@ -31054,7 +31054,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":510,
+            id:510,
             "seqId":1603,
             "siteId":8,
             "recordDate":(new Date("10/16/1996 GMT")).toISOString(),
@@ -31115,7 +31115,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":511,
+            id:511,
             "seqId":1604,
             "siteId":8,
             "recordDate":(new Date("10/25/1996 GMT")).toISOString(),
@@ -31176,7 +31176,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":512,
+            id:512,
             "seqId":1605,
             "siteId":8,
             "recordDate":(new Date("10/29/1996 GMT")).toISOString(),
@@ -31237,7 +31237,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":513,
+            id:513,
             "seqId":649,
             "siteId":8,
             "recordDate":(new Date("4/2/1997 GMT")).toISOString(),
@@ -31298,7 +31298,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":514,
+            id:514,
             "seqId":650,
             "siteId":8,
             "recordDate":(new Date("4/15/1997 GMT")).toISOString(),
@@ -31359,7 +31359,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":515,
+            id:515,
             "seqId":651,
             "siteId":8,
             "recordDate":(new Date("4/25/1997 GMT")).toISOString(),
@@ -31420,7 +31420,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":516,
+            id:516,
             "seqId":652,
             "siteId":8,
             "recordDate":(new Date("4/29/1997 GMT")).toISOString(),
@@ -31481,7 +31481,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":517,
+            id:517,
             "seqId":653,
             "siteId":8,
             "recordDate":(new Date("5/11/1997 GMT")).toISOString(),
@@ -31542,7 +31542,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":518,
+            id:518,
             "seqId":654,
             "siteId":8,
             "recordDate":(new Date("5/18/1997 GMT")).toISOString(),
@@ -31603,7 +31603,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":519,
+            id:519,
             "seqId":655,
             "siteId":8,
             "recordDate":(new Date("5/23/1997 GMT")).toISOString(),
@@ -31664,7 +31664,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":520,
+            id:520,
             "seqId":656,
             "siteId":8,
             "recordDate":(new Date("6/2/1997 GMT")).toISOString(),
@@ -31725,7 +31725,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":521,
+            id:521,
             "seqId":657,
             "siteId":8,
             "recordDate":(new Date("6/3/1997 GMT")).toISOString(),
@@ -31786,7 +31786,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":522,
+            id:522,
             "seqId":658,
             "siteId":8,
             "recordDate":(new Date("6/9/1997 GMT")).toISOString(),
@@ -31847,7 +31847,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":523,
+            id:523,
             "seqId":659,
             "siteId":8,
             "recordDate":(new Date("6/21/1997 GMT")).toISOString(),
@@ -31908,7 +31908,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":524,
+            id:524,
             "seqId":660,
             "siteId":8,
             "recordDate":(new Date("6/25/1997 GMT")).toISOString(),
@@ -31969,7 +31969,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":525,
+            id:525,
             "seqId":661,
             "siteId":8,
             "recordDate":(new Date("7/8/1997 GMT")).toISOString(),
@@ -32030,7 +32030,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":526,
+            id:526,
             "seqId":662,
             "siteId":8,
             "recordDate":(new Date("7/13/1997 GMT")).toISOString(),
@@ -32091,7 +32091,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":527,
+            id:527,
             "seqId":663,
             "siteId":8,
             "recordDate":(new Date("7/20/1997 GMT")).toISOString(),
@@ -32152,7 +32152,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":528,
+            id:528,
             "seqId":664,
             "siteId":8,
             "recordDate":(new Date("7/27/1997 GMT")).toISOString(),
@@ -32213,7 +32213,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":529,
+            id:529,
             "seqId":665,
             "siteId":8,
             "recordDate":(new Date("8/3/1997 GMT")).toISOString(),
@@ -32274,7 +32274,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":530,
+            id:530,
             "seqId":666,
             "siteId":8,
             "recordDate":(new Date("8/8/1997 GMT")).toISOString(),
@@ -32335,7 +32335,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":531,
+            id:531,
             "seqId":667,
             "siteId":8,
             "recordDate":(new Date("8/15/1997 GMT")).toISOString(),
@@ -32396,7 +32396,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":532,
+            id:532,
             "seqId":668,
             "siteId":8,
             "recordDate":(new Date("8/25/1997 GMT")).toISOString(),
@@ -32457,7 +32457,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":533,
+            id:533,
             "seqId":669,
             "siteId":8,
             "recordDate":(new Date("8/29/1997 GMT")).toISOString(),
@@ -32518,7 +32518,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":534,
+            id:534,
             "seqId":670,
             "siteId":8,
             "recordDate":(new Date("9/7/1997 GMT")).toISOString(),
@@ -32579,7 +32579,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":535,
+            id:535,
             "seqId":671,
             "siteId":8,
             "recordDate":(new Date("9/14/1997 GMT")).toISOString(),
@@ -32640,7 +32640,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":536,
+            id:536,
             "seqId":672,
             "siteId":8,
             "recordDate":(new Date("9/19/1997 GMT")).toISOString(),
@@ -32701,7 +32701,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":537,
+            id:537,
             "seqId":673,
             "siteId":8,
             "recordDate":(new Date("9/27/1997 GMT")).toISOString(),
@@ -32762,7 +32762,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":538,
+            id:538,
             "seqId":332,
             "siteId":8,
             "recordDate":(new Date("4/12/1998 GMT")).toISOString(),
@@ -32823,7 +32823,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":539,
+            id:539,
             "seqId":333,
             "siteId":8,
             "recordDate":(new Date("4/16/1998 GMT")).toISOString(),
@@ -32884,7 +32884,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":540,
+            id:540,
             "seqId":334,
             "siteId":8,
             "recordDate":(new Date("4/28/1998 GMT")).toISOString(),
@@ -32945,7 +32945,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":541,
+            id:541,
             "seqId":335,
             "siteId":8,
             "recordDate":(new Date("5/3/1998 GMT")).toISOString(),
@@ -33006,7 +33006,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":542,
+            id:542,
             "seqId":336,
             "siteId":8,
             "recordDate":(new Date("5/9/1998 GMT")).toISOString(),
@@ -33067,7 +33067,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":543,
+            id:543,
             "seqId":355,
             "siteId":8,
             "recordDate":(new Date("5/14/1998 GMT")).toISOString(),
@@ -33128,7 +33128,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":544,
+            id:544,
             "seqId":356,
             "siteId":8,
             "recordDate":(new Date("5/26/1998 GMT")).toISOString(),
@@ -33189,7 +33189,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":545,
+            id:545,
             "seqId":357,
             "siteId":8,
             "recordDate":(new Date("5/29/1998 GMT")).toISOString(),
@@ -33250,7 +33250,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":546,
+            id:546,
             "seqId":358,
             "siteId":8,
             "recordDate":(new Date("6/9/1998 GMT")).toISOString(),
@@ -33311,7 +33311,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":547,
+            id:547,
             "seqId":359,
             "siteId":8,
             "recordDate":(new Date("6/12/1998 GMT")).toISOString(),
@@ -33372,7 +33372,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":548,
+            id:548,
             "seqId":360,
             "siteId":8,
             "recordDate":(new Date("6/18/1998 GMT")).toISOString(),
@@ -33433,7 +33433,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":549,
+            id:549,
             "seqId":361,
             "siteId":8,
             "recordDate":(new Date("6/24/1998 GMT")).toISOString(),
@@ -33494,7 +33494,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":550,
+            id:550,
             "seqId":362,
             "siteId":8,
             "recordDate":(new Date("7/9/1998 GMT")).toISOString(),
@@ -33555,7 +33555,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":551,
+            id:551,
             "seqId":363,
             "siteId":8,
             "recordDate":(new Date("7/14/1998 GMT")).toISOString(),
@@ -33616,7 +33616,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":552,
+            id:552,
             "seqId":364,
             "siteId":8,
             "recordDate":(new Date("7/20/1998 GMT")).toISOString(),
@@ -33677,7 +33677,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":553,
+            id:553,
             "seqId":371,
             "siteId":8,
             "recordDate":(new Date("7/26/1998 GMT")).toISOString(),
@@ -33738,7 +33738,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":554,
+            id:554,
             "seqId":372,
             "siteId":8,
             "recordDate":(new Date("7/29/1998 GMT")).toISOString(),
@@ -33799,7 +33799,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":555,
+            id:555,
             "seqId":373,
             "siteId":8,
             "recordDate":(new Date("8/6/1998 GMT")).toISOString(),
@@ -33860,7 +33860,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":556,
+            id:556,
             "seqId":374,
             "siteId":8,
             "recordDate":(new Date("8/12/1998 GMT")).toISOString(),
@@ -33921,7 +33921,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":557,
+            id:557,
             "seqId":375,
             "siteId":8,
             "recordDate":(new Date("8/19/1998 GMT")).toISOString(),
@@ -33982,7 +33982,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":558,
+            id:558,
             "seqId":376,
             "siteId":8,
             "recordDate":(new Date("8/26/1998 GMT")).toISOString(),
@@ -34043,7 +34043,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":559,
+            id:559,
             "seqId":377,
             "siteId":8,
             "recordDate":(new Date("9/3/1998 GMT")).toISOString(),
@@ -34104,7 +34104,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":560,
+            id:560,
             "seqId":378,
             "siteId":8,
             "recordDate":(new Date("9/12/1998 GMT")).toISOString(),
@@ -34165,7 +34165,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":561,
+            id:561,
             "seqId":379,
             "siteId":8,
             "recordDate":(new Date("9/19/1998 GMT")).toISOString(),
@@ -34226,7 +34226,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":562,
+            id:562,
             "seqId":380,
             "siteId":8,
             "recordDate":(new Date("9/23/1998 GMT")).toISOString(),
@@ -34287,7 +34287,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":563,
+            id:563,
             "seqId":1131,
             "siteId":8,
             "recordDate":(new Date("4/2/1999 GMT")).toISOString(),
@@ -34348,7 +34348,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":564,
+            id:564,
             "seqId":1132,
             "siteId":8,
             "recordDate":(new Date("4/8/1999 GMT")).toISOString(),
@@ -34409,7 +34409,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":565,
+            id:565,
             "seqId":1133,
             "siteId":8,
             "recordDate":(new Date("4/26/1999 GMT")).toISOString(),
@@ -34470,7 +34470,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":566,
+            id:566,
             "seqId":1134,
             "siteId":8,
             "recordDate":(new Date("5/1/1999 GMT")).toISOString(),
@@ -34531,7 +34531,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":567,
+            id:567,
             "seqId":1135,
             "siteId":8,
             "recordDate":(new Date("5/9/1999 GMT")).toISOString(),
@@ -34592,7 +34592,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":568,
+            id:568,
             "seqId":1169,
             "siteId":8,
             "recordDate":(new Date("5/23/1999 GMT")).toISOString(),
@@ -34653,7 +34653,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":569,
+            id:569,
             "seqId":1170,
             "siteId":8,
             "recordDate":(new Date("5/29/1999 GMT")).toISOString(),
@@ -34714,7 +34714,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":570,
+            id:570,
             "seqId":1171,
             "siteId":8,
             "recordDate":(new Date("6/5/1999 GMT")).toISOString(),
@@ -34775,7 +34775,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":571,
+            id:571,
             "seqId":1172,
             "siteId":8,
             "recordDate":(new Date("6/12/1999 GMT")).toISOString(),
@@ -34836,7 +34836,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":572,
+            id:572,
             "seqId":1173,
             "siteId":8,
             "recordDate":(new Date("6/18/1999 GMT")).toISOString(),
@@ -34897,7 +34897,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":573,
+            id:573,
             "seqId":1174,
             "siteId":8,
             "recordDate":(new Date("6/24/1999 GMT")).toISOString(),
@@ -34958,7 +34958,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":574,
+            id:574,
             "seqId":1175,
             "siteId":8,
             "recordDate":(new Date("7/1/1999 GMT")).toISOString(),
@@ -35019,7 +35019,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":575,
+            id:575,
             "seqId":1176,
             "siteId":8,
             "recordDate":(new Date("7/9/1999 GMT")).toISOString(),
@@ -35080,7 +35080,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":576,
+            id:576,
             "seqId":1177,
             "siteId":8,
             "recordDate":(new Date("7/18/1999 GMT")).toISOString(),
@@ -35141,7 +35141,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":577,
+            id:577,
             "seqId":1178,
             "siteId":8,
             "recordDate":(new Date("7/25/1999 GMT")).toISOString(),
@@ -35202,7 +35202,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":578,
+            id:578,
             "seqId":1179,
             "siteId":8,
             "recordDate":(new Date("7/29/1999 GMT")).toISOString(),
@@ -35263,7 +35263,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":579,
+            id:579,
             "seqId":1180,
             "siteId":8,
             "recordDate":(new Date("8/6/1999 GMT")).toISOString(),
@@ -35324,7 +35324,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":580,
+            id:580,
             "seqId":1181,
             "siteId":8,
             "recordDate":(new Date("8/12/1999 GMT")).toISOString(),
@@ -35385,7 +35385,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":581,
+            id:581,
             "seqId":1182,
             "siteId":8,
             "recordDate":(new Date("8/22/1999 GMT")).toISOString(),
@@ -35446,7 +35446,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":582,
+            id:582,
             "seqId":1183,
             "siteId":8,
             "recordDate":(new Date("8/28/1999 GMT")).toISOString(),
@@ -35507,7 +35507,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":583,
+            id:583,
             "seqId":1184,
             "siteId":8,
             "recordDate":(new Date("9/5/1999 GMT")).toISOString(),
@@ -35568,7 +35568,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":584,
+            id:584,
             "seqId":1185,
             "siteId":8,
             "recordDate":(new Date("9/11/1999 GMT")).toISOString(),
@@ -35629,7 +35629,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":585,
+            id:585,
             "seqId":1186,
             "siteId":8,
             "recordDate":(new Date("9/19/1999 GMT")).toISOString(),
@@ -35690,7 +35690,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":586,
+            id:586,
             "seqId":1187,
             "siteId":8,
             "recordDate":(new Date("9/26/1999 GMT")).toISOString(),
@@ -35751,7 +35751,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":587,
+            id:587,
             "seqId":1188,
             "siteId":8,
             "recordDate":(new Date("10/2/1999 GMT")).toISOString(),
@@ -35812,7 +35812,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":588,
+            id:588,
             "seqId":1189,
             "siteId":8,
             "recordDate":(new Date("10/9/1999 GMT")).toISOString(),
@@ -35873,7 +35873,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":589,
+            id:589,
             "seqId":1190,
             "siteId":8,
             "recordDate":(new Date("10/15/1999 GMT")).toISOString(),
@@ -35934,7 +35934,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":590,
+            id:590,
             "seqId":1191,
             "siteId":8,
             "recordDate":(new Date("10/28/1999 GMT")).toISOString(),
@@ -35995,7 +35995,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":591,
+            id:591,
             "seqId":619,
             "siteId":9,
             "recordDate":(new Date("5/6/1997 GMT")).toISOString(),
@@ -36056,7 +36056,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":592,
+            id:592,
             "seqId":620,
             "siteId":9,
             "recordDate":(new Date("5/17/1997 GMT")).toISOString(),
@@ -36117,7 +36117,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":593,
+            id:593,
             "seqId":621,
             "siteId":9,
             "recordDate":(new Date("5/23/1997 GMT")).toISOString(),
@@ -36178,7 +36178,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":594,
+            id:594,
             "seqId":622,
             "siteId":9,
             "recordDate":(new Date("5/30/1997 GMT")).toISOString(),
@@ -36239,7 +36239,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":595,
+            id:595,
             "seqId":623,
             "siteId":9,
             "recordDate":(new Date("6/4/1997 GMT")).toISOString(),
@@ -36300,7 +36300,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":596,
+            id:596,
             "seqId":624,
             "siteId":9,
             "recordDate":(new Date("6/11/1997 GMT")).toISOString(),
@@ -36361,7 +36361,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":597,
+            id:597,
             "seqId":625,
             "siteId":9,
             "recordDate":(new Date("6/27/1997 GMT")).toISOString(),
@@ -36422,7 +36422,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":598,
+            id:598,
             "seqId":626,
             "siteId":9,
             "recordDate":(new Date("7/2/1997 GMT")).toISOString(),
@@ -36483,7 +36483,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":599,
+            id:599,
             "seqId":627,
             "siteId":9,
             "recordDate":(new Date("7/11/1997 GMT")).toISOString(),
@@ -36544,7 +36544,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":600,
+            id:600,
             "seqId":628,
             "siteId":9,
             "recordDate":(new Date("7/25/1997 GMT")).toISOString(),
@@ -36605,7 +36605,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":601,
+            id:601,
             "seqId":629,
             "siteId":9,
             "recordDate":(new Date("8/1/1997 GMT")).toISOString(),
@@ -36666,7 +36666,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":602,
+            id:602,
             "seqId":630,
             "siteId":9,
             "recordDate":(new Date("8/15/1997 GMT")).toISOString(),
@@ -36727,7 +36727,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":603,
+            id:603,
             "seqId":631,
             "siteId":9,
             "recordDate":(new Date("8/28/1997 GMT")).toISOString(),
@@ -36788,7 +36788,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":604,
+            id:604,
             "seqId":632,
             "siteId":9,
             "recordDate":(new Date("9/2/1997 GMT")).toISOString(),
@@ -36849,7 +36849,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":605,
+            id:605,
             "seqId":633,
             "siteId":9,
             "recordDate":(new Date("9/29/1997 GMT")).toISOString(),
@@ -36910,7 +36910,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":606,
+            id:606,
             "seqId":213,
             "siteId":9,
             "recordDate":(new Date("4/12/1998 GMT")).toISOString(),
@@ -36971,7 +36971,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":607,
+            id:607,
             "seqId":214,
             "siteId":9,
             "recordDate":(new Date("5/3/1998 GMT")).toISOString(),
@@ -37032,7 +37032,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":608,
+            id:608,
             "seqId":893,
             "siteId":9,
             "recordDate":(new Date("5/10/1998 GMT")).toISOString(),
@@ -37093,7 +37093,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":609,
+            id:609,
             "seqId":216,
             "siteId":9,
             "recordDate":(new Date("5/18/1998 GMT")).toISOString(),
@@ -37154,7 +37154,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":610,
+            id:610,
             "seqId":217,
             "siteId":9,
             "recordDate":(new Date("5/24/1998 GMT")).toISOString(),
@@ -37215,7 +37215,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":611,
+            id:611,
             "seqId":218,
             "siteId":9,
             "recordDate":(new Date("6/20/1998 GMT")).toISOString(),
@@ -37276,7 +37276,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":612,
+            id:612,
             "seqId":219,
             "siteId":9,
             "recordDate":(new Date("6/29/1998 GMT")).toISOString(),
@@ -37337,7 +37337,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":613,
+            id:613,
             "seqId":220,
             "siteId":9,
             "recordDate":(new Date("7/6/1998 GMT")).toISOString(),
@@ -37398,7 +37398,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":614,
+            id:614,
             "seqId":221,
             "siteId":9,
             "recordDate":(new Date("7/10/1998 GMT")).toISOString(),
@@ -37459,7 +37459,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":615,
+            id:615,
             "seqId":222,
             "siteId":9,
             "recordDate":(new Date("8/1/1998 GMT")).toISOString(),
@@ -37520,7 +37520,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":616,
+            id:616,
             "seqId":223,
             "siteId":9,
             "recordDate":(new Date("8/15/1998 GMT")).toISOString(),
@@ -37581,7 +37581,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":617,
+            id:617,
             "seqId":224,
             "siteId":9,
             "recordDate":(new Date("8/31/1998 GMT")).toISOString(),
@@ -37642,7 +37642,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":618,
+            id:618,
             "seqId":225,
             "siteId":9,
             "recordDate":(new Date("9/5/1998 GMT")).toISOString(),
@@ -37703,7 +37703,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":619,
+            id:619,
             "seqId":226,
             "siteId":9,
             "recordDate":(new Date("9/14/1998 GMT")).toISOString(),
@@ -37764,7 +37764,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":620,
+            id:620,
             "seqId":227,
             "siteId":9,
             "recordDate":(new Date("9/24/1998 GMT")).toISOString(),
@@ -37825,7 +37825,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":621,
+            id:621,
             "seqId":674,
             "siteId":10,
             "recordDate":(new Date("5/4/1997 GMT")).toISOString(),
@@ -37886,7 +37886,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":622,
+            id:622,
             "seqId":675,
             "siteId":10,
             "recordDate":(new Date("5/17/1997 GMT")).toISOString(),
@@ -37947,7 +37947,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":623,
+            id:623,
             "seqId":676,
             "siteId":10,
             "recordDate":(new Date("6/5/1997 GMT")).toISOString(),
@@ -38008,7 +38008,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":624,
+            id:624,
             "seqId":677,
             "siteId":10,
             "recordDate":(new Date("6/14/1997 GMT")).toISOString(),
@@ -38069,7 +38069,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":625,
+            id:625,
             "seqId":678,
             "siteId":10,
             "recordDate":(new Date("6/27/1997 GMT")).toISOString(),
@@ -38130,7 +38130,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":626,
+            id:626,
             "seqId":679,
             "siteId":10,
             "recordDate":(new Date("7/5/1997 GMT")).toISOString(),
@@ -38191,7 +38191,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":627,
+            id:627,
             "seqId":680,
             "siteId":10,
             "recordDate":(new Date("7/11/1997 GMT")).toISOString(),
@@ -38252,7 +38252,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":628,
+            id:628,
             "seqId":681,
             "siteId":10,
             "recordDate":(new Date("7/19/1997 GMT")).toISOString(),
@@ -38313,7 +38313,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":629,
+            id:629,
             "seqId":682,
             "siteId":10,
             "recordDate":(new Date("7/26/1997 GMT")).toISOString(),
@@ -38374,7 +38374,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":630,
+            id:630,
             "seqId":683,
             "siteId":10,
             "recordDate":(new Date("8/3/1997 GMT")).toISOString(),
@@ -38435,7 +38435,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":631,
+            id:631,
             "seqId":684,
             "siteId":10,
             "recordDate":(new Date("8/18/1997 GMT")).toISOString(),
@@ -38496,7 +38496,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":632,
+            id:632,
             "seqId":685,
             "siteId":10,
             "recordDate":(new Date("8/25/1997 GMT")).toISOString(),
@@ -38557,7 +38557,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":633,
+            id:633,
             "seqId":686,
             "siteId":10,
             "recordDate":(new Date("8/26/1997 GMT")).toISOString(),
@@ -38618,7 +38618,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":634,
+            id:634,
             "seqId":687,
             "siteId":10,
             "recordDate":(new Date("9/6/1997 GMT")).toISOString(),
@@ -38679,7 +38679,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":635,
+            id:635,
             "seqId":688,
             "siteId":10,
             "recordDate":(new Date("9/15/1997 GMT")).toISOString(),
@@ -38740,7 +38740,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":636,
+            id:636,
             "seqId":689,
             "siteId":10,
             "recordDate":(new Date("9/16/1997 GMT")).toISOString(),
@@ -38801,7 +38801,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":637,
+            id:637,
             "seqId":690,
             "siteId":10,
             "recordDate":(new Date("9/27/1997 GMT")).toISOString(),
@@ -38862,7 +38862,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":638,
+            id:638,
             "seqId":228,
             "siteId":10,
             "recordDate":(new Date("4/18/1998 GMT")).toISOString(),
@@ -38923,7 +38923,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":639,
+            id:639,
             "seqId":229,
             "siteId":10,
             "recordDate":(new Date("4/24/1998 GMT")).toISOString(),
@@ -38984,7 +38984,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":640,
+            id:640,
             "seqId":230,
             "siteId":10,
             "recordDate":(new Date("5/12/1998 GMT")).toISOString(),
@@ -39045,7 +39045,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":641,
+            id:641,
             "seqId":231,
             "siteId":10,
             "recordDate":(new Date("5/15/1998 GMT")).toISOString(),
@@ -39106,7 +39106,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":642,
+            id:642,
             "seqId":232,
             "siteId":10,
             "recordDate":(new Date("5/23/1998 GMT")).toISOString(),
@@ -39167,7 +39167,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":643,
+            id:643,
             "seqId":233,
             "siteId":10,
             "recordDate":(new Date("5/29/1998 GMT")).toISOString(),
@@ -39228,7 +39228,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":644,
+            id:644,
             "seqId":234,
             "siteId":10,
             "recordDate":(new Date("6/23/1998 GMT")).toISOString(),
@@ -39289,7 +39289,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":645,
+            id:645,
             "seqId":235,
             "siteId":10,
             "recordDate":(new Date("6/26/1998 GMT")).toISOString(),
@@ -39350,7 +39350,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":646,
+            id:646,
             "seqId":236,
             "siteId":10,
             "recordDate":(new Date("7/6/1998 GMT")).toISOString(),
@@ -39411,7 +39411,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":647,
+            id:647,
             "seqId":237,
             "siteId":10,
             "recordDate":(new Date("7/11/1998 GMT")).toISOString(),
@@ -39472,7 +39472,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":648,
+            id:648,
             "seqId":238,
             "siteId":10,
             "recordDate":(new Date("7/17/1998 GMT")).toISOString(),
@@ -39533,7 +39533,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":649,
+            id:649,
             "seqId":239,
             "siteId":10,
             "recordDate":(new Date("7/25/1998 GMT")).toISOString(),
@@ -39594,7 +39594,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":650,
+            id:650,
             "seqId":240,
             "siteId":10,
             "recordDate":(new Date("7/31/1998 GMT")).toISOString(),
@@ -39655,7 +39655,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":651,
+            id:651,
             "seqId":242,
             "siteId":10,
             "recordDate":(new Date("8/11/1998 GMT")).toISOString(),
@@ -39716,7 +39716,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":652,
+            id:652,
             "seqId":243,
             "siteId":10,
             "recordDate":(new Date("8/14/1998 GMT")).toISOString(),
@@ -39777,7 +39777,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":653,
+            id:653,
             "seqId":244,
             "siteId":10,
             "recordDate":(new Date("8/27/1998 GMT")).toISOString(),
@@ -39838,7 +39838,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":654,
+            id:654,
             "seqId":245,
             "siteId":10,
             "recordDate":(new Date("9/5/1998 GMT")).toISOString(),
@@ -39899,7 +39899,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":655,
+            id:655,
             "seqId":246,
             "siteId":10,
             "recordDate":(new Date("9/11/1998 GMT")).toISOString(),
@@ -39960,7 +39960,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":656,
+            id:656,
             "seqId":247,
             "siteId":10,
             "recordDate":(new Date("9/18/1998 GMT")).toISOString(),
@@ -40021,7 +40021,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":657,
+            id:657,
             "seqId":248,
             "siteId":10,
             "recordDate":(new Date("9/25/1998 GMT")).toISOString(),
@@ -40082,7 +40082,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":658,
+            id:658,
             "seqId":1266,
             "siteId":10,
             "recordDate":(new Date("4/21/1999 GMT")).toISOString(),
@@ -40143,7 +40143,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":659,
+            id:659,
             "seqId":1267,
             "siteId":10,
             "recordDate":(new Date("4/30/1999 GMT")).toISOString(),
@@ -40204,7 +40204,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":660,
+            id:660,
             "seqId":1268,
             "siteId":10,
             "recordDate":(new Date("5/11/1999 GMT")).toISOString(),
@@ -40265,7 +40265,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":661,
+            id:661,
             "seqId":1269,
             "siteId":10,
             "recordDate":(new Date("5/13/1999 GMT")).toISOString(),
@@ -40326,7 +40326,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":662,
+            id:662,
             "seqId":1270,
             "siteId":10,
             "recordDate":(new Date("5/26/1999 GMT")).toISOString(),
@@ -40387,7 +40387,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":663,
+            id:663,
             "seqId":1271,
             "siteId":10,
             "recordDate":(new Date("5/28/1999 GMT")).toISOString(),
@@ -40448,7 +40448,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":664,
+            id:664,
             "seqId":1272,
             "siteId":10,
             "recordDate":(new Date("6/4/1999 GMT")).toISOString(),
@@ -40509,7 +40509,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":665,
+            id:665,
             "seqId":1273,
             "siteId":10,
             "recordDate":(new Date("6/11/1999 GMT")).toISOString(),
@@ -40570,7 +40570,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":666,
+            id:666,
             "seqId":1274,
             "siteId":10,
             "recordDate":(new Date("6/18/1999 GMT")).toISOString(),
@@ -40631,7 +40631,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":667,
+            id:667,
             "seqId":1275,
             "siteId":10,
             "recordDate":(new Date("6/25/1999 GMT")).toISOString(),
@@ -40692,7 +40692,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":668,
+            id:668,
             "seqId":1276,
             "siteId":10,
             "recordDate":(new Date("7/10/1999 GMT")).toISOString(),
@@ -40753,7 +40753,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":669,
+            id:669,
             "seqId":1277,
             "siteId":10,
             "recordDate":(new Date("7/15/1999 GMT")).toISOString(),
@@ -40814,7 +40814,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":670,
+            id:670,
             "seqId":1278,
             "siteId":10,
             "recordDate":(new Date("7/24/1999 GMT")).toISOString(),
@@ -40875,7 +40875,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":671,
+            id:671,
             "seqId":1279,
             "siteId":10,
             "recordDate":(new Date("7/30/1999 GMT")).toISOString(),
@@ -40936,7 +40936,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":672,
+            id:672,
             "seqId":1280,
             "siteId":10,
             "recordDate":(new Date("8/15/1999 GMT")).toISOString(),
@@ -40997,7 +40997,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":673,
+            id:673,
             "seqId":1281,
             "siteId":10,
             "recordDate":(new Date("8/21/1999 GMT")).toISOString(),
@@ -41058,7 +41058,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":674,
+            id:674,
             "seqId":1282,
             "siteId":10,
             "recordDate":(new Date("8/28/1999 GMT")).toISOString(),
@@ -41119,7 +41119,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":675,
+            id:675,
             "seqId":1283,
             "siteId":10,
             "recordDate":(new Date("9/7/1999 GMT")).toISOString(),
@@ -41180,7 +41180,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":676,
+            id:676,
             "seqId":1284,
             "siteId":10,
             "recordDate":(new Date("9/18/1999 GMT")).toISOString(),
@@ -41241,7 +41241,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":677,
+            id:677,
             "seqId":1285,
             "siteId":10,
             "recordDate":(new Date("9/26/1999 GMT")).toISOString(),
@@ -41302,7 +41302,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":678,
+            id:678,
             "seqId":691,
             "siteId":11,
             "recordDate":(new Date("4/26/1997 GMT")).toISOString(),
@@ -41363,7 +41363,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":679,
+            id:679,
             "seqId":692,
             "siteId":11,
             "recordDate":(new Date("4/30/1997 GMT")).toISOString(),
@@ -41424,7 +41424,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":680,
+            id:680,
             "seqId":693,
             "siteId":11,
             "recordDate":(new Date("5/18/1997 GMT")).toISOString(),
@@ -41485,7 +41485,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":681,
+            id:681,
             "seqId":694,
             "siteId":11,
             "recordDate":(new Date("5/24/1997 GMT")).toISOString(),
@@ -41546,7 +41546,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":682,
+            id:682,
             "seqId":695,
             "siteId":11,
             "recordDate":(new Date("6/2/1997 GMT")).toISOString(),
@@ -41607,7 +41607,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":683,
+            id:683,
             "seqId":696,
             "siteId":11,
             "recordDate":(new Date("6/5/1997 GMT")).toISOString(),
@@ -41668,7 +41668,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":684,
+            id:684,
             "seqId":697,
             "siteId":11,
             "recordDate":(new Date("6/10/1997 GMT")).toISOString(),
@@ -41729,7 +41729,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":685,
+            id:685,
             "seqId":698,
             "siteId":11,
             "recordDate":(new Date("6/20/1997 GMT")).toISOString(),
@@ -41790,7 +41790,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":686,
+            id:686,
             "seqId":699,
             "siteId":11,
             "recordDate":(new Date("6/24/1997 GMT")).toISOString(),
@@ -41851,7 +41851,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":687,
+            id:687,
             "seqId":700,
             "siteId":11,
             "recordDate":(new Date("7/8/1997 GMT")).toISOString(),
@@ -41912,7 +41912,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":688,
+            id:688,
             "seqId":701,
             "siteId":11,
             "recordDate":(new Date("7/12/1997 GMT")).toISOString(),
@@ -41973,7 +41973,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":689,
+            id:689,
             "seqId":702,
             "siteId":11,
             "recordDate":(new Date("7/18/1997 GMT")).toISOString(),
@@ -42034,7 +42034,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":690,
+            id:690,
             "seqId":703,
             "siteId":11,
             "recordDate":(new Date("7/27/1997 GMT")).toISOString(),
@@ -42095,7 +42095,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":691,
+            id:691,
             "seqId":704,
             "siteId":11,
             "recordDate":(new Date("7/31/1997 GMT")).toISOString(),
@@ -42156,7 +42156,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":692,
+            id:692,
             "seqId":705,
             "siteId":11,
             "recordDate":(new Date("8/9/1997 GMT")).toISOString(),
@@ -42217,7 +42217,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":693,
+            id:693,
             "seqId":706,
             "siteId":11,
             "recordDate":(new Date("8/14/1997 GMT")).toISOString(),
@@ -42278,7 +42278,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":694,
+            id:694,
             "seqId":707,
             "siteId":11,
             "recordDate":(new Date("8/25/1997 GMT")).toISOString(),
@@ -42339,7 +42339,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":695,
+            id:695,
             "seqId":708,
             "siteId":11,
             "recordDate":(new Date("8/30/1997 GMT")).toISOString(),
@@ -42400,7 +42400,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":696,
+            id:696,
             "seqId":709,
             "siteId":11,
             "recordDate":(new Date("9/5/1997 GMT")).toISOString(),
@@ -42461,7 +42461,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":697,
+            id:697,
             "seqId":710,
             "siteId":11,
             "recordDate":(new Date("9/13/1997 GMT")).toISOString(),
@@ -42522,7 +42522,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":698,
+            id:698,
             "seqId":711,
             "siteId":11,
             "recordDate":(new Date("9/18/1997 GMT")).toISOString(),
@@ -42583,7 +42583,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":699,
+            id:699,
             "seqId":712,
             "siteId":11,
             "recordDate":(new Date("9/25/1997 GMT")).toISOString(),
@@ -42644,7 +42644,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":700,
+            id:700,
             "seqId":394,
             "siteId":11,
             "recordDate":(new Date("4/13/1998 GMT")).toISOString(),
@@ -42705,7 +42705,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":701,
+            id:701,
             "seqId":395,
             "siteId":11,
             "recordDate":(new Date("4/20/1998 GMT")).toISOString(),
@@ -42766,7 +42766,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":702,
+            id:702,
             "seqId":396,
             "siteId":11,
             "recordDate":(new Date("4/25/1998 GMT")).toISOString(),
@@ -42827,7 +42827,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":703,
+            id:703,
             "seqId":397,
             "siteId":11,
             "recordDate":(new Date("4/30/1998 GMT")).toISOString(),
@@ -42888,7 +42888,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":704,
+            id:704,
             "seqId":398,
             "siteId":11,
             "recordDate":(new Date("5/9/1998 GMT")).toISOString(),
@@ -42949,7 +42949,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":705,
+            id:705,
             "seqId":399,
             "siteId":11,
             "recordDate":(new Date("5/15/1998 GMT")).toISOString(),
@@ -43010,7 +43010,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":706,
+            id:706,
             "seqId":400,
             "siteId":11,
             "recordDate":(new Date("5/23/1998 GMT")).toISOString(),
@@ -43071,7 +43071,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":707,
+            id:707,
             "seqId":401,
             "siteId":11,
             "recordDate":(new Date("5/27/1998 GMT")).toISOString(),
@@ -43132,7 +43132,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":708,
+            id:708,
             "seqId":402,
             "siteId":11,
             "recordDate":(new Date("6/8/1998 GMT")).toISOString(),
@@ -43193,7 +43193,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":709,
+            id:709,
             "seqId":403,
             "siteId":11,
             "recordDate":(new Date("6/12/1998 GMT")).toISOString(),
@@ -43254,7 +43254,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":710,
+            id:710,
             "seqId":404,
             "siteId":11,
             "recordDate":(new Date("6/18/1998 GMT")).toISOString(),
@@ -43315,7 +43315,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":711,
+            id:711,
             "seqId":405,
             "siteId":11,
             "recordDate":(new Date("6/25/1998 GMT")).toISOString(),
@@ -43376,7 +43376,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":712,
+            id:712,
             "seqId":406,
             "siteId":11,
             "recordDate":(new Date("7/3/1998 GMT")).toISOString(),
@@ -43437,7 +43437,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":713,
+            id:713,
             "seqId":407,
             "siteId":11,
             "recordDate":(new Date("7/10/1998 GMT")).toISOString(),
@@ -43498,7 +43498,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":714,
+            id:714,
             "seqId":408,
             "siteId":11,
             "recordDate":(new Date("7/16/1998 GMT")).toISOString(),
@@ -43559,7 +43559,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":715,
+            id:715,
             "seqId":409,
             "siteId":11,
             "recordDate":(new Date("7/24/1998 GMT")).toISOString(),
@@ -43620,7 +43620,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":716,
+            id:716,
             "seqId":410,
             "siteId":11,
             "recordDate":(new Date("8/1/1998 GMT")).toISOString(),
@@ -43681,7 +43681,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":717,
+            id:717,
             "seqId":411,
             "siteId":11,
             "recordDate":(new Date("8/8/1998 GMT")).toISOString(),
@@ -43742,7 +43742,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":718,
+            id:718,
             "seqId":412,
             "siteId":11,
             "recordDate":(new Date("8/16/1998 GMT")).toISOString(),
@@ -43803,7 +43803,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":719,
+            id:719,
             "seqId":413,
             "siteId":11,
             "recordDate":(new Date("8/20/1998 GMT")).toISOString(),
@@ -43864,7 +43864,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":720,
+            id:720,
             "seqId":414,
             "siteId":11,
             "recordDate":(new Date("8/28/1998 GMT")).toISOString(),
@@ -43925,7 +43925,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":721,
+            id:721,
             "seqId":415,
             "siteId":11,
             "recordDate":(new Date("9/3/1998 GMT")).toISOString(),
@@ -43986,7 +43986,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":722,
+            id:722,
             "seqId":416,
             "siteId":11,
             "recordDate":(new Date("9/10/1998 GMT")).toISOString(),
@@ -44047,7 +44047,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":723,
+            id:723,
             "seqId":417,
             "siteId":11,
             "recordDate":(new Date("9/18/1998 GMT")).toISOString(),
@@ -44108,7 +44108,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":724,
+            id:724,
             "seqId":418,
             "siteId":11,
             "recordDate":(new Date("9/26/1998 GMT")).toISOString(),
@@ -44169,7 +44169,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":725,
+            id:725,
             "seqId":907,
             "siteId":11,
             "recordDate":(new Date("4/2/1999 GMT")).toISOString(),
@@ -44230,7 +44230,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":726,
+            id:726,
             "seqId":1049,
             "siteId":11,
             "recordDate":(new Date("4/3/1999 GMT")).toISOString(),
@@ -44291,7 +44291,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":727,
+            id:727,
             "seqId":908,
             "siteId":11,
             "recordDate":(new Date("4/8/1999 GMT")).toISOString(),
@@ -44352,7 +44352,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":728,
+            id:728,
             "seqId":909,
             "siteId":11,
             "recordDate":(new Date("4/22/1999 GMT")).toISOString(),
@@ -44413,7 +44413,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":729,
+            id:729,
             "seqId":910,
             "siteId":11,
             "recordDate":(new Date("4/30/1999 GMT")).toISOString(),
@@ -44474,7 +44474,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":730,
+            id:730,
             "seqId":911,
             "siteId":11,
             "recordDate":(new Date("5/6/1999 GMT")).toISOString(),
@@ -44535,7 +44535,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":731,
+            id:731,
             "seqId":912,
             "siteId":11,
             "recordDate":(new Date("5/14/1999 GMT")).toISOString(),
@@ -44596,7 +44596,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":732,
+            id:732,
             "seqId":913,
             "siteId":11,
             "recordDate":(new Date("5/23/1999 GMT")).toISOString(),
@@ -44657,7 +44657,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":733,
+            id:733,
             "seqId":914,
             "siteId":11,
             "recordDate":(new Date("5/30/1999 GMT")).toISOString(),
@@ -44718,7 +44718,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":734,
+            id:734,
             "seqId":915,
             "siteId":11,
             "recordDate":(new Date("6/5/1999 GMT")).toISOString(),
@@ -44779,7 +44779,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":735,
+            id:735,
             "seqId":916,
             "siteId":11,
             "recordDate":(new Date("6/12/1999 GMT")).toISOString(),
@@ -44840,7 +44840,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":736,
+            id:736,
             "seqId":917,
             "siteId":11,
             "recordDate":(new Date("6/20/1999 GMT")).toISOString(),
@@ -44901,7 +44901,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":737,
+            id:737,
             "seqId":918,
             "siteId":11,
             "recordDate":(new Date("6/26/1999 GMT")).toISOString(),
@@ -44962,7 +44962,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":738,
+            id:738,
             "seqId":919,
             "siteId":11,
             "recordDate":(new Date("7/1/1999 GMT")).toISOString(),
@@ -45023,7 +45023,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":739,
+            id:739,
             "seqId":920,
             "siteId":11,
             "recordDate":(new Date("7/8/1999 GMT")).toISOString(),
@@ -45084,7 +45084,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":740,
+            id:740,
             "seqId":1050,
             "siteId":11,
             "recordDate":(new Date("7/15/1999 GMT")).toISOString(),
@@ -45145,7 +45145,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":741,
+            id:741,
             "seqId":1051,
             "siteId":11,
             "recordDate":(new Date("7/25/1999 GMT")).toISOString(),
@@ -45206,7 +45206,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":742,
+            id:742,
             "seqId":1052,
             "siteId":11,
             "recordDate":(new Date("8/1/1999 GMT")).toISOString(),
@@ -45267,7 +45267,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":743,
+            id:743,
             "seqId":1053,
             "siteId":11,
             "recordDate":(new Date("8/10/1999 GMT")).toISOString(),
@@ -45328,7 +45328,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":744,
+            id:744,
             "seqId":1054,
             "siteId":11,
             "recordDate":(new Date("8/16/1999 GMT")).toISOString(),
@@ -45389,7 +45389,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":745,
+            id:745,
             "seqId":1055,
             "siteId":11,
             "recordDate":(new Date("8/22/1999 GMT")).toISOString(),
@@ -45450,7 +45450,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":746,
+            id:746,
             "seqId":1056,
             "siteId":11,
             "recordDate":(new Date("8/28/1999 GMT")).toISOString(),
@@ -45511,7 +45511,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":747,
+            id:747,
             "seqId":1057,
             "siteId":11,
             "recordDate":(new Date("9/6/1999 GMT")).toISOString(),
@@ -45572,7 +45572,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":748,
+            id:748,
             "seqId":1058,
             "siteId":11,
             "recordDate":(new Date("9/12/1999 GMT")).toISOString(),
@@ -45633,7 +45633,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":749,
+            id:749,
             "seqId":1059,
             "siteId":11,
             "recordDate":(new Date("9/19/1999 GMT")).toISOString(),
@@ -45694,7 +45694,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":750,
+            id:750,
             "seqId":1060,
             "siteId":11,
             "recordDate":(new Date("9/26/1999 GMT")).toISOString(),
@@ -45755,7 +45755,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":751,
+            id:751,
             "seqId":1061,
             "siteId":11,
             "recordDate":(new Date("10/2/1999 GMT")).toISOString(),
@@ -45816,7 +45816,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":752,
+            id:752,
             "seqId":1062,
             "siteId":11,
             "recordDate":(new Date("10/9/1999 GMT")).toISOString(),
@@ -45877,7 +45877,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":753,
+            id:753,
             "seqId":1063,
             "siteId":11,
             "recordDate":(new Date("10/16/1999 GMT")).toISOString(),
@@ -45938,7 +45938,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":754,
+            id:754,
             "seqId":1064,
             "siteId":11,
             "recordDate":(new Date("10/21/1999 GMT")).toISOString(),
@@ -45999,7 +45999,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":755,
+            id:755,
             "seqId":1065,
             "siteId":11,
             "recordDate":(new Date("10/28/1999 GMT")).toISOString(),
@@ -46060,7 +46060,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":756,
+            id:756,
             "seqId":271,
             "siteId":12,
             "recordDate":(new Date("6/17/1998 GMT")).toISOString(),
@@ -46121,7 +46121,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":757,
+            id:757,
             "seqId":272,
             "siteId":12,
             "recordDate":(new Date("6/26/1998 GMT")).toISOString(),
@@ -46182,7 +46182,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":758,
+            id:758,
             "seqId":273,
             "siteId":12,
             "recordDate":(new Date("7/1/1998 GMT")).toISOString(),
@@ -46243,7 +46243,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":759,
+            id:759,
             "seqId":274,
             "siteId":12,
             "recordDate":(new Date("7/10/1998 GMT")).toISOString(),
@@ -46304,7 +46304,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":760,
+            id:760,
             "seqId":275,
             "siteId":12,
             "recordDate":(new Date("7/17/1998 GMT")).toISOString(),
@@ -46365,7 +46365,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":761,
+            id:761,
             "seqId":276,
             "siteId":12,
             "recordDate":(new Date("7/19/1998 GMT")).toISOString(),
@@ -46426,7 +46426,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":762,
+            id:762,
             "seqId":277,
             "siteId":12,
             "recordDate":(new Date("7/31/1998 GMT")).toISOString(),
@@ -46487,7 +46487,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":763,
+            id:763,
             "seqId":278,
             "siteId":12,
             "recordDate":(new Date("8/6/1998 GMT")).toISOString(),
@@ -46548,7 +46548,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":764,
+            id:764,
             "seqId":279,
             "siteId":12,
             "recordDate":(new Date("8/14/1998 GMT")).toISOString(),
@@ -46609,7 +46609,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":765,
+            id:765,
             "seqId":280,
             "siteId":12,
             "recordDate":(new Date("8/18/1998 GMT")).toISOString(),
@@ -46670,7 +46670,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":766,
+            id:766,
             "seqId":281,
             "siteId":12,
             "recordDate":(new Date("8/24/1998 GMT")).toISOString(),
@@ -46731,7 +46731,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":767,
+            id:767,
             "seqId":282,
             "siteId":12,
             "recordDate":(new Date("9/6/1998 GMT")).toISOString(),
@@ -46792,7 +46792,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":768,
+            id:768,
             "seqId":283,
             "siteId":12,
             "recordDate":(new Date("9/10/1998 GMT")).toISOString(),
@@ -46853,7 +46853,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":769,
+            id:769,
             "seqId":284,
             "siteId":12,
             "recordDate":(new Date("9/17/1998 GMT")).toISOString(),
@@ -46914,7 +46914,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":770,
+            id:770,
             "seqId":285,
             "siteId":12,
             "recordDate":(new Date("9/22/1998 GMT")).toISOString(),
@@ -46975,7 +46975,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":771,
+            id:771,
             "seqId":286,
             "siteId":12,
             "recordDate":(new Date("9/29/1998 GMT")).toISOString(),
@@ -47036,7 +47036,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":772,
+            id:772,
             "seqId":1359,
             "siteId":12,
             "recordDate":(new Date("4/7/1999 GMT")).toISOString(),
@@ -47097,7 +47097,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":773,
+            id:773,
             "seqId":1360,
             "siteId":12,
             "recordDate":(new Date("4/20/1999 GMT")).toISOString(),
@@ -47158,7 +47158,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":774,
+            id:774,
             "seqId":1361,
             "siteId":12,
             "recordDate":(new Date("5/3/1999 GMT")).toISOString(),
@@ -47219,7 +47219,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":775,
+            id:775,
             "seqId":1362,
             "siteId":12,
             "recordDate":(new Date("5/10/1999 GMT")).toISOString(),
@@ -47280,7 +47280,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":776,
+            id:776,
             "seqId":1363,
             "siteId":12,
             "recordDate":(new Date("5/20/1999 GMT")).toISOString(),
@@ -47341,7 +47341,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":777,
+            id:777,
             "seqId":1364,
             "siteId":12,
             "recordDate":(new Date("5/27/1999 GMT")).toISOString(),
@@ -47402,7 +47402,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":778,
+            id:778,
             "seqId":1365,
             "siteId":12,
             "recordDate":(new Date("6/3/1999 GMT")).toISOString(),
@@ -47463,7 +47463,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":779,
+            id:779,
             "seqId":1366,
             "siteId":12,
             "recordDate":(new Date("6/7/1999 GMT")).toISOString(),
@@ -47524,7 +47524,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":780,
+            id:780,
             "seqId":1367,
             "siteId":12,
             "recordDate":(new Date("6/17/1999 GMT")).toISOString(),
@@ -47585,7 +47585,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":781,
+            id:781,
             "seqId":1368,
             "siteId":12,
             "recordDate":(new Date("6/21/1999 GMT")).toISOString(),
@@ -47646,7 +47646,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":782,
+            id:782,
             "seqId":1369,
             "siteId":12,
             "recordDate":(new Date("6/30/1999 GMT")).toISOString(),
@@ -47707,7 +47707,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":783,
+            id:783,
             "seqId":1370,
             "siteId":12,
             "recordDate":(new Date("7/5/1999 GMT")).toISOString(),
@@ -47768,7 +47768,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":784,
+            id:784,
             "seqId":1371,
             "siteId":12,
             "recordDate":(new Date("7/12/1999 GMT")).toISOString(),
@@ -47829,7 +47829,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":785,
+            id:785,
             "seqId":1372,
             "siteId":12,
             "recordDate":(new Date("7/19/1999 GMT")).toISOString(),
@@ -47890,7 +47890,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":786,
+            id:786,
             "seqId":1373,
             "siteId":12,
             "recordDate":(new Date("7/26/1999 GMT")).toISOString(),
@@ -47951,7 +47951,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":787,
+            id:787,
             "seqId":1374,
             "siteId":12,
             "recordDate":(new Date("8/3/1999 GMT")).toISOString(),
@@ -48012,7 +48012,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":788,
+            id:788,
             "seqId":1375,
             "siteId":12,
             "recordDate":(new Date("8/10/1999 GMT")).toISOString(),
@@ -48073,7 +48073,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":789,
+            id:789,
             "seqId":1376,
             "siteId":12,
             "recordDate":(new Date("8/17/1999 GMT")).toISOString(),
@@ -48134,7 +48134,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":790,
+            id:790,
             "seqId":1377,
             "siteId":12,
             "recordDate":(new Date("8/25/1999 GMT")).toISOString(),
@@ -48195,7 +48195,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":791,
+            id:791,
             "seqId":1378,
             "siteId":12,
             "recordDate":(new Date("8/31/1999 GMT")).toISOString(),
@@ -48256,7 +48256,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":792,
+            id:792,
             "seqId":1379,
             "siteId":12,
             "recordDate":(new Date("9/14/1999 GMT")).toISOString(),
@@ -48317,7 +48317,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":793,
+            id:793,
             "seqId":1380,
             "siteId":12,
             "recordDate":(new Date("10/12/1999 GMT")).toISOString(),
@@ -48378,7 +48378,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":794,
+            id:794,
             "seqId":258,
             "siteId":13,
             "recordDate":(new Date("7/2/1998 GMT")).toISOString(),
@@ -48439,7 +48439,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":795,
+            id:795,
             "seqId":259,
             "siteId":13,
             "recordDate":(new Date("7/8/1998 GMT")).toISOString(),
@@ -48500,7 +48500,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":796,
+            id:796,
             "seqId":260,
             "siteId":13,
             "recordDate":(new Date("7/9/1998 GMT")).toISOString(),
@@ -48561,7 +48561,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":797,
+            id:797,
             "seqId":261,
             "siteId":13,
             "recordDate":(new Date("7/18/1998 GMT")).toISOString(),
@@ -48622,7 +48622,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":798,
+            id:798,
             "seqId":262,
             "siteId":13,
             "recordDate":(new Date("7/23/1998 GMT")).toISOString(),
@@ -48683,7 +48683,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":799,
+            id:799,
             "seqId":263,
             "siteId":13,
             "recordDate":(new Date("7/29/1998 GMT")).toISOString(),
@@ -48744,7 +48744,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":800,
+            id:800,
             "seqId":264,
             "siteId":13,
             "recordDate":(new Date("8/9/1998 GMT")).toISOString(),
@@ -48805,7 +48805,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":801,
+            id:801,
             "seqId":265,
             "siteId":13,
             "recordDate":(new Date("8/16/1998 GMT")).toISOString(),
@@ -48866,7 +48866,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":802,
+            id:802,
             "seqId":266,
             "siteId":13,
             "recordDate":(new Date("8/18/1998 GMT")).toISOString(),
@@ -48927,7 +48927,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":803,
+            id:803,
             "seqId":267,
             "siteId":13,
             "recordDate":(new Date("8/25/1998 GMT")).toISOString(),
@@ -48988,7 +48988,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":804,
+            id:804,
             "seqId":268,
             "siteId":13,
             "recordDate":(new Date("9/5/1998 GMT")).toISOString(),
@@ -49049,7 +49049,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":805,
+            id:805,
             "seqId":269,
             "siteId":13,
             "recordDate":(new Date("9/18/1998 GMT")).toISOString(),
@@ -49110,7 +49110,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":806,
+            id:806,
             "seqId":270,
             "siteId":13,
             "recordDate":(new Date("9/24/1998 GMT")).toISOString(),
@@ -49171,7 +49171,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":807,
+            id:807,
             "seqId":880,
             "siteId":13,
             "recordDate":(new Date("4/27/1999 GMT")).toISOString(),
@@ -49232,7 +49232,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":808,
+            id:808,
             "seqId":881,
             "siteId":13,
             "recordDate":(new Date("5/4/1999 GMT")).toISOString(),
@@ -49293,7 +49293,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":809,
+            id:809,
             "seqId":882,
             "siteId":13,
             "recordDate":(new Date("5/10/1999 GMT")).toISOString(),
@@ -49354,7 +49354,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":810,
+            id:810,
             "seqId":883,
             "siteId":13,
             "recordDate":(new Date("5/19/1999 GMT")).toISOString(),
@@ -49415,7 +49415,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":811,
+            id:811,
             "seqId":884,
             "siteId":13,
             "recordDate":(new Date("5/25/1999 GMT")).toISOString(),
@@ -49476,7 +49476,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":812,
+            id:812,
             "seqId":885,
             "siteId":13,
             "recordDate":(new Date("5/28/1999 GMT")).toISOString(),
@@ -49537,7 +49537,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":813,
+            id:813,
             "seqId":886,
             "siteId":13,
             "recordDate":(new Date("6/9/1999 GMT")).toISOString(),
@@ -49598,7 +49598,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":814,
+            id:814,
             "seqId":887,
             "siteId":13,
             "recordDate":(new Date("6/11/1999 GMT")).toISOString(),
@@ -49659,7 +49659,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":815,
+            id:815,
             "seqId":888,
             "siteId":13,
             "recordDate":(new Date("6/21/1999 GMT")).toISOString(),
@@ -49720,7 +49720,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":816,
+            id:816,
             "seqId":889,
             "siteId":13,
             "recordDate":(new Date("6/30/1999 GMT")).toISOString(),
@@ -49781,7 +49781,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":817,
+            id:817,
             "seqId":890,
             "siteId":13,
             "recordDate":(new Date("7/7/1999 GMT")).toISOString(),
@@ -49842,7 +49842,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":818,
+            id:818,
             "seqId":891,
             "siteId":13,
             "recordDate":(new Date("7/8/1999 GMT")).toISOString(),
@@ -49903,7 +49903,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":819,
+            id:819,
             "seqId":892,
             "siteId":13,
             "recordDate":(new Date("7/19/1999 GMT")).toISOString(),
@@ -49964,7 +49964,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":820,
+            id:820,
             "seqId":896,
             "siteId":13,
             "recordDate":(new Date("7/22/1999 GMT")).toISOString(),
@@ -50025,7 +50025,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":821,
+            id:821,
             "seqId":897,
             "siteId":13,
             "recordDate":(new Date("8/1/1999 GMT")).toISOString(),
@@ -50086,7 +50086,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":822,
+            id:822,
             "seqId":898,
             "siteId":13,
             "recordDate":(new Date("8/9/1999 GMT")).toISOString(),
@@ -50147,7 +50147,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":823,
+            id:823,
             "seqId":899,
             "siteId":13,
             "recordDate":(new Date("8/21/1999 GMT")).toISOString(),
@@ -50208,7 +50208,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":824,
+            id:824,
             "seqId":900,
             "siteId":13,
             "recordDate":(new Date("8/23/1999 GMT")).toISOString(),
@@ -50269,7 +50269,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":825,
+            id:825,
             "seqId":901,
             "siteId":13,
             "recordDate":(new Date("8/26/1999 GMT")).toISOString(),
@@ -50330,7 +50330,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":826,
+            id:826,
             "seqId":902,
             "siteId":13,
             "recordDate":(new Date("9/2/1999 GMT")).toISOString(),
@@ -50391,7 +50391,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":827,
+            id:827,
             "seqId":903,
             "siteId":13,
             "recordDate":(new Date("9/10/1999 GMT")).toISOString(),
@@ -50452,7 +50452,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":828,
+            id:828,
             "seqId":904,
             "siteId":13,
             "recordDate":(new Date("9/22/1999 GMT")).toISOString(),
@@ -50513,7 +50513,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":829,
+            id:829,
             "seqId":905,
             "siteId":13,
             "recordDate":(new Date("9/27/1999 GMT")).toISOString(),
@@ -50574,7 +50574,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":830,
+            id:830,
             "seqId":906,
             "siteId":13,
             "recordDate":(new Date("9/30/1999 GMT")).toISOString(),
@@ -50635,7 +50635,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":831,
+            id:831,
             "seqId":174,
             "siteId":14,
             "recordDate":(new Date("4/11/1996 GMT")).toISOString(),
@@ -50696,7 +50696,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":832,
+            id:832,
             "seqId":175,
             "siteId":14,
             "recordDate":(new Date("4/21/1996 GMT")).toISOString(),
@@ -50757,7 +50757,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":833,
+            id:833,
             "seqId":176,
             "siteId":14,
             "recordDate":(new Date("5/10/1996 GMT")).toISOString(),
@@ -50818,7 +50818,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":834,
+            id:834,
             "seqId":177,
             "siteId":14,
             "recordDate":(new Date("5/14/1996 GMT")).toISOString(),
@@ -50879,7 +50879,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":835,
+            id:835,
             "seqId":178,
             "siteId":14,
             "recordDate":(new Date("5/19/1996 GMT")).toISOString(),
@@ -50940,7 +50940,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":836,
+            id:836,
             "seqId":179,
             "siteId":14,
             "recordDate":(new Date("5/22/1996 GMT")).toISOString(),
@@ -51001,7 +51001,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":837,
+            id:837,
             "seqId":180,
             "siteId":14,
             "recordDate":(new Date("5/29/1996 GMT")).toISOString(),
@@ -51062,7 +51062,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":838,
+            id:838,
             "seqId":181,
             "siteId":14,
             "recordDate":(new Date("6/5/1996 GMT")).toISOString(),
@@ -51123,7 +51123,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":839,
+            id:839,
             "seqId":182,
             "siteId":14,
             "recordDate":(new Date("6/16/1996 GMT")).toISOString(),
@@ -51184,7 +51184,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":840,
+            id:840,
             "seqId":183,
             "siteId":14,
             "recordDate":(new Date("7/1/1996 GMT")).toISOString(),
@@ -51245,7 +51245,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":841,
+            id:841,
             "seqId":184,
             "siteId":14,
             "recordDate":(new Date("8/4/1996 GMT")).toISOString(),
@@ -51306,7 +51306,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":842,
+            id:842,
             "seqId":185,
             "siteId":14,
             "recordDate":(new Date("8/11/1996 GMT")).toISOString(),
@@ -51367,7 +51367,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":843,
+            id:843,
             "seqId":186,
             "siteId":14,
             "recordDate":(new Date("8/18/1996 GMT")).toISOString(),
@@ -51428,7 +51428,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":844,
+            id:844,
             "seqId":187,
             "siteId":14,
             "recordDate":(new Date("8/28/1996 GMT")).toISOString(),
@@ -51489,7 +51489,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":845,
+            id:845,
             "seqId":188,
             "siteId":14,
             "recordDate":(new Date("9/30/1996 GMT")).toISOString(),
@@ -51550,7 +51550,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":846,
+            id:846,
             "seqId":189,
             "siteId":14,
             "recordDate":(new Date("5/11/1997 GMT")).toISOString(),
@@ -51611,7 +51611,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":847,
+            id:847,
             "seqId":190,
             "siteId":14,
             "recordDate":(new Date("5/18/1997 GMT")).toISOString(),
@@ -51672,7 +51672,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":848,
+            id:848,
             "seqId":191,
             "siteId":14,
             "recordDate":(new Date("5/28/1997 GMT")).toISOString(),
@@ -51733,7 +51733,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":849,
+            id:849,
             "seqId":192,
             "siteId":14,
             "recordDate":(new Date("6/10/1997 GMT")).toISOString(),
@@ -51794,7 +51794,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":850,
+            id:850,
             "seqId":193,
             "siteId":14,
             "recordDate":(new Date("6/21/1997 GMT")).toISOString(),
@@ -51855,7 +51855,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":851,
+            id:851,
             "seqId":194,
             "siteId":14,
             "recordDate":(new Date("6/25/1997 GMT")).toISOString(),
@@ -51916,7 +51916,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":852,
+            id:852,
             "seqId":195,
             "siteId":14,
             "recordDate":(new Date("7/2/1997 GMT")).toISOString(),
@@ -51977,7 +51977,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":853,
+            id:853,
             "seqId":196,
             "siteId":14,
             "recordDate":(new Date("7/12/1997 GMT")).toISOString(),
@@ -52038,7 +52038,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":854,
+            id:854,
             "seqId":197,
             "siteId":14,
             "recordDate":(new Date("7/29/1997 GMT")).toISOString(),
@@ -52099,7 +52099,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":855,
+            id:855,
             "seqId":198,
             "siteId":14,
             "recordDate":(new Date("8/9/1997 GMT")).toISOString(),
@@ -52160,7 +52160,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":856,
+            id:856,
             "seqId":199,
             "siteId":14,
             "recordDate":(new Date("9/2/1997 GMT")).toISOString(),
@@ -52221,7 +52221,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":857,
+            id:857,
             "seqId":200,
             "siteId":14,
             "recordDate":(new Date("7/5/1998 GMT")).toISOString(),
@@ -52282,7 +52282,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":858,
+            id:858,
             "seqId":201,
             "siteId":14,
             "recordDate":(new Date("7/11/1998 GMT")).toISOString(),
@@ -52343,7 +52343,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":859,
+            id:859,
             "seqId":202,
             "siteId":14,
             "recordDate":(new Date("7/16/1998 GMT")).toISOString(),
@@ -52404,7 +52404,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":860,
+            id:860,
             "seqId":203,
             "siteId":14,
             "recordDate":(new Date("7/26/1998 GMT")).toISOString(),
@@ -52465,7 +52465,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":861,
+            id:861,
             "seqId":204,
             "siteId":14,
             "recordDate":(new Date("8/2/1998 GMT")).toISOString(),
@@ -52526,7 +52526,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":862,
+            id:862,
             "seqId":205,
             "siteId":14,
             "recordDate":(new Date("8/8/1998 GMT")).toISOString(),
@@ -52587,7 +52587,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":863,
+            id:863,
             "seqId":206,
             "siteId":14,
             "recordDate":(new Date("8/16/1998 GMT")).toISOString(),
@@ -52648,7 +52648,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":864,
+            id:864,
             "seqId":207,
             "siteId":14,
             "recordDate":(new Date("8/23/1998 GMT")).toISOString(),
@@ -52709,7 +52709,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":865,
+            id:865,
             "seqId":208,
             "siteId":14,
             "recordDate":(new Date("8/30/1998 GMT")).toISOString(),
@@ -52770,7 +52770,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":866,
+            id:866,
             "seqId":209,
             "siteId":14,
             "recordDate":(new Date("9/5/1998 GMT")).toISOString(),
@@ -52831,7 +52831,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":867,
+            id:867,
             "seqId":210,
             "siteId":14,
             "recordDate":(new Date("9/12/1998 GMT")).toISOString(),
@@ -52892,7 +52892,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":868,
+            id:868,
             "seqId":211,
             "siteId":14,
             "recordDate":(new Date("9/19/1998 GMT")).toISOString(),
@@ -52953,7 +52953,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":869,
+            id:869,
             "seqId":212,
             "siteId":14,
             "recordDate":(new Date("9/26/1998 GMT")).toISOString(),
@@ -53014,7 +53014,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":870,
+            id:870,
             "seqId":1192,
             "siteId":14,
             "recordDate":(new Date("5/8/1999 GMT")).toISOString(),
@@ -53075,7 +53075,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":871,
+            id:871,
             "seqId":1193,
             "siteId":14,
             "recordDate":(new Date("5/16/1999 GMT")).toISOString(),
@@ -53136,7 +53136,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":872,
+            id:872,
             "seqId":1194,
             "siteId":14,
             "recordDate":(new Date("5/30/1999 GMT")).toISOString(),
@@ -53197,7 +53197,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":873,
+            id:873,
             "seqId":1195,
             "siteId":14,
             "recordDate":(new Date("6/5/1999 GMT")).toISOString(),
@@ -53258,7 +53258,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":874,
+            id:874,
             "seqId":1196,
             "siteId":14,
             "recordDate":(new Date("6/13/1999 GMT")).toISOString(),
@@ -53319,7 +53319,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":875,
+            id:875,
             "seqId":1197,
             "siteId":14,
             "recordDate":(new Date("6/20/1999 GMT")).toISOString(),
@@ -53380,7 +53380,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":876,
+            id:876,
             "seqId":1198,
             "siteId":14,
             "recordDate":(new Date("6/27/1999 GMT")).toISOString(),
@@ -53441,7 +53441,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":877,
+            id:877,
             "seqId":1199,
             "siteId":14,
             "recordDate":(new Date("7/3/1999 GMT")).toISOString(),
@@ -53502,7 +53502,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":878,
+            id:878,
             "seqId":1200,
             "siteId":14,
             "recordDate":(new Date("7/11/1999 GMT")).toISOString(),
@@ -53563,7 +53563,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":879,
+            id:879,
             "seqId":1201,
             "siteId":14,
             "recordDate":(new Date("7/15/1999 GMT")).toISOString(),
@@ -53624,7 +53624,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":880,
+            id:880,
             "seqId":1202,
             "siteId":14,
             "recordDate":(new Date("7/31/1999 GMT")).toISOString(),
@@ -53685,7 +53685,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":881,
+            id:881,
             "seqId":1203,
             "siteId":14,
             "recordDate":(new Date("8/7/1999 GMT")).toISOString(),
@@ -53746,7 +53746,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":882,
+            id:882,
             "seqId":1204,
             "siteId":14,
             "recordDate":(new Date("8/15/1999 GMT")).toISOString(),
@@ -53807,7 +53807,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":883,
+            id:883,
             "seqId":1205,
             "siteId":14,
             "recordDate":(new Date("8/22/1999 GMT")).toISOString(),
@@ -53868,7 +53868,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":884,
+            id:884,
             "seqId":1206,
             "siteId":14,
             "recordDate":(new Date("8/29/1999 GMT")).toISOString(),
@@ -53929,7 +53929,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":885,
+            id:885,
             "seqId":1207,
             "siteId":14,
             "recordDate":(new Date("9/4/1999 GMT")).toISOString(),
@@ -53990,7 +53990,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":886,
+            id:886,
             "seqId":1208,
             "siteId":14,
             "recordDate":(new Date("9/11/1999 GMT")).toISOString(),
@@ -54051,7 +54051,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":887,
+            id:887,
             "seqId":1209,
             "siteId":14,
             "recordDate":(new Date("9/18/1999 GMT")).toISOString(),
@@ -54112,7 +54112,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":888,
+            id:888,
             "seqId":1462,
             "siteId":14,
             "recordDate":(new Date("9/23/1999 GMT")).toISOString(),
@@ -54173,7 +54173,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":889,
+            id:889,
             "seqId":1210,
             "siteId":14,
             "recordDate":(new Date("9/26/1999 GMT")).toISOString(),
@@ -54234,7 +54234,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":890,
+            id:890,
             "seqId":1211,
             "siteId":14,
             "recordDate":(new Date("10/2/1999 GMT")).toISOString(),
@@ -54295,7 +54295,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":891,
+            id:891,
             "seqId":249,
             "siteId":15,
             "recordDate":(new Date("7/2/1998 GMT")).toISOString(),
@@ -54356,7 +54356,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":892,
+            id:892,
             "seqId":250,
             "siteId":15,
             "recordDate":(new Date("7/10/1998 GMT")).toISOString(),
@@ -54417,7 +54417,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":893,
+            id:893,
             "seqId":251,
             "siteId":15,
             "recordDate":(new Date("7/21/1998 GMT")).toISOString(),
@@ -54478,7 +54478,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":894,
+            id:894,
             "seqId":252,
             "siteId":15,
             "recordDate":(new Date("7/27/1998 GMT")).toISOString(),
@@ -54539,7 +54539,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":895,
+            id:895,
             "seqId":253,
             "siteId":15,
             "recordDate":(new Date("8/3/1998 GMT")).toISOString(),
@@ -54600,7 +54600,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":896,
+            id:896,
             "seqId":254,
             "siteId":15,
             "recordDate":(new Date("8/11/1998 GMT")).toISOString(),
@@ -54661,7 +54661,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":897,
+            id:897,
             "seqId":255,
             "siteId":15,
             "recordDate":(new Date("8/17/1998 GMT")).toISOString(),
@@ -54722,7 +54722,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":898,
+            id:898,
             "seqId":256,
             "siteId":15,
             "recordDate":(new Date("8/27/1998 GMT")).toISOString(),
@@ -54783,7 +54783,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":899,
+            id:899,
             "seqId":257,
             "siteId":15,
             "recordDate":(new Date("9/8/1998 GMT")).toISOString(),
@@ -54844,7 +54844,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":900,
+            id:900,
             "seqId":289,
             "siteId":16,
             "recordDate":(new Date("4/30/1998 GMT")).toISOString(),
@@ -54905,7 +54905,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":901,
+            id:901,
             "seqId":290,
             "siteId":16,
             "recordDate":(new Date("5/8/1998 GMT")).toISOString(),
@@ -54966,7 +54966,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":902,
+            id:902,
             "seqId":291,
             "siteId":16,
             "recordDate":(new Date("5/15/1998 GMT")).toISOString(),
@@ -55027,7 +55027,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":903,
+            id:903,
             "seqId":292,
             "siteId":16,
             "recordDate":(new Date("5/20/1998 GMT")).toISOString(),
@@ -55088,7 +55088,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":904,
+            id:904,
             "seqId":293,
             "siteId":16,
             "recordDate":(new Date("5/30/1998 GMT")).toISOString(),
@@ -55149,7 +55149,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":905,
+            id:905,
             "seqId":294,
             "siteId":16,
             "recordDate":(new Date("6/7/1998 GMT")).toISOString(),
@@ -55210,7 +55210,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":906,
+            id:906,
             "seqId":295,
             "siteId":16,
             "recordDate":(new Date("6/13/1998 GMT")).toISOString(),
@@ -55271,7 +55271,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":907,
+            id:907,
             "seqId":296,
             "siteId":16,
             "recordDate":(new Date("6/20/1998 GMT")).toISOString(),
@@ -55332,7 +55332,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":908,
+            id:908,
             "seqId":297,
             "siteId":16,
             "recordDate":(new Date("6/25/1998 GMT")).toISOString(),
@@ -55393,7 +55393,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":909,
+            id:909,
             "seqId":298,
             "siteId":16,
             "recordDate":(new Date("7/3/1998 GMT")).toISOString(),
@@ -55454,7 +55454,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":910,
+            id:910,
             "seqId":299,
             "siteId":16,
             "recordDate":(new Date("7/12/1998 GMT")).toISOString(),
@@ -55515,7 +55515,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":911,
+            id:911,
             "seqId":300,
             "siteId":16,
             "recordDate":(new Date("7/18/1998 GMT")).toISOString(),
@@ -55576,7 +55576,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":912,
+            id:912,
             "seqId":301,
             "siteId":16,
             "recordDate":(new Date("7/24/1998 GMT")).toISOString(),
@@ -55637,7 +55637,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":913,
+            id:913,
             "seqId":302,
             "siteId":16,
             "recordDate":(new Date("7/31/1998 GMT")).toISOString(),
@@ -55698,7 +55698,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":914,
+            id:914,
             "seqId":303,
             "siteId":16,
             "recordDate":(new Date("8/8/1998 GMT")).toISOString(),
@@ -55759,7 +55759,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":915,
+            id:915,
             "seqId":304,
             "siteId":16,
             "recordDate":(new Date("8/16/1998 GMT")).toISOString(),
@@ -55820,7 +55820,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":916,
+            id:916,
             "seqId":305,
             "siteId":16,
             "recordDate":(new Date("8/22/1998 GMT")).toISOString(),
@@ -55881,7 +55881,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":917,
+            id:917,
             "seqId":306,
             "siteId":16,
             "recordDate":(new Date("8/30/1998 GMT")).toISOString(),
@@ -55942,7 +55942,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":918,
+            id:918,
             "seqId":307,
             "siteId":16,
             "recordDate":(new Date("9/6/1998 GMT")).toISOString(),
@@ -56003,7 +56003,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":919,
+            id:919,
             "seqId":308,
             "siteId":16,
             "recordDate":(new Date("9/13/1998 GMT")).toISOString(),
@@ -56064,7 +56064,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":920,
+            id:920,
             "seqId":309,
             "siteId":16,
             "recordDate":(new Date("9/17/1998 GMT")).toISOString(),
@@ -56125,7 +56125,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":921,
+            id:921,
             "seqId":310,
             "siteId":16,
             "recordDate":(new Date("9/26/1998 GMT")).toISOString(),
@@ -56186,7 +56186,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":922,
+            id:922,
             "seqId":1313,
             "siteId":16,
             "recordDate":(new Date("4/7/1999 GMT")).toISOString(),
@@ -56247,7 +56247,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":923,
+            id:923,
             "seqId":1327,
             "siteId":16,
             "recordDate":(new Date("4/11/1999 GMT")).toISOString(),
@@ -56308,7 +56308,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":924,
+            id:924,
             "seqId":1314,
             "siteId":16,
             "recordDate":(new Date("4/14/1999 GMT")).toISOString(),
@@ -56369,7 +56369,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":925,
+            id:925,
             "seqId":1315,
             "siteId":16,
             "recordDate":(new Date("4/18/1999 GMT")).toISOString(),
@@ -56430,7 +56430,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":926,
+            id:926,
             "seqId":1316,
             "siteId":16,
             "recordDate":(new Date("4/22/1999 GMT")).toISOString(),
@@ -56491,7 +56491,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":927,
+            id:927,
             "seqId":1317,
             "siteId":16,
             "recordDate":(new Date("5/1/1999 GMT")).toISOString(),
@@ -56552,7 +56552,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":928,
+            id:928,
             "seqId":1318,
             "siteId":16,
             "recordDate":(new Date("5/9/1999 GMT")).toISOString(),
@@ -56613,7 +56613,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":929,
+            id:929,
             "seqId":1319,
             "siteId":16,
             "recordDate":(new Date("5/15/1999 GMT")).toISOString(),
@@ -56674,7 +56674,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":930,
+            id:930,
             "seqId":1320,
             "siteId":16,
             "recordDate":(new Date("5/23/1999 GMT")).toISOString(),
@@ -56735,7 +56735,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":931,
+            id:931,
             "seqId":1321,
             "siteId":16,
             "recordDate":(new Date("5/30/1999 GMT")).toISOString(),
@@ -56796,7 +56796,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":932,
+            id:932,
             "seqId":1322,
             "siteId":16,
             "recordDate":(new Date("6/5/1999 GMT")).toISOString(),
@@ -56857,7 +56857,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":933,
+            id:933,
             "seqId":1323,
             "siteId":16,
             "recordDate":(new Date("6/11/1999 GMT")).toISOString(),
@@ -56918,7 +56918,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":934,
+            id:934,
             "seqId":1324,
             "siteId":16,
             "recordDate":(new Date("6/19/1999 GMT")).toISOString(),
@@ -56979,7 +56979,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":935,
+            id:935,
             "seqId":1325,
             "siteId":16,
             "recordDate":(new Date("6/26/1999 GMT")).toISOString(),
@@ -57040,7 +57040,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":936,
+            id:936,
             "seqId":1326,
             "siteId":16,
             "recordDate":(new Date("7/4/1999 GMT")).toISOString(),
@@ -57101,7 +57101,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":937,
+            id:937,
             "seqId":1328,
             "siteId":16,
             "recordDate":(new Date("7/18/1999 GMT")).toISOString(),
@@ -57162,7 +57162,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":938,
+            id:938,
             "seqId":1329,
             "siteId":16,
             "recordDate":(new Date("7/24/1999 GMT")).toISOString(),
@@ -57223,7 +57223,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":939,
+            id:939,
             "seqId":1330,
             "siteId":16,
             "recordDate":(new Date("7/31/1999 GMT")).toISOString(),
@@ -57284,7 +57284,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":940,
+            id:940,
             "seqId":1331,
             "siteId":16,
             "recordDate":(new Date("8/7/1999 GMT")).toISOString(),
@@ -57345,7 +57345,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":941,
+            id:941,
             "seqId":1332,
             "siteId":16,
             "recordDate":(new Date("8/15/1999 GMT")).toISOString(),
@@ -57406,7 +57406,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":942,
+            id:942,
             "seqId":1333,
             "siteId":16,
             "recordDate":(new Date("8/21/1999 GMT")).toISOString(),
@@ -57467,7 +57467,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":943,
+            id:943,
             "seqId":1334,
             "siteId":16,
             "recordDate":(new Date("8/27/1999 GMT")).toISOString(),
@@ -57528,7 +57528,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":944,
+            id:944,
             "seqId":1335,
             "siteId":16,
             "recordDate":(new Date("9/6/1999 GMT")).toISOString(),
@@ -57589,7 +57589,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":945,
+            id:945,
             "seqId":1336,
             "siteId":16,
             "recordDate":(new Date("9/12/1999 GMT")).toISOString(),
@@ -57650,7 +57650,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":946,
+            id:946,
             "seqId":1337,
             "siteId":16,
             "recordDate":(new Date("9/18/1999 GMT")).toISOString(),
@@ -57711,7 +57711,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":947,
+            id:947,
             "seqId":1338,
             "siteId":16,
             "recordDate":(new Date("9/26/1999 GMT")).toISOString(),
@@ -57772,7 +57772,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":948,
+            id:948,
             "seqId":1339,
             "siteId":16,
             "recordDate":(new Date("9/30/1999 GMT")).toISOString(),
@@ -57833,7 +57833,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":949,
+            id:949,
             "seqId":1340,
             "siteId":16,
             "recordDate":(new Date("10/9/1999 GMT")).toISOString(),
@@ -57894,7 +57894,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":950,
+            id:950,
             "seqId":1341,
             "siteId":16,
             "recordDate":(new Date("10/16/1999 GMT")).toISOString(),
@@ -57955,7 +57955,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":951,
+            id:951,
             "seqId":338,
             "siteId":17,
             "recordDate":(new Date("6/3/1998 GMT")).toISOString(),
@@ -58016,7 +58016,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":952,
+            id:952,
             "seqId":339,
             "siteId":17,
             "recordDate":(new Date("6/18/1998 GMT")).toISOString(),
@@ -58077,7 +58077,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":953,
+            id:953,
             "seqId":340,
             "siteId":17,
             "recordDate":(new Date("6/30/1998 GMT")).toISOString(),
@@ -58138,7 +58138,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":954,
+            id:954,
             "seqId":341,
             "siteId":17,
             "recordDate":(new Date("8/8/1998 GMT")).toISOString(),
@@ -58199,7 +58199,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":955,
+            id:955,
             "seqId":342,
             "siteId":17,
             "recordDate":(new Date("8/26/1998 GMT")).toISOString(),
@@ -58260,7 +58260,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":956,
+            id:956,
             "seqId":343,
             "siteId":17,
             "recordDate":(new Date("9/9/1998 GMT")).toISOString(),
@@ -58321,7 +58321,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":957,
+            id:957,
             "seqId":344,
             "siteId":17,
             "recordDate":(new Date("9/24/1998 GMT")).toISOString(),
@@ -58382,7 +58382,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":958,
+            id:958,
             "seqId":922,
             "siteId":17,
             "recordDate":(new Date("5/28/1999 GMT")).toISOString(),
@@ -58443,7 +58443,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":959,
+            id:959,
             "seqId":923,
             "siteId":17,
             "recordDate":(new Date("6/2/1999 GMT")).toISOString(),
@@ -58504,7 +58504,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":960,
+            id:960,
             "seqId":924,
             "siteId":17,
             "recordDate":(new Date("7/3/1999 GMT")).toISOString(),
@@ -58565,7 +58565,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":961,
+            id:961,
             "seqId":925,
             "siteId":17,
             "recordDate":(new Date("7/17/1999 GMT")).toISOString(),
@@ -58626,7 +58626,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":962,
+            id:962,
             "seqId":926,
             "siteId":17,
             "recordDate":(new Date("8/1/1999 GMT")).toISOString(),
@@ -58687,7 +58687,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":963,
+            id:963,
             "seqId":927,
             "siteId":17,
             "recordDate":(new Date("8/28/1999 GMT")).toISOString(),
@@ -58748,7 +58748,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":964,
+            id:964,
             "seqId":928,
             "siteId":17,
             "recordDate":(new Date("9/17/1999 GMT")).toISOString(),
@@ -58809,7 +58809,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":965,
+            id:965,
             "seqId":929,
             "siteId":17,
             "recordDate":(new Date("10/2/1999 GMT")).toISOString(),
@@ -58870,7 +58870,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":966,
+            id:966,
             "seqId":345,
             "siteId":18,
             "recordDate":(new Date("5/5/1998 GMT")).toISOString(),
@@ -58931,7 +58931,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":967,
+            id:967,
             "seqId":346,
             "siteId":18,
             "recordDate":(new Date("5/12/1998 GMT")).toISOString(),
@@ -58992,7 +58992,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":968,
+            id:968,
             "seqId":347,
             "siteId":18,
             "recordDate":(new Date("5/14/1998 GMT")).toISOString(),
@@ -59053,7 +59053,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":969,
+            id:969,
             "seqId":348,
             "siteId":18,
             "recordDate":(new Date("5/20/1998 GMT")).toISOString(),
@@ -59114,7 +59114,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":970,
+            id:970,
             "seqId":349,
             "siteId":18,
             "recordDate":(new Date("5/27/1998 GMT")).toISOString(),
@@ -59175,7 +59175,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":971,
+            id:971,
             "seqId":350,
             "siteId":18,
             "recordDate":(new Date("6/2/1998 GMT")).toISOString(),
@@ -59236,7 +59236,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":972,
+            id:972,
             "seqId":351,
             "siteId":18,
             "recordDate":(new Date("6/10/1998 GMT")).toISOString(),
@@ -59297,7 +59297,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":973,
+            id:973,
             "seqId":352,
             "siteId":18,
             "recordDate":(new Date("6/12/1998 GMT")).toISOString(),
@@ -59358,7 +59358,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":974,
+            id:974,
             "seqId":353,
             "siteId":18,
             "recordDate":(new Date("6/17/1998 GMT")).toISOString(),
@@ -59419,7 +59419,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":975,
+            id:975,
             "seqId":354,
             "siteId":18,
             "recordDate":(new Date("6/20/1998 GMT")).toISOString(),
@@ -59480,7 +59480,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":976,
+            id:976,
             "seqId":381,
             "siteId":18,
             "recordDate":(new Date("6/25/1998 GMT")).toISOString(),
@@ -59541,7 +59541,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":977,
+            id:977,
             "seqId":382,
             "siteId":18,
             "recordDate":(new Date("7/1/1998 GMT")).toISOString(),
@@ -59602,7 +59602,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":978,
+            id:978,
             "seqId":383,
             "siteId":18,
             "recordDate":(new Date("7/8/1998 GMT")).toISOString(),
@@ -59663,7 +59663,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":979,
+            id:979,
             "seqId":384,
             "siteId":18,
             "recordDate":(new Date("7/17/1998 GMT")).toISOString(),
@@ -59724,7 +59724,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":980,
+            id:980,
             "seqId":385,
             "siteId":18,
             "recordDate":(new Date("7/24/1998 GMT")).toISOString(),
@@ -59785,7 +59785,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":981,
+            id:981,
             "seqId":386,
             "siteId":18,
             "recordDate":(new Date("8/1/1998 GMT")).toISOString(),
@@ -59846,7 +59846,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":982,
+            id:982,
             "seqId":387,
             "siteId":18,
             "recordDate":(new Date("8/5/1998 GMT")).toISOString(),
@@ -59907,7 +59907,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":983,
+            id:983,
             "seqId":388,
             "siteId":18,
             "recordDate":(new Date("8/13/1998 GMT")).toISOString(),
@@ -59968,7 +59968,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":984,
+            id:984,
             "seqId":389,
             "siteId":18,
             "recordDate":(new Date("8/20/1998 GMT")).toISOString(),
@@ -60029,7 +60029,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":985,
+            id:985,
             "seqId":390,
             "siteId":18,
             "recordDate":(new Date("8/25/1998 GMT")).toISOString(),
@@ -60090,7 +60090,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":986,
+            id:986,
             "seqId":391,
             "siteId":18,
             "recordDate":(new Date("9/3/1998 GMT")).toISOString(),
@@ -60151,7 +60151,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":987,
+            id:987,
             "seqId":392,
             "siteId":18,
             "recordDate":(new Date("9/9/1998 GMT")).toISOString(),
@@ -60212,7 +60212,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":988,
+            id:988,
             "seqId":393,
             "siteId":18,
             "recordDate":(new Date("9/25/1998 GMT")).toISOString(),
@@ -60273,7 +60273,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":989,
+            id:989,
             "seqId":1492,
             "siteId":18,
             "recordDate":(new Date("4/2/1999 GMT")).toISOString(),
@@ -60334,7 +60334,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":990,
+            id:990,
             "seqId":1493,
             "siteId":18,
             "recordDate":(new Date("4/7/1999 GMT")).toISOString(),
@@ -60395,7 +60395,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":991,
+            id:991,
             "seqId":1494,
             "siteId":18,
             "recordDate":(new Date("4/14/1999 GMT")).toISOString(),
@@ -60456,7 +60456,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":992,
+            id:992,
             "seqId":1495,
             "siteId":18,
             "recordDate":(new Date("4/21/1999 GMT")).toISOString(),
@@ -60517,7 +60517,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":993,
+            id:993,
             "seqId":1496,
             "siteId":18,
             "recordDate":(new Date("4/29/1999 GMT")).toISOString(),
@@ -60578,7 +60578,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":994,
+            id:994,
             "seqId":1497,
             "siteId":18,
             "recordDate":(new Date("5/4/1999 GMT")).toISOString(),
@@ -60639,7 +60639,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":995,
+            id:995,
             "seqId":1498,
             "siteId":18,
             "recordDate":(new Date("5/20/1999 GMT")).toISOString(),
@@ -60700,7 +60700,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":996,
+            id:996,
             "seqId":1499,
             "siteId":18,
             "recordDate":(new Date("5/27/1999 GMT")).toISOString(),
@@ -60761,7 +60761,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":997,
+            id:997,
             "seqId":1500,
             "siteId":18,
             "recordDate":(new Date("6/5/1999 GMT")).toISOString(),
@@ -60822,7 +60822,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":998,
+            id:998,
             "seqId":1501,
             "siteId":18,
             "recordDate":(new Date("6/10/1999 GMT")).toISOString(),
@@ -60883,7 +60883,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":999,
+            id:999,
             "seqId":1502,
             "siteId":18,
             "recordDate":(new Date("6/19/1999 GMT")).toISOString(),
@@ -60944,7 +60944,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1000,
+            id:1000,
             "seqId":1503,
             "siteId":18,
             "recordDate":(new Date("6/26/1999 GMT")).toISOString(),
@@ -61005,7 +61005,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1001,
+            id:1001,
             "seqId":1504,
             "siteId":18,
             "recordDate":(new Date("7/7/1999 GMT")).toISOString(),
@@ -61066,7 +61066,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1002,
+            id:1002,
             "seqId":1505,
             "siteId":18,
             "recordDate":(new Date("7/14/1999 GMT")).toISOString(),
@@ -61127,7 +61127,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1003,
+            id:1003,
             "seqId":1506,
             "siteId":18,
             "recordDate":(new Date("7/21/1999 GMT")).toISOString(),
@@ -61188,7 +61188,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1004,
+            id:1004,
             "seqId":1507,
             "siteId":18,
             "recordDate":(new Date("7/30/1999 GMT")).toISOString(),
@@ -61249,7 +61249,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1005,
+            id:1005,
             "seqId":1508,
             "siteId":18,
             "recordDate":(new Date("8/5/1999 GMT")).toISOString(),
@@ -61310,7 +61310,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1006,
+            id:1006,
             "seqId":1509,
             "siteId":18,
             "recordDate":(new Date("8/19/1999 GMT")).toISOString(),
@@ -61371,7 +61371,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1007,
+            id:1007,
             "seqId":1510,
             "siteId":18,
             "recordDate":(new Date("8/28/1999 GMT")).toISOString(),
@@ -61432,7 +61432,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1008,
+            id:1008,
             "seqId":1511,
             "siteId":18,
             "recordDate":(new Date("9/9/1999 GMT")).toISOString(),
@@ -61493,7 +61493,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1009,
+            id:1009,
             "seqId":1512,
             "siteId":18,
             "recordDate":(new Date("9/14/1999 GMT")).toISOString(),
@@ -61554,7 +61554,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1010,
+            id:1010,
             "seqId":1513,
             "siteId":18,
             "recordDate":(new Date("9/25/1999 GMT")).toISOString(),
@@ -61615,7 +61615,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1011,
+            id:1011,
             "seqId":1069,
             "siteId":21,
             "recordDate":(new Date("4/24/1999 GMT")).toISOString(),
@@ -61676,7 +61676,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1012,
+            id:1012,
             "seqId":1070,
             "siteId":21,
             "recordDate":(new Date("4/29/1999 GMT")).toISOString(),
@@ -61737,7 +61737,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1013,
+            id:1013,
             "seqId":1071,
             "siteId":21,
             "recordDate":(new Date("5/2/1999 GMT")).toISOString(),
@@ -61798,7 +61798,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1014,
+            id:1014,
             "seqId":1072,
             "siteId":21,
             "recordDate":(new Date("5/4/1999 GMT")).toISOString(),
@@ -61859,7 +61859,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1015,
+            id:1015,
             "seqId":1073,
             "siteId":21,
             "recordDate":(new Date("5/7/1999 GMT")).toISOString(),
@@ -61920,7 +61920,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1016,
+            id:1016,
             "seqId":1074,
             "siteId":21,
             "recordDate":(new Date("5/10/1999 GMT")).toISOString(),
@@ -61981,7 +61981,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1017,
+            id:1017,
             "seqId":1075,
             "siteId":21,
             "recordDate":(new Date("5/11/1999 GMT")).toISOString(),
@@ -62042,7 +62042,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1018,
+            id:1018,
             "seqId":1076,
             "siteId":21,
             "recordDate":(new Date("5/16/1999 GMT")).toISOString(),
@@ -62103,7 +62103,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1019,
+            id:1019,
             "seqId":1077,
             "siteId":21,
             "recordDate":(new Date("5/19/1999 GMT")).toISOString(),
@@ -62164,7 +62164,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1020,
+            id:1020,
             "seqId":1078,
             "siteId":21,
             "recordDate":(new Date("5/21/1999 GMT")).toISOString(),
@@ -62225,7 +62225,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1021,
+            id:1021,
             "seqId":1079,
             "siteId":21,
             "recordDate":(new Date("5/27/1999 GMT")).toISOString(),
@@ -62286,7 +62286,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1022,
+            id:1022,
             "seqId":1080,
             "siteId":21,
             "recordDate":(new Date("5/29/1999 GMT")).toISOString(),
@@ -62347,7 +62347,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1023,
+            id:1023,
             "seqId":1081,
             "siteId":21,
             "recordDate":(new Date("6/3/1999 GMT")).toISOString(),
@@ -62408,7 +62408,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1024,
+            id:1024,
             "seqId":1082,
             "siteId":21,
             "recordDate":(new Date("6/6/1999 GMT")).toISOString(),
@@ -62469,7 +62469,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1025,
+            id:1025,
             "seqId":1083,
             "siteId":21,
             "recordDate":(new Date("6/7/1999 GMT")).toISOString(),
@@ -62530,7 +62530,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1026,
+            id:1026,
             "seqId":1084,
             "siteId":21,
             "recordDate":(new Date("6/8/1999 GMT")).toISOString(),
@@ -62591,7 +62591,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1027,
+            id:1027,
             "seqId":1085,
             "siteId":21,
             "recordDate":(new Date("6/10/1999 GMT")).toISOString(),
@@ -62652,7 +62652,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1028,
+            id:1028,
             "seqId":1086,
             "siteId":21,
             "recordDate":(new Date("6/12/1999 GMT")).toISOString(),
@@ -62713,7 +62713,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1029,
+            id:1029,
             "seqId":1087,
             "siteId":21,
             "recordDate":(new Date("6/13/1999 GMT")).toISOString(),
@@ -62774,7 +62774,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1030,
+            id:1030,
             "seqId":1088,
             "siteId":21,
             "recordDate":(new Date("6/14/1999 GMT")).toISOString(),
@@ -62835,7 +62835,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1031,
+            id:1031,
             "seqId":1089,
             "siteId":21,
             "recordDate":(new Date("6/15/1999 GMT")).toISOString(),
@@ -62896,7 +62896,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1032,
+            id:1032,
             "seqId":1090,
             "siteId":21,
             "recordDate":(new Date("6/18/1999 GMT")).toISOString(),
@@ -62957,7 +62957,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1033,
+            id:1033,
             "seqId":1105,
             "siteId":21,
             "recordDate":(new Date("6/20/1999 GMT")).toISOString(),
@@ -63018,7 +63018,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1034,
+            id:1034,
             "seqId":1106,
             "siteId":21,
             "recordDate":(new Date("6/21/1999 GMT")).toISOString(),
@@ -63079,7 +63079,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1035,
+            id:1035,
             "seqId":1107,
             "siteId":21,
             "recordDate":(new Date("6/29/1999 GMT")).toISOString(),
@@ -63140,7 +63140,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1036,
+            id:1036,
             "seqId":1108,
             "siteId":21,
             "recordDate":(new Date("6/30/1999 GMT")).toISOString(),
@@ -63201,7 +63201,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1037,
+            id:1037,
             "seqId":1109,
             "siteId":21,
             "recordDate":(new Date("7/2/1999 GMT")).toISOString(),
@@ -63262,7 +63262,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1038,
+            id:1038,
             "seqId":1110,
             "siteId":21,
             "recordDate":(new Date("7/5/1999 GMT")).toISOString(),
@@ -63323,7 +63323,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1039,
+            id:1039,
             "seqId":1111,
             "siteId":21,
             "recordDate":(new Date("7/6/1999 GMT")).toISOString(),
@@ -63384,7 +63384,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1040,
+            id:1040,
             "seqId":1112,
             "siteId":21,
             "recordDate":(new Date("7/10/1999 GMT")).toISOString(),
@@ -63445,7 +63445,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1041,
+            id:1041,
             "seqId":1113,
             "siteId":21,
             "recordDate":(new Date("7/16/1999 GMT")).toISOString(),
@@ -63506,7 +63506,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1042,
+            id:1042,
             "seqId":1114,
             "siteId":21,
             "recordDate":(new Date("7/21/1999 GMT")).toISOString(),
@@ -63567,7 +63567,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1043,
+            id:1043,
             "seqId":1115,
             "siteId":21,
             "recordDate":(new Date("7/24/1999 GMT")).toISOString(),
@@ -63628,7 +63628,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1044,
+            id:1044,
             "seqId":1116,
             "siteId":21,
             "recordDate":(new Date("7/27/1999 GMT")).toISOString(),
@@ -63689,7 +63689,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1045,
+            id:1045,
             "seqId":1117,
             "siteId":21,
             "recordDate":(new Date("7/28/1999 GMT")).toISOString(),
@@ -63750,7 +63750,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1046,
+            id:1046,
             "seqId":1118,
             "siteId":21,
             "recordDate":(new Date("7/29/1999 GMT")).toISOString(),
@@ -63811,7 +63811,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1047,
+            id:1047,
             "seqId":1119,
             "siteId":21,
             "recordDate":(new Date("8/2/1999 GMT")).toISOString(),
@@ -63872,7 +63872,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1048,
+            id:1048,
             "seqId":1120,
             "siteId":21,
             "recordDate":(new Date("8/8/1999 GMT")).toISOString(),
@@ -63933,7 +63933,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1049,
+            id:1049,
             "seqId":1121,
             "siteId":21,
             "recordDate":(new Date("8/11/1999 GMT")).toISOString(),
@@ -63994,7 +63994,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1050,
+            id:1050,
             "seqId":1122,
             "siteId":21,
             "recordDate":(new Date("8/16/1999 GMT")).toISOString(),
@@ -64055,7 +64055,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1051,
+            id:1051,
             "seqId":1123,
             "siteId":21,
             "recordDate":(new Date("8/20/1999 GMT")).toISOString(),
@@ -64116,7 +64116,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1052,
+            id:1052,
             "seqId":1124,
             "siteId":21,
             "recordDate":(new Date("8/31/1999 GMT")).toISOString(),
@@ -64177,7 +64177,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1053,
+            id:1053,
             "seqId":1125,
             "siteId":21,
             "recordDate":(new Date("9/3/1999 GMT")).toISOString(),
@@ -64238,7 +64238,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1054,
+            id:1054,
             "seqId":1126,
             "siteId":21,
             "recordDate":(new Date("9/12/1999 GMT")).toISOString(),
@@ -64299,7 +64299,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1055,
+            id:1055,
             "seqId":1127,
             "siteId":21,
             "recordDate":(new Date("9/18/1999 GMT")).toISOString(),
@@ -64360,7 +64360,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1056,
+            id:1056,
             "seqId":1128,
             "siteId":21,
             "recordDate":(new Date("9/24/1999 GMT")).toISOString(),
@@ -64421,7 +64421,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1057,
+            id:1057,
             "seqId":1129,
             "siteId":21,
             "recordDate":(new Date("9/26/1999 GMT")).toISOString(),
@@ -64482,7 +64482,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1058,
+            id:1058,
             "seqId":1130,
             "siteId":21,
             "recordDate":(new Date("9/30/1999 GMT")).toISOString(),
@@ -64543,7 +64543,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1059,
+            id:1059,
             "seqId":1421,
             "siteId":22,
             "recordDate":(new Date("4/2/1999 GMT")).toISOString(),
@@ -64604,7 +64604,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1060,
+            id:1060,
             "seqId":1422,
             "siteId":22,
             "recordDate":(new Date("4/14/1999 GMT")).toISOString(),
@@ -64665,7 +64665,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1061,
+            id:1061,
             "seqId":1423,
             "siteId":22,
             "recordDate":(new Date("5/3/1999 GMT")).toISOString(),
@@ -64726,7 +64726,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1062,
+            id:1062,
             "seqId":1424,
             "siteId":22,
             "recordDate":(new Date("6/5/1999 GMT")).toISOString(),
@@ -64787,7 +64787,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1063,
+            id:1063,
             "seqId":1425,
             "siteId":22,
             "recordDate":(new Date("6/14/1999 GMT")).toISOString(),
@@ -64848,7 +64848,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1064,
+            id:1064,
             "seqId":994,
             "siteId":22,
             "recordDate":(new Date("6/21/1999 GMT")).toISOString(),
@@ -64909,7 +64909,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1065,
+            id:1065,
             "seqId":1427,
             "siteId":22,
             "recordDate":(new Date("7/8/1999 GMT")).toISOString(),
@@ -64970,7 +64970,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1066,
+            id:1066,
             "seqId":1428,
             "siteId":22,
             "recordDate":(new Date("7/14/1999 GMT")).toISOString(),
@@ -65031,7 +65031,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1067,
+            id:1067,
             "seqId":1429,
             "siteId":22,
             "recordDate":(new Date("7/19/1999 GMT")).toISOString(),
@@ -65092,7 +65092,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1068,
+            id:1068,
             "seqId":1430,
             "siteId":22,
             "recordDate":(new Date("8/4/1999 GMT")).toISOString(),
@@ -65153,7 +65153,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1069,
+            id:1069,
             "seqId":1431,
             "siteId":22,
             "recordDate":(new Date("8/25/1999 GMT")).toISOString(),
@@ -65214,7 +65214,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1070,
+            id:1070,
             "seqId":1433,
             "siteId":22,
             "recordDate":(new Date("9/1/1999 GMT")).toISOString(),
@@ -65275,7 +65275,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1071,
+            id:1071,
             "seqId":1434,
             "siteId":22,
             "recordDate":(new Date("9/8/1999 GMT")).toISOString(),
@@ -65336,7 +65336,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1072,
+            id:1072,
             "seqId":1435,
             "siteId":22,
             "recordDate":(new Date("9/14/1999 GMT")).toISOString(),
@@ -65397,7 +65397,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1073,
+            id:1073,
             "seqId":1436,
             "siteId":22,
             "recordDate":(new Date("9/26/1999 GMT")).toISOString(),
@@ -65458,7 +65458,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1074,
+            id:1074,
             "seqId":1426,
             "siteId":23,
             "recordDate":(new Date("4/3/1999 GMT")).toISOString(),
@@ -65519,7 +65519,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1075,
+            id:1075,
             "seqId":995,
             "siteId":23,
             "recordDate":(new Date("4/14/1999 GMT")).toISOString(),
@@ -65580,7 +65580,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1076,
+            id:1076,
             "seqId":996,
             "siteId":23,
             "recordDate":(new Date("5/4/1999 GMT")).toISOString(),
@@ -65641,7 +65641,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1077,
+            id:1077,
             "seqId":997,
             "siteId":23,
             "recordDate":(new Date("5/16/1999 GMT")).toISOString(),
@@ -65702,7 +65702,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1078,
+            id:1078,
             "seqId":998,
             "siteId":23,
             "recordDate":(new Date("6/6/1999 GMT")).toISOString(),
@@ -65763,7 +65763,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1079,
+            id:1079,
             "seqId":999,
             "siteId":23,
             "recordDate":(new Date("6/15/1999 GMT")).toISOString(),
@@ -65824,7 +65824,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1080,
+            id:1080,
             "seqId":1000,
             "siteId":23,
             "recordDate":(new Date("6/22/1999 GMT")).toISOString(),
@@ -65885,7 +65885,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1081,
+            id:1081,
             "seqId":1001,
             "siteId":23,
             "recordDate":(new Date("6/29/1999 GMT")).toISOString(),
@@ -65946,7 +65946,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1082,
+            id:1082,
             "seqId":1002,
             "siteId":23,
             "recordDate":(new Date("7/11/1999 GMT")).toISOString(),
@@ -66007,7 +66007,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1083,
+            id:1083,
             "seqId":1003,
             "siteId":23,
             "recordDate":(new Date("7/15/1999 GMT")).toISOString(),
@@ -66068,7 +66068,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1084,
+            id:1084,
             "seqId":1004,
             "siteId":23,
             "recordDate":(new Date("8/9/1999 GMT")).toISOString(),
@@ -66129,7 +66129,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1085,
+            id:1085,
             "seqId":1005,
             "siteId":23,
             "recordDate":(new Date("8/16/1999 GMT")).toISOString(),
@@ -66190,7 +66190,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1086,
+            id:1086,
             "seqId":1006,
             "siteId":23,
             "recordDate":(new Date("8/22/1999 GMT")).toISOString(),
@@ -66251,7 +66251,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1087,
+            id:1087,
             "seqId":1007,
             "siteId":23,
             "recordDate":(new Date("8/31/1999 GMT")).toISOString(),
@@ -66312,7 +66312,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1088,
+            id:1088,
             "seqId":1008,
             "siteId":23,
             "recordDate":(new Date("9/8/1999 GMT")).toISOString(),
@@ -66373,7 +66373,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1089,
+            id:1089,
             "seqId":1009,
             "siteId":23,
             "recordDate":(new Date("9/12/1999 GMT")).toISOString(),
@@ -66434,7 +66434,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1090,
+            id:1090,
             "seqId":1010,
             "siteId":23,
             "recordDate":(new Date("9/19/1999 GMT")).toISOString(),
@@ -66495,7 +66495,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1091,
+            id:1091,
             "seqId":1011,
             "siteId":23,
             "recordDate":(new Date("9/26/1999 GMT")).toISOString(),
@@ -66556,7 +66556,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1092,
+            id:1092,
             "seqId":1212,
             "siteId":24,
             "recordDate":(new Date("4/2/1999 GMT")).toISOString(),
@@ -66617,7 +66617,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1093,
+            id:1093,
             "seqId":1213,
             "siteId":24,
             "recordDate":(new Date("4/14/1999 GMT")).toISOString(),
@@ -66678,7 +66678,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1094,
+            id:1094,
             "seqId":1214,
             "siteId":24,
             "recordDate":(new Date("4/21/1999 GMT")).toISOString(),
@@ -66739,7 +66739,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1095,
+            id:1095,
             "seqId":1215,
             "siteId":24,
             "recordDate":(new Date("4/28/1999 GMT")).toISOString(),
@@ -66800,7 +66800,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1096,
+            id:1096,
             "seqId":1216,
             "siteId":24,
             "recordDate":(new Date("5/1/1999 GMT")).toISOString(),
@@ -66861,7 +66861,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1097,
+            id:1097,
             "seqId":1217,
             "siteId":24,
             "recordDate":(new Date("5/11/1999 GMT")).toISOString(),
@@ -66922,7 +66922,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1098,
+            id:1098,
             "seqId":1218,
             "siteId":24,
             "recordDate":(new Date("5/19/1999 GMT")).toISOString(),
@@ -66983,7 +66983,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1099,
+            id:1099,
             "seqId":1219,
             "siteId":24,
             "recordDate":(new Date("5/26/1999 GMT")).toISOString(),
@@ -67044,7 +67044,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1100,
+            id:1100,
             "seqId":1220,
             "siteId":24,
             "recordDate":(new Date("5/29/1999 GMT")).toISOString(),
@@ -67105,7 +67105,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1101,
+            id:1101,
             "seqId":1221,
             "siteId":24,
             "recordDate":(new Date("6/9/1999 GMT")).toISOString(),
@@ -67166,7 +67166,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1102,
+            id:1102,
             "seqId":1222,
             "siteId":24,
             "recordDate":(new Date("6/12/1999 GMT")).toISOString(),
@@ -67227,7 +67227,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1103,
+            id:1103,
             "seqId":1223,
             "siteId":24,
             "recordDate":(new Date("6/17/1999 GMT")).toISOString(),
@@ -67288,7 +67288,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1104,
+            id:1104,
             "seqId":1228,
             "siteId":24,
             "recordDate":(new Date("6/28/1999 GMT")).toISOString(),
@@ -67349,7 +67349,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1105,
+            id:1105,
             "seqId":1224,
             "siteId":24,
             "recordDate":(new Date("6/30/1999 GMT")).toISOString(),
@@ -67410,7 +67410,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1106,
+            id:1106,
             "seqId":1225,
             "siteId":24,
             "recordDate":(new Date("7/6/1999 GMT")).toISOString(),
@@ -67471,7 +67471,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1107,
+            id:1107,
             "seqId":1226,
             "siteId":24,
             "recordDate":(new Date("7/9/1999 GMT")).toISOString(),
@@ -67532,7 +67532,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1108,
+            id:1108,
             "seqId":1227,
             "siteId":24,
             "recordDate":(new Date("7/21/1999 GMT")).toISOString(),
@@ -67593,7 +67593,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1109,
+            id:1109,
             "seqId":1229,
             "siteId":24,
             "recordDate":(new Date("7/31/1999 GMT")).toISOString(),
@@ -67654,7 +67654,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1110,
+            id:1110,
             "seqId":1230,
             "siteId":24,
             "recordDate":(new Date("8/11/1999 GMT")).toISOString(),
@@ -67715,7 +67715,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1111,
+            id:1111,
             "seqId":1231,
             "siteId":24,
             "recordDate":(new Date("8/17/1999 GMT")).toISOString(),
@@ -67776,7 +67776,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1112,
+            id:1112,
             "seqId":1232,
             "siteId":24,
             "recordDate":(new Date("8/22/1999 GMT")).toISOString(),
@@ -67837,7 +67837,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1113,
+            id:1113,
             "seqId":1233,
             "siteId":24,
             "recordDate":(new Date("9/1/1999 GMT")).toISOString(),
@@ -67898,7 +67898,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1114,
+            id:1114,
             "seqId":1234,
             "siteId":24,
             "recordDate":(new Date("9/8/1999 GMT")).toISOString(),
@@ -67959,7 +67959,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1115,
+            id:1115,
             "seqId":1235,
             "siteId":24,
             "recordDate":(new Date("9/15/1999 GMT")).toISOString(),
@@ -68020,7 +68020,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1116,
+            id:1116,
             "seqId":1236,
             "siteId":24,
             "recordDate":(new Date("9/19/1999 GMT")).toISOString(),
@@ -68081,7 +68081,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1117,
+            id:1117,
             "seqId":1237,
             "siteId":24,
             "recordDate":(new Date("9/28/1999 GMT")).toISOString(),
@@ -68142,7 +68142,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1118,
+            id:1118,
             "seqId":1287,
             "siteId":25,
             "recordDate":(new Date("4/3/1999 GMT")).toISOString(),
@@ -68203,7 +68203,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1119,
+            id:1119,
             "seqId":1288,
             "siteId":25,
             "recordDate":(new Date("4/14/1999 GMT")).toISOString(),
@@ -68264,7 +68264,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1120,
+            id:1120,
             "seqId":1289,
             "siteId":25,
             "recordDate":(new Date("4/26/1999 GMT")).toISOString(),
@@ -68325,7 +68325,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1121,
+            id:1121,
             "seqId":1290,
             "siteId":25,
             "recordDate":(new Date("5/4/1999 GMT")).toISOString(),
@@ -68386,7 +68386,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1122,
+            id:1122,
             "seqId":1291,
             "siteId":25,
             "recordDate":(new Date("5/10/1999 GMT")).toISOString(),
@@ -68447,7 +68447,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1123,
+            id:1123,
             "seqId":1292,
             "siteId":25,
             "recordDate":(new Date("5/17/1999 GMT")).toISOString(),
@@ -68508,7 +68508,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1124,
+            id:1124,
             "seqId":1293,
             "siteId":25,
             "recordDate":(new Date("5/21/1999 GMT")).toISOString(),
@@ -68569,7 +68569,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1125,
+            id:1125,
             "seqId":1294,
             "siteId":25,
             "recordDate":(new Date("6/4/1999 GMT")).toISOString(),
@@ -68630,7 +68630,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1126,
+            id:1126,
             "seqId":1295,
             "siteId":25,
             "recordDate":(new Date("6/9/1999 GMT")).toISOString(),
@@ -68691,7 +68691,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1127,
+            id:1127,
             "seqId":1296,
             "siteId":25,
             "recordDate":(new Date("6/15/1999 GMT")).toISOString(),
@@ -68752,7 +68752,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1128,
+            id:1128,
             "seqId":1297,
             "siteId":25,
             "recordDate":(new Date("6/18/1999 GMT")).toISOString(),
@@ -68813,7 +68813,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1129,
+            id:1129,
             "seqId":1298,
             "siteId":25,
             "recordDate":(new Date("6/25/1999 GMT")).toISOString(),
@@ -68874,7 +68874,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1130,
+            id:1130,
             "seqId":1299,
             "siteId":25,
             "recordDate":(new Date("7/2/1999 GMT")).toISOString(),
@@ -68935,7 +68935,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1131,
+            id:1131,
             "seqId":1300,
             "siteId":25,
             "recordDate":(new Date("7/7/1999 GMT")).toISOString(),
@@ -68996,7 +68996,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1132,
+            id:1132,
             "seqId":1301,
             "siteId":25,
             "recordDate":(new Date("7/15/1999 GMT")).toISOString(),
@@ -69057,7 +69057,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1133,
+            id:1133,
             "seqId":1302,
             "siteId":25,
             "recordDate":(new Date("7/21/1999 GMT")).toISOString(),
@@ -69118,7 +69118,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1134,
+            id:1134,
             "seqId":1303,
             "siteId":25,
             "recordDate":(new Date("7/29/1999 GMT")).toISOString(),
@@ -69179,7 +69179,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1135,
+            id:1135,
             "seqId":1304,
             "siteId":25,
             "recordDate":(new Date("8/4/1999 GMT")).toISOString(),
@@ -69240,7 +69240,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1136,
+            id:1136,
             "seqId":1305,
             "siteId":25,
             "recordDate":(new Date("8/8/1999 GMT")).toISOString(),
@@ -69301,7 +69301,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1137,
+            id:1137,
             "seqId":1306,
             "siteId":25,
             "recordDate":(new Date("8/20/1999 GMT")).toISOString(),
@@ -69362,7 +69362,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1138,
+            id:1138,
             "seqId":1307,
             "siteId":25,
             "recordDate":(new Date("8/28/1999 GMT")).toISOString(),
@@ -69423,7 +69423,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1139,
+            id:1139,
             "seqId":1308,
             "siteId":25,
             "recordDate":(new Date("9/9/1999 GMT")).toISOString(),
@@ -69484,7 +69484,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1140,
+            id:1140,
             "seqId":1309,
             "siteId":25,
             "recordDate":(new Date("9/14/1999 GMT")).toISOString(),
@@ -69545,7 +69545,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1141,
+            id:1141,
             "seqId":1310,
             "siteId":25,
             "recordDate":(new Date("9/22/1999 GMT")).toISOString(),
@@ -69606,7 +69606,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1142,
+            id:1142,
             "seqId":1311,
             "siteId":25,
             "recordDate":(new Date("10/1/1999 GMT")).toISOString(),
@@ -69667,7 +69667,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1143,
+            id:1143,
             "seqId":1312,
             "siteId":25,
             "recordDate":(new Date("10/7/1999 GMT")).toISOString(),
@@ -69728,7 +69728,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1144,
+            id:1144,
             "seqId":1381,
             "siteId":26,
             "recordDate":(new Date("4/27/1999 GMT")).toISOString(),
@@ -69789,7 +69789,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1145,
+            id:1145,
             "seqId":1382,
             "siteId":26,
             "recordDate":(new Date("4/30/1999 GMT")).toISOString(),
@@ -69850,7 +69850,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1146,
+            id:1146,
             "seqId":1383,
             "siteId":26,
             "recordDate":(new Date("5/4/1999 GMT")).toISOString(),
@@ -69911,7 +69911,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1147,
+            id:1147,
             "seqId":1384,
             "siteId":26,
             "recordDate":(new Date("5/7/1999 GMT")).toISOString(),
@@ -69972,7 +69972,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1148,
+            id:1148,
             "seqId":1385,
             "siteId":26,
             "recordDate":(new Date("5/16/1999 GMT")).toISOString(),
@@ -70033,7 +70033,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1149,
+            id:1149,
             "seqId":1386,
             "siteId":26,
             "recordDate":(new Date("5/21/1999 GMT")).toISOString(),
@@ -70094,7 +70094,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1150,
+            id:1150,
             "seqId":1387,
             "siteId":26,
             "recordDate":(new Date("5/27/1999 GMT")).toISOString(),
@@ -70155,7 +70155,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1151,
+            id:1151,
             "seqId":1388,
             "siteId":26,
             "recordDate":(new Date("6/6/1999 GMT")).toISOString(),
@@ -70216,7 +70216,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1152,
+            id:1152,
             "seqId":1389,
             "siteId":26,
             "recordDate":(new Date("6/7/1999 GMT")).toISOString(),
@@ -70277,7 +70277,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1153,
+            id:1153,
             "seqId":1390,
             "siteId":26,
             "recordDate":(new Date("6/15/1999 GMT")).toISOString(),
@@ -70338,7 +70338,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1154,
+            id:1154,
             "seqId":1391,
             "siteId":26,
             "recordDate":(new Date("6/22/1999 GMT")).toISOString(),
@@ -70399,7 +70399,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1155,
+            id:1155,
             "seqId":1392,
             "siteId":26,
             "recordDate":(new Date("6/26/1999 GMT")).toISOString(),
@@ -70460,7 +70460,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1156,
+            id:1156,
             "seqId":1393,
             "siteId":26,
             "recordDate":(new Date("6/28/1999 GMT")).toISOString(),
@@ -70521,7 +70521,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1157,
+            id:1157,
             "seqId":1394,
             "siteId":26,
             "recordDate":(new Date("7/1/1999 GMT")).toISOString(),
@@ -70582,7 +70582,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1158,
+            id:1158,
             "seqId":1395,
             "siteId":26,
             "recordDate":(new Date("7/2/1999 GMT")).toISOString(),
@@ -70643,7 +70643,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1159,
+            id:1159,
             "seqId":1396,
             "siteId":26,
             "recordDate":(new Date("7/9/1999 GMT")).toISOString(),
@@ -70704,7 +70704,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1160,
+            id:1160,
             "seqId":1397,
             "siteId":26,
             "recordDate":(new Date("7/11/1999 GMT")).toISOString(),
@@ -70765,7 +70765,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1161,
+            id:1161,
             "seqId":1398,
             "siteId":26,
             "recordDate":(new Date("7/16/1999 GMT")).toISOString(),
@@ -70826,7 +70826,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1162,
+            id:1162,
             "seqId":1399,
             "siteId":26,
             "recordDate":(new Date("7/20/1999 GMT")).toISOString(),
@@ -70887,7 +70887,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1163,
+            id:1163,
             "seqId":1400,
             "siteId":26,
             "recordDate":(new Date("7/27/1999 GMT")).toISOString(),
@@ -70948,7 +70948,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1164,
+            id:1164,
             "seqId":1401,
             "siteId":26,
             "recordDate":(new Date("7/30/1999 GMT")).toISOString(),
@@ -71009,7 +71009,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1165,
+            id:1165,
             "seqId":1402,
             "siteId":26,
             "recordDate":(new Date("8/6/1999 GMT")).toISOString(),
@@ -71070,7 +71070,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1166,
+            id:1166,
             "seqId":1403,
             "siteId":26,
             "recordDate":(new Date("8/8/1999 GMT")).toISOString(),
@@ -71131,7 +71131,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1167,
+            id:1167,
             "seqId":1404,
             "siteId":26,
             "recordDate":(new Date("8/12/1999 GMT")).toISOString(),
@@ -71192,7 +71192,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1168,
+            id:1168,
             "seqId":1405,
             "siteId":26,
             "recordDate":(new Date("8/13/1999 GMT")).toISOString(),
@@ -71253,7 +71253,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1169,
+            id:1169,
             "seqId":1406,
             "siteId":26,
             "recordDate":(new Date("8/20/1999 GMT")).toISOString(),
@@ -71314,7 +71314,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1170,
+            id:1170,
             "seqId":1407,
             "siteId":26,
             "recordDate":(new Date("8/30/1999 GMT")).toISOString(),
@@ -71375,7 +71375,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1171,
+            id:1171,
             "seqId":1408,
             "siteId":26,
             "recordDate":(new Date("9/1/1999 GMT")).toISOString(),
@@ -71436,7 +71436,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1172,
+            id:1172,
             "seqId":1409,
             "siteId":26,
             "recordDate":(new Date("9/2/1999 GMT")).toISOString(),
@@ -71497,7 +71497,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1173,
+            id:1173,
             "seqId":1410,
             "siteId":26,
             "recordDate":(new Date("9/14/1999 GMT")).toISOString(),
@@ -71558,7 +71558,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1174,
+            id:1174,
             "seqId":1411,
             "siteId":26,
             "recordDate":(new Date("9/15/1999 GMT")).toISOString(),
@@ -71619,7 +71619,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1175,
+            id:1175,
             "seqId":1412,
             "siteId":26,
             "recordDate":(new Date("9/19/1999 GMT")).toISOString(),
@@ -71680,7 +71680,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1176,
+            id:1176,
             "seqId":1413,
             "siteId":26,
             "recordDate":(new Date("9/22/1999 GMT")).toISOString(),
@@ -71741,7 +71741,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1177,
+            id:1177,
             "seqId":1414,
             "siteId":26,
             "recordDate":(new Date("9/23/1999 GMT")).toISOString(),
@@ -71802,7 +71802,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1178,
+            id:1178,
             "seqId":1467,
             "siteId":27,
             "recordDate":(new Date("4/14/1999 GMT")).toISOString(),
@@ -71863,7 +71863,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1179,
+            id:1179,
             "seqId":1468,
             "siteId":27,
             "recordDate":(new Date("5/4/1999 GMT")).toISOString(),
@@ -71924,7 +71924,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1180,
+            id:1180,
             "seqId":1469,
             "siteId":27,
             "recordDate":(new Date("5/28/1999 GMT")).toISOString(),
@@ -71985,7 +71985,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1181,
+            id:1181,
             "seqId":1470,
             "siteId":27,
             "recordDate":(new Date("6/4/1999 GMT")).toISOString(),
@@ -72046,7 +72046,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1182,
+            id:1182,
             "seqId":1471,
             "siteId":27,
             "recordDate":(new Date("6/9/1999 GMT")).toISOString(),
@@ -72107,7 +72107,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1183,
+            id:1183,
             "seqId":1472,
             "siteId":27,
             "recordDate":(new Date("6/19/1999 GMT")).toISOString(),
@@ -72168,7 +72168,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1184,
+            id:1184,
             "seqId":1473,
             "siteId":27,
             "recordDate":(new Date("6/23/1999 GMT")).toISOString(),
@@ -72229,7 +72229,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1185,
+            id:1185,
             "seqId":1474,
             "siteId":27,
             "recordDate":(new Date("7/1/1999 GMT")).toISOString(),
@@ -72290,7 +72290,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1186,
+            id:1186,
             "seqId":1475,
             "siteId":27,
             "recordDate":(new Date("7/9/1999 GMT")).toISOString(),
@@ -72351,7 +72351,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1187,
+            id:1187,
             "seqId":1476,
             "siteId":27,
             "recordDate":(new Date("7/15/1999 GMT")).toISOString(),
@@ -72412,7 +72412,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1188,
+            id:1188,
             "seqId":1477,
             "siteId":27,
             "recordDate":(new Date("7/20/1999 GMT")).toISOString(),
@@ -72473,7 +72473,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1189,
+            id:1189,
             "seqId":1478,
             "siteId":27,
             "recordDate":(new Date("7/31/1999 GMT")).toISOString(),
@@ -72534,7 +72534,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1190,
+            id:1190,
             "seqId":1479,
             "siteId":27,
             "recordDate":(new Date("8/6/1999 GMT")).toISOString(),
@@ -72595,7 +72595,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1191,
+            id:1191,
             "seqId":1481,
             "siteId":27,
             "recordDate":(new Date("8/9/1999 GMT")).toISOString(),
@@ -72656,7 +72656,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1192,
+            id:1192,
             "seqId":1482,
             "siteId":27,
             "recordDate":(new Date("8/19/1999 GMT")).toISOString(),
@@ -72717,7 +72717,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1193,
+            id:1193,
             "seqId":1483,
             "siteId":27,
             "recordDate":(new Date("8/26/1999 GMT")).toISOString(),
@@ -72778,7 +72778,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1194,
+            id:1194,
             "seqId":1484,
             "siteId":27,
             "recordDate":(new Date("9/2/1999 GMT")).toISOString(),
@@ -72839,7 +72839,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1195,
+            id:1195,
             "seqId":1485,
             "siteId":27,
             "recordDate":(new Date("9/9/1999 GMT")).toISOString(),
@@ -72900,7 +72900,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1196,
+            id:1196,
             "seqId":1486,
             "siteId":27,
             "recordDate":(new Date("9/15/1999 GMT")).toISOString(),
@@ -72961,7 +72961,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1197,
+            id:1197,
             "seqId":1487,
             "siteId":27,
             "recordDate":(new Date("9/23/1999 GMT")).toISOString(),
@@ -73022,7 +73022,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1198,
+            id:1198,
             "seqId":1488,
             "siteId":27,
             "recordDate":(new Date("9/30/1999 GMT")).toISOString(),
@@ -73083,7 +73083,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1199,
+            id:1199,
             "seqId":1489,
             "siteId":27,
             "recordDate":(new Date("10/7/1999 GMT")).toISOString(),
@@ -73144,7 +73144,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1200,
+            id:1200,
             "seqId":1490,
             "siteId":27,
             "recordDate":(new Date("10/13/1999 GMT")).toISOString(),
@@ -73205,7 +73205,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1201,
+            id:1201,
             "seqId":1491,
             "siteId":27,
             "recordDate":(new Date("10/21/1999 GMT")).toISOString(),
@@ -73266,7 +73266,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1202,
+            id:1202,
             "seqId":1012,
             "siteId":28,
             "recordDate":(new Date("4/2/1999 GMT")).toISOString(),
@@ -73327,7 +73327,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1203,
+            id:1203,
             "seqId":1013,
             "siteId":28,
             "recordDate":(new Date("4/14/1999 GMT")).toISOString(),
@@ -73388,7 +73388,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1204,
+            id:1204,
             "seqId":1014,
             "siteId":28,
             "recordDate":(new Date("4/20/1999 GMT")).toISOString(),
@@ -73449,7 +73449,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1205,
+            id:1205,
             "seqId":1015,
             "siteId":28,
             "recordDate":(new Date("5/3/1999 GMT")).toISOString(),
@@ -73510,7 +73510,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1206,
+            id:1206,
             "seqId":1017,
             "siteId":28,
             "recordDate":(new Date("5/10/1999 GMT")).toISOString(),
@@ -73571,7 +73571,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1207,
+            id:1207,
             "seqId":1018,
             "siteId":28,
             "recordDate":(new Date("5/19/1999 GMT")).toISOString(),
@@ -73632,7 +73632,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1208,
+            id:1208,
             "seqId":1019,
             "siteId":28,
             "recordDate":(new Date("5/25/1999 GMT")).toISOString(),
@@ -73693,7 +73693,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1209,
+            id:1209,
             "seqId":1020,
             "siteId":28,
             "recordDate":(new Date("5/30/1999 GMT")).toISOString(),
@@ -73754,7 +73754,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1210,
+            id:1210,
             "seqId":1021,
             "siteId":28,
             "recordDate":(new Date("6/7/1999 GMT")).toISOString(),
@@ -73815,7 +73815,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1211,
+            id:1211,
             "seqId":1022,
             "siteId":28,
             "recordDate":(new Date("6/19/1999 GMT")).toISOString(),
@@ -73876,7 +73876,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1212,
+            id:1212,
             "seqId":1023,
             "siteId":28,
             "recordDate":(new Date("6/21/1999 GMT")).toISOString(),
@@ -73937,7 +73937,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1213,
+            id:1213,
             "seqId":1024,
             "siteId":28,
             "recordDate":(new Date("6/28/1999 GMT")).toISOString(),
@@ -73998,7 +73998,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1214,
+            id:1214,
             "seqId":1025,
             "siteId":28,
             "recordDate":(new Date("7/5/1999 GMT")).toISOString(),
@@ -74059,7 +74059,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1215,
+            id:1215,
             "seqId":1026,
             "siteId":28,
             "recordDate":(new Date("7/12/1999 GMT")).toISOString(),
@@ -74120,7 +74120,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1216,
+            id:1216,
             "seqId":1027,
             "siteId":28,
             "recordDate":(new Date("7/19/1999 GMT")).toISOString(),
@@ -74181,7 +74181,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1217,
+            id:1217,
             "seqId":1028,
             "siteId":28,
             "recordDate":(new Date("7/25/1999 GMT")).toISOString(),
@@ -74242,7 +74242,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1218,
+            id:1218,
             "seqId":1029,
             "siteId":28,
             "recordDate":(new Date("8/1/1999 GMT")).toISOString(),
@@ -74303,7 +74303,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1219,
+            id:1219,
             "seqId":1030,
             "siteId":28,
             "recordDate":(new Date("8/9/1999 GMT")).toISOString(),
@@ -74364,7 +74364,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1220,
+            id:1220,
             "seqId":1031,
             "siteId":28,
             "recordDate":(new Date("8/16/1999 GMT")).toISOString(),
@@ -74425,7 +74425,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1221,
+            id:1221,
             "seqId":1032,
             "siteId":28,
             "recordDate":(new Date("8/23/1999 GMT")).toISOString(),
@@ -74486,7 +74486,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1222,
+            id:1222,
             "seqId":1033,
             "siteId":28,
             "recordDate":(new Date("8/29/1999 GMT")).toISOString(),
@@ -74547,7 +74547,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1223,
+            id:1223,
             "seqId":1034,
             "siteId":28,
             "recordDate":(new Date("9/5/1999 GMT")).toISOString(),
@@ -74608,7 +74608,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1224,
+            id:1224,
             "seqId":1035,
             "siteId":28,
             "recordDate":(new Date("9/12/1999 GMT")).toISOString(),
@@ -74669,7 +74669,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1225,
+            id:1225,
             "seqId":1036,
             "siteId":28,
             "recordDate":(new Date("9/19/1999 GMT")).toISOString(),
@@ -74730,7 +74730,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1226,
+            id:1226,
             "seqId":1037,
             "siteId":28,
             "recordDate":(new Date("9/27/1999 GMT")).toISOString(),
@@ -74791,7 +74791,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1227,
+            id:1227,
             "seqId":755,
             "siteId":29,
             "recordDate":(new Date("4/3/1996 GMT")).toISOString(),
@@ -74852,7 +74852,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1228,
+            id:1228,
             "seqId":756,
             "siteId":29,
             "recordDate":(new Date("4/18/1996 GMT")).toISOString(),
@@ -74913,7 +74913,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1229,
+            id:1229,
             "seqId":757,
             "siteId":29,
             "recordDate":(new Date("5/10/1996 GMT")).toISOString(),
@@ -74974,7 +74974,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1230,
+            id:1230,
             "seqId":758,
             "siteId":29,
             "recordDate":(new Date("5/22/1996 GMT")).toISOString(),
@@ -75035,7 +75035,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1231,
+            id:1231,
             "seqId":759,
             "siteId":29,
             "recordDate":(new Date("5/31/1996 GMT")).toISOString(),
@@ -75096,7 +75096,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1232,
+            id:1232,
             "seqId":760,
             "siteId":29,
             "recordDate":(new Date("6/14/1996 GMT")).toISOString(),
@@ -75157,7 +75157,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1233,
+            id:1233,
             "seqId":761,
             "siteId":29,
             "recordDate":(new Date("6/28/1996 GMT")).toISOString(),
@@ -75218,7 +75218,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1234,
+            id:1234,
             "seqId":762,
             "siteId":29,
             "recordDate":(new Date("7/12/1996 GMT")).toISOString(),
@@ -75279,7 +75279,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1235,
+            id:1235,
             "seqId":763,
             "siteId":29,
             "recordDate":(new Date("7/29/1996 GMT")).toISOString(),
@@ -75340,7 +75340,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1236,
+            id:1236,
             "seqId":764,
             "siteId":29,
             "recordDate":(new Date("8/18/1996 GMT")).toISOString(),
@@ -75401,7 +75401,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1237,
+            id:1237,
             "seqId":765,
             "siteId":29,
             "recordDate":(new Date("8/26/1996 GMT")).toISOString(),
@@ -75462,7 +75462,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1238,
+            id:1238,
             "seqId":766,
             "siteId":29,
             "recordDate":(new Date("9/4/1996 GMT")).toISOString(),
@@ -75523,7 +75523,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1239,
+            id:1239,
             "seqId":767,
             "siteId":29,
             "recordDate":(new Date("9/12/1996 GMT")).toISOString(),
@@ -75584,7 +75584,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1240,
+            id:1240,
             "seqId":768,
             "siteId":29,
             "recordDate":(new Date("9/25/1996 GMT")).toISOString(),
@@ -75645,7 +75645,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1241,
+            id:1241,
             "seqId":769,
             "siteId":29,
             "recordDate":(new Date("4/2/1997 GMT")).toISOString(),
@@ -75706,7 +75706,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1242,
+            id:1242,
             "seqId":770,
             "siteId":29,
             "recordDate":(new Date("5/27/1997 GMT")).toISOString(),
@@ -75767,7 +75767,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1243,
+            id:1243,
             "seqId":771,
             "siteId":29,
             "recordDate":(new Date("6/5/1997 GMT")).toISOString(),
@@ -75828,7 +75828,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1244,
+            id:1244,
             "seqId":772,
             "siteId":29,
             "recordDate":(new Date("6/11/1997 GMT")).toISOString(),
@@ -75889,7 +75889,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1245,
+            id:1245,
             "seqId":773,
             "siteId":29,
             "recordDate":(new Date("6/19/1997 GMT")).toISOString(),
@@ -75950,7 +75950,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1246,
+            id:1246,
             "seqId":774,
             "siteId":29,
             "recordDate":(new Date("7/2/1997 GMT")).toISOString(),
@@ -76011,7 +76011,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1247,
+            id:1247,
             "seqId":775,
             "siteId":29,
             "recordDate":(new Date("7/13/1997 GMT")).toISOString(),
@@ -76072,7 +76072,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1248,
+            id:1248,
             "seqId":776,
             "siteId":29,
             "recordDate":(new Date("8/7/1997 GMT")).toISOString(),
@@ -76133,7 +76133,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1249,
+            id:1249,
             "seqId":777,
             "siteId":29,
             "recordDate":(new Date("8/16/1997 GMT")).toISOString(),
@@ -76194,7 +76194,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1250,
+            id:1250,
             "seqId":778,
             "siteId":29,
             "recordDate":(new Date("8/28/1997 GMT")).toISOString(),
@@ -76255,7 +76255,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1251,
+            id:1251,
             "seqId":779,
             "siteId":29,
             "recordDate":(new Date("9/2/1997 GMT")).toISOString(),
@@ -76316,7 +76316,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1252,
+            id:1252,
             "seqId":780,
             "siteId":29,
             "recordDate":(new Date("9/16/1997 GMT")).toISOString(),
@@ -76377,7 +76377,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1253,
+            id:1253,
             "seqId":781,
             "siteId":29,
             "recordDate":(new Date("9/23/1997 GMT")).toISOString(),
@@ -76438,7 +76438,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1254,
+            id:1254,
             "seqId":799,
             "siteId":30,
             "recordDate":(new Date("4/3/1996 GMT")).toISOString(),
@@ -76499,7 +76499,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1255,
+            id:1255,
             "seqId":800,
             "siteId":30,
             "recordDate":(new Date("4/18/1996 GMT")).toISOString(),
@@ -76560,7 +76560,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1256,
+            id:1256,
             "seqId":801,
             "siteId":30,
             "recordDate":(new Date("5/10/1996 GMT")).toISOString(),
@@ -76621,7 +76621,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1257,
+            id:1257,
             "seqId":802,
             "siteId":30,
             "recordDate":(new Date("5/20/1996 GMT")).toISOString(),
@@ -76682,7 +76682,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1258,
+            id:1258,
             "seqId":803,
             "siteId":30,
             "recordDate":(new Date("5/31/1996 GMT")).toISOString(),
@@ -76743,7 +76743,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1259,
+            id:1259,
             "seqId":804,
             "siteId":30,
             "recordDate":(new Date("6/14/1996 GMT")).toISOString(),
@@ -76804,7 +76804,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1260,
+            id:1260,
             "seqId":805,
             "siteId":30,
             "recordDate":(new Date("6/28/1996 GMT")).toISOString(),
@@ -76865,7 +76865,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1261,
+            id:1261,
             "seqId":806,
             "siteId":30,
             "recordDate":(new Date("7/12/1996 GMT")).toISOString(),
@@ -76926,7 +76926,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1262,
+            id:1262,
             "seqId":807,
             "siteId":30,
             "recordDate":(new Date("7/29/1996 GMT")).toISOString(),
@@ -76987,7 +76987,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1263,
+            id:1263,
             "seqId":808,
             "siteId":30,
             "recordDate":(new Date("8/21/1996 GMT")).toISOString(),
@@ -77048,7 +77048,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1264,
+            id:1264,
             "seqId":809,
             "siteId":30,
             "recordDate":(new Date("8/26/1996 GMT")).toISOString(),
@@ -77109,7 +77109,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1265,
+            id:1265,
             "seqId":810,
             "siteId":30,
             "recordDate":(new Date("9/4/1996 GMT")).toISOString(),
@@ -77170,7 +77170,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1266,
+            id:1266,
             "seqId":811,
             "siteId":30,
             "recordDate":(new Date("9/12/1996 GMT")).toISOString(),
@@ -77231,7 +77231,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1267,
+            id:1267,
             "seqId":812,
             "siteId":30,
             "recordDate":(new Date("9/25/1996 GMT")).toISOString(),
@@ -77292,7 +77292,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1268,
+            id:1268,
             "seqId":813,
             "siteId":30,
             "recordDate":(new Date("4/2/1997 GMT")).toISOString(),
@@ -77353,7 +77353,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1269,
+            id:1269,
             "seqId":814,
             "siteId":30,
             "recordDate":(new Date("5/27/1997 GMT")).toISOString(),
@@ -77414,7 +77414,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1270,
+            id:1270,
             "seqId":815,
             "siteId":30,
             "recordDate":(new Date("6/5/1997 GMT")).toISOString(),
@@ -77475,7 +77475,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1271,
+            id:1271,
             "seqId":816,
             "siteId":30,
             "recordDate":(new Date("6/11/1997 GMT")).toISOString(),
@@ -77536,7 +77536,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1272,
+            id:1272,
             "seqId":817,
             "siteId":30,
             "recordDate":(new Date("6/19/1997 GMT")).toISOString(),
@@ -77597,7 +77597,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1273,
+            id:1273,
             "seqId":818,
             "siteId":30,
             "recordDate":(new Date("7/2/1997 GMT")).toISOString(),
@@ -77658,7 +77658,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1274,
+            id:1274,
             "seqId":819,
             "siteId":30,
             "recordDate":(new Date("7/13/1997 GMT")).toISOString(),
@@ -77719,7 +77719,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1275,
+            id:1275,
             "seqId":822,
             "siteId":30,
             "recordDate":(new Date("8/7/1997 GMT")).toISOString(),
@@ -77780,7 +77780,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1276,
+            id:1276,
             "seqId":823,
             "siteId":30,
             "recordDate":(new Date("8/28/1997 GMT")).toISOString(),
@@ -77841,7 +77841,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1277,
+            id:1277,
             "seqId":824,
             "siteId":30,
             "recordDate":(new Date("9/2/1997 GMT")).toISOString(),
@@ -77902,7 +77902,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1278,
+            id:1278,
             "seqId":820,
             "siteId":30,
             "recordDate":(new Date("9/16/1997 GMT")).toISOString(),
@@ -77963,7 +77963,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1279,
+            id:1279,
             "seqId":821,
             "siteId":30,
             "recordDate":(new Date("9/23/1997 GMT")).toISOString(),
@@ -78024,7 +78024,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1280,
+            id:1280,
             "seqId":825,
             "siteId":31,
             "recordDate":(new Date("4/18/1996 GMT")).toISOString(),
@@ -78085,7 +78085,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1281,
+            id:1281,
             "seqId":826,
             "siteId":31,
             "recordDate":(new Date("5/10/1996 GMT")).toISOString(),
@@ -78146,7 +78146,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1282,
+            id:1282,
             "seqId":827,
             "siteId":31,
             "recordDate":(new Date("5/20/1996 GMT")).toISOString(),
@@ -78207,7 +78207,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1283,
+            id:1283,
             "seqId":828,
             "siteId":31,
             "recordDate":(new Date("5/31/1996 GMT")).toISOString(),
@@ -78268,7 +78268,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1284,
+            id:1284,
             "seqId":829,
             "siteId":31,
             "recordDate":(new Date("6/14/1996 GMT")).toISOString(),
@@ -78329,7 +78329,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1285,
+            id:1285,
             "seqId":830,
             "siteId":31,
             "recordDate":(new Date("6/28/1996 GMT")).toISOString(),
@@ -78390,7 +78390,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1286,
+            id:1286,
             "seqId":831,
             "siteId":31,
             "recordDate":(new Date("7/4/1996 GMT")).toISOString(),
@@ -78451,7 +78451,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1287,
+            id:1287,
             "seqId":832,
             "siteId":31,
             "recordDate":(new Date("7/12/1996 GMT")).toISOString(),
@@ -78512,7 +78512,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1288,
+            id:1288,
             "seqId":833,
             "siteId":31,
             "recordDate":(new Date("7/27/1996 GMT")).toISOString(),
@@ -78573,7 +78573,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1289,
+            id:1289,
             "seqId":834,
             "siteId":31,
             "recordDate":(new Date("7/29/1996 GMT")).toISOString(),
@@ -78634,7 +78634,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1290,
+            id:1290,
             "seqId":835,
             "siteId":31,
             "recordDate":(new Date("8/7/1996 GMT")).toISOString(),
@@ -78695,7 +78695,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1291,
+            id:1291,
             "seqId":836,
             "siteId":31,
             "recordDate":(new Date("8/16/1996 GMT")).toISOString(),
@@ -78756,7 +78756,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1292,
+            id:1292,
             "seqId":837,
             "siteId":31,
             "recordDate":(new Date("8/22/1996 GMT")).toISOString(),
@@ -78817,7 +78817,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1293,
+            id:1293,
             "seqId":838,
             "siteId":31,
             "recordDate":(new Date("8/30/1996 GMT")).toISOString(),
@@ -78878,7 +78878,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1294,
+            id:1294,
             "seqId":839,
             "siteId":31,
             "recordDate":(new Date("9/4/1996 GMT")).toISOString(),
@@ -78939,7 +78939,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1295,
+            id:1295,
             "seqId":840,
             "siteId":31,
             "recordDate":(new Date("9/12/1996 GMT")).toISOString(),
@@ -79000,7 +79000,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1296,
+            id:1296,
             "seqId":842,
             "siteId":31,
             "recordDate":(new Date("9/18/1996 GMT")).toISOString(),
@@ -79061,7 +79061,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1297,
+            id:1297,
             "seqId":843,
             "siteId":31,
             "recordDate":(new Date("9/25/1996 GMT")).toISOString(),
@@ -79122,7 +79122,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1298,
+            id:1298,
             "seqId":841,
             "siteId":31,
             "recordDate":(new Date("9/30/1996 GMT")).toISOString(),
@@ -79183,7 +79183,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1299,
+            id:1299,
             "seqId":844,
             "siteId":31,
             "recordDate":(new Date("4/2/1997 GMT")).toISOString(),
@@ -79244,7 +79244,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1300,
+            id:1300,
             "seqId":845,
             "siteId":31,
             "recordDate":(new Date("5/27/1997 GMT")).toISOString(),
@@ -79305,7 +79305,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1301,
+            id:1301,
             "seqId":846,
             "siteId":31,
             "recordDate":(new Date("6/5/1997 GMT")).toISOString(),
@@ -79366,7 +79366,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1302,
+            id:1302,
             "seqId":847,
             "siteId":31,
             "recordDate":(new Date("6/11/1997 GMT")).toISOString(),
@@ -79427,7 +79427,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1303,
+            id:1303,
             "seqId":848,
             "siteId":31,
             "recordDate":(new Date("6/19/1997 GMT")).toISOString(),
@@ -79488,7 +79488,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1304,
+            id:1304,
             "seqId":849,
             "siteId":31,
             "recordDate":(new Date("7/2/1997 GMT")).toISOString(),
@@ -79549,7 +79549,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1305,
+            id:1305,
             "seqId":850,
             "siteId":31,
             "recordDate":(new Date("7/13/1997 GMT")).toISOString(),
@@ -79610,7 +79610,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1306,
+            id:1306,
             "seqId":851,
             "siteId":31,
             "recordDate":(new Date("7/18/1997 GMT")).toISOString(),
@@ -79671,7 +79671,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1307,
+            id:1307,
             "seqId":852,
             "siteId":31,
             "recordDate":(new Date("7/29/1997 GMT")).toISOString(),
@@ -79732,7 +79732,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1308,
+            id:1308,
             "seqId":853,
             "siteId":31,
             "recordDate":(new Date("8/7/1997 GMT")).toISOString(),
@@ -79793,7 +79793,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1309,
+            id:1309,
             "seqId":854,
             "siteId":31,
             "recordDate":(new Date("8/16/1997 GMT")).toISOString(),
@@ -79854,7 +79854,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1310,
+            id:1310,
             "seqId":858,
             "siteId":31,
             "recordDate":(new Date("8/28/1997 GMT")).toISOString(),
@@ -79915,7 +79915,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1311,
+            id:1311,
             "seqId":859,
             "siteId":31,
             "recordDate":(new Date("9/2/1997 GMT")).toISOString(),
@@ -79976,7 +79976,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1312,
+            id:1312,
             "seqId":860,
             "siteId":31,
             "recordDate":(new Date("9/16/1997 GMT")).toISOString(),
@@ -80037,7 +80037,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1313,
+            id:1313,
             "seqId":861,
             "siteId":31,
             "recordDate":(new Date("9/23/1997 GMT")).toISOString(),
@@ -80098,7 +80098,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1314,
+            id:1314,
             "seqId":783,
             "siteId":32,
             "recordDate":(new Date("4/3/1996 GMT")).toISOString(),
@@ -80159,7 +80159,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1315,
+            id:1315,
             "seqId":784,
             "siteId":32,
             "recordDate":(new Date("4/18/1996 GMT")).toISOString(),
@@ -80220,7 +80220,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1316,
+            id:1316,
             "seqId":785,
             "siteId":32,
             "recordDate":(new Date("5/10/1996 GMT")).toISOString(),
@@ -80281,7 +80281,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1317,
+            id:1317,
             "seqId":786,
             "siteId":32,
             "recordDate":(new Date("5/20/1996 GMT")).toISOString(),
@@ -80342,7 +80342,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1318,
+            id:1318,
             "seqId":787,
             "siteId":32,
             "recordDate":(new Date("5/31/1996 GMT")).toISOString(),
@@ -80403,7 +80403,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1319,
+            id:1319,
             "seqId":788,
             "siteId":32,
             "recordDate":(new Date("6/14/1996 GMT")).toISOString(),
@@ -80464,7 +80464,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1320,
+            id:1320,
             "seqId":789,
             "siteId":32,
             "recordDate":(new Date("6/28/1996 GMT")).toISOString(),
@@ -80525,7 +80525,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1321,
+            id:1321,
             "seqId":790,
             "siteId":32,
             "recordDate":(new Date("7/4/1996 GMT")).toISOString(),
@@ -80586,7 +80586,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1322,
+            id:1322,
             "seqId":791,
             "siteId":32,
             "recordDate":(new Date("7/27/1996 GMT")).toISOString(),
@@ -80647,7 +80647,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1323,
+            id:1323,
             "seqId":792,
             "siteId":32,
             "recordDate":(new Date("8/7/1996 GMT")).toISOString(),
@@ -80708,7 +80708,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1324,
+            id:1324,
             "seqId":793,
             "siteId":32,
             "recordDate":(new Date("8/16/1996 GMT")).toISOString(),
@@ -80769,7 +80769,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1325,
+            id:1325,
             "seqId":794,
             "siteId":32,
             "recordDate":(new Date("8/21/1996 GMT")).toISOString(),
@@ -80830,7 +80830,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1326,
+            id:1326,
             "seqId":795,
             "siteId":32,
             "recordDate":(new Date("8/30/1996 GMT")).toISOString(),
@@ -80891,7 +80891,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1327,
+            id:1327,
             "seqId":796,
             "siteId":32,
             "recordDate":(new Date("9/9/1996 GMT")).toISOString(),
@@ -80952,7 +80952,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1328,
+            id:1328,
             "seqId":797,
             "siteId":32,
             "recordDate":(new Date("9/18/1996 GMT")).toISOString(),
@@ -81013,7 +81013,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1329,
+            id:1329,
             "seqId":798,
             "siteId":32,
             "recordDate":(new Date("9/25/1996 GMT")).toISOString(),
@@ -81074,7 +81074,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1330,
+            id:1330,
             "seqId":864,
             "siteId":32,
             "recordDate":(new Date("4/2/1997 GMT")).toISOString(),
@@ -81135,7 +81135,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1331,
+            id:1331,
             "seqId":866,
             "siteId":32,
             "recordDate":(new Date("5/27/1997 GMT")).toISOString(),
@@ -81196,7 +81196,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1332,
+            id:1332,
             "seqId":865,
             "siteId":32,
             "recordDate":(new Date("6/5/1997 GMT")).toISOString(),
@@ -81257,7 +81257,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1333,
+            id:1333,
             "seqId":867,
             "siteId":32,
             "recordDate":(new Date("6/11/1997 GMT")).toISOString(),
@@ -81318,7 +81318,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1334,
+            id:1334,
             "seqId":868,
             "siteId":32,
             "recordDate":(new Date("6/19/1997 GMT")).toISOString(),
@@ -81379,7 +81379,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1335,
+            id:1335,
             "seqId":869,
             "siteId":32,
             "recordDate":(new Date("7/2/1997 GMT")).toISOString(),
@@ -81440,7 +81440,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1336,
+            id:1336,
             "seqId":870,
             "siteId":32,
             "recordDate":(new Date("7/13/1997 GMT")).toISOString(),
@@ -81501,7 +81501,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1337,
+            id:1337,
             "seqId":871,
             "siteId":32,
             "recordDate":(new Date("7/29/1997 GMT")).toISOString(),
@@ -81562,7 +81562,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1338,
+            id:1338,
             "seqId":872,
             "siteId":32,
             "recordDate":(new Date("8/7/1997 GMT")).toISOString(),
@@ -81623,7 +81623,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1339,
+            id:1339,
             "seqId":873,
             "siteId":32,
             "recordDate":(new Date("8/16/1997 GMT")).toISOString(),
@@ -81684,7 +81684,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1340,
+            id:1340,
             "seqId":874,
             "siteId":32,
             "recordDate":(new Date("8/27/1997 GMT")).toISOString(),
@@ -81745,7 +81745,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1341,
+            id:1341,
             "seqId":875,
             "siteId":32,
             "recordDate":(new Date("9/1/1997 GMT")).toISOString(),
@@ -81806,7 +81806,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1342,
+            id:1342,
             "seqId":876,
             "siteId":32,
             "recordDate":(new Date("9/16/1997 GMT")).toISOString(),
@@ -81867,7 +81867,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1343,
+            id:1343,
             "seqId":877,
             "siteId":32,
             "recordDate":(new Date("9/23/1997 GMT")).toISOString(),
@@ -81928,7 +81928,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1344,
+            id:1344,
             "seqId":930,
             "siteId":34,
             "recordDate":(new Date("4/26/1999 GMT")).toISOString(),
@@ -81989,7 +81989,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1345,
+            id:1345,
             "seqId":931,
             "siteId":34,
             "recordDate":(new Date("5/3/1999 GMT")).toISOString(),
@@ -82050,7 +82050,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1346,
+            id:1346,
             "seqId":932,
             "siteId":34,
             "recordDate":(new Date("5/11/1999 GMT")).toISOString(),
@@ -82111,7 +82111,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1347,
+            id:1347,
             "seqId":933,
             "siteId":34,
             "recordDate":(new Date("5/19/1999 GMT")).toISOString(),
@@ -82172,7 +82172,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1348,
+            id:1348,
             "seqId":934,
             "siteId":34,
             "recordDate":(new Date("6/14/1999 GMT")).toISOString(),
@@ -82233,7 +82233,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1349,
+            id:1349,
             "seqId":935,
             "siteId":34,
             "recordDate":(new Date("6/21/1999 GMT")).toISOString(),
@@ -82294,7 +82294,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1350,
+            id:1350,
             "seqId":936,
             "siteId":34,
             "recordDate":(new Date("6/28/1999 GMT")).toISOString(),
@@ -82355,7 +82355,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1351,
+            id:1351,
             "seqId":937,
             "siteId":34,
             "recordDate":(new Date("7/7/1999 GMT")).toISOString(),
@@ -82416,7 +82416,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1352,
+            id:1352,
             "seqId":938,
             "siteId":34,
             "recordDate":(new Date("7/12/1999 GMT")).toISOString(),
@@ -82477,7 +82477,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1353,
+            id:1353,
             "seqId":939,
             "siteId":34,
             "recordDate":(new Date("8/2/1999 GMT")).toISOString(),
@@ -82538,7 +82538,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1354,
+            id:1354,
             "seqId":940,
             "siteId":34,
             "recordDate":(new Date("8/8/1999 GMT")).toISOString(),
@@ -82599,7 +82599,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1355,
+            id:1355,
             "seqId":941,
             "siteId":34,
             "recordDate":(new Date("8/23/1999 GMT")).toISOString(),
@@ -82660,7 +82660,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1356,
+            id:1356,
             "seqId":942,
             "siteId":34,
             "recordDate":(new Date("8/30/1999 GMT")).toISOString(),
@@ -82721,7 +82721,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1357,
+            id:1357,
             "seqId":943,
             "siteId":34,
             "recordDate":(new Date("9/23/1999 GMT")).toISOString(),
@@ -82782,7 +82782,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1358,
+            id:1358,
             "seqId":944,
             "siteId":35,
             "recordDate":(new Date("5/29/1999 GMT")).toISOString(),
@@ -82843,7 +82843,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1359,
+            id:1359,
             "seqId":945,
             "siteId":35,
             "recordDate":(new Date("6/5/1999 GMT")).toISOString(),
@@ -82904,7 +82904,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1360,
+            id:1360,
             "seqId":946,
             "siteId":35,
             "recordDate":(new Date("6/15/1999 GMT")).toISOString(),
@@ -82965,7 +82965,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1361,
+            id:1361,
             "seqId":947,
             "siteId":35,
             "recordDate":(new Date("6/20/1999 GMT")).toISOString(),
@@ -83026,7 +83026,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1362,
+            id:1362,
             "seqId":948,
             "siteId":35,
             "recordDate":(new Date("6/29/1999 GMT")).toISOString(),
@@ -83087,7 +83087,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1363,
+            id:1363,
             "seqId":949,
             "siteId":35,
             "recordDate":(new Date("7/5/1999 GMT")).toISOString(),
@@ -83148,7 +83148,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1364,
+            id:1364,
             "seqId":950,
             "siteId":35,
             "recordDate":(new Date("7/11/1999 GMT")).toISOString(),
@@ -83209,7 +83209,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1365,
+            id:1365,
             "seqId":951,
             "siteId":35,
             "recordDate":(new Date("7/18/1999 GMT")).toISOString(),
@@ -83270,7 +83270,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1366,
+            id:1366,
             "seqId":952,
             "siteId":35,
             "recordDate":(new Date("7/25/1999 GMT")).toISOString(),
@@ -83331,7 +83331,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1367,
+            id:1367,
             "seqId":953,
             "siteId":35,
             "recordDate":(new Date("8/1/1999 GMT")).toISOString(),
@@ -83392,7 +83392,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1368,
+            id:1368,
             "seqId":954,
             "siteId":35,
             "recordDate":(new Date("8/5/1999 GMT")).toISOString(),
@@ -83453,7 +83453,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1369,
+            id:1369,
             "seqId":955,
             "siteId":35,
             "recordDate":(new Date("8/12/1999 GMT")).toISOString(),
@@ -83514,7 +83514,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1370,
+            id:1370,
             "seqId":956,
             "siteId":35,
             "recordDate":(new Date("8/20/1999 GMT")).toISOString(),
@@ -83575,7 +83575,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1371,
+            id:1371,
             "seqId":957,
             "siteId":35,
             "recordDate":(new Date("8/26/1999 GMT")).toISOString(),
@@ -83636,7 +83636,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1372,
+            id:1372,
             "seqId":958,
             "siteId":35,
             "recordDate":(new Date("9/2/1999 GMT")).toISOString(),
@@ -83697,7 +83697,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1373,
+            id:1373,
             "seqId":959,
             "siteId":35,
             "recordDate":(new Date("9/6/1999 GMT")).toISOString(),
@@ -83758,7 +83758,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1374,
+            id:1374,
             "seqId":960,
             "siteId":35,
             "recordDate":(new Date("9/11/1999 GMT")).toISOString(),
@@ -83819,7 +83819,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1375,
+            id:1375,
             "seqId":961,
             "siteId":35,
             "recordDate":(new Date("9/18/1999 GMT")).toISOString(),
@@ -83880,7 +83880,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1376,
+            id:1376,
             "seqId":962,
             "siteId":35,
             "recordDate":(new Date("9/26/1999 GMT")).toISOString(),
@@ -83941,7 +83941,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1377,
+            id:1377,
             "seqId":963,
             "siteId":35,
             "recordDate":(new Date("10/3/1999 GMT")).toISOString(),
@@ -84002,7 +84002,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1378,
+            id:1378,
             "seqId":964,
             "siteId":35,
             "recordDate":(new Date("10/11/1999 GMT")).toISOString(),
@@ -84063,7 +84063,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1379,
+            id:1379,
             "seqId":1238,
             "siteId":37,
             "recordDate":(new Date("4/11/1999 GMT")).toISOString(),
@@ -84124,7 +84124,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1380,
+            id:1380,
             "seqId":1239,
             "siteId":37,
             "recordDate":(new Date("4/21/1999 GMT")).toISOString(),
@@ -84185,7 +84185,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1381,
+            id:1381,
             "seqId":1240,
             "siteId":37,
             "recordDate":(new Date("5/2/1999 GMT")).toISOString(),
@@ -84246,7 +84246,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1382,
+            id:1382,
             "seqId":1241,
             "siteId":37,
             "recordDate":(new Date("5/9/1999 GMT")).toISOString(),
@@ -84307,7 +84307,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1383,
+            id:1383,
             "seqId":1242,
             "siteId":37,
             "recordDate":(new Date("5/15/1999 GMT")).toISOString(),
@@ -84368,7 +84368,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1384,
+            id:1384,
             "seqId":1243,
             "siteId":37,
             "recordDate":(new Date("5/26/1999 GMT")).toISOString(),
@@ -84429,7 +84429,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1385,
+            id:1385,
             "seqId":1244,
             "siteId":37,
             "recordDate":(new Date("6/1/1999 GMT")).toISOString(),
@@ -84490,7 +84490,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1386,
+            id:1386,
             "seqId":1245,
             "siteId":37,
             "recordDate":(new Date("6/5/1999 GMT")).toISOString(),
@@ -84551,7 +84551,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1387,
+            id:1387,
             "seqId":1246,
             "siteId":37,
             "recordDate":(new Date("6/10/1999 GMT")).toISOString(),
@@ -84612,7 +84612,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1388,
+            id:1388,
             "seqId":1247,
             "siteId":37,
             "recordDate":(new Date("6/18/1999 GMT")).toISOString(),
@@ -84673,7 +84673,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1389,
+            id:1389,
             "seqId":1248,
             "siteId":37,
             "recordDate":(new Date("6/28/1999 GMT")).toISOString(),
@@ -84734,7 +84734,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1390,
+            id:1390,
             "seqId":1249,
             "siteId":37,
             "recordDate":(new Date("6/30/1999 GMT")).toISOString(),
@@ -84795,7 +84795,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1391,
+            id:1391,
             "seqId":1250,
             "siteId":37,
             "recordDate":(new Date("7/5/1999 GMT")).toISOString(),
@@ -84856,7 +84856,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1392,
+            id:1392,
             "seqId":1251,
             "siteId":37,
             "recordDate":(new Date("7/8/1999 GMT")).toISOString(),
@@ -84917,7 +84917,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1393,
+            id:1393,
             "seqId":1252,
             "siteId":37,
             "recordDate":(new Date("7/20/1999 GMT")).toISOString(),
@@ -84978,7 +84978,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1394,
+            id:1394,
             "seqId":1253,
             "siteId":37,
             "recordDate":(new Date("7/24/1999 GMT")).toISOString(),
@@ -85039,7 +85039,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1395,
+            id:1395,
             "seqId":1254,
             "siteId":37,
             "recordDate":(new Date("8/3/1999 GMT")).toISOString(),
@@ -85100,7 +85100,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1396,
+            id:1396,
             "seqId":1255,
             "siteId":37,
             "recordDate":(new Date("8/11/1999 GMT")).toISOString(),
@@ -85161,7 +85161,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1397,
+            id:1397,
             "seqId":1256,
             "siteId":37,
             "recordDate":(new Date("8/16/1999 GMT")).toISOString(),
@@ -85222,7 +85222,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1398,
+            id:1398,
             "seqId":1257,
             "siteId":37,
             "recordDate":(new Date("8/22/1999 GMT")).toISOString(),
@@ -85283,7 +85283,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1399,
+            id:1399,
             "seqId":1258,
             "siteId":37,
             "recordDate":(new Date("8/30/1999 GMT")).toISOString(),
@@ -85344,7 +85344,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1400,
+            id:1400,
             "seqId":1259,
             "siteId":37,
             "recordDate":(new Date("9/5/1999 GMT")).toISOString(),
@@ -85405,7 +85405,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1401,
+            id:1401,
             "seqId":1260,
             "siteId":37,
             "recordDate":(new Date("9/11/1999 GMT")).toISOString(),
@@ -85466,7 +85466,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1402,
+            id:1402,
             "seqId":1261,
             "siteId":37,
             "recordDate":(new Date("9/18/1999 GMT")).toISOString(),
@@ -85527,7 +85527,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1403,
+            id:1403,
             "seqId":1262,
             "siteId":37,
             "recordDate":(new Date("9/26/1999 GMT")).toISOString(),
@@ -85588,7 +85588,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1404,
+            id:1404,
             "seqId":1263,
             "siteId":37,
             "recordDate":(new Date("9/30/1999 GMT")).toISOString(),
@@ -85649,7 +85649,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1405,
+            id:1405,
             "seqId":1415,
             "siteId":39,
             "recordDate":(new Date("4/25/1999 GMT")).toISOString(),
@@ -85710,7 +85710,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1406,
+            id:1406,
             "seqId":1416,
             "siteId":39,
             "recordDate":(new Date("5/8/1999 GMT")).toISOString(),
@@ -85771,7 +85771,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1407,
+            id:1407,
             "seqId":1417,
             "siteId":39,
             "recordDate":(new Date("6/4/1999 GMT")).toISOString(),
@@ -85832,7 +85832,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1408,
+            id:1408,
             "seqId":1418,
             "siteId":39,
             "recordDate":(new Date("6/19/1999 GMT")).toISOString(),
@@ -85893,7 +85893,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1409,
+            id:1409,
             "seqId":1419,
             "siteId":39,
             "recordDate":(new Date("8/22/1999 GMT")).toISOString(),
@@ -85954,7 +85954,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1410,
+            id:1410,
             "seqId":1420,
             "siteId":39,
             "recordDate":(new Date("9/25/1999 GMT")).toISOString(),
@@ -86015,7 +86015,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1411,
+            id:1411,
             "seqId":1066,
             "siteId":40,
             "recordDate":(new Date("5/3/1999 GMT")).toISOString(),
@@ -86076,7 +86076,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1412,
+            id:1412,
             "seqId":1067,
             "siteId":40,
             "recordDate":(new Date("5/7/1999 GMT")).toISOString(),
@@ -86137,7 +86137,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1413,
+            id:1413,
             "seqId":1068,
             "siteId":40,
             "recordDate":(new Date("5/20/1999 GMT")).toISOString(),
@@ -86198,7 +86198,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1414,
+            id:1414,
             "seqId":1535,
             "siteId":42,
             "recordDate":(new Date("5/4/1998 GMT")).toISOString(),
@@ -86259,7 +86259,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1415,
+            id:1415,
             "seqId":1536,
             "siteId":42,
             "recordDate":(new Date("5/13/1998 GMT")).toISOString(),
@@ -86320,7 +86320,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1416,
+            id:1416,
             "seqId":1538,
             "siteId":42,
             "recordDate":(new Date("5/15/1998 GMT")).toISOString(),
@@ -86381,7 +86381,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1417,
+            id:1417,
             "seqId":1539,
             "siteId":42,
             "recordDate":(new Date("5/20/1998 GMT")).toISOString(),
@@ -86442,7 +86442,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1418,
+            id:1418,
             "seqId":1540,
             "siteId":42,
             "recordDate":(new Date("5/27/1998 GMT")).toISOString(),
@@ -86503,7 +86503,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1419,
+            id:1419,
             "seqId":1541,
             "siteId":42,
             "recordDate":(new Date("6/2/1998 GMT")).toISOString(),
@@ -86564,7 +86564,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1420,
+            id:1420,
             "seqId":1542,
             "siteId":42,
             "recordDate":(new Date("6/10/1998 GMT")).toISOString(),
@@ -86625,7 +86625,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1421,
+            id:1421,
             "seqId":1543,
             "siteId":42,
             "recordDate":(new Date("6/17/1998 GMT")).toISOString(),
@@ -86686,7 +86686,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1422,
+            id:1422,
             "seqId":1544,
             "siteId":42,
             "recordDate":(new Date("6/24/1998 GMT")).toISOString(),
@@ -86747,7 +86747,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1423,
+            id:1423,
             "seqId":1545,
             "siteId":42,
             "recordDate":(new Date("7/1/1998 GMT")).toISOString(),
@@ -86808,7 +86808,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1424,
+            id:1424,
             "seqId":1546,
             "siteId":42,
             "recordDate":(new Date("7/9/1998 GMT")).toISOString(),
@@ -86869,7 +86869,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1425,
+            id:1425,
             "seqId":1547,
             "siteId":42,
             "recordDate":(new Date("7/17/1998 GMT")).toISOString(),
@@ -86930,7 +86930,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1426,
+            id:1426,
             "seqId":1548,
             "siteId":42,
             "recordDate":(new Date("7/21/1998 GMT")).toISOString(),
@@ -86991,7 +86991,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1427,
+            id:1427,
             "seqId":1549,
             "siteId":42,
             "recordDate":(new Date("7/28/1998 GMT")).toISOString(),
@@ -87052,7 +87052,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1428,
+            id:1428,
             "seqId":1550,
             "siteId":42,
             "recordDate":(new Date("8/6/1998 GMT")).toISOString(),
@@ -87113,7 +87113,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1429,
+            id:1429,
             "seqId":1551,
             "siteId":42,
             "recordDate":(new Date("8/11/1998 GMT")).toISOString(),
@@ -87174,7 +87174,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1430,
+            id:1430,
             "seqId":1552,
             "siteId":42,
             "recordDate":(new Date("8/18/1998 GMT")).toISOString(),
@@ -87235,7 +87235,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1431,
+            id:1431,
             "seqId":1553,
             "siteId":42,
             "recordDate":(new Date("8/23/1998 GMT")).toISOString(),
@@ -87296,7 +87296,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1432,
+            id:1432,
             "seqId":1554,
             "siteId":42,
             "recordDate":(new Date("9/2/1998 GMT")).toISOString(),
@@ -87357,7 +87357,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1433,
+            id:1433,
             "seqId":1556,
             "siteId":42,
             "recordDate":(new Date("9/6/1998 GMT")).toISOString(),
@@ -87418,7 +87418,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1434,
+            id:1434,
             "seqId":1557,
             "siteId":42,
             "recordDate":(new Date("9/13/1998 GMT")).toISOString(),
@@ -87479,7 +87479,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1435,
+            id:1435,
             "seqId":1558,
             "siteId":42,
             "recordDate":(new Date("9/23/1998 GMT")).toISOString(),
@@ -87540,7 +87540,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1436,
+            id:1436,
             "seqId":1559,
             "siteId":42,
             "recordDate":(new Date("9/30/1998 GMT")).toISOString(),
@@ -87601,7 +87601,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1437,
+            id:1437,
             "seqId":1514,
             "siteId":42,
             "recordDate":(new Date("5/10/1999 GMT")).toISOString(),
@@ -87662,7 +87662,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1438,
+            id:1438,
             "seqId":1515,
             "siteId":42,
             "recordDate":(new Date("5/17/1999 GMT")).toISOString(),
@@ -87723,7 +87723,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1439,
+            id:1439,
             "seqId":1516,
             "siteId":42,
             "recordDate":(new Date("5/27/1999 GMT")).toISOString(),
@@ -87784,7 +87784,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1440,
+            id:1440,
             "seqId":1517,
             "siteId":42,
             "recordDate":(new Date("6/3/1999 GMT")).toISOString(),
@@ -87845,7 +87845,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1441,
+            id:1441,
             "seqId":1518,
             "siteId":42,
             "recordDate":(new Date("6/10/1999 GMT")).toISOString(),
@@ -87906,7 +87906,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1442,
+            id:1442,
             "seqId":1519,
             "siteId":42,
             "recordDate":(new Date("6/16/1999 GMT")).toISOString(),
@@ -87967,7 +87967,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1443,
+            id:1443,
             "seqId":1520,
             "siteId":42,
             "recordDate":(new Date("6/23/1999 GMT")).toISOString(),
@@ -88028,7 +88028,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1444,
+            id:1444,
             "seqId":1521,
             "siteId":42,
             "recordDate":(new Date("6/30/1999 GMT")).toISOString(),
@@ -88089,7 +88089,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1445,
+            id:1445,
             "seqId":1522,
             "siteId":42,
             "recordDate":(new Date("7/7/1999 GMT")).toISOString(),
@@ -88150,7 +88150,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1446,
+            id:1446,
             "seqId":1523,
             "siteId":42,
             "recordDate":(new Date("7/15/1999 GMT")).toISOString(),
@@ -88211,7 +88211,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1447,
+            id:1447,
             "seqId":1524,
             "siteId":42,
             "recordDate":(new Date("7/22/1999 GMT")).toISOString(),
@@ -88272,7 +88272,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1448,
+            id:1448,
             "seqId":1525,
             "siteId":42,
             "recordDate":(new Date("7/30/1999 GMT")).toISOString(),
@@ -88333,7 +88333,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1449,
+            id:1449,
             "seqId":1526,
             "siteId":42,
             "recordDate":(new Date("8/5/1999 GMT")).toISOString(),
@@ -88394,7 +88394,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1450,
+            id:1450,
             "seqId":1527,
             "siteId":42,
             "recordDate":(new Date("8/11/1999 GMT")).toISOString(),
@@ -88455,7 +88455,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1451,
+            id:1451,
             "seqId":1528,
             "siteId":42,
             "recordDate":(new Date("8/21/1999 GMT")).toISOString(),
@@ -88516,7 +88516,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1452,
+            id:1452,
             "seqId":1529,
             "siteId":42,
             "recordDate":(new Date("8/28/1999 GMT")).toISOString(),
@@ -88577,7 +88577,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1453,
+            id:1453,
             "seqId":1530,
             "siteId":42,
             "recordDate":(new Date("9/2/1999 GMT")).toISOString(),
@@ -88638,7 +88638,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1454,
+            id:1454,
             "seqId":1531,
             "siteId":42,
             "recordDate":(new Date("9/9/1999 GMT")).toISOString(),
@@ -88699,7 +88699,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1455,
+            id:1455,
             "seqId":1571,
             "siteId":42,
             "recordDate":(new Date("9/17/1999 GMT")).toISOString(),
@@ -88760,7 +88760,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1456,
+            id:1456,
             "seqId":1572,
             "siteId":42,
             "recordDate":(new Date("9/23/1999 GMT")).toISOString(),
@@ -88821,7 +88821,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1457,
+            id:1457,
             "seqId":1534,
             "siteId":42,
             "recordDate":(new Date("9/30/1999 GMT")).toISOString(),
@@ -88882,7 +88882,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1458,
+            id:1458,
             "seqId":1038,
             "siteId":43,
             "recordDate":(new Date("4/14/1999 GMT")).toISOString(),
@@ -88943,7 +88943,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1459,
+            id:1459,
             "seqId":1039,
             "siteId":43,
             "recordDate":(new Date("4/30/1999 GMT")).toISOString(),
@@ -89004,7 +89004,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1460,
+            id:1460,
             "seqId":1040,
             "siteId":43,
             "recordDate":(new Date("5/21/1999 GMT")).toISOString(),
@@ -89065,7 +89065,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1461,
+            id:1461,
             "seqId":1041,
             "siteId":43,
             "recordDate":(new Date("6/6/1999 GMT")).toISOString(),
@@ -89126,7 +89126,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1462,
+            id:1462,
             "seqId":1042,
             "siteId":43,
             "recordDate":(new Date("7/5/1999 GMT")).toISOString(),
@@ -89187,7 +89187,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1463,
+            id:1463,
             "seqId":1043,
             "siteId":43,
             "recordDate":(new Date("7/20/1999 GMT")).toISOString(),
@@ -89248,7 +89248,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1464,
+            id:1464,
             "seqId":1044,
             "siteId":43,
             "recordDate":(new Date("8/12/1999 GMT")).toISOString(),
@@ -89309,7 +89309,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1465,
+            id:1465,
             "seqId":1045,
             "siteId":43,
             "recordDate":(new Date("9/2/1999 GMT")).toISOString(),
@@ -89370,7 +89370,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1466,
+            id:1466,
             "seqId":1046,
             "siteId":43,
             "recordDate":(new Date("9/23/1999 GMT")).toISOString(),
@@ -89431,7 +89431,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1467,
+            id:1467,
             "seqId":1047,
             "siteId":43,
             "recordDate":(new Date("10/6/1999 GMT")).toISOString(),
@@ -89492,7 +89492,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1468,
+            id:1468,
             "seqId":1048,
             "siteId":43,
             "recordDate":(new Date("10/20/1999 GMT")).toISOString(),
@@ -89553,7 +89553,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1469,
+            id:1469,
             "seqId":1167,
             "siteId":45,
             "recordDate":(new Date("4/7/1999 GMT")).toISOString(),
@@ -89614,7 +89614,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1470,
+            id:1470,
             "seqId":1144,
             "siteId":45,
             "recordDate":(new Date("4/14/1999 GMT")).toISOString(),
@@ -89675,7 +89675,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1471,
+            id:1471,
             "seqId":1145,
             "siteId":45,
             "recordDate":(new Date("4/26/1999 GMT")).toISOString(),
@@ -89736,7 +89736,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1472,
+            id:1472,
             "seqId":1146,
             "siteId":45,
             "recordDate":(new Date("5/1/1999 GMT")).toISOString(),
@@ -89797,7 +89797,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1473,
+            id:1473,
             "seqId":1147,
             "siteId":45,
             "recordDate":(new Date("5/12/1999 GMT")).toISOString(),
@@ -89858,7 +89858,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1474,
+            id:1474,
             "seqId":1148,
             "siteId":45,
             "recordDate":(new Date("5/17/1999 GMT")).toISOString(),
@@ -89919,7 +89919,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1475,
+            id:1475,
             "seqId":1168,
             "siteId":45,
             "recordDate":(new Date("5/25/1999 GMT")).toISOString(),
@@ -89980,7 +89980,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1476,
+            id:1476,
             "seqId":1149,
             "siteId":45,
             "recordDate":(new Date("6/1/1999 GMT")).toISOString(),
@@ -90041,7 +90041,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1477,
+            id:1477,
             "seqId":1150,
             "siteId":45,
             "recordDate":(new Date("6/5/1999 GMT")).toISOString(),
@@ -90102,7 +90102,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1478,
+            id:1478,
             "seqId":1151,
             "siteId":45,
             "recordDate":(new Date("6/12/1999 GMT")).toISOString(),
@@ -90163,7 +90163,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1479,
+            id:1479,
             "seqId":1152,
             "siteId":45,
             "recordDate":(new Date("6/21/1999 GMT")).toISOString(),
@@ -90224,7 +90224,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1480,
+            id:1480,
             "seqId":1153,
             "siteId":45,
             "recordDate":(new Date("6/30/1999 GMT")).toISOString(),
@@ -90285,7 +90285,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1481,
+            id:1481,
             "seqId":1154,
             "siteId":45,
             "recordDate":(new Date("7/3/1999 GMT")).toISOString(),
@@ -90346,7 +90346,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1482,
+            id:1482,
             "seqId":1155,
             "siteId":45,
             "recordDate":(new Date("7/8/1999 GMT")).toISOString(),
@@ -90407,7 +90407,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1483,
+            id:1483,
             "seqId":1156,
             "siteId":45,
             "recordDate":(new Date("7/16/1999 GMT")).toISOString(),
@@ -90468,7 +90468,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1484,
+            id:1484,
             "seqId":1157,
             "siteId":45,
             "recordDate":(new Date("7/24/1999 GMT")).toISOString(),
@@ -90529,7 +90529,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1485,
+            id:1485,
             "seqId":1158,
             "siteId":45,
             "recordDate":(new Date("7/29/1999 GMT")).toISOString(),
@@ -90590,7 +90590,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1486,
+            id:1486,
             "seqId":1159,
             "siteId":45,
             "recordDate":(new Date("8/11/1999 GMT")).toISOString(),
@@ -90651,7 +90651,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1487,
+            id:1487,
             "seqId":1160,
             "siteId":45,
             "recordDate":(new Date("8/12/1999 GMT")).toISOString(),
@@ -90712,7 +90712,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1488,
+            id:1488,
             "seqId":1161,
             "siteId":45,
             "recordDate":(new Date("8/20/1999 GMT")).toISOString(),
@@ -90773,7 +90773,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1489,
+            id:1489,
             "seqId":1162,
             "siteId":45,
             "recordDate":(new Date("8/31/1999 GMT")).toISOString(),
@@ -90834,7 +90834,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1490,
+            id:1490,
             "seqId":1163,
             "siteId":45,
             "recordDate":(new Date("9/5/1999 GMT")).toISOString(),
@@ -90895,7 +90895,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1491,
+            id:1491,
             "seqId":1164,
             "siteId":45,
             "recordDate":(new Date("9/11/1999 GMT")).toISOString(),
@@ -90956,7 +90956,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1492,
+            id:1492,
             "seqId":1165,
             "siteId":45,
             "recordDate":(new Date("9/19/1999 GMT")).toISOString(),
@@ -91017,7 +91017,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1493,
+            id:1493,
             "seqId":1166,
             "siteId":45,
             "recordDate":(new Date("9/25/1999 GMT")).toISOString(),
@@ -91078,7 +91078,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1494,
+            id:1494,
             "seqId":1560,
             "siteId":47,
             "recordDate":(new Date("4/4/1999 GMT")).toISOString(),
@@ -91139,7 +91139,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1495,
+            id:1495,
             "seqId":1561,
             "siteId":47,
             "recordDate":(new Date("4/10/1999 GMT")).toISOString(),
@@ -91200,7 +91200,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1496,
+            id:1496,
             "seqId":1562,
             "siteId":47,
             "recordDate":(new Date("4/20/1999 GMT")).toISOString(),
@@ -91261,7 +91261,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1497,
+            id:1497,
             "seqId":1563,
             "siteId":47,
             "recordDate":(new Date("4/24/1999 GMT")).toISOString(),
@@ -91322,7 +91322,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1498,
+            id:1498,
             "seqId":1564,
             "siteId":47,
             "recordDate":(new Date("4/29/1999 GMT")).toISOString(),
@@ -91383,7 +91383,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1499,
+            id:1499,
             "seqId":1565,
             "siteId":47,
             "recordDate":(new Date("5/4/1999 GMT")).toISOString(),
@@ -91444,7 +91444,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1500,
+            id:1500,
             "seqId":1566,
             "siteId":47,
             "recordDate":(new Date("5/9/1999 GMT")).toISOString(),
@@ -91505,7 +91505,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1501,
+            id:1501,
             "seqId":1567,
             "siteId":47,
             "recordDate":(new Date("5/15/1999 GMT")).toISOString(),
@@ -91566,7 +91566,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1502,
+            id:1502,
             "seqId":1568,
             "siteId":47,
             "recordDate":(new Date("5/23/1999 GMT")).toISOString(),
@@ -91627,7 +91627,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1503,
+            id:1503,
             "seqId":1569,
             "siteId":47,
             "recordDate":(new Date("5/27/1999 GMT")).toISOString(),
@@ -91688,7 +91688,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1504,
+            id:1504,
             "seqId":1570,
             "siteId":47,
             "recordDate":(new Date("6/12/1999 GMT")).toISOString(),
@@ -91749,7 +91749,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1505,
+            id:1505,
             "seqId":1606,
             "siteId":47,
             "recordDate":(new Date("6/18/1999 GMT")).toISOString(),
@@ -91810,7 +91810,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1506,
+            id:1506,
             "seqId":1607,
             "siteId":47,
             "recordDate":(new Date("6/26/1999 GMT")).toISOString(),
@@ -91871,7 +91871,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1507,
+            id:1507,
             "seqId":1608,
             "siteId":47,
             "recordDate":(new Date("6/30/1999 GMT")).toISOString(),
@@ -91932,7 +91932,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1508,
+            id:1508,
             "seqId":1609,
             "siteId":47,
             "recordDate":(new Date("7/4/1999 GMT")).toISOString(),
@@ -91993,7 +91993,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1509,
+            id:1509,
             "seqId":1610,
             "siteId":47,
             "recordDate":(new Date("7/7/1999 GMT")).toISOString(),
@@ -92054,7 +92054,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1510,
+            id:1510,
             "seqId":1611,
             "siteId":47,
             "recordDate":(new Date("7/17/1999 GMT")).toISOString(),
@@ -92115,7 +92115,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1511,
+            id:1511,
             "seqId":1612,
             "siteId":47,
             "recordDate":(new Date("7/25/1999 GMT")).toISOString(),
@@ -92176,7 +92176,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1512,
+            id:1512,
             "seqId":1613,
             "siteId":47,
             "recordDate":(new Date("8/7/1999 GMT")).toISOString(),
@@ -92237,7 +92237,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1513,
+            id:1513,
             "seqId":1614,
             "siteId":47,
             "recordDate":(new Date("8/15/1999 GMT")).toISOString(),
@@ -92298,7 +92298,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1514,
+            id:1514,
             "seqId":1615,
             "siteId":47,
             "recordDate":(new Date("8/22/1999 GMT")).toISOString(),
@@ -92359,7 +92359,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1515,
+            id:1515,
             "seqId":1616,
             "siteId":47,
             "recordDate":(new Date("9/6/1999 GMT")).toISOString(),
@@ -92420,7 +92420,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1516,
+            id:1516,
             "seqId":1617,
             "siteId":47,
             "recordDate":(new Date("9/11/1999 GMT")).toISOString(),
@@ -92481,7 +92481,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1517,
+            id:1517,
             "seqId":1618,
             "siteId":47,
             "recordDate":(new Date("9/19/1999 GMT")).toISOString(),
@@ -92542,7 +92542,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1518,
+            id:1518,
             "seqId":1619,
             "siteId":47,
             "recordDate":(new Date("9/26/1999 GMT")).toISOString(),
@@ -92603,7 +92603,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1519,
+            id:1519,
             "seqId":1620,
             "siteId":47,
             "recordDate":(new Date("10/2/1999 GMT")).toISOString(),
@@ -92664,7 +92664,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1520,
+            id:1520,
             "seqId":1621,
             "siteId":47,
             "recordDate":(new Date("10/16/1999 GMT")).toISOString(),
@@ -92725,7 +92725,7 @@ export default async function() {
     });
     await db.siteDate.create({
         data: {
-            "siteDateId":1521,
+            id:1521,
             "seqId":1622,
             "siteId":47,
             "recordDate":(new Date("10/31/1999 GMT")).toISOString(),

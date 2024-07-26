@@ -75,7 +75,7 @@ export const actions: Actions = {
         // console.log('post', formData);
 
         const siteDate = {
-            siteDateId: -1,
+            id: -1,
             siteId: Number(formData.get('siteId')),
             recordDate: recordDate,
             week: Number(formData.get('week')),
@@ -138,7 +138,7 @@ export const actions: Actions = {
 
         const createdSiteDate: SiteDate = await addSiteDate(siteDate);
         console.log(createdSiteDate);
-        return { siteDateId: createdSiteDate.siteDateId ?? -1 };
+        return { siteDateId: createdSiteDate.id ?? -1 };
     },
     updateSiteDate: async ({ request, locals }) => {
         if (locals.user.role !== ROLE.SUPER && locals.user.role !== ROLE.ADMIN && locals.user.role !== ROLE.ENTRY) {
@@ -164,7 +164,7 @@ export const actions: Actions = {
         console.log('recordDate', recordDate, 'startTimeDate', startTimeDate, 'endTimeDate', endTimeDate);
 
         const siteDate = {
-            siteDateId: Number(formData.get('siteDateId')),
+            id: Number(formData.get('siteDateId')),
             siteId: Number(formData.get('siteId')),
             recordDate: recordDate,
             week: Number(formData.get('week')),
@@ -226,6 +226,6 @@ export const actions: Actions = {
         console.log(siteDate);
 
         const newSiteDate: SiteDate = await updateSiteDate(siteDate);
-        return { siteDateId: newSiteDate.siteDateId ?? -1 };
+        return { siteDateId: newSiteDate.id ?? -1 };
     },
 };

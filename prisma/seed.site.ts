@@ -9,7 +9,7 @@ export default async function () {
     await db.site.createMany({
         data: [
             {
-                siteId: 1,
+                id: 1,
                 siteName: 'Caley Wildlife Area',
                 countyId: countyLookup.Lorain,
                 stateId: stateLookup.Ohio,
@@ -55,7 +55,7 @@ export default async function () {
                 createdAt: new Date('9/6/1999 4:16:54 PM GMT-5').toISOString(),
             },
             {
-                siteId: 2,
+                id: 2,
                 siteName: 'Terra Vista',
                 countyId: countyLookup.Cuyahoga,
                 stateId: stateLookup.Ohio,
@@ -101,7 +101,7 @@ export default async function () {
                 createdAt: new Date('3/28/2000 1:34:09 PM GMT-5').toISOString(),
             },
             {
-                siteId: 3,
+                id: 3,
                 siteName: 'Armington Pond',
                 countyId: countyLookup.Summit,
                 stateId: stateLookup.Ohio,
@@ -147,7 +147,7 @@ export default async function () {
                 createdAt: new Date('3/16/2000 10:47:14 AM GMT-5').toISOString(),
             },
             {
-                siteId: 4,
+                id: 4,
                 siteName: 'NCR-Meadow/Marsh',
                 countyId: countyLookup.Cuyahoga,
                 stateId: stateLookup.Ohio,
@@ -193,7 +193,7 @@ export default async function () {
                 createdAt: new Date('11/5/1999 11:33:13 AM GMT-5').toISOString(),
             },
             {
-                siteId: 5,
+                id: 5,
                 siteName: 'Koelliker Fen',
                 countyId: countyLookup.Geauga,
                 stateId: stateLookup.Ohio,
@@ -239,7 +239,7 @@ export default async function () {
                 createdAt: new Date('10/5/1999 10:08:10 AM GMT-5').toISOString(),
             },
             {
-                siteId: 6,
+                id: 6,
                 siteName: 'Luce Creek',
                 countyId: countyLookup.Cuyahoga,
                 stateId: stateLookup.Ohio,
@@ -285,7 +285,7 @@ export default async function () {
                 createdAt: new Date('3/28/2000 11:13:08 AM GMT-5').toISOString(),
             },
             {
-                siteId: 7,
+                id: 7,
                 siteName: 'Penitentiary Glen',
                 countyId: countyLookup.Lake,
                 stateId: stateLookup.Ohio,
@@ -331,7 +331,7 @@ export default async function () {
                 createdAt: new Date('7/31/2000 1:58:54 PM GMT-5').toISOString(),
             },
             {
-                siteId: 8,
+                id: 8,
                 siteName: 'Huntoon Road',
                 countyId: countyLookup.Lake,
                 stateId: stateLookup.Ohio,
@@ -377,7 +377,7 @@ export default async function () {
                 createdAt: new Date('10/7/1999 11:00:46 AM GMT-5').toISOString(),
             },
             {
-                siteId: 9,
+                id: 9,
                 siteName: 'Resthaven Wildlife Area',
                 countyId: countyLookup.Erie,
                 stateId: stateLookup.Ohio,
@@ -423,7 +423,7 @@ export default async function () {
                 createdAt: new Date('5/28/1999 11:08:34 PM GMT-5').toISOString(),
             },
             {
-                siteId: 10,
+                id: 10,
                 siteName: 'Kelleys Island - Bookerman Roa',
                 countyId: countyLookup.Erie,
                 stateId: stateLookup.Ohio,
@@ -469,7 +469,7 @@ export default async function () {
                 createdAt: new Date('6/26/2000 10:26:50 AM GMT-5').toISOString(),
             },
             {
-                siteId: 11,
+                id: 11,
                 siteName: 'Girdled Road Park',
                 countyId: countyLookup.Lake,
                 stateId: stateLookup.Ohio,
@@ -515,7 +515,7 @@ export default async function () {
                 createdAt: new Date('3/27/2000 1:29:48 PM GMT-5').toISOString(),
             },
             {
-                siteId: 12,
+                id: 12,
                 siteName: 'Naturealm',
                 countyId: countyLookup.Summit,
                 stateId: stateLookup.Ohio,
@@ -561,7 +561,7 @@ export default async function () {
                 createdAt: new Date('6/26/2000 1:52:01 PM GMT-5').toISOString(),
             },
             {
-                siteId: 13,
+                id: 13,
                 siteName: 'Kiracofe Prairie',
                 countyId: countyLookup.Allen,
                 stateId: stateLookup.Ohio,
@@ -607,7 +607,7 @@ export default async function () {
                 createdAt: new Date('3/27/2000 2:35:17 PM GMT-5').toISOString(),
             },
             {
-                siteId: 14,
+                id: 14,
                 siteName: 'Jackson Field',
                 countyId: countyLookup.Cuyahoga,
                 stateId: stateLookup.Ohio,
@@ -653,7 +653,7 @@ export default async function () {
                 createdAt: new Date('12/2/1999 2:28:34 PM GMT-5').toISOString(),
             },
             {
-                siteId: 15,
+                id: 15,
                 siteName: 'Mentor Marsh',
                 countyId: countyLookup.Lake,
                 stateId: stateLookup.Ohio,
@@ -699,7 +699,7 @@ export default async function () {
                 createdAt: new Date('3/28/2000 11:32:38 AM GMT-5').toISOString(),
             },
             {
-                siteId: 16,
+                id: 16,
                 siteName: 'Lakeshore Reservation',
                 countyId: countyLookup.Lake,
                 stateId: stateLookup.Ohio,
@@ -745,7 +745,7 @@ export default async function () {
                 createdAt: new Date('3/20/2000 2:15:43 PM GMT-5').toISOString(),
             },
             {
-                siteId: 17,
+                id: 17,
                 siteName: 'Battelle-Darby Creek',
                 countyId: countyLookup.Franklin,
                 stateId: stateLookup.Ohio,
@@ -791,7 +791,7 @@ export default async function () {
                 createdAt: new Date('4/10/2000 1:22:52 PM GMT-5').toISOString(),
             },
             {
-                siteId: 18,
+                id: 18,
                 siteName: 'Wilderness Center',
                 countyId: countyLookup.Stark,
                 stateId: stateLookup.Ohio,
@@ -837,7 +837,7 @@ export default async function () {
                 createdAt: new Date('3/13/2000 11:30:13 AM GMT-5').toISOString(),
             },
             {
-                siteId: 19,
+                id: 19,
                 siteName: 'Farbach-Werner',
                 countyId: countyLookup.Hamilton,
                 stateId: stateLookup.Ohio,
@@ -883,7 +883,7 @@ export default async function () {
                 createdAt: new Date('3/21/2000 10:43:23 AM GMT-5').toISOString(),
             },
             {
-                siteId: 20,
+                id: 20,
                 siteName: 'Coshocton',
                 countyId: countyLookup.Coshocton,
                 stateId: stateLookup.Ohio,
@@ -929,7 +929,7 @@ export default async function () {
                 createdAt: new Date('12/15/1999 2:19:36 PM GMT-5').toISOString(),
             },
             {
-                siteId: 21,
+                id: 21,
                 siteName: "Heston's Wood Lot",
                 countyId: countyLookup.Allen,
                 stateId: stateLookup.Ohio,
@@ -975,7 +975,7 @@ export default async function () {
                 createdAt: new Date('3/20/2000 2:14:52 PM GMT-5').toISOString(),
             },
             {
-                siteId: 22,
+                id: 22,
                 siteName: 'Osborne Park Area',
                 countyId: countyLookup.Erie,
                 stateId: stateLookup.Ohio,
@@ -1021,7 +1021,7 @@ export default async function () {
                 createdAt: new Date('3/20/2000 2:18:03 PM GMT-5').toISOString(),
             },
             {
-                siteId: 23,
+                id: 23,
                 siteName: 'Castalia Quarry Reserve',
                 countyId: countyLookup.Erie,
                 stateId: stateLookup.Ohio,
@@ -1067,7 +1067,7 @@ export default async function () {
                 createdAt: new Date('3/27/2000 1:07:24 PM GMT-5').toISOString(),
             },
             {
-                siteId: 24,
+                id: 24,
                 siteName: 'James McBride Arboretum',
                 countyId: countyLookup.Erie,
                 stateId: stateLookup.Ohio,
@@ -1113,7 +1113,7 @@ export default async function () {
                 createdAt: new Date('3/27/2000 2:22:11 PM GMT-5').toISOString(),
             },
             {
-                siteId: 25,
+                id: 25,
                 siteName: 'Krebs Farm',
                 countyId: countyLookup.Erie,
                 stateId: stateLookup.Ohio,
@@ -1159,7 +1159,7 @@ export default async function () {
                 createdAt: new Date('3/27/2000 1:53:49 PM GMT-5').toISOString(),
             },
             {
-                siteId: 26,
+                id: 26,
                 siteName: 'Oak Openings',
                 countyId: countyLookup.Lucas,
                 stateId: stateLookup.Ohio,
@@ -1205,7 +1205,7 @@ export default async function () {
                 createdAt: new Date('6/27/2000 10:17:32 AM GMT-5').toISOString(),
             },
             {
-                siteId: 27,
+                id: 27,
                 siteName: 'Top Of The World',
                 countyId: countyLookup.Summit,
                 stateId: stateLookup.Ohio,
@@ -1251,7 +1251,7 @@ export default async function () {
                 createdAt: new Date('3/28/2000 1:47:15 PM GMT-5').toISOString(),
             },
             {
-                siteId: 28,
+                id: 28,
                 siteName: 'Cincinnati Nature Center',
                 countyId: countyLookup.Clermont,
                 stateId: stateLookup.Ohio,
@@ -1297,7 +1297,7 @@ export default async function () {
                 createdAt: new Date('4/18/2000 1:25:28 PM GMT-5').toISOString(),
             },
             {
-                siteId: 29,
+                id: 29,
                 siteName: 'NCR-Bluebird Field',
                 countyId: countyLookup.Cuyahoga,
                 stateId: stateLookup.Ohio,
@@ -1343,7 +1343,7 @@ export default async function () {
                 createdAt: new Date('3/20/2000 2:16:27 PM GMT-5').toISOString(),
             },
             {
-                siteId: 30,
+                id: 30,
                 siteName: 'NCR-Rogers Road',
                 countyId: countyLookup.Cuyahoga,
                 stateId: stateLookup.Ohio,
@@ -1389,7 +1389,7 @@ export default async function () {
                 createdAt: new Date('3/20/2000 2:16:51 PM GMT-5').toISOString(),
             },
             {
-                siteId: 31,
+                id: 31,
                 siteName: 'NCR-Strawberry Field',
                 countyId: countyLookup.Cuyahoga,
                 stateId: stateLookup.Ohio,
@@ -1435,7 +1435,7 @@ export default async function () {
                 createdAt: new Date('3/20/2000 2:17:10 PM GMT-5').toISOString(),
             },
             {
-                siteId: 32,
+                id: 32,
                 siteName: 'NCR-Maintenance Meadow',
                 countyId: countyLookup.Cuyahoga,
                 stateId: stateLookup.Ohio,
@@ -1481,7 +1481,7 @@ export default async function () {
                 createdAt: new Date('12/28/1999 1:45:20 PM GMT-5').toISOString(),
             },
             {
-                siteId: 34,
+                id: 34,
                 siteName: 'Beavercreek Wildlife Area',
                 countyId: countyLookup.Greene,
                 stateId: stateLookup.Ohio,
@@ -1527,7 +1527,7 @@ export default async function () {
                 createdAt: new Date('4/10/2000 1:22:58 PM GMT-5').toISOString(),
             },
             {
-                siteId: 35,
+                id: 35,
                 siteName: 'Blacklick Park',
                 countyId: countyLookup.Franklin,
                 stateId: stateLookup.Ohio,
@@ -1573,7 +1573,7 @@ export default async function () {
                 createdAt: new Date('3/2/2000 10:00:33 AM GMT-5').toISOString(),
             },
             {
-                siteId: 37,
+                id: 37,
                 siteName: "Jude's Butterfly Trail",
                 countyId: countyLookup.Montgomery,
                 stateId: stateLookup.Ohio,
@@ -1619,7 +1619,7 @@ export default async function () {
                 createdAt: new Date('1/13/2000 11:21:20 AM GMT-5').toISOString(),
             },
             {
-                siteId: 39,
+                id: 39,
                 siteName: 'OR79-147JER',
                 countyId: countyLookup.Hocking,
                 stateId: stateLookup.Ohio,
@@ -1666,7 +1666,7 @@ export default async function () {
                 createdAt: new Date('3/20/2000 2:17:47 PM GMT-5').toISOString(),
             },
             {
-                siteId: 40,
+                id: 40,
                 siteName: 'Greenacres Foundation',
                 countyId: countyLookup.Hamilton,
                 stateId: stateLookup.Ohio,
@@ -1712,7 +1712,7 @@ export default async function () {
                 createdAt: new Date('3/27/2000 2:10:04 PM GMT-5').toISOString(),
             },
             {
-                siteId: 42,
+                id: 42,
                 siteName: 'Alrutz Loop',
                 countyId: countyLookup.Licking,
                 stateId: stateLookup.Ohio,
@@ -1759,7 +1759,7 @@ export default async function () {
                 createdAt: new Date('8/22/2000 1:27:06 PM GMT-5').toISOString(),
             },
             {
-                siteId: 43,
+                id: 43,
                 siteName: 'Clear Creek Metro Park',
                 countyId: countyLookup.Hocking,
                 stateId: stateLookup.Ohio,
@@ -1805,7 +1805,7 @@ export default async function () {
                 createdAt: new Date('5/1/2000 11:45:56 AM GMT-5').toISOString(),
             },
             {
-                siteId: 45,
+                id: 45,
                 siteName: 'Thoreau Wildlife Sanctuary',
                 countyId: countyLookup.Defiance,
                 stateId: stateLookup.Ohio,
@@ -1851,7 +1851,7 @@ export default async function () {
                 createdAt: new Date('3/21/2000 12:03:54 PM GMT-5').toISOString(),
             },
             {
-                siteId: 46,
+                id: 46,
                 siteName: 'Kelleys Island - Coleman Tract',
                 countyId: countyLookup.Erie,
                 stateId: stateLookup.Ohio,
@@ -1897,7 +1897,7 @@ export default async function () {
                 createdAt: new Date('6/26/2000 9:48:14 AM GMT-5').toISOString(),
             },
             {
-                siteId: 47,
+                id: 47,
                 siteName: 'Shaker Trace Wetlands',
                 countyId: countyLookup.Hamilton,
                 stateId: stateLookup.Ohio,
@@ -1943,7 +1943,7 @@ export default async function () {
                 createdAt: new Date('9/26/2000 2:45:58 PM GMT-5').toISOString(),
             },
             {
-                siteId: 48,
+                id: 48,
                 siteName: 'McLean Teddy Bear Park',
                 countyId: countyLookup.Allen,
                 stateId: stateLookup.Ohio,
@@ -1998,7 +1998,7 @@ select concat('Section ', x.y) description
 , concat('Section ', x.y) labelLong
 , concat('S', x.y) labelShort
 , x.y sectionIndex
-, s.siteId
+, s.id
 from site s
 join (select 1 y
 union select 2 y

@@ -157,7 +157,7 @@
 
     function modalComponentSiteDate(isNewRecord: boolean, unitTemp: string, unitSpeed: string, siteDate: SiteDateYear | null, siteId: number): void {
         const c: ModalComponent = { ref: ModalSiteDate };
-        console.log(data.siteDate.recordDate, formatDate(data.siteDate.recordDate), formatDate(new Date(data.siteDate.recordDate).toISOString()), data.siteDate.siteDateId, currentSiteDateId);
+        console.log(data.siteDate.recordDate, formatDate(data.siteDate.recordDate), formatDate(new Date(data.siteDate.recordDate).toISOString()), data.siteDate.id, currentSiteDateId);
         const componentTitle = isNewRecord ? 'Add New Date Record' : `Edit Date Record - ${formatDate(new Date(data.siteDate.recordDate).toISOString())}, ${recordDate}`;
         const componentUrl = isNewRecord ? '?/createSiteDate' : '?/updateSiteDate';
         const componentValues = isNewRecord
@@ -224,13 +224,13 @@
                   checklist: availableChecklistItems,
                   year: isSiteDate ? data.siteDate.year : new Date().getFullYear(),
                   week: isSiteDate ? data.siteDate.week : weekOfYearSince(new Date()),
-                  siteDateId: data.siteDate.siteDateId,
+                  siteDateId: data.siteDate.id,
               }
             : {
                   checklist: availableChecklistItems,
                   year: data.siteDate.year,
                   week: data.siteDate.week,
-                  siteDateId: data.siteDate.siteDateId,
+                  siteDateId: data.siteDate.id,
               };
         const modal: ModalSettings = {
             type: 'component',
@@ -271,10 +271,10 @@
     let recordWeek: number | null = $derived(weekOfYearSince(new Date(data.siteDate.recordDate)));
     let recordSdoCount: number = $derived(data.siteDate.siteDateObservations.filter((o: any) => showDeletedData || !o.deleted).length);
 
-    let currentSiteId: number = $state(data.siteDate.siteId);
+    let currentSiteId: number = $state(data.siteDate.id);
     // $inspect(currentSiteId);
 
-    let firstSdoId = $derived(recordSdoCount > 0 ? data.siteDate.siteDateObservations[0].siteDateObservationId : -1);
+    let firstSdoId = $derived(recordSdoCount > 0 ? data.siteDate.siteDateObservations[0].id : -1);
 
     // let startTemp = $derived(String(data.siteDate.startTemp));
     // let endTemp = $derived(String(data.siteDate.endTemp));
@@ -283,7 +283,7 @@
     // $inspect(showDeletedData);
 
     /*-- Other */
-    let currentSiteDateId = $state(data.siteDate.siteDateId);
+    let currentSiteDateId = $state(data.siteDate.id);
     // $inspect(currentSiteDateId);
 
     // console.log(data.siteDate);
@@ -560,32 +560,17 @@
                 </button>
             </div>
             <div class="flex flex-row">
-                <GoBack targetId={data.siteDate.siteId} targetType={GOTYPE.SITES} targetIdSecondary={null} controlBody="scale-90 -translate-x-2" buttonCenter="" scriptCenter="" labelledby="" />
-                <GoNext targetId={firstSdoId} targetType={GOTYPE.SITEDATEOBSERVATIONS} targetIdSecondary={data.siteDate.siteId} controlBody="scale-90 -translate-x-1" controlDisabled={firstSdoId < 0} buttonCenter="" scriptCenter="" labelledby="Go to specimen(s)" />
+                <GoBack targetId={data.siteDate.id} targetType={GOTYPE.SITES} targetIdSecondary={null} controlBody="scale-90 -translate-x-2" buttonCenter="" scriptCenter="" labelledby="" />
+                <GoNext targetId={firstSdoId} targetType={GOTYPE.SITEDATEOBSERVATIONS} targetIdSecondary={data.siteDate.id} controlBody="scale-90 -translate-x-1" controlDisabled={firstSdoId < 0} buttonCenter="" scriptCenter="" labelledby="Go to specimen(s)" />
                 <SiteDatePicker bind:currentSiteId bind:currentSiteDateId controlBody="scale-90" buttonLeft="" buttonRight="" buttonYear="" buttonWeek="" dropdownShowDate={false} dropdownPointers={false} heading={null} yearPrefix="" weekPrefix="" controlOuter="" prefixYear="" prefixWeek="" suffixYear="" suffixWeek="" popupInner="" popupStyles="" labelledby="" />
             </div>
-            <!-- below version breaks -->
             <!--     <SiteDatePicker -->
-            <!--         bind:currentSiteId -->
-            <!--         bind:currentSiteDateId -->
-            <!--         controlBody="scale-90" -->
             <!--         buttonLeft="!px-2" -->
             <!--         buttonRight="!px-2" -->
             <!--         buttonYear="w-28 px-0 md:px-1 lg:px-2" -->
             <!--         buttonWeek="w-24 px-0 md:px-1 lg:px-2" -->
-            <!--         dropdownShowDate={false} -->
-            <!--         dropdownPointers={false} -->
-            <!--         heading={null} -->
             <!--         yearPrefix="Year:" -->
             <!--         weekPrefix="Week:" -->
-            <!--         controlOuter="" -->
-            <!--         prefixYear="" -->
-            <!--         prefixWeek="" -->
-            <!--         suffixYear="" -->
-            <!--         suffixWeek="" -->
-            <!--         popupInner="" -->
-            <!--         popupStyles="" -->
-            <!--         labelledby=""></SiteDatePicker> -->
         </div>
 
         <hr />
@@ -602,7 +587,7 @@
                         }
                         return classes;
                     })()}`}>
-                    <a href="/api/sitedateobservations/{siteDateObservation.siteDateObservationId}/{data.siteDate.siteId}" class="flex space-x-2 p-2">
+                    <a href="/api/sitedateobservations/{siteDateObservation.id}/{data.siteDate.siteId}" class="flex space-x-2 p-2">
                         <div class="w-4">
                             {#if siteDateObservation.confirmed}
                                 <span class="text-success-800-100-token">✔</span>

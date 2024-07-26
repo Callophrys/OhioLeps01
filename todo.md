@@ -27,3 +27,19 @@ Support selection of SDO multi-record so a point of reference is maintained when
 ---
 Fix cancel on add site and add site date
 
+# TODO
+---
+Convert species picker to Svelte5
+
+# TODO
+---
+Fix lock-unlock and unlock-lock where 1st use works but second loses the sdo.id
+
+# TODO
+---
+SiteDatePicker from SDO seems to not work, at least on left or right arrow clicks.  Dropdown on weeks looks okay.
+
+# TODO
+---
+Converted all table keys from <table name>Id to just id.  Makes working with the database nicer but it makes it harder to tell
+when app code should use "id" or the named id.  Revisit this.

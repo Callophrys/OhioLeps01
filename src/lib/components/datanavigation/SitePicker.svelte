@@ -105,10 +105,10 @@
     function handleSelect() {
         if (filteredSitesIndex > -1) {
             currentCountyId = filteredSites[filteredSitesIndex].countyId;
-            currentSiteId = filteredSites[filteredSitesIndex].siteId;
+            currentSiteId = filteredSites[filteredSitesIndex].id;
             let sd = siteDates.find((x) => x.siteId === currentSiteId);
             console.log('sd', siteDates);
-            if (sd) currentSiteDateId = sd.siteDateId;
+            if (sd) currentSiteDateId = sd.id;
             goto('/api/sites/' + currentSiteId);
         }
     }
@@ -117,9 +117,9 @@
         if (filteredSitesIndex > 0) {
             let index = filteredSitesIndex - 1;
             currentCountyId = filteredSites[index].countyId;
-            currentSiteId = filteredSites[index].siteId;
+            currentSiteId = filteredSites[index].id;
             let sd = siteDates.find((x) => x.siteId === currentSiteId);
-            if (sd) currentSiteDateId = sd.siteDateId;
+            if (sd) currentSiteDateId = sd.id;
             goto('/api/sites/' + currentSiteId);
         }
     }
@@ -128,9 +128,9 @@
         if (filteredSitesIndex < filteredSites.length - 1) {
             let index = filteredSitesIndex + 1;
             currentCountyId = filteredSites[index].countyId;
-            currentSiteId = filteredSites[index].siteId;
+            currentSiteId = filteredSites[index].id;
             let sd = siteDates.find((x) => x.siteId === currentSiteId);
-            if (sd) currentSiteDateId = sd.siteDateId;
+            if (sd) currentSiteDateId = sd.id;
             goto('/api/sites/' + currentSiteId);
         }
     }
@@ -139,8 +139,8 @@
 
     /*-- Reactives (functional) */
     let filteredSites = $derived(filterByCounty ? allSites.filter((s: any) => s.countyId === currentSite?.countyId) : allSites);
-    let filteredSitesIndex = $derived(filteredSites.findIndex((s: any) => s.siteId === currentSiteId));
-    let currentSite = $derived(allSites.find((x) => x.siteId === currentSiteId));
+    let filteredSitesIndex = $derived(filteredSites.findIndex((s: any) => s.id === currentSiteId));
+    let currentSite = $derived(allSites.find((x) => x.id === currentSiteId));
     let prevDisabled = $derived(filteredSitesIndex < 1);
     let nextDisabled = $derived(filteredSitesIndex > filteredSites.length - 2);
     //$inspect(currentSite);
@@ -169,7 +169,7 @@
     <div class={classesPopupInner} style={stylesPopup}>
         <ListBox rounded="rounded-none">
             {#each filteredSites as site}
-                <ListBoxItem bind:group={currentSiteId} name="sites" on:change={handleSelect} value={site.siteId}>
+                <ListBoxItem bind:group={currentSiteId} name="sites" on:change={handleSelect} value={site.id}>
                     {site.siteName}
                 </ListBoxItem>
             {/each}

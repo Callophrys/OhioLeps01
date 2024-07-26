@@ -238,7 +238,7 @@ export const actions: Actions = {
         console.log('formData:', formData);
 
         const sdo = {
-            siteDateObservationId: -1,
+            id: -1,
             siteDateId: Number(formData.get('siteDateId')),
             checklistId: Number(formData.get('checklistId')),
             seqId: -1,
@@ -264,7 +264,7 @@ export const actions: Actions = {
         console.log();
         console.log('sdo after:', sdo);
         const result = await createSiteDateObservation(sdo);
-        return { action: 'create', success: true, siteDateObservationId: result.siteDateObservationId };
+        return { action: 'create', success: true, siteDateObservationId: result.id };
     },
 
     reviewSiteDateObservation: async ({ request, locals }) => {
