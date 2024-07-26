@@ -4,7 +4,7 @@
 
     /*-- Imports */
     import { GOTYPE, ROLE } from '$lib/types.js';
-    import type { County, Site, State } from '@prisma/client';
+    import type { County, Section, Site, State } from '@prisma/client';
     import type { ModalSettings, ModalComponent } from '@skeletonlabs/skeleton';
     import type { SiteDateYear } from '$lib/types.js';
     import type { SiteCountyState, SiteCountySiteDatesSiteStatuses } from '$lib/types.js';
@@ -431,7 +431,16 @@
                 <div>Statuses</div>
                 <ul class="pl-4">
                     {#each data.site.siteStatuses as siteStatus}
-                        <li>{siteStatus?.year}: {siteStatus.statusCode.description ?? ''}</li>
+                        <li>{siteStatus.year}: {siteStatus.statusCode.description ?? ''}</li>
+                    {/each}
+                </ul>
+            </div>
+
+            <div>
+                <div>Sections Available</div>
+                <ul class="pl-4">
+                    {#each Array.from(data.site.sections).sort((a: Section, b: Section) => a.sectionIndex - b.sectionIndex) as section}
+                        <li>{section.labelLong}: {section.description ?? ''}</li>
                     {/each}
                 </ul>
             </div>

@@ -167,6 +167,21 @@ model Role {
     users User[]
 }
 
+model Section {
+    id Int @id @default(autoincrement())
+    description String @default("") // e.g. "South side savannah (restored prairie with bur and post oak trees)"
+    labelLong String @default("")   // e.g. "Section 1", "Transect 1"
+    labelShort String @default("")  // e.g. "S1", "T1"
+    sectionIndex Int @default(0)    // e.g. 1..n
+
+    // Parent Relation
+    siteId Int
+    site Site @relation("SectionsInSite", fields: [siteId], references: [siteId])
+
+    // Child Relations
+    sectionObservations SectionObservation[] @relation(name: "SectionObservationsInSection")
+}
+
 model Site {
     siteId Int @id @default(autoincrement())
     siteName String // @db.String(30)
@@ -235,12 +250,12 @@ model Site {
     stateId Int
     state State @relation("SitesInState", fields: [stateId], references: [id])
 
-    // Child Relation
+    // Child Relations
+    sections Section[]        @relation(name: "SectionsInSite")
     siteDates SiteDate[]
-
-    // Child Relation
     siteStatuses SiteStatus[]
 
+    // Alternate keys and constraints
     @@unique([siteName, countyId])
 }
 
@@ -330,8 +345,26 @@ model SiteDateObservation {
     siteDate SiteDate @relation(fields: [siteDateId], references: [siteDateId])
     siteDateId Int // Should never be null
 
+    // Child Relations
+    sectionObservations SectionObservation[] @relation(name: "SectionObservationsInSiteDateObservation")
+
     //@@index([checklistId]); // error on run
     //@@index([siteDateId]);  // error on run
+}
+
+model SectionObservation {
+    id Int @id @default(autoincrement())
+    value Int?
+
+    // Parent Relation - probably don't need this one but it might be convenient later, or bloaty, we shall see
+    sectionId Int
+    section Section @relation(name: "SectionObservationsInSection", fields: [sectionId], references: [id])
+
+    // Parent Relation
+    siteDateObservationId Int
+    siteDateObservation SiteDateObservation @relation(name: "SectionObservationsInSiteDateObservation", fields: [siteDateObservationId], references: [siteDateObservationId])
+
+    @@unique([sectionId, siteDateObservationId])
 }
 
 model StatusCode {

@@ -23,6 +23,7 @@ export async function getSite(siteId: number) {
                     stateId: true,
                 },
             },
+            sections: true,
             siteStatuses: {
                 include: {
                     statusCode: true,

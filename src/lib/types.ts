@@ -1,4 +1,4 @@
-import type { AppConfig, County, State, Checklist, StateRegion, Site, SiteDate, SiteDateObservation, Taxonomy, User, Role, SiteStatus, StatusCode } from '@prisma/client';
+import type { AppConfig, County, State, Checklist, StateRegion, Site, Section, SiteDate, SiteDateObservation, Taxonomy, User, Role, SiteStatus, StatusCode } from '@prisma/client';
 
 export enum ROLE {
     USER = 'USER', // can browse data and run reports, delete own unsigned data
@@ -87,6 +87,7 @@ export type SiteStatusCode = SiteStatus & { statusCode: StatusCode };
 export type SiteCountyStatuses = Site & { county: County; siteStatuses: SiteStatusCode[] };
 export type SiteCountySiteDatesSiteStatuses = Site & {
     county: County;
+    sections: Section;
     siteDates: SiteDateYear[];
     siteStatuses: SiteStatusCode[];
     createdBy: User;

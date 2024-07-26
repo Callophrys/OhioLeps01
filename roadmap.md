@@ -19,6 +19,7 @@
 ### E.g. by genus or subfamily or common name group such as skippers.
       A smarter checklist should support this.
       Make it a configurable option at the site or checklist level.
+### When selecting a species opt to prioritize or display subgroups by what has been seen in the current site/county previously.
 ## 5. Organization
 ### a. Create and support Study/Studies between Organziation and work to support multiple projects
 ### b. Support copy-from during create or administration of new study.

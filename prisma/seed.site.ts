@@ -1990,4 +1990,30 @@ export default async function () {
             },
         ],
     });
+
+    await db.$executeRaw`
+insert into section
+(description, labelLong, labelShort, sectionIndex, siteId)
+select concat('Section ', x.y) description
+, concat('Section ', x.y) labelLong
+, concat('S', x.y) labelShort
+, x.y sectionIndex
+, s.siteId
+from site s
+join (select 1 y
+union select 2 y
+union select 3 y
+union select 4 y
+union select 5 y
+union select 6 y
+union select 7 y
+union select 8 y
+union select 9 y
+union select 10 y
+union select 11 y
+union select 12 y
+union select 13 y
+union select 14 y
+union select 15 y) x
+`;
 }
