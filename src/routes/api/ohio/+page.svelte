@@ -304,7 +304,7 @@
                     <ul class="list-disc ml-2">
                         <li>Left-click mouse and drag to create sets of counties</li>
                         <li>Press and hold down control key while clicking or dragging to add or remove</li>
-                        <li>Press and hold shift keys to add or remove entire regions of counties</li>
+                        <li>Press and hold both control and shift keys to add or remove entire regions of counties</li>
                     </ul>
                     <div class="arrow shadow-xl bg-surface-100-800-token"></div>
                 </div>
