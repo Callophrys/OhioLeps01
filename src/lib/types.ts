@@ -1,4 +1,20 @@
-import type { AppConfig, County, State, Checklist, StateRegion, Site, Section, SiteDate, SiteDateObservation, Taxonomy, User, Role, SiteStatus, StatusCode } from '@prisma/client';
+import type { CssClasses } from '@skeletonlabs/skeleton';
+import type {
+    AppConfig,
+    Checklist,
+    County,
+    Role,
+    Section,
+    Site,
+    SiteDate,
+    SiteDateObservation,
+    SiteStatus,
+    State,
+    StateRegion,
+    StatusCode
+    Taxonomy,
+    User,
+} from '@prisma/client';
 
 export enum ROLE {
     USER = 'USER', // can browse data and run reports, delete own unsigned data
@@ -10,6 +26,11 @@ export enum ROLE {
     SUPER = 'SUPER', // Can edit anything, manage user issues, restore deleted or lost data, chase audit trails
     ADMIN = 'ADMIN', //
     REVIEWER = 'REVIEWER',
+}
+
+export enum GEOGRAPHIC {
+    COUNTY = 0,
+    STATEREGION = 1,
 }
 
 export enum SORTORDER {
@@ -49,9 +70,21 @@ export enum GOTYPE {
 export type AppConfigFormKeyChecked = AppConfig & { checked: boolean; formKey: string };
 export type ChecklistScientificName = Checklist & { scientificName: string };
 export type CountyComplete = CountyMonitored & { stateRegion: StateRegion; sites: Site[] };
+export type CountyFilterProps = {
+    vButtonGroupClasses: CssClasses;
+    elementZwei: CssClasses;
+    elementDrei: CssClasses;
+    controlBody: CssClasses | null;
+};
 export type CountyMonitored = County & { isMonitored: boolean; siteCount: number; state: State };
 export type CountySites = County & { sites: Site[] };
 export type CountyState = County & { state: State };
+export type MonitorStatus = {
+    ALL: 0;
+    MONITORED: 1;
+    UNMONITORED: 2;
+};
+
 export type UserComplete = User & { firstLast: string; lastFirst: string; role: Role };
 export type SiteDateSiteName = SiteDate & { site: Site };
 export type SiteDateObservationChecklist = SiteDateObservation & {

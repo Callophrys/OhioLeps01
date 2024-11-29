@@ -1,16 +1,8 @@
 <script lang="ts">
     /*-- Imports */
-    import type { CountyMonitored } from '$lib/types';
-    import type { CssClasses } from '@skeletonlabs/skeleton';
+    import type { CountyMonitored, CountyFilterProps, MonitorStatus } from '$lib/types';
     import { getContext } from 'svelte';
     import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
-
-    type CountyFilterProps = {
-        vButtonGroupClasses: CssClasses;
-        elementZwei: CssClasses;
-        elementDrei: CssClasses;
-        controlBody: CssClasses | null;
-    };
 
     let { vButtonGroupClasses = $bindable(''), elementZwei = '', elementDrei = '-mr-16', controlBody = null }: CountyFilterProps = $props();
 
@@ -35,16 +27,10 @@
 
     /*-- -- Coding -- */
     /*-- Enums */
-    enum MonitorStatus {
-        ALL = 0,
-        MONITORED = 1,
-        UNMONITORED = 2,
-    }
-
     /*-- Constants (functional) */
     /*-- Properties (functional) */
     /*-- Variables and objects */
-    let showUnmonitored = $state(MonitorStatus.MONITORED);
+    let showUnmonitored: MonitorStatus = $state(MonitorStatus.MONITORED);
 
     /*-- Run first stuff */
     $effect(() => {

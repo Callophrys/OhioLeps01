@@ -1,7 +1,7 @@
 <script lang="ts">
     /*-- Imports */
     import type { CssClasses } from '@skeletonlabs/skeleton';
-    import { SORTORDER, type CountyComplete } from '$lib/types.js';
+    import { GEOGRAPHIC, SORTORDER, type CountyComplete } from '$lib/types.js';
     import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
 
     type CountySortProps = {
@@ -31,15 +31,11 @@
 
     /*-- -- Coding -- */
     /*-- Enums */
-    enum GEOGRAPHIC {
-        COUNTY = 0,
-        STATEREGION = 1,
-    }
 
     /*-- Constants (functional) */
     /*-- Properties (functional) */
     /*-- Variables and objects */
-    let valueCountyStateRegion: number = $state(GEOGRAPHIC.COUNTY);
+    let valueCountyStateRegion: GEOGRAPHIC = $state(GEOGRAPHIC.COUNTY);
     let sortOrderCounty: SORTORDER = $state(SORTORDER.ASC);
     let sortOrderStateRegion: SORTORDER = $state(SORTORDER.NONE);
     let sortIconCounty: string = $state('table-sort-asc');
