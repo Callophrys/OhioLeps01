@@ -71,8 +71,8 @@
     }
 </script>
 
-<div class={classesControlBody} aria-labelledby={labelledby}>
-    <button type="button" class={classesButtonCenter} onclick={handleClick} title={`Return to ${GOTYPE[targetType]}`} disabled={targetType === GOTYPE.UNKNOWN}>
+<div class={classesControlBody}>
+    <button type="button" class={classesButtonCenter} onclick={handleClick} title={`Return to ${GOTYPE[targetType]}`} disabled={targetType === GOTYPE.UNKNOWN} aria-labelledby={labelledby}>
         <span class={classesScriptCenter}>◀</span>
     </button>
 </div>

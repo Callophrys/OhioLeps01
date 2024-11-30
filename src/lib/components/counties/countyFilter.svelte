@@ -1,6 +1,7 @@
 <script lang="ts">
     /*-- Imports */
-    import type { CountyMonitored, CountyFilterProps, MonitorStatus } from '$lib/types';
+    import type { CountyMonitored, CountyFilterProps } from '$lib/types';
+    import { MonitorStatus } from '$lib/types';
     import { getContext } from 'svelte';
     import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
 
@@ -30,10 +31,9 @@
     /*-- Constants (functional) */
     /*-- Properties (functional) */
     /*-- Variables and objects */
-    let showUnmonitored: MonitorStatus = $state(MonitorStatus.MONITORED);
+    let showUnmonitored = $state(MonitorStatus.MONITORED);
 
-    /*-- Run first stuff */
-    $effect(() => {
+    /*-- Run first stuff */ $effect(() => {
         filterCountyGroups(showUnmonitored);
     });
 

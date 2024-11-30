@@ -230,7 +230,7 @@ The SvelteKit language server is doing a lot of work under the hood and sometime
 
 ### 1/10/2024
 
-Prima update:
+Prisma update:
 Update available 5.7.1 -> 5.8.0
 Run the following to update:
 npm i --save-dev prisma@latest

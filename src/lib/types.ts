@@ -1,4 +1,5 @@
 import type { CssClasses } from '@skeletonlabs/skeleton';
+
 import type {
     AppConfig,
     Checklist,
@@ -11,7 +12,7 @@ import type {
     SiteStatus,
     State,
     StateRegion,
-    StatusCode
+    StatusCode,
     Taxonomy,
     User,
 } from '@prisma/client';
@@ -79,10 +80,11 @@ export type CountyFilterProps = {
 export type CountyMonitored = County & { isMonitored: boolean; siteCount: number; state: State };
 export type CountySites = County & { sites: Site[] };
 export type CountyState = County & { state: State };
-export type MonitorStatus = {
-    ALL: 0;
-    MONITORED: 1;
-    UNMONITORED: 2;
+
+export const MonitorStatus = {
+    ALL: 0,
+    MONITORED: 1,
+    UNMONITORED: 2,
 };
 
 export type UserComplete = User & { firstLast: string; lastFirst: string; role: Role };
