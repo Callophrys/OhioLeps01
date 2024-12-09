@@ -254,9 +254,21 @@ model Site {
     sections Section[]        @relation(name: "SectionsInSite")
     siteDates SiteDate[]
     siteStatuses SiteStatus[]
+    Transect Transect[]
 
     // Alternate keys and constraints
     @@unique([siteName, countyId])
+}
+
+model Transect {
+    id Int @id @default(autoincrement())
+    number Int
+    name String
+    description String
+
+    // Parent Relation
+    siteId Int?
+    site Site? @relation("TransectOfSite", fields: [siteId], references: [id])
 }
 
 // Will be one-to-one with big taxon data
