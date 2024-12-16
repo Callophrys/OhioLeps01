@@ -37,6 +37,28 @@
     type countyItem = { id: string; name: string };
     let selectedCounties: countyItem[] = [];
 
+    function calculateCentroid(points: string) {
+        const coords = points.split(' ').map((point) => point.split(',').map(Number));
+        let area = 0,
+            cx = 0,
+            cy = 0;
+
+        for (let i = 0, j = coords.length - 1; i < coords.length; j = i++) {
+            const [x0, y0] = coords[j];
+            const [x1, y1] = coords[i];
+            const cross = x0 * y1 - x1 * y0;
+            area += cross;
+            cx += (x0 + x1) * cross;
+            cy += (y0 + y1) * cross;
+        }
+
+        area /= 2;
+        cx /= 6 * area;
+        cy /= 6 * area;
+
+        return { cx, cy };
+    }
+
     function handleBlur(e: any) {
         sss.sh.textContent = '';
         sss.sh.classList.replace('opacity-100', 'opacity-0');
@@ -173,6 +195,27 @@
         sss.sellst = document.getElementById('selected-counties-list');
         sss.cspcnt = document.getElementById('species-in-selection');
         sss.csplst = document.getElementById('species-in-selection-list');
+
+        sss.svgvp.querySelectorAll('polygon').forEach((polygon: any) => {
+            // Set circle element for dot-mapping
+            const points = polygon.getAttribute('points');
+            const { cx, cy } = calculateCentroid(points);
+
+            const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            circle.setAttribute('cx', cx.toString());
+            circle.setAttribute('cy', cy.toString());
+            circle.setAttribute('r', '4'); // Adjust radius as needed
+            // circle.setAttribute('fill', 'black');
+            // circle.setAttribute('style', 'z-index: 2; pointer-events: none;');
+
+            sss.svgvp.appendChild(circle);
+
+            // Set class to indicate NOT Monitored
+            if (!isMonitored(polygon.id.substring(7))) {
+                circle.classList.add('not-monitored');
+                polygon.classList.add('not-monitored');
+            }
+        });
     });
 
     const popupFeatured: PopupSettings = {
@@ -298,7 +341,7 @@
                     <input class="radio" type="radio" disabled name="radio-direct" value="2" />
                     <p>Counties with species</p>
                 </label>
-                <button class="btn variant-filled" use:popup={popupFeatured}>How to select counties</button>
+                <button class="btn variant-filled" use:popup={popupFeatured}>How to select<br />counties</button>
                 <div class="card p-4 w-80 shadow-xl bg-surface-100-800-token" data-popup="popupFeatured">
                     <div class="text-center"><p>Instructions</p></div>
                     <ul class="list-disc ml-2">
@@ -332,61 +375,103 @@
 </DoubledContainer>
 <div class="hidden polygon-select"></div>
 
+<!-- fill: color-mix(in oklab, var(--rc1) 70%, gray); -->
+
 <style>
-    polygon {
-        /* cursor: pointer; opt to only do when mouse button is held down and dragging */
-        fill: #ff9966;
-        stroke: #000;
-        stroke-width: 1;
-        pointer-events: visible;
-        transition: background-color 1000ms linear;
-
-        &:hover {
-            fill: #ff6633;
-        }
+    :root {
+        --rc1: #d22b2b;
+        --rc2: #ffd700;
+        --rc3: #ec5800;
+        --rc4: #085119;
+        --rc5: #66bd27;
     }
 
-    .region1 {
-        fill: #d22b2b;
+    :global {
+        polygon {
+            /* cursor: pointer; opt to only do when mouse button is held down and dragging */
+            fill: #ff9966;
+            stroke: #000;
+            stroke-width: 1;
+            pointer-events: visible;
+            transition: background-color 1000ms linear;
 
-        &:hover {
-            fill: #d22b2bb2;
+            &:hover {
+                fill: #ff6633;
+            }
         }
-    }
 
-    .region2 {
-        fill: #ffd700;
+        circle {
+            fill: #000;
+            pointer-events: none;
+            z-index: 2;
 
-        &:hover {
-            fill: #ffd700b2;
+            &.not-monitored {
+                display: none;
+            }
         }
-    }
 
-    .region3 {
-        fill: #ec5800;
-
-        &:hover {
-            fill: #ec5800b2;
+        .polygon-select {
+            fill: #9118b0eb !important;
         }
-    }
 
-    .region4 {
-        fill: #085119;
+        .region1 {
+            fill: var(--rc1);
 
-        &:hover {
-            fill: #085119b2;
+            &:hover {
+                fill: color-mix(in srgb, var(--rc1) 70%, transparent);
+            }
+
+            &.not-monitored {
+                fill: color-mix(in srgb-linear, var(--rc1) 60%, gray 40%);
+            }
         }
-    }
 
-    .region5 {
-        fill: #66bd27;
+        .region2 {
+            fill: var(--rc2);
 
-        &:hover {
-            fill: #66bd27b2;
+            &:hover {
+                fill: color-mix(in srgb, var(--rc2) 70%, transparent);
+            }
+
+            &.not-monitored {
+                fill: color-mix(in srgb-linear, var(--rc2) 60%, gray 40%);
+            }
         }
-    }
 
-    .polygon-select {
-        fill: #9118b0eb !important;
+        .region3 {
+            fill: var(--rc3);
+
+            &:hover {
+                fill: color-mix(in srgb, var(--rc3) 70%, transparent);
+            }
+
+            &.not-monitored {
+                fill: color-mix(in srgb-linear, var(--rc3) 60%, gray 40%);
+            }
+        }
+
+        .region4 {
+            fill: var(--rc4);
+
+            &:hover {
+                fill: color-mix(in srgb, var(--rc4) 70%, transparent);
+            }
+
+            &.not-monitored {
+                fill: color-mix(in srgb-linear, var(--rc4) 60%, gray 40%);
+            }
+        }
+
+        .region5 {
+            fill: var(--rc5);
+
+            &:hover {
+                fill: color-mix(in srgb, var(--rc5) 70%, transparent);
+            }
+
+            &.not-monitored {
+                fill: color-mix(in srgb-linear, var(--rc5) 60%, gray 40%);
+            }
+        }
     }
 </style>
