@@ -71,7 +71,11 @@
 
     function handleMouseMove(e: any) {
         if (e.target.tagName === 'polygon') {
-            sss.sh.textContent = e.target.id.substring(e.target.id.lastIndexOf('_') + 1);
+            if (isPolygonMonitored(e.target)) {
+                sss.sh.textContent = '✔' + e.target.id.substring(e.target.id.lastIndexOf('_') + 1);
+            } else {
+                sss.sh.textContent = e.target.id.substring(e.target.id.lastIndexOf('_') + 1);
+            }
             sss.sh.style.left = e.clientX - Math.ceil(sss.sh.clientWidth / 2) + 'px';
             sss.sh.style.top = e.clientY - 40 + 'px';
             sss.sh.classList.replace('opacity-0', 'opacity-100');
@@ -163,6 +167,10 @@
         return y > 0;
     }
 
+    function isPolygonMonitored(polygon: SVGPolygonElement) {
+        return !polygon.classList.contains('not-monitored');
+    }
+
     function updateCounties() {
         sss.selcnt.textContent = 'Selected counties (' + selectedCounties.length + '):';
         sss.sellst.innerHTML =
@@ -205,15 +213,14 @@
             circle.setAttribute('cx', cx.toString());
             circle.setAttribute('cy', cy.toString());
             circle.setAttribute('r', '4'); // Adjust radius as needed
-            // circle.setAttribute('fill', 'black');
-            // circle.setAttribute('style', 'z-index: 2; pointer-events: none;');
 
             sss.svgvp.appendChild(circle);
 
             // Set class to indicate NOT Monitored
             if (!isMonitored(polygon.id.substring(7))) {
-                circle.classList.add('not-monitored');
                 polygon.classList.add('not-monitored');
+            } else {
+                circle.classlist.add('dot-map');
             }
         });
     });
@@ -401,12 +408,13 @@
         }
 
         circle {
-            fill: #000;
-            pointer-events: none;
-            z-index: 2;
+            display: none;
 
-            &.not-monitored {
-                display: none;
+            &.dot-map {
+                display: inline;
+                fill: #000;
+                pointer-events: none;
+                z-index: 2;
             }
         }
 
