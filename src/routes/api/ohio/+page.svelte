@@ -1,6 +1,5 @@
 <script lang="ts">
     import DoubledContainer from '$lib/components/DoubledContainer.svelte';
-    import { onMount } from 'svelte';
     import { popup } from '@skeletonlabs/skeleton';
     import type { PopupSettings } from '@skeletonlabs/skeleton';
 
@@ -329,57 +328,54 @@
 </script>
 
 <DoubledContainer>
-<svelte:fragment slot="leftBody">
-    <div class="opacity-0 font-semibold text-white capitalize absolute" id="svg_hover"></div>
+    <svelte:fragment slot="leftBody">
+        <div class="opacity-0 font-semibold text-white capitalize absolute" id="svg_hover"></div>
 
-    <div class="flex gap-2 justify-between">
-        <!-- svelte-ignore a11y-no-static-element-interactions -->
-        <svg id="svg_oh" viewBox="0 0 308 350" xmlns="http://www.w3.org/2000/svg" height="60vmin" width="60vmin" class="outline-none" on:mousedown={handleMouseDown} on:mouseup={handleMouseUp} on:mousemove={handleMouseMove} on:blur={handleBlur} />
+        <div class="flex gap-2 justify-between">
+            <svg id="svg_oh" viewBox="0 0 308 350" xmlns="http://www.w3.org/2000/svg" height="60vmin" width="60vmin" class="outline-none" on:mousedown={handleMouseDown} on:mouseup={handleMouseUp} on:mousemove={handleMouseMove} on:blur={handleBlur} />
 
-        <div class="space-y-2 max-w-44">
-            <label class="flex items-center space-x-2">
-                <input class="radio" type="radio" checked name="radio-direct" value="1" />
-                <p>Species present</p>
-            </label>
-            <label class="flex items-center space-x-2">
-                <input class="radio" type="radio" disabled name="radio-direct" value="2" />
-                <p>Counties with species</p>
-            </label>
-            <button class="btn variant-filled" use:popup={popupFeatured}>How to select<br />counties</button>
-            <div class="card p-4 w-80 shadow-xl bg-surface-100-800-token" data-popup="popupFeatured">
-                <div class="text-center"><p>Instructions</p></div>
-                <ul class="list-disc ml-2">
-                    <li>Left-click mouse and drag to create sets of counties</li>
-                    <li>Press and hold down control key while clicking or dragging to add or remove</li>
-                    <li>Press and hold both control and shift keys to add or remove entire regions of counties</li>
-                </ul>
-                <div class="arrow shadow-xl bg-surface-100-800-token"></div>
+            <div class="space-y-2 max-w-44">
+                <label class="flex items-center space-x-2">
+                    <input class="radio" type="radio" checked name="radio-direct" value="1" />
+                    <p>Species present</p>
+                </label>
+                <label class="flex items-center space-x-2">
+                    <input class="radio" type="radio" disabled name="radio-direct" value="2" />
+                    <p>Counties with species</p>
+                </label>
+                <button class="btn variant-filled" use:popup={popupFeatured}>How to select<br />counties</button>
+                <div class="card p-4 w-80 shadow-xl bg-surface-100-800-token" data-popup="popupFeatured">
+                    <div class="text-center"><p>Instructions</p></div>
+                    <ul class="list-disc ml-2">
+                        <li>Left-click mouse and drag to create sets of counties</li>
+                        <li>Press and hold down control key while clicking or dragging to add or remove</li>
+                        <li>Press and hold both control and shift keys to add or remove entire regions of counties</li>
+                    </ul>
+                    <div class="arrow shadow-xl bg-surface-100-800-token"></div>
+                </div>
             </div>
         </div>
-    </div>
-</svelte:fragment>
+    </svelte:fragment>
 
-<svelte:fragment slot="rightHead">
-    <div class="grid grid-cols-2">
-        <div>
-            <div id="selected-counties-count">Selected counties (0)</div>
+    <svelte:fragment slot="rightHead">
+        <div class="grid grid-cols-2">
+            <div>
+                <div id="selected-counties-count">Selected counties (0)</div>
+            </div>
+            <div>
+                <div id="species-in-selection">Species in selection (0)</div>
+            </div>
         </div>
-        <div>
-            <div id="species-in-selection">Species in selection (0)</div>
+    </svelte:fragment>
+    <svelte:fragment slot="rightBody">
+        <div class="grid grid-cols-2">
+            <ul id="selected-counties-list" class="list ml-4"></ul>
+            <ul id="species-in-selection-list" class="list ml-4"></ul>
         </div>
-    </div>
-</svelte:fragment>
-<svelte:fragment slot="rightBody">
-    <div class="grid grid-cols-2">
-        <ul id="selected-counties-list" class="list ml-4"></ul>
-        <ul id="species-in-selection-list" class="list ml-4"></ul>
-    </div>
-</svelte:fragment>
-<svelte:fragment slot="rightTail"><div class="text-xs text-secondary-500 mb-[-1em]">* Not monitored / no species observed</div></svelte:fragment>
+    </svelte:fragment>
+    <svelte:fragment slot="rightTail"><div class="text-xs text-secondary-500 mb-[-1em]">* Not monitored / no species observed</div></svelte:fragment>
 </DoubledContainer>
 <div class="hidden polygon-select"></div>
-
-<!-- fill: color-mix(in oklab, var(--rc1) 70%, gray); -->
 
 <style>
     :root {

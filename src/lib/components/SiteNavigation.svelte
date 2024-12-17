@@ -51,7 +51,19 @@
             <li><a href="/api/sites" class={cAnchorIndentedPl2}>Sites</a></li>
             <li><a href="/api/nameaddresses" class={cAnchorIndentedPl2}>Name-Address</a></li>
         {/if}
-        <li><a href="/api/ohio" class={cAnchorIndentedPl2}>Ohio</a></li>
+        <ul>
+            Interactive - USA
+            <ul class="nav-list pl-2">
+                <li><a href="/api/kentucky" class={cAnchorIndentedPl4}>Kentucky</a></li>
+                <li><a href="/api/ohio" class={cAnchorIndentedPl4}>Ohio</a></li>
+                <li><a href="/api/virginia" class={cAnchorIndentedPl4}>Virginia</a></li>
+                <li><a href="/api/westvirginia" class={cAnchorIndentedPl4}>West Virginia</a></li>
+            </ul>
+            Interactive - Other
+            <ul class="nav-list pl-2">
+                <li><a href="/api/mexico" class={cAnchorIndentedPl4}>México</a></li>
+            </ul>
+        </ul>
         <li><a href="/api/taxonomy" class={cAnchorIndentedPl2}>Butterflies of North America</a></li>
         <li>
             Gallery
