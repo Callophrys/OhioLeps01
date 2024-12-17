@@ -20,7 +20,7 @@
     </ul>
     */
 
-    export let data;
+    let { data }: { data: any } = $props();
     //console.log('data\n', data.CountySpecimens);
     const notMonitored = '<span class="text-secondary-500">*</span>';
 
@@ -34,6 +34,7 @@
         cspcnt: null,
         csplst: null,
     };
+
     type countyItem = { id: string; name: string };
     let selectedCounties: countyItem[] = [];
 
@@ -52,9 +53,8 @@
             cy += (y0 + y1) * cross;
         }
 
-        area /= 2;
-        cx /= 6 * area;
-        cy /= 6 * area;
+        cx /= 3 * area;
+        cy /= 3 * area;
 
         return { cx, cy };
     }
@@ -196,7 +196,7 @@
         sss.csplst.innerHTML = '<ul class="list">' + spcnr.map((s: any) => '<li class="">' + s + '</li>').join('') + '</ul>';
     }
 
-    onMount(() => {
+    $effect(() => {
         sss.sh = document.getElementById('svg_hover');
         sss.svgvp = document.getElementById('svg_oh');
         sss.selcnt = document.getElementById('selected-counties-count');
@@ -204,7 +204,7 @@
         sss.cspcnt = document.getElementById('species-in-selection');
         sss.csplst = document.getElementById('species-in-selection-list');
 
-        const polygons = psvgs.map((c) => {
+        psvgs.map((c) => {
             const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
             polygon.classList.add(c[2]);
             polygon.id = 'svg_' + c[1].substring(2) + '_' + c[3];
@@ -329,53 +329,53 @@
 </script>
 
 <DoubledContainer>
-    <svelte:fragment slot="leftBody">
-        <div class="opacity-0 font-semibold text-white capitalize absolute" id="svg_hover"></div>
+<svelte:fragment slot="leftBody">
+    <div class="opacity-0 font-semibold text-white capitalize absolute" id="svg_hover"></div>
 
-        <div class="flex gap-2 justify-between">
-            <!-- svelte-ignore a11y-no-static-element-interactions -->
-            <svg id="svg_oh" viewBox="0 0 308 350" xmlns="http://www.w3.org/2000/svg" height="60vmin" width="60vmin" class="outline-none" on:mousedown={handleMouseDown} on:mouseup={handleMouseUp} on:mousemove={handleMouseMove} on:blur={handleBlur} />
+    <div class="flex gap-2 justify-between">
+        <!-- svelte-ignore a11y-no-static-element-interactions -->
+        <svg id="svg_oh" viewBox="0 0 308 350" xmlns="http://www.w3.org/2000/svg" height="60vmin" width="60vmin" class="outline-none" on:mousedown={handleMouseDown} on:mouseup={handleMouseUp} on:mousemove={handleMouseMove} on:blur={handleBlur} />
 
-            <div class="space-y-2 max-w-44">
-                <label class="flex items-center space-x-2">
-                    <input class="radio" type="radio" checked name="radio-direct" value="1" />
-                    <p>Species present</p>
-                </label>
-                <label class="flex items-center space-x-2">
-                    <input class="radio" type="radio" disabled name="radio-direct" value="2" />
-                    <p>Counties with species</p>
-                </label>
-                <button class="btn variant-filled" use:popup={popupFeatured}>How to select<br />counties</button>
-                <div class="card p-4 w-80 shadow-xl bg-surface-100-800-token" data-popup="popupFeatured">
-                    <div class="text-center"><p>Instructions</p></div>
-                    <ul class="list-disc ml-2">
-                        <li>Left-click mouse and drag to create sets of counties</li>
-                        <li>Press and hold down control key while clicking or dragging to add or remove</li>
-                        <li>Press and hold both control and shift keys to add or remove entire regions of counties</li>
-                    </ul>
-                    <div class="arrow shadow-xl bg-surface-100-800-token"></div>
-                </div>
+        <div class="space-y-2 max-w-44">
+            <label class="flex items-center space-x-2">
+                <input class="radio" type="radio" checked name="radio-direct" value="1" />
+                <p>Species present</p>
+            </label>
+            <label class="flex items-center space-x-2">
+                <input class="radio" type="radio" disabled name="radio-direct" value="2" />
+                <p>Counties with species</p>
+            </label>
+            <button class="btn variant-filled" use:popup={popupFeatured}>How to select<br />counties</button>
+            <div class="card p-4 w-80 shadow-xl bg-surface-100-800-token" data-popup="popupFeatured">
+                <div class="text-center"><p>Instructions</p></div>
+                <ul class="list-disc ml-2">
+                    <li>Left-click mouse and drag to create sets of counties</li>
+                    <li>Press and hold down control key while clicking or dragging to add or remove</li>
+                    <li>Press and hold both control and shift keys to add or remove entire regions of counties</li>
+                </ul>
+                <div class="arrow shadow-xl bg-surface-100-800-token"></div>
             </div>
         </div>
-    </svelte:fragment>
+    </div>
+</svelte:fragment>
 
-    <svelte:fragment slot="rightHead">
-        <div class="grid grid-cols-2">
-            <div>
-                <div id="selected-counties-count">Selected counties (0)</div>
-            </div>
-            <div>
-                <div id="species-in-selection">Species in selection (0)</div>
-            </div>
+<svelte:fragment slot="rightHead">
+    <div class="grid grid-cols-2">
+        <div>
+            <div id="selected-counties-count">Selected counties (0)</div>
         </div>
-    </svelte:fragment>
-    <svelte:fragment slot="rightBody">
-        <div class="grid grid-cols-2">
-            <ul id="selected-counties-list" class="list ml-4"></ul>
-            <ul id="species-in-selection-list" class="list ml-4"></ul>
+        <div>
+            <div id="species-in-selection">Species in selection (0)</div>
         </div>
-    </svelte:fragment>
-    <svelte:fragment slot="rightTail"><div class="text-xs text-secondary-500 mb-[-1em]">* Not monitored / no species observed</div></svelte:fragment>
+    </div>
+</svelte:fragment>
+<svelte:fragment slot="rightBody">
+    <div class="grid grid-cols-2">
+        <ul id="selected-counties-list" class="list ml-4"></ul>
+        <ul id="species-in-selection-list" class="list ml-4"></ul>
+    </div>
+</svelte:fragment>
+<svelte:fragment slot="rightTail"><div class="text-xs text-secondary-500 mb-[-1em]">* Not monitored / no species observed</div></svelte:fragment>
 </DoubledContainer>
 <div class="hidden polygon-select"></div>
 
