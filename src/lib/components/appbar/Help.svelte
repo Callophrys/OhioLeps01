@@ -107,6 +107,9 @@
                     <li>
                         <a href="https://regexr.com/" target="_blank" class="hover:rounded-none">Regular Expressions</a>
                     </li>
+                    <li>
+                        <a href="https://svgomg.net/" target="_blank" class="hover:rounded-none">SVG Optimize</a>
+                    </li>
                 {:else}
                     <li>
                         <a href="https://ohiolepidopterists.org/" target="_blank" class="hover:rounded-none">Ohio Lepidopterists</a>
