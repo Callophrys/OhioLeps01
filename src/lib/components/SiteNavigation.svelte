@@ -139,7 +139,7 @@
         <li><a href="/api/taxonomy" class={cAnchorIndentedPl2}>Butterflies of North America</a></li>
         <li>
             <Accordion>
-                <AccordionItem bind:open={optAccUsa}>
+                <AccordionItem bind:open={optAccGallery}>
                     <svelte:fragment slot="summary">Gallery</svelte:fragment>
                     <svelte:fragment slot="content">
                         <ul class="nav-list pl-2">
