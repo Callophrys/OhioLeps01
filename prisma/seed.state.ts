@@ -642,7 +642,7 @@ Northwestern Plains and Sierras, Sierra Madre Occidental, Central Plateau, Trans
     San Martín Hidalgo
     San Marco
     San Juanito de Escobedo
-    Magdalena Municipality
+    Magdalena, Municipio de
     Jalisco
     Hostotipaquillo
     Etzatlán

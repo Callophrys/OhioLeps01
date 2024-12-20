@@ -25,10 +25,12 @@
     /*-- Reactives (styles) */
     let classesNavBar = $derived(`${cNavBar} ${navBar}`);
 
+    let accCanada: boolean = $state(false);
     let accUsa: boolean = $state(false);
     let accMexico: boolean = $state(false);
     let accGallery: boolean = $state(false);
 
+    let optAccCanada: boolean = $state(false);
     let optAccUsa: boolean = $state(false);
     let optAccMexico: boolean = $state(false);
     let optAccGallery: boolean = $state(false);
@@ -37,6 +39,8 @@
         let x: string;
 
         // Obtain Accordian open-close states from local storage
+        x = localStorage?.optAccCanada;
+        optAccCanada = x ? x === 'true' : accCanada;
         x = localStorage?.optAccUsa;
         optAccUsa = x ? x === 'true' : accUsa;
         x = localStorage?.optAccMexico;
@@ -47,6 +51,7 @@
 
     $effect(() => {
         // Store Accordian open-close states to local storage
+        localStorage.setItem('optAccCanada', optAccCanada.toString());
         localStorage.setItem('optAccUsa', optAccUsa.toString());
         localStorage.setItem('optAccMexico', optAccMexico.toString());
         localStorage.setItem('optAccGallery', optAccGallery.toString());
@@ -83,19 +88,102 @@
             Interactive Region(s)
             <ul>
                 <Accordion>
-                    <AccordionItem bind:open={optAccUsa}>
-                        <svelte:fragment slot="summary">Interactive - USA</svelte:fragment>
+                    <AccordionItem bind:open={optAccCanada}>
+                        <svelte:fragment slot="summary">Canada</svelte:fragment>
                         <svelte:fragment slot="content">
                             <ul class="nav-list pl-2">
+                                <li>Alberta - AB</li>
+                                <li>British Columbia - BC</li>
+                                <li>Manitoba - MB</li>
+                                <li>New Brunswick - NB</li>
+                                <li>Newfoundland and Labrador - NL</li>
+                                <li>Nova Scotia - NS</li>
+                                <li>Ontario - ON</li>
+                                <li>Prince Edward Island - PE</li>
+                                <li>Quebec - QC</li>
+                                <li>Saskatchewan - SK</li>
+                            </ul>
+                        </svelte:fragment>
+                    </AccordionItem>
+                    <AccordionItem bind:open={optAccUsa}>
+                        <svelte:fragment slot="summary">USA</svelte:fragment>
+                        <svelte:fragment slot="content">
+                            <ul class="nav-list pl-2">
+                                <li>Alabama - AL</li>
+                                <li>Alaska - AK</li>
+                                <li>Arizona - AZ</li>
+                                <li>Arkansas - AR</li>
+                                <li>California - CA</li>
+                                <li>Colorado - CO</li>
+                                <li>Connecticut - CT</li>
+                                <li>Delaware - DE</li>
+                                <li>Florida - FL</li>
+                                <li>Georgia - GA</li>
+                                <li>Hawaii - HI</li>
+                                <li>Idaho - ID</li>
+                                <li>Illinois - IL</li>
+                                <li>Indiana - IN</li>
+                                <li>Iowa - IA</li>
+                                <li>Kansas - KS</li>
                                 <li><a href="/api/north_america/usa/kentucky" class={cAnchorIndentedPl4}>Kentucky</a></li>
+                                <li>Louisiana - LA</li>
+                                <li>Maine - ME</li>
+                                <li>Maryland - MD</li>
+                                <li>Massachusetts - MA</li>
+                                <li>Michigan - MI</li>
+                                <li>Minnesota - MN</li>
+                                <li>Mississippi - MS</li>
+                                <li>Missouri - MO</li>
+                                <li>Montana - MT</li>
+                                <li>Nebraska - NE</li>
+                                <li>Nevada - NV</li>
+                                <li>New Hampshire - NH</li>
+                                <li>New Jersey - NJ</li>
+                                <li>New Mexico - NM</li>
+                                <li>New York - NY</li>
+                                <li>North Carolina - NC</li>
+                                <li>North Dakota - ND</li>
                                 <li><a href="/api/north_america/usa/ohio" class={cAnchorIndentedPl4}>Ohio</a></li>
+                                <li>Oklahoma - OK</li>
+                                <li>Oregon - OR</li>
+                                <li>Pennsylvania - PA</li>
+                                <li>Rhode Island - RI</li>
+                                <li>South Carolina - SC</li>
+                                <li>South Dakota - SD</li>
+                                <li>Tennessee - TN</li>
+                                <li>Texas - TX</li>
+                                <li>Utah - UT</li>
+                                <li>Vermont - VT</li>
+                                <li>Virginia - VA</li>
                                 <li><a href="/api/north_america/usa/virginia" class={cAnchorIndentedPl4}>Virginia</a></li>
+                                <li>Washington - WA</li>
+                                <li>West Virginia - WV</li>
                                 <li><a href="/api/north_america/usa/west_virginia" class={cAnchorIndentedPl4}>West Virginia</a></li>
+                                <li>Wisconsin - WI</li>
+                                <li>Wyoming - WY</li>
+                                <br />
+                                <li>District of Columbia - DC</li>
+                                <br />
+                                <li>American Samoa - AS</li>
+                                <li>Guam - GU</li>
+                                <li>Northern Mariana Islands - MP</li>
+                                <li>Puerto Rico - PR</li>
+                                <li>U.S. Virgin Islands - VI</li>
+                                <br />
+                                <li>Baker Island</li>
+                                <li>Howland Island</li>
+                                <li>Jarvis Island</li>
+                                <li>Johnston Atoll</li>
+                                <li>Kingman Reef</li>
+                                <li>Midway Atoll</li>
+                                <li>Navassa Island</li>
+                                <li>Palmyra Atoll</li>
+                                <li>Wake Island</li>
                             </ul>
                         </svelte:fragment>
                     </AccordionItem>
                     <AccordionItem bind:open={optAccMexico}>
-                        <svelte:fragment slot="summary">Interactive - México</svelte:fragment>
+                        <svelte:fragment slot="summary">México</svelte:fragment>
                         <svelte:fragment slot="content">
                             <ul class="nav-list pl-2">
                                 <li><a href="/api/north_america/mexico/aguascalientes" class={cAnchorIndentedPl4}>Aguascalientes</a></li>

@@ -109,6 +109,8 @@
                     </li>
                     <li>
                         <a href="https://svgomg.net/" target="_blank" class="hover:rounded-none">SVG Optimize</a>
+                        <!-- https://github.com/jakearchibald/svgomg -->
+                        <!-- https://github.com/svg/svgo -->
                     </li>
                 {:else}
                     <li>

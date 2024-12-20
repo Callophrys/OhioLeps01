@@ -24,15 +24,15 @@ export function initialize(psvgs: any, data: any, stateId: string) {
     sss.csplst = document.getElementById('species-in-selection-list');
 
     psvgs.map((c: any) => {
-        const svgPath = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
-        svgPath.classList.add(c.region);
-        svgPath.id = `svg_${stateId}_${c.name.replaceAll(' ', '_')}`;
-        const points = removeSubsequentDuplicates(toPairs(c.d.slice(1, -1).trim().split(' ')));
-        const pointsList = points.flatMap(({ x, y }) => [x, y]).join(' ');
-        svgPath.setAttributeNS('http://www.w3.org/2000/svg', 'points', pointsList);
-        // svgPath.classList.add(isMonitored(c.name) ? 'dot-map' : 'not-monitored');
-        svgPath.classList.add('dot-map');
-        sss.svgvp.appendChild(svgPath);
+        // const svgPath = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+        // svgPath.classList.add(c.region);
+        // svgPath.id = `svg_${stateId}_${c.name.replaceAll(' ', '_')}`;
+        // const points = removeSubsequentDuplicates(toPairs(c.d.slice(1, -1).trim().split(' ')));
+        // const pointsList = points.flatMap(({ x, y }) => [x, y]).join(' ');
+        // svgPath.setAttributeNS('http://www.w3.org/2000/svg', 'points', pointsList);
+        // // svgPath.classList.add(isMonitored(c.name) ? 'dot-map' : 'not-monitored');
+        // svgPath.classList.add('dot-map');
+        // sss.svgvp.appendChild(svgPath);
 
         // const svgPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
         // svgPath.classList.add(c.region);
