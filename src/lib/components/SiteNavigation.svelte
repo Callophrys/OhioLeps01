@@ -25,6 +25,7 @@
     /*-- Reactives (styles) */
     let classesNavBar = $derived(`${cNavBar} ${navBar}`);
 
+    let showValidOnly: boolean = $state(true);
     let accCanada: boolean = $state(false);
     let accUsa: boolean = $state(false);
     let accMexico: boolean = $state(false);
@@ -39,6 +40,8 @@
         let x: string;
 
         // Obtain Accordian open-close states from local storage
+        x = localStorage?.showValidOnly;
+        showValidOnly = x && x.length ? x === 'true' : true;
         x = localStorage?.optAccCanada;
         optAccCanada = x ? x === 'true' : accCanada;
         x = localStorage?.optAccUsa;
@@ -51,11 +54,13 @@
 
     $effect(() => {
         // Store Accordian open-close states to local storage
+        localStorage.setItem('showValidOnly', showValidOnly.toString());
         localStorage.setItem('optAccCanada', optAccCanada.toString());
         localStorage.setItem('optAccUsa', optAccUsa.toString());
         localStorage.setItem('optAccMexico', optAccMexico.toString());
         localStorage.setItem('optAccGallery', optAccGallery.toString());
     });
+    // body > div > div.w-full.h-full.flex.flex-col.overflow-hidden > div > aside > nav > ul > li:nth-child(2) > label > input[type=checkbox]
 
     /*-- -- Coding -- */
     /*-- Enums */
@@ -86,7 +91,10 @@
         {/if}
         <li>
             Interactive Region(s)
-            <ul>
+            <label for="showValidOnly" class="ml-8 text-sm"
+                >Non-placeholder only&nbsp;&nbsp;
+                <input id="showValidOnly" type="checkbox" bind:checked={showValidOnly} /></label>
+            <ul id="ul-interactive">
                 <Accordion>
                     <AccordionItem bind:open={optAccCanada}>
                         <svelte:fragment slot="summary">Canada</svelte:fragment>
@@ -125,6 +133,7 @@
                                 <li>Indiana - IN</li>
                                 <li>Iowa - IA</li>
                                 <li>Kansas - KS</li>
+                                <hr />
                                 <li><a href="/api/north_america/usa/kentucky" class={cAnchorIndentedPl4}>Kentucky</a></li>
                                 <li>Louisiana - LA</li>
                                 <li>Maine - ME</li>
@@ -154,22 +163,20 @@
                                 <li>Texas - TX</li>
                                 <li>Utah - UT</li>
                                 <li>Vermont - VT</li>
-                                <li>Virginia - VA</li>
                                 <li><a href="/api/north_america/usa/virginia" class={cAnchorIndentedPl4}>Virginia</a></li>
                                 <li>Washington - WA</li>
-                                <li>West Virginia - WV</li>
                                 <li><a href="/api/north_america/usa/west_virginia" class={cAnchorIndentedPl4}>West Virginia</a></li>
                                 <li>Wisconsin - WI</li>
                                 <li>Wyoming - WY</li>
-                                <br />
+                                <hr />
                                 <li>District of Columbia - DC</li>
-                                <br />
+                                <hr />
                                 <li>American Samoa - AS</li>
                                 <li>Guam - GU</li>
                                 <li>Northern Mariana Islands - MP</li>
                                 <li>Puerto Rico - PR</li>
                                 <li>U.S. Virgin Islands - VI</li>
-                                <br />
+                                <hr />
                                 <li>Baker Island</li>
                                 <li>Howland Island</li>
                                 <li>Jarvis Island</li>
@@ -245,3 +252,21 @@
         <li><a href="/api/newlayout" class={cAnchorIndentedPl2}>New Layout Tests</a></li>
     </ul>
 </nav>
+
+<style>
+    :global {
+        label:has(#showValidOnly:checked) + #ul-interactive li:not(:has(a)) {
+            display: none;
+        }
+
+        hr:not(:only-of-type):not(:last-of-type) {
+            display: block;
+            margin-bottom: -1px;
+        }
+
+        /* Optional: Style the last hr in the group */
+        hr:not(:only-of-type):last-of-type {
+            display: block;
+        }
+    }
+</style>

@@ -17,8 +17,7 @@
     --cty-sel: #9118b0;
 }
 
-:global {
-path {
+path, polygon {
     /* cursor: pointer; opt to only do when mouse button is held down and dragging */
     fill: #ff9966;
     stroke: #000;
@@ -231,5 +230,4 @@ svg {
         fill: green;
         z-index: 20;
     }
-}
 }

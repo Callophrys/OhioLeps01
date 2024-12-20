@@ -3,7 +3,7 @@
     import DoubledContainer from '$lib/components/DoubledContainer.svelte';
     import { popup } from '@skeletonlabs/skeleton';
 
-    import { handleBlur, handleMouseDown, handleMouseMove, handleMouseUp, initialize } from '$lib/interactive.js';
+    import { handleBlur, handleMouseDown, handleMouseMove, handleMouseUp, initialize } from '$lib/scripts/interactive.js';
     import '$lib/styles/interactive.css';
 
     let { data }: { data: any } = $props();

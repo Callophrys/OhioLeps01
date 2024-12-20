@@ -2,6 +2,7 @@
     import DoubledContainer from '$lib/components/DoubledContainer.svelte';
     import { popup } from '@skeletonlabs/skeleton';
     import type { PopupSettings } from '@skeletonlabs/skeleton';
+    import '$lib/styles/interactive.css';
 
     /*
     import { imageModules } from '$lib/gallery';
@@ -376,109 +377,3 @@
     <svelte:fragment slot="rightTail"><div class="text-xs text-secondary-500 mb-[-1em]">* Not monitored / no species observed</div></svelte:fragment>
 </DoubledContainer>
 <div class="hidden polygon-select"></div>
-
-<style>
-    :root {
-        --rc1: #d22b2b;
-        --rc2: #ffd700;
-        --rc3: #ec5800;
-        --rc4: #085119;
-        --rc5: #66bd27;
-
-        --cty-sel: #9118b0;
-    }
-
-    :global {
-        polygon {
-            /* cursor: pointer; opt to only do when mouse button is held down and dragging */
-            fill: #ff9966;
-            stroke: #000;
-            stroke-width: 1;
-            pointer-events: visible;
-            transition: background-color 1000ms linear;
-
-            &:hover {
-                fill: #ff6633;
-            }
-        }
-
-        circle {
-            display: none;
-        }
-
-        .dot-map circle {
-            display: inline;
-            fill: #000;
-            pointer-events: none;
-            z-index: 2;
-        }
-
-        .polygon-select {
-            fill: var(--cty-sel) !important;
-
-            &.not-monitored {
-                fill: color-mix(in srgb, var(--cty-sel) 70%, transparent) !important;
-            }
-        }
-
-        .region1 {
-            fill: var(--rc1);
-
-            &:hover {
-                fill: color-mix(in srgb, var(--rc1) 70%, transparent);
-            }
-
-            &.not-monitored {
-                fill: color-mix(in srgb-linear, var(--rc1) 60%, gray 40%);
-            }
-        }
-
-        .region2 {
-            fill: var(--rc2);
-
-            &:hover {
-                fill: color-mix(in srgb, var(--rc2) 70%, transparent);
-            }
-
-            &.not-monitored {
-                fill: color-mix(in srgb-linear, var(--rc2) 60%, gray 40%);
-            }
-        }
-
-        .region3 {
-            fill: var(--rc3);
-
-            &:hover {
-                fill: color-mix(in srgb, var(--rc3) 70%, transparent);
-            }
-
-            &.not-monitored {
-                fill: color-mix(in srgb-linear, var(--rc3) 60%, gray 40%);
-            }
-        }
-
-        .region4 {
-            fill: var(--rc4);
-
-            &:hover {
-                fill: color-mix(in srgb, var(--rc4) 70%, transparent);
-            }
-
-            &.not-monitored {
-                fill: color-mix(in srgb-linear, var(--rc4) 60%, gray 40%);
-            }
-        }
-
-        .region5 {
-            fill: var(--rc5);
-
-            &:hover {
-                fill: color-mix(in srgb, var(--rc5) 70%, transparent);
-            }
-
-            &.not-monitored {
-                fill: color-mix(in srgb-linear, var(--rc5) 60%, gray 40%);
-            }
-        }
-    }
-</style>
