@@ -17,11 +17,10 @@
     --cty-sel: #9118b0;
 }
 
-path, polygon {
+path,
+polygon {
     /* cursor: pointer; opt to only do when mouse button is held down and dragging */
     fill: #ff9966;
-    stroke: #000;
-    stroke-width: 1;
     pointer-events: visible;
     transition: background-color 1000ms linear;
 
@@ -218,8 +217,8 @@ circle {
 }
 
 svg {
-    width: 100%;
-    height: 100%;
+    width: 100vmin;
+    height: 100vmin;
 
     & path {
         fill: red;

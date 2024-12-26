@@ -12,95 +12,95 @@ const sss: { sh: any; svgvp: any; selcnt: any; sellst: any; cspcnt: any; csplst:
     csplst: null,
 };
 
-export function initialize(psvgs: any, data: any, stateId: string) {
+export function initialize(psvgs: any, data: any, svgId: string) {
     data = data;
 
     sss.sh = document.getElementById('svg_hover');
-    sss.svgvp = document.getElementById(`svg_${stateId}`);
+    sss.svgvp = document.getElementById(svgId);
     if (sss.svgvp === null) return;
     sss.selcnt = document.getElementById('selected-counties-count');
     sss.sellst = document.getElementById('selected-counties-list');
     sss.cspcnt = document.getElementById('species-in-selection');
     sss.csplst = document.getElementById('species-in-selection-list');
 
-    psvgs.map((c: any) => {
-        // const svgPath = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
-        // svgPath.classList.add(c.region);
-        // svgPath.id = `svg_${stateId}_${c.name.replaceAll(' ', '_')}`;
-        // const points = removeSubsequentDuplicates(toPairs(c.d.slice(1, -1).trim().split(' ')));
-        // const pointsList = points.flatMap(({ x, y }) => [x, y]).join(' ');
-        // svgPath.setAttributeNS('http://www.w3.org/2000/svg', 'points', pointsList);
-        // // svgPath.classList.add(isMonitored(c.name) ? 'dot-map' : 'not-monitored');
-        // svgPath.classList.add('dot-map');
-        // sss.svgvp.appendChild(svgPath);
+    // psvgs.map((c: any) => {
+    // const svgPath = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+    // svgPath.classList.add(c.region);
+    // svgPath.id = `svg_${stateId}_${c.name.replaceAll(' ', '_')}`;
+    // const points = removeSubsequentDuplicates(toPairs(c.d.slice(1, -1).trim().split(' ')));
+    // const pointsList = points.flatMap(({ x, y }) => [x, y]).join(' ');
+    // svgPath.setAttributeNS('http://www.w3.org/2000/svg', 'points', pointsList);
+    // // svgPath.classList.add(isMonitored(c.name) ? 'dot-map' : 'not-monitored');
+    // svgPath.classList.add('dot-map');
+    // sss.svgvp.appendChild(svgPath);
 
-        // const svgPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        // svgPath.classList.add(c.region);
-        // svgPath.id = `svg_${stateId}_${c.name.replaceAll(' ', '_')}`;
-        // svgPath.setAttributeNS('http://www.w3.org/2000/svg', 'd', c.d);
-        // // svgPath.classList.add(isMonitored(c.name) ? 'dot-map' : 'not-monitored');
-        // svgPath.classList.add('dot-map');
-        // sss.svgvp.appendChild(svgPath);
+    // const svgPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    // svgPath.classList.add(c.region);
+    // svgPath.id = `svg_${stateId}_${c.name.replaceAll(' ', '_')}`;
+    // svgPath.setAttributeNS('http://www.w3.org/2000/svg', 'd', c.d);
+    // // svgPath.classList.add(isMonitored(c.name) ? 'dot-map' : 'not-monitored');
+    // svgPath.classList.add('dot-map');
+    // sss.svgvp.appendChild(svgPath);
 
-        // const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        // const { cx, cy } = getPathCentroid(svgPath);
-        // circle.setAttributeNS('http://www.w3.org/2000/svg', 'cx', cx.toString());
-        // circle.setAttributeNS('http://www.w3.org/2000/svg', 'cy', cy.toString());
-        // circle.setAttributeNS('http://www.w3.org/2000/svg', 'r', '4'); // Adjust radius as needed
-        // circle.setAttributeNS('http://www.w3.org/2000/svg', 'transform', 'scale(2)'); // Adjust radius as needed
-        // sss.svgvp.appendChild(circle);
-    });
+    // const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    // const { cx, cy } = getPathCentroid(svgPath);
+    // circle.setAttributeNS('http://www.w3.org/2000/svg', 'cx', cx.toString());
+    // circle.setAttributeNS('http://www.w3.org/2000/svg', 'cy', cy.toString());
+    // circle.setAttributeNS('http://www.w3.org/2000/svg', 'r', '4'); // Adjust radius as needed
+    // circle.setAttributeNS('http://www.w3.org/2000/svg', 'transform', 'scale(2)'); // Adjust radius as needed
+    // sss.svgvp.appendChild(circle);
+    // });
 }
 
-export function getViewBox(psvgs: any): string {
-
-    const defaultResult = '0 0 600 800';
-
-    let xmin = Infinity;
-    let xmax = -Infinity;
-    let ymin = Infinity;
-    let ymax = -Infinity;
-
-    psvgs.forEach((item: any) => {
-        const commands = item.d.match(/[MLHVCSQTAZ][^MLHVCSQTAZ]*/gi); // Split by command letters
-        if (commands === null) return '0 0 600 800';
-
-        for (let i = 0; i < commands.length; i++) {
-            const command = commands[i].trim();
-            const type = command.charAt(0);
-            if (type !== 'M' && type !== 'L') continue;
-            const args = command
-                .slice(1)
-                .trim()
-                .split(/[\s,]+/)
-                .map(Number);
-
-            const pairs = toPairs(args);
-
-            pairs.forEach(({ x, y }) => {
-                xmin = Math.min(xmin, x);
-                xmax = Math.max(xmax, x);
-
-                ymin = Math.min(ymin, y);
-                ymax = Math.max(ymax, y);
-            });
-        }
-    });
-
-    if (xmin === Infinity) xmin = 0;
-    if (xmax === -Infinity) xmax = 600;
-    if (ymin === Infinity) ymin = 0;
-    if (ymax === -Infinity) ymax = 800;
-
-    return `${xmin} ${ymin} ${(xmax - xmin).toFixed(2)} ${((ymax - ymin).toFixed(2))}`;
-}
+// export function getViewBox(psvgs: any): string {
+//
+//     const defaultResult = '0 0 600 800';
+//
+//     let xmin = Infinity;
+//     let xmax = -Infinity;
+//     let ymin = Infinity;
+//     let ymax = -Infinity;
+//
+//     psvgs.forEach((item: any) => {
+//         const commands = item.d.match(/[MLHVCSQTAZ][^MLHVCSQTAZ]*/gi); // Split by command letters
+//         if (commands === null) return '0 0 600 800';
+//
+//         for (let i = 0; i < commands.length; i++) {
+//             const command = commands[i].trim();
+//             const type = command.charAt(0);
+//             if (type !== 'M' && type !== 'L') continue;
+//             const args = command
+//                 .slice(1)
+//                 .trim()
+//                 .split(/[\s,]+/)
+//                 .map(Number);
+//
+//             const pairs = toPairs(args);
+//
+//             pairs.forEach(({ x, y }) => {
+//                 xmin = Math.min(xmin, x);
+//                 xmax = Math.max(xmax, x);
+//
+//                 ymin = Math.min(ymin, y);
+//                 ymax = Math.max(ymax, y);
+//             });
+//         }
+//     });
+//
+//     if (xmin === Infinity) xmin = 0;
+//     if (xmax === -Infinity) xmax = 600;
+//     if (ymin === Infinity) ymin = 0;
+//     if (ymax === -Infinity) ymax = 800;
+//
+//     return `${xmin} ${ymin} ${(xmax - xmin).toFixed(2)} ${((ymax - ymin).toFixed(2))}`;
+// }
 
 type countyItem = { id: string; name: string };
 let selectedCounties: countyItem[] = [];
 
-function removeSubsequentDuplicates(arr: { x: Number, y: Number }[]) {
-    return arr.filter((value, index) => index === 0 || (value.x !== arr[index - 1].x && value.y === arr[index - 1].y));
-}
+// function removeSubsequentDuplicates(arr: { x: Number, y: Number }[]) {
+//     return arr.filter((value, index) => index === 0 || (value.x !== arr[index - 1].x && value.y === arr[index - 1].y));
+// }
 function calculateCentroid(points: string) {
     const coords = points.split(' ').map((point) => point.split(',').map(Number));
     let area = 0,
