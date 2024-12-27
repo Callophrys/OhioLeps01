@@ -17,8 +17,10 @@
         placement: 'bottom',
     };
 
+    let svgId = $state('');
     $effect(() => {
-        initialize(psvgs, data, '10');
+        svgId = `svg_${document.location.pathname.split('/').pop()}`;
+        initialize(psvgs, data, svgId);
     });
 
     const psvgs = [
@@ -498,7 +500,7 @@
         <div class="opacity-0 font-semibold text-white capitalize absolute" id="svg_hover"></div>
 
         <div class="flex gap-2 justify-between">
-            <svg id="svg_va" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" height="120vmin" width="120vmin" class="outline-none" onmousedown={handleMouseDown} onmouseup={handleMouseUp} onmousemove={handleMouseMove} onblur={handleBlur} role="figure" />
+            <svg id={svgId} viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" height="120vmin" width="120vmin" class="outline-none svg-state" onmousedown={handleMouseDown} onmouseup={handleMouseUp} onmousemove={handleMouseMove} onblur={handleBlur} role="figure" />
 
             <div class="space-y-2 max-w-44">
                 <label class="flex items-center space-x-2">

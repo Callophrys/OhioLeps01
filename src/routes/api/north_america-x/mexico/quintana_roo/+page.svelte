@@ -17,13 +17,10 @@
         placement: 'bottom',
     };
 
-    let stateId: string = '23';
-    let svgId: string = $state(`svg_${stateId}`);
-    let viewBox: string = $state('0 0 600 800');
-
+    let svgId = $state('');
     $effect(() => {
-        initialize(psvgs, data, stateId);
-        viewBox = getViewBox(psvgs);
+        svgId = `svg_${document.location.pathname.split('/').pop()}`;
+        initialize(psvgs, data, svgId);
     });
 
     const psvgs = [
@@ -172,7 +169,7 @@
         <div class="opacity-0 font-semibold text-white capitalize absolute" id="svg_hover"></div>
 
         <div class="flex gap-2 justify-between">
-            <svg id={svgId} {viewBox} xmlns="http://www.w3.org/2000/svg" class="outline-none" onmousedown={handleMouseDown} onmouseup={handleMouseUp} onmousemove={handleMouseMove} onblur={handleBlur} role="figure" />
+            <svg id={svgId} xmlns="http://www.w3.org/2000/svg" class="outline-none svg-state" onmousedown={handleMouseDown} onmouseup={handleMouseUp} onmousemove={handleMouseMove} onblur={handleBlur} role="figure" />
             <div class="space-y-2 max-w-44">
                 <label class="flex items-center space-x-2">
                     <input class="radio" type="radio" checked name="radio-direct" value="1" />

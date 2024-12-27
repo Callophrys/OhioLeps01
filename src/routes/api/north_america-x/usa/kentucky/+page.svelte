@@ -28,7 +28,7 @@ stroke-linejoin="round">
 version="1.2"
   viewBox="0 0 800 180"
   xmlns="http://www.w3.org/2000/svg"
-  class="outline-none"
+  class="outline-none svg-state"
   width="120vmin"
   height="120vmin"
   >

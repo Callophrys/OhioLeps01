@@ -58,6 +58,11 @@ export function camelToFriendly(camel: string) {
     // Object.getOwnPropertyNames(object1).forEach(x => console.log(camelToFriendly(x)));
 }
 
+export function toProperNoun(noun: string) {
+    noun = noun.trim().replaceAll('_', ' ');
+    return (noun.toLowerCase().replace(/\b\S/g, (t) => t.toUpperCase()));
+}
+
 export function compareNumeric(a: number, b: number) {
     return a - b;
 }

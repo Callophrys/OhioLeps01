@@ -36,12 +36,10 @@
         placement: 'bottom',
     };
 
-    let svgId: string = $state(`svg_${stateId}`);
-    // let viewBox: string = $state('0 0 600 800');
-
+    let svgId = $state('');
     $effect(() => {
-        initialize(psvgs, data, stateId);
-        // viewBox = getViewBox(psvgs);
+        svgId = `svg_${document.location.pathname.split('/').pop()}`;
+        initialize(psvgs, data, svgId);
     });
 
     const psvgs = [];
@@ -53,8 +51,8 @@
 
         <div class="flex gap-2 justify-between">
             <div>{@html svgContent}</div>
-            <!-- <svg id="svg_{svgId}" width="100vmin" height="100vmin" class="outline-none" onmousedown={handleMouseDown} onmouseup={handleMouseUp} onmousemove={handleMouseMove} onblur={handleBlur} role="figure" /> -->
-            <!-- <svg id="svg_{svgId}" width="100vmin" height="100vmin" class="outline-none" onmousedown={handleMouseDown} onmouseup={handleMouseUp} onmousemove={handleMouseMove} onblur={handleBlur} role="figure"> -->
+            <!-- <svg id="svg_{svgId}" width="100vmin" height="100vmin" class="outline-none svg-state" onmousedown={handleMouseDown} onmouseup={handleMouseUp} onmousemove={handleMouseMove} onblur={handleBlur} role="figure" /> -->
+            <!-- <svg id="svg_{svgId}" width="100vmin" height="100vmin" class="outline-none svg-state" onmousedown={handleMouseDown} onmouseup={handleMouseUp} onmousemove={handleMouseMove} onblur={handleBlur} role="figure"> -->
             <!--     <use href="{jalisco}#svg_state"></use> -->
             <!-- </svg> -->
             <div class="space-y-2 max-w-44">

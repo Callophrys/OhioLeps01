@@ -9,7 +9,6 @@
     import '$lib/styles/interactive.css';
 
     let { data }: { data: any } = $props();
-    let svgContent: string = $state(data.svgContent);
 
     const popupFeatured: PopupSettings = {
         // Represents the type of event that opens/closed the popup
@@ -33,12 +32,9 @@
     <svelte:fragment slot="leftBody">
         <div class="opacity-0 font-semibold text-white capitalize absolute" id="svg_hover"></div>
 
+        <div>{data.stateName}, {data.countryName}</div>
         <div class="flex gap-2 justify-between">
-            <div>{@html svgContent}</div>
-            <!-- <svg id="svg_{svgId}" width="100vmin" height="100vmin" class="outline-none" onmousedown={handleMouseDown} onmouseup={handleMouseUp} onmousemove={handleMouseMove} onblur={handleBlur} role="figure" /> -->
-            <!-- <svg id="svg_{svgId}" width="100vmin" height="100vmin" class="outline-none" onmousedown={handleMouseDown} onmouseup={handleMouseUp} onmousemove={handleMouseMove} onblur={handleBlur} role="figure"> -->
-            <!--     <use href="{jalisco}#svg_state"></use> -->
-            <!-- </svg> -->
+            <div>{@html data.svgContent}</div>
             <div class="space-y-2 max-w-44">
                 <label class="flex items-center space-x-2">
                     <input class="radio" type="radio" checked name="radio-direct" value="1" />
