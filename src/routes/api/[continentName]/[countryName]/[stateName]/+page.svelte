@@ -24,7 +24,6 @@
 
     $effect(() => {
         initialize(psvgs, data, svgId);
-        // viewBox = getViewBox(psvgs);
     });
 
     const psvgs = [];
