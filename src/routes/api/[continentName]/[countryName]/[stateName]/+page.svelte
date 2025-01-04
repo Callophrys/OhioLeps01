@@ -4,7 +4,8 @@
     import { onMount } from 'svelte';
     import { popup } from '@skeletonlabs/skeleton';
 
-    import { handleBlur, handleMouseDown, handleMouseMove, handleMouseUp, initialize, getViewBox } from '$lib/scripts/interactive.js';
+    import { initialize, addListeners } from '$lib/scripts/interactive.js';
+    // import { handleBlur, handleMouseDown, handleMouseMove, handleMouseUp, initialize, getViewBox } from '$lib/scripts/interactive.js';
 
     import '$lib/styles/interactive.css';
 
@@ -23,6 +24,7 @@
 
     $effect(() => {
         initialize(psvgs, data, svgId);
+        // addListeners(svgId);
     });
 
     const psvgs = [];
@@ -34,7 +36,7 @@
 
         <div>{data.stateName}, {data.countryName}</div>
         <div class="flex gap-2 justify-between">
-            <div>{@html data.svgContent}</div>
+            <div use:addListeners>{@html data.svgContent}</div>
             <div class="space-y-2 max-w-44">
                 <label class="flex items-center space-x-2">
                     <input class="radio" type="radio" checked name="radio-direct" value="1" />

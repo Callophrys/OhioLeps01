@@ -198,98 +198,123 @@ function getPathCentroid(path: any) {
     return { cx: cx, cy: cy };
 }
 
-export function handleBlur(e: any) {
-    sss.sh.textContent = '';
-    sss.sh.classList.replace('opacity-100', 'opacity-0');
-}
+export function addListeners(node: HTMLDivElement) {
 
-export function handleMouseOut(e: any) {
-    sss.sh.textContent = '';
-    sss.sh.classList.replace('opacity-100', 'opacity-0');
-}
+    const svg = node.firstElementChild;
+    if (svg == null) return;
 
-export function handleMouseMove(e: any) {
-    if (e.target.tagName === 'path') {
-        if (isPolygonMonitored(e.target)) {
-            sss.sh.textContent = '✔' + e.target.id.substring(e.target.id.lastIndexOf('_') + 1);
-        } else {
-            sss.sh.textContent = e.target.id.substring(e.target.id.lastIndexOf('_') + 1);
-        }
-        sss.sh.style.left = e.clientX - Math.ceil(sss.sh.clientWidth / 2) + 'px';
-        sss.sh.style.top = e.clientY - 40 + 'px';
-        sss.sh.classList.replace('opacity-0', 'opacity-100');
+    const svgId = svg.id;
 
-        if (isMouseDown) {
-            e.target.classList.add('polygon-select');
-            if (selectedCounties.findIndex((c) => c.id === e.target.id) < 0) {
-                selectedCounties.push({
-                    id: e.target.id,
-                    name: e.target.id.substring(e.target.id.lastIndexOf('_') + 1),
-                });
-                updateCounties();
-            }
-        }
-    } else {
-        sss.sh.classList.replace('opacity-100', 'opacity-0');
-        sss.sh.textContent = '';
+    const svgHover = document.getElementById('svg_hover');
+    if (svgHover == null) return;
+
+    let isMouseDown = false;
+
+    // const handleMouseOut = (e: any) => {
+    //     svgHover.textContent = '';
+    //     svgHover.classList.replace('opacity-100', 'opacity-0');
+    // }
+
+    const handleBlur = (e: any) => {
+        svgHover.textContent = '';
+        svgHover.classList.replace('opacity-100', 'opacity-0');
     }
-}
 
-export function handleMouseDown(e: any) {
-    isMouseDown = true;
-    sss.svgvp.classList.add('cursor-pointer');
-    if (e.target.tagName === 'path') {
-        if (e.shiftKey) {
-            let region = Array.from(e.target.classList).find((c: any) => c.startsWith('region'));
-            let isAdding = !e.target.classList.contains('polygon-select');
-            Array.from(sss.svgvp.querySelectorAll('path'))
-                .filter((r: any) => r.classList.contains(region))
-                .forEach((p: any) => {
-                    if (isAdding) {
-                        if (selectedCounties.findIndex((c) => c.id === p.id) < 0) {
-                            p.classList.add('polygon-select');
-                            selectedCounties.push({
-                                id: p.id,
-                                name: p.id.substring(p.id.lastIndexOf('_') + 1),
-                            });
+    const handleMouseDown = (e: any) => {
+        isMouseDown = true;
+        svg.classList.add('cursor-pointer');
+        if (e.target.tagName === 'path') {
+            if (e.shiftKey) {
+                let region = Array.from(e.target.classList).find((c: any) => c.startsWith('region'));
+                let isAdding = !e.target.classList.contains('polygon-select');
+                Array.from(svg.querySelectorAll('path'))
+                    .filter((r: any) => r.classList.contains(region))
+                    .forEach((p: any) => {
+                        if (isAdding) {
+                            if (selectedCounties.findIndex((c) => c.id === p.id) < 0) {
+                                p.classList.add('polygon-select');
+                                selectedCounties.push({
+                                    id: p.id,
+                                    name: p.id.substring(p.id.lastIndexOf('_') + 1),
+                                });
+                            }
+                        } else {
+                            p.classList.remove('polygon-select');
+                            selectedCounties.splice(
+                                selectedCounties.findIndex((c: countyItem) => c.id === p.id),
+                                1
+                            );
                         }
+                    });
+            } else {
+                if (e.target.classList.contains('polygon-select')) {
+                    if (!e.ctrlKey) {
+                        clearSelectedCounties();
                     } else {
-                        p.classList.remove('polygon-select');
+                        e.target.classList.remove('polygon-select');
                         selectedCounties.splice(
-                            selectedCounties.findIndex((c: countyItem) => c.id === p.id),
+                            selectedCounties.findIndex((c: countyItem) => c.id === e.target.id),
                             1
                         );
                     }
-                });
-        } else {
-            if (e.target.classList.contains('polygon-select')) {
-                if (!e.ctrlKey) {
-                    clearSelectedCounties();
                 } else {
-                    e.target.classList.remove('polygon-select');
-                    selectedCounties.splice(
-                        selectedCounties.findIndex((c: countyItem) => c.id === e.target.id),
-                        1
-                    );
+                    if (!e.ctrlKey) {
+                        clearSelectedCounties();
+                    }
+                    e.target.classList.add('polygon-select');
+                    selectedCounties.push({
+                        id: e.target.id,
+                        name: e.target.id.substring(e.target.id.lastIndexOf('_') + 1),
+                    });
                 }
-            } else {
-                if (!e.ctrlKey) {
-                    clearSelectedCounties();
-                }
-                e.target.classList.add('polygon-select');
-                selectedCounties.push({
-                    id: e.target.id,
-                    name: e.target.id.substring(e.target.id.lastIndexOf('_') + 1),
-                });
             }
+            updateCounties();
         }
-        updateCounties();
     }
-}
 
-export function handleMouseUp(e: any) {
-    isMouseDown = false;
-    sss.svgvp.classList.remove('cursor-pointer');
+    const handleMouseMove = (e: any) => {
+        debugger;
+        if (e.target.tagName === 'path') {
+            svgHover.textContent = (isPolygonMonitored(e.target) ? '✔' : '') +
+                e.target.id.substring(svgId.length + 1).replaceAll('_', ' ');
+            svgHover.style.left = e.clientX - Math.ceil(svgHover.clientWidth / 2) + 'px';
+            svgHover.style.top = e.clientY - 40 + 'px';
+            svgHover.classList.replace('opacity-0', 'opacity-100');
+
+            if (isMouseDown) {
+                e.target.classList.add('polygon-select');
+                if (selectedCounties.findIndex((c) => c.id === e.target.id) < 0) {
+                    selectedCounties.push({
+                        id: e.target.id,
+                        name: e.target.id.substring(e.target.id.lastIndexOf('_') + 1),
+                    });
+                    updateCounties();
+                }
+            }
+        } else {
+            svgHover.classList.replace('opacity-100', 'opacity-0');
+            svgHover.textContent = '';
+        }
+    }
+
+    const handleMouseUp = (e: any) => {
+        isMouseDown = false;
+        svg.classList.remove('cursor-pointer');
+    }
+
+    svg.addEventListener('blur', handleBlur);
+    svg.addEventListener('mousedown', handleMouseDown);
+    svg.addEventListener('mousemove', handleMouseMove);
+    svg.addEventListener('mouseup', handleMouseUp);
+
+    return {
+        destroy() {
+            svg.removeEventListener('blur', handleBlur);
+            svg.removeEventListener('mousedown', handleMouseDown);
+            svg.removeEventListener('mousemove', handleMouseMove);
+            svg.removeEventListener('mouseup', handleMouseUp);
+        }
+    }
 }
 
 function clearSelectedCounties() {

@@ -20,7 +20,8 @@
 path,
 polygon {
     /* cursor: pointer; opt to only do when mouse button is held down and dragging */
-    fill: #ff9966;
+    fill: pink;
+    /* #ff9966; */
     pointer-events: visible;
     transition: background-color 1000ms linear;
 
@@ -220,13 +221,13 @@ circle {
     width: 100vmin;
     height: 100vmin;
 
-    & path {
-        fill: red;
-        z-index: 10;
-    }
-
-    & circle {
-        fill: green;
-        z-index: 20;
-    }
+    /* & path { */
+    /*     fill: red; */
+    /*     z-index: 10; */
+    /* } */
+    /**/
+    /* & circle { */
+    /*     fill: green; */
+    /*     z-index: 20; */
+    /* } */
 }
