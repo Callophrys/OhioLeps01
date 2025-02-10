@@ -14,7 +14,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     import SitePicker from '$lib/components/datanavigation/SitePicker.svelte';
     import SpeciesPicker from '$lib/components/datanavigation/SpeciesPicker.svelte';
     import YearWeek from '$lib/components/datanavigation/YearWeek.svelte';
-    import { enhance } from '$app/forms';
+    import { enhance, applyAction } from '$app/forms';
     import { formatDate, isEditable, isReviewable, isNullOrWhiteSpace, isRecent, weekOfYearSince } from '$lib/utils';
     import { getModalStore } from '@skeletonlabs/skeleton';
     import { goto } from '$app/navigation';
@@ -102,7 +102,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
         value: 'Deleting data due to...',
         valueAttr: { type: 'text', minlength: 0, maxlength: 256, required: true },
         response: (r: string) => {
-            if (typeof r === 'object') {
+            if (typeof r !== 'boolean') {
                 targetForm.submit();
             }
         },
@@ -115,7 +115,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
         value: 'Undeleting data due to...',
         valueAttr: { type: 'text', minlength: 0, maxlength: 256, required: true },
         response: (r: string) => {
-            if (typeof r === 'object') {
+            if (typeof r !== 'boolean') {
                 targetForm.submit();
             }
         },
@@ -528,7 +528,37 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
         {#if sdo.confirmed}
             <button type="button" title="Delete disabled" disabled class="grayscale cursor-not-allowed">❌</button>
         {:else}
-            <form method="POST" action="?/deleteSiteDateObservation" onsubmit={onSubmitDelete} use:enhance>
+            <!-- <form method="POST" action="?/deleteSiteDateObservation" onsubmit={onSubmitDelete} use:enhance> -->
+            <form
+                method="POST"
+                action="?/deleteSiteDateObservation"
+                use:enhance={(formElement, formData, action, cancel, submitter) => {
+                    console.log('formElement:', formElement);
+                    console.log('formData:', formData);
+                    console.log('action:', action);
+                    console.log('cancel:', cancel);
+                    console.log('submitter:', submitter);
+                    debugger;
+                    formElement.cancel();
+                    return async () => {
+                        if (formElement.formData.get('deleteOn') === 'true') {
+                            modalStore.trigger(modalDelete);
+                        } else {
+                            modalStore.trigger(modalUndelete);
+                        }
+                    };
+
+                    // if (formElement.formData.get('deleteOn') === 'true') {
+                    //     modalStore.trigger(modalDelete);
+                    // } else {
+                    //     modalStore.trigger(modalUndelete);
+                    // }
+                    return;
+                    // return async ({ result, update }) => {
+                    //     console.log('result:', result);
+                    //     console.log('update:', update);
+                    // };
+                }}>
                 {#if !sdo.deleted}
                     <button type="submit" title="Delete this observation">❌</button>
                     <input hidden name="deleteOn" value={true} />

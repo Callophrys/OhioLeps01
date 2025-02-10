@@ -154,7 +154,7 @@ async function siteDateObservationBySiteDateChecklist(siteDateId: number, checkl
 }
 
 export async function nextOrLastSiteDateObservationByCommon(siteDateId: number, currentChecklistId: number | null) {
-    const sss = 'select lead(c.id) over (order by c.commonname) checklistId from siteDateObservation o inner join checklist c on c.id = o.checklistid where o.siteDateId = ' + siteDateId;
+    const sss = 'select lead(c.id) over (order by c.commonName) checklistId from siteDateObservation o inner join checklist c on c.id = o.checklistid where o.siteDateId = ' + siteDateId;
     const result = await prisma.$queryRaw<number>`${sss}`;
     console.log('result***', result);
 
@@ -164,12 +164,15 @@ export async function nextOrLastSiteDateObservationByCommon(siteDateId: number, 
 
 export async function nextOrLastSiteDateObservationByLatin(siteDateId: number, currentChecklistId: number) {
     const obj = await prisma.$queryRaw<number[]>`
-select coalesce(z.checklistIdTgt, z.checklistId) result
-from (select o.id, o.checklistId, lead(c.checklistId) over (order by c.commonname) checklistIdTgt
+select coalesce(z.checklistIdTarget, z.checklistId) result
+from (select o.id
+           , o.checklistId
+           , lead(c.id) over (order by c.commonName) checklistIdTarget
       from siteDateObservation o
       inner join checklist c on c.id = o.checklistid
       where o.siteDateId = ${siteDateId}
-) z where z.checklistId = ${currentChecklistId}`;
+) z
+where z.checklistId = ${currentChecklistId}`;
     console.log('result***', obj);
     const foo: any = obj?.shift();
     //const result = typeof foo === 'undefined' ? null : foo;
@@ -181,7 +184,7 @@ from (select o.id, o.checklistId, lead(c.checklistId) over (order by c.commonnam
 }
 
 export async function prevOrFirstSiteDateObservationByCommon(siteDateId: number, currentChecklistId: number) {
-    const sss = 'select lag(c.id) over (order by c.commonname) checklistId from siteDateObservation o inner join checklist c on c.id = o.checklistid where o.siteDateId = ' + siteDateId;
+    const sss = 'select lag(c.id) over (order by c.commonName) checklistId from siteDateObservation o inner join checklist c on c.id = o.checklistid where o.siteDateId = ' + siteDateId;
     const result = await prisma.$queryRaw<number>`${sss}`;
     console.log('result***', result);
 

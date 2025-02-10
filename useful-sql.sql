@@ -1,6 +1,6 @@
 
 ```sql
-CREATE USER 'zabulon'@'localhost' IDENTIFIED BY 'The......123';
+CREATE USER 'zabulon'@'localhost' IDENTIFIED BY 'biscuit33#F';
 GRANT ALL
   ON *.*
   TO 'zabulon'@'localhost'
@@ -14,7 +14,7 @@ show tables;
 ```
 
 ```sql
-ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPass';
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'biscuit33#F';
 ```
 
 ```sql
