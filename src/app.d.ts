@@ -6,10 +6,6 @@ import type { defaultOrganization } from '$lib/config';
 declare global {
     namespace App {
         // interface Error {}
-        // interface Locals {}
-        // interface PageData {}
-        // interface PageState {}
-        // interface Platform {}
         interface Locals {
             user: {
                 id: string;
@@ -23,6 +19,9 @@ declare global {
             };
             config: {};
         }
+        // interface PageData {}
+        // interface PageState {}
+        // interface Platform {}
     }
     // type EventElements = Event & {
     //   currentTarget: EventTarget & HTMLInputElement;
@@ -44,4 +43,4 @@ declare namespace App {
 }
 */
 
-export {};
+export { };
