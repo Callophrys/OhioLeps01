@@ -333,7 +333,7 @@
         <div class="opacity-0 font-semibold text-white capitalize absolute" id="svg_hover"></div>
 
         <div class="flex gap-2 justify-between">
-            <svg id="svg_oh" viewBox="0 0 308 350" xmlns="http://www.w3.org/2000/svg" height="60vmin" width="60vmin" class="outline-none svg-state" on:mousedown={handleMouseDown} on:mouseup={handleMouseUp} on:mousemove={handleMouseMove} on:blur={handleBlur} />
+            <svg id="svg_oh" viewBox="0 0 308 350" xmlns="http://www.w3.org/2000/svg" height="60vmin" width="60vmin" class="outline-hidden svg-state" on:mousedown={handleMouseDown} on:mouseup={handleMouseUp} on:mousemove={handleMouseMove} on:blur={handleBlur} />
 
             <div class="space-y-2 max-w-44">
                 <label class="flex items-center space-x-2">

@@ -6,7 +6,19 @@ import forms from '@tailwindcss/forms';
 /** @type {import('tailwindcss').Config} */
 const config = {
     darkMode: 'class',
-    content: ['./src/**/*.{html,js,svelte,ts}', join(require.resolve('@skeletonlabs/skeleton'), '../**/*.{html,js,svelte,ts}')],
+    content: [
+        './src/**/*.{html,js,svelte,ts}',
+        join(
+            require.resolve('@skeletonlabs/skeleton'),
+            '../**/*.{html,js,svelte,ts}'),
+
+        "./src/**/*.{svelte,ts,js}",   // Include Svelte and scripts
+        "./src/lib/**/*.{svelte,ts,js}",
+        "./src/routes/**/*.{svelte,ts,js}",
+        "./src/components/**/*.{svelte,ts,js}",
+        "./index.html",
+
+    ],
     theme: {
         extend: {},
     },

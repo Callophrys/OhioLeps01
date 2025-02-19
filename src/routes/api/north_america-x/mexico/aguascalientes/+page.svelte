@@ -164,7 +164,7 @@
         <div class="opacity-0 font-semibold text-white capitalize absolute" id="svg_hover"></div>
 
         <div class="flex gap-2 justify-between">
-            <svg id="svg_aguascalientes" xmlns="http://www.w3.org/2000/svg" height="100%" width="100%" class="outline-none svg-state" onmousedown={handleMouseDown} onmouseup={handleMouseUp} onmousemove={handleMouseMove} onblur={handleBlur} role="figure" />
+            <svg id="svg_aguascalientes" xmlns="http://www.w3.org/2000/svg" height="100%" width="100%" class="outline-hidden svg-state" onmousedown={handleMouseDown} onmouseup={handleMouseUp} onmousemove={handleMouseMove} onblur={handleBlur} role="figure" />
 
             <div class="space-y-2 max-w-44">
                 <label class="flex items-center space-x-2">

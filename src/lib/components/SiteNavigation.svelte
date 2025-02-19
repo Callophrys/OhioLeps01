@@ -15,7 +15,7 @@
     let { navBar = '' }: Props = $props();
 
     /*-- Constants (styles) */
-    const cAnchorBase = 'rounded-l-full outline-none block text-current';
+    const cAnchorBase = 'rounded-l-full outline-hidden block text-current';
     const cAnchorDefault = 'hover:bg-surface-800-100-token focus:bg-surface-200-700-token hover:text-surface-100-800-token focus:text-secondary-800-100-token';
     const cAnchorMediaMd = 'hover:md:variant-filled-surface focus:md:variant-soft-primary';
     const cAnchorIndentedPl2 = `${cAnchorBase} ${cAnchorDefault} ${cAnchorMediaMd} -ml-2 pl-2`;

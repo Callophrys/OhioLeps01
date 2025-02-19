@@ -51,8 +51,8 @@
 
         <div class="flex gap-2 justify-between">
             <div>{@html svgContent}</div>
-            <!-- <svg id="svg_{svgId}" width="100vmin" height="100vmin" class="outline-none svg-state" onmousedown={handleMouseDown} onmouseup={handleMouseUp} onmousemove={handleMouseMove} onblur={handleBlur} role="figure" /> -->
-            <!-- <svg id="svg_{svgId}" width="100vmin" height="100vmin" class="outline-none svg-state" onmousedown={handleMouseDown} onmouseup={handleMouseUp} onmousemove={handleMouseMove} onblur={handleBlur} role="figure"> -->
+            <!-- <svg id="svg_{svgId}" width="100vmin" height="100vmin" class="outline-hidden svg-state" onmousedown={handleMouseDown} onmouseup={handleMouseUp} onmousemove={handleMouseMove} onblur={handleBlur} role="figure" /> -->
+            <!-- <svg id="svg_{svgId}" width="100vmin" height="100vmin" class="outline-hidden svg-state" onmousedown={handleMouseDown} onmouseup={handleMouseUp} onmousemove={handleMouseMove} onblur={handleBlur} role="figure"> -->
             <!--     <use href="{jalisco}#svg_state"></use> -->
             <!-- </svg> -->
             <div class="space-y-2 max-w-44">
