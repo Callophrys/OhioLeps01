@@ -18,6 +18,8 @@
     import { formatDate, weekOfYearSince, convertFtoC, convertMphToKm, isRecent, decodeWeather } from '$lib/utils';
     import { setContext } from 'svelte';
 
+    import Datatable from '$lib/components/datatable/Datatable.svelte';
+
     /*-- -- Data -- */
     /*-- Exports */
     let {
@@ -602,5 +604,7 @@
                 </div>
             {/each}
         </div>
+
+        <Datatable />
     </svelte:fragment>
 </DoubledContainer>

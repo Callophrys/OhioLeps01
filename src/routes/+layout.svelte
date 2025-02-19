@@ -161,7 +161,6 @@
 
 <Modal />
 
-<!-- https://github.com/skeletonlabs/skeleton/blob/master/packages/skeleton/src/lib/components/AppShell/AppShell.svelte -->
 <div class={cBase} data-testid="app-shell">
     {@render header()}
 

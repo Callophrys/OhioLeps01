@@ -135,7 +135,7 @@
         <!-- prettier-ignore -->
         <footer class="{parent.regionFooter}">
             <button class="btn {parent.buttonNeutral}" onclick={parent.onClose}>{parent.buttonTextCancel}</button>
-            <button class="btn {parent.buttonPositive}" onclick={onFormSubmit}>Submit Form</button>
+            <button class="btn {parent.buttonPositive}" onclick={onFormSubmit}>Save</button>
         </footer>
     </div>
 {/if}

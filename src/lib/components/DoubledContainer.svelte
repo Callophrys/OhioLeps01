@@ -1,7 +1,3 @@
-<!--
-    See:
-    https://github.com/skeletonlabs/skeleton/blob/master/packages/skeleton/src/lib/components/AppShell/AppShell.svelte
--->
 <script lang="ts">
     /*-- Imports */
     import { showAppBar, showFooter } from '$lib/config';
