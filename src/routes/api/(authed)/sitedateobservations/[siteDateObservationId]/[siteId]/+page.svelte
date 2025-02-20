@@ -42,8 +42,13 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     /*-- Constants (styles) */
     const cDataClasses = 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-1 md:gap-2';
     const cDatumClasses = 'flex flex-row space-x-2';
-    const cSectionClasses = 'flex flex-row pr-2';
-    const cSectionSpanClasses = 'w-24 my-auto';
+    const cSectionRowClasses = 'flex flex-col mr-1';
+    const cSectionColClasses = 'flex flex-row pr-2';
+    const cSectionSpanLblClasses = 'w-32 pl-1 text-nowrap';
+    const cSectionSpanLblClassesA = 'w-8 pl-2 my-auto border-b-4 border-indigo-500';
+    const cSectionSpanLblClassesB = 'w-8 pl-1 my-auto border-b-4 border-indigo-500';
+    const cSectionSpanLblClassesSum = 'w-8 my-auto border-b-4 border-indigo-500';
+    const cSectionSpanDivClasses = 'h-6 w-8 pl-1 variant-soft';
 
     const cButtonBase = 'btn h-8 sm:h-10 md:h-11 pb-2 scale-90 -translate-y-2';
     const cButtonStandard = `${cButtonBase} w-24 md:w-28 variant-soft -translate-x-1`;
@@ -122,7 +127,10 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     };
 
     /*-- Properties (functional) */
-    let isEditing = $state(false);
+    let isEditing: boolean = $state(false);
+    $effect(() => {
+        console.log('isEditing:', isEditing);
+    });
     let editingTotal = $state(data.siteDateObservation.total);
     // let showHodges = $state(true);
     // let showP3 = $state(true);
@@ -166,8 +174,13 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
         // total = getTotal();
         //total = total;
         //     return document && frm ? Array.from(frm.querySelectorAll('[type=text]')).reduce((t: number, o: any) => t + (isNaN(o.value) ? 0 : Number(o.value)), 0) : 0;
-        const frm = e.currentTarget.form;
-        editingTotal = frm ? Array.from(frm.querySelectorAll('[type=number]')).reduce((t: number, o: any) => t + (isNaN(o.value) ? 0 : Number(o.value)), 0) : 0;
+        const section = e.currentTarget.parentElement.parentElement;
+        editingTotal = section ? Array.from(section.querySelectorAll('[type=text]')).reduce((t: number, o: any) => t + (isNaN(o.value) ? 0 : Number(o.value)), 0) : 0;
+        const target = section.querySelector('[id^="sum"]');
+        if (target) {
+            target.innerText = editingTotal;
+        }
+
         return true;
     };
 
@@ -419,8 +432,10 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 
 {#snippet editSpecimenControls()}
     {#if !isEditing}
+        <div>Not Editing</div>
         {@render editSpecimenViewing()}
     {:else}
+        <div>Editing</div>
         {@render editSpecimenEditing()}
     {/if}
 {/snippet}
@@ -647,142 +662,154 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     </div>
 {/snippet}
 
-{#snippet dataMultiple()}
-    <hr />
-
-    {#if isEditing}<!-- EDITING Multiple species observation recordings -->
-
-        <form id="formEdit" bind:this={formEdit} method="POST" action="?/updateSiteDateObservation" onsubmit={onSubmitEdit} use:enhance>
-            {#each availableObservations as chkSdo}
-                <div class={specimenClassesMultiple(chkSdo)}>
-                    <div class="pl-1 flex flex-row justify-between">
-                        <div class="flex flex-row justify-start">
-                            <div class="w-6">{chkSdo.deleted ? '❌' : chkSdo.confirmed ? '🔐' : '🔓'}</div>
-                            <div class="w-56 truncate">{chkSdo.checklist.commonName}</div>
-                            <div class="w-64 truncate">{chkSdo.checklist.scientificName}</div>
-                            <div class="w-28 text-right">Hodges: {@html htmlHodges(chkSdo.hodges)}</div>
-                            {#if config.modeDebug}
-                                <div class="hidden" data-name="siteDateObservationId">{chkSdo.id}</div>
-                                <div class="hidden" data-name="checklistId">{chkSdo.checklistId}</div>
-                            {/if}
-
-                            {#if chkSdo.deleted}
-                                <div class="w-44 pr-2 pb-0.5 text-right">ID Method: {@html chkSdo.idCode ?? '&varnothing;'}</div>
-                            {:else if chkSdo.confirmed}
-                                <div class="w-44 pr-2 pb-0.5 text-right">
-                                    <div class={cSectionClasses}>
-                                        <span class={cSectionSpanClasses}>ID Method:</span>
-                                        <input type="text" class="w-8 text-center text-black" value={chkSdo.idCode} disabled />
-                                    </div>
-                                </div>
-                            {:else}
-                                <div class="pl-4 pr-2 pb-0.5 text-right">
-                                    <label class={cSectionClasses}>
-                                        <span class={cSectionSpanClasses}>ID Method:</span>
-                                        <select class="input w-32 scale-90" name={`${chkSdo.id}_idcode`} value={chkSdo.idCode}>
-                                            <option value="O">Observed</option>
-                                            <option value="C">Collected</option>
-                                            <option value="N">Net</option>
-                                            <option value="P">Photo</option>
-                                        </select>
-                                    </label>
-                                    <input type="hidden" name={`${chkSdo.id}_idcode_orig`} value={chkSdo.idCode} />
-                                </div>
-                            {/if}
-                        </div>
-                        <div class="w-32 pr-4 text-right">(Total: {chkSdo.total})</div>
-                    </div>
-
-                    <div class="pl-8 flex flex-wrap">
-                        {#each Object.entries(chkSdo)
-                            .filter((x) => x[0].startsWith('section'))
-                            .map(([k, v]) => ({ label: `${k.substring(0, 1).toLocaleUpperCase()}${k.substring(1, 7)} ${k.substring(7)}`, name: k, value: v })) as section}
-                            {#if chkSdo.deleted}
-                                <div class={cSectionClasses}>
-                                    <div class={cSectionSpanClasses}>{section.label}:</div>
-                                    <div class="w-16">{@html section.value ?? '&varnothing;'}</div>
-                                </div>
-                            {:else if chkSdo.confirmed}
-                                <div class={cSectionClasses}>
-                                    <span class={cSectionSpanClasses}>{section.label}:</span>
-                                    <input type="text" value={section.value} class="w-16 mb-0.5 text-center text-black" disabled />
-                                </div>
-                            {:else}
-                                <label class={cSectionClasses}>
-                                    <span class={cSectionSpanClasses}>{section.label}:</span>
-                                    <input type="text" name={`${chkSdo.id}_${section.name}`} value={section.value} class="w-12 mb-0.5 leading-4 text-right text-black" />
-                                    <input type="hidden" name={`${chkSdo.d}_${section.name}_orig`} value={section.value} />
-                                </label>
-                            {/if}
-                        {/each}
-                    </div>
-                    <hr />
-                </div>
-            {/each}
-        </form>
-    {:else}<!-- VIEWING Multiple species observation recordings -->
-
+<!-- EDITING Multiple species observation recordings -->
+{#snippet editingMultiple()}
+    <form id="formEdit" bind:this={formEdit} method="POST" action="?/updateSiteDateObservation" onsubmit={onSubmitEdit} use:enhance>
         {#each availableObservations as chkSdo}
-            <div class={`flex flex-row ${specimenClassesMultiple(chkSdo)}`}>
-                <div class="basis-6">
-                    {#if $page.data.user.role === ROLE.USER}
-                        {#if !chkSdo.confirmById}
-                            <button type="button" title="Disabled/Needs review" disabled class="">🌎</button>
-                        {:else if chkSdo.confirmed}
-                            <button type="button" title="Disabled/Reviewed" class="">🔐</button>
-                        {:else}
-                            <button type="button" title="Disabled/Review status has been revoked" class="">🔓</button>
-                        {/if}
-                    {:else}
-                        {#if chkSdo.deleted}
-                            <div class="w-6"><button disabled class="cursor-not-allowed">&nbsp;</button></div>
-                        {:else}
-                            <div class="w-6 text-center content-[2714]">
-                                {#if chkSdo.confirmed}
-                                    <button type="button" title="Observation is reviewed and locked to editing" disabled class="text-green-700">✔</button>
-                                {:else}
-                                    <button type="button" title="Edit this observation" class="text-yellow-500" onclick={modalComponentEdit} disabled={isEditing} data-siteDateObservationId={chkSdo.id}>✎</button>
-                                {/if}
-                            </div>
-                        {/if}
-                        <div class="w-6 text-center">
-                            {@render reviewSpecimenViewMultiple(chkSdo)}
-                        </div>
-                        <div class="w-6 text-center">
-                            {@render deleteSpecimenViewMultiple(chkSdo)}
-                        </div>
-                    {/if}
-                </div>
-
-                <div class="">
-                    <div class={`pl-1 flex flex-row justify-between ${chkSdo.deleted ? '[&>:not(:first-of-type)]:line-through' : ''}`}>
-                        <div class="flex flex-row">
-                            <div class="w-56 truncate">{chkSdo.checklist.commonName}</div>
-                            <div class="w-64">{chkSdo.checklist.scientificName}</div>
-                        </div>
-                        <div class="w-32">Hodges: {@html htmlHodges(chkSdo.checklist.hodges)}</div>
+            <div class={specimenClassesMultiple(chkSdo)}>
+                <div class="pl-1 flex flex-row justify-between">
+                    <div class="flex flex-row justify-start">
+                        <div class="w-6">{chkSdo.deleted ? '❌' : chkSdo.confirmed ? '🔐' : '🔓'}</div>
+                        <div class="w-56 truncate">{chkSdo.checklist.commonName}</div>
+                        <div class="w-64 truncate">{chkSdo.checklist.scientificName}</div>
+                        <div class="w-28 text-right">Hodges: {@html htmlHodges(chkSdo.hodges)}</div>
                         {#if config.modeDebug}
                             <div class="hidden" data-name="siteDateObservationId">{chkSdo.id}</div>
                             <div class="hidden" data-name="checklistId">{chkSdo.checklistId}</div>
                         {/if}
-                        <div class="w-44 pb-0.5">ID Method: {@html htmlIdCode(chkSdo.idCode)}</div>
-                        <div class="w-36 text-right">(Total: {chkSdo.total})</div>
-                    </div>
 
-                    <div class={`pl-8 flex flex-wrap ${chkSdo.deleted ? 'line-through' : ''}`}>
-                        {#each Object.entries(chkSdo)
-                            .filter((x) => x[0].startsWith('section'))
-                            .map(([k, v]) => ({ label: `${k.substring(0, 1).toLocaleUpperCase()}${k.substring(1, 7)} ${k.substring(7)}`, name: k, value: v })) as { label, value }}
-                            <div class={cSectionClasses}>
-                                <div class={cSectionSpanClasses}>{label}:</div>
-                                <div class="w-8 variant-soft">{@html value ?? '&varnothing;'}</div>
+                        {#if chkSdo.deleted}
+                            <div class="w-44 pr-2 pb-0.5 text-right">ID Method: {@html chkSdo.idCode ?? '&varnothing;'}</div>
+                        {:else if chkSdo.confirmed}
+                            <div class="w-44 pr-2 pb-0.5 text-right">
+                                <div class={cSectionColClasses}>
+                                    <span class={cSectionSpanLblClasses}>ID Method:</span>
+                                    <input type="text" class="w-8 text-center text-black" value={chkSdo.idCode} disabled />
+                                </div>
                             </div>
-                        {/each}
+                        {:else}
+                            <div class="pl-4 pr-2 pb-0.5 text-right">
+                                <label class={cSectionColClasses}>
+                                    <span class={cSectionSpanLblClasses}>ID Method:</span>
+                                    <select class="input w-36 h-6 pt-0" name={`${chkSdo.id}_idcode`} value={chkSdo.idCode}>
+                                        <option value="O">Observed</option>
+                                        <option value="C">Collected</option>
+                                        <option value="N">Net</option>
+                                        <option value="P">Photo</option>
+                                    </select>
+                                </label>
+                                <input type="hidden" name={`${chkSdo.id}_idcode_orig`} value={chkSdo.idCode} />
+                            </div>
+                        {/if}
                     </div>
                 </div>
+
+                <div class="pl-8 flex flex-wrap">
+                    {#each Object.entries(chkSdo)
+                        .filter((x) => x[0].startsWith('section'))
+                        .map(([k, v]) => ({ label: `${k.substring(7)}`, name: k, value: v })) as section}
+                        {#if chkSdo.deleted}
+                            <div class={cSectionRowClasses}>
+                                <div class={cSectionSpanLblClasses}>{section.label}:</div>
+                                <div class="w-16">{@html section.value ?? '&varnothing;'}</div>
+                            </div>
+                        {:else if chkSdo.confirmed}
+                            <div class={cSectionRowClasses}>
+                                <span class={cSectionSpanLblClasses}>{section.label}:</span>
+                                <input type="text" value={section.value} class="w-16 mb-0.5 text-center text-black" disabled />
+                            </div>
+                        {:else}
+                            <label class={cSectionRowClasses}>
+                                <div class={`${Number(section.label) < 10 ? cSectionSpanLblClassesA : cSectionSpanLblClassesB}`}>{section.label}</div>
+                                <input type="text" name={`${chkSdo.id}_${section.name}`} value={section.value} class={cSectionSpanDivClasses} oninput={handleChange} />
+                                <input type="hidden" name={`${chkSdo.d}_${section.name}_orig`} value={section.value} />
+                            </label>
+                        {/if}
+                    {/each}
+                    &nbsp;
+                    <div class={cSectionRowClasses}>
+                        <div class={cSectionSpanLblClassesSum}>Sum</div>
+                        <div id={`sum_${chkSdo.id}`} class={cSectionSpanDivClasses}>{chkSdo.total}</div>
+                    </div>
+                </div>
+                <hr />
             </div>
-            <hr />
         {/each}
+    </form>
+{/snippet}
+
+<!-- VIEWING Multiple species observation recordings -->
+{#snippet viewingMultiple()}
+    {#each availableObservations as chkSdo}
+        <div class={`flex flex-row ${specimenClassesMultiple(chkSdo)}`}>
+            <div class="basis-6">
+                {#if $page.data.user.role === ROLE.USER}
+                    {#if !chkSdo.confirmById}
+                        <button type="button" title="Disabled/Needs review" disabled class="">🌎</button>
+                    {:else if chkSdo.confirmed}
+                        <button type="button" title="Disabled/Reviewed" class="">🔐</button>
+                    {:else}
+                        <button type="button" title="Disabled/Review status has been revoked" class="">🔓</button>
+                    {/if}
+                {:else}
+                    {#if chkSdo.deleted}
+                        <div class="w-6"><button disabled class="cursor-not-allowed">&nbsp;</button></div>
+                    {:else}
+                        <div class="w-6 text-center content-[2714]">
+                            {#if chkSdo.confirmed}
+                                <button type="button" title="Observation is reviewed and locked to editing" disabled class="text-green-700">✔</button>
+                            {:else}
+                                <button type="button" title="Edit this observation" class="text-yellow-500" onclick={modalComponentEdit} disabled={isEditing} data-siteDateObservationId={chkSdo.id}>✎</button>
+                            {/if}
+                        </div>
+                    {/if}
+                    <div class="w-6 text-center">
+                        {@render reviewSpecimenViewMultiple(chkSdo)}
+                    </div>
+                    <div class="w-6 text-center">
+                        {@render deleteSpecimenViewMultiple(chkSdo)}
+                    </div>
+                {/if}
+            </div>
+
+            <div class="">
+                <div class={`pl-1 flex flex-row justify-between ${chkSdo.deleted ? '[&>:not(:first-of-type)]:line-through' : ''}`}>
+                    <div class="flex flex-row">
+                        <div class="w-56 truncate">{chkSdo.checklist.commonName}</div>
+                        <div class="w-64">{chkSdo.checklist.scientificName}</div>
+                    </div>
+                    <div class="w-32">Hodges: {@html htmlHodges(chkSdo.checklist.hodges)}</div>
+                    {#if config.modeDebug}
+                        <div class="hidden" data-name="siteDateObservationId">{chkSdo.id}</div>
+                        <div class="hidden" data-name="checklistId">{chkSdo.checklistId}</div>
+                    {/if}
+                    <div class="w-44 pb-0.5">ID Method: {@html htmlIdCode(chkSdo.idCode)}</div>
+                    <div class="w-36 text-right">(Total: {chkSdo.total})</div>
+                </div>
+
+                <div class={`pl-0 flex flex-wrap ${chkSdo.deleted ? 'line-through' : ''}`}>
+                    {#each Object.entries(chkSdo)
+                        .filter((x) => x[0].startsWith('section'))
+                        .map(([k, v]) => ({ label: `${k.substring(7)}`, name: k, value: v })) as { label, value }}
+                        <div class={cSectionRowClasses}>
+                            <div class={`${Number(label) < 10 ? cSectionSpanLblClassesA : cSectionSpanLblClassesB}`}>{label}</div>
+                            <div class={cSectionSpanDivClasses}>{@html value ?? '&varnothing;'}</div>
+                        </div>
+                    {/each}
+                </div>
+            </div>
+        </div>
+        <hr />
+    {/each}
+{/snippet}
+
+{#snippet dataMultiple()}
+    <hr />
+
+    {#if isEditing}
+        {@render editingMultiple()}
+    {:else}
+        {@render viewingMultiple()}
     {/if}
 {/snippet}
 
@@ -810,8 +837,8 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
         <div class="flex flex-row space-x-4 mb-2">
             <div class="w-32 my-auto">Hodges: {@html htmlHodges(sdo.checklist.hodges)}</div>
             <div class="pr-2 pb-0.5">
-                <label class={cSectionClasses}>
-                    <span class={`${cSectionSpanClasses} my-auto whitespace-nowrap`}>ID Method:</span>
+                <label class={cSectionRowClasses}>
+                    <span class={`${cSectionSpanLblClasses} my-auto whitespace-nowrap`}>ID Method:</span>
                     <select class="input" name={`${sdo.id}_idCode`} value={sdo.idCode}>
                         <option value="O">Observed</option>
                         <option value="C">Collected</option>
@@ -829,9 +856,9 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
         <div class={cDataClasses}>
             {#each sdoSections as section}
                 <div class={cDatumClasses}>
-                    <label class={cSectionClasses}>
-                        <span class={cSectionSpanClasses}>{section.label}:</span>
-                        <input type="number" name={`${sdo.id}_${section.name}`} value={section.value} min="0" class="w-20 text-center text-black" oninput={handleChange} />
+                    <label class={cSectionRowClasses}>
+                        <span class={cSectionSpanLblClasses}>{section.label}:</span>
+                        <input type="number" name={`${sdo.id}_${section.name}`} value={section.value} min="0" class="w-8 pl-2 text-center text-black" oninput={handleChange} />
                         <input type="hidden" name={`${sdo.id}_${section.name}_orig`} value={section.value} />
                     </label>
                 </div>
@@ -853,8 +880,8 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
     <div class={cDataClasses}>
         {#each sdoSections as { label, value }}
             <div class={cDatumClasses}>
-                <div class={cSectionClasses}>
-                    <div class={cSectionSpanClasses}>{label}:</div>
+                <div class={cSectionRowClasses}>
+                    <div class={cSectionSpanLblClasses}>{label}:</div>
                     <div class="w-8 variant-soft">{@html value ?? '&varnothing;'}</div>
                 </div>
             </div>
