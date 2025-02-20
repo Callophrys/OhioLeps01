@@ -24,7 +24,7 @@
     /*-- Reactives (functional) */
 </script>
 
-<div class="p-2 rounded bg-slate-400 size-28">
+<div class="p-2 rounded-sm bg-slate-400 size-28">
     <label for={`ctyId${county.id}`} class="hover:cursor-pointer">
         <h2>{county.state.name}</h2>
         <p>{county.name}</p>
