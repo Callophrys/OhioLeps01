@@ -509,7 +509,8 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 
 {#snippet reviewSpecimenViewMultiple(sdo: SiteDateObservationChecklist)}
     {#if sdo.deleted}
-        <button type="button" disabled class="cursor-not-allowed">&nbsp;</button>
+        <!-- svelte-ignore a11y_label_has_associated_control -->
+        <button type="button" disabled class="cursor-not-allowed" aria-labelledby=" ">&nbsp;</button>
     {:else if isReviewable(sdo, $page.data.user)}
         <form method="POST" action="?/reviewSiteDateObservation" onsubmit={() => false} use:enhance>
             {#if !sdo.confirmById}
@@ -754,7 +755,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                     {/if}
                 {:else}
                     {#if chkSdo.deleted}
-                        <div class="w-6"><button disabled class="cursor-not-allowed">&nbsp;</button></div>
+                        <div class="w-6"><button disabled class="cursor-not-allowed" aria-labelledby=" ">&nbsp;</button></div>
                     {:else}
                         <div class="w-6 text-center content-[2714]">
                             {#if chkSdo.confirmed}
