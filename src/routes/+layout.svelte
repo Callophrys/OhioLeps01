@@ -25,6 +25,7 @@
     const wNavBar = 60;
     const wNavHid = 56;
     const cNavBarClasses = `w-${wNavBar}`;
+    // TODO: Make sure narrow viewers and hovering works
     const cSidebarClassesBase = `variant-filled-surface w-${wNavBar} h-full top-0 p-4 -left-${wNavHid} fixed z-10 duration-700`;
     const cSidebarClassesMedium = 'md:bg-surface-100-800-token md:text-current md:h-screen md:top-auto md:left-0 md:static';
     const cSidebarClassesHover = `hover:translate-x-${wNavHid} hover:md:translate-x-0`;
