@@ -9,6 +9,16 @@
     //import Configs from '$lib/components/data/Configs.svelte';
 
     const cBaseCard = 'card py-4 pl-4 h-full w-full flex flex-col space-y-2';
+
+    // const cLeftBF = 'pl-8 py-8';
+    // const cLeftB = 'pl-8 pt-8 pb-4';
+    //
+    // const cCenterBF = 'p-8';
+    // const cCenterB = 'px-8 pt-8 pb-4';
+    //
+    // const cRightBF = 'py-8 pr-8';
+    // const cRightB = 'pt-8 pr-8 pb-4';
+
     const cOuterBodyFooter = 'container flex flex-row gap-8 px-8 pt-8 pb-4 has-footer';
     const cOuterBodyNoFooter = 'container flex flex-row gap-8 p-8';
 
@@ -30,20 +40,22 @@
     // Should do this for show/hide avatar and for show/hide app bar
     //let heightAdjust = 4 + (showAppBar ? 132 : 0) + (showFooter ? 16 : 0);
     let showFooterFromFile = $state(showFooter);
-    let classesOuterBody = $derived(config.showFooter || showFooterFromFile ? cOuterBodyFooter : cOuterBodyNoFooter);
 
     let {
         head = null,
         body,
         tail = null,
         bodyClasses = 'overflow-y-auto',
+        outerBodyClasses = '',
     }: {
         head: Snippet | null;
         body: Snippet;
         tail: Snippet | null;
         bodyClasses: CssClasses | null;
+        outerBodyClasses: CssClasses | null;
     } = $props();
 
+    let classesOuterBody = $derived(`${config.showFooter || showFooterFromFile ? cOuterBodyFooter : cOuterBodyNoFooter} ${outerBodyClasses}`);
     let classesBody = `${cBodyClasses} ${bodyClasses}`;
 </script>
 

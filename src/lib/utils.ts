@@ -28,6 +28,8 @@ export function decodeWeather(k: string | null): string {
             return WEATHER.R;
         case 'S':
             return WEATHER.S;
+        case 'H':
+            return WEATHER.H;
         default:
             return '';
     }

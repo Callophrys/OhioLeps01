@@ -278,6 +278,7 @@
                                 <option value="O">Overcast</option>
                                 <option value="R">Rain</option>
                                 <option value="S">Sun</option>
+                                <option value="H">Haze/Smoke</option>
                             </select>
                         </label>
                     {/each}

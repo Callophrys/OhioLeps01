@@ -45,6 +45,7 @@ export enum WEATHER {
     O = 'Overcast',
     R = 'Rain',
     S = 'Sun',
+    H = 'Haze/Smoke',
 }
 
 export enum ZOOM_DIR {

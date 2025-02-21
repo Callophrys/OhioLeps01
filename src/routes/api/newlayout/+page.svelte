@@ -19,4 +19,4 @@
     </div>
 {/snippet}
 
-<Container {head} {body} {tail} />
+<Container {head} {body} {tail} outerBodyClasses="px-0" />

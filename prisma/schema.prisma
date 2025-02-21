@@ -407,10 +407,11 @@ model SiteStatus {
 }
 
 enum Weather {
-    U
-    O
-    R
-    S
+    U // Unknown
+    O // Overcast
+    R // Rain
+    S // Sun
+    H // Haze/Smoke
 }
 
 model SiteDate {

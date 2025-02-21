@@ -410,6 +410,7 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
         </div>
     </form>
 
+    <!-- TODO: Cancel of Delete all does not corrrectly restore ability to use edit all button -->
     <button type="button" class={cButtonCancel} onclick={() => (isEditing = false)}>
         Cancel
         <span class="pl-2 text-red-700 dark:text-red-600 text-2xl">↺</span>
@@ -670,8 +671,8 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                 <div class="pl-1 flex flex-row justify-between">
                     <div class="flex flex-row justify-start">
                         <div class="w-6">{chkSdo.deleted ? '❌' : chkSdo.confirmed ? '🔐' : '🔓'}</div>
-                        <div class="w-56 truncate">{chkSdo.checklist.commonName}</div>
-                        <div class="w-64 truncate">{chkSdo.checklist.scientificName}</div>
+                        <div class="w-36 md:w-56 lg:w-84 truncate">{chkSdo.checklist.commonName}</div>
+                        <div class="w-48 md:w-64 lg:w-96 truncate">{chkSdo.checklist.scientificName}</div>
                         <div class="w-28 text-right">Hodges: {@html htmlHodges(chkSdo.hodges)}</div>
                         {#if config.modeDebug}
                             <div class="hidden" data-name="siteDateObservationId">{chkSdo.id}</div>
@@ -774,17 +775,14 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
 
             <div class="">
                 <div class={`pl-1 flex flex-row justify-between ${chkSdo.deleted ? '[&>:not(:first-of-type)]:line-through' : ''}`}>
-                    <div class="flex flex-row">
-                        <div class="w-56 truncate">{chkSdo.checklist.commonName}</div>
-                        <div class="w-64">{chkSdo.checklist.scientificName}</div>
-                    </div>
+                    <div class="w-36 md:w-56 lg:w-84 truncate">{chkSdo.checklist.commonName}</div>
+                    <div class="w-48 md:w-64 lg:w-96 truncate">{chkSdo.checklist.scientificName}</div>
                     <div class="w-32">Hodges: {@html htmlHodges(chkSdo.checklist.hodges)}</div>
                     {#if config.modeDebug}
                         <div class="hidden" data-name="siteDateObservationId">{chkSdo.id}</div>
                         <div class="hidden" data-name="checklistId">{chkSdo.checklistId}</div>
                     {/if}
                     <div class="w-44 pb-0.5">ID Method: {@html htmlIdCode(chkSdo.idCode)}</div>
-                    <div class="w-36 text-right">(Total: {chkSdo.total})</div>
                 </div>
 
                 <div class={`pl-0 flex flex-wrap ${chkSdo.deleted ? 'line-through' : ''}`}>
@@ -796,6 +794,11 @@ TODO: https://rodneylab.com/sveltekit-form-example-with-10-mistakes-to-avoid/  -
                             <div class={cSectionSpanDivClasses}>{@html value ?? '&varnothing;'}</div>
                         </div>
                     {/each}
+                    &nbsp;
+                    <div class={cSectionRowClasses}>
+                        <div class={cSectionSpanLblClassesSum}>Sum</div>
+                        <div id={`sum_${chkSdo.id}`} class={cSectionSpanDivClasses}>{chkSdo.total}</div>
+                    </div>
                 </div>
             </div>
         </div>
