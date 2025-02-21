@@ -3,6 +3,7 @@
     import { page } from '$app/stores';
     import { type CssClasses } from '@skeletonlabs/skeleton';
     import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
+    import { stopPropagation } from '$lib/actions/stopPropagation.js';
 
     /*-- -- Data -- */
     /*-- Exports */
@@ -97,7 +98,7 @@
                             Interactive Region(s)
                             <label for="showValidOnly" class="ml-8 text-sm"
                                 >Non-placeholder only&nbsp;&nbsp;
-                                <input id="showValidOnly" type="checkbox" bind:checked={showValidOnly} />
+                                <input type="checkbox" bind:checked={showValidOnly} use:stopPropagation />
                             </label>
                         </div>
                     </svelte:fragment>
@@ -124,7 +125,7 @@
                                 <AccordionItem bind:open={optAccUsa}>
                                     <svelte:fragment slot="summary">USA</svelte:fragment>
                                     <svelte:fragment slot="content">
-                                        <ul class="nav-list pl-2">
+                                        <ul class={`nav-list pl-2 ${showValidOnly ? 'valid-only' : ''}`}>
                                             <li>Alabama - AL</li>
                                             <li>Alaska - AK</li>
                                             <li>Arizona - AZ</li>
@@ -266,9 +267,9 @@
     </ul>
 </nav>
 
-<style>
+<style global>
     :global {
-        label:has(#showValidOnly:checked) + #ul-interactive li:not(:has(a)) {
+        .valid-only > li:not(:has(a)) {
             display: none;
         }
 

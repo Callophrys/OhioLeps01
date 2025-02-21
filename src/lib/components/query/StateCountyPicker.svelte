@@ -135,10 +135,12 @@
     </div>
 </div>
 
-<style>
-    .half-vh-sp {
-        @apply overflow-y-auto;
-        height: calc(100vh - 408px);
-        min-height: 128px;
+<style global>
+    :global {
+        .half-vh-sp {
+            overflow-y: auto;
+            height: calc(100vh - 408px);
+            min-height: 128px;
+        }
     }
 </style>
