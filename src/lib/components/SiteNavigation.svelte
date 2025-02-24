@@ -282,5 +282,9 @@
         hr:not(:only-of-type):last-of-type {
             display: block;
         }
+
+        .accordion .accordion-item .accordion-control:hover {
+            background-color: transparent;
+        }
     }
 </style>

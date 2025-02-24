@@ -7,14 +7,12 @@ import { getSites } from '$lib/database/sites.js';
 import { getSiteDate, getSiteDateSiteDates, addSiteDate, updateSiteDate } from '$lib/database/sitedates';
 import { getSiteDateObservationsBySiteDate } from '$lib/database/sitedateobservations.js';
 import { getChecklists } from '$lib/database/checklists.js';
-import { sdoLoad, siteDateObservationActions } from '$lib/server/siteDataObservations';
 
 export async function load({ params }: { params: any }) {
     // console.log('sitedates - params', params);
 
     let siteDateId = Number(params.sitedateid);
     const [siteDate, sites, siteDates, siteDateObservations, checklistsAll] = await Promise.all([getSiteDate(siteDateId), getSites(null), getSiteDateSiteDates(siteDateId), getSiteDateObservationsBySiteDate(siteDateId), getChecklists()]);
-    let siteId = Number(siteDate?.siteId);
 
     // console.log('sites', sites);
     // console.log('siteDate', siteDate);
@@ -34,23 +32,16 @@ export async function load({ params }: { params: any }) {
     const jsonA = JSON.stringify(checklistsAll);
     const jsonResultA: SiteDateObservationChecklist[] = JSON.parse(jsonA);
 
-    const sdoData = await sdoLoad(siteId, siteDateId);
-    const jsonX = JSON.stringify(sdoData);
-    const jsonResultX: any[] = JSON.parse(jsonX);
-    // console.log('sitedates - sdoData', sdoData);
-
     return {
         siteDate: jsonResultD,
         sites: jsonResultS,
         siteDates: jsonResultYW,
         siteDateObservations: jsonResultO,
         checklistsAll: jsonResultA,
-        sdoData: jsonResultX,
     };
 }
 
-// export const siteDateActions: Actions = {
-const siteDateActions: Actions = {
+export const actions: Actions = {
     createSiteDate: async ({ request, locals }) => {
         if (locals.user.role !== ROLE.SUPER && locals.user.role !== ROLE.ADMIN && locals.user.role !== ROLE.ENTRY) {
             return; // TODO: log this and throw some kind of error
@@ -237,9 +228,4 @@ const siteDateActions: Actions = {
         const newSiteDate: SiteDate = await updateSiteDate(siteDate);
         return { id: newSiteDate.id ?? -1 };
     },
-};
-
-export const actions: Actions = {
-    ...siteDateActions,
-    ...siteDateObservationActions,
 };
