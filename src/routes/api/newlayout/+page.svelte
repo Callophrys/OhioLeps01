@@ -1,5 +1,6 @@
 <script lang="ts">
-    import Container from '$lib/components/layouts/Container.svelte';
+    import Container from "$lib/components/layouts/Container.svelte";
+    import { Pane, Splitpanes } from "$lib/components/splitpanes";
 </script>
 
 {#snippet head()}
@@ -19,4 +20,15 @@
     </div>
 {/snippet}
 
-<Container {head} {body} {tail} outerBodyClasses="px-0" />
+<Splitpanes style="height: 100%">
+    {#if visibleLeft}
+        <Pane minSize={5}>
+            {@render bodyLeft()}
+        </Pane>
+    {/if}
+    {#if visibleRight}
+        <Pane size={50} minSize={3}>
+            <Container {head} {body} {tail} outerBodyClasses="px-0" />
+        </Pane>
+    {/if}
+</Splitpanes>
