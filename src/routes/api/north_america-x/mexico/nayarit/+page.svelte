@@ -18,6 +18,7 @@
     };
 
     let svgId = $state('');
+
     $effect(() => {
         svgId = `svg_${document.location.pathname.split('/').pop()}`;
         initialize(psvgs, data, svgId);
