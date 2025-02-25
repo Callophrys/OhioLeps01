@@ -1,16 +1,16 @@
 <script lang="ts">
-    import type { CssClasses } from '@skeletonlabs/skeleton';
-    import { GOTYPE } from '$lib/types';
-    import { goto } from '$app/navigation';
+    import type { CssClasses } from "@skeletonlabs/skeleton";
+    import { GOTYPE } from "$lib/types";
+    import { goto } from "$app/navigation";
 
     let {
         targetId = $bindable(),
         targetType = $bindable(),
         targetIdSecondary = $bindable(),
-        controlBody = '',
-        buttonCenter = '',
-        scriptCenter = '',
-        labelledby = 'Select site-date',
+        controlBody = "",
+        buttonCenter = "",
+        scriptCenter = "",
+        labelledby = "Select site-date",
     }: {
         targetId: number;
         targetType: GOTYPE;
@@ -28,9 +28,10 @@
     /** Provide the ARIA labelledby value.  Default: "Select site-date" */
 
     /*-- Constants (styles) */
-    const cControlBody = 'btn-group w-fit variant-soft my-auto';
-    const cButtonCenter = '';
-    const cScriptCenter = 'w-full my-auto text-center truncate overflow-hidden text-ellipsis';
+    const cControlBody = "btn-group w-fit variant-soft my-auto";
+    const cButtonCenter = "";
+    const cScriptCenter =
+        "w-full my-auto text-center truncate overflow-hidden text-ellipsis";
 
     /*-- Reactives (styles) */
     let classesControlBody = $derived(`${cControlBody} ${controlBody}`); // ${$$props.class ?? ''}`);
@@ -41,19 +42,21 @@
     function handleClick() {
         switch (targetType) {
             case GOTYPE.SITEDATEOBSERVATIONS:
-                goto(`/api/sitedateobservations/${targetId}/${targetIdSecondary}`);
+                goto(
+                    `/api/sitedateobservations/${targetId}/${targetIdSecondary}`,
+                );
                 break;
             case GOTYPE.SITEDATES:
-                goto('/api/sitedates/' + targetId);
+                goto("/api/sitedate/" + targetId);
                 break;
             case GOTYPE.SITES:
-                goto('/api/sites/' + targetId);
+                goto("/api/site/" + targetId);
                 break;
             case GOTYPE.COUNTYSITES:
-                goto('/api/countysites/' + targetId);
+                goto("/api/countysites/" + targetId);
                 break;
             case GOTYPE.COUNTIES:
-                goto('/api/counties');
+                goto("/api/counties");
                 break;
             // //TODO: TBD and implemented
             // case GOTYPE.STATEREGIONS,
@@ -65,14 +68,21 @@
             //     goto('/');
             //     break;
             default:
-                goto('/');
+                goto("/");
                 break;
         }
     }
 </script>
 
 <div class={classesControlBody}>
-    <button type="button" class={classesButtonCenter} onclick={handleClick} title={`Return to ${GOTYPE[targetType]}`} disabled={targetType === GOTYPE.UNKNOWN} aria-labelledby={labelledby}>
+    <button
+        type="button"
+        class={classesButtonCenter}
+        onclick={handleClick}
+        title={`Return to ${GOTYPE[targetType]}`}
+        disabled={targetType === GOTYPE.UNKNOWN}
+        aria-labelledby={labelledby}
+    >
         <span class={classesScriptCenter}>◀</span>
     </button>
 </div>

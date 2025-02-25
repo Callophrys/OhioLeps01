@@ -1,9 +1,9 @@
 <script lang="ts">
     /*-- Imports */
-    import { page } from '$app/stores';
-    import { type CssClasses } from '@skeletonlabs/skeleton';
-    import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
-    import { stopPropagation } from '$lib/actions/stopPropagation.js';
+    import { page } from "$app/stores";
+    import { type CssClasses } from "@skeletonlabs/skeleton";
+    import { Accordion, AccordionItem } from "@skeletonlabs/skeleton";
+    import { stopPropagation } from "$lib/actions/stopPropagation.js";
 
     /*-- -- Data -- */
     /*-- Exports */
@@ -13,15 +13,17 @@
         navBar: CssClasses;
     };
     /*-- Properties (styles) */
-    let { navBar = '' }: Props = $props();
+    let { navBar = "" }: Props = $props();
 
     /*-- Constants (styles) */
-    const cAnchorBase = 'rounded-l-full outline-none block text-current';
-    const cAnchorDefault = 'hover:bg-surface-800-100-token focus:bg-surface-200-700-token hover:text-surface-100-800-token focus:text-secondary-800-100-token';
-    const cAnchorMediaMd = 'hover:md:variant-filled-surface focus:md:variant-soft-primary';
+    const cAnchorBase = "rounded-l-full outline-none block text-current";
+    const cAnchorDefault =
+        "hover:bg-surface-800-100-token focus:bg-surface-200-700-token hover:text-surface-100-800-token focus:text-secondary-800-100-token";
+    const cAnchorMediaMd =
+        "hover:md:variant-filled-surface focus:md:variant-soft-primary";
     const cAnchorIndentedPl2 = `${cAnchorBase} ${cAnchorDefault} ${cAnchorMediaMd} -ml-2 pl-2`;
     const cAnchorIndentedPl4 = `${cAnchorBase}  ${cAnchorDefault} ${cAnchorMediaMd} -ml-4 pl-4`;
-    const cNavBar = '';
+    const cNavBar = "";
 
     /*-- Reactives (styles) */
     let classesNavBar = $derived(`${cNavBar} ${navBar}`);
@@ -42,24 +44,24 @@
 
         // Obtain Accordian open-close states from local storage
         x = localStorage?.showValidOnly;
-        showValidOnly = x && x.length ? x === 'true' : true;
+        showValidOnly = x && x.length ? x === "true" : true;
         x = localStorage?.optAccCanada;
-        optAccCanada = x ? x === 'true' : accCanada;
+        optAccCanada = x ? x === "true" : accCanada;
         x = localStorage?.optAccUsa;
-        optAccUsa = x ? x === 'true' : accUsa;
+        optAccUsa = x ? x === "true" : accUsa;
         x = localStorage?.optAccMexico;
-        optAccMexico = x ? x === 'true' : accMexico;
+        optAccMexico = x ? x === "true" : accMexico;
         x = localStorage?.optAccGallery;
-        optAccGallery = x ? x === 'true' : accGallery;
+        optAccGallery = x ? x === "true" : accGallery;
     });
 
     $effect(() => {
         // Store Accordian open-close states to local storage
-        localStorage.setItem('showValidOnly', showValidOnly.toString());
-        localStorage.setItem('optAccCanada', optAccCanada.toString());
-        localStorage.setItem('optAccUsa', optAccUsa.toString());
-        localStorage.setItem('optAccMexico', optAccMexico.toString());
-        localStorage.setItem('optAccGallery', optAccGallery.toString());
+        localStorage.setItem("showValidOnly", showValidOnly.toString());
+        localStorage.setItem("optAccCanada", optAccCanada.toString());
+        localStorage.setItem("optAccUsa", optAccUsa.toString());
+        localStorage.setItem("optAccMexico", optAccMexico.toString());
+        localStorage.setItem("optAccGallery", optAccGallery.toString());
     });
     // body > div > div.w-full.h-full.flex.flex-col.overflow-hidden > div > aside > nav > ul > li:nth-child(2) > label > input[type=checkbox]
 
@@ -81,14 +83,24 @@
     <ul>
         <li><a href="/" class={cAnchorIndentedPl2}>Home</a></li>
         {#if $page.data.user}
-            {#if $page.data.user.role === 'ADMIN' || $page.data.user.role === 'ADMIN'}
+            {#if $page.data.user.role === "ADMIN" || $page.data.user.role === "ADMIN"}
                 <li><a href="/admin" class={cAnchorIndentedPl2}>Admin</a></li>
             {/if}
-            <li><a href="/api/checklists" class={cAnchorIndentedPl2}>Checklists</a></li>
-            <li><a href="/api/counties" class={cAnchorIndentedPl2}>Counties</a></li>
+            <li>
+                <a href="/api/checklists" class={cAnchorIndentedPl2}
+                    >Checklists</a
+                >
+            </li>
+            <li>
+                <a href="/api/counties" class={cAnchorIndentedPl2}>Counties</a>
+            </li>
             <!-- <li><a href="/api/countypanes" class={cAnchorIndentedPl2}>County Panes</a></li> -->
             <li><a href="/api/sites" class={cAnchorIndentedPl2}>Sites</a></li>
-            <li><a href="/api/nameaddresses" class={cAnchorIndentedPl2}>Name-Address</a></li>
+            <li>
+                <a href="/api/nameaddresses" class={cAnchorIndentedPl2}
+                    >Name-Address</a
+                >
+            </li>
         {/if}
         <li>
             <Accordion regionControl="pl-0 py-0">
@@ -98,7 +110,11 @@
                             Interactive Region(s)
                             <label for="showValidOnly" class="ml-8 text-sm"
                                 >Non-placeholder only&nbsp;&nbsp;
-                                <input type="checkbox" bind:checked={showValidOnly} use:stopPropagation />
+                                <input
+                                    type="checkbox"
+                                    bind:checked={showValidOnly}
+                                    use:stopPropagation
+                                />
                             </label>
                         </div>
                     </svelte:fragment>
@@ -106,14 +122,18 @@
                         <ul id="ul-interactive">
                             <Accordion>
                                 <AccordionItem bind:open={optAccCanada}>
-                                    <svelte:fragment slot="summary">Canada</svelte:fragment>
+                                    <svelte:fragment slot="summary"
+                                        >Canada</svelte:fragment
+                                    >
                                     <svelte:fragment slot="content">
                                         <ul class="nav-list pl-2">
                                             <li>Alberta - AB</li>
                                             <li>British Columbia - BC</li>
                                             <li>Manitoba - MB</li>
                                             <li>New Brunswick - NB</li>
-                                            <li>Newfoundland and Labrador - NL</li>
+                                            <li>
+                                                Newfoundland and Labrador - NL
+                                            </li>
                                             <li>Nova Scotia - NS</li>
                                             <li>Ontario - ON</li>
                                             <li>Prince Edward Island - PE</li>
@@ -123,9 +143,13 @@
                                     </svelte:fragment>
                                 </AccordionItem>
                                 <AccordionItem bind:open={optAccUsa}>
-                                    <svelte:fragment slot="summary">USA</svelte:fragment>
+                                    <svelte:fragment slot="summary"
+                                        >USA</svelte:fragment
+                                    >
                                     <svelte:fragment slot="content">
-                                        <ul class={`nav-list pl-2 ${showValidOnly ? 'valid-only' : ''}`}>
+                                        <ul
+                                            class={`nav-list pl-2 ${showValidOnly ? "valid-only" : ""}`}
+                                        >
                                             <li>Alabama - AL</li>
                                             <li>Alaska - AK</li>
                                             <li>Arizona - AZ</li>
@@ -143,7 +167,13 @@
                                             <li>Iowa - IA</li>
                                             <li>Kansas - KS</li>
                                             <hr />
-                                            <li><a href="/api/north_america/usa/kentucky" class={cAnchorIndentedPl4}>Kentucky</a></li>
+                                            <li>
+                                                <a
+                                                    href="/api/region/north_america/usa/kentucky"
+                                                    class={cAnchorIndentedPl4}
+                                                    >Kentucky</a
+                                                >
+                                            </li>
                                             <li>Louisiana - LA</li>
                                             <li>Maine - ME</li>
                                             <li>Maryland - MD</li>
@@ -161,7 +191,13 @@
                                             <li>New York - NY</li>
                                             <li>North Carolina - NC</li>
                                             <li>North Dakota - ND</li>
-                                            <li><a href="/api/north_america/usa/ohio" class={cAnchorIndentedPl4}>Ohio</a></li>
+                                            <li>
+                                                <a
+                                                    href="/api/region/north_america/usa/ohio"
+                                                    class={cAnchorIndentedPl4}
+                                                    >Ohio</a
+                                                >
+                                            </li>
                                             <li>Oklahoma - OK</li>
                                             <li>Oregon - OR</li>
                                             <li>Pennsylvania - PA</li>
@@ -172,9 +208,21 @@
                                             <li>Texas - TX</li>
                                             <li>Utah - UT</li>
                                             <li>Vermont - VT</li>
-                                            <li><a href="/api/north_america/usa/virginia" class={cAnchorIndentedPl4}>Virginia</a></li>
+                                            <li>
+                                                <a
+                                                    href="/api/region/north_america/usa/virginia"
+                                                    class={cAnchorIndentedPl4}
+                                                    >Virginia</a
+                                                >
+                                            </li>
                                             <li>Washington - WA</li>
-                                            <li><a href="/api/north_america/usa/west_virginia" class={cAnchorIndentedPl4}>West Virginia</a></li>
+                                            <li>
+                                                <a
+                                                    href="/api/region/north_america/usa/west_virginia"
+                                                    class={cAnchorIndentedPl4}
+                                                    >West Virginia</a
+                                                >
+                                            </li>
                                             <li>Wisconsin - WI</li>
                                             <li>Wyoming - WY</li>
                                             <hr />
@@ -182,7 +230,9 @@
                                             <hr />
                                             <li>American Samoa - AS</li>
                                             <li>Guam - GU</li>
-                                            <li>Northern Mariana Islands - MP</li>
+                                            <li>
+                                                Northern Mariana Islands - MP
+                                            </li>
                                             <li>Puerto Rico - PR</li>
                                             <li>U.S. Virgin Islands - VI</li>
                                             <hr />
@@ -199,41 +249,235 @@
                                     </svelte:fragment>
                                 </AccordionItem>
                                 <AccordionItem bind:open={optAccMexico}>
-                                    <svelte:fragment slot="summary">México</svelte:fragment>
+                                    <svelte:fragment slot="summary"
+                                        >México</svelte:fragment
+                                    >
                                     <svelte:fragment slot="content">
                                         <ul class="nav-list pl-2">
-                                            <li><a href="/api/north_america/mexico/aguascalientes" class={cAnchorIndentedPl4}>Aguascalientes</a></li>
-                                            <li><a href="/api/north_america/mexico/baja_california" class={cAnchorIndentedPl4}>Baja California</a></li>
-                                            <li><a href="/api/north_america/mexico/baja_california_sur" class={cAnchorIndentedPl4}>Baja California Sur</a></li>
-                                            <li><a href="/api/north_america/mexico/campeche" class={cAnchorIndentedPl4}>Campeche</a></li>
-                                            <li><a href="/api/north_america/mexico/chiapas" class={cAnchorIndentedPl4}>Chiapas</a></li>
-                                            <li><a href="/api/north_america/mexico/chihuahua" class={cAnchorIndentedPl4}>Chihuahua</a></li>
-                                            <li><a href="/api/north_america/mexico/ciudad_de_méxico" class={cAnchorIndentedPl4}>Ciudad de México</a></li>
-                                            <li><a href="/api/north_america/mexico/coahuila" class={cAnchorIndentedPl4}>Coahuila</a></li>
-                                            <li><a href="/api/north_america/mexico/colima" class={cAnchorIndentedPl4}>Colima</a></li>
-                                            <li><a href="/api/north_america/mexico/durango" class={cAnchorIndentedPl4}>Durango</a></li>
-                                            <li><a href="/api/north_america/mexico/guanajuato" class={cAnchorIndentedPl4}>Guanajuato</a></li>
-                                            <li><a href="/api/north_america/mexico/guerrero" class={cAnchorIndentedPl4}>Guerrero</a></li>
-                                            <li><a href="/api/north_america/mexico/hidalgo" class={cAnchorIndentedPl4}>Hidalgo</a></li>
-                                            <li><a href="/api/north_america/mexico/jalisco" class={cAnchorIndentedPl4}>Jalisco</a></li>
-                                            <li><a href="/api/north_america/mexico/michoacán" class={cAnchorIndentedPl4}>Michoacán</a></li>
-                                            <li><a href="/api/north_america/mexico/morelos" class={cAnchorIndentedPl4}>Morelos</a></li>
-                                            <li><a href="/api/north_america/mexico/méxico" class={cAnchorIndentedPl4}>México</a></li>
-                                            <li><a href="/api/north_america/mexico/nayarit" class={cAnchorIndentedPl4}>Nayarit</a></li>
-                                            <li><a href="/api/north_america/mexico/nuevo_león" class={cAnchorIndentedPl4}>Nuevo León</a></li>
-                                            <li><a href="/api/north_america/mexico/oaxaca" class={cAnchorIndentedPl4}>Oaxaca</a></li>
-                                            <li><a href="/api/north_america/mexico/puebla" class={cAnchorIndentedPl4}>Puebla</a></li>
-                                            <li><a href="/api/north_america/mexico/querétaro" class={cAnchorIndentedPl4}>Querétaro</a></li>
-                                            <li><a href="/api/north_america/mexico/quintana_roo" class={cAnchorIndentedPl4}>Quintana Roo</a></li>
-                                            <li><a href="/api/north_america/mexico/san_luis_potosí" class={cAnchorIndentedPl4}>San Luis Potosí</a></li>
-                                            <li><a href="/api/north_america/mexico/sinaloa" class={cAnchorIndentedPl4}>Sinaloa</a></li>
-                                            <li><a href="/api/north_america/mexico/sonora" class={cAnchorIndentedPl4}>Sonora</a></li>
-                                            <li><a href="/api/north_america/mexico/tabasco" class={cAnchorIndentedPl4}>Tabasco</a></li>
-                                            <li><a href="/api/north_america/mexico/tamaulipas" class={cAnchorIndentedPl4}>Tamaulipas</a></li>
-                                            <li><a href="/api/north_america/mexico/tlaxcala" class={cAnchorIndentedPl4}>Tlaxcala</a></li>
-                                            <li><a href="/api/north_america/mexico/veracruz" class={cAnchorIndentedPl4}>Veracruz</a></li>
-                                            <li><a href="/api/north_america/mexico/yacatán" class={cAnchorIndentedPl4}>Yacatán</a></li>
-                                            <li><a href="/api/north_america/mexico/zacatecas" class={cAnchorIndentedPl4}>Zacatecas</a></li>
+                                            <li>
+                                                <a
+                                                    href="/api/region/north_america/mexico/aguascalientes"
+                                                    class={cAnchorIndentedPl4}
+                                                    >Aguascalientes</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="/api/region/north_america/mexico/baja_california"
+                                                    class={cAnchorIndentedPl4}
+                                                    >Baja California</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="/api/region/north_america/mexico/baja_california_sur"
+                                                    class={cAnchorIndentedPl4}
+                                                    >Baja California Sur</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="/api/region/north_america/mexico/campeche"
+                                                    class={cAnchorIndentedPl4}
+                                                    >Campeche</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="/api/region/north_america/mexico/chiapas"
+                                                    class={cAnchorIndentedPl4}
+                                                    >Chiapas</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="/api/region/north_america/mexico/chihuahua"
+                                                    class={cAnchorIndentedPl4}
+                                                    >Chihuahua</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="/api/region/north_america/mexico/ciudad_de_méxico"
+                                                    class={cAnchorIndentedPl4}
+                                                    >Ciudad de México</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="/api/region/north_america/mexico/coahuila"
+                                                    class={cAnchorIndentedPl4}
+                                                    >Coahuila</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="/api/region/north_america/mexico/colima"
+                                                    class={cAnchorIndentedPl4}
+                                                    >Colima</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="/api/region/north_america/mexico/durango"
+                                                    class={cAnchorIndentedPl4}
+                                                    >Durango</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="/api/region/north_america/mexico/guanajuato"
+                                                    class={cAnchorIndentedPl4}
+                                                    >Guanajuato</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="/api/region/north_america/mexico/guerrero"
+                                                    class={cAnchorIndentedPl4}
+                                                    >Guerrero</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="/api/region/north_america/mexico/hidalgo"
+                                                    class={cAnchorIndentedPl4}
+                                                    >Hidalgo</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="/api/region/north_america/mexico/jalisco"
+                                                    class={cAnchorIndentedPl4}
+                                                    >Jalisco</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="/api/region/north_america/mexico/michoacán"
+                                                    class={cAnchorIndentedPl4}
+                                                    >Michoacán</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="/api/region/north_america/mexico/morelos"
+                                                    class={cAnchorIndentedPl4}
+                                                    >Morelos</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="/api/region/north_america/mexico/méxico"
+                                                    class={cAnchorIndentedPl4}
+                                                    >México</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="/api/region/north_america/mexico/nayarit"
+                                                    class={cAnchorIndentedPl4}
+                                                    >Nayarit</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="/api/region/north_america/mexico/nuevo_león"
+                                                    class={cAnchorIndentedPl4}
+                                                    >Nuevo León</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="/api/region/north_america/mexico/oaxaca"
+                                                    class={cAnchorIndentedPl4}
+                                                    >Oaxaca</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="/api/region/north_america/mexico/puebla"
+                                                    class={cAnchorIndentedPl4}
+                                                    >Puebla</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="/api/region/north_america/mexico/querétaro"
+                                                    class={cAnchorIndentedPl4}
+                                                    >Querétaro</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="/api/region/north_america/mexico/quintana_roo"
+                                                    class={cAnchorIndentedPl4}
+                                                    >Quintana Roo</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="/api/region/north_america/mexico/san_luis_potosí"
+                                                    class={cAnchorIndentedPl4}
+                                                    >San Luis Potosí</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="/api/region/north_america/mexico/sinaloa"
+                                                    class={cAnchorIndentedPl4}
+                                                    >Sinaloa</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="/api/region/north_america/mexico/sonora"
+                                                    class={cAnchorIndentedPl4}
+                                                    >Sonora</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="/api/region/north_america/mexico/tabasco"
+                                                    class={cAnchorIndentedPl4}
+                                                    >Tabasco</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="/api/region/north_america/mexico/tamaulipas"
+                                                    class={cAnchorIndentedPl4}
+                                                    >Tamaulipas</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="/api/region/north_america/mexico/tlaxcala"
+                                                    class={cAnchorIndentedPl4}
+                                                    >Tlaxcala</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="/api/region/north_america/mexico/veracruz"
+                                                    class={cAnchorIndentedPl4}
+                                                    >Veracruz</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="/api/region/north_america/mexico/yacatán"
+                                                    class={cAnchorIndentedPl4}
+                                                    >Yacatán</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a
+                                                    href="/api/region/north_america/mexico/zacatecas"
+                                                    class={cAnchorIndentedPl4}
+                                                    >Zacatecas</a
+                                                >
+                                            </li>
                                         </ul>
                                     </svelte:fragment>
                                 </AccordionItem>
@@ -243,7 +487,11 @@
                 </AccordionItem>
             </Accordion>
         </li>
-        <li><a href="/api/taxonomy" class={cAnchorIndentedPl2}>Butterflies of North America</a></li>
+        <li>
+            <a href="/api/taxonomy" class={cAnchorIndentedPl2}
+                >Butterflies of North America</a
+            >
+        </li>
         <li>
             <Accordion regionControl="pl-0 py-0">
                 <AccordionItem bind:open={optAccGallery}>
@@ -252,18 +500,37 @@
                     </svelte:fragment>
                     <svelte:fragment slot="content">
                         <ul class="nav-list pl-2">
-                            <li><a href="/api/gallery/butterflies" class={cAnchorIndentedPl4}>Butterflies</a></li>
-                            <li><a href="/api/gallery/moths" class={cAnchorIndentedPl4}>Moths</a></li>
-                            <li><a href="/api/gallery/other" class={cAnchorIndentedPl4}>Other</a></li>
+                            <li>
+                                <a
+                                    href="/api/gallery/butterflies"
+                                    class={cAnchorIndentedPl4}>Butterflies</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="/api/gallery/moths"
+                                    class={cAnchorIndentedPl4}>Moths</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="/api/gallery/other"
+                                    class={cAnchorIndentedPl4}>Other</a
+                                >
+                            </li>
                             {#if $page.data.user}
-                                <li><a href="/api/gallery/user" class={cAnchorIndentedPl4}>User</a></li>
+                                <li>
+                                    <a
+                                        href="/api/gallery/user"
+                                        class={cAnchorIndentedPl4}>User</a
+                                    >
+                                </li>
                             {/if}
                         </ul>
                     </svelte:fragment>
                 </AccordionItem>
             </Accordion>
         </li>
-        <li><a href="/api/newlayout" class={cAnchorIndentedPl2}>New Layout Tests</a></li>
     </ul>
 </nav>
 

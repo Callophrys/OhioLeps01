@@ -2,6 +2,7 @@ import { error } from "@sveltejs/kit";
 import { toProperNoun } from "$lib/utils";
 
 export async function load({ params, fetch }: { params: any; fetch: any }) {
+  console.log("Region Viewer", params);
   const { continentName, countryName, stateName } = params;
 
   if (!/^[a-zA-Z0-9_-]+$/.test(continentName))
@@ -11,7 +12,7 @@ export async function load({ params, fetch }: { params: any; fetch: any }) {
   if (!/^[a-zA-Z0-9_-]+$/.test(stateName)) throw error(400, "Invalid SVG path");
 
   const response = await fetch(
-    `/svg/${continentName}/${countryName}/${stateName}.svg`,
+    `/svg/region/${continentName}/${countryName}/${stateName}.svg`,
   );
   if (!response.ok) {
     throw error(404, "SVG not found");

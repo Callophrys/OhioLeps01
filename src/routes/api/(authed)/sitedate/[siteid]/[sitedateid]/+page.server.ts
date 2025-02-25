@@ -11,6 +11,7 @@ import type { Weather } from "@prisma/client";
 import { getSites } from "$lib/database/sites.js";
 import {
   getSiteDate,
+  getSiteDates,
   getSiteDateSiteDates,
   addSiteDate,
   updateSiteDate,
@@ -21,11 +22,29 @@ import {
   sdoLoad,
   siteDateObservationActions,
 } from "$lib/server/siteDataObservations";
+import { redirect } from '@sveltejs/kit';
 
 export async function load({ params }: { params: any }) {
-  // console.log('sitedates - params', params);
+  console.log('sitedates - params', params);
+  let siteId = Number(params.siteid);
+
+  if (params.sitedateid === "nil") {
+
+    const sds = await getSiteDates(siteId);
+    console.log("sds", sds);
+    if (sds.length > 0) {
+      const searchParams = new URLSearchParams({
+        'siteid': String(params.siteid),
+        'sitedateid': String(sds[0].id)
+      });
+
+      throw redirect(302, `?${searchParams.toString()}`);
+    }
+    // TODO: handle else - e.g. when no site dates exist
+  }
 
   let siteDateId = Number(params.sitedateid);
+
   const [siteDate, sites, siteDates, siteDateObservations, checklistsAll] =
     await Promise.all([
       getSiteDate(siteDateId),
@@ -34,7 +53,6 @@ export async function load({ params }: { params: any }) {
       getSiteDateObservationsBySiteDate(siteDateId),
       getChecklists(),
     ]);
-  let siteId = Number(siteDate?.siteId);
 
   // console.log('sites', sites);
   // console.log('siteDate', siteDate);

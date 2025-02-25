@@ -252,7 +252,7 @@
                                 // the SiteDatePicker to update itself.  Hmmm.
                                 //currentSiteDateId = siteDateId;
                                 //NOTE: verified that invalidateAll assure that browsed for data renders after update
-                                goto("/api/sitedates/" + siteDateId, {
+                                goto("/api/sitedate/" + siteDateId, {
                                     invalidateAll: true,
                                 });
                             }
