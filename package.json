@@ -8,6 +8,8 @@
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "ll": "eslint .",
+    "ll:fix": "eslint . --fix",
     "lint": "prettier --check --ignore-path .prettierignore . && eslint .",
     "lint:fix": "prettier --check --ignore-path .prettierignore . && eslint . --fix",
     "format": "prettier --check --ignore-path .prettierignore .",
@@ -53,6 +55,5 @@
   },
   "prisma": {
     "seed": "tsx ./prisma/seed.ts"
-  },
-  "packageManager": "pnpm@9.15.0+sha512.76e2379760a4328ec4415815bcd6628dee727af3779aaa4c914e3944156c4299921a89f976381ee107d41f12cfa4b66681ca9c718f0668fa0831ed4c6d8ba56c"
+  }
 }

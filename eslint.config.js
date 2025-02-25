@@ -1,7 +1,7 @@
 import svelte from "eslint-plugin-svelte";
 import ts from "@typescript-eslint/eslint-plugin";
 import tsParser from "@typescript-eslint/parser";
-// import prettier from "eslint-config-prettier";
+import prettier from "eslint-config-prettier";
 
 export default [
   // Svelte rules
@@ -45,7 +45,8 @@ export default [
 
   // Prettier integration
   {
-    extends: ["prettier"], // ✅ Correct way to extend Prettier config
+    files: ["**/*.{js,ts,svelte,json}"],
+    plugins: { prettier },
     rules: {
       "prettier/prettier": [
         "error",
@@ -65,7 +66,6 @@ export default [
   // Ignore unnecessary files
   {
     ignores: [
-      "!.env.example",
       "**/*.min.css",
       "**/*.min.js",
       "*.config.cjs",
