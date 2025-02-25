@@ -18,10 +18,8 @@ import {
 import { getSiteDateObservationsBySiteDate } from "$lib/database/sitedateobservations.js";
 import { getChecklists } from "$lib/database/checklists.js";
 
-export async function load({ params }: { params: any }) {
-  // console.log('sitedates - params', params);
+export async function siteDateLoad(siteDateId: number) {
 
-  let siteDateId = Number(params.sitedateid);
   const [siteDate, sites, siteDates, siteDateObservations, checklistsAll] =
     await Promise.all([
       getSiteDate(siteDateId),
@@ -31,34 +29,31 @@ export async function load({ params }: { params: any }) {
       getChecklists(),
     ]);
 
-  // console.log('sites', sites);
-  // console.log('siteDate', siteDate);
+  const jsonSiteDate = JSON.stringify(siteDate);
+  const jsonSiteDateResult: SiteDateYearSdo = JSON.parse(jsonSiteDate);
 
-  const jsonD = JSON.stringify(siteDate);
-  const jsonResultD: SiteDateYearSdo = JSON.parse(jsonD);
+  const jsonSites = JSON.stringify(sites);
+  const jsonSitesResult: SiteCounty[] = JSON.parse(jsonSites);
 
-  const jsonS = JSON.stringify(sites);
-  const jsonResultS: SiteCounty[] = JSON.parse(jsonS);
+  const jsonSiteDates = JSON.stringify(siteDates);
+  const jsonSiteDatesResult: SiteDateYearSiteDates[] = JSON.parse(jsonSiteDates);
 
-  const jsonYW = JSON.stringify(siteDates);
-  const jsonResultYW: SiteDateYearSiteDates[] = JSON.parse(jsonYW);
+  const jsonSdos = JSON.stringify(siteDateObservations);
+  const jsonSdosResult: SiteDateObservationChecklist[] = JSON.parse(jsonSdos);
 
-  const jsonO = JSON.stringify(siteDateObservations);
-  const jsonResultO: SiteDateObservationChecklist[] = JSON.parse(jsonO);
-
-  const jsonA = JSON.stringify(checklistsAll);
-  const jsonResultA: SiteDateObservationChecklist[] = JSON.parse(jsonA);
+  const jsonChecklistsAll = JSON.stringify(checklistsAll);
+  const jsonChecklistsAllResult: SiteDateObservationChecklist[] = JSON.parse(jsonChecklistsAll);
 
   return {
-    siteDate: jsonResultD,
-    sites: jsonResultS,
-    siteDates: jsonResultYW,
-    siteDateObservations: jsonResultO,
-    checklistsAll: jsonResultA,
+    siteDate: jsonSiteDateResult,
+    sites: jsonSitesResult,
+    siteDates: jsonSiteDatesResult,
+    siteDateObservations: jsonSdosResult,
+    checklistsAll: jsonChecklistsAllResult,
   };
 }
 
-export const actions: Actions = {
+export const siteDateActions: Actions = {
   createSiteDate: async ({ request, locals }) => {
     if (
       locals.user.role !== ROLE.SUPER &&

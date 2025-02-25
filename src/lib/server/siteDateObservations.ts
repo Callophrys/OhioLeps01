@@ -28,29 +28,25 @@ import type { SiteDateObservation } from "@prisma/client";
 export async function sdoLoad(siteId: number, siteDateId: number) {
   // console.log('.....', params);
 
-  // need 3 lists of checklists
-  // 1. all seen by this current siteDateObs
-  // 2. all seen by the site of this siteDateObs
-  // 3. all possible
-
-  // Get current siteDateObs, list of sites, and list of siteDates
-  const [sites, siteDates] = await Promise.all([
-    getSites(null),
-    getSiteDates(siteId),
-  ]);
-
-  const jsonS = JSON.stringify(sites);
-  const jsonResultS: SiteCounty[] = JSON.parse(jsonS);
-
-  const jsonD = JSON.stringify(siteDates);
-  const jsonResultD: SiteDateYear[] = JSON.parse(jsonD);
-
-  const [siteDateObservations, checklistsForSite, checklistsAll] =
+  const [sites, siteDates, siteDateObservations, checklistsForSite, checklistsAll] =
     await Promise.all([
+      getSites(null),
+      getSiteDates(siteId),
       getSiteDateObservationsBySiteDate(siteDateId),
       getChecklistsBySiteId(siteId),
       getChecklists(),
     ]);
+
+  const jsonSites = JSON.stringify(sites);
+  const jsonSitesResult: SiteCounty[] = JSON.parse(jsonSites);
+
+  const jsonD = JSON.stringify(siteDates);
+  const jsonResultD: SiteDateYear[] = JSON.parse(jsonD);
+
+  // need 3 lists of checklists
+  // 1. all seen by this current siteDateObs
+  // 2. all seen by the site of this siteDateObs
+  // 3. all possible
 
   // 1. SiteDateObservations by current siteDate - this gets all checklist species for this siteDate
   const jsonC = JSON.stringify(siteDateObservations);
@@ -64,11 +60,8 @@ export async function sdoLoad(siteId: number, siteDateId: number) {
   const jsonA = JSON.stringify(checklistsAll);
   const jsonResultA: SiteDateObservationChecklist[] = JSON.parse(jsonA);
 
-  // console.log('sdo > ', siteDateObservation);
-  // console.log('sdoS > ', siteDateObservations);
-
   return {
-    sites: jsonResultS,
+    sites: jsonSitesResult,
     siteDates: jsonResultD,
     checklistsSiteDateObs: jsonResultC,
     checklistsSite: jsonResultT,

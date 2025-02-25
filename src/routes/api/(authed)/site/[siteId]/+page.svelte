@@ -317,7 +317,8 @@
     let currentSiteDateId: number = $state(
         data.site.siteDates.length ? data.site.siteDates[0].id : -1,
     );
-    // $inspect(currentCountyId, currentSiteId, currentSiteDateId);
+    console.log("xxx", data.site.siteDates);
+    $inspect(currentCountyId, currentSiteId, currentSiteDateId);
 
     let currentSite: SiteCountyState | undefined = $derived(
         data.sites.find((x) => x.id === currentSiteId),

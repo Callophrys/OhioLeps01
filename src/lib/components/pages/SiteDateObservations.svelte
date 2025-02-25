@@ -44,12 +44,6 @@
   });
 
   /*-- Context */
-  setContext("sites", data.sites);
-  setContext("siteDates", data.siteDates);
-  setContext("checklistsSiteDateObs", data.checklistsSiteDateObs);
-  setContext("checklistsSite", data.checklistsSite);
-  setContext("checklistsAll", data.checklistsAll);
-
   /*-- -- Styling -- */
   /*-- Properties (styles) */
   /*-- Constants (styles) */
@@ -500,7 +494,15 @@
   >
     <div class="flex flex-row">
       <!-- TODO: Change these to next and prev site date records -->
-      <!-- <GoBack bind:targetId={data.siteDateObservation.siteDate.id} targetIdSecondary={null} targetType={GOTYPE.SITEDATES} controlBody="scale-90" buttonCenter="" scriptCenter="" labelledby="" /> -->
+      <GoBack
+        bind:targetId={siteId}
+        targetIdSecondary={null}
+        targetType={GOTYPE.SITES}
+        controlBody="scale-90"
+        buttonCenter=""
+        scriptCenter=""
+        labelledby=""
+      />
       <!--
                 <GoNext targetId={nextSiteDateObservation.siteDateId} targetIdSecondary={data.siteDateObservation.siteId} targetType={GOTYPE.SITEDATEOBSERVATIONS} targetIdSecondary={data.siteDate.siteId} controlBody="scale-90" controlDisabled={firstSdoId < 0} />
                 -->

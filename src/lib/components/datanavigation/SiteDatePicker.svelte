@@ -214,7 +214,7 @@
   };
 
   const handleClickWeek = (event: Event) => {
-    console.log(typeof currentSiteDateId, currentSiteDateId);
+    console.log("handleClickWeek", typeof currentSiteDateId, currentSiteDateId);
     event.preventDefault();
     if (popupWeeksOpenCount > 1 && trackedWeeks) {
       // reset to zero and close dropdown in case of clicking on same
@@ -275,12 +275,12 @@
 
   async function fetchData(siteId: number) {
     if (isNaN(siteId)) {
-      console.log("siteId in SiteDatePicker is NaN");
+      console.warn("siteId in SiteDatePicker is NaN");
       return;
     }
 
-    // console.log('siteId in SiteDatePicker is ', siteId);
-    let sdpath = `/api/sitedates/c/${siteId}`;
+    //console.log("siteId in SiteDatePicker is ", siteId);
+    let sdpath = `/api/sitedate/c/${siteId}`;
     isDisabled = true;
     recordYear = "...";
     recordWeek = "...";
@@ -290,6 +290,7 @@
       const data = await response.json();
 
       siteDates = data.siteDates;
+      //console.log("SiteDatePicker inner data:", data);
       if (siteDates && siteDates.length > 0) {
         trackedWeeks.length = 0;
         trackedWeeks.push(
@@ -328,9 +329,9 @@
     fetchData(currentSiteId);
   });
 
-  $effect(() => {
-    console.log("Effected: ", currentSiteDateId);
-  });
+  // $effect(() => {
+  //   console.log("Effected: ", currentSiteDateId);
+  // });
 </script>
 
 <!--

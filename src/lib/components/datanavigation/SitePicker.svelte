@@ -107,18 +107,9 @@
   /*-- Handlers */
   function handleSelect() {
     if (filteredSitesIndex > -1) {
-      currentCountyId = filteredSites[filteredSitesIndex].countyId;
-      currentSiteId = filteredSites[filteredSitesIndex].id;
-      let sd = siteDates.find((x) => x.siteId === currentSiteId);
-      if (sd) currentSiteDateId = sd.id;
-      let target = location.tolower().includes("api/site/")
-        ? "site"
-        : "sitedate";
-      let targetUrl =
-        currentSiteDateId == -1
-          ? `/api/${target}/${currentSiteId}`
-          : `/api/${target}/${currentSiteId}/${currentSiteDateId}`;
-      goto(targetUrl);
+      let index = filteredSitesIndex;
+      updateCurrentIds(index);
+      pickerGoto();
     }
   }
 
@@ -126,11 +117,8 @@
   function handlePrev() {
     if (filteredSitesIndex > 0) {
       let index = filteredSitesIndex - 1;
-      currentCountyId = filteredSites[index].countyId;
-      currentSiteId = filteredSites[index].id;
-      let sd = siteDates.find((x) => x.siteId === currentSiteId);
-      if (sd) currentSiteDateId = sd.id;
-      goto("/api/site/" + currentSiteId);
+      updateCurrentIds(index);
+      pickerGoto();
     }
   }
 
@@ -138,15 +126,30 @@
   function handleNext() {
     if (filteredSitesIndex < filteredSites.length - 1) {
       let index = filteredSitesIndex + 1;
-      currentCountyId = filteredSites[index].countyId;
-      currentSiteId = filteredSites[index].id;
-      let sd = siteDates.find((x) => x.siteId === currentSiteId);
-      if (sd) currentSiteDateId = sd.id;
-      goto("/api/site/" + currentSiteId);
+      updateCurrentIds(index);
+      pickerGoto();
     }
   }
 
   /*-- Methods */
+  function updateCurrentIds(index: number) {
+    currentCountyId = filteredSites[index].countyId;
+    currentSiteId = filteredSites[index].id;
+    let sd = siteDates.find((x) => x.siteId === currentSiteId);
+    if (sd) currentSiteDateId = sd.id;
+  }
+
+  function pickerGoto() {
+    if (location.toString().toLowerCase().includes("api/site/")) {
+      goto(`/api/site/${currentSiteId}`);
+    } else {
+      let targetUrl =
+        currentSiteDateId === -1
+          ? `/api/sitedate/${currentSiteId}`
+          : `/api/sitedate/${currentSiteId}/${currentSiteDateId}`;
+      goto(targetUrl);
+    }
+  }
 
   /*-- Reactives (functional) */
   let filteredSites = $derived(
