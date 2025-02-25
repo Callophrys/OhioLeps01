@@ -25,8 +25,7 @@
     isRecent,
     decodeWeather,
   } from "$lib/utils";
-  import { setContext } from "svelte";
-  import { getContext } from "svelte";
+  import { setContext, getContext } from "svelte";
 
   let {
     data,
@@ -368,6 +367,20 @@
   // $inspect(currentSiteDateId);
 
   // console.log(data.siteDate);
+  //
+
+  function setAccordionItemAll(open: boolean) {
+    optAccA = open;
+    optAccB = open;
+    optAccC = open;
+    optAccD = open;
+    optAccE = open;
+    optAccF = open;
+    optAccG = open;
+    optAccH = open;
+    optAccI = open;
+    optAccJ = open;
+  }
 </script>
 
 {#snippet clHead()}
@@ -418,8 +431,44 @@
 {/snippet}
 {#snippet clBody()}
   <div class="flex flex-row justify-between">
-    <div class="text-nowrap">
-      Recorder: {data.siteDate.recorder}
+    <div class="flex mb-2">
+      <button
+        class="w-full px-1 cursor-pointer hover:animate-pulse"
+        onclick={() => setAccordionItemAll(false)}
+        aria-labelledby=" "
+        type="button"
+        title="Collapse all"
+      >
+        <div
+          class="fill-current w-3 transition-tranform duration-[200mx] rotate-90"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <path
+              d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
+            ></path>
+          </svg>
+        </div>
+      </button>
+      <button
+        class="bg-slate-200-800 text-white px-1 py-1 rounded cursor-pointer hover:animate-pulse"
+        onclick={() => setAccordionItemAll(true)}
+        aria-labelledby=" "
+        type="button"
+        title="Expand all"
+      >
+        <div
+          class="fill-current w-3 transition-tranform duration-[200mx] -rotate-90"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <path
+              d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
+            ></path>
+          </svg>
+        </div>
+      </button>
+      <div class="ml-4 text-nowrap">
+        Recorder: {data.siteDate.recorder}
+      </div>
     </div>
     <div class="text-nowrap text-right pr-3">
       Record Date: {recordDate}
