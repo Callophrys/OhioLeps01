@@ -738,15 +738,8 @@
     </Accordion>
 {/snippet}
 
-{#snippet clTail()}{/snippet}
-
 {#snippet leftPane()}
-    <Container
-        head={clHead}
-        body={clBody}
-        tail={clTail}
-        outerBodyClasses="px-0"
-    />
+    <Container head={clHead} body={clBody} outerBodyClasses="px-0" />
 {/snippet}
 
 {#snippet centerPane()}

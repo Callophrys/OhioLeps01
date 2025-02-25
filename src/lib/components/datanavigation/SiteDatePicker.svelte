@@ -1,10 +1,14 @@
 <script lang="ts">
     /*-- Imports */
-    import type { CssClasses, PopupSettings } from '@skeletonlabs/skeleton';
-    import type { DateTracking, SiteDateYear, SiteDateYearSiteDates } from '$lib/types.js';
-    import { goto } from '$app/navigation';
-    import { ListBox, ListBoxItem, popup } from '@skeletonlabs/skeleton';
-    import { compareYearWeek, formatDate, weekOfYearSince } from '$lib/utils';
+    import type { CssClasses, PopupSettings } from "@skeletonlabs/skeleton";
+    import type {
+        DateTracking,
+        SiteDateYear,
+        SiteDateYearSiteDates,
+    } from "$lib/types.js";
+    import { goto } from "$app/navigation";
+    import { ListBox, ListBoxItem, popup } from "@skeletonlabs/skeleton";
+    import { compareYearWeek, formatDate, weekOfYearSince } from "$lib/utils";
 
     /*-- -- Data -- */
     /*-- Exports */
@@ -19,19 +23,19 @@
         dropdownPointers = $bindable(true),
         dropdownShowDate = $bindable(false),
 
-        controlOuter = '',
-        controlBody = '',
-        buttonLeft = '',
-        buttonYear = '',
-        buttonWeek = '',
-        buttonRight = '',
-        prefixYear = '',
-        prefixWeek = '',
-        suffixYear = dropdownPointers ? "before:content-['↓']" : '',
-        suffixWeek = dropdownPointers ? "before:content-['↓']" : '',
-        popupInner = '',
-        popupStyles = '',
-        labelledby = 'Select site-date',
+        controlOuter = "",
+        controlBody = "",
+        buttonLeft = "",
+        buttonYear = "",
+        buttonWeek = "",
+        buttonRight = "",
+        prefixYear = "",
+        prefixWeek = "",
+        suffixYear = dropdownPointers ? "before:content-['↓']" : "",
+        suffixWeek = dropdownPointers ? "before:content-['↓']" : "",
+        popupInner = "",
+        popupStyles = "",
+        labelledby = "Select site-date",
     }: {
         currentSiteId: number;
         currentSiteDateId: number;
@@ -58,8 +62,20 @@
         labelledby: string;
     } = $props();
 
-    buttonYear = dropdownPointers ? (prefixYear ? 'w-28' : 'w-20') : prefixYear ? 'w-24' : 'w-16';
-    buttonWeek = dropdownPointers ? (prefixYear ? 'w-28' : 'w-20') : prefixYear ? 'w-24' : 'w-16';
+    buttonYear = dropdownPointers
+        ? prefixYear
+            ? "w-28"
+            : "w-20"
+        : prefixYear
+          ? "w-24"
+          : "w-16";
+    buttonWeek = dropdownPointers
+        ? prefixYear
+            ? "w-28"
+            : "w-20"
+        : prefixYear
+          ? "w-24"
+          : "w-16";
 
     //console.log('SiteDatePicker:currentSiteId', currentSiteId, 'currentSiteDateId', currentSiteDateId);
 
@@ -83,22 +99,24 @@
     /** Provide the ARIA labelledby value.  Default: "Select site-date" */
 
     /*-- Constants (styles) */
-    const cControlOuter = 'block lg:flex lg:flex-row gap-0 md:gap-1 lg:gap-2';
-    const cControlBody = 'btn-group variant-soft my-auto';
-    const cButtonLeft = '';
-    const cButtonYear = '';
-    const cButtonWeek = '';
-    const cButtonRight = '';
-    const cPrefixYear = '';
-    const cPrefixWeek = '';
-    const cSuffixYear = '';
-    const cSuffixWeek = '';
-    const cPopupInner = 'card w-48 shadow-xl py-2 overflow-y-auto';
-    const cPopupStyles = 'max-height: calc(100vh - 272px);';
+    const cControlOuter = "block lg:flex lg:flex-row gap-0 md:gap-1 lg:gap-2";
+    const cControlBody = "btn-group variant-soft my-auto";
+    const cButtonLeft = "";
+    const cButtonYear = "";
+    const cButtonWeek = "";
+    const cButtonRight = "";
+    const cPrefixYear = "";
+    const cPrefixWeek = "";
+    const cSuffixYear = "";
+    const cSuffixWeek = "";
+    const cPopupInner = "card w-48 shadow-xl py-2 overflow-y-auto";
+    const cPopupStyles = "max-height: calc(100vh - 272px);";
 
     /*-- Reactives (styles) */
     // (Post-SV4) Does not support native class atribute anymore, TODO: see about restoring this in SV5
-    let classesControlOuter = $derived.by(() => `${cControlOuter} ${controlOuter}`); // ${this.className ?? ''}`);
+    let classesControlOuter = $derived.by(
+        () => `${cControlOuter} ${controlOuter}`,
+    ); // ${this.className ?? ''}`);
     let classesControlBody = $derived(`${cControlBody} ${controlBody}`); // ${this.className ?? ''}`);
     let classesButtonLeft = $derived(`${cButtonLeft} ${buttonLeft}`); // ${this.className ?? ''}`);
     let classesButtonYear = $derived(`${cButtonYear} ${buttonYear}`); // ${this.className ?? ''}`);
@@ -121,19 +139,19 @@
 
     /*-- Constants (functional) */
     const popupSiteDateYears: PopupSettings = {
-        event: 'focus-click',
-        target: 'popupComboSiteDateYears',
-        placement: 'bottom',
-        closeQuery: '.listbox-item',
+        event: "focus-click",
+        target: "popupComboSiteDateYears",
+        placement: "bottom",
+        closeQuery: ".listbox-item",
     };
 
     let popupWeeksOpenCount: number = 0;
 
     const popupSiteDateWeeks: PopupSettings = {
-        event: 'focus-click',
-        target: 'popupComboSiteDateWeeks',
-        placement: 'bottom',
-        closeQuery: '.listbox-item',
+        event: "focus-click",
+        target: "popupComboSiteDateWeeks",
+        placement: "bottom",
+        closeQuery: ".listbox-item",
         state: (e: Record<string, boolean>) => {
             popupWeeksOpenCount = e.state ? 1 : 0;
         },
@@ -147,31 +165,37 @@
         siteDates
             .filter((x: SiteDateYear) => x.year.toString() === recordYear)
             .map<SdoWeek>((y: SiteDateYear) => ({
-                fDate: y.recordDate ? formatDate(new Date(y.recordDate).toISOString()) : '',
+                fDate: y.recordDate
+                    ? formatDate(new Date(y.recordDate).toISOString())
+                    : "",
                 siteDateId: y.id,
                 week: y.week,
-            }))
+            })),
     );
 
     const trackedWeeks: DateTracking[] = [];
     // $inspect(trackedWeeks);
 
     /*-- Variables and objects */
-    let recordYear: string = $state('');
-    let recordWeek: string = $state('');
+    let recordYear: string = $state("");
+    let recordWeek: string = $state("");
 
     /*-- Run first stuff */
     /*-- onMount, beforeUpdate, afterUpdate */
     let isSdo = false;
     $effect(() => {
-        isSdo = document.location.pathname.toLowerCase().includes('sitedateobservations');
+        isSdo = document.location.pathname
+            .toLowerCase()
+            .includes("sitedateobservations");
     });
 
     /*-- Handlers */
     const handleSelectYear = (event: Event & { currentTarget: any }) => {
         let targetYear = event.currentTarget.value;
-        let idx = trackedWeeks.findIndex((x) => (x.year ?? -1).toString() === targetYear);
-        console.log('yearDates', yearDates.slice(0, 2));
+        let idx = trackedWeeks.findIndex(
+            (x) => (x.year ?? -1).toString() === targetYear,
+        );
+        console.log("yearDates", yearDates.slice(0, 2));
 
         if (idx > -1) {
             event.preventDefault();
@@ -180,7 +204,9 @@
     };
 
     const handleSelectWeek = (event: Event & { currentTarget: any }) => {
-        let idx = trackedWeeks.findIndex((x) => x.siteDateId === parseInt(event.currentTarget.value));
+        let idx = trackedWeeks.findIndex(
+            (x) => x.siteDateId === parseInt(event.currentTarget.value),
+        );
         if (idx > -1) {
             event.preventDefault();
             updatePerHandler(idx);
@@ -194,11 +220,13 @@
             // reset to zero and close dropdown in case of clicking on same
             popupWeeksOpenCount = 0;
             cmbWeeks.inert = true;
-            cmbWeeks.style.opacity = '0';
+            cmbWeeks.style.opacity = "0";
             if (isSdo) {
-                goto(`/api/sitedateobservations/${currentSiteDateId}/${currentSiteId}`);
+                goto(
+                    `/api/sitedateobservations/${currentSiteDateId}/${currentSiteId}`,
+                );
             } else {
-                goto(`/api/sitedates/${currentSiteDateId}`);
+                goto(`/api/sitedates/${currentSiteId}/${currentSiteDateId}`);
             }
             return true;
         }
@@ -207,7 +235,9 @@
     };
 
     const handleClickPrior = (event: Event) => {
-        let idx = trackedWeeks.findIndex((x) => x.siteDateId === currentSiteDateId);
+        let idx = trackedWeeks.findIndex(
+            (x) => x.siteDateId === currentSiteDateId,
+        );
         if (idx > 0) {
             event.preventDefault();
             updatePerHandler(idx - 1);
@@ -215,7 +245,9 @@
     };
 
     const handleClickNext = (event: Event) => {
-        let idx = trackedWeeks.findIndex((x) => x.siteDateId === currentSiteDateId);
+        let idx = trackedWeeks.findIndex(
+            (x) => x.siteDateId === currentSiteDateId,
+        );
         if (idx < trackedWeeks.length - 1) {
             event.preventDefault();
             updatePerHandler(idx + 1);
@@ -223,21 +255,27 @@
     };
 
     function updatePerHandler(idx: number) {
-        console.log('updatePerHandler.idx:', idx);
+        console.log("updatePerHandler.idx:", idx);
         const tw = trackedWeeks[idx];
         recordYear = (tw.year ?? -1).toString();
         recordWeek = (tw.week ?? -1).toString();
         currentSiteDateId = tw.siteDateId ?? -1;
         if (isSdo) {
-            goto(`/api/sitedateobservations/${currentSiteDateId}/${currentSiteId}`);
+            goto(
+                `/api/sitedateobservations/${currentSiteDateId}/${currentSiteId}`,
+            );
         } else {
-            goto(`/api/sitedates/${tw.siteDateId}`);
+            goto(`/api/sitedates/${currentSiteId}/${tw.siteDateId}`);
         }
     }
 
     /*-- Methods */
     /*-- Reactives (functional) */
-    let trackedWeekIndex = $derived(trackedWeeks.findIndex((x: DateTracking) => x.siteDateId === currentSiteDateId));
+    let trackedWeekIndex = $derived(
+        trackedWeeks.findIndex(
+            (x: DateTracking) => x.siteDateId === currentSiteDateId,
+        ),
+    );
     let nextDisabled = $derived(trackedWeekIndex > trackedWeeks.length - 2);
     let prevDisabled = $derived(trackedWeekIndex < 1);
 
@@ -245,15 +283,15 @@
 
     async function fetchData(siteId: number) {
         if (isNaN(siteId)) {
-            console.log('siteId in SiteDatePicker is NaN');
+            console.log("siteId in SiteDatePicker is NaN");
             return;
         }
 
         // console.log('siteId in SiteDatePicker is ', siteId);
         let sdpath = `/api/sitedates/c/${siteId}`;
         isDisabled = true;
-        recordYear = '...';
-        recordWeek = '...';
+        recordYear = "...";
+        recordWeek = "...";
 
         try {
             const response = await fetch(`${sdpath}`);
@@ -267,21 +305,36 @@
                         .map<DateTracking>((w: SiteDateYearSiteDates) => ({
                             siteDateId: w.id,
                             year: w.year ?? -1,
-                            week: w.recordDate ? weekOfYearSince(new Date(w.recordDate)) : -1,
+                            week: w.recordDate
+                                ? weekOfYearSince(new Date(w.recordDate))
+                                : -1,
                             recordDate: new Date(w.recordDate),
-                            fDate: w.recordDate ? formatDate(new Date(w.recordDate).toISOString()) : '',
+                            fDate: w.recordDate
+                                ? formatDate(
+                                      new Date(w.recordDate).toISOString(),
+                                  )
+                                : "",
                         }))
-                        .sort(compareYearWeek)
+                        .sort(compareYearWeek),
                 );
 
                 uniqueYears.length = 0;
-                uniqueYears.push(...new Set(siteDates.map((x) => x.year.toString())));
-                recordYear = uniqueYears.length > 0 ? uniqueYears[0] : '';
-                recordWeek = siteDates.length > 0 ? (trackedWeeks.find((x) => x.siteDateId === currentSiteDateId)?.week ?? siteDates[0].week).toString() : '';
+                uniqueYears.push(
+                    ...new Set(siteDates.map((x) => x.year.toString())),
+                );
+                recordYear = uniqueYears.length > 0 ? uniqueYears[0] : "";
+                recordWeek =
+                    siteDates.length > 0
+                        ? (
+                              trackedWeeks.find(
+                                  (x) => x.siteDateId === currentSiteDateId,
+                              )?.week ?? siteDates[0].week
+                          ).toString()
+                        : "";
                 isDisabled = false;
             }
         } catch (error) {
-            console.error('Error fetching data:', error, 'from sdpath', sdpath);
+            console.error("Error fetching data:", error, "from sdpath", sdpath);
         }
     }
 
@@ -291,7 +344,7 @@
     });
 
     $effect(() => {
-        console.log('Effected: ', currentSiteDateId);
+        console.log("Effected: ", currentSiteDateId);
     });
 </script>
 
@@ -334,7 +387,12 @@
 {#snippet sListBoxYears()}
     <ListBox rounded="rounded-none" labelledby="Years for site">
         {#each uniqueYears as year}
-            <ListBoxItem bind:group={recordYear} name="years" on:change={handleSelectYear} value={year}>
+            <ListBoxItem
+                bind:group={recordYear}
+                name="years"
+                on:change={handleSelectYear}
+                value={year}
+            >
                 {year}
             </ListBoxItem>
         {/each}
@@ -344,8 +402,14 @@
 {#snippet sListBoxWeeks()}
     <ListBox rounded="rounded-none" labelledby="Weeks in timeframe">
         {#each yearDates as week}
-            <ListBoxItem bind:group={currentSiteDateId} name="weeks" on:change={handleSelectWeek} on:click={handleSelectWeek} value={week.siteDateId}>
-                {@render sPrefixWeek()}{`${week.week}${dropdownShowDate ? ' - ' + week.fDate : ''}`}
+            <ListBoxItem
+                bind:group={currentSiteDateId}
+                name="weeks"
+                on:change={handleSelectWeek}
+                on:click={handleSelectWeek}
+                value={week.siteDateId}
+            >
+                {@render sPrefixWeek()}{`${week.week}${dropdownShowDate ? " - " + week.fDate : ""}`}
             </ListBoxItem>
         {/each}
     </ListBox>
@@ -355,18 +419,40 @@
     {@render sHeading()}
 
     <div class={classesControlBody} aria-labelledby={labelledby}>
-        <button type="button" class={classesButtonLeft} onclick={handleClickPrior} disabled={isDisabled || prevDisabled}>◀</button>
-        <button type="button" class={classesButtonYear} use:popup={popupSiteDateYears} disabled={isDisabled || (prevDisabled && nextDisabled)}>
+        <button
+            type="button"
+            class={classesButtonLeft}
+            onclick={handleClickPrior}
+            disabled={isDisabled || prevDisabled}>◀</button
+        >
+        <button
+            type="button"
+            class={classesButtonYear}
+            use:popup={popupSiteDateYears}
+            disabled={isDisabled || (prevDisabled && nextDisabled)}
+        >
             {@render sPrefixYear()}
             <span>{recordYear}</span>
             <span class={classesSuffixYear}></span>
         </button>
-        <button type="button" class={classesButtonWeek} use:popup={popupSiteDateWeeks} disabled={isDisabled || (prevDisabled && nextDisabled)} onclick={handleClickWeek} onkeydown={handleClickWeek}>
+        <button
+            type="button"
+            class={classesButtonWeek}
+            use:popup={popupSiteDateWeeks}
+            disabled={isDisabled || (prevDisabled && nextDisabled)}
+            onclick={handleClickWeek}
+            onkeydown={handleClickWeek}
+        >
             {@render sPrefixWeek()}
             <span>{recordWeek}</span>
             <span class={classesSuffixWeek}></span>
         </button>
-        <button type="button" class={classesButtonRight} onclick={handleClickNext} disabled={isDisabled || nextDisabled}>▶</button>
+        <button
+            type="button"
+            class={classesButtonRight}
+            onclick={handleClickNext}
+            disabled={isDisabled || nextDisabled}>▶</button
+        >
     </div>
 
     <div data-popup="popupComboSiteDateYears" class="z-10">
@@ -377,7 +463,10 @@
 
     <div data-popup="popupComboSiteDateWeeks" bind:this={cmbWeeks} class="z-20">
         {#if yearDates}
-            <div class={`${classesPopupInner} ${dropdownShowDate ? 'w-44' : 'w-28'}`} style={stylesPopup}>
+            <div
+                class={`${classesPopupInner} ${dropdownShowDate ? "w-44" : "w-28"}`}
+                style={stylesPopup}
+            >
                 {@render sListBoxWeeks()}
             </div>
         {/if}

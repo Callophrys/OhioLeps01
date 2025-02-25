@@ -1,14 +1,14 @@
 <script lang="ts">
     /* TODO Added overall control isDisabled or something for when there is no data or just want it off */
     /*-- Imports */
-    import type { Site } from '@prisma/client';
-    import type { SiteDateYearSiteDates } from '$lib/types.js';
-    import type { Snippet } from 'svelte';
-    import type { PopupSettings } from '@skeletonlabs/skeleton';
-    import type { CssClasses } from '@skeletonlabs/skeleton';
-    import { goto } from '$app/navigation';
-    import { popup, ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
-    import { getContext } from 'svelte';
+    import type { Site } from "@prisma/client";
+    import type { SiteDateYearSiteDates } from "$lib/types.js";
+    import type { Snippet } from "svelte";
+    import type { PopupSettings } from "@skeletonlabs/skeleton";
+    import type { CssClasses } from "@skeletonlabs/skeleton";
+    import { goto } from "$app/navigation";
+    import { popup, ListBox, ListBoxItem } from "@skeletonlabs/skeleton";
+    import { getContext } from "svelte";
 
     /*-- -- Data -- */
     /*-- Exports */
@@ -19,16 +19,16 @@
         filterByCounty = $bindable(false),
         dropdownPointers = true,
         heading,
-        controlOuter = '',
-        controlBody = '',
-        buttonLeft = '',
-        buttonCenter = '',
-        buttonRight = '',
-        scriptCenter = '',
-        suffixCenter = '',
-        popupInner = '',
-        popupStyles = '',
-        labelledby = 'Select site-date',
+        controlOuter = "",
+        controlBody = "",
+        buttonLeft = "",
+        buttonCenter = "",
+        buttonRight = "",
+        scriptCenter = "",
+        suffixCenter = "",
+        popupInner = "",
+        popupStyles = "",
+        labelledby = "Select site-date",
     }: {
         currentCountyId: number;
         currentSiteId: number;
@@ -49,12 +49,14 @@
     } = $props();
 
     /** Show down arrow with year and week labels to indicate dropdown.  Default: true */
-    buttonCenter = dropdownPointers ? 'w-20' : 'w-16';
-    suffixCenter = dropdownPointers ? "before:content-['↓']" : '';
+    buttonCenter = dropdownPointers ? "w-20" : "w-16";
+    suffixCenter = dropdownPointers ? "before:content-['↓']" : "";
 
     /*-- Context */
-    const allSites: Site[] = getContext('sites') ?? [];
-    const siteDates: SiteDateYearSiteDates[] = $state(getContext('siteDates') ?? []);
+    const allSites: Site[] = getContext("sites") ?? [];
+    const siteDates: SiteDateYearSiteDates[] = $state(
+        getContext("siteDates") ?? [],
+    );
     console.log(allSites[0]);
     //$inspect(allSites);
 
@@ -65,14 +67,15 @@
     /** Provide the ARIA labelledby value.  Default: "Select site-date" */
 
     /*-- Constants (styles) */
-    const cControlOuter = 'block lg:flex lg:flex-row gap-0 md:gap-1 lg:gap-2';
-    const cControlBody = 'btn-group variant-soft my-auto';
-    const cButtonLeft = '';
-    const cButtonCenter = 'w-32 md:w-44 lg:w-56 xl:w-64';
-    const cButtonRight = '';
-    const cScriptCenter = 'w-full text-left truncate overflow-hidden text-ellipsis';
-    const cPopupInner = 'card w-48 shadow-xl py-2 overflow-y-auto';
-    const cPopupStyles = 'max-height: calc(100vh - 272px);';
+    const cControlOuter = "block lg:flex lg:flex-row gap-0 md:gap-1 lg:gap-2";
+    const cControlBody = "btn-group variant-soft my-auto";
+    const cButtonLeft = "";
+    const cButtonCenter = "w-32 md:w-44 lg:w-56 xl:w-64";
+    const cButtonRight = "";
+    const cScriptCenter =
+        "w-full text-left truncate overflow-hidden text-ellipsis";
+    const cPopupInner = "card w-48 shadow-xl py-2 overflow-y-auto";
+    const cPopupStyles = "max-height: calc(100vh - 272px);";
 
     /*-- Reactives (styles) */
     let classesControlOuter = $derived(`${cControlOuter} ${controlOuter}`); // } ${$$props.class ?? ''}`;
@@ -90,10 +93,10 @@
     /*-- Enums */
     /*-- Constants (functional) */
     const popupSites: PopupSettings = {
-        event: 'focus-click',
-        target: 'popupSites',
-        placement: 'bottom',
-        closeQuery: '.listbox-item',
+        event: "focus-click",
+        target: "popupSites",
+        placement: "bottom",
+        closeQuery: ".listbox-item",
     };
 
     /*-- Properties (functional) */
@@ -107,9 +110,15 @@
             currentCountyId = filteredSites[filteredSitesIndex].countyId;
             currentSiteId = filteredSites[filteredSitesIndex].id;
             let sd = siteDates.find((x) => x.siteId === currentSiteId);
-            console.log('sd', siteDates);
+            console.log("siteId", currentSiteId);
+            console.log("sd", sd);
+            console.log("sd ddd", siteDates);
             if (sd) currentSiteDateId = sd.id;
-            goto('/api/sites/' + currentSiteId);
+            let xyz =
+                "/api/sitesdates/" + currentSiteId + "/" + currentSiteDateId;
+            console.log("xyz", xyz);
+            goto(xyz);
+            // goto('/api/sites/' + currentSiteId);
         }
     }
 
@@ -120,7 +129,7 @@
             currentSiteId = filteredSites[index].id;
             let sd = siteDates.find((x) => x.siteId === currentSiteId);
             if (sd) currentSiteDateId = sd.id;
-            goto('/api/sites/' + currentSiteId);
+            goto("/api/sites/" + currentSiteId);
         }
     }
 
@@ -131,15 +140,21 @@
             currentSiteId = filteredSites[index].id;
             let sd = siteDates.find((x) => x.siteId === currentSiteId);
             if (sd) currentSiteDateId = sd.id;
-            goto('/api/sites/' + currentSiteId);
+            goto("/api/sites/" + currentSiteId);
         }
     }
 
     /*-- Methods */
 
     /*-- Reactives (functional) */
-    let filteredSites = $derived(filterByCounty ? allSites.filter((s: any) => s.countyId === currentSite?.countyId) : allSites);
-    let filteredSitesIndex = $derived(filteredSites.findIndex((s: any) => s.id === currentSiteId));
+    let filteredSites = $derived(
+        filterByCounty
+            ? allSites.filter((s: any) => s.countyId === currentSite?.countyId)
+            : allSites,
+    );
+    let filteredSitesIndex = $derived(
+        filteredSites.findIndex((s: any) => s.id === currentSiteId),
+    );
     let currentSite = $derived(allSites.find((x) => x.id === currentSiteId));
     let prevDisabled = $derived(filteredSitesIndex < 1);
     let nextDisabled = $derived(filteredSitesIndex > filteredSites.length - 2);
@@ -154,14 +169,29 @@
         </div>
     {/if}
     <div class={classesControlBody} aria-labelledby={labelledby}>
-        <button type="button" class={classesButtonLeft} onclick={handlePrev} disabled={prevDisabled}>◀</button>
-        <button type="button" class={classesButtonCenter} use:popup={popupSites} title={currentSite?.siteName}>
+        <button
+            type="button"
+            class={classesButtonLeft}
+            onclick={handlePrev}
+            disabled={prevDisabled}>◀</button
+        >
+        <button
+            type="button"
+            class={classesButtonCenter}
+            use:popup={popupSites}
+            title={currentSite?.siteName}
+        >
             <span class={classesScriptCenter}>
                 {currentSite?.siteName}
             </span>
             <span>↓</span>
         </button>
-        <button type="button" class={classesButtonRight} onclick={handleNext} disabled={nextDisabled}>▶</button>
+        <button
+            type="button"
+            class={classesButtonRight}
+            onclick={handleNext}
+            disabled={nextDisabled}>▶</button
+        >
     </div>
 </div>
 
@@ -169,7 +199,12 @@
     <div class={classesPopupInner} style={stylesPopup}>
         <ListBox rounded="rounded-none">
             {#each filteredSites as site}
-                <ListBoxItem bind:group={currentSiteId} name="sites" on:change={handleSelect} value={site.id}>
+                <ListBoxItem
+                    bind:group={currentSiteId}
+                    name="sites"
+                    on:change={handleSelect}
+                    value={site.id}
+                >
                     {site.siteName}
                 </ListBoxItem>
             {/each}
