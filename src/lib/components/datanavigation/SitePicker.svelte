@@ -140,7 +140,7 @@
   }
 
   function pickerGoto() {
-    if (location.toString().toLowerCase().includes("api/site/")) {
+    if (location.pathname.toLowerCase().startsWith("/api/site/")) {
       goto(`/api/site/${currentSiteId}`);
     } else {
       let targetUrl =

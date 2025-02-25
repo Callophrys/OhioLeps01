@@ -57,7 +57,11 @@
 {/snippet}
 
 {#snippet centerPane()}
-  <SiteDateObservations data={data.sdoData} siteDate={data.siteDate} />
+  <SiteDateObservations
+    data={data.sdoData}
+    siteDate={data.siteDate}
+    checklistSiteDateObs={data.checklistSiteDateObs}
+  />
 {/snippet}
 
 <FlexContainer {outerPane} {leftPane} {centerPane} />

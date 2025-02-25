@@ -1,5 +1,6 @@
 <script lang="ts">
   /*-- Imports */
+
   import { GOTYPE, ROLE } from "$lib/types.js";
   import type { ModalSettings, ModalComponent } from "@skeletonlabs/skeleton";
   import type {
@@ -26,16 +27,21 @@
   import { getModalStore } from "@skeletonlabs/skeleton";
   import { goto } from "$app/navigation";
   import { page } from "$app/stores";
-  import { setContext } from "svelte";
+  // import { derived, effect } from "svelte";
 
   /*-- -- Data -- */
   /*-- Exports */
   let {
     data,
     siteDate,
+    // checklistsSiteDateObs,
     form,
-  }: { data: any; siteDate: SiteDateYearSdo; form: any } = $props();
-
+  }: {
+    data: any;
+    siteDate: SiteDateYearSdo;
+    // checklistsSiteDateObs: SiteDateObservationChecklist[];
+    form: any;
+  } = $props();
   // console.log("sd", data);
 
   let config: any = $state({});
@@ -179,7 +185,7 @@
   /*-- Variables and objects */
   /*-- Run first stuff */
   const modalStore = getModalStore();
-  let siteId = siteDate.siteId;
+  let siteId = $state(siteDate.siteId);
 
   /*-- onMount */
   $effect(() => {
@@ -265,15 +271,16 @@
   }
 
   /*-- Methods */
-  let inUse = $derived(
-    data.checklistsSiteDateObs
+  let inUse = $derived(() => {
+    return;
+    [...data.checklistsSiteDateObs]
       .filter((x: any) => !x.isDeleted)
-      .map((x: any) => x.id),
-  );
+      .map((x: any) => x.id);
+  });
 
-  let availableChecklistItems = $derived(
-    data.checklistsAll.filter((x: any) => !inUse.includes(x.id)),
-  );
+  let availableChecklistItems = $derived(() => {
+    return [...data.checklistsAll].filter((x: any) => !inUse.includes(x.id));
+  });
 
   function modalComponentAdd(): void {
     const c: ModalComponent = { ref: ModalSiteDateObservation };
@@ -396,9 +403,9 @@
 
   /*-- Reactives (functional) */
   // let total = $derived(getTotal());
-  let currentSiteDateObservation = $state(
-    data.checklistsSiteDateObs[0] as SiteDateObservationChecklist,
-  );
+  let currentSiteDateObservation = $derived(() => {
+    return [...data.checklistsSiteDateObs][0]; // as SiteDateObservationChecklist,
+  });
   let currentSiteId: number = $state(siteDate.siteId);
   let currentSiteDateId: number = $state(siteDate.siteDateId);
 
@@ -419,11 +426,11 @@
 
   let recordYear = $derived(new Date(siteDate.recordDate).getFullYear());
   let recordWeek = $derived(weekOfYearSince(new Date(siteDate.recordDate)));
-  let recordSdoCount = $derived(
-    data.checklistsSiteDateObs.filter(
+  let recordSdoCount = $derived(() => {
+    return [...data.checklistsSiteDateObs].filter(
       (o: SiteDateObservationChecklist) => !o.deleted || showDeletedData,
-    ).length,
-  );
+    ).length;
+  });
 
   let sdoSections = $derived.by(() => {
     const result = Object.entries(currentSiteDateObservation)
@@ -455,14 +462,32 @@
   //     return data.siteDates[nextIndex];
   // });
 
-  let availableObservations = data.checklistsSiteDateObs;
+  const availableObservations = () =>
+    [...data.checklistsSiteDateObs].filter(
+      (x) => !x.deleted || showDeletedData,
+    );
+
   /*
-  let availableObservations = $derived(() =>
-    data.checklistsSiteDateObs.filter(
-      (x: SiteDateObservationChecklist) => !x.deleted || showDeletedData,
-    ),
-  );
-  */
+  let availableObservations = $derived(() => {
+    return [...data.checklistsSiteDateObs].filter(
+      (x) => !x.deleted || showDeletedData,
+    );
+  });
+  $effect(() => {
+    availableObservations = derived(
+      [data.checklistsSiteDateObs, showDeletedData],
+      ([$obs, $showDeleted]) => {
+        console.log(
+          "Filtering observations:",
+          $obs,
+          "Show Deleted:",
+          $showDeleted,
+        );
+        return $obs.filter((x) => !x.deleted || $showDeleted);
+      },
+    );
+  });
+   */
 
   /*-- Other */
 
@@ -602,7 +627,7 @@
 {/snippet}
 
 {#snippet editSpecimenViewing()}
-  {#if availableObservations.length < 1}
+  {#if availableObservations().length < 1}
     <button type="button" class={cButtonStandard} disabled>
       Edit All
       <span class="pl-2">✎</span>
@@ -747,7 +772,6 @@
           console.log("action:", action);
           console.log("cancel:", cancel);
           console.log("submitter:", submitter);
-          debugger;
           formElement.cancel();
           return async () => {
             if (formElement.formData.get("deleteOn") === "true") {
@@ -883,7 +907,7 @@
     onsubmit={onSubmitEdit}
     use:enhance
   >
-    {#each availableObservations as chkSdo}
+    {#each availableObservations() as chkSdo}
       <div class={specimenClassesMultiple(chkSdo)}>
         <div class="pl-1 flex flex-row justify-between">
           <div class="flex flex-row justify-start">
@@ -1010,7 +1034,7 @@
 
 <!-- VIEWING Multiple species observation recordings -->
 {#snippet viewingMultiple()}
-  {#each availableObservations as chkSdo}
+  {#each availableObservations() as chkSdo}
     <div class={`flex flex-row ${specimenClassesMultiple(chkSdo)}`}>
       <div class="basis-6">
         {#if $page.data.user.role === ROLE.USER}

@@ -182,13 +182,6 @@
 
   /*-- Run first stuff */
   /*-- onMount, beforeUpdate, afterUpdate */
-  let isSdo = false;
-  $effect(() => {
-    isSdo = document.location.pathname
-      .toLowerCase()
-      .includes("sitedateobservations");
-  });
-
   /*-- Handlers */
   const handleSelectYear = (event: Event & { currentTarget: any }) => {
     let targetYear = event.currentTarget.value;
@@ -221,11 +214,7 @@
       popupWeeksOpenCount = 0;
       cmbWeeks.inert = true;
       cmbWeeks.style.opacity = "0";
-      if (isSdo) {
-        goto(`/api/sitedateobservations/${currentSiteDateId}/${currentSiteId}`);
-      } else {
-        goto(`/api/sitedate/${currentSiteId}/${currentSiteDateId}`);
-      }
+      goto(`/api/sitedate/${currentSiteId}/${currentSiteDateId ?? -1}`);
       return true;
     }
     popupWeeksOpenCount++;
@@ -254,11 +243,7 @@
     recordYear = (tw.year ?? -1).toString();
     recordWeek = (tw.week ?? -1).toString();
     currentSiteDateId = tw.siteDateId ?? -1;
-    if (isSdo) {
-      goto(`/api/sitedateobservations/${currentSiteDateId}/${currentSiteId}`);
-    } else {
-      goto(`/api/sitedate/${currentSiteId}/${tw.siteDateId}`);
-    }
+    goto(`/api/sitedate/${currentSiteId}/${tw.siteDateId}`);
   }
 
   /*-- Methods */
