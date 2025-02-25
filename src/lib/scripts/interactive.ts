@@ -3,7 +3,14 @@ const notMonitored = '<span class="text-secondary-500">*</span>';
 let data: any;
 let isMouseDown = false;
 
-const sss: { sh: any; svgvp: any; selcnt: any; sellst: any; cspcnt: any; csplst: any } = {
+const sss: {
+  sh: any;
+  svgvp: any;
+  selcnt: any;
+  sellst: any;
+  cspcnt: any;
+  csplst: any;
+} = {
   sh: null,
   svgvp: null,
   selcnt: null,
@@ -13,24 +20,27 @@ const sss: { sh: any; svgvp: any; selcnt: any; sellst: any; cspcnt: any; csplst:
 };
 
 export function initialize(psvgs: any, data: any, svgId: string) {
-    data = data;
-    console.log(svgId);
+  data = data;
+  console.log(svgId);
 
-  sss.sh = document.getElementById('svg_hover');
+  sss.sh = document.getElementById("svg_hover");
   sss.svgvp = document.getElementById(svgId);
   if (sss.svgvp === null) return;
   sss.svgvp.id = svgId;
-  sss.selcnt = document.getElementById('selected-counties-count');
-  sss.sellst = document.getElementById('selected-counties-list');
-  sss.cspcnt = document.getElementById('species-in-selection');
-  sss.csplst = document.getElementById('species-in-selection-list');
+  sss.selcnt = document.getElementById("selected-counties-count");
+  sss.sellst = document.getElementById("selected-counties-list");
+  sss.cspcnt = document.getElementById("species-in-selection");
+  sss.csplst = document.getElementById("species-in-selection-list");
 
   psvgs.map((c: any) => {
-    const svgPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    const svgPath = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "path",
+    );
     svgPath.classList.add(c.region);
-    svgPath.id = `${svgId}_${c.name.replaceAll(' ', '_')}`;
-    svgPath.setAttributeNS('http://www.w3.org/2000/svg', 'd', c.d);
-    svgPath.classList.add('dot-map');
+    svgPath.id = `${svgId}_${c.name.replaceAll(" ", "_")}`;
+    svgPath.setAttributeNS("http://www.w3.org/2000/svg", "d", c.d);
+    svgPath.classList.add("dot-map");
     sss.svgvp.appendChild(svgPath);
 
     // const svgPath = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
@@ -59,17 +69,15 @@ export function initialize(psvgs: any, data: any, svgId: string) {
     // circle.setAttributeNS('http://www.w3.org/2000/svg', 'transform', 'scale(2)'); // Adjust radius as needed
     // sss.svgvp.appendChild(circle);
     //
-
   });
 
   const viewBox = getViewBox(psvgs);
-  sss.svgvp.setAttributeNS('http://www.w3.org/2000/svg', 'viewBox', viewBox);
+  sss.svgvp.setAttributeNS("http://www.w3.org/2000/svg", "viewBox", viewBox);
 
   return sss.svgvp;
 }
 
 export function getViewBox(psvgs: any): string {
-
   let xmin = Infinity;
   let xmax = -Infinity;
   let ymin = Infinity;
@@ -77,12 +85,12 @@ export function getViewBox(psvgs: any): string {
 
   psvgs.forEach((item: any) => {
     const commands = item.d.match(/[MLHVCSQTAZ][^MLHVCSQTAZ]*/gi); // Split by command letters
-    if (commands === null) return '0 0 600 800';
+    if (commands === null) return "0 0 600 800";
 
     for (let i = 0; i < commands.length; i++) {
       const command = commands[i].trim();
       const type = command.charAt(0);
-      if (type !== 'M' && type !== 'L') continue;
+      if (type !== "M" && type !== "L") continue;
       const args = command
         .slice(1)
         .trim()
@@ -106,7 +114,7 @@ export function getViewBox(psvgs: any): string {
   if (ymin === Infinity) ymin = 0;
   if (ymax === -Infinity) ymax = 800;
 
-  return `${xmin} ${ymin} ${(xmax - xmin).toFixed(2)} ${((ymax - ymin).toFixed(2))}`;
+  return `${xmin} ${ymin} ${(xmax - xmin).toFixed(2)} ${(ymax - ymin).toFixed(2)}`;
 }
 
 type countyItem = { id: string; name: string };
@@ -116,7 +124,7 @@ let selectedCounties: countyItem[] = [];
 //     return arr.filter((value, index) => index === 0 || (value.x !== arr[index - 1].x && value.y === arr[index - 1].y));
 // }
 function calculateCentroid(points: string) {
-  const coords = points.split(' ').map((point) => point.split(',').map(Number));
+  const coords = points.split(" ").map((point) => point.split(",").map(Number));
   let area = 0,
     cx = 0,
     cy = 0;
@@ -147,8 +155,7 @@ function toPairs(arr: any[]) {
 }
 
 function getPathCentroid(path: any) {
-
-  const pathData = path.getAttributeNS('http://www.w3.org/2000/svg', 'd');
+  const pathData = path.getAttributeNS("http://www.w3.org/2000/svg", "d");
   const commands = pathData.match(/[MLHVCSQTAZ][^MLHVCSQTAZ]*/gi); // Split by command letters
   let vertices: any[] = [];
   // let vertices: { x: Number, y: Number }[] = [];
@@ -166,20 +173,23 @@ function getPathCentroid(path: any) {
       .map(Number);
 
     switch (type) {
-      case 'M':
-      case 'L':
+      case "M":
+      case "L":
         // vertices = toPairs(args);
         vertices.push({ x: args[0], y: args[1] });
         break;
-      case 'Z':
+      case "Z":
         if (vertices.length > 2) {
           // Apply the Shoelace formula to calculate the area
           let n = vertices.length;
           for (let i = 0; i < n; i++) {
             let j = (i + 1) % n;
-            cx += (vertices[i].x + vertices[j].x) * (vertices[j].y - vertices[i].y);
-            cy += (vertices[i].y + vertices[j].y) * (vertices[j].x - vertices[i].x);
-            area += vertices[i].x * vertices[j].y - vertices[j].x * vertices[i].y;
+            cx +=
+              (vertices[i].x + vertices[j].x) * (vertices[j].y - vertices[i].y);
+            cy +=
+              (vertices[i].y + vertices[j].y) * (vertices[j].x - vertices[i].x);
+            area +=
+              vertices[i].x * vertices[j].y - vertices[j].x * vertices[i].y;
           }
           area /= 2;
         }
@@ -189,7 +199,7 @@ function getPathCentroid(path: any) {
     }
   }
 
-  console.log('cx:', cx, 'cy:', cy, 'area:', area);
+  console.log("cx:", cx, "cy:", cy, "area:", area);
 
   // Calculate centroid
   cx = cx / (6 * area);
@@ -199,13 +209,12 @@ function getPathCentroid(path: any) {
 }
 
 export function addListeners(node: HTMLDivElement) {
-
   const svg = node.firstElementChild as SVGElement | null;
   if (svg == null) return;
 
   const svgId = svg.id;
 
-  const svgHover = document.getElementById('svg_hover');
+  const svgHover = document.getElementById("svg_hover");
   if (svgHover == null) return;
 
   let isMouseDown = false;
@@ -215,112 +224,124 @@ export function addListeners(node: HTMLDivElement) {
   //     svgHover.classList.replace('opacity-100', 'opacity-0');
   // }
 
-    const handleBlur = (e: any) => {
-    svgHover.textContent = '';
-    svgHover.classList.replace('opacity-100', 'opacity-0');
-  }
+  const handleBlur = (e: any) => {
+    svgHover.textContent = "";
+    svgHover.classList.replace("opacity-100", "opacity-0");
+  };
 
   const handleMouseDown = (e: MouseEvent) => {
     isMouseDown = true;
-    svg.classList.add('cursor-pointer');
+    svg.classList.add("cursor-pointer");
 
     if (e.target instanceof SVGPathElement) {
       if (e.shiftKey) {
-        let region = Array.from(e.target.classList).find((c: any) => c.startsWith('region'));
-        let isAdding = !e.target.classList.contains('polygon-select');
+        let region = Array.from(e.target.classList).find((c: any) =>
+          c.startsWith("region"),
+        );
+        let isAdding = !e.target.classList.contains("polygon-select");
 
-        Array.from(svg.querySelectorAll('path'))
+        Array.from(svg.querySelectorAll("path"))
           .filter((r: any) => r.classList.contains(region))
           .forEach((p: any) => {
             if (isAdding) {
               if (selectedCounties.findIndex((c) => c.id === p.id) < 0) {
-                p.classList.add('polygon-select');
+                p.classList.add("polygon-select");
                 selectedCounties.push({
                   id: p.id,
-                  name: p.id.substring(p.id.lastIndexOf('_') + 1),
+                  name: p.id.substring(p.id.lastIndexOf("_") + 1),
                 });
               }
             } else {
-              p.classList.remove('polygon-select');
-              selectedCounties = selectedCounties.filter((c: countyItem) => c.id !== p.id);
+              p.classList.remove("polygon-select");
+              selectedCounties = selectedCounties.filter(
+                (c: countyItem) => c.id !== p.id,
+              );
             }
           });
       } else {
-        if (e.target.classList.contains('polygon-select')) {
+        if (e.target.classList.contains("polygon-select")) {
           if (!e.ctrlKey) {
             clearSelectedCounties();
           } else {
-            e.target.classList.remove('polygon-select');
-            selectedCounties = selectedCounties.filter((c: countyItem) => c.id !== e.target.id);
+            e.target.classList.remove("polygon-select");
+            selectedCounties = selectedCounties.filter(
+              (c: countyItem) => c.id !== e.target.id,
+            );
           }
         } else {
           if (!e.ctrlKey) {
             clearSelectedCounties();
           }
-          e.target.classList.add('polygon-select');
+          e.target.classList.add("polygon-select");
           selectedCounties.push({
             id: e.target.id,
-            name: e.target.id.split('_').pop(),
+            name: e.target.id.split("_").pop(),
           });
         }
       }
       updateCounties();
     }
-  }
+  };
 
   const handleMouseMove = (e: MouseEvent) => {
     debugger;
     if (e.target instanceof SVGPathElement) {
-      svgHover.textContent = (isPolygonMonitored(e.target) ? '✔' : '') +
-        e.target.id.substring(svgId.length + 1).replaceAll('_', ' ');
-      svgHover.style.left = e.clientX - Math.ceil(svgHover.clientWidth / 2) + 'px';
-      svgHover.style.top = e.clientY - 40 + 'px';
-      svgHover.classList.replace('opacity-0', 'opacity-100');
+      svgHover.textContent =
+        (isPolygonMonitored(e.target) ? "✔" : "") +
+        e.target.id.substring(svgId.length + 1).replaceAll("_", " ");
+      svgHover.style.left =
+        e.clientX - Math.ceil(svgHover.clientWidth / 2) + "px";
+      svgHover.style.top = e.clientY - 40 + "px";
+      svgHover.classList.replace("opacity-0", "opacity-100");
 
       if (isMouseDown) {
-        e.target.classList.add('polygon-select');
+        e.target.classList.add("polygon-select");
         if (selectedCounties.some((c) => c.id === e.target.id)) {
           selectedCounties.push({
             id: e.target.id,
-            name: e.target.id.split('_').pop(),
+            name: e.target.id.split("_").pop(),
           });
           updateCounties();
         }
       }
     } else {
-      svgHover.classList.replace('opacity-100', 'opacity-0');
-      svgHover.textContent = '';
+      svgHover.classList.replace("opacity-100", "opacity-0");
+      svgHover.textContent = "";
     }
-  }
+  };
 
   const handleMouseUp = () => {
     isMouseDown = false;
-    svg.classList.remove('cursor-pointer');
-  }
+    svg.classList.remove("cursor-pointer");
+  };
 
-  svg.addEventListener('blur', handleBlur);
-  svg.addEventListener('mousedown', handleMouseDown);
-  svg.addEventListener('mousemove', handleMouseMove);
-  svg.addEventListener('mouseup', handleMouseUp);
+  svg.addEventListener("blur", handleBlur);
+  svg.addEventListener("mousedown", handleMouseDown);
+  svg.addEventListener("mousemove", handleMouseMove);
+  svg.addEventListener("mouseup", handleMouseUp);
 
   return {
     destroy() {
-      svg.removeEventListener('blur', handleBlur);
-      svg.removeEventListener('mousedown', handleMouseDown);
-      svg.removeEventListener('mousemove', handleMouseMove);
-      svg.removeEventListener('mouseup', handleMouseUp);
-    }
-  }
+      svg.removeEventListener("blur", handleBlur);
+      svg.removeEventListener("mousedown", handleMouseDown);
+      svg.removeEventListener("mousemove", handleMouseMove);
+      svg.removeEventListener("mouseup", handleMouseUp);
+    },
+  };
 }
 
 function clearSelectedCounties() {
-  sss.svgvp.querySelectorAll('path').forEach((p: any) => p.classList.remove('polygon-select'));
+  sss.svgvp
+    .querySelectorAll("path")
+    .forEach((p: any) => p.classList.remove("polygon-select"));
   selectedCounties.length = 0;
 }
 
 function isMonitored(county: string) {
   //console.log('v', county);
-  let x = data.CountySpecimens.find((d: any) => d.county.toLowerCase() === county);
+  let x = data.CountySpecimens.find(
+    (d: any) => d.county.toLowerCase() === county,
+  );
   //console.log('x', x);
   let y = x?.species.length ?? 0;
   //console.log('y', y);
@@ -328,18 +349,25 @@ function isMonitored(county: string) {
 }
 
 function isPolygonMonitored(polygon: SVGPathElement) {
-  return !polygon.classList.contains('not-monitored');
+  return !polygon.classList.contains("not-monitored");
 }
 
 function updateCounties() {
-  sss.selcnt.textContent = 'Selected counties (' + selectedCounties.length + '):';
+  sss.selcnt.textContent =
+    "Selected counties (" + selectedCounties.length + "):";
   sss.sellst.innerHTML =
     '<ul class="list">' +
     selectedCounties
-      .map((c: any) => '<li class="capitalize">' + c.name + (isMonitored(c.name) ? '' : notMonitored) + '</li>')
+      .map(
+        (c: any) =>
+          '<li class="capitalize">' +
+          c.name +
+          (isMonitored(c.name) ? "" : notMonitored) +
+          "</li>",
+      )
       .sort()
-      .join('') +
-    '</ul>';
+      .join("") +
+    "</ul>";
 
   const ctys = selectedCounties.map((c) => c.name);
   //console.log('CountySpecimens:', data.CountySpecimens);
@@ -353,5 +381,8 @@ function updateCounties() {
   let spcnq = spcno.map((h: any) => h.species.map((i: any) => i.commonName));
   let spcnr = [...new Set(spcnq.flat().sort())];
   sss.cspcnt.textContent = `Species in selection (${spcnr.length})`;
-  sss.csplst.innerHTML = '<ul class="list">' + spcnr.map((s: any) => '<li class="">' + s + '</li>').join('') + '</ul>';
+  sss.csplst.innerHTML =
+    '<ul class="list">' +
+    spcnr.map((s: any) => '<li class="">' + s + "</li>").join("") +
+    "</ul>";
 }

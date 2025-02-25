@@ -1,16 +1,16 @@
-import prisma from '$lib/prisma'
+import prisma from "$lib/prisma";
 
 export async function getNameAddresses() {
-	const nameAddresses = await prisma.nameAddress.findMany({
-		orderBy: [
-			{
-				lastName: 'asc',
-			},
-			{
-				firstName: 'asc'
-			}
-		]
-	});
+  const nameAddresses = await prisma.nameAddress.findMany({
+    orderBy: [
+      {
+        lastName: "asc",
+      },
+      {
+        firstName: "asc",
+      },
+    ],
+  });
 
-	return nameAddresses;
+  return nameAddresses;
 }

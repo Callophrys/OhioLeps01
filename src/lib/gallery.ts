@@ -1,7 +1,6 @@
-
-console.log('1');
+console.log("1");
 export const imageModules = import.meta.glob("$lib/assets/gallery/*.jpg");
-console.log('2', imageModules);
+console.log("2", imageModules);
 
 export const assets: string[] = [];
 
@@ -13,7 +12,7 @@ for (const modulePath in imageModules) {
 }
 */
 
-    /*
+/*
     import GA0994 from '$lib/assets/gallery/DSCF0994.jpg';
     import GA1819 from '$lib/assets/gallery/DSCF1819.jpg';
     import GA1898 from '$lib/assets/gallery/DSCF1898.jpg';

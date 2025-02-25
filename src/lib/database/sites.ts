@@ -1,6 +1,6 @@
-import prisma from '$lib/prisma';
-import type { ChangelessSite } from '$lib/types';
-import type { Site } from '@prisma/client';
+import prisma from "$lib/prisma";
+import type { ChangelessSite } from "$lib/types";
+import type { Site } from "@prisma/client";
 
 /**
  * Obtain site details including county, yearly statuses, and observation dates
@@ -8,52 +8,52 @@ import type { Site } from '@prisma/client';
  * @returns
  */
 export async function getSite(siteId: number) {
-    // console.log('/lib/api/entry/sites.ts > getSite', siteId);
+  // console.log('/lib/api/entry/sites.ts > getSite', siteId);
 
-    const site = await prisma.site.findUnique({
-        where: {
-            id: siteId,
+  const site = await prisma.site.findUnique({
+    where: {
+      id: siteId,
+    },
+    include: {
+      county: {
+        select: {
+          id: true,
+          name: true,
+          stateRegionId: true,
+          stateId: true,
         },
+      },
+      sections: true,
+      siteStatuses: {
         include: {
-            county: {
-                select: {
-                    id: true,
-                    name: true,
-                    stateRegionId: true,
-                    stateId: true,
-                },
-            },
-            sections: true,
-            siteStatuses: {
-                include: {
-                    statusCode: true,
-                },
-            },
-            siteDates: true,
-            createdBy: true,
-            updatedBy: true,
+          statusCode: true,
         },
-    });
+      },
+      siteDates: true,
+      createdBy: true,
+      updatedBy: true,
+    },
+  });
 
-    return site;
+  return site;
 }
 
 export async function getSiteData(siteId: number) {
-    const site = await prisma.site.findUnique({
-        where: {
-            id: siteId,
-        },
-        include: {
-            siteDates: true,
-        },
-    });
+  const site = await prisma.site.findUnique({
+    where: {
+      id: siteId,
+    },
+    include: {
+      siteDates: true,
+    },
+  });
 
-    return site;
+  return site;
 }
 
 // TODO: Maybe make table to hold township
 export async function getSiteDataFlat(siteId: number) {
-    const result = await prisma.$queryRaw`
+  const result = await prisma.$queryRaw`
 select s.siteName
 , s.township
 , s.locationZip
@@ -216,198 +216,204 @@ left outer join User uoc on uoc.id = o.createdById
 left outer join User uou on uou.id = o.updatedById
 left outer join User uor on uor.id = o.confirmById
 where s.id = ${siteId}`;
-    console.log('result***', result);
+  console.log("result***", result);
 
-    return result;
+  return result;
 }
 /*
  */
 
 export async function getSitesByCounty(countyId: number) {
-    const sites = await prisma.site.findMany({
-        where: {
-            countyId: countyId,
-        },
-        include: {
-            county: true,
-        },
-        orderBy: {
-            siteName: 'asc',
-        },
-    });
+  const sites = await prisma.site.findMany({
+    where: {
+      countyId: countyId,
+    },
+    include: {
+      county: true,
+    },
+    orderBy: {
+      siteName: "asc",
+    },
+  });
 
-    return sites;
+  return sites;
 }
 
 export async function getSites(idList: number[] | null) {
-    // console.log('/lib/api/entry/sites.ts > getSites');
+  // console.log('/lib/api/entry/sites.ts > getSites');
 
-    // let whereClause =
-    //     idList && idList.length
-    //         ? {
-    //               id: { in: idList },
-    //           }
-    //         : true;
+  // let whereClause =
+  //     idList && idList.length
+  //         ? {
+  //               id: { in: idList },
+  //           }
+  //         : true;
 
-    const sites = await prisma.site.findMany({
-        where: {
-            ...(idList && idList.length ? { id: { in: idList } } : {}),
-        },
-        include: {
-            county: {
-                select: {
-                    name: true,
-                    state: {
-                        select: {
-                            name: true,
-                        },
-                    },
-                },
+  const sites = await prisma.site.findMany({
+    where: {
+      ...(idList && idList.length ? { id: { in: idList } } : {}),
+    },
+    include: {
+      county: {
+        select: {
+          name: true,
+          state: {
+            select: {
+              name: true,
             },
+          },
         },
-        orderBy: {
-            siteName: 'asc',
-        },
-    });
+      },
+    },
+    orderBy: {
+      siteName: "asc",
+    },
+  });
 
-    return sites;
+  return sites;
 }
 
-export async function existsInCounty(siteName: string, countyId: number): Promise<boolean> {
-    const site = await prisma.site.findFirst({
-        select: {
-            id: true,
-        },
-        where: {
-            siteName: siteName.trim(),
-            countyId: countyId,
-        },
-    });
+export async function existsInCounty(
+  siteName: string,
+  countyId: number,
+): Promise<boolean> {
+  const site = await prisma.site.findFirst({
+    select: {
+      id: true,
+    },
+    where: {
+      siteName: siteName.trim(),
+      countyId: countyId,
+    },
+  });
 
-    return site !== null;
+  return site !== null;
 }
 
-export async function existsInState(siteName: string, stateId: number): Promise<boolean> {
-    const site = await prisma.site.findFirst({
-        select: {
-            id: true,
-        },
-        where: {
-            siteName: siteName,
-            stateId: stateId,
-        },
-    });
+export async function existsInState(
+  siteName: string,
+  stateId: number,
+): Promise<boolean> {
+  const site = await prisma.site.findFirst({
+    select: {
+      id: true,
+    },
+    where: {
+      siteName: siteName,
+      stateId: stateId,
+    },
+  });
 
-    return site !== null;
+  return site !== null;
 }
 
 export async function createSite(site: ChangelessSite, userId: string) {
-    console.log('/lib/api/entry/sites.ts > createSite');
-    const createdSite = await prisma.site.create({
-        data: {
-            countyId: site.countyId,
-            stateId: site.stateId,
-            siteName: site.siteName,
-            township: site.township,
-            locationZip: site.locationZip,
-            latitudeStart: site.latitudeStart,
-            latitudeEnd: site.latitudeEnd,
-            longitudeStart: site.longitudeStart,
-            longitudeEnd: site.longitudeEnd,
-            siteAddress: site.siteAddress,
-            siteAddress2: site.siteAddress2,
-            siteCity: site.siteCity,
-            siteState: site.siteState,
-            siteZip: site.siteZip,
-            person: site.person,
-            personAddress: site.personAddress,
-            personAddress2: site.personAddress2,
-            personCity: site.personCity,
-            personState: site.personState,
-            personZip: site.personZip,
-            personPhone: site.personPhone,
-            personEmail: site.personEmail,
-            altPerson: site.altPerson,
-            altPersonAddress: site.altPersonAddress,
-            altPersonAddress2: site.altPersonAddress2,
-            altPersonCity: site.altPersonCity,
-            altPersonState: site.altPersonState,
-            altPersonZip: site.altPersonZip,
-            altPersonPhone: site.altPersonPhone,
-            altPersonEmail: site.altPersonEmail,
-            otherParticipants: site.otherParticipants,
-            description: site.description,
-            createdAt: new Date(),
-            createdById: userId,
-        },
-    });
+  console.log("/lib/api/entry/sites.ts > createSite");
+  const createdSite = await prisma.site.create({
+    data: {
+      countyId: site.countyId,
+      stateId: site.stateId,
+      siteName: site.siteName,
+      township: site.township,
+      locationZip: site.locationZip,
+      latitudeStart: site.latitudeStart,
+      latitudeEnd: site.latitudeEnd,
+      longitudeStart: site.longitudeStart,
+      longitudeEnd: site.longitudeEnd,
+      siteAddress: site.siteAddress,
+      siteAddress2: site.siteAddress2,
+      siteCity: site.siteCity,
+      siteState: site.siteState,
+      siteZip: site.siteZip,
+      person: site.person,
+      personAddress: site.personAddress,
+      personAddress2: site.personAddress2,
+      personCity: site.personCity,
+      personState: site.personState,
+      personZip: site.personZip,
+      personPhone: site.personPhone,
+      personEmail: site.personEmail,
+      altPerson: site.altPerson,
+      altPersonAddress: site.altPersonAddress,
+      altPersonAddress2: site.altPersonAddress2,
+      altPersonCity: site.altPersonCity,
+      altPersonState: site.altPersonState,
+      altPersonZip: site.altPersonZip,
+      altPersonPhone: site.altPersonPhone,
+      altPersonEmail: site.altPersonEmail,
+      otherParticipants: site.otherParticipants,
+      description: site.description,
+      createdAt: new Date(),
+      createdById: userId,
+    },
+  });
 
-    return createdSite;
+  return createdSite;
 }
 
 export async function updateSite(site: ChangelessSite, userId: string) {
-    // console.log('/lib/api/entry/sites.ts > updateSite', site);
-    const updatedSite = await prisma.site.update({
-        where: {
-            id: site.id,
-        },
-        data: {
-            countyId: site.countyId,
-            stateId: site.stateId,
-            siteName: site.siteName,
-            township: site.township,
-            locationZip: site.locationZip,
-            latitudeStart: site.latitudeStart,
-            latitudeEnd: site.latitudeEnd,
-            longitudeStart: site.longitudeStart,
-            longitudeEnd: site.longitudeEnd,
-            siteAddress: site.siteAddress,
-            siteAddress2: site.siteAddress2,
-            siteCity: site.siteCity,
-            siteState: site.siteState,
-            siteZip: site.siteZip,
-            person: site.person,
-            personAddress: site.personAddress,
-            personAddress2: site.personAddress2,
-            personCity: site.personCity,
-            personState: site.personState,
-            personZip: site.personZip,
-            personPhone: site.personPhone,
-            personEmail: site.personEmail,
-            altPerson: site.altPerson,
-            altPersonAddress: site.altPersonAddress,
-            altPersonAddress2: site.altPersonAddress2,
-            altPersonCity: site.altPersonCity,
-            altPersonState: site.altPersonState,
-            altPersonZip: site.altPersonZip,
-            altPersonPhone: site.altPersonPhone,
-            altPersonEmail: site.altPersonEmail,
-            otherParticipants: site.otherParticipants,
-            description: site.description,
-            updatedAt: new Date(),
-            updatedById: userId,
-        },
-    });
+  // console.log('/lib/api/entry/sites.ts > updateSite', site);
+  const updatedSite = await prisma.site.update({
+    where: {
+      id: site.id,
+    },
+    data: {
+      countyId: site.countyId,
+      stateId: site.stateId,
+      siteName: site.siteName,
+      township: site.township,
+      locationZip: site.locationZip,
+      latitudeStart: site.latitudeStart,
+      latitudeEnd: site.latitudeEnd,
+      longitudeStart: site.longitudeStart,
+      longitudeEnd: site.longitudeEnd,
+      siteAddress: site.siteAddress,
+      siteAddress2: site.siteAddress2,
+      siteCity: site.siteCity,
+      siteState: site.siteState,
+      siteZip: site.siteZip,
+      person: site.person,
+      personAddress: site.personAddress,
+      personAddress2: site.personAddress2,
+      personCity: site.personCity,
+      personState: site.personState,
+      personZip: site.personZip,
+      personPhone: site.personPhone,
+      personEmail: site.personEmail,
+      altPerson: site.altPerson,
+      altPersonAddress: site.altPersonAddress,
+      altPersonAddress2: site.altPersonAddress2,
+      altPersonCity: site.altPersonCity,
+      altPersonState: site.altPersonState,
+      altPersonZip: site.altPersonZip,
+      altPersonPhone: site.altPersonPhone,
+      altPersonEmail: site.altPersonEmail,
+      otherParticipants: site.otherParticipants,
+      description: site.description,
+      updatedAt: new Date(),
+      updatedById: userId,
+    },
+  });
 
-    return updatedSite;
+  return updatedSite;
 }
 
 // Hard delete, we prob need the history and support for undos and auditing and so on.
 export async function removeSite(siteId: number) {
-    console.log('/lib/api/entry/sites.ts > removeSite');
-    await prisma.siteDateObservation.deleteMany({
-        where: {
-            siteDateId: siteId, // is this right?
-        },
-    });
-    await prisma.siteDate.deleteMany({
-        where: {
-            siteId: siteId,
-        },
-    });
-    await prisma.site.delete({
-        where: {
-            id: siteId,
-        },
-    });
+  console.log("/lib/api/entry/sites.ts > removeSite");
+  await prisma.siteDateObservation.deleteMany({
+    where: {
+      siteDateId: siteId, // is this right?
+    },
+  });
+  await prisma.siteDate.deleteMany({
+    where: {
+      siteId: siteId,
+    },
+  });
+  await prisma.site.delete({
+    where: {
+      id: siteId,
+    },
+  });
 }

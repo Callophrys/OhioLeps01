@@ -3,4 +3,8 @@
  *
  * In the case of the object is nullish, invoking the callbacks will do nothing.
  */
-export declare const carefullCallbackSource: <CallbacksObject extends object>(callbackObjectGetter: () => CallbacksObject | undefined) => (<Callback extends keyof CallbacksObject>(callbackName: Callback) => CallbacksObject[Callback]);
+export declare const carefullCallbackSource: <CallbacksObject extends object>(
+  callbackObjectGetter: () => CallbacksObject | undefined,
+) => <Callback extends keyof CallbacksObject>(
+  callbackName: Callback,
+) => CallbacksObject[Callback];

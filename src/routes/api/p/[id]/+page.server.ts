@@ -1,4 +1,4 @@
-import { error } from '@sveltejs/kit';
+import { error } from "@sveltejs/kit";
 /*
 export function load({ params }) {
     console.log(params);
@@ -14,19 +14,19 @@ export function load({ params }) {
 */
 
 import prisma from "$lib/prisma";
-import type { PageServerLoad } from './$types';
+import type { PageServerLoad } from "./$types";
 
 // 1.
 export const load = (async ({ params: { id } }) => {
-    // 2.
-    //const county = await prisma.county.findUnique({
-    const county = await prisma.county.findMany({
-        where: { id: Number(id) },
-        include: { sites: true },
-    });
+  // 2.
+  //const county = await prisma.county.findUnique({
+  const county = await prisma.county.findMany({
+    where: { id: Number(id) },
+    include: { sites: true },
+  });
 
-    if (!county) throw error(404);
+  if (!county) throw error(404);
 
-    // 3.
-    return { county };
+  // 3.
+  return { county };
 }) satisfies PageServerLoad;

@@ -1,79 +1,79 @@
-import prisma from '$lib/prisma';
+import prisma from "$lib/prisma";
 
 export async function getCounties() {
-    // filtering for OH by default
-    const counties = await prisma.county.findMany({
-        where: {
-            state: {
-                abbreviation: 'OH',
-            },
-        },
+  // filtering for OH by default
+  const counties = await prisma.county.findMany({
+    where: {
+      state: {
+        abbreviation: "OH",
+      },
+    },
 
-        orderBy: [
-            {
-                name: 'asc',
-            },
-        ],
-    });
+    orderBy: [
+      {
+        name: "asc",
+      },
+    ],
+  });
 
-    return counties;
+  return counties;
 }
 
 export async function getCountiesExpanded() {
-    // filtering for OH by default
-    const counties = await prisma.county.findMany({
-        include: {
-            stateRegion: true,
-            sites: true,
-            state: true,
-        },
+  // filtering for OH by default
+  const counties = await prisma.county.findMany({
+    include: {
+      stateRegion: true,
+      sites: true,
+      state: true,
+    },
 
-        where: {
-            state: {
-                abbreviation: 'OH',
-            },
-        },
+    where: {
+      state: {
+        abbreviation: "OH",
+      },
+    },
 
-        orderBy: [
-            {
-                name: 'asc',
-            },
-        ],
-    });
+    orderBy: [
+      {
+        name: "asc",
+      },
+    ],
+  });
 
-    return counties;
+  return counties;
 }
 
 export async function getMonitoredCounties() {
-    // filtering for OH by default
-    const counties = await prisma.county.findMany({
-        include: {
-            stateRegion: true,
-            sites: true,
-            state: true,
-        },
+  // filtering for OH by default
+  const counties = await prisma.county.findMany({
+    include: {
+      stateRegion: true,
+      sites: true,
+      state: true,
+    },
 
-        where: {
-            state: {
-                abbreviation: 'OH',
-            },
-            sites: {
-                some: {},
-            },
-        },
+    where: {
+      state: {
+        abbreviation: "OH",
+      },
+      sites: {
+        some: {},
+      },
+    },
 
-        orderBy: [
-            {
-                name: 'asc',
-            },
-        ],
-    });
+    orderBy: [
+      {
+        name: "asc",
+      },
+    ],
+  });
 
-    return counties;
+  return counties;
 }
 
 export async function getCountySpecimens() {
-    const CountySpecimens = await prisma.$queryRaw`
+  const CountySpecimens = await prisma.$queryRaw`
 select distinct
 c.name county,
 r.name stateRegion,
@@ -85,24 +85,24 @@ inner join sitedate d on s.id = d.siteid
 inner join siteDateObservation o on d.id = o.sitedateid
 inner join checklist l on o.checklistid = l.id`;
 
-    return CountySpecimens;
+  return CountySpecimens;
 }
 
 export async function getStates() {
-    // filtering for OH by default
-    const states = await prisma.state.findMany({
-        where: {
-            country: {
-                abbreviation: 'US',
-            },
-        },
+  // filtering for OH by default
+  const states = await prisma.state.findMany({
+    where: {
+      country: {
+        abbreviation: "US",
+      },
+    },
 
-        orderBy: [
-            {
-                name: 'asc',
-            },
-        ],
-    });
+    orderBy: [
+      {
+        name: "asc",
+      },
+    ],
+  });
 
-    return states;
+  return states;
 }

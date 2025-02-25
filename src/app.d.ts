@@ -1,32 +1,32 @@
 // See https://kit.svelte.dev/docs/types#app
 
-import type { defaultOrganization } from '$lib/config';
+import type { defaultOrganization } from "$lib/config";
 
 // for information about these interfaces
 declare global {
-    namespace App {
-        // interface Error {}
-        // interface Locals {}
-        // interface PageData {}
-        // interface PageState {}
-        // interface Platform {}
-        interface Locals {
-            user: {
-                id: string;
-                name: string;
-                firstLast: string;
-                lastFirst: string;
-                role: string;
-                organizationId: string;
-                disabled: boolean;
-                createdAt: date;
-            };
-            config: {};
-        }
+  namespace App {
+    // interface Error {}
+    // interface Locals {}
+    // interface PageData {}
+    // interface PageState {}
+    // interface Platform {}
+    interface Locals {
+      user: {
+        id: string;
+        name: string;
+        firstLast: string;
+        lastFirst: string;
+        role: string;
+        organizationId: string;
+        disabled: boolean;
+        createdAt: date;
+      };
+      config: {};
     }
-    // type EventElements = Event & {
-    //   currentTarget: EventTarget & HTMLInputElement;
-    // };
+  }
+  // type EventElements = Event & {
+  //   currentTarget: EventTarget & HTMLInputElement;
+  // };
 }
 
 /*  // moved this stuff up 

@@ -1,94 +1,96 @@
-import prisma from '$lib/prisma';
-import type { SpeciesSearchParams, CountySpecimen } from '$lib/types';
-import { getCountySpecimens } from './counties';
-import type { Checklist } from '@prisma/client';
+import prisma from "$lib/prisma";
+import type { SpeciesSearchParams, CountySpecimen } from "$lib/types";
+import { getCountySpecimens } from "./counties";
+import type { Checklist } from "@prisma/client";
 
 export async function getChecklist(checklistId: number) {
-    const checklist = await prisma.checklist.findUnique({
-        where: {
-            id: checklistId,
-        },
-    });
+  const checklist = await prisma.checklist.findUnique({
+    where: {
+      id: checklistId,
+    },
+  });
 
-    return checklist;
+  return checklist;
 }
 
 export async function getChecklists() {
-    const checklists = await prisma.checklist.findMany({
-        orderBy: [
-            {
-                genus: 'asc',
-            },
-            {
-                species: 'asc',
-            },
-            {
-                subspecies: { sort: 'asc', nulls: 'first' },
-            },
-        ],
-    });
+  const checklists = await prisma.checklist.findMany({
+    orderBy: [
+      {
+        genus: "asc",
+      },
+      {
+        species: "asc",
+      },
+      {
+        subspecies: { sort: "asc", nulls: "first" },
+      },
+    ],
+  });
 
-    return checklists;
+  return checklists;
 }
 
 export async function getChecklistsBySiteDateObsId(id: number) {
-    const checklists = await prisma.checklist.findMany({
-        select: {
-            siteDateObservations: {
-                where: {
-                    id: id,
-                },
-                select: {
-                    siteDate: true,
-                },
-            },
+  const checklists = await prisma.checklist.findMany({
+    select: {
+      siteDateObservations: {
+        where: {
+          id: id,
         },
-        orderBy: [
-            {
-                genus: 'asc',
-            },
-            {
-                species: 'asc',
-            },
-            {
-                subspecies: { sort: 'asc', nulls: 'first' },
-            },
-        ],
-    });
+        select: {
+          siteDate: true,
+        },
+      },
+    },
+    orderBy: [
+      {
+        genus: "asc",
+      },
+      {
+        species: "asc",
+      },
+      {
+        subspecies: { sort: "asc", nulls: "first" },
+      },
+    ],
+  });
 
-    return checklists;
+  return checklists;
 }
 
 export async function getChecklistsBySiteDateId(siteDateId: number) {
-    const checklists = await prisma.checklist.findMany({
-        select: {
-            siteDateObservations: {
-                where: {
-                    siteDateId: siteDateId,
-                },
-                select: {
-                    siteDateId: true,
-                },
-            },
+  const checklists = await prisma.checklist.findMany({
+    select: {
+      siteDateObservations: {
+        where: {
+          siteDateId: siteDateId,
         },
-        orderBy: [
-            {
-                genus: 'asc',
-            },
-            {
-                species: 'asc',
-            },
-            {
-                subspecies: { sort: 'asc', nulls: 'first' },
-            },
-        ],
-    });
+        select: {
+          siteDateId: true,
+        },
+      },
+    },
+    orderBy: [
+      {
+        genus: "asc",
+      },
+      {
+        species: "asc",
+      },
+      {
+        subspecies: { sort: "asc", nulls: "first" },
+      },
+    ],
+  });
 
-    return checklists;
+  return checklists;
 }
 
-export async function getChecklistsBySiteId(siteId: number): Promise<Checklist[]> {
-    const checklists: Checklist[] = await prisma.$queryRaw<Checklist[]>`
+export async function getChecklistsBySiteId(
+  siteId: number,
+): Promise<Checklist[]> {
+  const checklists: Checklist[] = await prisma.$queryRaw<Checklist[]>`
 		select id 
 		, hodges
 		, genus
@@ -116,14 +118,18 @@ export async function getChecklistsBySiteId(siteId: number): Promise<Checklist[]
 			from sitedate d
 			inner join sitedateobservation o on o.siteDateId = d.id
 			where d.id = ${siteId})`;
-    return checklists;
+  return checklists;
 }
 
-export async function getChecklistsFiltered(filter: SpeciesSearchParams): Promise<CountySpecimen[]> {
-    console.log('filter', filter);
+export async function getChecklistsFiltered(
+  filter: SpeciesSearchParams,
+): Promise<CountySpecimen[]> {
+  console.log("filter", filter);
 
-    // result is distinc, consider numbers later
-    const CountySpecimens: CountySpecimen[] = await prisma.$queryRaw<CountySpecimen[]>`
+  // result is distinc, consider numbers later
+  const CountySpecimens: CountySpecimen[] = await prisma.$queryRaw<
+    CountySpecimen[]
+  >`
 select distinct
 c.id countyId,
 c.name county,
@@ -141,12 +147,18 @@ inner join sitedate d on d.siteid = s.id
 inner join siteDateObservation o on o.sitedateid = d.id
 inner join checklist l on l.id = o.checklistid`;
 
-    let useSpecimens = filter && filter.specimenIds && filter.specimenIds.length;
-    let useCounties = filter && filter.countyIds && filter.countyIds.length;
+  let useSpecimens = filter && filter.specimenIds && filter.specimenIds.length;
+  let useCounties = filter && filter.countyIds && filter.countyIds.length;
 
-    return CountySpecimens.filter((cs: any) => (useSpecimens ? filter.specimenIds.includes(cs.checklistId) : true) && (useCounties ? filter.countyIds.includes(cs.countyId) : true) && (filter.dateStart ? new Date(cs.recordDate) >= filter.dateStart : true) && (filter.dateEnd ? new Date(cs.dateEnd) <= filter.dateEnd : true));
+  return CountySpecimens.filter(
+    (cs: any) =>
+      (useSpecimens ? filter.specimenIds.includes(cs.checklistId) : true) &&
+      (useCounties ? filter.countyIds.includes(cs.countyId) : true) &&
+      (filter.dateStart ? new Date(cs.recordDate) >= filter.dateStart : true) &&
+      (filter.dateEnd ? new Date(cs.dateEnd) <= filter.dateEnd : true),
+  );
 
-    /* filter on:
+  /* filter on:
 	 {
 		filter: {
 			// First level (ids, taxa) is AND, i.e. must have all conditions met
@@ -176,24 +188,24 @@ inner join checklist l on l.id = o.checklistid`;
 }
 
 export async function addItem(checklist: any) {
-    const newChecklist = await prisma.checklist.create({
-        data: {
-            hodges: 'A000',
-            genus: 'Shmoo',
-            species: 'cutie',
-            subspecies: 'cat',
-            commonName: 'Stella is a cute Shmoo',
-            show: true,
-            kind: 'X',
-            revised: 'N',
-            author: 'Donat, N.',
-            referenceCount: 23,
-            countyCount: 1,
-            endangered: 'rare',
-        },
-    });
+  const newChecklist = await prisma.checklist.create({
+    data: {
+      hodges: "A000",
+      genus: "Shmoo",
+      species: "cutie",
+      subspecies: "cat",
+      commonName: "Stella is a cute Shmoo",
+      show: true,
+      kind: "X",
+      revised: "N",
+      author: "Donat, N.",
+      referenceCount: 23,
+      countyCount: 1,
+      endangered: "rare",
+    },
+  });
 
-    return newChecklist;
+  return newChecklist;
 }
 
 export async function updateItem(checklistId: number) {}
