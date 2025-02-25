@@ -1,24 +1,31 @@
 <script lang="ts">
     /*-- Imports */
-    import { GOTYPE } from '$lib/types.js';
-    import type { ModalSettings, ModalComponent } from '@skeletonlabs/skeleton';
-    import type { SiteDateYear } from '$lib/types.js';
-    import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
-    import DataOptions from '$lib/components/datanavigation/DataOptions.svelte';
-    import Container from '$lib/components/layouts/Container.svelte';
-    import SiteDateObservations from '$lib/components/pages/SiteDateObservations.svelte';
-    import FlexContainer from '$lib/components/FlexContainer.svelte';
-    import GoBack from '$lib/components/datanavigation/GoBack.svelte';
-    import GoNext from '$lib/components/datanavigation/GoNext.svelte';
-    import MemoryToggle from '$lib/components/data/MemoryToggle.svelte';
-    import ModalSiteDate from '$lib/components/ModalSiteDate.svelte';
-    import ModalSiteDateObservation from '$lib/components/ModalSiteDateObservation.svelte';
-    import SiteDatePicker from '$lib/components/datanavigation/SiteDatePicker.svelte';
-    import YearWeek from '$lib/components/datanavigation/YearWeek.svelte';
-    import { getModalStore } from '@skeletonlabs/skeleton';
-    import { goto } from '$app/navigation';
-    import { formatDate, weekOfYearSince, convertFtoC, convertMphToKm, isRecent, decodeWeather } from '$lib/utils';
-    import { setContext } from 'svelte';
+    import { GOTYPE } from "$lib/types.js";
+    import type { ModalSettings, ModalComponent } from "@skeletonlabs/skeleton";
+    import type { SiteDateYear } from "$lib/types.js";
+    import { Accordion, AccordionItem } from "@skeletonlabs/skeleton";
+    import DataOptions from "$lib/components/datanavigation/DataOptions.svelte";
+    import Container from "$lib/components/layouts/Container.svelte";
+    import SiteDateObservations from "$lib/components/pages/SiteDateObservations.svelte";
+    import FlexContainer from "$lib/components/FlexContainer.svelte";
+    import GoBack from "$lib/components/datanavigation/GoBack.svelte";
+    import GoNext from "$lib/components/datanavigation/GoNext.svelte";
+    import MemoryToggle from "$lib/components/data/MemoryToggle.svelte";
+    import ModalSiteDate from "$lib/components/ModalSiteDate.svelte";
+    import ModalSiteDateObservation from "$lib/components/ModalSiteDateObservation.svelte";
+    import SiteDatePicker from "$lib/components/datanavigation/SiteDatePicker.svelte";
+    import YearWeek from "$lib/components/datanavigation/YearWeek.svelte";
+    import { getModalStore } from "@skeletonlabs/skeleton";
+    import { goto } from "$app/navigation";
+    import {
+        formatDate,
+        weekOfYearSince,
+        convertFtoC,
+        convertMphToKm,
+        isRecent,
+        decodeWeather,
+    } from "$lib/utils";
+    import { setContext } from "svelte";
 
     let element: HTMLElement | undefined;
     /*-- -- Data -- */
@@ -29,18 +36,36 @@
         data: any;
     } = $props();
 
-    let useFarenheit: string = $state('F');
-    const temperatureSetting = 'useFarenheit';
-    const temperatureUnits = { F: '&deg;F', C: '&deg;C' };
-    let temperatureStart = $derived(useFarenheit === 'F' ? data.siteDate.startTemp : convertFtoC(data.siteDate.startTemp));
-    let temperatureEnd = $derived(useFarenheit === 'F' ? data.siteDate.endTemp : convertFtoC(data.siteDate.endTemp));
-    let temperatureUnit = $derived(new Map(Object.entries(temperatureUnits)).get(useFarenheit));
+    let useFarenheit: string = $state("F");
+    const temperatureSetting = "useFarenheit";
+    const temperatureUnits = { F: "&deg;F", C: "&deg;C" };
+    let temperatureStart = $derived(
+        useFarenheit === "F"
+            ? data.siteDate.startTemp
+            : convertFtoC(data.siteDate.startTemp),
+    );
+    let temperatureEnd = $derived(
+        useFarenheit === "F"
+            ? data.siteDate.endTemp
+            : convertFtoC(data.siteDate.endTemp),
+    );
+    let temperatureUnit = $derived(
+        new Map(Object.entries(temperatureUnits)).get(useFarenheit),
+    );
 
-    let useMph: string = $state('M');
-    const windSetting = 'useMph';
-    const windUnits = { M: 'Mph', K: 'Kmph' };
-    let windStart = $derived(useMph === 'M' ? data.siteDate.startWindMPH : convertMphToKm(data.siteDate.startWindMPH));
-    let windEnd = $derived(useMph === 'M' ? data.siteDate.endWindMPH : convertMphToKm(data.siteDate.endWindMPH));
+    let useMph: string = $state("M");
+    const windSetting = "useMph";
+    const windUnits = { M: "Mph", K: "Kmph" };
+    let windStart = $derived(
+        useMph === "M"
+            ? data.siteDate.startWindMPH
+            : convertMphToKm(data.siteDate.startWindMPH),
+    );
+    let windEnd = $derived(
+        useMph === "M"
+            ? data.siteDate.endWindMPH
+            : convertMphToKm(data.siteDate.endWindMPH),
+    );
     let windUnit = $derived(new Map(Object.entries(windUnits)).get(useMph));
 
     // Accordian open-close defaults
@@ -56,13 +81,13 @@
     let accJ: boolean = $state(false);
 
     /*-- Context */
-    setContext('sites', data.sites);
-    setContext('siteDates', data.siteDates);
+    setContext("sites", data.sites);
+    setContext("siteDates", data.siteDates);
 
     /*-- -- Styling -- */
     /*-- Properties (styles) */
     /*-- Constants (styles) */
-    const cClassesObservation = 'card flex';
+    const cClassesObservation = "card flex";
 
     /*-- Variables (styles) */
     /*-- Reactives (styles) */
@@ -105,64 +130,86 @@
 
         // Obtain Accordian open-close states from local storage
         x = localStorage?.optAccA;
-        optAccA = x ? x === 'true' : accA;
+        optAccA = x ? x === "true" : accA;
         x = localStorage?.optAccB;
-        optAccB = x ? x === 'true' : accB;
+        optAccB = x ? x === "true" : accB;
         x = localStorage?.optAccC;
-        optAccC = x ? x === 'true' : accC;
+        optAccC = x ? x === "true" : accC;
         x = localStorage?.optAccD;
-        optAccD = x ? x === 'true' : accD;
+        optAccD = x ? x === "true" : accD;
         x = localStorage?.optAccE;
-        optAccE = x ? x === 'true' : accE;
+        optAccE = x ? x === "true" : accE;
         x = localStorage?.optAccF;
-        optAccF = x ? x === 'true' : accF;
+        optAccF = x ? x === "true" : accF;
         x = localStorage?.optAccG;
-        optAccG = x ? x === 'true' : accG;
+        optAccG = x ? x === "true" : accG;
         x = localStorage?.optAccH;
-        optAccH = x ? x === 'true' : accH;
+        optAccH = x ? x === "true" : accH;
         x = localStorage?.optAccI;
-        optAccI = x ? x === 'true' : accI;
+        optAccI = x ? x === "true" : accI;
         x = localStorage?.optAccJ;
-        optAccJ = x ? x === 'true' : accJ;
+        optAccJ = x ? x === "true" : accJ;
 
         x = localStorage?.showRecentEdits;
         if (x && x.length) {
-            showRecentEdits = x === '1';
+            showRecentEdits = x === "1";
         }
 
         x = localStorage?.showDeletedData;
         if (x && x.length) {
-            showDeletedData = x === '1';
+            showDeletedData = x === "1";
         }
     });
 
     $effect(() => {
         // Store Accordian open-close states to local storage
-        localStorage.setItem('optAccA', optAccA.toString());
-        localStorage.setItem('optAccB', optAccB.toString());
-        localStorage.setItem('optAccC', optAccC.toString());
-        localStorage.setItem('optAccD', optAccD.toString());
-        localStorage.setItem('optAccE', optAccE.toString());
-        localStorage.setItem('optAccF', optAccF.toString());
-        localStorage.setItem('optAccG', optAccG.toString());
-        localStorage.setItem('optAccH', optAccH.toString());
-        localStorage.setItem('optAccI', optAccI.toString());
-        localStorage.setItem('optAccJ', optAccJ.toString());
+        localStorage.setItem("optAccA", optAccA.toString());
+        localStorage.setItem("optAccB", optAccB.toString());
+        localStorage.setItem("optAccC", optAccC.toString());
+        localStorage.setItem("optAccD", optAccD.toString());
+        localStorage.setItem("optAccE", optAccE.toString());
+        localStorage.setItem("optAccF", optAccF.toString());
+        localStorage.setItem("optAccG", optAccG.toString());
+        localStorage.setItem("optAccH", optAccH.toString());
+        localStorage.setItem("optAccI", optAccI.toString());
+        localStorage.setItem("optAccJ", optAccJ.toString());
 
-        localStorage.setItem('showRecentEdits', showRecentEdits ? '1' : '0');
-        localStorage.setItem('showDeletedData', showDeletedData ? '1' : '0');
+        localStorage.setItem("showRecentEdits", showRecentEdits ? "1" : "0");
+        localStorage.setItem("showDeletedData", showDeletedData ? "1" : "0");
     });
 
     /*-- Handlers */
     /*-- Methods */
-    let inUse = $derived(data.siteDateObservations.filter((x: any) => !x.isDeleted).map((x: any) => x.checklistId));
-    let availableChecklistItems = $derived(data.checklistsAll.filter((x: any) => !inUse.includes(x.checklistId)));
+    let inUse = $derived(
+        data.siteDateObservations
+            .filter((x: any) => !x.isDeleted)
+            .map((x: any) => x.checklistId),
+    );
+    let availableChecklistItems = $derived(
+        data.checklistsAll.filter((x: any) => !inUse.includes(x.checklistId)),
+    );
 
-    function modalComponentSiteDate(isNewRecord: boolean, unitTemp: string, unitSpeed: string, siteDate: SiteDateYear | null, siteId: number): void {
+    function modalComponentSiteDate(
+        isNewRecord: boolean,
+        unitTemp: string,
+        unitSpeed: string,
+        siteDate: SiteDateYear | null,
+        siteId: number,
+    ): void {
         const c: ModalComponent = { ref: ModalSiteDate };
-        console.log(data.siteDate.recordDate, formatDate(data.siteDate.recordDate), formatDate(new Date(data.siteDate.recordDate).toISOString()), data.siteDate.id, currentSiteDateId);
-        const componentTitle = isNewRecord ? 'Add New Date Record' : `Edit Date Record - ${formatDate(new Date(data.siteDate.recordDate).toISOString())}, ${recordDate}`;
-        const componentUrl = isNewRecord ? '?/createSiteDate' : '?/updateSiteDate';
+        console.log(
+            data.siteDate.recordDate,
+            formatDate(data.siteDate.recordDate),
+            formatDate(new Date(data.siteDate.recordDate).toISOString()),
+            data.siteDate.id,
+            currentSiteDateId,
+        );
+        const componentTitle = isNewRecord
+            ? "Add New Date Record"
+            : `Edit Date Record - ${formatDate(new Date(data.siteDate.recordDate).toISOString())}, ${recordDate}`;
+        const componentUrl = isNewRecord
+            ? "?/createSiteDate"
+            : "?/updateSiteDate";
         const componentValues = isNewRecord
             ? {
                   siteId: siteId,
@@ -179,36 +226,39 @@
                   isNewRecord: isNewRecord,
               };
         const modal: ModalSettings = {
-            type: 'component',
+            type: "component",
             component: c,
             title: componentTitle,
-            body: 'Complete the form below and then press submit.',
+            body: "Complete the form below and then press submit.",
             value: componentValues,
             response: (r) => {
-                if (typeof r === 'object') {
+                if (typeof r === "object") {
                     const formData = new FormData();
-                    for (const [k, v] of Object.entries(r) as [string, any]) formData.append(k, v);
+                    for (const [k, v] of Object.entries(r) as [string, any])
+                        formData.append(k, v);
 
                     fetch(componentUrl, {
-                        method: 'POST',
+                        method: "POST",
                         body: formData,
                     })
                         .then((response) => response.json())
                         .then((data) => {
                             if (data.status === 200) {
                                 const rdata = JSON.parse(data.data);
-                                console.log('rdata:', rdata);
+                                console.log("rdata:", rdata);
                                 let siteDateId = rdata[rdata[0].id];
                                 //TODO: Assure that SiteDatePicker updates.  The following goto + invalidateAll does
                                 // not accomplish it.  Thought that udpating the bound currentSiteDateId would cause
                                 // the SiteDatePicker to update itself.  Hmmm.
                                 //currentSiteDateId = siteDateId;
                                 //NOTE: verified that invalidateAll assure that browsed for data renders after update
-                                goto('/api/sitedates/' + siteDateId, { invalidateAll: true });
+                                goto("/api/sitedates/" + siteDateId, {
+                                    invalidateAll: true,
+                                });
                             }
                         })
                         .catch((error) => {
-                            console.error('Error:', error);
+                            console.error("Error:", error);
                         });
                 }
             },
@@ -218,15 +268,25 @@
 
     function modalComponentSiteDateObersvation(isNewRecord: boolean): void {
         let isSiteDate = true;
-        const siteDateObservationId = data.siteDateObservations.length ? data.siteDateObservations[0].siteDateObservationId : -1;
+        const siteDateObservationId = data.siteDateObservations.length
+            ? data.siteDateObservations[0].siteDateObservationId
+            : -1;
         const c: ModalComponent = { ref: ModalSiteDateObservation };
-        const componentTitle = isNewRecord ? 'Add Specimen to Observations' : 'Edit Observation';
-        const componentUrl = isNewRecord ? `../sitedateobservations/-1/${currentSiteId}?/createSiteDateObservation` : `../sitedateobservations/${siteDateObservationId}/${currentSiteId}?/updateSiteDateObservation`;
+        const componentTitle = isNewRecord
+            ? "Add Specimen to Observations"
+            : "Edit Observation";
+        const componentUrl = isNewRecord
+            ? `../sitedateobservations/-1/${currentSiteId}?/createSiteDateObservation`
+            : `../sitedateobservations/${siteDateObservationId}/${currentSiteId}?/updateSiteDateObservation`;
         const componentValues = isNewRecord
             ? {
                   checklist: availableChecklistItems,
-                  year: isSiteDate ? data.siteDate.year : new Date().getFullYear(),
-                  week: isSiteDate ? data.siteDate.week : weekOfYearSince(new Date()),
+                  year: isSiteDate
+                      ? data.siteDate.year
+                      : new Date().getFullYear(),
+                  week: isSiteDate
+                      ? data.siteDate.week
+                      : weekOfYearSince(new Date()),
                   siteDateId: data.siteDate.id,
               }
             : {
@@ -236,18 +296,19 @@
                   siteDateId: data.siteDate.id,
               };
         const modal: ModalSettings = {
-            type: 'component',
+            type: "component",
             component: c,
             title: componentTitle,
-            body: 'Complete the form below and then press submit.',
+            body: "Complete the form below and then press submit.",
             value: componentValues,
             response: (r) => {
-                if (typeof r === 'object') {
+                if (typeof r === "object") {
                     const formData = new FormData();
-                    for (const [k, v] of Object.entries(r) as [string, any]) formData.append(k, v);
+                    for (const [k, v] of Object.entries(r) as [string, any])
+                        formData.append(k, v);
 
                     fetch(componentUrl, {
-                        method: 'POST',
+                        method: "POST",
                         body: formData,
                     })
                         .then((response) => response.json())
@@ -256,11 +317,16 @@
                                 const rdata = JSON.parse(data.data);
                                 //TODO: find out if going foward into sdo record-listings is preferred or to just stay put?
                                 let siteDateObservationId = rdata[rdata[0].id];
-                                goto('/api/sitedateobservations/' + siteDateObservationId + '/' + siteId);
+                                goto(
+                                    "/api/sitedateobservations/" +
+                                        siteDateObservationId +
+                                        "/" +
+                                        siteId,
+                                );
                             }
                         })
                         .catch((error) => {
-                            console.error('Error:', error);
+                            console.error("Error:", error);
                         });
                 }
             },
@@ -269,15 +335,31 @@
     }
 
     /*-- Reactives (functional) */
-    let recordDate: string = $derived(formatDate(new Date(data.siteDate.recordDate).toISOString(), 'short', undefined));
-    let recordYear: number = $derived(new Date(data.siteDate.recordDate).getFullYear());
-    let recordWeek: number | null = $derived(weekOfYearSince(new Date(data.siteDate.recordDate)));
-    let recordSdoCount: number = $derived(data.siteDate.siteDateObservations.filter((o: any) => showDeletedData || !o.deleted).length);
+    let recordDate: string = $derived(
+        formatDate(
+            new Date(data.siteDate.recordDate).toISOString(),
+            "short",
+            undefined,
+        ),
+    );
+    let recordYear: number = $derived(
+        new Date(data.siteDate.recordDate).getFullYear(),
+    );
+    let recordWeek: number | null = $derived(
+        weekOfYearSince(new Date(data.siteDate.recordDate)),
+    );
+    let recordSdoCount: number = $derived(
+        data.siteDate.siteDateObservations.filter(
+            (o: any) => showDeletedData || !o.deleted,
+        ).length,
+    );
 
     let currentSiteId: number = $state(data.siteDate.id);
     // $inspect(currentSiteId);
 
-    let firstSdoId = $derived(recordSdoCount > 0 ? data.siteDate.siteDateObservations[0].id : -1);
+    let firstSdoId = $derived(
+        recordSdoCount > 0 ? data.siteDate.siteDateObservations[0].id : -1,
+    );
 
     // let startTemp = $derived(String(data.siteDate.startTemp));
     // let endTemp = $derived(String(data.siteDate.endTemp));
@@ -292,22 +374,59 @@
     // console.log(data.siteDate);
 </script>
 
-{#snippet childrenOuter()}
+{#snippet outerPane()}
     <YearWeek year={recordYear} week={recordWeek} sdoCount={recordSdoCount} />
-    <DataOptions bind:showRecentEdits bind:showDeletedData showMultipleRows={false} showMyDataOnly={false} showUnreviewedOnly={false} isEditing={false} />
+    <DataOptions
+        bind:showRecentEdits
+        bind:showDeletedData
+        showMultipleRows={false}
+        showMyDataOnly={false}
+        showUnreviewedOnly={false}
+        isEditing={false}
+    />
 {/snippet}
 
 <!-- <DoubledContainer basisLeft="basis-2/5" basisRight="basis-3/5"> -->
 {#snippet clHead()}
     <h2 class="flex flex-row justify-between pb-2">
-        <div class="overflow-hidden text-ellipsis text-nowrap w-80">{data.siteDate.siteName}</div>
+        <div class="overflow-hidden text-ellipsis text-nowrap w-80">
+            {data.siteDate.siteName}
+        </div>
         <div class="flex flex-row">
-            <button type="button" class="btn variant-soft scale-90 translate-x-2" onclick={() => modalComponentSiteDate(false, useMph, useFarenheit, data.siteDate, currentSiteId)} title="Edit current date record">
-                <span class="text-green-700 dark:text-green-400 text-xl before:content-['✚']"></span>
+            <button
+                type="button"
+                class="btn variant-soft scale-90 translate-x-2"
+                onclick={() =>
+                    modalComponentSiteDate(
+                        false,
+                        useMph,
+                        useFarenheit,
+                        data.siteDate,
+                        currentSiteId,
+                    )}
+                title="Edit current date record"
+            >
+                <span
+                    class="text-green-700 dark:text-green-400 text-xl before:content-['✚']"
+                ></span>
                 <span>Edit Current</span>
             </button>
-            <button type="button" class="btn variant-soft scale-90 translate-x-2" onclick={() => modalComponentSiteDate(true, useMph, useFarenheit, null, currentSiteId)} title="Add new date record for observations">
-                <span class="text-green-700 dark:text-green-400 text-xl before:content-['✚']"></span>
+            <button
+                type="button"
+                class="btn variant-soft scale-90 translate-x-2"
+                onclick={() =>
+                    modalComponentSiteDate(
+                        true,
+                        useMph,
+                        useFarenheit,
+                        null,
+                        currentSiteId,
+                    )}
+                title="Add new date record for observations"
+            >
+                <span
+                    class="text-green-700 dark:text-green-400 text-xl before:content-['✚']"
+                ></span>
                 <span>Add New</span>
             </button>
         </div>
@@ -328,15 +447,33 @@
             <svelte:fragment slot="summary">Times</svelte:fragment>
             <svelte:fragment slot="content">
                 <div class="pl-4 flex flex-row">
-                    <span class="basis-20 text-nowrap text-right">Start Time:</span>
+                    <span class="basis-20 text-nowrap text-right"
+                        >Start Time:</span
+                    >
                     <span class="pl-2 w-24 text-right">
-                        {data.siteDate.startTime ? formatDate(new Date(data.siteDate.startTime).toISOString(), undefined, 'short') : ''}
+                        {data.siteDate.startTime
+                            ? formatDate(
+                                  new Date(
+                                      data.siteDate.startTime,
+                                  ).toISOString(),
+                                  undefined,
+                                  "short",
+                              )
+                            : ""}
                     </span>
                 </div>
                 <div class="pl-4 flex flex-row">
-                    <span class="basis-20 text-nowrap text-right">End Time:</span>
+                    <span class="basis-20 text-nowrap text-right"
+                        >End Time:</span
+                    >
                     <span class="pl-2 w-24 text-right">
-                        {data.siteDate.endTime ? formatDate(new Date(data.siteDate.endTime).toISOString(), undefined, 'short') : ''}
+                        {data.siteDate.endTime
+                            ? formatDate(
+                                  new Date(data.siteDate.endTime).toISOString(),
+                                  undefined,
+                                  "short",
+                              )
+                            : ""}
                     </span>
                 </div>
             </svelte:fragment>
@@ -345,7 +482,12 @@
             <svelte:fragment slot="summary">
                 <div class="flex space-x-4">
                     <span class="my-auto">Temperature</span>
-                    <MemoryToggle bind:toggleItem={useFarenheit} toggleName={temperatureSetting} toggleList={temperatureUnits} isHidden={!optAccB}></MemoryToggle>
+                    <MemoryToggle
+                        bind:toggleItem={useFarenheit}
+                        toggleName={temperatureSetting}
+                        toggleList={temperatureUnits}
+                        isHidden={!optAccB}
+                    ></MemoryToggle>
                 </div>
             </svelte:fragment>
             <svelte:fragment slot="content">
@@ -360,20 +502,28 @@
             </svelte:fragment>
         </AccordionItem>
         <AccordionItem bind:open={optAccC}>
-            <svelte:fragment slot="summary">Cloud cover (&percnt;)</svelte:fragment>
+            <svelte:fragment slot="summary"
+                >Cloud cover (&percnt;)</svelte:fragment
+            >
             <svelte:fragment slot="content">
                 <div class="pl-4">
                     Start Clouds: {data.siteDate.startClouds}
                 </div>
                 <div class="pl-4">
                     End Clouds: {data.siteDate.endClouds}
-                </div></svelte:fragment>
+                </div></svelte:fragment
+            >
         </AccordionItem>
         <AccordionItem bind:open={optAccD}>
             <svelte:fragment slot="summary">
                 <div class="flex space-x-4">
                     <span class="my-auto">Wind</span>
-                    <MemoryToggle bind:toggleItem={useMph} toggleName={windSetting} toggleList={windUnits} isHidden={!optAccD}></MemoryToggle>
+                    <MemoryToggle
+                        bind:toggleItem={useMph}
+                        toggleName={windSetting}
+                        toggleList={windUnits}
+                        isHidden={!optAccD}
+                    ></MemoryToggle>
                 </div>
             </svelte:fragment>
             <svelte:fragment slot="content">
@@ -388,7 +538,8 @@
                 </div>
                 <div class="pl-4">
                     End Wind: {windEnd} ({windUnit})
-                </div></svelte:fragment>
+                </div></svelte:fragment
+            >
         </AccordionItem>
         <AccordionItem bind:open={optAccE}>
             <svelte:fragment slot="summary">Weather</svelte:fragment>
@@ -444,111 +595,143 @@
             <svelte:fragment slot="summary">Larva food sources</svelte:fragment>
             <svelte:fragment slot="content">
                 <div class="pl-4">
-                    larvalEnergy1: {@html data.siteDate.larvalEnergy1 ?? '&varnothing;'}
+                    larvalEnergy1: {@html data.siteDate.larvalEnergy1 ??
+                        "&varnothing;"}
                 </div>
                 <div class="pl-4">
-                    larvalEnergy2: {@html data.siteDate.larvalEnergy2 ?? '&varnothing;'}
+                    larvalEnergy2: {@html data.siteDate.larvalEnergy2 ??
+                        "&varnothing;"}
                 </div>
                 <div class="pl-4">
-                    larvalEnergy3: {@html data.siteDate.larvalEnergy3 ?? '&varnothing;'}
+                    larvalEnergy3: {@html data.siteDate.larvalEnergy3 ??
+                        "&varnothing;"}
                 </div>
                 <div class="pl-4">
-                    larvalEnergy4: {@html data.siteDate.larvalEnergy4 ?? '&varnothing;'}
+                    larvalEnergy4: {@html data.siteDate.larvalEnergy4 ??
+                        "&varnothing;"}
                 </div>
                 <div class="pl-4">
-                    larvalEnergy5: {@html data.siteDate.larvalEnergy5 ?? '&varnothing;'}
+                    larvalEnergy5: {@html data.siteDate.larvalEnergy5 ??
+                        "&varnothing;"}
                 </div>
                 <div class="pl-4">
-                    larvalEnergy6: {@html data.siteDate.larvalEnergy6 ?? '&varnothing;'}
+                    larvalEnergy6: {@html data.siteDate.larvalEnergy6 ??
+                        "&varnothing;"}
                 </div>
                 <div class="pl-4">
-                    larvalEnergy7: {@html data.siteDate.larvalEnergy7 ?? '&varnothing;'}
+                    larvalEnergy7: {@html data.siteDate.larvalEnergy7 ??
+                        "&varnothing;"}
                 </div>
                 <div class="pl-4">
-                    larvalEnergy8: {@html data.siteDate.larvalEnergy8 ?? '&varnothing;'}
+                    larvalEnergy8: {@html data.siteDate.larvalEnergy8 ??
+                        "&varnothing;"}
                 </div>
                 <div class="pl-4">
-                    larvalEnergy9: {@html data.siteDate.larvalEnergy9 ?? '&varnothing;'}
+                    larvalEnergy9: {@html data.siteDate.larvalEnergy9 ??
+                        "&varnothing;"}
                 </div>
                 <div class="pl-4">
-                    larvalEnergy10: {@html data.siteDate.larvalEnergy10 ?? '&varnothing;'}
+                    larvalEnergy10: {@html data.siteDate.larvalEnergy10 ??
+                        "&varnothing;"}
                 </div>
                 <div class="pl-4">
-                    larvalEnergy11: {@html data.siteDate.larvalEnergy11 ?? '&varnothing;'}
+                    larvalEnergy11: {@html data.siteDate.larvalEnergy11 ??
+                        "&varnothing;"}
                 </div>
                 <div class="pl-4">
-                    larvalEnergy12: {@html data.siteDate.larvalEnergy12 ?? '&varnothing;'}
+                    larvalEnergy12: {@html data.siteDate.larvalEnergy12 ??
+                        "&varnothing;"}
                 </div>
                 <div class="pl-4">
-                    larvalEnergy13: {@html data.siteDate.larvalEnergy13 ?? '&varnothing;'}
+                    larvalEnergy13: {@html data.siteDate.larvalEnergy13 ??
+                        "&varnothing;"}
                 </div>
                 <div class="pl-4">
-                    larvalEnergy14: {@html data.siteDate.larvalEnergy14 ?? '&varnothing;'}
+                    larvalEnergy14: {@html data.siteDate.larvalEnergy14 ??
+                        "&varnothing;"}
                 </div>
                 <div class="pl-4">
-                    larvalEnergy15: {@html data.siteDate.larvalEnergy15 ?? '&varnothing;'}
-                </div></svelte:fragment>
+                    larvalEnergy15: {@html data.siteDate.larvalEnergy15 ??
+                        "&varnothing;"}
+                </div></svelte:fragment
+            >
         </AccordionItem>
         <AccordionItem bind:open={optAccG}>
             <svelte:fragment slot="summary">Larva</svelte:fragment>
             <svelte:fragment slot="content">
                 <div class="pl-4">
-                    Larva Ob A: {@html data.siteDate.larvaObservedA ?? '&varnothing;'}
+                    Larva Ob A: {@html data.siteDate.larvaObservedA ??
+                        "&varnothing;"}
                 </div>
                 <div class="pl-4">
-                    Larva Ob B: {@html data.siteDate.larvaObservedB ?? '&varnothing;'}
+                    Larva Ob B: {@html data.siteDate.larvaObservedB ??
+                        "&varnothing;"}
                 </div>
                 <div class="pl-4">
-                    Larva Ob C: {@html data.siteDate.larvaObservedC ?? '&varnothing;'}
+                    Larva Ob C: {@html data.siteDate.larvaObservedC ??
+                        "&varnothing;"}
                 </div>
                 <div class="pl-4">
-                    Larva Ob D: {@html data.siteDate.larvaObservedD ?? '&varnothing;'}
-                </div></svelte:fragment>
+                    Larva Ob D: {@html data.siteDate.larvaObservedD ??
+                        "&varnothing;"}
+                </div></svelte:fragment
+            >
         </AccordionItem>
         <AccordionItem bind:open={optAccH}>
             <svelte:fragment slot="summary">Energy/blooming</svelte:fragment>
             <svelte:fragment slot="content">
                 <div class="pl-4">
-                    Energy Source 1: {@html data.siteDate.energySource1 ?? '&varnothing;'}
+                    Energy Source 1: {@html data.siteDate.energySource1 ??
+                        "&varnothing;"}
                 </div>
                 <div class="pl-4">
-                    Energy Source 2: {@html data.siteDate.energySource2 ?? '&varnothing;'}
+                    Energy Source 2: {@html data.siteDate.energySource2 ??
+                        "&varnothing;"}
                 </div>
                 <div class="pl-4">
-                    Energy Source 3: {@html data.siteDate.energySource3 ?? '&varnothing;'}
+                    Energy Source 3: {@html data.siteDate.energySource3 ??
+                        "&varnothing;"}
                 </div>
                 <div class="pl-4">
-                    Energy Source 4: {@html data.siteDate.energySource4 ?? '&varnothing;'}
+                    Energy Source 4: {@html data.siteDate.energySource4 ??
+                        "&varnothing;"}
                 </div>
                 <hr class="mx-4" />
                 <div class="pl-4">
-                    Flowers in Bloom: {@html data.siteDate.flowersInBloom ?? '&varnothing;'}
+                    Flowers in Bloom: {@html data.siteDate.flowersInBloom ??
+                        "&varnothing;"}
                 </div>
             </svelte:fragment>
         </AccordionItem>
         <div class="pl-4">
-            Field Notes: {data.siteDate.fieldNotes ?? ''}
+            Field Notes: {data.siteDate.fieldNotes ?? ""}
         </div>
         <AccordionItem bind:open={optAccI}>
             <svelte:fragment slot="summary">Change history</svelte:fragment>
             <svelte:fragment slot="content">
                 <div class="pl-4">
-                    Created By: {data.siteDate.createdBy?.lastFirst ?? ''}
+                    Created By: {data.siteDate.createdBy?.lastFirst ?? ""}
                 </div>
                 <div class="pl-4">
-                    Created At: {data.siteDate.createdAt ? formatDate(new Date(data.siteDate.createdAt).toISOString(), 'medium', 'medium') : ''}
+                    Created At: {data.siteDate.createdAt
+                        ? formatDate(
+                              new Date(data.siteDate.createdAt).toISOString(),
+                              "medium",
+                              "medium",
+                          )
+                        : ""}
                 </div>
                 <div class="pl-4">
-                    Updated By: {data.siteDate.updatedBy?.lastFirst ?? ''}
+                    Updated By: {data.siteDate.updatedBy?.lastFirst ?? ""}
                 </div>
                 <div class="pl-4">
-                    Updated At: {data.siteDate.updatedAt ?? ''}
+                    Updated At: {data.siteDate.updatedAt ?? ""}
                 </div>
                 <div class="pl-4">
-                    Confirm By: {data.siteDate.confirmBy?.lastFirst ?? ''}
+                    Confirm By: {data.siteDate.confirmBy?.lastFirst ?? ""}
                 </div>
                 <div class="pl-4">
-                    Confirm At: {data.siteDate.confirmAt ?? ''}
+                    Confirm At: {data.siteDate.confirmAt ?? ""}
                 </div>
             </svelte:fragment>
         </AccordionItem>
@@ -557,73 +740,17 @@
 
 {#snippet clTail()}{/snippet}
 
-<!-- {#snippet crHead()} -->
-<!--     <div class="flex flex-row justify-between mb-2"> -->
-<!--         <div class="flex flex-row"> -->
-<!--             <button type="button" class="btn variant-soft scale-90 -translate-x-2" onclick={() => modalComponentSiteDateObersvation(true)} disabled={isEditing} title="Add new species observation"> -->
-<!--                 <span class="text-green-700 dark:text-green-400 text-xl before:content-['✚']"></span> -->
-<!--                 <span>Add species</span> -->
-<!--             </button> -->
-<!--         </div> -->
-<!--         <div class="flex flex-row"> -->
-<!--             <GoBack targetId={data.siteDate.id} targetType={GOTYPE.SITES} targetIdSecondary={null} controlBody="scale-90 -translate-x-2" buttonCenter="" scriptCenter="" labelledby="" /> -->
-<!--             <GoNext targetId={firstSdoId} targetType={GOTYPE.SITEDATEOBSERVATIONS} targetIdSecondary={data.siteDate.id} controlBody="scale-90 -translate-x-1" controlDisabled={firstSdoId < 0} buttonCenter="" scriptCenter="" labelledby="Go to specimen(s)" /> -->
-<!--             <SiteDatePicker bind:currentSiteId bind:currentSiteDateId controlBody="scale-90" buttonLeft="" buttonRight="" buttonYear="" buttonWeek="" dropdownShowDate={false} dropdownPointers={false} heading={null} yearPrefix="" weekPrefix="" controlOuter="" prefixYear="" prefixWeek="" suffixYear="" suffixWeek="" popupInner="" popupStyles="" labelledby="" /> -->
-<!--         </div> -->
-        <!--     <SiteDatePicker -->
-        <!--         buttonLeft="!px-2" -->
-        <!--         buttonRight="!px-2" -->
-        <!--         buttonYear="w-28 px-0 md:px-1 lg:px-2" -->
-        <!--         buttonWeek="w-24 px-0 md:px-1 lg:px-2" -->
-        <!--         yearPrefix="Year:" -->
-        <!--         weekPrefix="Week:" -->
-<!--     </div> -->
-<!---->
-<!--     <hr /> -->
-<!-- {/snippet} -->
-<!---->
-<!-- {#snippet crBody()} -->
-<!--     <div class="mt-2"> -->
-<!--         {#each data.siteDateObservations as siteDateObservation} -->
-<!--             <div -->
-<!--                 class={` -->
-<!--                     ${(() => { -->
-<!--                         let classes = 'hover:variant-soft-primary active:variant-filled-primary'; -->
-<!--                         if (siteDateObservation.deleted) { -->
-<!--                             classes += !showDeletedData ? ' hidden' : cClassesObservation + ' line-through variant-ghost-error'; -->
-<!--                         } else if (showRecentEdits && isRecent(siteDateObservation, 10)) { -->
-<!--                             classes += cClassesObservation + ' variant-ghost-warning'; -->
-<!--                         } -->
-<!--                         return classes; -->
-<!--                     })()}`}> -->
-<!--                 <a href="/api/sitedateobservations/{siteDateObservation.id}/{data.siteDate.siteId}" class="flex space-x-2 p-2"> -->
-<!--                     <div class="w-4"> -->
-<!--                         {#if siteDateObservation.confirmed} -->
-<!--                             <span class="text-success-800-100-token">✔</span> -->
-<!--                         {:else} -->
-<!--                             🔎 -->
-<!--                         {/if} -->
-<!--                     </div> -->
-<!--                     <div class="w-56">{siteDateObservation.checklist.commonName ?? ''}</div> -->
-<!--                     <div class="w-56">{siteDateObservation.checklist.scientificName}</div> -->
-<!--                     <div class="w-20">total: {siteDateObservation.total}</div> -->
-<!--                 </a> -->
-<!--             </div> -->
-<!--         {/each} -->
-<!--     </div> -->
-<!-- {/snippet} -->
-<!---->
-<!-- {#snippet crTail()}{/snippet} -->
-
-{#snippet childrenLeft()}
-    <Container head={clHead} body={clBody} tail={clTail} outerBodyClasses="px-0" />
+{#snippet leftPane()}
+    <Container
+        head={clHead}
+        body={clBody}
+        tail={clTail}
+        outerBodyClasses="px-0"
+    />
 {/snippet}
 
-{#snippet childrenCenter()}
+{#snippet centerPane()}
     <SiteDateObservations data={data.sdoData} siteDate={data.siteDate} />
 {/snippet}
 
-<!--     <Container head={crHead} body={crBody} tail={crTail} outerBodyClasses="px-0 pt-0" /> -->
-<!-- {/snippet} -->
-
-<FlexContainer {childrenOuter} {childrenLeft} {childrenCenter} />
+<FlexContainer {outerPane} {leftPane} {centerPane} />

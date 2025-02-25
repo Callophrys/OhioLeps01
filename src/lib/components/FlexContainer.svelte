@@ -1,37 +1,45 @@
 <script lang="ts">
-    import { Pane, Splitpanes } from '$lib/components/splitpanes';
+  import { Pane, Splitpanes } from "$lib/components/splitpanes";
 
-    let {
-        childrenOuter,
-        childrenLeft,
-        childrenCenter,
-        childrenRight,
-    }: {
-        children: Snippet;
-        children: Snippet;
-        children: Snippet;
-        children: Snippet;
-    } = $props();
+  let {
+    outerPane,
+    leftPane,
+    centerPane,
+    rightPane,
+  }: {
+    children: Snippet | null;
+    children: Snippet | null;
+    children: Snippet | null;
+    children: Snippet | null;
+  } = $props();
 
-    const cPageContent = 'flex-auto overflow-hidden';
+  const cPageContent = "flex-auto overflow-hidden";
 </script>
 
-{@render childrenOuter()}
+{#if outerPane}
+  {@render outerPane()}
+{/if}
 
 <Splitpanes style="height: 100%">
+  {#if leftPane}
     <Pane minSize={5}>
-        <main class={`${cPageContent} pl-8`}>
-            {@render childrenLeft()}
-        </main>
+      <main class={`${cPageContent} pl-8`}>
+        {@render leftPane()}
+      </main>
     </Pane>
+  {/if}
+  {#if centerPane}
     <Pane size={65} minSize={3}>
-        <main class={`${cPageContent}`}>
-            {@render childrenCenter()}
-        </main>
+      <main class={`${cPageContent}`}>
+        {@render centerPane()}
+      </main>
     </Pane>
-    <!-- <Pane minSize={3}> -->
-    <!--     <main class={`${cPageContent} pr-8`}> -->
-    <!--         {@render childrenRight()} -->
-    <!--     </main> -->
-    <!-- </Pane> -->
+  {/if}
+  {#if rightPane}
+    <Pane minSize={3}>
+      <main class={`${cPageContent} pr-8`}>
+        {@render rightPane()}
+      </main>
+    </Pane>
+  {/if}
 </Splitpanes>
