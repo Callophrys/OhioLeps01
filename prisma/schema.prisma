@@ -97,7 +97,7 @@ model User {
     updatedBy User? @relation("UpdateUserOfUser", fields: [updatedById], references: [id])
     updatedById String?
 
-    roleId String?
+    roleId String? // Default role for access to sites, account, and higher privileges
     role   Role? @relation(fields: [roleId], references: [id])
 
     organizationId String?
@@ -135,6 +135,9 @@ model User {
     siteDateObservationCreatorOf SiteDateObservation[] @relation("CreateUserOfSiteDateObservation")
     siteDateObservationUpdatorOf SiteDateObservation[] @relation("UpdateUserOfSiteDateObservation")
     siteDateObservationConfirmOf SiteDateObservation[] @relation("ConfirmUserOfSiteDateObservation")
+
+    // Site-to-user overrides
+    siteUsers SiteUser[]
 }
 
 model Organization {
@@ -254,22 +257,39 @@ model Site {
     sections Section[]        @relation(name: "SectionsInSite")
     siteDates SiteDate[]
     siteStatuses SiteStatus[]
+    siteUsers SiteUser[]
 
     // Alternate keys and constraints
     @@unique([siteName, countyId])
 }
 
+// Allows for site-specific access properties on per user basis
+model SiteUser {
+    id Int @id @default(autoincrement())
+    privilege Privilege @default(V)
+
+    // Parent Relation
+    site Site @relation(fields: [siteId], references: [id])
+    siteId Int
+
+    // Parent Relation
+    user User @relation(fields: [userId], references: [id])
+    userId Int
+}
+
 // see SiteDateObservation Section
-// model Transect {
-//     id Int @id @default(autoincrement())
-//     number Int
-//     name String
-//     description String
-//
-//     // Parent Relation
-//     siteSiteId Int?
-//     SiteDate siteDate? @relation("TransectOfSite", fields: [siteDateId], references: [id])
-// }
+// TODO: Use this to configure a site's transects, e.g. t-number and description
+//       Maybe just go with a transect count for now
+model Transect {
+    id Int @id @default(autoincrement())
+    number Int // Only change if isActive is true
+    name String
+    description String
+    isActive Boolean @default(true) // Ability to disable or retire a transect
+
+    // Child Relations
+    siteDateObservations SiteDateObservation[] @relation(name: "SectionObservationsInSiteDateObservation")
+}
 
 // Will be one-to-one with big taxon data
 model Checklist {
@@ -279,7 +299,8 @@ model Checklist {
     species String // @db.String(20) // doomed
     subspecies String? // @db.String(16) // doomed
     commonName String? // @db.String(30)
-    show Boolean
+    show Boolean @default(true)        // Is visible for general use?
+    isSpurious Boolean @default(false) // Is this a rare, out-of-region or simply unexpected?
     kind String // @db.String(1)
     revised String // @db.String(1)
     author String // @db.String(22)
@@ -357,6 +378,10 @@ model SiteDateObservation {
     siteDate SiteDate @relation(fields: [siteDateId], references: [id])
     siteDateId Int // Should never be null
 
+    // Parent Relation
+    transectId Int?
+    transect Transect? @relation("SiteDateObservationOfTransect", fields: [transectId], references: [id])
+
     // Child Relations
     sectionObservations SectionObservation[] @relation(name: "SectionObservationsInSiteDateObservation")
 
@@ -364,6 +389,7 @@ model SiteDateObservation {
     //@@index([siteDateId]);  // error on run
 }
 
+// TODO: Is this being used?
 model SectionObservation {
     id Int @id @default(autoincrement())
     value Int?
@@ -412,6 +438,19 @@ enum Weather {
     R // Rain
     S // Sun
     H // Haze/Smoke
+}
+
+enum Privilege {
+    A // Administrator (all rights - be careful)
+    S // Super user (R + E)
+    R // Reviewer (V + review rights)
+    E // Data-entry (V + data entry rights)
+    V // Read-only (viewing and reports) [default]
+    X // Explicit deny
+    /*
+    Any null here or lack of a siteUser record means the site
+    can be interacted with in accordance with the user's role
+    */
 }
 
 model SiteDate {
