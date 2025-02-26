@@ -21,8 +21,8 @@
   let {
     data,
     recordYear = $bindable(new Date().getUTCFullYear()),
-    recordWeek = $bindable(new Date().getUTCFullYear()),
-    recordSdoCount = $bindable(0),
+    recordWeek = $bindable(weekOfYearSince(new Date())),
+    recordSdoCount = $bindable(-1),
   }: {
     data: any;
     recordYear: number;

@@ -7,6 +7,7 @@ export async function getSiteDateObservations(
   checklistId: number = 0,
   siteId: number = 0,
 ) {
+//  console.log('database.siteDateObservations.getSiteDateObservation');
   if (siteDateId > 0) {
     if (checklistId > 0) {
       return await getSiteDateObservationsBySiteDateAndChecklist(

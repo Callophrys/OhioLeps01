@@ -1,20 +1,23 @@
 <script lang="ts">
-    import { ROLE } from '$lib/types.js';
-    import type { AppConfigFormKeyChecked } from '$lib/types.js';
-    import AppConfigControl from '$lib/components/AppConfigControl.svelte';
-    import Container from '$lib/components/layouts/Container.svelte';
-    import Papa from 'papaparse';
-    import { TabGroup, Tab } from '@skeletonlabs/skeleton';
-    import { page } from '$app/stores';
-    import { setContext } from 'svelte';
-    import { SlideToggle } from '@skeletonlabs/skeleton';
+    import { ROLE } from "$lib/types.js";
+    import type { AppConfigFormKeyChecked } from "$lib/types.js";
+    import AppConfigControl from "$lib/components/AppConfigControl.svelte";
+    import Container from "$lib/components/layouts/Container.svelte";
+    import Papa from "papaparse";
+    import { TabGroup, Tab } from "@skeletonlabs/skeleton";
+    import { page } from "$app/stores";
+    import { setContext } from "svelte";
+    import { SlideToggle } from "@skeletonlabs/skeleton";
 
     let { data } = $props();
-    setContext('appConfigs', data.appConfigs);
+    setContext("appConfigs", data.appConfigs);
     // console.log(data);
     const myOrganizations = data.organziations;
 
-    let isDebug: boolean = data.appConfigs.find((x: AppConfigFormKeyChecked) => x.configName === 'modeDebug')?.configValue === 'true';
+    let isDebug: boolean =
+        data.appConfigs.find(
+            (x: AppConfigFormKeyChecked) => x.configName === "modeDebug",
+        )?.configValue === "true";
     let config: any = $state({});
 
     $effect(() => {
@@ -30,7 +33,7 @@
             const data = await response.json();
             return data.siteData;
         } catch (error) {
-            console.error('Error fetching data:', error, 'from sdpath', sdpath);
+            console.error("Error fetching data:", error, "from sdpath", sdpath);
         }
     }
 
@@ -52,26 +55,30 @@
                 quotes: false,
                 quoteChar: '"',
                 escapeChar: '"',
-                delimiter: ',',
+                delimiter: ",",
                 header: true,
-                newline: '\r\n',
+                newline: "\r\n",
                 skipEmptyLines: false,
             });
 
-            let csvData: string = '';
+            let csvData: string = "";
             csvData = csv;
 
             const csvContent = `data:text/csv;charset=utf-8,${csvData}`;
 
             const encodedUri = encodeURI(csvContent);
-            const link = document.createElement('a');
-            link.setAttribute('href', encodedUri);
-            link.setAttribute('download', 'export.csv');
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "export.csv");
             document.body.appendChild(link); // Required for Firefox
             link.click();
         } catch (error) {
-            console.error('Error exporting to CSV:', error);
+            console.error("Error exporting to CSV:", error);
         }
+    }
+
+    function handleSiteUsers(e: Event) {
+        alert("ok");
     }
 
     //$: console.log(data.appConfigs);
@@ -87,7 +94,12 @@
 </script>
 
 {#snippet organizationMain()}
-    <form method="POST" action="?/updateAppConfigs" id="appConfigs" name="appConfigs">
+    <form
+        method="POST"
+        action="?/updateAppConfigs"
+        id="appConfigs"
+        name="appConfigs"
+    >
         <div class="flex flex-col space-y-2">
             <AppConfigControl />
         </div>
@@ -97,8 +109,18 @@
 {#snippet organizationTail()}
     <div class="text-center flex">
         <div class="flex flex-cols justify-between space-x-4 max-w-2xl mx-auto">
-            <button type="submit" form="appConfigs" class="btn w-32 variant-filled" formaction="?/updateAppConfigs">Save</button>
-            <button type="submit" form="appConfigs" class="btn w-32 variant-filled" formaction="?/resetAppConfigs">Reset All</button>
+            <button
+                type="submit"
+                form="appConfigs"
+                class="btn w-32 variant-filled"
+                formaction="?/updateAppConfigs">Save</button
+            >
+            <button
+                type="submit"
+                form="appConfigs"
+                class="btn w-32 variant-filled"
+                formaction="?/resetAppConfigs">Reset All</button
+            >
         </div>
     </div>
 {/snippet}
@@ -132,36 +154,73 @@
         <div class="flex flex-row space-y-1">
             <div class="w-36">{user.username}</div>
             <div class="pr-4">
-                <SlideToggle name="slide" size="sm" disabled checked={!user.disabled} />
+                <SlideToggle
+                    name="slide"
+                    size="sm"
+                    disabled
+                    checked={!user.disabled}
+                />
             </div>
             <!-- <div class="w-24">{user.disabled ? 'Disabled' : 'Active'}</div> -->
             <div class="w-36">{user.firstName}</div>
             <div class="w-36">{user.lastName}</div>
             <div class="w-32">{user.role.name}</div>
             <div class="">
-                <button class="btn variant-soft" disabled>Expire Password</button>
-                <button class="btn variant-soft" disabled>Reset Password</button>
+                <button class="btn variant-soft" disabled
+                    >Expire Password</button
+                >
+                <button class="btn variant-soft" disabled>Reset Password</button
+                >
+            </div>
+        </div>
+    {/each}
+{/snippet}
+
+{#snippet siteList()}
+    <div class="w-fit flex flex-row border-b-2 border-b-red-100">
+        <div class="w-80">Site Name</div>
+        <div class="w-36">County</div>
+        <div class="w-24">State</div>
+        <div class="w-80"></div>
+    </div>
+    {#each data.sites as site}
+        <div class="flex flex-row space-y-1">
+            <div class="w-80">{site.siteName}</div>
+            <div class="w-36">{site.county.name}</div>
+            <div class="w-36">{site.county.state.name}</div>
+            <div class="">
+                <button class="btn variant-soft" onclick={handleSiteUsers}
+                    >Users</button
+                >
+                <button class="btn variant-soft" disabled>Something</button>
+                <button class="btn variant-soft" disabled>Something Else</button
+                >
             </div>
         </div>
     {/each}
 {/snippet}
 
 {#snippet dataBlock()}
-    <button type="button" class="btn variant-soft" onclick={exportToCSV}>Export to CSV</button>
+    <button type="button" class="btn variant-soft" onclick={exportToCSV}
+        >Export to CSV</button
+    >
 {/snippet}
 
 {#snippet body()}
     <TabGroup>
         {#if $page.data?.user && $page.data.user.role === ROLE.SUPER}
-            <Tab bind:group={tabSet} name="tab1" value={0}>📝 Organizations</Tab>
+            <Tab bind:group={tabSet} name="tab1" value={0}>📝 Organizations</Tab
+            >
         {:else}
             <Tab bind:group={tabSet} name="tab1" value={0}>🛠 Organization</Tab>
         {/if}
         <Tab bind:group={tabSet} name="tab2" value={1}>👤 Users</Tab>
-        <Tab bind:group={tabSet} name="tab3" value={2}>📝 Data</Tab>
+        <Tab bind:group={tabSet} name="tab3" value={2}>👤 Sites</Tab>
+        <Tab bind:group={tabSet} name="tab4" value={3}>📝 Data</Tab>
         {#if isDebug}
-            <Tab bind:group={tabSet} name="tab4" value={3}>🛠 Organization</Tab>
+            <Tab bind:group={tabSet} name="tab5" value={4}>🛠 Organization</Tab>
         {/if}
+
         <!-- Tab Panels --->
         <svelte:fragment slot="panel">
             {#if tabSet === 0}
@@ -173,8 +232,10 @@
             {:else if tabSet === 1}
                 {@render userList()}
             {:else if tabSet === 2}
+                {@render siteList()}
+            {:else if tabSet === 3}
                 {@render dataBlock()}
-            {:else if isDebug && tabSet === 3}
+            {:else if isDebug && tabSet === 4}
                 {@render organizationBlock()}
             {/if}
         </svelte:fragment>

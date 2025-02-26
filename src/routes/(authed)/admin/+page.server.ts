@@ -1,4 +1,4 @@
-import type { AppConfig, User, Organization } from "@prisma/client";
+import type { AppConfig, User, Organization, Site } from "@prisma/client";
 import type { AppConfigFormKeyChecked, UserComplete } from "$lib/types";
 import type { PageServerLoad } from "./$types";
 import {
@@ -10,6 +10,7 @@ import {
 import { redirect } from "@sveltejs/kit";
 import { getOrganizations } from "$lib/database/organizations";
 import { getUsers } from "$lib/database/users.js";
+import { getSites } from "$lib/database/sites";
 import { promises } from "dns";
 
 export const load: PageServerLoad = async ({ locals }) => {
@@ -25,12 +26,14 @@ export const load: PageServerLoad = async ({ locals }) => {
   const appConfigs: AppConfig[] = await getAppConfigsByOrgId(
     locals.user.organizationId,
   );
+
   const users: User[] = await getUsers(
     locals.user.role === "SUPER" || locals.user.role === "ADMIN"
       ? null
       : locals.user.organizationId,
   );
   const organizations: Organization[] = await getOrganizations();
+  const sites: Site[] = await getSites();
 
   const json = JSON.stringify(appConfigs);
   const jsonResult: AppConfigFormKeyChecked[] = JSON.parse(json);
@@ -41,11 +44,15 @@ export const load: PageServerLoad = async ({ locals }) => {
   const jsonOrganizations = JSON.stringify(organizations);
   const jsonResultOrganizations: Organization[] = JSON.parse(jsonOrganizations);
 
+  const jsonSites = JSON.stringify(sites);
+  const jsonResultSites: Site[] = JSON.parse(jsonSites);
+
   console.log("done in server ");
   return {
     appConfigs: jsonResult,
     users: jsonResultUsers,
     organziations: jsonResultOrganizations,
+    sites: jsonResultSites,
   };
 };
 
