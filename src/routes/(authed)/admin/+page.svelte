@@ -1,4 +1,6 @@
 <script lang="ts">
+    import UserManagementModal from "$lib/modals/admin/UserManagementModal.svelte";
+
     import { ROLE } from "$lib/types.js";
     import type { AppConfigFormKeyChecked } from "$lib/types.js";
     import AppConfigControl from "$lib/components/AppConfigControl.svelte";
@@ -13,6 +15,17 @@
     setContext("appConfigs", data.appConfigs);
     // console.log(data);
     const myOrganizations = data.organziations;
+
+    /* start - site-users */
+    import type { Site } from "$lib/types";
+
+    let sites: Site[] = [];
+    let selectedSite: Site | null = $state(null);
+
+    function selectSite(org: Site) {
+        selectedSite = org;
+    }
+    /* end - site-users */
 
     let isDebug: boolean =
         data.appConfigs.find(
@@ -93,6 +106,7 @@
     */
 </script>
 
+import SiteList from "$lib/modals/admin/SiteList.svelte";
 {#snippet organizationMain()}
     <form
         method="POST"
@@ -198,6 +212,12 @@
             </div>
         </div>
     {/each}
+
+    <div class="container mx-auto p-4">
+        <h1 class="text-2xl font-bold">Sites</h1>
+        <SiteList {sites} {selectSite} />
+        <UserManagementModal bind:organization={selectedSite} />
+    </div>
 {/snippet}
 
 {#snippet dataBlock()}

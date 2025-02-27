@@ -1,18 +1,25 @@
 <script lang="ts">
-    import { getContext, onMount, onDestroy, hasContext } from 'svelte';
-    import { KEY } from './Splitpanes.svelte';
-    import { browser } from './internal/env.js';
-    import { gatheringKey } from './internal/GatheringRound.svelte';
-    import { getDimensionName } from './internal/utils/sizing.js';
-    import { carefullCallbackSource } from './internal/utils/functions';
-    const { ssrRegisterPaneSize, onPaneInit, clientOnly: clientOnlyContext, isHorizontal, showFirstSplitter, veryFirstPaneKey } = getContext(KEY);
+    import { getContext, onMount, onDestroy, hasContext } from "svelte";
+    import { KEY } from "./Splitpanes.svelte";
+    import { browser } from "./internal/env.js";
+    import { gatheringKey } from "./internal/GatheringRound.svelte";
+    import { getDimensionName } from "./internal/utils/sizing.js";
+    import { carefullCallbackSource } from "./internal/utils/functions";
+    const {
+        ssrRegisterPaneSize,
+        onPaneInit,
+        clientOnly: clientOnlyContext,
+        isHorizontal,
+        showFirstSplitter,
+        veryFirstPaneKey,
+    } = getContext(KEY);
     // PROPS
     export let size = null;
     export let minSize = 0;
     export let maxSize = 100;
     export let snapSize = 0;
     // css class
-    let clazz = '';
+    let clazz = "";
     export { clazz as class };
     // VARIABLES
     const key = {};
@@ -29,17 +36,19 @@
      *
      * In the case of the object isn't initialized yet, calling this callbacks will do nothing.
      */
-    const carefullClientCallbacks = browser ? carefullCallbackSource(() => clientCallbacks) : undefined;
+    const carefullClientCallbacks = browser
+        ? carefullCallbackSource(() => clientCallbacks)
+        : undefined;
     const reportGivenSizeChangeSafe = (size) => {
         // We put an extra check of `size != sz` here and not in the reactive statement, since we don't want a change
         //  of `sz` to trigger report.
         if (clientCallbacks && size != sz) {
-            carefullClientCallbacks?.('reportGivenSizeChange')(size);
+            carefullClientCallbacks?.("reportGivenSizeChange")(size);
         }
     };
     // REACTIVE
     $: {
-        if (browser && typeof size === 'number') {
+        if (browser && typeof size === "number") {
             reportGivenSizeChangeSafe(size);
         }
     }
@@ -57,7 +66,7 @@
                 sz: () => sz,
                 setSz: (v) => {
                     sz = v;
-                    if (typeof size === 'number' && size !== sz) {
+                    if (typeof size === "number" && size !== sz) {
                         size = sz;
                     }
                 },
@@ -83,14 +92,27 @@
         <!-- this a11y issue is known, and will be taken care of as part of the a11y feature issue in #11 -->
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <!-- svelte-ignore a11y-no-static-element-interactions -->
-        <div class="splitpanes__splitter {isSplitterActive ? 'splitpanes__splitter__active' : ''}" on:mousedown={carefullClientCallbacks?.('onSplitterDown')} on:touchstart={carefullClientCallbacks?.('onSplitterDown')} on:click={carefullClientCallbacks?.('onSplitterClick')} on:dblclick={carefullClientCallbacks?.('onSplitterDblClick')} />
+        <div
+            class="splitpanes__splitter {isSplitterActive
+                ? 'splitpanes__splitter__active'
+                : ''}"
+            on:mousedown={carefullClientCallbacks?.("onSplitterDown")}
+            on:touchstart={carefullClientCallbacks?.("onSplitterDown")}
+            on:click={carefullClientCallbacks?.("onSplitterClick")}
+            on:dblclick={carefullClientCallbacks?.("onSplitterDblClick")}
+        ></div>
     {/if}
 
     <!-- Pane -->
     <!-- this a11y issue is known, and will be taken care of as part of the a11y feature issue in #11 -->
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <!-- svelte-ignore a11y-no-static-element-interactions -->
-    <div class={`splitpanes__pane ${clazz || ''}`} bind:this={element} on:click={carefullClientCallbacks?.('onPaneClick')} {style}>
+    <div
+        class={`splitpanes__pane ${clazz || ""}`}
+        bind:this={element}
+        on:click={carefullClientCallbacks?.("onPaneClick")}
+        {style}
+    >
         <slot />
     </div>
 {/if}

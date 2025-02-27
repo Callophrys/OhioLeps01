@@ -101,6 +101,7 @@ export const siteDateObservationActions: Actions = {
         }),
       ),
     ];
+    console.log('sdoIds', sdoIds);
 
     const promises: Promise<any>[] = [];
     sdoIds.forEach((sdoId) => {
@@ -124,7 +125,7 @@ export const siteDateObservationActions: Actions = {
       const parts = k.split("_");
       preparedData[parts[0]][parts.length < 3 ? "edit" : "orig"][parts[1]] = v;
     });
-    // console.log('formData', formData);
+    console.log('formData', formData);
 
     promises.length = 0;
     sdoIds.forEach((sdoId) => {
