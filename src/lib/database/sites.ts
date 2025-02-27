@@ -239,8 +239,30 @@ export async function getSitesByCounty(countyId: number) {
   return sites;
 }
 
+export async function getSitesSlim(idList: number[] | null) {
+  // console.log('/lib/api/database/sites.ts > getSitesSlim');
+
+  // let whereClause =
+  //     idList && idList.length
+  //         ? {
+  //               id: { in: idList },
+  //           }
+  //         : true;
+
+  const sites = await prisma.site.findMany({
+    where: {
+      ...(idList && idList.length ? { id: { in: idList } } : {}),
+    },
+    orderBy: {
+      siteName: "asc",
+    },
+  });
+
+  return sites;
+}
+
 export async function getSites(idList: number[] | null) {
-  // console.log('/lib/api/entry/sites.ts > getSites');
+  console.log('/lib/api/database/sites.ts > getSites');
 
   // let whereClause =
   //     idList && idList.length

@@ -1,16 +1,13 @@
 <script lang="ts">
   import { Modal } from "@skeletonlabs/skeleton";
   import SiteUsers from "$lib/components/admin/SiteUsers.svelte";
-  // import { siteStoreContext } from "$lib/stores/admin/siteStore";
-  import { getContext, setContext } from "svelte";
+  import { getContext } from "svelte";
+  import { SiteContextKey } from "$lib/context";
 
-  const siteContext = siteStoreContext();
+  let { selectedSite } = getContext(SiteContextKey);
 </script>
 
-<Modal
-  bind:open={siteContext.selectedSite}
-  on:close={() => siteContext.selectedSite.set(null)}
->
+<Modal bind:open={selectedSite} on:close={() => (selectedSite = 0)}>
   <div class="p-4">
     <h2 class="text-xl font-bold">Manage Users</h2>
     <SiteUsers />

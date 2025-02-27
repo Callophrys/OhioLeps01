@@ -33,6 +33,28 @@ export async function getUsers(organizationId: string | null) {
   }
 }
 
+export async function getUsersBySiteId(siteId: string | null) {
+  console.log(`users.ts->getUsersBySiteId${siteId}`);
+  if (siteId) {
+    return await prisma.user.findMany({
+      where: {
+        siteUser: {
+          siteId: siteId,
+        }
+      },
+      include: {
+        role: true,
+      },
+    });
+  } else {
+    return await prisma.user.findMany({
+      include: {
+        role: true,
+      },
+    });
+  }
+}
+
 export async function createUser(user: User, roleName: string) {
   const role = await prisma.role.findFirst({
     where: { name: roleName },

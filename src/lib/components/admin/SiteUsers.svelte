@@ -2,14 +2,20 @@
   import { getContext } from "svelte";
   import { SiteContextKey } from "$lib/context";
 
-  const { selectedSite, users, loadUsers } = getContext(SiteContextKey);
+  const context = getContext(SiteContextKey);
+  let selectedSite = $state(context?.selectedSite);
+  let users = $state(context.users ?? []);
+  const loadUsers = context.loadUsers;
+
+  $effect(() => {
+    if (selectedSite !== 0) loadUsers(selectedSite);
+  });
 
   async function removeUser(userId: string) {
     if (selectedSite) {
-      await fetch(`/api/sites/${selectedOrganization}/users/${userId}`, {
+      await fetch(`/api/sites/${selectedSite}/users/${userId}`, {
         method: "DELETE",
       });
-      loadUsers(selectedSite);
     }
   }
 </script>
@@ -20,7 +26,7 @@
     {#each users as user}
       <li class="flex justify-between p-2 bg-gray-700 rounded-md">
         <span>{user.name}</span>
-        <button on:click={() => removeUser(user.id)} class="text-red-500"
+        <button onclick={() => removeUser(user.id)} class="text-red-500"
           >Remove</button
         >
       </li>

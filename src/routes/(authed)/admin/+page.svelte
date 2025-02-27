@@ -4,6 +4,7 @@
     import UserManagementModal from "$lib/modals/admin/UserManagementModal.svelte";
     import { SiteContextKey } from "$lib/context";
 
+    import type { Site, User } from "@prisma/client";
     import { ROLE } from "$lib/types.js";
     import type { AppConfigFormKeyChecked } from "$lib/types.js";
     import AppConfigControl from "$lib/components/AppConfigControl.svelte";
@@ -11,7 +12,7 @@
     import Papa from "papaparse";
     import { TabGroup, Tab } from "@skeletonlabs/skeleton";
     import { page } from "$app/stores";
-    import { setContext } from "svelte";
+    import { getContext, setContext } from "svelte";
     import { SlideToggle } from "@skeletonlabs/skeleton";
 
     let { data } = $props();
@@ -19,32 +20,42 @@
 
     const myOrganizations = data.organziations;
 
-    type User = { id: string; name: string };
-    type Site = { id: number; name: string };
+    let selectedSite: number = $state(0);
+    let users: User[] | null = $state([]);
 
-    let selectedSite: string | null = $state(null);
-    let users: User[] = $state([]);
-
-    async function loadUsers(siteId: string) {
-        // const res = await fetch(`/api/organizations/${orgId}/users`);
-        // users = await res.json();
-        users = [];
+    async function fetchUsersBySiteId(siteId: string) {
+        console.log("in fetchUsersBySiteId");
+        const res = await fetch(`/api/site/${siteId}/users`);
+        const data = await res.json();
+        return data.users;
     }
 
-    async function fetchUsersOnChange() {
-        if (selectedSite) await loadUsers(selectedSite);
+    async function loadUsers() {
+        console.log("in loadUsers");
+        if (selectedSite) users = await fetchUsersBySiteId(selectedSite);
     }
 
     $effect(async () => {
-        await fetchUsersOnChange();
+        console.log("reacting before loadUsers");
+        await loadUsers();
+    });
 
+    function doit() {
         setContext(SiteContextKey, {
             selectedSite,
             users,
             loadUsers,
         });
-    });
+        setContext("x", selectedSite);
+        setContext("y", users);
+        setContext("z", loadUsers);
+        console.log("set context", getContext(SiteContextKey));
+    }
 
+    doit();
+    // $effect(() => {
+    // });
+    //
     let isDebug: boolean =
         data.appConfigs.find(
             (x: AppConfigFormKeyChecked) => x.configName === "modeDebug",
@@ -108,9 +119,9 @@
         }
     }
 
-    function handleSiteUsers(e: Event) {
-        alert("ok");
-    }
+    // function handleSiteUsers(e: Event) {
+    //     alert("ok");
+    // }
 
     //$: console.log(data.appConfigs);
     //$: configEntries = new Map(Object.entries(config));
@@ -208,39 +219,40 @@
 {/snippet}
 
 {#snippet siteMain()}
-    <div class="w-fit flex flex-row border-b-2 border-b-red-100">
-        <div class="w-80">Site Name</div>
-        <div class="w-36">County</div>
-        <div class="w-24">State</div>
-        <div class="w-80"></div>
-    </div>
-    {#each data.sites as site}
-        <div class="flex flex-row space-y-1">
-            <div class="w-80">{site.siteName}</div>
-            <div class="w-36">{site.county.name}</div>
-            <div class="w-36">{site.county.state.name}</div>
-            <div class="">
-                <button class="btn variant-soft" onclick={handleSiteUsers}
-                    >Users</button
-                >
-                <button class="btn variant-soft" disabled>Something</button>
-                <button class="btn variant-soft" disabled>Something Else</button
-                >
-            </div>
-        </div>
-    {/each}
+    <!-- <div class="w-fit flex flex-row border-b-2 border-b-red-100"> -->
+    <!--     <div class="w-80">Site Name</div> -->
+    <!--     <div class="w-36">County</div> -->
+    <!--     <div class="w-24">State</div> -->
+    <!--     <div class="w-80"></div> -->
+    <!-- </div> -->
+    <!-- {#each data.sites as site} -->
+    <!--     <div class="flex flex-row space-y-1"> -->
+    <!--         <div class="w-80">{site.siteName}</div> -->
+    <!--         <div class="w-36">{site.county.name}</div> -->
+    <!--         <div class="w-36">{site.county.state.name}</div> -->
+    <!--         <div class=""> -->
+    <!--             <button class="btn variant-soft" onclick={handleSiteUsers} -->
+    <!--                 >Users</button -->
+    <!--             > -->
+    <!--             <button class="btn variant-soft" disabled>Something</button> -->
+    <!--             <button class="btn variant-soft" disabled>Something Else</button -->
+    <!--             > -->
+    <!--         </div> -->
+    <!--     </div> -->
+    <!-- {/each} -->
 
     <div class="container mx-auto p-4">
         <h1 class="text-2xl font-bold">Sites</h1>
         <div class="grid grid-cols-2 gap-4">
             <SiteList />
-            {#if selectedSite}
+            {#if selectedSite !== 0}
                 <SiteUsers />
             {/if}
         </div>
         <UserManagementModal />
     </div>
 {/snippet}
+
 {#snippet dataBlock()}
     <button type="button" class="btn variant-soft" onclick={exportToCSV}
         >Export to CSV</button
