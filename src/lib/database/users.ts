@@ -33,17 +33,44 @@ export async function getUsers(organizationId: string | null) {
   }
 }
 
-export async function getUsersBySiteId(siteId: string | null) {
-  console.log(`users.ts->getUsersBySiteId${siteId}`);
+export async function getUsersInSite(siteId: string | null) {
+  console.log(`users.ts->getUsersInSite:{siteId}`);
   if (siteId) {
     return await prisma.user.findMany({
       where: {
+        isEnabled: true,
         siteUser: {
           siteId: siteId,
         }
       },
       include: {
         role: true,
+      },
+    });
+  } else {
+    return await prisma.user.findMany({
+      include: {
+        role: true,
+        siteUser: true,
+      },
+    });
+  }
+}
+
+export async function getUsersNotInSite(siteId: string | null) {
+  console.log(`users.ts->getUsersNotInSite:{siteId}`);
+  if (siteId) {
+    return await prisma.user.findMany({
+      where: {
+        isEnabled: true,
+        siteUser: {
+          siteId: siteId,
+          none: {},
+        }
+      },
+      include: {
+        role: true,
+        siteUser: true, // Obviously this will be empty
       },
     });
   } else {
