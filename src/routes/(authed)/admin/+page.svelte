@@ -1,8 +1,8 @@
 <script lang="ts">
-    import SitesList from "$lib/modals/admin/SitesList.svelte";
+    import SiteList from "$lib/components/admin/SiteList.svelte";
+    import SiteUsers from "$lib/components/admin/SiteUsers.svelte";
     import UserManagementModal from "$lib/modals/admin/UserManagementModal.svelte";
-    import SiteUsers from "$lib/modals/admin/SiteUsers.svelte";
-    import type { Site } from "$lib/types.js";
+    import { SiteContextKey } from "$lib/context";
 
     import { ROLE } from "$lib/types.js";
     import type { AppConfigFormKeyChecked } from "$lib/types.js";
@@ -15,18 +15,35 @@
     import { SlideToggle } from "@skeletonlabs/skeleton";
 
     let { data } = $props();
-    setContext("appConfigs", data.appConfigs);
     // console.log(data);
+
     const myOrganizations = data.organziations;
 
-    /* start - site-users */
-    let sites: Site[] = [];
-    let selectedSite: Site | null = $state(null);
+    type User = { id: string; name: string };
+    type Site = { id: number; name: string };
 
-    function selectSite(site: Site) {
-        selectedSite = site;
+    let selectedSite: string | null = $state(null);
+    let users: User[] = $state([]);
+
+    async function loadUsers(siteId: string) {
+        // const res = await fetch(`/api/organizations/${orgId}/users`);
+        // users = await res.json();
+        users = [];
     }
-    /* end - site-users */
+
+    async function fetchUsersOnChange() {
+        if (selectedSite) await loadUsers(selectedSite);
+    }
+
+    $effect(async () => {
+        await fetchUsersOnChange();
+
+        setContext(SiteContextKey, {
+            selectedSite,
+            users,
+            loadUsers,
+        });
+    });
 
     let isDebug: boolean =
         data.appConfigs.find(
@@ -212,8 +229,18 @@
             </div>
         </div>
     {/each}
-{/snippet}
 
+    <div class="container mx-auto p-4">
+        <h1 class="text-2xl font-bold">Sites</h1>
+        <div class="grid grid-cols-2 gap-4">
+            <SiteList />
+            {#if selectedSite}
+                <SiteUsers />
+            {/if}
+        </div>
+        <UserManagementModal />
+    </div>
+{/snippet}
 {#snippet dataBlock()}
     <button type="button" class="btn variant-soft" onclick={exportToCSV}
         >Export to CSV</button

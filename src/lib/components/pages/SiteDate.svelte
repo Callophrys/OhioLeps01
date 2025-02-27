@@ -25,7 +25,6 @@
     isRecent,
     decodeWeather,
   } from "$lib/utils";
-  import { setContext, getContext } from "svelte";
 
   let {
     data,

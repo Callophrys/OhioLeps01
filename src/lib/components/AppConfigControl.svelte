@@ -1,13 +1,15 @@
 <script lang="ts">
     /*-- Imports */
-    import type { AppConfigFormKeyChecked } from '$lib/types';
-    import { camelToFriendly, toBool } from '$lib/utils';
-    import { getContext } from 'svelte';
+    import type { AppConfigFormKeyChecked } from "$lib/types";
+    import { camelToFriendly, toBool } from "$lib/utils";
+    import { getContext } from "svelte";
+    import { AppConfigsContextKey } from "$lib/context";
 
     /*-- -- Data -- */
     /*-- Exports */
     /*-- Context */
-    let appConfigs: AppConfigFormKeyChecked[] = getContext('appConfigs');
+    let appConfigs: AppConfigFormKeyChecked[] =
+        getContext(AppConfigsContextKey) ?? [];
     //console.log(appConfigs);
 
     /*-- -- Styling -- */
@@ -35,7 +37,7 @@
         const c = {
             configValue: p.configValue,
             changed: false,
-            class: '',
+            class: "",
             checked: p.checked,
         } as Candidate;
         candidates[p.formKey] = c;
@@ -44,20 +46,24 @@
 
     $effect(() => {
         appConfigs.forEach((c) => {
-            if (c.configType === 'boolean') {
+            if (c.configType === "boolean") {
                 let formValue = toBool(c.configValue);
                 let origValue = toBool(candidates[c.formKey].configValue);
 
-                if (c.formKey === '46_modeDebug') {
-                    console.log('>>', { config: c, candidate: candidates[c.formKey] });
-                    console.log('<<', formValue, origValue);
+                if (c.formKey === "46_modeDebug") {
+                    console.log(">>", {
+                        config: c,
+                        candidate: candidates[c.formKey],
+                    });
+                    console.log("<<", formValue, origValue);
                 }
 
                 candidates[c.formKey].changed = formValue !== origValue;
                 candidates[c.formKey].checked = formValue;
             } else {
                 //if (c.formKey === '47_owner') console.log('>>', { 'config': c, 'candidate': candidates[c.formKey]});
-                candidates[c.formKey].changed = c.configValue !== candidates[c.formKey].configValue;
+                candidates[c.formKey].changed =
+                    c.configValue !== candidates[c.formKey].configValue;
             }
         });
         //console.log('d', candidates);
@@ -80,22 +86,50 @@
         <div class="w-56">{camelToFriendly(appConfig.configName)}</div>
         <div class="w-20">({appConfig.configType})</div>
         <div class="w-fit flex flex-row">
-            {#if appConfig.configType === 'string'}
-                {#if appConfig.configName.toLocaleLowerCase() === 'description'}
-                    <textarea id={appConfig.formKey} name={appConfig.formKey} rows="3" cols="50" class="resize p-1 rounded-md variant-filled" bind:value={appConfig.configValue}></textarea>
+            {#if appConfig.configType === "string"}
+                {#if appConfig.configName.toLocaleLowerCase() === "description"}
+                    <textarea
+                        id={appConfig.formKey}
+                        name={appConfig.formKey}
+                        rows="3"
+                        cols="50"
+                        class="resize p-1 rounded-md variant-filled"
+                        bind:value={appConfig.configValue}
+                    ></textarea>
                 {:else}
-                    <input id={appConfig.formKey} name={appConfig.formKey} type="text" class="p-1 rounded-md variant-filled" bind:value={appConfig.configValue} />
+                    <input
+                        id={appConfig.formKey}
+                        name={appConfig.formKey}
+                        type="text"
+                        class="p-1 rounded-md variant-filled"
+                        bind:value={appConfig.configValue}
+                    />
                 {/if}
-            {:else if appConfig.configType === 'number'}
-                <input id={appConfig.formKey} name={appConfig.formKey} type="number" class="w-24 p-1 rounded-md variant-filled" bind:value={appConfig.configValue} min="0" />
-            {:else if appConfig.configType === 'boolean'}
-                <input id={appConfig.formKey} name={appConfig.formKey} type="checkbox" bind:checked={appConfig.checked} />
-            {:else if appConfig.configType === 'object'}
-                <pre class="hover:cursor-not-allowed">{appConfig.configValue}</pre>
+            {:else if appConfig.configType === "number"}
+                <input
+                    id={appConfig.formKey}
+                    name={appConfig.formKey}
+                    type="number"
+                    class="w-24 p-1 rounded-md variant-filled"
+                    bind:value={appConfig.configValue}
+                    min="0"
+                />
+            {:else if appConfig.configType === "boolean"}
+                <input
+                    id={appConfig.formKey}
+                    name={appConfig.formKey}
+                    type="checkbox"
+                    bind:checked={appConfig.checked}
+                />
+            {:else if appConfig.configType === "object"}
+                <pre
+                    class="hover:cursor-not-allowed">{appConfig.configValue}</pre>
             {/if}
 
             {#if candidates[appConfig.formKey]?.changed}
-                <div class="dark:text-amber-300 text-amber-700 pl-2 text-sm">Modified <span class="text-lg">↺</span></div>
+                <div class="dark:text-amber-300 text-amber-700 pl-2 text-sm">
+                    Modified <span class="text-lg">↺</span>
+                </div>
             {/if}
         </div>
     </label>
