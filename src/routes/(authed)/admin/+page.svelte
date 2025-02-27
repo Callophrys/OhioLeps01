@@ -1,5 +1,8 @@
 <script lang="ts">
+    import SitesList from "$lib/modals/admin/SitesList.svelte";
     import UserManagementModal from "$lib/modals/admin/UserManagementModal.svelte";
+    import SiteUsers from "$lib/modals/admin/SiteUsers.svelte";
+    import type { Site } from "$lib/types.js";
 
     import { ROLE } from "$lib/types.js";
     import type { AppConfigFormKeyChecked } from "$lib/types.js";
@@ -17,13 +20,11 @@
     const myOrganizations = data.organziations;
 
     /* start - site-users */
-    import type { Site } from "$lib/types";
-
     let sites: Site[] = [];
     let selectedSite: Site | null = $state(null);
 
-    function selectSite(org: Site) {
-        selectedSite = org;
+    function selectSite(site: Site) {
+        selectedSite = site;
     }
     /* end - site-users */
 
@@ -106,7 +107,6 @@
     */
 </script>
 
-import SiteList from "$lib/modals/admin/SiteList.svelte";
 {#snippet organizationMain()}
     <form
         method="POST"
@@ -190,7 +190,7 @@ import SiteList from "$lib/modals/admin/SiteList.svelte";
     {/each}
 {/snippet}
 
-{#snippet siteList()}
+{#snippet siteMain()}
     <div class="w-fit flex flex-row border-b-2 border-b-red-100">
         <div class="w-80">Site Name</div>
         <div class="w-36">County</div>
@@ -212,12 +212,6 @@ import SiteList from "$lib/modals/admin/SiteList.svelte";
             </div>
         </div>
     {/each}
-
-    <div class="container mx-auto p-4">
-        <h1 class="text-2xl font-bold">Sites</h1>
-        <SiteList {sites} {selectSite} />
-        <UserManagementModal bind:organization={selectedSite} />
-    </div>
 {/snippet}
 
 {#snippet dataBlock()}
@@ -252,7 +246,7 @@ import SiteList from "$lib/modals/admin/SiteList.svelte";
             {:else if tabSet === 1}
                 {@render userList()}
             {:else if tabSet === 2}
-                {@render siteList()}
+                {@render siteMain()}
             {:else if tabSet === 3}
                 {@render dataBlock()}
             {:else if isDebug && tabSet === 4}

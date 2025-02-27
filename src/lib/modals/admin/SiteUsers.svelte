@@ -1,18 +1,21 @@
 <script lang="ts">
   import type { Site, User } from "$lib/types";
-  import { fetchUsersByOrg, removeUserFromOrg } from "$lib/api";
+  import {
+    fetchUsersBySite,
+    removeUserFromSite,
+  } from "$lib/database/siteusers";
   import { onMount } from "svelte";
 
   export let site: Site | null = null;
   let users: User[] = [];
 
   async function loadUsers() {
-    if (site) users = await fetchUsersByOrg(site.id);
+    if (site) users = await fetchUsersBySite(site.id);
   }
 
   async function removeUser(userId: string) {
     if (site) {
-      await removeUserFromOrg(site.id, userId);
+      await removeUserFromSite(site.id, userId);
       loadUsers();
     }
   }

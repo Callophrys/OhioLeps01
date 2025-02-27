@@ -97,7 +97,7 @@ model User {
     updatedBy User? @relation("UpdateUserOfUser", fields: [updatedById], references: [id])
     updatedById String?
 
-    roleId String?
+    roleId String? // Default role for access to sites, account, and higher privileges
     role   Role? @relation(fields: [roleId], references: [id])
 
     organizationId String?
@@ -135,6 +135,9 @@ model User {
     siteDateObservationCreatorOf SiteDateObservation[] @relation("CreateUserOfSiteDateObservation")
     siteDateObservationUpdatorOf SiteDateObservation[] @relation("UpdateUserOfSiteDateObservation")
     siteDateObservationConfirmOf SiteDateObservation[] @relation("ConfirmUserOfSiteDateObservation")
+
+    // Site-to-user overrides
+    siteUsers SiteUser[]
 }
 
 model Organization {
@@ -254,9 +257,26 @@ model Site {
     sections Section[]        @relation(name: "SectionsInSite")
     siteDates SiteDate[]
     siteStatuses SiteStatus[]
+    siteUsers SiteUser[]
 
     // Alternate keys and constraints
     @@unique([siteName, countyId])
+}
+
+// Allows for site-specific access properties on per user basis
+model SiteUser {
+    // id Int @id @default(autoincrement())
+    privilege Privilege @default(V)
+
+    // Parent Relation
+    site Site @relation(fields: [siteId], references: [id])
+    siteId Int
+
+    // Parent Relation
+    user User @relation(fields: [userId], references: [id])
+    userId String
+
+    @@unique([siteId, userId])
 }
 
 // see SiteDateObservation Section
@@ -279,7 +299,8 @@ model Checklist {
     species String // @db.String(20) // doomed
     subspecies String? // @db.String(16) // doomed
     commonName String? // @db.String(30)
-    show Boolean
+    show Boolean @default(true)        // Is visible for general use?
+    isSpurious Boolean @default(false) // Is this a rare, out-of-region or simply unexpected?
     kind String // @db.String(1)
     revised String // @db.String(1)
     author String // @db.String(22)
@@ -412,6 +433,19 @@ enum Weather {
     R // Rain
     S // Sun
     H // Haze/Smoke
+}
+
+enum Privilege {
+    A // Administrator (all rights - be careful)
+    S // Super user (R + E)
+    R // Reviewer (V + review rights)
+    E // Data-entry (V + data entry rights)
+    V // Read-only (viewing and reports) [default]
+    X // Explicit deny
+    /*
+    Any null here or lack of a siteUser record means the site
+    can be interacted with in accordance with the user's role
+    */
 }
 
 model SiteDate {

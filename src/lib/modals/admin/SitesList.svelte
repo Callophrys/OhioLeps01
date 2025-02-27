@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Site } from "$lib/types";
   import { onMount } from "svelte";
-  import { fetchSites } from "$lib/api";
+  import { fetchSites } from "$lib/database/siteusers";
 
   export let sites: Site[] = [];
   export let selectSite: (site: Site) => void;
