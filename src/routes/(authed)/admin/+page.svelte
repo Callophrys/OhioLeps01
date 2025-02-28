@@ -1,8 +1,9 @@
 <script lang="ts">
-    import SiteList from "$lib/components/admin/SiteList.svelte";
-    import SiteUsers from "$lib/components/admin/SiteUsers.svelte";
+    import SiteList from "$lib/alt/SiteList.svelte";
+    import SiteUsers from "$lib/alt/SiteUsers.svelte";
     import UserManagementModal from "$lib/modals/admin/UserManagementModal.svelte";
     import { SiteContextKey } from "$lib/context";
+    import { selectedSiteState } from "$lib/alt/internal/selectedSiteState.svelte.ts";
 
     import type { Site, User } from "@prisma/client";
     import { ROLE } from "$lib/types.js";
@@ -18,41 +19,44 @@
     let { data } = $props();
     // console.log(data);
 
+    setContext("sites", data.sites);
+    setContext("selectedSiteState", selectedSiteState);
+
     const myOrganizations = data.organziations;
 
-    let selectedSite: number = $state(0);
     let users: User[] | null = $state([]);
 
-    async function fetchUsersBySiteId(siteId: string) {
-        console.log("in fetchUsersBySiteId");
-        const res = await fetch(`/api/site/${siteId}/users`);
-        const data = await res.json();
-        return data.users;
-    }
+    // async function fetchUsersBySiteId(siteId: string) {
+    //     console.log("in fetchUsersBySiteId");
+    //     const res = await fetch(`/api/site/${siteId}/users`);
+    //     const data = await res.json();
+    //     return data.users;
+    // }
+    //
+    // async function loadUsers() {
+    //     console.log("in loadUsers");
+    //     if (selectedSite) users = await fetchUsersBySiteId(selectedSite);
+    // }
+    //
+    // $effect(async () => {
+    //     console.log("reacting before loadUsers");
+    //     await loadUsers();
+    // });
+    //
+    // function doit() {
+    //     // setContext(SiteContextKey, {
+    //     //     selectedSite,
+    //     //     users,
+    //     //     loadUsers,
+    //     // });
+    //     // setContext("x", selectedSite);
+    //     // setContext("y", users);
+    //     // setContext("z", loadUsers);
+    //     setContext("selectedSite", selectedSite);
+    //     // console.log("set context", getContext(SiteContextKey));
+    // }
 
-    async function loadUsers() {
-        console.log("in loadUsers");
-        if (selectedSite) users = await fetchUsersBySiteId(selectedSite);
-    }
-
-    $effect(async () => {
-        console.log("reacting before loadUsers");
-        await loadUsers();
-    });
-
-    function doit() {
-        setContext(SiteContextKey, {
-            selectedSite,
-            users,
-            loadUsers,
-        });
-        setContext("x", selectedSite);
-        setContext("y", users);
-        setContext("z", loadUsers);
-        console.log("set context", getContext(SiteContextKey));
-    }
-
-    doit();
+    // doit();
     // $effect(() => {
     // });
     //
@@ -68,16 +72,16 @@
 
     let tabSet: number = $state(0);
 
-    async function fetchSiteData(siteId: number) {
-        let sdpath = `/admin/${siteId}`;
-        try {
-            const response = await fetch(`${sdpath}`);
-            const data = await response.json();
-            return data.siteData;
-        } catch (error) {
-            console.error("Error fetching data:", error, "from sdpath", sdpath);
-        }
-    }
+    // async function fetchSiteData(siteId: number) {
+    //     let sdpath = `/admin/${siteId}`;
+    //     try {
+    //         const response = await fetch(`${sdpath}`);
+    //         const data = await response.json();
+    //         return data.siteData;
+    //     } catch (error) {
+    //         console.error("Error fetching data:", error, "from sdpath", sdpath);
+    //     }
+    // }
 
     // https://www.basedash.com/blog/how-to-use-papaparse-with-typescript
     // https://www.papaparse.com/docs#json-to-csv
@@ -230,26 +234,14 @@
     <!--         <div class="w-80">{site.siteName}</div> -->
     <!--         <div class="w-36">{site.county.name}</div> -->
     <!--         <div class="w-36">{site.county.state.name}</div> -->
-    <!--         <div class=""> -->
-    <!--             <button class="btn variant-soft" onclick={handleSiteUsers} -->
-    <!--                 >Users</button -->
-    <!--             > -->
-    <!--             <button class="btn variant-soft" disabled>Something</button> -->
-    <!--             <button class="btn variant-soft" disabled>Something Else</button -->
-    <!--             > -->
-    <!--         </div> -->
-    <!--     </div> -->
-    <!-- {/each} -->
+    <!-- ... -->
 
     <div class="container mx-auto p-4">
         <h1 class="text-2xl font-bold">Sites</h1>
-        <div class="grid grid-cols-2 gap-4">
-            <SiteList />
-            {#if selectedSite !== 0}
-                <SiteUsers />
-            {/if}
+        <div class="flex flex-row space-4">
+            <SiteList {selectedSiteState} />
+            <SiteUsers {selectedSiteState} />
         </div>
-        <UserManagementModal />
     </div>
 {/snippet}
 

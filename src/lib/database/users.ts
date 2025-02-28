@@ -33,44 +33,52 @@ export async function getUsers(organizationId: string | null) {
   }
 }
 
-export async function getUsersInSite(siteId: string | null) {
-  console.log(`users.ts->getUsersInSite:{siteId}`);
+export async function getUsersInSite(siteId: number | null) {
+  console.log(`users.ts->getUsersInSite: ${siteId}`);
   if (siteId) {
     return await prisma.user.findMany({
       where: {
-        isEnabled: true,
-        siteUser: {
-          siteId: siteId,
-        }
+        disabled: false,
+        siteUsers: {
+          some: {
+            siteId: siteId,
+          },
+        },
       },
       include: {
         role: true,
+        siteUsers: {
+          where: {
+            siteId: siteId,
+          },
+        },
       },
     });
   } else {
     return await prisma.user.findMany({
       include: {
         role: true,
-        siteUser: true,
+        siteUsers: true,
       },
     });
   }
 }
 
 export async function getUsersNotInSite(siteId: string | null) {
-  console.log(`users.ts->getUsersNotInSite:{siteId}`);
+  console.log(`users.ts->getUsersNotInSite: ${siteId}`);
   if (siteId) {
     return await prisma.user.findMany({
       where: {
-        isEnabled: true,
-        siteUser: {
-          siteId: siteId,
-          none: {},
+        disabled: false,
+        siteUsers: {
+          none: {
+            siteId: siteId,
+          },
         }
       },
       include: {
         role: true,
-        siteUser: true, // Obviously this will be empty
+        siteUsers: true, // Obviously this will be empty
       },
     });
   } else {

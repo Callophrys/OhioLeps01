@@ -9,7 +9,8 @@ export async function GET({ params }: any) {
   console.log(`get user data from /admin/site/${siteId}/users/excl/+server.ts`);
 
   const users = await getUsersNotInSite(siteId);
-  console.log("user data", users);
+  // console.log("user data", users);
+  console.log("user data");
 
   return json({ success: true, users: users });
 }

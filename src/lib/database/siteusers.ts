@@ -1,4 +1,66 @@
 import type { Site, User } from "$lib/types";
+import prisma from "$lib/prisma";
+import type { User } from "@prisma/client";
+
+
+export async function createSiteUser(siteId: number, userId: string, privilege: string) {
+  console.log("/lib/database/siteusers.ts > createSiteUser");
+  const createdSiteUser = await prisma.siteUser.create({
+    data: {
+      siteId: siteId,
+      userId: userId,
+      privilege: privilege,
+      // createdAt: new Date(),
+      // createdById: userId,
+    },
+  });
+
+  return createdSiteUser;
+}
+
+export async function updateSiteUser(siteId: number, userId: string, privilege: string) {
+  console.log('/lib/database/siteusers.ts > updateSiteUser', siteId, userId, privilege);
+  const updatedSiteUser = await prisma.siteUser.update({
+    where: {
+      siteId_userId: {
+        siteId: siteId,
+        userId: userId,
+      },
+    },
+    data: {
+      privilege: privilege,
+      // updatedAt: new Date(),
+      // updatedById: userId,
+    },
+  });
+
+  return updatedSiteUser;
+}
+
+export async function removeSiteUser(siteId: number, userId: string) {
+  console.log("/lib/database/siteusers.ts > removeSiteUser");
+  await prisma.siteUser.deleteMany({
+    where: {
+      siteId: siteId,
+      userId: userId,
+      // updatedAt: new Date(),
+      // updatedById: userId,
+    },
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+// is use?
 
 export async function fetchSites(): Promise<site[]> {
   const res = await fetch("/api/sites");
