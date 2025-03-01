@@ -6,10 +6,13 @@ export async function GET({ params }: any) {
   console.log("params", params);
 
   let siteId = Number(params.siteid);
+  let state = Number(params.state);
 
-  console.log(`get user data from /admin/site/${siteId}/users/incl/+server.ts`);
+  console.log(`get user data from /admin/site/${siteId}/users/{state}/+server.ts`);
 
-  const users = await getUsersInSite(siteId);
+  const users = state === "incl"
+    ? await getUsersInSite(siteId)
+    : await getUsersNotInSite(siteId);
   // console.log("user data", users);
   // console.log("user data");
 

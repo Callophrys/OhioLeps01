@@ -17,6 +17,7 @@
 
   async function fetchUserSet(siteId: number, userState: string) {
     try {
+      console.log(`/admin/site/${siteId}/users/${userState}`);
       const response = await fetch(`/admin/site/${siteId}/users/${userState}`);
       const data = await response.json();
       // console.error("data", userState, data.users);
@@ -30,7 +31,7 @@
   async function loadUserSets(siteId: number) {
     console.log("in loadUserSets", siteId);
 
-    if (selectedSiteState.selectedSite > 0) {
+    if (siteId > 0) {
       const [excludedUsers, includedUsers] = await Promise.all([
         fetchUserSet(siteId, "excl"),
         fetchUserSet(siteId, "incl"),

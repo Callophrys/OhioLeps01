@@ -3,6 +3,7 @@ import { getUsersNotInSite } from "$lib/database/users";
 import { json } from "@sveltejs/kit";
 
 export async function GET({ params }: any) {
+  console.log("params", params);
 
   let siteId = Number(params.siteid);
 

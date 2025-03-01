@@ -265,7 +265,6 @@ model Site {
 
 // Allows for site-specific access properties on per user basis
 model SiteUser {
-    // id Int @id @default(autoincrement())
     privilege Privilege @default(V)
 
     // Parent Relation
@@ -274,8 +273,8 @@ model SiteUser {
 
     // Parent Relation
     user User @relation(fields: [userId], references: [id])
-    userId String
-
+    userId String @db.VarChar(32)
+ 
     @@id([siteId, userId])
 }
 
@@ -461,7 +460,7 @@ model SiteDate {
     startClouds Int?
     endClouds Int?
     startWindDir String? // @db.String(3)
-    endWindDir String? // @db.String(3)
+    endWindDir String? // @db.(3)
     startWindMPH Int?
     endWindMPH Int?
     weather1 Weather @default(U)

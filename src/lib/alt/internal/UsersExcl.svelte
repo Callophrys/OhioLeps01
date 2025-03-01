@@ -14,7 +14,7 @@
   });
 
   async function createSiteUser(
-    siteId: int,
+    siteId: number,
     userId: string,
     privilege: string,
   ) {

@@ -13,7 +13,7 @@
     return userObj.users;
   });
 
-  export async function updateSiteUser(
+  async function updateSiteUser(
     siteId: number,
     userId: string,
     privilege: string,
@@ -80,7 +80,7 @@
           class="text-red-500">X</button
         >
         <span>
-          {user.siteUsers[0].privilege}
+          {user.siteUsers.length > 0 ? user.siteUsers[0].privilege : "_"}
         </span>
       </li>
     {/each}

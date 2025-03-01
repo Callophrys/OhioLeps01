@@ -1,6 +1,4 @@
-import type { Site, User } from "$lib/types";
 import prisma from "$lib/prisma";
-import type { User } from "@prisma/client";
 
 
 export async function createSiteUser(siteId: number, userId: string, privilege: string) {
@@ -48,17 +46,6 @@ export async function removeSiteUser(siteId: number, userId: string) {
     },
   });
 }
-
-
-
-
-
-
-
-
-
-
-
 
 // is use?
 

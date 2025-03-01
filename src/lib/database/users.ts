@@ -54,13 +54,6 @@ export async function getUsersInSite(siteId: number | null) {
         },
       },
     });
-  } else {
-    return await prisma.user.findMany({
-      include: {
-        role: true,
-        siteUsers: true,
-      },
-    });
   }
 }
 
