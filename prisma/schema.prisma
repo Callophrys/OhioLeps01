@@ -171,14 +171,14 @@ model Role {
 }
 
 model Section {
-    id Int @id @default(autoincrement())
+    id BigInt @id @default(autoincrement())
     description String @default("") // e.g. "South side savannah (restored prairie with bur and post oak trees)"
     labelLong String @default("")   // e.g. "Section 1", "Transect 1"
     labelShort String @default("")  // e.g. "S1", "T1"
     sectionIndex Int @default(0)    // e.g. 1..n
 
     // Parent Relation
-    siteId Int
+    siteId BigInt
     site Site @relation("SectionsInSite", fields: [siteId], references: [id])
 
     // Child Relations
@@ -186,7 +186,7 @@ model Section {
 }
 
 model Site {
-    id Int @id @default(autoincrement())
+    id BigInt @id @default(autoincrement())
     siteName String // @db.String(30)
     township String? // @db.String(50)
     locationZip String? // @db.String(50)
@@ -269,7 +269,7 @@ model SiteUser {
 
     // Parent Relation
     site Site @relation(fields: [siteId], references: [id])
-    siteId Int
+    siteId BigInt
 
     // Parent Relation
     user User @relation(fields: [userId], references: [id])
@@ -280,13 +280,13 @@ model SiteUser {
 
 // see SiteDateObservation Section
 // model Transect {
-//     id Int @id @default(autoincrement())
+//     id BigInt @id @default(autoincrement())
 //     number Int
 //     name String
 //     description String
 //
 //     // Parent Relation
-//     siteSiteId Int?
+//     siteSiteId BigInt?
 //     SiteDate siteDate? @relation("TransectOfSite", fields: [siteDateId], references: [id])
 // }
 
@@ -330,8 +330,8 @@ model Checklist {
 }
 
 model SiteDateObservation {
-    id Int @id @default(autoincrement())
-    // ** use siteDateObservationId as real key now - and later just drop 'seqId Int?'
+    id BigInt @id @default(autoincrement())
+    // ** use siteDateObservationId as real key now - and later just drop 'seqId BigInt?'
     seqId Int?
     idCode String? // @db.String(1)  // in { how id'ed:  O observ, N net, P photo, C collected }
     section1 Int?        // counts of CheckList species per section
@@ -375,7 +375,7 @@ model SiteDateObservation {
 
     // Parent Relation
     siteDate SiteDate @relation(fields: [siteDateId], references: [id])
-    siteDateId Int // Should never be null
+    siteDateId BigInt // Should never be null
 
     // Child Relations
     sectionObservations SectionObservation[] @relation(name: "SectionObservationsInSiteDateObservation")
@@ -385,15 +385,15 @@ model SiteDateObservation {
 }
 
 model SectionObservation {
-    id Int @id @default(autoincrement())
+    id BigInt @id @default(autoincrement())
     value Int?
 
     // Parent Relation - probably don't need this one but it might be convenient later, or bloaty, we shall see
-    sectionId Int
+    sectionId BigInt
     section Section @relation(name: "SectionObservationsInSection", fields: [sectionId], references: [id])
 
     // Parent Relation
-    siteDateObservationId Int
+    siteDateObservationId BigInt
     siteDateObservation SiteDateObservation @relation(name: "SectionObservationsInSiteDateObservation", fields: [siteDateObservationId], references: [id])
 
     @@unique([sectionId, siteDateObservationId])
@@ -410,17 +410,17 @@ model StatusCode {
 
 model SiteStatus {
     id Int @id @default(autoincrement())
-    siteId Int?
+    siteId BigInt?
     statusCodeId Int?
     year Int
 
     // Parent Relation
     statusCode StatusCode? @relation(fields: [statusCodeId], references: [id])
-    // provided by load: 'statusCodeId Int'
+    // provided by load: 'statusCodeId BigInt'
 
     // Parent Relation
     site Site? @relation(fields: [siteId], references: [id])
-    // provided by load: 'siteId Int'
+    // provided by load: 'siteId BigInt'
 
     @@unique([siteId, year])
     @@index([siteId])
@@ -448,8 +448,8 @@ enum Privilege {
 }
 
 model SiteDate {
-    id Int @id @default(autoincrement())
-    seqId Int? // temp and will be query key
+    id BigInt @id @default(autoincrement())
+    seqId BigInt? // temp and will be query key
     recordDate DateTime // was "date", a reserved word
     week Int // TODO: find out if this should be editable or simply a derivation of recordDate
     recorder String // @db.String(25)
@@ -521,7 +521,7 @@ model SiteDate {
 
     // Parent Relation
     site Site @relation(fields: [siteId], references: [id])
-    siteId Int
+    siteId BigInt
 
     // Child Relation
     siteDateObservations SiteDateObservation[]
@@ -530,7 +530,7 @@ model SiteDate {
 }
 
 model NameAddress {
-    id Int @id @default(autoincrement())
+    id BigInt @id @default(autoincrement())
     fullName String
     firstName String?
     lastName String?
@@ -652,13 +652,13 @@ model County {
 }
 
 model Audit {
-    id Int @id @default(autoincrement())
+    id BigInt @id @default(autoincrement())
     auditType String?
     ipAddress String?
     userName String?
     userId String?
     organizationId String?
-    siteId Int?
+    siteId BigInt?
     description String?
     createdAt DateTime? @default(now())
 }

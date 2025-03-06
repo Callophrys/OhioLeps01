@@ -263,3 +263,76 @@ export function getTaxonIndent(taxonType: string) {
   if (taxonType === "SS") return "indent-20";
   return "";
 }
+
+/*
+// Old way was to stringify and parse
+// Make sure dates are formatted and zoned correctly
+const s = JSON.stringify(v);
+return JSON.parse(s);
+*/
+
+// Example usage
+// const safeSites = convertSafeJson(sites);
+export function convertSafeJson<T>(input: T): T {
+
+  if (typeof input === 'bigint') {
+    return input.toString() as T;
+  }
+
+  if (input instanceof Date) {
+    return input.toString() as T;
+  }
+
+  if (Array.isArray(input)) {
+    return input.map(convertSafeJson) as T;
+  }
+
+  if (typeof input === 'object' && input !== null) {
+    return Object.fromEntries(
+      Object.entries(input).map(([key, value]) => [key, convertSafeJson(value)])
+    ) as T;
+  }
+
+  return input;
+}
+
+// // Example usage
+// const parsedSites = restoreBigInt(JSON.parse(jsonSites));
+export function restoreBigInt<T>(input: T): T {
+  if (typeof input === 'string' && /^\d+n?$/.test(input)) {
+    return BigInt(input.replace('n', '')) as T;
+  }
+
+  if (Array.isArray(input)) {
+    return input.map(restoreBigInt) as T;
+  }
+
+  if (typeof input === 'object' && input !== null) {
+    return Object.fromEntries(
+      Object.entries(input).map(([key, value]) => [key, restoreBigInt(value)])
+    ) as T;
+  }
+
+  return input;
+}
+
+// function isDate(value) {
+//   return value instanceof Date;
+// }
+//
+// // works in any js context
+// function isDate(value) {
+//   return Object.prototype.toString.call(value) === "[object Date]";
+// }
+
+function isValidDate(value) {
+  return value instanceof Date && !isNaN(value.getTime());
+}
+
+// Example usage
+// console.log(canBeDate("2024-02-24")); // ✅ true
+// console.log(canBeDate("Not a date")); // ❌ false
+// console.log(canBeDate(1708771200000)); // ✅ true (timestamp)
+function canBeDate(value) {
+  return !isNaN(new Date(value).getTime());
+}

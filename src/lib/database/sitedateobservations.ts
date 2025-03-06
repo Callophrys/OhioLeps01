@@ -1,13 +1,14 @@
 import { updated } from "$app/stores";
 import prisma from "$lib/prisma";
 import type { SiteDateObservation } from "@prisma/client";
+import { convertSafeJson } from "../utils";
 
 export async function getSiteDateObservations(
   siteDateId: number = 0,
   checklistId: number = 0,
   siteId: number = 0,
 ) {
-//  console.log('database.siteDateObservations.getSiteDateObservation');
+  //  console.log('database.siteDateObservations.getSiteDateObservation');
   if (siteDateId > 0) {
     if (checklistId > 0) {
       return await getSiteDateObservationsBySiteDateAndChecklist(
@@ -24,7 +25,7 @@ export async function getSiteDateObservations(
   }
 }
 
-export async function getSiteDateObservationsBySiteDate(siteDateId: number) {
+export async function getSiteDateObservationsBySiteDate(siteDateId: number): SiteDateObservationChecklist[] {
   const siteDateObservations = await prisma.siteDateObservation.findMany({
     where: {
       siteDateId: siteDateId,
@@ -39,7 +40,8 @@ export async function getSiteDateObservationsBySiteDate(siteDateId: number) {
       { checklist: { subspecies: { sort: "asc", nulls: "first" } } },
     ],
   });
-  return siteDateObservations;
+
+  return convertSafeJson(siteDateObservations);
 }
 
 export async function getSiteDateObservationsByChecklist(checklistId: number) {
@@ -60,7 +62,7 @@ export async function getSiteDateObservationsBySiteDateAndChecklist(
 ) {
   const siteDateObservations = await prisma.siteDateObservation.findMany({
     where: {
-      siteDateId: siteDateId,
+      siteDateId: BigInt(siteDateId),
       checklistId: checklistId,
     },
     include: {
@@ -73,13 +75,21 @@ export async function getSiteDateObservationsBySiteDateAndChecklist(
 }
 
 export async function getSiteDateObservation(siteDateObservationId: number) {
-  const siteDateObservation = await prisma.siteDateObservation.findUnique({
-    where: {
-      id: siteDateObservationId,
-    },
-  });
+  // console.log(`sitedateobservations.ts -> getSiteDateObservation(${siteDateObservationId})`);
+  try {
+    const siteDateObservation = await prisma.siteDateObservation.findUnique({
+      where: {
+        id: BigInt(siteDateObservationId),
+      },
+    });
 
-  return siteDateObservation;
+    // console.log(`sitedateobservations.ts -> getSiteDateObservation(${siteDateObservationId}) OK`);
+    return siteDateObservation;
+  }
+  catch (e) {
+    console.error(`sitedateobservations.ts -> getSiteDateObservation(${siteDateObservationId}) Error:`, e);
+    return null;
+  }
 }
 
 export async function getSiteDateObservationBySiteDateObservation(
@@ -87,7 +97,7 @@ export async function getSiteDateObservationBySiteDateObservation(
 ) {
   const siteDateObservation = await prisma.siteDateObservation.findUnique({
     where: {
-      id: siteDateObservationId,
+      id: BigInt(siteDateObservationId),
     },
     include: {
       checklist: true,
@@ -105,7 +115,7 @@ export async function getSiteDateObservationsAll(siteId: number) {
   const siteDateObservations = await prisma.siteDateObservation.findMany({
     where: {
       siteDate: {
-        id: siteId,
+        id: BigInt(siteId),
       },
     },
     include: {
@@ -120,7 +130,7 @@ export async function createSiteDateObservation(
 ) {
   const createdSiteDateObservation = await prisma.siteDateObservation.create({
     data: {
-      siteDateId: siteDateObservation.siteDateId,
+      siteDateId: BigInt(siteDateObservation.siteDateId),
       seqId: siteDateObservation.seqId,
       checklistId: siteDateObservation.checklistId,
       idCode: siteDateObservation.idCode,
@@ -153,7 +163,7 @@ export async function deleteSiteDateObservation(
 ) {
   return await prisma.siteDateObservation.update({
     where: {
-      id: siteDateObservationId,
+      id: BigInt(siteDateObservationId),
     },
     data: {
       deleted: deleteState,
@@ -169,7 +179,7 @@ async function siteDateObservationBySiteDateChecklist(
 ) {
   const siteDateObservation = await prisma.siteDateObservation.findFirst({
     where: {
-      siteDateId: siteDateId,
+      siteDateId: BigInt(siteDateId),
       checklistId: checklistId,
     },
     include: {
@@ -258,10 +268,10 @@ export async function prevOrFirstSiteDateObservationByLatin(
 }
 
 export async function reviewSiteDateObservation(
-  siteDateObservationId: number,
+  siteDateObservationId: BigInt,
   confirm: boolean,
   userId: string,
-) {
+): SiteDateObservationChecklist {
   const siteDateObservation = await prisma.siteDateObservation.update({
     where: {
       id: siteDateObservationId,
@@ -272,7 +282,8 @@ export async function reviewSiteDateObservation(
       confirmById: userId,
     },
   });
-  return siteDateObservation;
+
+  return convertSafeJson(siteDateObservation);
 }
 
 export async function updateSiteDateObservation(
@@ -280,7 +291,7 @@ export async function updateSiteDateObservation(
 ) {
   const updatedSiteDateObservation = await prisma.siteDateObservation.update({
     where: {
-      id: siteDateObservation.id,
+      id: BigInt(siteDateObservation.id),
     },
     data: {
       idCode: siteDateObservation.idCode,
@@ -303,5 +314,7 @@ export async function updateSiteDateObservation(
       updatedById: siteDateObservation.updatedById,
     },
   });
+
   return updatedSiteDateObservation;
+  // return convertSafeJson(updatedSiteDateObservation);
 }

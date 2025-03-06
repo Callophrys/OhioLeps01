@@ -7,10 +7,15 @@ import type {
   ChangelessSite,
 } from "$lib/types.js";
 import { createAudit } from "$lib/database/audit";
-import { createSite, existsInState, updateSite } from "$lib/database/sites.js";
-import { error, fail } from "@sveltejs/kit";
+import {
+  createSite,
+  existsInState,
+  updateSite,
+  getSite,
+  getSites
+} from "$lib/database/sites";
 import { getCounties, getStates } from "$lib/database/counties.js";
-import { getSite, getSites } from "$lib/database/sites";
+import { error, fail } from "@sveltejs/kit";
 import { lockUser } from "$lib/database/users";
 
 export async function load({ params }: any) {
@@ -28,27 +33,13 @@ export async function load({ params }: any) {
     throw error(404, "Site not found");
   }
 
-  const json = JSON.stringify(site);
-  const jsonResultSite: SiteCountySiteDatesSiteStatuses = JSON.parse(json);
-  //console.log('site', jsonResult);
-
-  const jsonC = JSON.stringify(counties);
-  const jsonResultCounties: County[] = JSON.parse(jsonC);
-
-  const jsonStates = JSON.stringify(states);
-  const jsonStatesResult: State[] = JSON.parse(jsonStates);
-
-  const jsonS = JSON.stringify(sites);
-  const jsonResultSites: SiteCountyState[] = JSON.parse(jsonS);
-  //const jsonResultS: SiteDateYearSiteDates[] = JSON.parse(jsonS);
   //console.log('sites.siteId.sites (ct=2)', jsonResultS.slice(0, 1));
-  // console.log(jsonResultSite);
 
   return {
-    site: jsonResultSite,
-    counties: jsonResultCounties,
-    states: jsonStatesResult,
-    sites: jsonResultSites,
+    site: site,
+    counties: counties,
+    states: states,
+    sites: sites,
   };
 }
 

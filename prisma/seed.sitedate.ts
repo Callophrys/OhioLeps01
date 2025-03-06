@@ -5,9 +5,9 @@ export default async function () {
   console.log("Creating siteDate records");
   await db.siteDate.create({
     data: {
-      id: 1,
+      id: BigInt(1),
       seqId: 97,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("4/20/1996 GMT").toISOString(),
       week: 3,
       recorder: "Jim Ciha",
@@ -67,9 +67,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 2,
+      id: BigInt(2),
       seqId: 98,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("4/21/1996 GMT").toISOString(),
       week: 3,
       recorder: "Jim Ciha",
@@ -129,9 +129,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 3,
+      id: BigInt(3),
       seqId: 99,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("4/27/1996 GMT").toISOString(),
       week: 4,
       recorder: "Jim Ciha",
@@ -190,9 +190,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 4,
+      id: BigInt(4),
       seqId: 100,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("5/5/1996 GMT").toISOString(),
       week: 5,
       recorder: "Jim Ciha",
@@ -251,9 +251,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 5,
+      id: BigInt(5),
       seqId: 101,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("6/8/1996 GMT").toISOString(),
       week: 10,
       recorder: "Jim Ciha",
@@ -312,9 +312,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 6,
+      id: BigInt(6),
       seqId: 102,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("6/16/1996 GMT").toISOString(),
       week: 11,
       recorder: "Jim Ciha",
@@ -374,9 +374,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 7,
+      id: BigInt(7),
       seqId: 103,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("6/22/1996 GMT").toISOString(),
       week: 12,
       recorder: "Jim Ciha",
@@ -435,9 +435,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 8,
+      id: BigInt(8),
       seqId: 104,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("6/29/1996 GMT").toISOString(),
       week: 13,
       recorder: "Jim Ciha",
@@ -496,9 +496,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 9,
+      id: BigInt(9),
       seqId: 105,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("7/4/1996 GMT").toISOString(),
       week: 14,
       recorder: "Jim Ciha",
@@ -558,9 +558,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 10,
+      id: BigInt(10),
       seqId: 107,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("7/13/1996 GMT").toISOString(),
       week: 15,
       recorder: "Jim Ciha",
@@ -619,9 +619,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 11,
+      id: BigInt(11),
       seqId: 106,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("7/14/1996 GMT").toISOString(),
       week: 15,
       recorder: "Jim Ciha",
@@ -680,9 +680,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 12,
+      id: BigInt(12),
       seqId: 108,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("7/21/1996 GMT").toISOString(),
       week: 16,
       recorder: "Jim Ciha",
@@ -741,9 +741,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 13,
+      id: BigInt(13),
       seqId: 109,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("7/28/1996 GMT").toISOString(),
       week: 17,
       recorder: "Jim Ciha",
@@ -802,9 +802,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 14,
+      id: BigInt(14),
       seqId: 110,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("8/2/1996 GMT").toISOString(),
       week: 18,
       recorder: "Jim Ciha",
@@ -863,9 +863,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 15,
+      id: BigInt(15),
       seqId: 111,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("8/25/1996 GMT").toISOString(),
       week: 21,
       recorder: "Jim Ciha",
@@ -924,9 +924,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 16,
+      id: BigInt(16),
       seqId: 113,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("8/31/1996 GMT").toISOString(),
       week: 22,
       recorder: "Jim Ciha",
@@ -985,9 +985,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 17,
+      id: BigInt(17),
       seqId: 114,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("9/2/1996 GMT").toISOString(),
       week: 23,
       recorder: "Jim Ciha",
@@ -1047,9 +1047,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 18,
+      id: BigInt(18),
       seqId: 115,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("9/15/1996 GMT").toISOString(),
       week: 24,
       recorder: "Jim Ciha",
@@ -1108,9 +1108,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 19,
+      id: BigInt(19),
       seqId: 116,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("9/21/1996 GMT").toISOString(),
       week: 25,
       recorder: "Jim Ciha",
@@ -1169,9 +1169,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 20,
+      id: BigInt(20),
       seqId: 117,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("9/29/1996 GMT").toISOString(),
       week: 26,
       recorder: "Jim Ciha",
@@ -1231,9 +1231,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 21,
+      id: BigInt(21),
       seqId: 118,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("4/6/1997 GMT").toISOString(),
       week: 1,
       recorder: "Jim Ciha",
@@ -1293,9 +1293,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 22,
+      id: BigInt(22),
       seqId: 119,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("4/20/1997 GMT").toISOString(),
       week: 3,
       recorder: "Jim Ciha",
@@ -1354,9 +1354,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 23,
+      id: BigInt(23),
       seqId: 120,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("4/26/1997 GMT").toISOString(),
       week: 4,
       recorder: "Jim Ciha",
@@ -1416,9 +1416,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 24,
+      id: BigInt(24),
       seqId: 121,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("5/4/1997 GMT").toISOString(),
       week: 5,
       recorder: "Jim Ciha",
@@ -1477,9 +1477,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 25,
+      id: BigInt(25),
       seqId: 122,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("5/11/1997 GMT").toISOString(),
       week: 6,
       recorder: "Jim Ciha",
@@ -1539,9 +1539,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 26,
+      id: BigInt(26),
       seqId: 123,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("5/18/1997 GMT").toISOString(),
       week: 7,
       recorder: "Jim Ciha",
@@ -1601,9 +1601,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 27,
+      id: BigInt(27),
       seqId: 124,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("5/24/1997 GMT").toISOString(),
       week: 8,
       recorder: "Jim Ciha",
@@ -1662,9 +1662,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 28,
+      id: BigInt(28),
       seqId: 125,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("6/8/1997 GMT").toISOString(),
       week: 10,
       recorder: "Jim Ciha",
@@ -1723,9 +1723,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 29,
+      id: BigInt(29),
       seqId: 126,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("6/15/1997 GMT").toISOString(),
       week: 11,
       recorder: "Jim Ciha",
@@ -1785,9 +1785,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 30,
+      id: BigInt(30),
       seqId: 127,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("6/17/1997 GMT").toISOString(),
       week: 12,
       recorder: "Jim Ciha",
@@ -1847,9 +1847,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 31,
+      id: BigInt(31),
       seqId: 128,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("6/25/1997 GMT").toISOString(),
       week: 13,
       recorder: "Jim Ciha",
@@ -1908,9 +1908,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 32,
+      id: BigInt(32),
       seqId: 129,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("7/6/1997 GMT").toISOString(),
       week: 14,
       recorder: "Jim Ciha",
@@ -1969,9 +1969,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 33,
+      id: BigInt(33),
       seqId: 130,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("7/13/1997 GMT").toISOString(),
       week: 15,
       recorder: "Jim Ciha",
@@ -2030,9 +2030,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 34,
+      id: BigInt(34),
       seqId: 131,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("7/20/1997 GMT").toISOString(),
       week: 16,
       recorder: "Jim Ciha",
@@ -2091,9 +2091,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 35,
+      id: BigInt(35),
       seqId: 132,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("7/27/1997 GMT").toISOString(),
       week: 17,
       recorder: "Jim Ciha",
@@ -2153,9 +2153,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 36,
+      id: BigInt(36),
       seqId: 133,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("7/29/1997 GMT").toISOString(),
       week: 18,
       recorder: "Jim Ciha",
@@ -2214,9 +2214,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 37,
+      id: BigInt(37),
       seqId: 134,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("8/9/1997 GMT").toISOString(),
       week: 19,
       recorder: "Jim Ciha",
@@ -2276,9 +2276,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 38,
+      id: BigInt(38),
       seqId: 135,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("8/18/1997 GMT").toISOString(),
       week: 20,
       recorder: "Jim Ciha",
@@ -2337,9 +2337,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 39,
+      id: BigInt(39),
       seqId: 136,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("8/25/1997 GMT").toISOString(),
       week: 21,
       recorder: "Jim Ciha",
@@ -2399,9 +2399,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 40,
+      id: BigInt(40),
       seqId: 137,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("9/1/1997 GMT").toISOString(),
       week: 22,
       recorder: "Jim Ciha",
@@ -2460,9 +2460,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 41,
+      id: BigInt(41),
       seqId: 138,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("9/2/1997 GMT").toISOString(),
       week: 23,
       recorder: "Jim Ciha",
@@ -2522,9 +2522,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 42,
+      id: BigInt(42),
       seqId: 139,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("9/14/1997 GMT").toISOString(),
       week: 24,
       recorder: "Jim Ciha",
@@ -2584,9 +2584,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 43,
+      id: BigInt(43),
       seqId: 140,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("9/21/1997 GMT").toISOString(),
       week: 25,
       recorder: "Jim Ciha",
@@ -2646,9 +2646,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 44,
+      id: BigInt(44),
       seqId: 141,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("9/27/1997 GMT").toISOString(),
       week: 26,
       recorder: "Jim Ciha",
@@ -2707,9 +2707,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 45,
+      id: BigInt(45),
       seqId: 54,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("4/12/1998 GMT").toISOString(),
       week: 2,
       recorder: "Jim Ciha",
@@ -2768,9 +2768,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 46,
+      id: BigInt(46),
       seqId: 55,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("4/18/1998 GMT").toISOString(),
       week: 3,
       recorder: "Jim Ciha",
@@ -2830,9 +2830,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 47,
+      id: BigInt(47),
       seqId: 56,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("4/25/1998 GMT").toISOString(),
       week: 4,
       recorder: "Jim Ciha",
@@ -2891,9 +2891,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 48,
+      id: BigInt(48),
       seqId: 57,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("5/3/1998 GMT").toISOString(),
       week: 5,
       recorder: "Jim Ciha",
@@ -2952,9 +2952,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 49,
+      id: BigInt(49),
       seqId: 58,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("5/10/1998 GMT").toISOString(),
       week: 6,
       recorder: "Jim Ciha",
@@ -3014,9 +3014,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 50,
+      id: BigInt(50),
       seqId: 59,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("5/17/1998 GMT").toISOString(),
       week: 7,
       recorder: "Jim Ciha",
@@ -3076,9 +3076,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 51,
+      id: BigInt(51),
       seqId: 60,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("5/23/1998 GMT").toISOString(),
       week: 8,
       recorder: "Jim Ciha",
@@ -3137,9 +3137,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 52,
+      id: BigInt(52),
       seqId: 61,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("5/30/1998 GMT").toISOString(),
       week: 9,
       recorder: "Jim Ciha",
@@ -3198,9 +3198,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 53,
+      id: BigInt(53),
       seqId: 62,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("6/7/1998 GMT").toISOString(),
       week: 10,
       recorder: "Jim Ciha",
@@ -3260,9 +3260,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 54,
+      id: BigInt(54),
       seqId: 63,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("6/14/1998 GMT").toISOString(),
       week: 11,
       recorder: "Jim Ciha",
@@ -3322,9 +3322,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 55,
+      id: BigInt(55),
       seqId: 64,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("6/20/1998 GMT").toISOString(),
       week: 12,
       recorder: "Jim Ciha",
@@ -3383,9 +3383,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 56,
+      id: BigInt(56),
       seqId: 65,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("6/24/1998 GMT").toISOString(),
       week: 13,
       recorder: "Jim Ciha",
@@ -3444,9 +3444,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 57,
+      id: BigInt(57),
       seqId: 66,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("7/5/1998 GMT").toISOString(),
       week: 14,
       recorder: "Jim Ciha",
@@ -3506,9 +3506,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 58,
+      id: BigInt(58),
       seqId: 67,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("7/11/1998 GMT").toISOString(),
       week: 15,
       recorder: "Jim Ciha",
@@ -3567,9 +3567,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 59,
+      id: BigInt(59),
       seqId: 68,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("7/19/1998 GMT").toISOString(),
       week: 16,
       recorder: "Jim Ciha",
@@ -3628,9 +3628,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 60,
+      id: BigInt(60),
       seqId: 69,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("7/26/1998 GMT").toISOString(),
       week: 17,
       recorder: "Jim Ciha",
@@ -3690,9 +3690,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 61,
+      id: BigInt(61),
       seqId: 70,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("8/2/1998 GMT").toISOString(),
       week: 18,
       recorder: "Jim Ciha",
@@ -3752,9 +3752,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 62,
+      id: BigInt(62),
       seqId: 71,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("8/8/1998 GMT").toISOString(),
       week: 19,
       recorder: "Jim Ciha",
@@ -3814,9 +3814,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 63,
+      id: BigInt(63),
       seqId: 72,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("8/15/1998 GMT").toISOString(),
       week: 20,
       recorder: "Jim Ciha",
@@ -3875,9 +3875,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 64,
+      id: BigInt(64),
       seqId: 73,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("8/22/1998 GMT").toISOString(),
       week: 21,
       recorder: "Jim Ciha",
@@ -3936,9 +3936,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 65,
+      id: BigInt(65),
       seqId: 74,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("8/30/1998 GMT").toISOString(),
       week: 22,
       recorder: "Jim Ciha",
@@ -3997,9 +3997,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 66,
+      id: BigInt(66),
       seqId: 75,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("9/6/1998 GMT").toISOString(),
       week: 23,
       recorder: "Jim Ciha",
@@ -4058,9 +4058,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 67,
+      id: BigInt(67),
       seqId: 76,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("9/13/1998 GMT").toISOString(),
       week: 24,
       recorder: "Jim Ciha",
@@ -4119,9 +4119,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 68,
+      id: BigInt(68),
       seqId: 77,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("9/20/1998 GMT").toISOString(),
       week: 25,
       recorder: "Jim Ciha",
@@ -4181,9 +4181,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 69,
+      id: BigInt(69),
       seqId: 78,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("9/26/1998 GMT").toISOString(),
       week: 26,
       recorder: "Jim Ciha",
@@ -4242,9 +4242,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 70,
+      id: BigInt(70),
       seqId: 965,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("4/3/1999 GMT").toISOString(),
       week: 1,
       recorder: "Jim Ciha",
@@ -4303,9 +4303,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 71,
+      id: BigInt(71),
       seqId: 966,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("4/8/1999 GMT").toISOString(),
       week: 2,
       recorder: "Jim Ciha",
@@ -4364,9 +4364,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 72,
+      id: BigInt(72),
       seqId: 967,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("4/25/1999 GMT").toISOString(),
       week: 4,
       recorder: "Jim Ciha",
@@ -4425,9 +4425,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 73,
+      id: BigInt(73),
       seqId: 968,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("5/2/1999 GMT").toISOString(),
       week: 5,
       recorder: "Jim Ciha",
@@ -4486,9 +4486,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 74,
+      id: BigInt(74),
       seqId: 969,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("5/9/1999 GMT").toISOString(),
       week: 6,
       recorder: "Jim Ciha",
@@ -4548,9 +4548,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 75,
+      id: BigInt(75),
       seqId: 970,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("5/16/1999 GMT").toISOString(),
       week: 7,
       recorder: "Jim Ciha",
@@ -4610,9 +4610,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 76,
+      id: BigInt(76),
       seqId: 971,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("5/30/1999 GMT").toISOString(),
       week: 9,
       recorder: "Jim Ciha",
@@ -4671,9 +4671,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 77,
+      id: BigInt(77),
       seqId: 972,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("6/5/1999 GMT").toISOString(),
       week: 10,
       recorder: "Jim Ciha",
@@ -4733,9 +4733,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 78,
+      id: BigInt(78),
       seqId: 973,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("6/13/1999 GMT").toISOString(),
       week: 11,
       recorder: "Jim Ciha",
@@ -4794,9 +4794,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 79,
+      id: BigInt(79),
       seqId: 974,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("6/19/1999 GMT").toISOString(),
       week: 12,
       recorder: "Jim Ciha",
@@ -4856,9 +4856,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 80,
+      id: BigInt(80),
       seqId: 975,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("6/26/1999 GMT").toISOString(),
       week: 13,
       recorder: "Jim Ciha",
@@ -4918,9 +4918,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 81,
+      id: BigInt(81),
       seqId: 976,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("7/5/1999 GMT").toISOString(),
       week: 14,
       recorder: "Jim Ciha",
@@ -4979,9 +4979,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 82,
+      id: BigInt(82),
       seqId: 977,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("7/11/1999 GMT").toISOString(),
       week: 15,
       recorder: "Jim Ciha",
@@ -5040,9 +5040,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 83,
+      id: BigInt(83),
       seqId: 978,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("7/17/1999 GMT").toISOString(),
       week: 16,
       recorder: "Jim Ciha",
@@ -5101,9 +5101,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 84,
+      id: BigInt(84),
       seqId: 979,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("7/25/1999 GMT").toISOString(),
       week: 17,
       recorder: "Jim Ciha",
@@ -5164,9 +5164,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 85,
+      id: BigInt(85),
       seqId: 980,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("7/31/1999 GMT").toISOString(),
       week: 18,
       recorder: "Jim Ciha",
@@ -5226,9 +5226,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 86,
+      id: BigInt(86),
       seqId: 981,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("8/8/1999 GMT").toISOString(),
       week: 19,
       recorder: "Jim Ciha",
@@ -5289,9 +5289,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 87,
+      id: BigInt(87),
       seqId: 982,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("8/15/1999 GMT").toISOString(),
       week: 20,
       recorder: "Jim Ciha",
@@ -5352,9 +5352,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 88,
+      id: BigInt(88),
       seqId: 983,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("8/22/1999 GMT").toISOString(),
       week: 21,
       recorder: "Jim Ciha",
@@ -5413,9 +5413,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 89,
+      id: BigInt(89),
       seqId: 984,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("8/29/1999 GMT").toISOString(),
       week: 22,
       recorder: "Jim Ciha",
@@ -5475,9 +5475,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 90,
+      id: BigInt(90),
       seqId: 985,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("9/5/1999 GMT").toISOString(),
       week: 23,
       recorder: "Jim Ciha",
@@ -5536,9 +5536,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 91,
+      id: BigInt(91),
       seqId: 986,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("9/12/1999 GMT").toISOString(),
       week: 24,
       recorder: "Jim Ciha",
@@ -5598,9 +5598,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 92,
+      id: BigInt(92),
       seqId: 987,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("9/19/1999 GMT").toISOString(),
       week: 25,
       recorder: "Jim Ciha",
@@ -5660,9 +5660,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 93,
+      id: BigInt(93),
       seqId: 988,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("9/26/1999 GMT").toISOString(),
       week: 26,
       recorder: "Jim Ciha",
@@ -5721,9 +5721,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 94,
+      id: BigInt(94),
       seqId: 989,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("10/2/1999 GMT").toISOString(),
       week: 27,
       recorder: "Jim Ciha",
@@ -5782,9 +5782,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 95,
+      id: BigInt(95),
       seqId: 990,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("10/9/1999 GMT").toISOString(),
       week: 28,
       recorder: "Jim Ciha",
@@ -5843,9 +5843,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 96,
+      id: BigInt(96),
       seqId: 991,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("10/15/1999 GMT").toISOString(),
       week: 29,
       recorder: "Jim Ciha",
@@ -5904,9 +5904,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 97,
+      id: BigInt(97),
       seqId: 993,
-      siteId: 1,
+      siteId: BigInt(1),
       recordDate: new Date("10/30/1999 GMT").toISOString(),
       week: 31,
       recorder: "Jim Ciha",
@@ -5965,9 +5965,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 98,
+      id: BigInt(98),
       seqId: 473,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("4/18/1996 GMT").toISOString(),
       week: 3,
       recorder: "Cynthia Mazur",
@@ -6026,9 +6026,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 99,
+      id: BigInt(99),
       seqId: 474,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("5/2/1996 GMT").toISOString(),
       week: 5,
       recorder: "Cynthia Mazur",
@@ -6087,9 +6087,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 100,
+      id: BigInt(100),
       seqId: 475,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("5/9/1996 GMT").toISOString(),
       week: 6,
       recorder: "Cynthia Mazur",
@@ -6148,9 +6148,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 101,
+      id: BigInt(101),
       seqId: 476,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("5/21/1996 GMT").toISOString(),
       week: 8,
       recorder: "Cynthia Mazur",
@@ -6209,9 +6209,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 102,
+      id: BigInt(102),
       seqId: 477,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("5/31/1996 GMT").toISOString(),
       week: 9,
       recorder: "Cynthia Mazur",
@@ -6270,9 +6270,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 103,
+      id: BigInt(103),
       seqId: 478,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("6/13/1996 GMT").toISOString(),
       week: 11,
       recorder: "Cynthia Mazur",
@@ -6331,9 +6331,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 104,
+      id: BigInt(104),
       seqId: 479,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("6/19/1996 GMT").toISOString(),
       week: 12,
       recorder: "Cynthia Mazur",
@@ -6392,9 +6392,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 105,
+      id: BigInt(105),
       seqId: 480,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("6/25/1996 GMT").toISOString(),
       week: 13,
       recorder: "Cynthia Mazur",
@@ -6453,9 +6453,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 106,
+      id: BigInt(106),
       seqId: 481,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("7/2/1996 GMT").toISOString(),
       week: 14,
       recorder: "Cynthia Mazur",
@@ -6514,9 +6514,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 107,
+      id: BigInt(107),
       seqId: 482,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("7/11/1996 GMT").toISOString(),
       week: 15,
       recorder: "Cynthia Mazur",
@@ -6575,9 +6575,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 108,
+      id: BigInt(108),
       seqId: 483,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("7/17/1996 GMT").toISOString(),
       week: 16,
       recorder: "Cynthia Mazur",
@@ -6636,9 +6636,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 109,
+      id: BigInt(109),
       seqId: 484,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("7/23/1996 GMT").toISOString(),
       week: 17,
       recorder: "Cynthia Mazur",
@@ -6697,9 +6697,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 110,
+      id: BigInt(110),
       seqId: 921,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("8/13/1996 GMT").toISOString(),
       week: 20,
       recorder: "Cynthia Mazur",
@@ -6758,9 +6758,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 111,
+      id: BigInt(111),
       seqId: 486,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("8/20/1996 GMT").toISOString(),
       week: 21,
       recorder: "Cynthia Mazur",
@@ -6819,9 +6819,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 112,
+      id: BigInt(112),
       seqId: 487,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("8/29/1996 GMT").toISOString(),
       week: 22,
       recorder: "Cynthia Mazur",
@@ -6880,9 +6880,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 113,
+      id: BigInt(113),
       seqId: 488,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("9/13/1996 GMT").toISOString(),
       week: 24,
       recorder: "Cynthia Mazur",
@@ -6941,9 +6941,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 114,
+      id: BigInt(114),
       seqId: 489,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("4/30/1997 GMT").toISOString(),
       week: 5,
       recorder: "Cynthia Mazur",
@@ -7002,9 +7002,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 115,
+      id: BigInt(115),
       seqId: 490,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("5/7/1997 GMT").toISOString(),
       week: 6,
       recorder: "Cynthia Mazur",
@@ -7063,9 +7063,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 116,
+      id: BigInt(116),
       seqId: 491,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("5/22/1997 GMT").toISOString(),
       week: 8,
       recorder: "Cynthia Mazur",
@@ -7124,9 +7124,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 117,
+      id: BigInt(117),
       seqId: 492,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("6/4/1997 GMT").toISOString(),
       week: 10,
       recorder: "Jen Egner",
@@ -7186,9 +7186,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 118,
+      id: BigInt(118),
       seqId: 493,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("6/9/1997 GMT").toISOString(),
       week: 10,
       recorder: "Jen Egner",
@@ -7248,9 +7248,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 119,
+      id: BigInt(119),
       seqId: 494,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("6/17/1997 GMT").toISOString(),
       week: 12,
       recorder: "Jen Egner",
@@ -7309,9 +7309,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 120,
+      id: BigInt(120),
       seqId: 495,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("6/23/1997 GMT").toISOString(),
       week: 12,
       recorder: "Jen Egner",
@@ -7370,9 +7370,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 121,
+      id: BigInt(121),
       seqId: 497,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("6/30/1997 GMT").toISOString(),
       week: 13,
       recorder: "Jen Egner",
@@ -7432,9 +7432,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 122,
+      id: BigInt(122),
       seqId: 498,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("7/6/1997 GMT").toISOString(),
       week: 14,
       recorder: "Jen Egner",
@@ -7493,9 +7493,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 123,
+      id: BigInt(123),
       seqId: 499,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("7/14/1997 GMT").toISOString(),
       week: 15,
       recorder: "Jen Egner",
@@ -7554,9 +7554,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 124,
+      id: BigInt(124),
       seqId: 500,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("7/25/1997 GMT").toISOString(),
       week: 17,
       recorder: "Jen Egner",
@@ -7616,9 +7616,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 125,
+      id: BigInt(125),
       seqId: 501,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("7/28/1997 GMT").toISOString(),
       week: 17,
       recorder: "Jen Egner",
@@ -7677,9 +7677,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 126,
+      id: BigInt(126),
       seqId: 502,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("8/4/1997 GMT").toISOString(),
       week: 18,
       recorder: "Jen Egner",
@@ -7739,9 +7739,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 127,
+      id: BigInt(127),
       seqId: 503,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("8/14/1997 GMT").toISOString(),
       week: 20,
       recorder: "Jen Egner",
@@ -7801,9 +7801,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 128,
+      id: BigInt(128),
       seqId: 504,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("8/19/1997 GMT").toISOString(),
       week: 21,
       recorder: "Jen Egner",
@@ -7863,9 +7863,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 129,
+      id: BigInt(129),
       seqId: 505,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("8/27/1997 GMT").toISOString(),
       week: 22,
       recorder: "Pat Rydquist",
@@ -7925,9 +7925,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 130,
+      id: BigInt(130),
       seqId: 506,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("9/2/1997 GMT").toISOString(),
       week: 23,
       recorder: "Pat Rydquist",
@@ -7987,9 +7987,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 131,
+      id: BigInt(131),
       seqId: 507,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("9/9/1997 GMT").toISOString(),
       week: 24,
       recorder: "Pat Rydquist",
@@ -8049,9 +8049,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 132,
+      id: BigInt(132),
       seqId: 509,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("9/15/1997 GMT").toISOString(),
       week: 24,
       recorder: "Pat Rydquist, J. &",
@@ -8112,9 +8112,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 133,
+      id: BigInt(133),
       seqId: 511,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("9/25/1997 GMT").toISOString(),
       week: 26,
       recorder: "Pat Rydquist",
@@ -8174,9 +8174,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 134,
+      id: BigInt(134),
       seqId: 452,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("6/3/1998 GMT").toISOString(),
       week: 10,
       recorder: "D. Hagerling",
@@ -8236,9 +8236,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 135,
+      id: BigInt(135),
       seqId: 453,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("6/9/1998 GMT").toISOString(),
       week: 10,
       recorder: "Meg Benke",
@@ -8298,9 +8298,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 136,
+      id: BigInt(136),
       seqId: 454,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("6/13/1998 GMT").toISOString(),
       week: 11,
       recorder: "M. Benke",
@@ -8360,9 +8360,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 137,
+      id: BigInt(137),
       seqId: 455,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("6/18/1998 GMT").toISOString(),
       week: 12,
       recorder: "M. Benke",
@@ -8422,9 +8422,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 138,
+      id: BigInt(138),
       seqId: 456,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("6/25/1998 GMT").toISOString(),
       week: 13,
       recorder: "E. Dengo",
@@ -8484,9 +8484,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 139,
+      id: BigInt(139),
       seqId: 457,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("7/2/1998 GMT").toISOString(),
       week: 14,
       recorder: "M. McCombs",
@@ -8546,9 +8546,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 140,
+      id: BigInt(140),
       seqId: 458,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("7/7/1998 GMT").toISOString(),
       week: 14,
       recorder: "M. McCombs",
@@ -8608,9 +8608,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 141,
+      id: BigInt(141),
       seqId: 459,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("7/14/1998 GMT").toISOString(),
       week: 15,
       recorder: "M. Benke",
@@ -8670,9 +8670,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 142,
+      id: BigInt(142),
       seqId: 460,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("7/23/1998 GMT").toISOString(),
       week: 17,
       recorder: "M. Benke",
@@ -8732,9 +8732,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 143,
+      id: BigInt(143),
       seqId: 461,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("7/30/1998 GMT").toISOString(),
       week: 18,
       recorder: "E. Dengg",
@@ -8793,9 +8793,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 144,
+      id: BigInt(144),
       seqId: 462,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("8/6/1998 GMT").toISOString(),
       week: 19,
       recorder: "M. Benke",
@@ -8855,9 +8855,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 145,
+      id: BigInt(145),
       seqId: 463,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("8/13/1998 GMT").toISOString(),
       week: 20,
       recorder: "M. Seibert",
@@ -8917,9 +8917,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 146,
+      id: BigInt(146),
       seqId: 464,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("8/19/1998 GMT").toISOString(),
       week: 21,
       recorder: "M.benke",
@@ -8978,9 +8978,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 147,
+      id: BigInt(147),
       seqId: 465,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("8/28/1998 GMT").toISOString(),
       week: 22,
       recorder: "M. Benke",
@@ -9039,9 +9039,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 148,
+      id: BigInt(148),
       seqId: 466,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("9/2/1998 GMT").toISOString(),
       week: 23,
       recorder: "M. McCombs",
@@ -9100,9 +9100,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 149,
+      id: BigInt(149),
       seqId: 467,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("9/11/1998 GMT").toISOString(),
       week: 24,
       recorder: "M. McCombs",
@@ -9161,9 +9161,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 150,
+      id: BigInt(150),
       seqId: 468,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("9/17/1998 GMT").toISOString(),
       week: 25,
       recorder: "M. McCombs",
@@ -9222,9 +9222,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 151,
+      id: BigInt(151),
       seqId: 470,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("9/25/1998 GMT").toISOString(),
       week: 26,
       recorder: "M. McCombs",
@@ -9283,9 +9283,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 152,
+      id: BigInt(152),
       seqId: 471,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("9/29/1998 GMT").toISOString(),
       week: 26,
       recorder: "M. McCombs",
@@ -9344,9 +9344,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 153,
+      id: BigInt(153),
       seqId: 1091,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("4/14/1999 GMT").toISOString(),
       week: 2,
       recorder: "M. Benke",
@@ -9405,9 +9405,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 154,
+      id: BigInt(154),
       seqId: 1092,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("4/26/1999 GMT").toISOString(),
       week: 4,
       recorder: "M. Benke",
@@ -9467,9 +9467,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 155,
+      id: BigInt(155),
       seqId: 1093,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("5/4/1999 GMT").toISOString(),
       week: 5,
       recorder: "McCombs",
@@ -9529,9 +9529,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 156,
+      id: BigInt(156),
       seqId: 1094,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("5/12/1999 GMT").toISOString(),
       week: 6,
       recorder: "M. Seibert",
@@ -9592,9 +9592,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 157,
+      id: BigInt(157),
       seqId: 1095,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("5/17/1999 GMT").toISOString(),
       week: 7,
       recorder: "M. McCombs",
@@ -9654,9 +9654,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 158,
+      id: BigInt(158),
       seqId: 1096,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("5/27/1999 GMT").toISOString(),
       week: 9,
       recorder: "H. Payton",
@@ -9716,9 +9716,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 159,
+      id: BigInt(159),
       seqId: 1097,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("6/4/1999 GMT").toISOString(),
       week: 10,
       recorder: "M Benke",
@@ -9778,9 +9778,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 160,
+      id: BigInt(160),
       seqId: 1098,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("6/8/1999 GMT").toISOString(),
       week: 10,
       recorder: "M. McCombs",
@@ -9840,9 +9840,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 161,
+      id: BigInt(161),
       seqId: 1099,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("6/15/1999 GMT").toISOString(),
       week: 11,
       recorder: "M. McCombs",
@@ -9902,9 +9902,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 162,
+      id: BigInt(162),
       seqId: 1100,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("6/22/1999 GMT").toISOString(),
       week: 12,
       recorder: "M. McCombs",
@@ -9963,9 +9963,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 163,
+      id: BigInt(163),
       seqId: 1101,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("7/2/1999 GMT").toISOString(),
       week: 14,
       recorder: "M. Benke",
@@ -10025,9 +10025,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 164,
+      id: BigInt(164),
       seqId: 1102,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("7/6/1999 GMT").toISOString(),
       week: 14,
       recorder: "J. Biscan",
@@ -10086,9 +10086,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 165,
+      id: BigInt(165),
       seqId: 1103,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("7/12/1999 GMT").toISOString(),
       week: 15,
       recorder: "M. Benke",
@@ -10148,9 +10148,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 166,
+      id: BigInt(166),
       seqId: 1104,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("7/20/1999 GMT").toISOString(),
       week: 16,
       recorder: "M. McCombs",
@@ -10210,9 +10210,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 167,
+      id: BigInt(167),
       seqId: 1136,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("7/28/1999 GMT").toISOString(),
       week: 17,
       recorder: "M. McCombs",
@@ -10272,9 +10272,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 168,
+      id: BigInt(168),
       seqId: 1137,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("8/2/1999 GMT").toISOString(),
       week: 18,
       recorder: "M. McCombs",
@@ -10334,9 +10334,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 169,
+      id: BigInt(169),
       seqId: 1138,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("8/13/1999 GMT").toISOString(),
       week: 20,
       recorder: "M. Benke",
@@ -10395,9 +10395,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 170,
+      id: BigInt(170),
       seqId: 1139,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("8/18/1999 GMT").toISOString(),
       week: 20,
       recorder: "M. Benke",
@@ -10457,9 +10457,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 171,
+      id: BigInt(171),
       seqId: 1140,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("8/23/1999 GMT").toISOString(),
       week: 21,
       recorder: "M. McCombs",
@@ -10520,9 +10520,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 172,
+      id: BigInt(172),
       seqId: 1141,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("8/30/1999 GMT").toISOString(),
       week: 22,
       recorder: "M. McCombs",
@@ -10582,9 +10582,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 173,
+      id: BigInt(173),
       seqId: 1142,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("9/8/1999 GMT").toISOString(),
       week: 23,
       recorder: "M. McCombs",
@@ -10644,9 +10644,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 174,
+      id: BigInt(174),
       seqId: 1143,
-      siteId: 2,
+      siteId: BigInt(2),
       recordDate: new Date("9/15/1999 GMT").toISOString(),
       week: 24,
       recorder: "M. McCombs",
@@ -10705,9 +10705,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 175,
+      id: BigInt(175),
       seqId: 512,
-      siteId: 3,
+      siteId: BigInt(3),
       recordDate: new Date("5/22/1996 GMT").toISOString(),
       week: 8,
       recorder: "Cindy Mazur",
@@ -10766,9 +10766,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 176,
+      id: BigInt(176),
       seqId: 513,
-      siteId: 3,
+      siteId: BigInt(3),
       recordDate: new Date("5/31/1996 GMT").toISOString(),
       week: 9,
       recorder: "Cindy Mazur",
@@ -10827,9 +10827,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 177,
+      id: BigInt(177),
       seqId: 514,
-      siteId: 3,
+      siteId: BigInt(3),
       recordDate: new Date("6/5/1996 GMT").toISOString(),
       week: 10,
       recorder: "Cindy Mazur",
@@ -10888,9 +10888,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 178,
+      id: BigInt(178),
       seqId: 515,
-      siteId: 3,
+      siteId: BigInt(3),
       recordDate: new Date("6/18/1996 GMT").toISOString(),
       week: 12,
       recorder: "Cindy Mazur",
@@ -10949,9 +10949,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 179,
+      id: BigInt(179),
       seqId: 516,
-      siteId: 3,
+      siteId: BigInt(3),
       recordDate: new Date("6/25/1996 GMT").toISOString(),
       week: 13,
       recorder: "Cindy Mazur",
@@ -11010,9 +11010,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 180,
+      id: BigInt(180),
       seqId: 517,
-      siteId: 3,
+      siteId: BigInt(3),
       recordDate: new Date("7/9/1996 GMT").toISOString(),
       week: 15,
       recorder: "Cindy Mazur",
@@ -11071,9 +11071,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 181,
+      id: BigInt(181),
       seqId: 518,
-      siteId: 3,
+      siteId: BigInt(3),
       recordDate: new Date("7/17/1996 GMT").toISOString(),
       week: 16,
       recorder: "Cindy Mazur",
@@ -11132,9 +11132,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 182,
+      id: BigInt(182),
       seqId: 519,
-      siteId: 3,
+      siteId: BigInt(3),
       recordDate: new Date("7/23/1996 GMT").toISOString(),
       week: 17,
       recorder: "Cindy Mazur",
@@ -11193,9 +11193,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 183,
+      id: BigInt(183),
       seqId: 520,
-      siteId: 3,
+      siteId: BigInt(3),
       recordDate: new Date("8/13/1996 GMT").toISOString(),
       week: 20,
       recorder: "Cindy Mazur",
@@ -11254,9 +11254,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 184,
+      id: BigInt(184),
       seqId: 521,
-      siteId: 3,
+      siteId: BigInt(3),
       recordDate: new Date("8/20/1996 GMT").toISOString(),
       week: 21,
       recorder: "Cindy Mazur",
@@ -11315,9 +11315,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 185,
+      id: BigInt(185),
       seqId: 522,
-      siteId: 3,
+      siteId: BigInt(3),
       recordDate: new Date("8/27/1996 GMT").toISOString(),
       week: 22,
       recorder: "Cindy Mazur",
@@ -11376,9 +11376,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 186,
+      id: BigInt(186),
       seqId: 523,
-      siteId: 3,
+      siteId: BigInt(3),
       recordDate: new Date("9/3/1996 GMT").toISOString(),
       week: 23,
       recorder: "Cindy Mazur",
@@ -11437,9 +11437,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 187,
+      id: BigInt(187),
       seqId: 524,
-      siteId: 3,
+      siteId: BigInt(3),
       recordDate: new Date("9/18/1996 GMT").toISOString(),
       week: 25,
       recorder: "Cindy Mazur",
@@ -11498,9 +11498,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 188,
+      id: BigInt(188),
       seqId: 526,
-      siteId: 3,
+      siteId: BigInt(3),
       recordDate: new Date("5/22/1997 GMT").toISOString(),
       week: 8,
       recorder: "Cindy Mazur",
@@ -11559,9 +11559,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 189,
+      id: BigInt(189),
       seqId: 527,
-      siteId: 3,
+      siteId: BigInt(3),
       recordDate: new Date("5/27/1997 GMT").toISOString(),
       week: 9,
       recorder: "Cindy Mazur",
@@ -11620,9 +11620,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 190,
+      id: BigInt(190),
       seqId: 528,
-      siteId: 3,
+      siteId: BigInt(3),
       recordDate: new Date("6/4/1997 GMT").toISOString(),
       week: 10,
       recorder: "Jen Egner",
@@ -11681,9 +11681,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 191,
+      id: BigInt(191),
       seqId: 529,
-      siteId: 3,
+      siteId: BigInt(3),
       recordDate: new Date("6/9/1997 GMT").toISOString(),
       week: 10,
       recorder: "Jen Egner",
@@ -11743,9 +11743,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 192,
+      id: BigInt(192),
       seqId: 530,
-      siteId: 3,
+      siteId: BigInt(3),
       recordDate: new Date("6/17/1997 GMT").toISOString(),
       week: 12,
       recorder: "Jen Egner",
@@ -11805,9 +11805,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 193,
+      id: BigInt(193),
       seqId: 531,
-      siteId: 3,
+      siteId: BigInt(3),
       recordDate: new Date("6/24/1997 GMT").toISOString(),
       week: 13,
       recorder: "Jen Egner",
@@ -11866,9 +11866,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 194,
+      id: BigInt(194),
       seqId: 532,
-      siteId: 3,
+      siteId: BigInt(3),
       recordDate: new Date("7/2/1997 GMT").toISOString(),
       week: 14,
       recorder: "Jen Egner",
@@ -11928,9 +11928,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 195,
+      id: BigInt(195),
       seqId: 533,
-      siteId: 3,
+      siteId: BigInt(3),
       recordDate: new Date("7/7/1997 GMT").toISOString(),
       week: 14,
       recorder: "Jen Egner",
@@ -11989,9 +11989,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 196,
+      id: BigInt(196),
       seqId: 534,
-      siteId: 3,
+      siteId: BigInt(3),
       recordDate: new Date("7/14/1997 GMT").toISOString(),
       week: 15,
       recorder: "Jen Egner",
@@ -12050,9 +12050,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 197,
+      id: BigInt(197),
       seqId: 535,
-      siteId: 3,
+      siteId: BigInt(3),
       recordDate: new Date("7/24/1997 GMT").toISOString(),
       week: 17,
       recorder: "Jen Egner",
@@ -12111,9 +12111,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 198,
+      id: BigInt(198),
       seqId: 536,
-      siteId: 3,
+      siteId: BigInt(3),
       recordDate: new Date("7/30/1997 GMT").toISOString(),
       week: 18,
       recorder: "Jen Egner",
@@ -12173,9 +12173,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 199,
+      id: BigInt(199),
       seqId: 537,
-      siteId: 3,
+      siteId: BigInt(3),
       recordDate: new Date("8/5/1997 GMT").toISOString(),
       week: 19,
       recorder: "Jen Egner",
@@ -12235,9 +12235,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 200,
+      id: BigInt(200),
       seqId: 538,
-      siteId: 3,
+      siteId: BigInt(3),
       recordDate: new Date("8/14/1997 GMT").toISOString(),
       week: 20,
       recorder: "Jen Egner",
@@ -12297,9 +12297,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 201,
+      id: BigInt(201),
       seqId: 539,
-      siteId: 3,
+      siteId: BigInt(3),
       recordDate: new Date("8/19/1997 GMT").toISOString(),
       week: 21,
       recorder: "Pat Rydquist",
@@ -12359,9 +12359,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 202,
+      id: BigInt(202),
       seqId: 540,
-      siteId: 3,
+      siteId: BigInt(3),
       recordDate: new Date("8/27/1997 GMT").toISOString(),
       week: 22,
       recorder: "Pat Rydquist",
@@ -12421,9 +12421,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 203,
+      id: BigInt(203),
       seqId: 541,
-      siteId: 3,
+      siteId: BigInt(3),
       recordDate: new Date("9/2/1997 GMT").toISOString(),
       week: 23,
       recorder: "Linda Moranz",
@@ -12483,9 +12483,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 204,
+      id: BigInt(204),
       seqId: 542,
-      siteId: 3,
+      siteId: BigInt(3),
       recordDate: new Date("9/9/1997 GMT").toISOString(),
       week: 24,
       recorder: "Pat Rydquist",
@@ -12545,9 +12545,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 205,
+      id: BigInt(205),
       seqId: 543,
-      siteId: 3,
+      siteId: BigInt(3),
       recordDate: new Date("9/15/1997 GMT").toISOString(),
       week: 24,
       recorder: "Pat Rydquist, Judy Biscan",
@@ -12607,9 +12607,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 206,
+      id: BigInt(206),
       seqId: 544,
-      siteId: 3,
+      siteId: BigInt(3),
       recordDate: new Date("9/26/1997 GMT").toISOString(),
       week: 26,
       recorder: "Pat Rydquist, Lynda Moren",
@@ -12669,9 +12669,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 207,
+      id: BigInt(207),
       seqId: 716,
-      siteId: 4,
+      siteId: BigInt(4),
       recordDate: new Date("4/3/1996 GMT").toISOString(),
       week: 1,
       recorder: "Deb Marcinski",
@@ -12730,9 +12730,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 208,
+      id: BigInt(208),
       seqId: 717,
-      siteId: 4,
+      siteId: BigInt(4),
       recordDate: new Date("4/18/1996 GMT").toISOString(),
       week: 3,
       recorder: "Deb Marcinski",
@@ -12791,9 +12791,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 209,
+      id: BigInt(209),
       seqId: 718,
-      siteId: 4,
+      siteId: BigInt(4),
       recordDate: new Date("5/10/1996 GMT").toISOString(),
       week: 6,
       recorder: "Deb Marcinski",
@@ -12852,9 +12852,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 210,
+      id: BigInt(210),
       seqId: 719,
-      siteId: 4,
+      siteId: BigInt(4),
       recordDate: new Date("5/26/1996 GMT").toISOString(),
       week: 8,
       recorder: "Marcinski/Metcalf",
@@ -12914,9 +12914,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 211,
+      id: BigInt(211),
       seqId: 721,
-      siteId: 4,
+      siteId: BigInt(4),
       recordDate: new Date("5/31/1996 GMT").toISOString(),
       week: 9,
       recorder: "Deb Marcinski",
@@ -12976,9 +12976,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 212,
+      id: BigInt(212),
       seqId: 722,
-      siteId: 4,
+      siteId: BigInt(4),
       recordDate: new Date("6/14/1996 GMT").toISOString(),
       week: 11,
       recorder: "Marcinski/Metcalf",
@@ -13038,9 +13038,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 213,
+      id: BigInt(213),
       seqId: 723,
-      siteId: 4,
+      siteId: BigInt(4),
       recordDate: new Date("6/28/1996 GMT").toISOString(),
       week: 13,
       recorder: "Marcinski/Metcalf",
@@ -13100,9 +13100,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 214,
+      id: BigInt(214),
       seqId: 726,
-      siteId: 4,
+      siteId: BigInt(4),
       recordDate: new Date("7/11/1996 GMT").toISOString(),
       week: 15,
       recorder: "Deb Marcinski/Cherry",
@@ -13162,9 +13162,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 215,
+      id: BigInt(215),
       seqId: 727,
-      siteId: 4,
+      siteId: BigInt(4),
       recordDate: new Date("7/25/1996 GMT").toISOString(),
       week: 17,
       recorder: "Deb Marcinski/Metcalf",
@@ -13224,9 +13224,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 216,
+      id: BigInt(216),
       seqId: 728,
-      siteId: 4,
+      siteId: BigInt(4),
       recordDate: new Date("8/3/1996 GMT").toISOString(),
       week: 18,
       recorder: "Deb Marcinski/Metcalf",
@@ -13286,9 +13286,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 217,
+      id: BigInt(217),
       seqId: 724,
-      siteId: 4,
+      siteId: BigInt(4),
       recordDate: new Date("8/8/1996 GMT").toISOString(),
       week: 19,
       recorder: "Deb Marcinski",
@@ -13348,9 +13348,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 218,
+      id: BigInt(218),
       seqId: 725,
-      siteId: 4,
+      siteId: BigInt(4),
       recordDate: new Date("8/14/1996 GMT").toISOString(),
       week: 20,
       recorder: "Marcinski/Metcalf",
@@ -13410,9 +13410,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 219,
+      id: BigInt(219),
       seqId: 729,
-      siteId: 4,
+      siteId: BigInt(4),
       recordDate: new Date("8/18/1996 GMT").toISOString(),
       week: 20,
       recorder: "Deb Marcinski",
@@ -13473,9 +13473,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 220,
+      id: BigInt(220),
       seqId: 730,
-      siteId: 4,
+      siteId: BigInt(4),
       recordDate: new Date("8/26/1996 GMT").toISOString(),
       week: 22,
       recorder: "Deb Marcinski",
@@ -13535,9 +13535,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 221,
+      id: BigInt(221),
       seqId: 731,
-      siteId: 4,
+      siteId: BigInt(4),
       recordDate: new Date("9/9/1996 GMT").toISOString(),
       week: 24,
       recorder: "Deb Marcinski",
@@ -13597,9 +13597,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 222,
+      id: BigInt(222),
       seqId: 732,
-      siteId: 4,
+      siteId: BigInt(4),
       recordDate: new Date("9/12/1996 GMT").toISOString(),
       week: 24,
       recorder: "Deb Marcinski",
@@ -13659,9 +13659,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 223,
+      id: BigInt(223),
       seqId: 733,
-      siteId: 4,
+      siteId: BigInt(4),
       recordDate: new Date("9/18/1996 GMT").toISOString(),
       week: 25,
       recorder: "Deb Marcinski",
@@ -13721,9 +13721,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 224,
+      id: BigInt(224),
       seqId: 734,
-      siteId: 4,
+      siteId: BigInt(4),
       recordDate: new Date("9/25/1996 GMT").toISOString(),
       week: 26,
       recorder: "Deb Marcinski",
@@ -13783,9 +13783,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 225,
+      id: BigInt(225),
       seqId: 735,
-      siteId: 4,
+      siteId: BigInt(4),
       recordDate: new Date("9/30/1996 GMT").toISOString(),
       week: 26,
       recorder: "Deb Marcinski",
@@ -13844,9 +13844,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 226,
+      id: BigInt(226),
       seqId: 738,
-      siteId: 4,
+      siteId: BigInt(4),
       recordDate: new Date("4/2/1997 GMT").toISOString(),
       week: 1,
       recorder: "Deb Marcinski",
@@ -13905,9 +13905,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 227,
+      id: BigInt(227),
       seqId: 739,
-      siteId: 4,
+      siteId: BigInt(4),
       recordDate: new Date("5/27/1997 GMT").toISOString(),
       week: 9,
       recorder: "Deb Marcinski",
@@ -13967,9 +13967,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 228,
+      id: BigInt(228),
       seqId: 740,
-      siteId: 4,
+      siteId: BigInt(4),
       recordDate: new Date("6/5/1997 GMT").toISOString(),
       week: 10,
       recorder: "Deb Marcinski",
@@ -14029,9 +14029,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 229,
+      id: BigInt(229),
       seqId: 741,
-      siteId: 4,
+      siteId: BigInt(4),
       recordDate: new Date("6/10/1997 GMT").toISOString(),
       week: 11,
       recorder: "Deb Marcinski",
@@ -14091,9 +14091,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 230,
+      id: BigInt(230),
       seqId: 742,
-      siteId: 4,
+      siteId: BigInt(4),
       recordDate: new Date("6/17/1997 GMT").toISOString(),
       week: 12,
       recorder: "Deb Marcinski",
@@ -14153,9 +14153,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 231,
+      id: BigInt(231),
       seqId: 743,
-      siteId: 4,
+      siteId: BigInt(4),
       recordDate: new Date("6/25/1997 GMT").toISOString(),
       week: 13,
       recorder: "Deb Marcinski",
@@ -14215,9 +14215,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 232,
+      id: BigInt(232),
       seqId: 744,
-      siteId: 4,
+      siteId: BigInt(4),
       recordDate: new Date("7/2/1997 GMT").toISOString(),
       week: 14,
       recorder: "Deb Marcinski",
@@ -14278,9 +14278,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 233,
+      id: BigInt(233),
       seqId: 745,
-      siteId: 4,
+      siteId: BigInt(4),
       recordDate: new Date("7/13/1997 GMT").toISOString(),
       week: 15,
       recorder: "Deb Marcinski",
@@ -14340,9 +14340,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 234,
+      id: BigInt(234),
       seqId: 746,
-      siteId: 4,
+      siteId: BigInt(4),
       recordDate: new Date("7/18/1997 GMT").toISOString(),
       week: 16,
       recorder: "Deb Marcinski",
@@ -14402,9 +14402,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 235,
+      id: BigInt(235),
       seqId: 747,
-      siteId: 4,
+      siteId: BigInt(4),
       recordDate: new Date("7/24/1997 GMT").toISOString(),
       week: 17,
       recorder: "Deb Marcinski",
@@ -14464,9 +14464,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 236,
+      id: BigInt(236),
       seqId: 748,
-      siteId: 4,
+      siteId: BigInt(4),
       recordDate: new Date("7/29/1997 GMT").toISOString(),
       week: 18,
       recorder: "Deb Marcinski/Cherry",
@@ -14526,9 +14526,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 237,
+      id: BigInt(237),
       seqId: 749,
-      siteId: 4,
+      siteId: BigInt(4),
       recordDate: new Date("8/7/1997 GMT").toISOString(),
       week: 19,
       recorder: "Deb Marcinski/Cherry",
@@ -14588,9 +14588,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 238,
+      id: BigInt(238),
       seqId: 750,
-      siteId: 4,
+      siteId: BigInt(4),
       recordDate: new Date("8/16/1997 GMT").toISOString(),
       week: 20,
       recorder: "Deb Marcinski",
@@ -14650,9 +14650,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 239,
+      id: BigInt(239),
       seqId: 751,
-      siteId: 4,
+      siteId: BigInt(4),
       recordDate: new Date("8/27/1997 GMT").toISOString(),
       week: 22,
       recorder: "Deb Marcinski",
@@ -14712,9 +14712,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 240,
+      id: BigInt(240),
       seqId: 752,
-      siteId: 4,
+      siteId: BigInt(4),
       recordDate: new Date("9/1/1997 GMT").toISOString(),
       week: 22,
       recorder: "Deb Marcinski",
@@ -14774,9 +14774,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 241,
+      id: BigInt(241),
       seqId: 753,
-      siteId: 4,
+      siteId: BigInt(4),
       recordDate: new Date("9/16/1997 GMT").toISOString(),
       week: 25,
       recorder: "Deb Marcinski",
@@ -14836,9 +14836,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 242,
+      id: BigInt(242),
       seqId: 754,
-      siteId: 4,
+      siteId: BigInt(4),
       recordDate: new Date("9/23/1997 GMT").toISOString(),
       week: 26,
       recorder: "Deb Marcinski",
@@ -14898,9 +14898,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 243,
+      id: BigInt(243),
       seqId: 420,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("5/21/1995 GMT").toISOString(),
       week: 8,
       recorder: "Mark Rzeszotarski",
@@ -14959,9 +14959,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 244,
+      id: BigInt(244),
       seqId: 421,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("5/26/1995 GMT").toISOString(),
       week: 8,
       recorder: "Mark Rzeszotarski",
@@ -15021,9 +15021,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 245,
+      id: BigInt(245),
       seqId: 422,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("5/31/1995 GMT").toISOString(),
       week: 9,
       recorder: "Mark Rzeszotarski",
@@ -15082,9 +15082,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 246,
+      id: BigInt(246),
       seqId: 423,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("6/4/1995 GMT").toISOString(),
       week: 10,
       recorder: "Mark Rzeszotarski",
@@ -15144,9 +15144,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 247,
+      id: BigInt(247),
       seqId: 424,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("6/10/1995 GMT").toISOString(),
       week: 11,
       recorder: "Mark Rzeszotarski",
@@ -15205,9 +15205,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 248,
+      id: BigInt(248),
       seqId: 425,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("6/11/1995 GMT").toISOString(),
       week: 11,
       recorder: "Mark Rzeszotarski",
@@ -15266,9 +15266,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 249,
+      id: BigInt(249),
       seqId: 426,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("6/17/1995 GMT").toISOString(),
       week: 12,
       recorder: "Mark Rzeszotarski",
@@ -15327,9 +15327,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 250,
+      id: BigInt(250),
       seqId: 427,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("6/18/1995 GMT").toISOString(),
       week: 12,
       recorder: "Mark Rzeszotarski",
@@ -15389,9 +15389,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 251,
+      id: BigInt(251),
       seqId: 428,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("6/24/1995 GMT").toISOString(),
       week: 13,
       recorder: "Mark Rzeszotarski",
@@ -15450,9 +15450,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 252,
+      id: BigInt(252),
       seqId: 429,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("6/25/1995 GMT").toISOString(),
       week: 13,
       recorder: "Mark Rzeszotarski",
@@ -15511,9 +15511,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 253,
+      id: BigInt(253),
       seqId: 430,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("7/1/1995 GMT").toISOString(),
       week: 14,
       recorder: "Mark Rzeszotarski",
@@ -15574,9 +15574,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 254,
+      id: BigInt(254),
       seqId: 431,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("7/2/1995 GMT").toISOString(),
       week: 14,
       recorder: "Mark Rzeszotarski",
@@ -15635,9 +15635,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 255,
+      id: BigInt(255),
       seqId: 432,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("7/4/1995 GMT").toISOString(),
       week: 14,
       recorder: "Mark Rzeszotarski",
@@ -15696,9 +15696,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 256,
+      id: BigInt(256),
       seqId: 433,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("7/9/1995 GMT").toISOString(),
       week: 15,
       recorder: "Mark Rzeszotarski",
@@ -15758,9 +15758,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 257,
+      id: BigInt(257),
       seqId: 434,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("7/11/1995 GMT").toISOString(),
       week: 15,
       recorder: "Mark Rzeszotarski",
@@ -15820,9 +15820,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 258,
+      id: BigInt(258),
       seqId: 435,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("7/15/1995 GMT").toISOString(),
       week: 16,
       recorder: "Mark Rzeszotarski",
@@ -15882,9 +15882,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 259,
+      id: BigInt(259),
       seqId: 436,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("7/19/1995 GMT").toISOString(),
       week: 16,
       recorder: "Mark Rzeszotarski",
@@ -15944,9 +15944,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 260,
+      id: BigInt(260),
       seqId: 437,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("7/29/1995 GMT").toISOString(),
       week: 18,
       recorder: "Mark Rzeszotarski",
@@ -16006,9 +16006,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 261,
+      id: BigInt(261),
       seqId: 438,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("7/30/1995 GMT").toISOString(),
       week: 18,
       recorder: "Mark Rzeszotarski",
@@ -16068,9 +16068,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 262,
+      id: BigInt(262),
       seqId: 439,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("8/6/1995 GMT").toISOString(),
       week: 19,
       recorder: "Mark Rzeszotarski",
@@ -16130,9 +16130,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 263,
+      id: BigInt(263),
       seqId: 440,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("8/11/1995 GMT").toISOString(),
       week: 19,
       recorder: "Mark Rzeszotarski",
@@ -16191,9 +16191,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 264,
+      id: BigInt(264),
       seqId: 441,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("8/12/1995 GMT").toISOString(),
       week: 20,
       recorder: "Mark Rzeszotarski",
@@ -16252,9 +16252,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 265,
+      id: BigInt(265),
       seqId: 442,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("8/20/1995 GMT").toISOString(),
       week: 21,
       recorder: "Mark Rzeszotarski",
@@ -16313,9 +16313,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 266,
+      id: BigInt(266),
       seqId: 443,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("8/26/1995 GMT").toISOString(),
       week: 22,
       recorder: "Mark Rzeszotarski",
@@ -16374,9 +16374,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 267,
+      id: BigInt(267),
       seqId: 444,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("9/1/1995 GMT").toISOString(),
       week: 22,
       recorder: "Mark Rzeszotarski",
@@ -16436,9 +16436,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 268,
+      id: BigInt(268),
       seqId: 445,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("9/4/1995 GMT").toISOString(),
       week: 23,
       recorder: "Mark Rzeszotarski",
@@ -16497,9 +16497,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 269,
+      id: BigInt(269),
       seqId: 446,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("9/9/1995 GMT").toISOString(),
       week: 24,
       recorder: "Mark Rzeszotarski",
@@ -16558,9 +16558,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 270,
+      id: BigInt(270),
       seqId: 447,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("9/16/1995 GMT").toISOString(),
       week: 25,
       recorder: "Mark Rzeszotarski",
@@ -16620,9 +16620,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 271,
+      id: BigInt(271),
       seqId: 448,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("9/24/1995 GMT").toISOString(),
       week: 26,
       recorder: "Mark Rzeszotarski",
@@ -16681,9 +16681,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 272,
+      id: BigInt(272),
       seqId: 449,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("9/29/1995 GMT").toISOString(),
       week: 26,
       recorder: "Mark Rzeszotarski",
@@ -16743,9 +16743,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 273,
+      id: BigInt(273),
       seqId: 546,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("4/20/1996 GMT").toISOString(),
       week: 3,
       recorder: "Mark Rzeszotarski",
@@ -16805,9 +16805,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 274,
+      id: BigInt(274),
       seqId: 547,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("5/4/1996 GMT").toISOString(),
       week: 5,
       recorder: "Mark Rzeszotarski",
@@ -16867,9 +16867,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 275,
+      id: BigInt(275),
       seqId: 548,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("5/17/1996 GMT").toISOString(),
       week: 7,
       recorder: "Mark Rzeszotarski",
@@ -16928,9 +16928,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 276,
+      id: BigInt(276),
       seqId: 549,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("5/25/1996 GMT").toISOString(),
       week: 8,
       recorder: "Mark Rzeszotarski",
@@ -16990,9 +16990,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 277,
+      id: BigInt(277),
       seqId: 550,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("6/1/1996 GMT").toISOString(),
       week: 9,
       recorder: "Mark Rzeszotarski",
@@ -17051,9 +17051,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 278,
+      id: BigInt(278),
       seqId: 551,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("6/8/1996 GMT").toISOString(),
       week: 10,
       recorder: "Mark Rzeszotarski",
@@ -17112,9 +17112,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 279,
+      id: BigInt(279),
       seqId: 552,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("6/15/1996 GMT").toISOString(),
       week: 11,
       recorder: "Mark Rzeszotarski",
@@ -17173,9 +17173,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 280,
+      id: BigInt(280),
       seqId: 553,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("6/23/1996 GMT").toISOString(),
       week: 12,
       recorder: "Mark Rzeszotarski",
@@ -17234,9 +17234,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 281,
+      id: BigInt(281),
       seqId: 554,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("6/30/1996 GMT").toISOString(),
       week: 13,
       recorder: "Mark Rzeszotarski",
@@ -17295,9 +17295,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 282,
+      id: BigInt(282),
       seqId: 555,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("7/6/1996 GMT").toISOString(),
       week: 14,
       recorder: "Mark Rzeszotarski",
@@ -17356,9 +17356,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 283,
+      id: BigInt(283),
       seqId: 556,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("7/13/1996 GMT").toISOString(),
       week: 15,
       recorder: "Mark Rzeszotarski",
@@ -17417,9 +17417,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 284,
+      id: BigInt(284),
       seqId: 557,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("7/27/1996 GMT").toISOString(),
       week: 17,
       recorder: "Mark Rzeszotarski",
@@ -17478,9 +17478,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 285,
+      id: BigInt(285),
       seqId: 558,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("8/3/1996 GMT").toISOString(),
       week: 18,
       recorder: "Mark Rzeszotarski",
@@ -17540,9 +17540,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 286,
+      id: BigInt(286),
       seqId: 559,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("8/10/1996 GMT").toISOString(),
       week: 19,
       recorder: "Mark Rzeszotarski",
@@ -17601,9 +17601,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 287,
+      id: BigInt(287),
       seqId: 560,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("8/17/1996 GMT").toISOString(),
       week: 20,
       recorder: "Mark Rzeszotarski",
@@ -17663,9 +17663,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 288,
+      id: BigInt(288),
       seqId: 561,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("8/25/1996 GMT").toISOString(),
       week: 21,
       recorder: "Mark Rzeszotarski",
@@ -17724,9 +17724,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 289,
+      id: BigInt(289),
       seqId: 562,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("8/31/1996 GMT").toISOString(),
       week: 22,
       recorder: "Mark Rzeszotarski",
@@ -17785,9 +17785,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 290,
+      id: BigInt(290),
       seqId: 563,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("9/8/1996 GMT").toISOString(),
       week: 23,
       recorder: "Mark Rzeszotarski",
@@ -17846,9 +17846,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 291,
+      id: BigInt(291),
       seqId: 564,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("9/21/1996 GMT").toISOString(),
       week: 25,
       recorder: "Mark Rzeszotarski",
@@ -17907,9 +17907,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 292,
+      id: BigInt(292),
       seqId: 565,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("9/29/1996 GMT").toISOString(),
       week: 26,
       recorder: "Mark Rzeszotarski",
@@ -17969,9 +17969,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 293,
+      id: BigInt(293),
       seqId: 634,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("5/18/1997 GMT").toISOString(),
       week: 7,
       recorder: "Mark Rzeszotarski",
@@ -18031,9 +18031,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 294,
+      id: BigInt(294),
       seqId: 635,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("5/24/1997 GMT").toISOString(),
       week: 8,
       recorder: "Mark Rzeszotarski",
@@ -18092,9 +18092,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 295,
+      id: BigInt(295),
       seqId: 636,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("6/6/1997 GMT").toISOString(),
       week: 10,
       recorder: "Mark Rzeszotarski",
@@ -18154,9 +18154,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 296,
+      id: BigInt(296),
       seqId: 637,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("6/14/1997 GMT").toISOString(),
       week: 11,
       recorder: "Mark Rzeszotarski",
@@ -18216,9 +18216,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 297,
+      id: BigInt(297),
       seqId: 638,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("6/21/1997 GMT").toISOString(),
       week: 12,
       recorder: "Mark Rzeszotarski",
@@ -18277,9 +18277,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 298,
+      id: BigInt(298),
       seqId: 639,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("6/29/1997 GMT").toISOString(),
       week: 13,
       recorder: "Mark Rzeszotarski",
@@ -18338,9 +18338,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 299,
+      id: BigInt(299),
       seqId: 640,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("7/6/1997 GMT").toISOString(),
       week: 14,
       recorder: "Mark Rzeszotarski",
@@ -18399,9 +18399,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 300,
+      id: BigInt(300),
       seqId: 641,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("7/12/1997 GMT").toISOString(),
       week: 15,
       recorder: "Mark Rzeszotarski",
@@ -18460,9 +18460,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 301,
+      id: BigInt(301),
       seqId: 642,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("8/1/1997 GMT").toISOString(),
       week: 18,
       recorder: "Mark Rzeszotarski",
@@ -18522,9 +18522,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 302,
+      id: BigInt(302),
       seqId: 643,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("8/9/1997 GMT").toISOString(),
       week: 19,
       recorder: "Mark Rzeszotarski",
@@ -18584,9 +18584,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 303,
+      id: BigInt(303),
       seqId: 644,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("8/16/1997 GMT").toISOString(),
       week: 20,
       recorder: "Mark Rzeszotarski",
@@ -18645,9 +18645,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 304,
+      id: BigInt(304),
       seqId: 645,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("8/30/1997 GMT").toISOString(),
       week: 22,
       recorder: "Mark Rzeszotarski",
@@ -18706,9 +18706,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 305,
+      id: BigInt(305),
       seqId: 646,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("9/1/1997 GMT").toISOString(),
       week: 22,
       recorder: "Mark Rzeszotarski",
@@ -18767,9 +18767,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 306,
+      id: BigInt(306),
       seqId: 647,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("9/7/1997 GMT").toISOString(),
       week: 23,
       recorder: "Mark Rzeszotarski",
@@ -18828,9 +18828,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 307,
+      id: BigInt(307),
       seqId: 648,
-      siteId: 5,
+      siteId: BigInt(5),
       recordDate: new Date("9/13/1997 GMT").toISOString(),
       week: 24,
       recorder: "Mark Rzeszotarski",
@@ -18889,9 +18889,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 308,
+      id: BigInt(308),
       seqId: 158,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("4/12/1996 GMT").toISOString(),
       week: 2,
       recorder: "Sonja Teraguchi",
@@ -18950,9 +18950,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 309,
+      id: BigInt(309),
       seqId: 159,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("4/19/1996 GMT").toISOString(),
       week: 3,
       recorder: "Sonja Teraguchi",
@@ -19011,9 +19011,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 310,
+      id: BigInt(310),
       seqId: 160,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("5/10/1996 GMT").toISOString(),
       week: 6,
       recorder: "Sonja Teraguchi",
@@ -19073,9 +19073,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 311,
+      id: BigInt(311),
       seqId: 161,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("5/18/1996 GMT").toISOString(),
       week: 7,
       recorder: "Sonja Teraguchi",
@@ -19134,9 +19134,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 312,
+      id: BigInt(312),
       seqId: 162,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("5/25/1996 GMT").toISOString(),
       week: 8,
       recorder: "Sonja Teraguchi",
@@ -19196,9 +19196,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 313,
+      id: BigInt(313),
       seqId: 163,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("6/3/1996 GMT").toISOString(),
       week: 10,
       recorder: "Sonja Teraguchi",
@@ -19257,9 +19257,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 314,
+      id: BigInt(314),
       seqId: 164,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("6/10/1996 GMT").toISOString(),
       week: 11,
       recorder: "Sonja Teraguchi",
@@ -19318,9 +19318,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 315,
+      id: BigInt(315),
       seqId: 165,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("6/17/1996 GMT").toISOString(),
       week: 12,
       recorder: "Sonja Teraguchi",
@@ -19379,9 +19379,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 316,
+      id: BigInt(316),
       seqId: 713,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("6/23/1996 GMT").toISOString(),
       week: 12,
       recorder: "Sonja Teruguchi",
@@ -19440,9 +19440,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 317,
+      id: BigInt(317),
       seqId: 166,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("7/1/1996 GMT").toISOString(),
       week: 14,
       recorder: "Sonja Teraguchi",
@@ -19502,9 +19502,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 318,
+      id: BigInt(318),
       seqId: 167,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("7/7/1996 GMT").toISOString(),
       week: 14,
       recorder: "Sonja Teraguchi",
@@ -19564,9 +19564,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 319,
+      id: BigInt(319),
       seqId: 168,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("7/22/1996 GMT").toISOString(),
       week: 17,
       recorder: "Sonja Teraguchi",
@@ -19625,9 +19625,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 320,
+      id: BigInt(320),
       seqId: 169,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("8/7/1996 GMT").toISOString(),
       week: 19,
       recorder: "Sonja Teraguchi",
@@ -19687,9 +19687,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 321,
+      id: BigInt(321),
       seqId: 170,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("8/16/1996 GMT").toISOString(),
       week: 20,
       recorder: "Sonja Teraguchi",
@@ -19749,9 +19749,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 322,
+      id: BigInt(322),
       seqId: 171,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("8/22/1996 GMT").toISOString(),
       week: 21,
       recorder: "Sonja Teraguchi",
@@ -19811,9 +19811,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 323,
+      id: BigInt(323),
       seqId: 172,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("9/1/1996 GMT").toISOString(),
       week: 22,
       recorder: "Sonja Teraguchi",
@@ -19873,9 +19873,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 324,
+      id: BigInt(324),
       seqId: 173,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("9/8/1996 GMT").toISOString(),
       week: 23,
       recorder: "Sonja Teraguchi",
@@ -19935,9 +19935,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 325,
+      id: BigInt(325),
       seqId: 142,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("5/18/1997 GMT").toISOString(),
       week: 7,
       recorder: "Sonja Teraguchi",
@@ -19996,9 +19996,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 326,
+      id: BigInt(326),
       seqId: 143,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("5/27/1997 GMT").toISOString(),
       week: 9,
       recorder: "Sonja Teraguchi",
@@ -20058,9 +20058,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 327,
+      id: BigInt(327),
       seqId: 144,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("6/5/1997 GMT").toISOString(),
       week: 10,
       recorder: "Sonja Teraguchi",
@@ -20120,9 +20120,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 328,
+      id: BigInt(328),
       seqId: 145,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("6/10/1997 GMT").toISOString(),
       week: 11,
       recorder: "Sonja Teraguchi",
@@ -20182,9 +20182,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 329,
+      id: BigInt(329),
       seqId: 146,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("6/16/1997 GMT").toISOString(),
       week: 11,
       recorder: "Sonja Teraguchi",
@@ -20243,9 +20243,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 330,
+      id: BigInt(330),
       seqId: 147,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("6/20/1997 GMT").toISOString(),
       week: 12,
       recorder: "Sonja Teraguchi",
@@ -20304,9 +20304,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 331,
+      id: BigInt(331),
       seqId: 148,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("7/6/1997 GMT").toISOString(),
       week: 14,
       recorder: "Sonja Teraguchi",
@@ -20366,9 +20366,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 332,
+      id: BigInt(332),
       seqId: 149,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("7/12/1997 GMT").toISOString(),
       week: 15,
       recorder: "Sonja Teraguchi",
@@ -20428,9 +20428,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 333,
+      id: BigInt(333),
       seqId: 150,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("7/20/1997 GMT").toISOString(),
       week: 16,
       recorder: "Sonja Teraguchi",
@@ -20489,9 +20489,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 334,
+      id: BigInt(334),
       seqId: 151,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("7/27/1997 GMT").toISOString(),
       week: 17,
       recorder: "Sonja Teraguchi",
@@ -20550,9 +20550,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 335,
+      id: BigInt(335),
       seqId: 152,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("8/3/1997 GMT").toISOString(),
       week: 18,
       recorder: "Sonja Teraguchi",
@@ -20611,9 +20611,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 336,
+      id: BigInt(336),
       seqId: 153,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("8/18/1997 GMT").toISOString(),
       week: 20,
       recorder: "Sonja Teraguchi",
@@ -20673,9 +20673,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 337,
+      id: BigInt(337),
       seqId: 154,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("8/23/1997 GMT").toISOString(),
       week: 21,
       recorder: "Sonja Teraguchi",
@@ -20735,9 +20735,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 338,
+      id: BigInt(338),
       seqId: 155,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("8/31/1997 GMT").toISOString(),
       week: 22,
       recorder: "Sonja Teraguchi",
@@ -20797,9 +20797,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 339,
+      id: BigInt(339),
       seqId: 156,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("9/5/1997 GMT").toISOString(),
       week: 23,
       recorder: "Sonja Teraguchi",
@@ -20859,9 +20859,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 340,
+      id: BigInt(340),
       seqId: 157,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("9/22/1997 GMT").toISOString(),
       week: 25,
       recorder: "Sonja Teraguchi",
@@ -20921,9 +20921,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 341,
+      id: BigInt(341),
       seqId: 863,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("4/13/1998 GMT").toISOString(),
       week: 2,
       recorder: "Sonja Teraguchi",
@@ -20982,9 +20982,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 342,
+      id: BigInt(342),
       seqId: 79,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("4/23/1998 GMT").toISOString(),
       week: 4,
       recorder: "Sonja Teraguchi",
@@ -21044,9 +21044,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 343,
+      id: BigInt(343),
       seqId: 80,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("5/6/1998 GMT").toISOString(),
       week: 6,
       recorder: "Sonja Teraguchi",
@@ -21106,9 +21106,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 344,
+      id: BigInt(344),
       seqId: 81,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("5/14/1998 GMT").toISOString(),
       week: 7,
       recorder: "Sonja Teraguchi",
@@ -21168,9 +21168,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 345,
+      id: BigInt(345),
       seqId: 82,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("5/23/1998 GMT").toISOString(),
       week: 8,
       recorder: "Sonja Teraguchi",
@@ -21229,9 +21229,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 346,
+      id: BigInt(346),
       seqId: 83,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("5/29/1998 GMT").toISOString(),
       week: 9,
       recorder: "Sonja Teraguchi",
@@ -21292,9 +21292,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 347,
+      id: BigInt(347),
       seqId: 84,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("6/5/1998 GMT").toISOString(),
       week: 10,
       recorder: "Sonja Teraguchi",
@@ -21353,9 +21353,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 348,
+      id: BigInt(348),
       seqId: 85,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("6/18/1998 GMT").toISOString(),
       week: 12,
       recorder: "Sonja Teraguchi",
@@ -21415,9 +21415,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 349,
+      id: BigInt(349),
       seqId: 86,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("6/26/1998 GMT").toISOString(),
       week: 13,
       recorder: "Sonja Teraguchi",
@@ -21476,9 +21476,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 350,
+      id: BigInt(350),
       seqId: 88,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("7/3/1998 GMT").toISOString(),
       week: 14,
       recorder: "Sonja Teraguchi",
@@ -21537,9 +21537,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 351,
+      id: BigInt(351),
       seqId: 87,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("7/14/1998 GMT").toISOString(),
       week: 15,
       recorder: "Sonja Teraguchi",
@@ -21599,9 +21599,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 352,
+      id: BigInt(352),
       seqId: 89,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("7/27/1998 GMT").toISOString(),
       week: 17,
       recorder: "Sonja Teraguchi",
@@ -21662,9 +21662,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 353,
+      id: BigInt(353),
       seqId: 90,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("8/2/1998 GMT").toISOString(),
       week: 18,
       recorder: "Sonja Teraguchi",
@@ -21724,9 +21724,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 354,
+      id: BigInt(354),
       seqId: 91,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("8/17/1998 GMT").toISOString(),
       week: 20,
       recorder: "Sonja Teraguchi",
@@ -21786,9 +21786,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 355,
+      id: BigInt(355),
       seqId: 92,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("8/23/1998 GMT").toISOString(),
       week: 21,
       recorder: "Sonja Teraguchi",
@@ -21848,9 +21848,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 356,
+      id: BigInt(356),
       seqId: 93,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("9/1/1998 GMT").toISOString(),
       week: 22,
       recorder: "Sonja Teraguchi",
@@ -21909,9 +21909,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 357,
+      id: BigInt(357),
       seqId: 94,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("9/13/1998 GMT").toISOString(),
       week: 24,
       recorder: "Sonja Teraguchi",
@@ -21971,9 +21971,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 358,
+      id: BigInt(358),
       seqId: 95,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("9/19/1998 GMT").toISOString(),
       week: 25,
       recorder: "Sonja Teraguchi",
@@ -22032,9 +22032,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 359,
+      id: BigInt(359),
       seqId: 96,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("9/26/1998 GMT").toISOString(),
       week: 26,
       recorder: "Sonja Teraguchi",
@@ -22094,9 +22094,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 360,
+      id: BigInt(360),
       seqId: 1342,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("5/7/1999 GMT").toISOString(),
       week: 6,
       recorder: "Katie Lublin/Steph Gall",
@@ -22155,9 +22155,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 361,
+      id: BigInt(361),
       seqId: 1343,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("5/15/1999 GMT").toISOString(),
       week: 7,
       recorder: "Steph Gall",
@@ -22216,9 +22216,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 362,
+      id: BigInt(362),
       seqId: 1344,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("5/21/1999 GMT").toISOString(),
       week: 8,
       recorder: "Steph Gall",
@@ -22277,9 +22277,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 363,
+      id: BigInt(363),
       seqId: 1345,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("6/5/1999 GMT").toISOString(),
       week: 10,
       recorder: "Steph Gall",
@@ -22339,9 +22339,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 364,
+      id: BigInt(364),
       seqId: 1346,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("6/10/1999 GMT").toISOString(),
       week: 11,
       recorder: "Steph Gall",
@@ -22400,9 +22400,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 365,
+      id: BigInt(365),
       seqId: 1347,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("6/23/1999 GMT").toISOString(),
       week: 12,
       recorder: "Steph Gall",
@@ -22461,9 +22461,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 366,
+      id: BigInt(366),
       seqId: 1348,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("6/29/1999 GMT").toISOString(),
       week: 13,
       recorder: "Steph Gall",
@@ -22522,9 +22522,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 367,
+      id: BigInt(367),
       seqId: 1349,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("7/7/1999 GMT").toISOString(),
       week: 14,
       recorder: "Steph Gall",
@@ -22583,9 +22583,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 368,
+      id: BigInt(368),
       seqId: 1350,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("7/8/1999 GMT").toISOString(),
       week: 15,
       recorder: "Steph Gall",
@@ -22644,9 +22644,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 369,
+      id: BigInt(369),
       seqId: 1351,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("8/3/1999 GMT").toISOString(),
       week: 18,
       recorder: "Steph Gall",
@@ -22705,9 +22705,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 370,
+      id: BigInt(370),
       seqId: 1352,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("8/11/1999 GMT").toISOString(),
       week: 19,
       recorder: "Stephanie Gall",
@@ -22766,9 +22766,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 371,
+      id: BigInt(371),
       seqId: 1353,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("8/13/1999 GMT").toISOString(),
       week: 20,
       recorder: "Stephanie Gall",
@@ -22827,9 +22827,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 372,
+      id: BigInt(372),
       seqId: 1354,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("8/19/1999 GMT").toISOString(),
       week: 21,
       recorder: "Stephanie Gall",
@@ -22888,9 +22888,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 373,
+      id: BigInt(373),
       seqId: 1355,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("8/27/1999 GMT").toISOString(),
       week: 22,
       recorder: "Stephanie Gall",
@@ -22949,9 +22949,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 374,
+      id: BigInt(374),
       seqId: 1356,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("9/11/1999 GMT").toISOString(),
       week: 24,
       recorder: "Stephanie Gall",
@@ -23010,9 +23010,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 375,
+      id: BigInt(375),
       seqId: 1357,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("9/20/1999 GMT").toISOString(),
       week: 25,
       recorder: "Stephanie Gall",
@@ -23071,9 +23071,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 376,
+      id: BigInt(376),
       seqId: 1358,
-      siteId: 6,
+      siteId: BigInt(6),
       recordDate: new Date("9/28/1999 GMT").toISOString(),
       week: 26,
       recorder: "Stephanie Gall",
@@ -23132,9 +23132,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 377,
+      id: BigInt(377),
       seqId: 567,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("5/2/1996 GMT").toISOString(),
       week: 5,
       recorder: "J. L. Wiedmann",
@@ -23194,9 +23194,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 378,
+      id: BigInt(378),
       seqId: 568,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("5/10/1996 GMT").toISOString(),
       week: 6,
       recorder: "J. L. Wiedmann",
@@ -23256,9 +23256,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 379,
+      id: BigInt(379),
       seqId: 569,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("5/18/1996 GMT").toISOString(),
       week: 7,
       recorder: "J. L. Wiedmann",
@@ -23317,9 +23317,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 380,
+      id: BigInt(380),
       seqId: 570,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("5/22/1996 GMT").toISOString(),
       week: 8,
       recorder: "J. L. Wiedmann",
@@ -23379,9 +23379,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 381,
+      id: BigInt(381),
       seqId: 571,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("5/30/1996 GMT").toISOString(),
       week: 9,
       recorder: "J. L. Wiedmann",
@@ -23441,9 +23441,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 382,
+      id: BigInt(382),
       seqId: 572,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("6/7/1996 GMT").toISOString(),
       week: 10,
       recorder: "J. L. Wiedmann",
@@ -23503,9 +23503,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 383,
+      id: BigInt(383),
       seqId: 573,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("6/13/1996 GMT").toISOString(),
       week: 11,
       recorder: "J. .l Wiedmann",
@@ -23564,9 +23564,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 384,
+      id: BigInt(384),
       seqId: 574,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("6/21/1996 GMT").toISOString(),
       week: 12,
       recorder: "J. L. Wiedmann",
@@ -23626,9 +23626,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 385,
+      id: BigInt(385),
       seqId: 575,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("6/26/1996 GMT").toISOString(),
       week: 13,
       recorder: "J . L. Wiedmann",
@@ -23688,9 +23688,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 386,
+      id: BigInt(386),
       seqId: 576,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("7/13/1996 GMT").toISOString(),
       week: 15,
       recorder: "J . L. Wiedmann",
@@ -23749,9 +23749,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 387,
+      id: BigInt(387),
       seqId: 577,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("7/17/1996 GMT").toISOString(),
       week: 16,
       recorder: "J. L. Wiedmann",
@@ -23810,9 +23810,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 388,
+      id: BigInt(388),
       seqId: 578,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("7/23/1996 GMT").toISOString(),
       week: 17,
       recorder: "J. L. Wiedmann",
@@ -23871,9 +23871,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 389,
+      id: BigInt(389),
       seqId: 579,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("7/30/1996 GMT").toISOString(),
       week: 18,
       recorder: "J. L. Wiedmann",
@@ -23933,9 +23933,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 390,
+      id: BigInt(390),
       seqId: 580,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("8/5/1996 GMT").toISOString(),
       week: 19,
       recorder: "J. L. Wiedmann",
@@ -23995,9 +23995,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 391,
+      id: BigInt(391),
       seqId: 581,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("8/14/1996 GMT").toISOString(),
       week: 20,
       recorder: "J. L. Wiedmann",
@@ -24056,9 +24056,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 392,
+      id: BigInt(392),
       seqId: 582,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("8/22/1996 GMT").toISOString(),
       week: 21,
       recorder: "J. L. Wiedmann",
@@ -24117,9 +24117,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 393,
+      id: BigInt(393),
       seqId: 584,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("8/31/1996 GMT").toISOString(),
       week: 22,
       recorder: "J. L. Wiedmann",
@@ -24178,9 +24178,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 394,
+      id: BigInt(394),
       seqId: 585,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("9/2/1996 GMT").toISOString(),
       week: 23,
       recorder: "J. L. Wiedmann",
@@ -24239,9 +24239,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 395,
+      id: BigInt(395),
       seqId: 586,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("9/10/1996 GMT").toISOString(),
       week: 24,
       recorder: "J. L. Wiedmann",
@@ -24301,9 +24301,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 396,
+      id: BigInt(396),
       seqId: 587,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("9/19/1996 GMT").toISOString(),
       week: 25,
       recorder: "J. L. Wiedmann",
@@ -24362,9 +24362,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 397,
+      id: BigInt(397),
       seqId: 588,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("9/23/1996 GMT").toISOString(),
       week: 26,
       recorder: "J. L. Wiedmann",
@@ -24423,9 +24423,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 398,
+      id: BigInt(398),
       seqId: 589,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("9/30/1996 GMT").toISOString(),
       week: 26,
       recorder: "J. L. Wiedmann",
@@ -24484,9 +24484,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 399,
+      id: BigInt(399),
       seqId: 590,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("4/3/1997 GMT").toISOString(),
       week: 1,
       recorder: "J. L. Wiedmann",
@@ -24545,9 +24545,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 400,
+      id: BigInt(400),
       seqId: 591,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("4/15/1997 GMT").toISOString(),
       week: 3,
       recorder: "J. L. Wiedmann",
@@ -24606,9 +24606,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 401,
+      id: BigInt(401),
       seqId: 592,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("4/26/1997 GMT").toISOString(),
       week: 4,
       recorder: "J. L. Wiedmann",
@@ -24668,9 +24668,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 402,
+      id: BigInt(402),
       seqId: 593,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("4/29/1997 GMT").toISOString(),
       week: 5,
       recorder: "J. L. Wiedmann,J. Clemens",
@@ -24729,9 +24729,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 403,
+      id: BigInt(403),
       seqId: 594,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("5/11/1997 GMT").toISOString(),
       week: 6,
       recorder: "J. L. Wiedmann",
@@ -24790,9 +24790,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 404,
+      id: BigInt(404),
       seqId: 595,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("5/18/1997 GMT").toISOString(),
       week: 7,
       recorder: "J. L. Wiedmann",
@@ -24851,9 +24851,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 405,
+      id: BigInt(405),
       seqId: 596,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("5/23/1997 GMT").toISOString(),
       week: 8,
       recorder: "J. L. Wiedmann,J. Loomis",
@@ -24912,9 +24912,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 406,
+      id: BigInt(406),
       seqId: 597,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("5/31/1997 GMT").toISOString(),
       week: 9,
       recorder: "J. L. Wiedmann",
@@ -24974,9 +24974,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 407,
+      id: BigInt(407),
       seqId: 598,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("6/4/1997 GMT").toISOString(),
       week: 10,
       recorder: "J. L. Wiedmann,J. Loomis",
@@ -25035,9 +25035,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 408,
+      id: BigInt(408),
       seqId: 599,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("6/8/1997 GMT").toISOString(),
       week: 10,
       recorder: "J. L. Wiedmann & Others",
@@ -25096,9 +25096,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 409,
+      id: BigInt(409),
       seqId: 600,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("6/11/1997 GMT").toISOString(),
       week: 11,
       recorder: "J. L. Wiedmann",
@@ -25157,9 +25157,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 410,
+      id: BigInt(410),
       seqId: 601,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("6/17/1997 GMT").toISOString(),
       week: 12,
       recorder: "J. L. Wiedmann",
@@ -25218,9 +25218,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 411,
+      id: BigInt(411),
       seqId: 602,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("6/24/1997 GMT").toISOString(),
       week: 13,
       recorder: "J. L. Wiedmann,J. Loomis",
@@ -25279,9 +25279,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 412,
+      id: BigInt(412),
       seqId: 603,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("7/1/1997 GMT").toISOString(),
       week: 14,
       recorder: "Julie Loomis, J. Clemens",
@@ -25340,9 +25340,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 413,
+      id: BigInt(413),
       seqId: 604,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("7/5/1997 GMT").toISOString(),
       week: 14,
       recorder: "E. Binic",
@@ -25401,9 +25401,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 414,
+      id: BigInt(414),
       seqId: 605,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("7/11/1997 GMT").toISOString(),
       week: 15,
       recorder: "J.L.Wiedmann & Others",
@@ -25462,9 +25462,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 415,
+      id: BigInt(415),
       seqId: 606,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("7/19/1997 GMT").toISOString(),
       week: 16,
       recorder: "J.L.Wiedmann,E. Binic",
@@ -25523,9 +25523,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 416,
+      id: BigInt(416),
       seqId: 607,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("7/23/1997 GMT").toISOString(),
       week: 17,
       recorder: "J.L.Wiedmann & Others",
@@ -25584,9 +25584,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 417,
+      id: BigInt(417),
       seqId: 608,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("7/30/1997 GMT").toISOString(),
       week: 18,
       recorder: "J.L.Wiedmann & Others",
@@ -25645,9 +25645,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 418,
+      id: BigInt(418),
       seqId: 609,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("8/6/1997 GMT").toISOString(),
       week: 19,
       recorder: "J. L. Wiedmann,J. Loomis",
@@ -25706,9 +25706,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 419,
+      id: BigInt(419),
       seqId: 610,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("8/16/1997 GMT").toISOString(),
       week: 20,
       recorder: "J. L. Wiedmann",
@@ -25767,9 +25767,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 420,
+      id: BigInt(420),
       seqId: 611,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("8/19/1997 GMT").toISOString(),
       week: 21,
       recorder: "J. Loomis, J. Clemens",
@@ -25828,9 +25828,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 421,
+      id: BigInt(421),
       seqId: 612,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("8/23/1997 GMT").toISOString(),
       week: 21,
       recorder: "E. Binic",
@@ -25889,9 +25889,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 422,
+      id: BigInt(422),
       seqId: 613,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("8/27/1997 GMT").toISOString(),
       week: 22,
       recorder: "J. L. Wiedmann,J. Loomis",
@@ -25950,9 +25950,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 423,
+      id: BigInt(423),
       seqId: 614,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("9/2/1997 GMT").toISOString(),
       week: 23,
       recorder: "J. Wiedmann & Others",
@@ -26011,9 +26011,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 424,
+      id: BigInt(424),
       seqId: 615,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("9/9/1997 GMT").toISOString(),
       week: 24,
       recorder: "J. Wiedmann & Others",
@@ -26072,9 +26072,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 425,
+      id: BigInt(425),
       seqId: 616,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("9/18/1997 GMT").toISOString(),
       week: 25,
       recorder: "J. Wiedmann & Others",
@@ -26133,9 +26133,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 426,
+      id: BigInt(426),
       seqId: 617,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("9/24/1997 GMT").toISOString(),
       week: 26,
       recorder: "J. Wiedmann & Others",
@@ -26194,9 +26194,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 427,
+      id: BigInt(427),
       seqId: 311,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("4/13/1998 GMT").toISOString(),
       week: 2,
       recorder: "J. L. Wiedman",
@@ -26255,9 +26255,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 428,
+      id: BigInt(428),
       seqId: 312,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("4/16/1998 GMT").toISOString(),
       week: 3,
       recorder: "J. L. Wiedman",
@@ -26316,9 +26316,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 429,
+      id: BigInt(429),
       seqId: 313,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("4/25/1998 GMT").toISOString(),
       week: 4,
       recorder: "J. L. Wiedman",
@@ -26377,9 +26377,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 430,
+      id: BigInt(430),
       seqId: 314,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("5/5/1998 GMT").toISOString(),
       week: 5,
       recorder: "J. L. Wiedman",
@@ -26438,9 +26438,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 431,
+      id: BigInt(431),
       seqId: 315,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("5/9/1998 GMT").toISOString(),
       week: 6,
       recorder: "J. L. Wiedman, J. Loomis",
@@ -26499,9 +26499,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 432,
+      id: BigInt(432),
       seqId: 316,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("5/16/1998 GMT").toISOString(),
       week: 7,
       recorder: "J. L. Wiedman, J. Loomis",
@@ -26560,9 +26560,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 433,
+      id: BigInt(433),
       seqId: 317,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("5/23/1998 GMT").toISOString(),
       week: 8,
       recorder: "J. L. Wiedman, J. Loomis",
@@ -26621,9 +26621,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 434,
+      id: BigInt(434),
       seqId: 318,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("5/31/1998 GMT").toISOString(),
       week: 9,
       recorder: "J. L. Wiedman, J. Kimmich",
@@ -26682,9 +26682,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 435,
+      id: BigInt(435),
       seqId: 319,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("6/2/1998 GMT").toISOString(),
       week: 9,
       recorder: "J. L. Wiedman, J. Kimmich",
@@ -26743,9 +26743,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 436,
+      id: BigInt(436),
       seqId: 894,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("6/8/1998 GMT").toISOString(),
       week: 10,
       recorder: "J. Wiedman",
@@ -26804,9 +26804,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 437,
+      id: BigInt(437),
       seqId: 322,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("6/13/1998 GMT").toISOString(),
       week: 11,
       recorder: "J. L. Wiedman, J. Clemens",
@@ -26865,9 +26865,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 438,
+      id: BigInt(438),
       seqId: 323,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("6/17/1998 GMT").toISOString(),
       week: 12,
       recorder: "J. L. Wiedmann",
@@ -26927,9 +26927,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 439,
+      id: BigInt(439),
       seqId: 324,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("7/1/1998 GMT").toISOString(),
       week: 14,
       recorder: "S.Harps,J.Loomis,J.Clemen",
@@ -26988,9 +26988,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 440,
+      id: BigInt(440),
       seqId: 325,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("7/11/1998 GMT").toISOString(),
       week: 15,
       recorder: "J. L. Wiedmann, E. Binic",
@@ -27049,9 +27049,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 441,
+      id: BigInt(441),
       seqId: 326,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("7/20/1998 GMT").toISOString(),
       week: 16,
       recorder: "Jennifer Kimmich",
@@ -27111,9 +27111,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 442,
+      id: BigInt(442),
       seqId: 327,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("7/26/1998 GMT").toISOString(),
       week: 17,
       recorder: "J. L. Wiedmann",
@@ -27172,9 +27172,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 443,
+      id: BigInt(443),
       seqId: 328,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("8/2/1998 GMT").toISOString(),
       week: 18,
       recorder: "J.L.Wiedmann,S.Harps,B.Sh",
@@ -27233,9 +27233,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 444,
+      id: BigInt(444),
       seqId: 329,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("8/8/1998 GMT").toISOString(),
       week: 19,
       recorder: "J.L.Wiedmann,S.Harps,B.Sh",
@@ -27294,9 +27294,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 445,
+      id: BigInt(445),
       seqId: 330,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("8/13/1998 GMT").toISOString(),
       week: 20,
       recorder: "J.L.Wiedmann,J.Loomis",
@@ -27356,9 +27356,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 446,
+      id: BigInt(446),
       seqId: 331,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("8/21/1998 GMT").toISOString(),
       week: 21,
       recorder: "J.L.Wiedmann,J.Loomis",
@@ -27417,9 +27417,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 447,
+      id: BigInt(447),
       seqId: 365,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("8/22/1998 GMT").toISOString(),
       week: 21,
       recorder: "J. L. Weidmann",
@@ -27478,9 +27478,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 448,
+      id: BigInt(448),
       seqId: 366,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("9/4/1998 GMT").toISOString(),
       week: 23,
       recorder: "J. L. Weidmann",
@@ -27539,9 +27539,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 449,
+      id: BigInt(449),
       seqId: 367,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("9/11/1998 GMT").toISOString(),
       week: 24,
       recorder: "J. L. Weidmann",
@@ -27600,9 +27600,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 450,
+      id: BigInt(450),
       seqId: 368,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("9/19/1998 GMT").toISOString(),
       week: 25,
       recorder: "J. L. Weidmann",
@@ -27661,9 +27661,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 451,
+      id: BigInt(451),
       seqId: 369,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("9/27/1998 GMT").toISOString(),
       week: 26,
       recorder: "J. L. Wiedmann, J. Loomis",
@@ -27723,9 +27723,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 452,
+      id: BigInt(452),
       seqId: 370,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("9/29/1998 GMT").toISOString(),
       week: 26,
       recorder: "J. L. Wiedmann",
@@ -27784,9 +27784,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 453,
+      id: BigInt(453),
       seqId: 1437,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("4/3/1999 GMT").toISOString(),
       week: 1,
       recorder: "Jerry Wiedmann",
@@ -27845,9 +27845,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 454,
+      id: BigInt(454),
       seqId: 1438,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("4/14/1999 GMT").toISOString(),
       week: 2,
       recorder: "Jerry Wiedmann",
@@ -27906,9 +27906,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 455,
+      id: BigInt(455),
       seqId: 1439,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("4/26/1999 GMT").toISOString(),
       week: 4,
       recorder: "Jerry Wiedmann",
@@ -27967,9 +27967,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 456,
+      id: BigInt(456),
       seqId: 1440,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("5/1/1999 GMT").toISOString(),
       week: 5,
       recorder: "Jerry Wiedmann",
@@ -28028,9 +28028,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 457,
+      id: BigInt(457),
       seqId: 1441,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("5/2/1999 GMT").toISOString(),
       week: 5,
       recorder: "Jerry Wiedmann",
@@ -28089,9 +28089,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 458,
+      id: BigInt(458),
       seqId: 1442,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("5/9/1999 GMT").toISOString(),
       week: 6,
       recorder: "Jerry Wiedmann,J. Loomis",
@@ -28150,9 +28150,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 459,
+      id: BigInt(459),
       seqId: 1443,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("5/15/1999 GMT").toISOString(),
       week: 7,
       recorder: "J. Loomis, J. Clemens",
@@ -28212,9 +28212,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 460,
+      id: BigInt(460),
       seqId: 1444,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("5/27/1999 GMT").toISOString(),
       week: 9,
       recorder: "Jerry Wiedmann",
@@ -28274,9 +28274,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 461,
+      id: BigInt(461),
       seqId: 1445,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("5/29/1999 GMT").toISOString(),
       week: 9,
       recorder: "Jerry Wiedmann & Others",
@@ -28335,9 +28335,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 462,
+      id: BigInt(462),
       seqId: 1446,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("6/6/1999 GMT").toISOString(),
       week: 10,
       recorder: "Jerry Wiedmann",
@@ -28396,9 +28396,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 463,
+      id: BigInt(463),
       seqId: 1447,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("6/11/1999 GMT").toISOString(),
       week: 11,
       recorder: "Jerry Wiedmann",
@@ -28457,9 +28457,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 464,
+      id: BigInt(464),
       seqId: 1448,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("6/20/1999 GMT").toISOString(),
       week: 12,
       recorder: "Jerry Wiedmann & Others",
@@ -28518,9 +28518,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 465,
+      id: BigInt(465),
       seqId: 1449,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("6/26/1999 GMT").toISOString(),
       week: 13,
       recorder: "Jerry Wiedmann, J. Loomis",
@@ -28579,9 +28579,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 466,
+      id: BigInt(466),
       seqId: 1450,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("7/2/1999 GMT").toISOString(),
       week: 14,
       recorder: "J. Loomis, J. Clemens",
@@ -28640,9 +28640,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 467,
+      id: BigInt(467),
       seqId: 1451,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("7/9/1999 GMT").toISOString(),
       week: 15,
       recorder: "J. Loomis& Others",
@@ -28702,9 +28702,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 468,
+      id: BigInt(468),
       seqId: 1452,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("7/17/1999 GMT").toISOString(),
       week: 16,
       recorder: "Jerry Weidmann,J. Loomis",
@@ -28763,9 +28763,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 469,
+      id: BigInt(469),
       seqId: 1453,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("7/24/1999 GMT").toISOString(),
       week: 17,
       recorder: "Jerry Weidmann,J. Loomis",
@@ -28824,9 +28824,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 470,
+      id: BigInt(470),
       seqId: 1454,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("7/29/1999 GMT").toISOString(),
       week: 18,
       recorder: "J.Loomis,J.Clemens,J.McAn",
@@ -28885,9 +28885,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 471,
+      id: BigInt(471),
       seqId: 1455,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("8/7/1999 GMT").toISOString(),
       week: 19,
       recorder: "Jerry Wiedmann & Others",
@@ -28946,9 +28946,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 472,
+      id: BigInt(472),
       seqId: 1456,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("8/17/1999 GMT").toISOString(),
       week: 20,
       recorder: "J. Clemens,J. McAnlis",
@@ -29007,9 +29007,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 473,
+      id: BigInt(473),
       seqId: 1457,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("8/23/1999 GMT").toISOString(),
       week: 21,
       recorder: "J.L. Wiedmann",
@@ -29068,9 +29068,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 474,
+      id: BigInt(474),
       seqId: 1458,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("8/29/1999 GMT").toISOString(),
       week: 22,
       recorder: "J.l. Wiedmann",
@@ -29129,9 +29129,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 475,
+      id: BigInt(475),
       seqId: 1555,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("9/2/1999 GMT").toISOString(),
       week: 23,
       recorder: "J. L. Wiedmann, J. Loomis",
@@ -29190,9 +29190,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 476,
+      id: BigInt(476),
       seqId: 1459,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("9/9/1999 GMT").toISOString(),
       week: 24,
       recorder: "J. Loomis, J.l. Wiedmann",
@@ -29251,9 +29251,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 477,
+      id: BigInt(477),
       seqId: 1460,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("9/16/1999 GMT").toISOString(),
       week: 25,
       recorder: "J.L. Wiedmann",
@@ -29312,9 +29312,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 478,
+      id: BigInt(478),
       seqId: 1461,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("9/18/1999 GMT").toISOString(),
       week: 25,
       recorder: "J.L. Wiedmann",
@@ -29373,9 +29373,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 479,
+      id: BigInt(479),
       seqId: 1463,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("10/1/1999 GMT").toISOString(),
       week: 27,
       recorder: "J.L. Wiedmann",
@@ -29434,9 +29434,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 480,
+      id: BigInt(480),
       seqId: 1464,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("10/11/1999 GMT").toISOString(),
       week: 28,
       recorder: "J.L. Wiedmann",
@@ -29495,9 +29495,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 481,
+      id: BigInt(481),
       seqId: 1465,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("10/15/1999 GMT").toISOString(),
       week: 29,
       recorder: "J.L. Wiedmann",
@@ -29556,9 +29556,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 482,
+      id: BigInt(482),
       seqId: 1466,
-      siteId: 7,
+      siteId: BigInt(7),
       recordDate: new Date("10/26/1999 GMT").toISOString(),
       week: 30,
       recorder: "J.L. Wiedmann",
@@ -29617,9 +29617,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 483,
+      id: BigInt(483),
       seqId: 1573,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("4/21/1996 GMT").toISOString(),
       week: 3,
       recorder: "J. L. Wiedmann",
@@ -29678,9 +29678,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 484,
+      id: BigInt(484),
       seqId: 1574,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("4/25/1996 GMT").toISOString(),
       week: 4,
       recorder: "J. L. Wiedmann",
@@ -29739,9 +29739,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 485,
+      id: BigInt(485),
       seqId: 1575,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("4/28/1996 GMT").toISOString(),
       week: 4,
       recorder: "J. L. Wiedmann",
@@ -29800,9 +29800,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 486,
+      id: BigInt(486),
       seqId: 1578,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("5/9/1996 GMT").toISOString(),
       week: 6,
       recorder: "J. L. Wiedmann",
@@ -29861,9 +29861,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 487,
+      id: BigInt(487),
       seqId: 1579,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("5/17/1996 GMT").toISOString(),
       week: 7,
       recorder: "J. L. Wiedmann",
@@ -29922,9 +29922,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 488,
+      id: BigInt(488),
       seqId: 1580,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("5/19/1996 GMT").toISOString(),
       week: 7,
       recorder: "J. L. Wiedmann",
@@ -29983,9 +29983,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 489,
+      id: BigInt(489),
       seqId: 1581,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("5/20/1996 GMT").toISOString(),
       week: 8,
       recorder: "J. L. Wiedmann",
@@ -30045,9 +30045,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 490,
+      id: BigInt(490),
       seqId: 1582,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("5/31/1996 GMT").toISOString(),
       week: 9,
       recorder: "J. L. Wiedmann",
@@ -30107,9 +30107,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 491,
+      id: BigInt(491),
       seqId: 1584,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("6/8/1996 GMT").toISOString(),
       week: 10,
       recorder: "J. L. Wiedmann",
@@ -30168,9 +30168,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 492,
+      id: BigInt(492),
       seqId: 1585,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("6/12/1996 GMT").toISOString(),
       week: 11,
       recorder: "J. L. Wiedmann",
@@ -30229,9 +30229,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 493,
+      id: BigInt(493),
       seqId: 1586,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("6/19/1996 GMT").toISOString(),
       week: 12,
       recorder: "J. L. Wiedmann",
@@ -30291,9 +30291,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 494,
+      id: BigInt(494),
       seqId: 1587,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("6/24/1996 GMT").toISOString(),
       week: 13,
       recorder: "J. L. Wiedmann",
@@ -30353,9 +30353,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 495,
+      id: BigInt(495),
       seqId: 1588,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("7/11/1996 GMT").toISOString(),
       week: 15,
       recorder: "J. L. Wiedmann",
@@ -30414,9 +30414,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 496,
+      id: BigInt(496),
       seqId: 1589,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("7/15/1996 GMT").toISOString(),
       week: 16,
       recorder: "J. L. Wiedmann",
@@ -30475,9 +30475,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 497,
+      id: BigInt(497),
       seqId: 1590,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("7/22/1996 GMT").toISOString(),
       week: 17,
       recorder: "J. L. Wiedmann",
@@ -30536,9 +30536,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 498,
+      id: BigInt(498),
       seqId: 1591,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("7/30/1996 GMT").toISOString(),
       week: 18,
       recorder: "J. L. Wiedmann",
@@ -30598,9 +30598,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 499,
+      id: BigInt(499),
       seqId: 1592,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("8/6/1996 GMT").toISOString(),
       week: 19,
       recorder: "J. L. Wiedmann",
@@ -30659,9 +30659,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 500,
+      id: BigInt(500),
       seqId: 1593,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("8/12/1996 GMT").toISOString(),
       week: 20,
       recorder: "J. L. Wiedmann",
@@ -30720,9 +30720,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 501,
+      id: BigInt(501),
       seqId: 1594,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("8/19/1996 GMT").toISOString(),
       week: 21,
       recorder: "J. L. Wiedmann",
@@ -30781,9 +30781,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 502,
+      id: BigInt(502),
       seqId: 1595,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("8/29/1996 GMT").toISOString(),
       week: 22,
       recorder: "J. L. Wiedmann",
@@ -30842,9 +30842,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 503,
+      id: BigInt(503),
       seqId: 1596,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("9/3/1996 GMT").toISOString(),
       week: 23,
       recorder: "J. L. Wiedmann",
@@ -30904,9 +30904,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 504,
+      id: BigInt(504),
       seqId: 1597,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("9/9/1996 GMT").toISOString(),
       week: 24,
       recorder: "J. L. Wiedmann",
@@ -30965,9 +30965,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 505,
+      id: BigInt(505),
       seqId: 1598,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("9/19/1996 GMT").toISOString(),
       week: 25,
       recorder: "J. L. Wiedmann",
@@ -31027,9 +31027,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 506,
+      id: BigInt(506),
       seqId: 1599,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("9/26/1996 GMT").toISOString(),
       week: 26,
       recorder: "J. L. Wiedmann",
@@ -31088,9 +31088,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 507,
+      id: BigInt(507),
       seqId: 1600,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("9/30/1996 GMT").toISOString(),
       week: 26,
       recorder: "J. L. Wiedmann",
@@ -31149,9 +31149,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 508,
+      id: BigInt(508),
       seqId: 1602,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("10/7/1996 GMT").toISOString(),
       week: 27,
       recorder: "J. L. Wiedmann",
@@ -31210,9 +31210,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 509,
+      id: BigInt(509),
       seqId: 1601,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("10/12/1996 GMT").toISOString(),
       week: 28,
       recorder: "J. L. Wiedmann",
@@ -31271,9 +31271,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 510,
+      id: BigInt(510),
       seqId: 1603,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("10/16/1996 GMT").toISOString(),
       week: 29,
       recorder: "J. L. Wiedmann",
@@ -31333,9 +31333,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 511,
+      id: BigInt(511),
       seqId: 1604,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("10/25/1996 GMT").toISOString(),
       week: 30,
       recorder: "J. L. Wiedmann",
@@ -31394,9 +31394,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 512,
+      id: BigInt(512),
       seqId: 1605,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("10/29/1996 GMT").toISOString(),
       week: 31,
       recorder: "J. L Wiedmann",
@@ -31455,9 +31455,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 513,
+      id: BigInt(513),
       seqId: 649,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("4/2/1997 GMT").toISOString(),
       week: 1,
       recorder: "J. L. Wiedmann",
@@ -31516,9 +31516,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 514,
+      id: BigInt(514),
       seqId: 650,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("4/15/1997 GMT").toISOString(),
       week: 3,
       recorder: "J. L. Wiedmann",
@@ -31577,9 +31577,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 515,
+      id: BigInt(515),
       seqId: 651,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("4/25/1997 GMT").toISOString(),
       week: 4,
       recorder: "J. L. Wiedmann",
@@ -31638,9 +31638,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 516,
+      id: BigInt(516),
       seqId: 652,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("4/29/1997 GMT").toISOString(),
       week: 5,
       recorder: "J. L. Wiedmann",
@@ -31699,9 +31699,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 517,
+      id: BigInt(517),
       seqId: 653,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("5/11/1997 GMT").toISOString(),
       week: 6,
       recorder: "J. L. Wiedmann",
@@ -31760,9 +31760,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 518,
+      id: BigInt(518),
       seqId: 654,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("5/18/1997 GMT").toISOString(),
       week: 7,
       recorder: "J. L. Wiedmann",
@@ -31821,9 +31821,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 519,
+      id: BigInt(519),
       seqId: 655,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("5/23/1997 GMT").toISOString(),
       week: 8,
       recorder: "J. L. Wiedmann",
@@ -31882,9 +31882,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 520,
+      id: BigInt(520),
       seqId: 656,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("6/2/1997 GMT").toISOString(),
       week: 9,
       recorder: "J. L. Wiedmann",
@@ -31943,9 +31943,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 521,
+      id: BigInt(521),
       seqId: 657,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("6/3/1997 GMT").toISOString(),
       week: 10,
       recorder: "J. L. Wiedmann",
@@ -32004,9 +32004,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 522,
+      id: BigInt(522),
       seqId: 658,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("6/9/1997 GMT").toISOString(),
       week: 10,
       recorder: "J. L. Wiedmann",
@@ -32065,9 +32065,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 523,
+      id: BigInt(523),
       seqId: 659,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("6/21/1997 GMT").toISOString(),
       week: 12,
       recorder: "J. L. Wiedmann",
@@ -32126,9 +32126,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 524,
+      id: BigInt(524),
       seqId: 660,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("6/25/1997 GMT").toISOString(),
       week: 13,
       recorder: "J. L. Wiedmann",
@@ -32187,9 +32187,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 525,
+      id: BigInt(525),
       seqId: 661,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("7/8/1997 GMT").toISOString(),
       week: 15,
       recorder: "J. L. Wiedmann",
@@ -32248,9 +32248,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 526,
+      id: BigInt(526),
       seqId: 662,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("7/13/1997 GMT").toISOString(),
       week: 15,
       recorder: "J. L. Wiedmann",
@@ -32309,9 +32309,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 527,
+      id: BigInt(527),
       seqId: 663,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("7/20/1997 GMT").toISOString(),
       week: 16,
       recorder: "J. L. Wiedmann",
@@ -32370,9 +32370,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 528,
+      id: BigInt(528),
       seqId: 664,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("7/27/1997 GMT").toISOString(),
       week: 17,
       recorder: "J. L. Wiedmann",
@@ -32431,9 +32431,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 529,
+      id: BigInt(529),
       seqId: 665,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("8/3/1997 GMT").toISOString(),
       week: 18,
       recorder: "J. L. Wiedmann",
@@ -32492,9 +32492,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 530,
+      id: BigInt(530),
       seqId: 666,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("8/8/1997 GMT").toISOString(),
       week: 19,
       recorder: "J. L. Wiedmann",
@@ -32553,9 +32553,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 531,
+      id: BigInt(531),
       seqId: 667,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("8/15/1997 GMT").toISOString(),
       week: 20,
       recorder: "J. L. Wiedmann",
@@ -32614,9 +32614,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 532,
+      id: BigInt(532),
       seqId: 668,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("8/25/1997 GMT").toISOString(),
       week: 21,
       recorder: "J. L. Wiedmann",
@@ -32675,9 +32675,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 533,
+      id: BigInt(533),
       seqId: 669,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("8/29/1997 GMT").toISOString(),
       week: 22,
       recorder: "J. L. Wiedmann",
@@ -32736,9 +32736,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 534,
+      id: BigInt(534),
       seqId: 670,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("9/7/1997 GMT").toISOString(),
       week: 23,
       recorder: "J. L. Wiedmann",
@@ -32797,9 +32797,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 535,
+      id: BigInt(535),
       seqId: 671,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("9/14/1997 GMT").toISOString(),
       week: 24,
       recorder: "J. L. Wiedmann",
@@ -32858,9 +32858,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 536,
+      id: BigInt(536),
       seqId: 672,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("9/19/1997 GMT").toISOString(),
       week: 25,
       recorder: "J. L. Wiedmann",
@@ -32920,9 +32920,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 537,
+      id: BigInt(537),
       seqId: 673,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("9/27/1997 GMT").toISOString(),
       week: 26,
       recorder: "J. L. Wiedmann",
@@ -32982,9 +32982,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 538,
+      id: BigInt(538),
       seqId: 332,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("4/12/1998 GMT").toISOString(),
       week: 2,
       recorder: "J. L. Weidmann",
@@ -33043,9 +33043,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 539,
+      id: BigInt(539),
       seqId: 333,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("4/16/1998 GMT").toISOString(),
       week: 3,
       recorder: "J. L. Weidmann",
@@ -33104,9 +33104,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 540,
+      id: BigInt(540),
       seqId: 334,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("4/28/1998 GMT").toISOString(),
       week: 4,
       recorder: "J. L. Weidmann",
@@ -33166,9 +33166,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 541,
+      id: BigInt(541),
       seqId: 335,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("5/3/1998 GMT").toISOString(),
       week: 5,
       recorder: "J. L. Weidmann",
@@ -33228,9 +33228,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 542,
+      id: BigInt(542),
       seqId: 336,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("5/9/1998 GMT").toISOString(),
       week: 6,
       recorder: "J. L. Weidmann",
@@ -33289,9 +33289,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 543,
+      id: BigInt(543),
       seqId: 355,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("5/14/1998 GMT").toISOString(),
       week: 7,
       recorder: "J. L. Wiedmann",
@@ -33350,9 +33350,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 544,
+      id: BigInt(544),
       seqId: 356,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("5/26/1998 GMT").toISOString(),
       week: 8,
       recorder: "J. L. Wiedmann",
@@ -33411,9 +33411,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 545,
+      id: BigInt(545),
       seqId: 357,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("5/29/1998 GMT").toISOString(),
       week: 9,
       recorder: "J. L. Wiedmann",
@@ -33473,9 +33473,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 546,
+      id: BigInt(546),
       seqId: 358,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("6/9/1998 GMT").toISOString(),
       week: 10,
       recorder: "J. L. Wiedmann",
@@ -33534,9 +33534,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 547,
+      id: BigInt(547),
       seqId: 359,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("6/12/1998 GMT").toISOString(),
       week: 11,
       recorder: "J. L. Wiedmann",
@@ -33596,9 +33596,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 548,
+      id: BigInt(548),
       seqId: 360,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("6/18/1998 GMT").toISOString(),
       week: 12,
       recorder: "J. L. Wiedmann",
@@ -33657,9 +33657,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 549,
+      id: BigInt(549),
       seqId: 361,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("6/24/1998 GMT").toISOString(),
       week: 13,
       recorder: "J. L. Wiedmann",
@@ -33718,9 +33718,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 550,
+      id: BigInt(550),
       seqId: 362,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("7/9/1998 GMT").toISOString(),
       week: 15,
       recorder: "J. L. Wiedmann",
@@ -33780,9 +33780,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 551,
+      id: BigInt(551),
       seqId: 363,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("7/14/1998 GMT").toISOString(),
       week: 15,
       recorder: "J. L. Wiedmann",
@@ -33841,9 +33841,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 552,
+      id: BigInt(552),
       seqId: 364,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("7/20/1998 GMT").toISOString(),
       week: 16,
       recorder: "J. L. Wiedmann",
@@ -33902,9 +33902,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 553,
+      id: BigInt(553),
       seqId: 371,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("7/26/1998 GMT").toISOString(),
       week: 17,
       recorder: "J. L. Wiedmann",
@@ -33963,9 +33963,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 554,
+      id: BigInt(554),
       seqId: 372,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("7/29/1998 GMT").toISOString(),
       week: 18,
       recorder: "J. L. Wiedmann",
@@ -34024,9 +34024,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 555,
+      id: BigInt(555),
       seqId: 373,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("8/6/1998 GMT").toISOString(),
       week: 19,
       recorder: "J. L. Wiedmann",
@@ -34086,9 +34086,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 556,
+      id: BigInt(556),
       seqId: 374,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("8/12/1998 GMT").toISOString(),
       week: 20,
       recorder: "J. L. Wiedmann",
@@ -34147,9 +34147,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 557,
+      id: BigInt(557),
       seqId: 375,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("8/19/1998 GMT").toISOString(),
       week: 21,
       recorder: "J. L. Wiedmann",
@@ -34209,9 +34209,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 558,
+      id: BigInt(558),
       seqId: 376,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("8/26/1998 GMT").toISOString(),
       week: 22,
       recorder: "J. L. Wiedmann",
@@ -34270,9 +34270,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 559,
+      id: BigInt(559),
       seqId: 377,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("9/3/1998 GMT").toISOString(),
       week: 23,
       recorder: "J. L. Wiedmann",
@@ -34331,9 +34331,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 560,
+      id: BigInt(560),
       seqId: 378,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("9/12/1998 GMT").toISOString(),
       week: 24,
       recorder: "J. L. Wiedmann",
@@ -34393,9 +34393,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 561,
+      id: BigInt(561),
       seqId: 379,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("9/19/1998 GMT").toISOString(),
       week: 25,
       recorder: "J. L. Wiedmann",
@@ -34454,9 +34454,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 562,
+      id: BigInt(562),
       seqId: 380,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("9/23/1998 GMT").toISOString(),
       week: 26,
       recorder: "J. L. Wiedmann",
@@ -34515,9 +34515,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 563,
+      id: BigInt(563),
       seqId: 1131,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("4/2/1999 GMT").toISOString(),
       week: 1,
       recorder: "J. L. Wiedmann",
@@ -34576,9 +34576,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 564,
+      id: BigInt(564),
       seqId: 1132,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("4/8/1999 GMT").toISOString(),
       week: 2,
       recorder: "J. L. Wiedmann",
@@ -34637,9 +34637,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 565,
+      id: BigInt(565),
       seqId: 1133,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("4/26/1999 GMT").toISOString(),
       week: 4,
       recorder: "J. L. Wiedmann",
@@ -34698,9 +34698,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 566,
+      id: BigInt(566),
       seqId: 1134,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("5/1/1999 GMT").toISOString(),
       week: 5,
       recorder: "J. L. Wiedmann",
@@ -34759,9 +34759,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 567,
+      id: BigInt(567),
       seqId: 1135,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("5/9/1999 GMT").toISOString(),
       week: 6,
       recorder: "J. L. Wiedmann",
@@ -34820,9 +34820,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 568,
+      id: BigInt(568),
       seqId: 1169,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("5/23/1999 GMT").toISOString(),
       week: 8,
       recorder: "J. L. Wiedmann",
@@ -34881,9 +34881,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 569,
+      id: BigInt(569),
       seqId: 1170,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("5/29/1999 GMT").toISOString(),
       week: 9,
       recorder: "J. L. Wiedmann",
@@ -34942,9 +34942,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 570,
+      id: BigInt(570),
       seqId: 1171,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("6/5/1999 GMT").toISOString(),
       week: 10,
       recorder: "J. L. Wiedmann",
@@ -35004,9 +35004,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 571,
+      id: BigInt(571),
       seqId: 1172,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("6/12/1999 GMT").toISOString(),
       week: 11,
       recorder: "J. L. Wiedmann",
@@ -35065,9 +35065,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 572,
+      id: BigInt(572),
       seqId: 1173,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("6/18/1999 GMT").toISOString(),
       week: 12,
       recorder: "J. L. Wiedmann",
@@ -35126,9 +35126,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 573,
+      id: BigInt(573),
       seqId: 1174,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("6/24/1999 GMT").toISOString(),
       week: 13,
       recorder: "J. L. Wiedmann/J. Clemens",
@@ -35187,9 +35187,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 574,
+      id: BigInt(574),
       seqId: 1175,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("7/1/1999 GMT").toISOString(),
       week: 14,
       recorder: "Julie Clemens",
@@ -35248,9 +35248,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 575,
+      id: BigInt(575),
       seqId: 1176,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("7/9/1999 GMT").toISOString(),
       week: 15,
       recorder: "J. L. Wiedmann/J. Clemens",
@@ -35309,9 +35309,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 576,
+      id: BigInt(576),
       seqId: 1177,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("7/18/1999 GMT").toISOString(),
       week: 16,
       recorder: "J. L. Wiedmann",
@@ -35371,9 +35371,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 577,
+      id: BigInt(577),
       seqId: 1178,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("7/25/1999 GMT").toISOString(),
       week: 17,
       recorder: "J. L. Wiedmann",
@@ -35432,9 +35432,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 578,
+      id: BigInt(578),
       seqId: 1179,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("7/29/1999 GMT").toISOString(),
       week: 18,
       recorder: "J. L. Wiedmann",
@@ -35493,9 +35493,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 579,
+      id: BigInt(579),
       seqId: 1180,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("8/6/1999 GMT").toISOString(),
       week: 19,
       recorder: "J. L. Wiedmann",
@@ -35554,9 +35554,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 580,
+      id: BigInt(580),
       seqId: 1181,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("8/12/1999 GMT").toISOString(),
       week: 20,
       recorder: "J. L. Wiedmann",
@@ -35615,9 +35615,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 581,
+      id: BigInt(581),
       seqId: 1182,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("8/22/1999 GMT").toISOString(),
       week: 21,
       recorder: "J. L. Wiedmann",
@@ -35676,9 +35676,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 582,
+      id: BigInt(582),
       seqId: 1183,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("8/28/1999 GMT").toISOString(),
       week: 22,
       recorder: "J. L. Wiedmann",
@@ -35738,9 +35738,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 583,
+      id: BigInt(583),
       seqId: 1184,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("9/5/1999 GMT").toISOString(),
       week: 23,
       recorder: "J. L. Wiedmann",
@@ -35799,9 +35799,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 584,
+      id: BigInt(584),
       seqId: 1185,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("9/11/1999 GMT").toISOString(),
       week: 24,
       recorder: "J. L. Wiedmann",
@@ -35860,9 +35860,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 585,
+      id: BigInt(585),
       seqId: 1186,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("9/19/1999 GMT").toISOString(),
       week: 25,
       recorder: "J. L. Wiedmann",
@@ -35921,9 +35921,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 586,
+      id: BigInt(586),
       seqId: 1187,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("9/26/1999 GMT").toISOString(),
       week: 26,
       recorder: "J. L. Wiedmann",
@@ -35982,9 +35982,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 587,
+      id: BigInt(587),
       seqId: 1188,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("10/2/1999 GMT").toISOString(),
       week: 27,
       recorder: "J. L. Wiedmann",
@@ -36043,9 +36043,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 588,
+      id: BigInt(588),
       seqId: 1189,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("10/9/1999 GMT").toISOString(),
       week: 28,
       recorder: "J. L. Wiedmann",
@@ -36104,9 +36104,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 589,
+      id: BigInt(589),
       seqId: 1190,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("10/15/1999 GMT").toISOString(),
       week: 29,
       recorder: "J. L. Wiedmann",
@@ -36165,9 +36165,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 590,
+      id: BigInt(590),
       seqId: 1191,
-      siteId: 8,
+      siteId: BigInt(8),
       recordDate: new Date("10/28/1999 GMT").toISOString(),
       week: 30,
       recorder: "J. L. Wiedmann",
@@ -36226,9 +36226,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 591,
+      id: BigInt(591),
       seqId: 619,
-      siteId: 9,
+      siteId: BigInt(9),
       recordDate: new Date("5/6/1997 GMT").toISOString(),
       week: 6,
       recorder: "Sonya Teraguchi",
@@ -36287,9 +36287,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 592,
+      id: BigInt(592),
       seqId: 620,
-      siteId: 9,
+      siteId: BigInt(9),
       recordDate: new Date("5/17/1997 GMT").toISOString(),
       week: 7,
       recorder: "Sonya Teraguchi",
@@ -36348,9 +36348,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 593,
+      id: BigInt(593),
       seqId: 621,
-      siteId: 9,
+      siteId: BigInt(9),
       recordDate: new Date("5/23/1997 GMT").toISOString(),
       week: 8,
       recorder: "Sonya Teraguchi",
@@ -36409,9 +36409,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 594,
+      id: BigInt(594),
       seqId: 622,
-      siteId: 9,
+      siteId: BigInt(9),
       recordDate: new Date("5/30/1997 GMT").toISOString(),
       week: 9,
       recorder: "Sonya Teraguchi",
@@ -36471,9 +36471,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 595,
+      id: BigInt(595),
       seqId: 623,
-      siteId: 9,
+      siteId: BigInt(9),
       recordDate: new Date("6/4/1997 GMT").toISOString(),
       week: 10,
       recorder: "Sonya Teraguchi",
@@ -36532,9 +36532,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 596,
+      id: BigInt(596),
       seqId: 624,
-      siteId: 9,
+      siteId: BigInt(9),
       recordDate: new Date("6/11/1997 GMT").toISOString(),
       week: 11,
       recorder: "Sonya Teraguchi",
@@ -36593,9 +36593,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 597,
+      id: BigInt(597),
       seqId: 625,
-      siteId: 9,
+      siteId: BigInt(9),
       recordDate: new Date("6/27/1997 GMT").toISOString(),
       week: 13,
       recorder: "Sonya Teraguchi",
@@ -36654,9 +36654,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 598,
+      id: BigInt(598),
       seqId: 626,
-      siteId: 9,
+      siteId: BigInt(9),
       recordDate: new Date("7/2/1997 GMT").toISOString(),
       week: 14,
       recorder: "Sonya Teraguchi",
@@ -36715,9 +36715,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 599,
+      id: BigInt(599),
       seqId: 627,
-      siteId: 9,
+      siteId: BigInt(9),
       recordDate: new Date("7/11/1997 GMT").toISOString(),
       week: 15,
       recorder: "Sonya Teraguchi",
@@ -36776,9 +36776,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 600,
+      id: BigInt(600),
       seqId: 628,
-      siteId: 9,
+      siteId: BigInt(9),
       recordDate: new Date("7/25/1997 GMT").toISOString(),
       week: 17,
       recorder: "Sonya Teraguchi & Others",
@@ -36837,9 +36837,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 601,
+      id: BigInt(601),
       seqId: 629,
-      siteId: 9,
+      siteId: BigInt(9),
       recordDate: new Date("8/1/1997 GMT").toISOString(),
       week: 18,
       recorder: "Sonja Teruguchi",
@@ -36899,9 +36899,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 602,
+      id: BigInt(602),
       seqId: 630,
-      siteId: 9,
+      siteId: BigInt(9),
       recordDate: new Date("8/15/1997 GMT").toISOString(),
       week: 20,
       recorder: "Sonja Teruguchi",
@@ -36961,9 +36961,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 603,
+      id: BigInt(603),
       seqId: 631,
-      siteId: 9,
+      siteId: BigInt(9),
       recordDate: new Date("8/28/1997 GMT").toISOString(),
       week: 22,
       recorder: "Sonja Teruguchi",
@@ -37023,9 +37023,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 604,
+      id: BigInt(604),
       seqId: 632,
-      siteId: 9,
+      siteId: BigInt(9),
       recordDate: new Date("9/2/1997 GMT").toISOString(),
       week: 23,
       recorder: "Sonja Teruguchi",
@@ -37085,9 +37085,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 605,
+      id: BigInt(605),
       seqId: 633,
-      siteId: 9,
+      siteId: BigInt(9),
       recordDate: new Date("9/29/1997 GMT").toISOString(),
       week: 26,
       recorder: "Sonja Teraguchi",
@@ -37147,9 +37147,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 606,
+      id: BigInt(606),
       seqId: 213,
-      siteId: 9,
+      siteId: BigInt(9),
       recordDate: new Date("4/12/1998 GMT").toISOString(),
       week: 2,
       recorder: "Sonja Teraguchi",
@@ -37208,9 +37208,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 607,
+      id: BigInt(607),
       seqId: 214,
-      siteId: 9,
+      siteId: BigInt(9),
       recordDate: new Date("5/3/1998 GMT").toISOString(),
       week: 5,
       recorder: "Sonja Teraguchi",
@@ -37270,9 +37270,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 608,
+      id: BigInt(608),
       seqId: 893,
-      siteId: 9,
+      siteId: BigInt(9),
       recordDate: new Date("5/10/1998 GMT").toISOString(),
       week: 6,
       recorder: "Sonja Teraguchi",
@@ -37332,9 +37332,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 609,
+      id: BigInt(609),
       seqId: 216,
-      siteId: 9,
+      siteId: BigInt(9),
       recordDate: new Date("5/18/1998 GMT").toISOString(),
       week: 7,
       recorder: "Sonja Teraguchi",
@@ -37394,9 +37394,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 610,
+      id: BigInt(610),
       seqId: 217,
-      siteId: 9,
+      siteId: BigInt(9),
       recordDate: new Date("5/24/1998 GMT").toISOString(),
       week: 8,
       recorder: "Sonja Teraguchi",
@@ -37456,9 +37456,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 611,
+      id: BigInt(611),
       seqId: 218,
-      siteId: 9,
+      siteId: BigInt(9),
       recordDate: new Date("6/20/1998 GMT").toISOString(),
       week: 12,
       recorder: "Sonja Teraguchi",
@@ -37518,9 +37518,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 612,
+      id: BigInt(612),
       seqId: 219,
-      siteId: 9,
+      siteId: BigInt(9),
       recordDate: new Date("6/29/1998 GMT").toISOString(),
       week: 13,
       recorder: "Sonja Teraguchi",
@@ -37580,9 +37580,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 613,
+      id: BigInt(613),
       seqId: 220,
-      siteId: 9,
+      siteId: BigInt(9),
       recordDate: new Date("7/6/1998 GMT").toISOString(),
       week: 14,
       recorder: "Sonja Teraguchi",
@@ -37643,9 +37643,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 614,
+      id: BigInt(614),
       seqId: 221,
-      siteId: 9,
+      siteId: BigInt(9),
       recordDate: new Date("7/10/1998 GMT").toISOString(),
       week: 15,
       recorder: "Sonja Teraguchi",
@@ -37705,9 +37705,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 615,
+      id: BigInt(615),
       seqId: 222,
-      siteId: 9,
+      siteId: BigInt(9),
       recordDate: new Date("8/1/1998 GMT").toISOString(),
       week: 18,
       recorder: "Sonja Teraguchi",
@@ -37767,9 +37767,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 616,
+      id: BigInt(616),
       seqId: 223,
-      siteId: 9,
+      siteId: BigInt(9),
       recordDate: new Date("8/15/1998 GMT").toISOString(),
       week: 20,
       recorder: "Sonja Teraguchi",
@@ -37829,9 +37829,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 617,
+      id: BigInt(617),
       seqId: 224,
-      siteId: 9,
+      siteId: BigInt(9),
       recordDate: new Date("8/31/1998 GMT").toISOString(),
       week: 22,
       recorder: "Sonja Teraguchi",
@@ -37891,9 +37891,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 618,
+      id: BigInt(618),
       seqId: 225,
-      siteId: 9,
+      siteId: BigInt(9),
       recordDate: new Date("9/5/1998 GMT").toISOString(),
       week: 23,
       recorder: "Sonja Teraguchi",
@@ -37953,9 +37953,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 619,
+      id: BigInt(619),
       seqId: 226,
-      siteId: 9,
+      siteId: BigInt(9),
       recordDate: new Date("9/14/1998 GMT").toISOString(),
       week: 24,
       recorder: "Sonja Teraguchi",
@@ -38015,9 +38015,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 620,
+      id: BigInt(620),
       seqId: 227,
-      siteId: 9,
+      siteId: BigInt(9),
       recordDate: new Date("9/24/1998 GMT").toISOString(),
       week: 26,
       recorder: "Sonja Teraguchi",
@@ -38076,9 +38076,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 621,
+      id: BigInt(621),
       seqId: 674,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("5/4/1997 GMT").toISOString(),
       week: 5,
       recorder: "Barb Coleman",
@@ -38137,9 +38137,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 622,
+      id: BigInt(622),
       seqId: 675,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("5/17/1997 GMT").toISOString(),
       week: 7,
       recorder: "Barb Coleman",
@@ -38200,9 +38200,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 623,
+      id: BigInt(623),
       seqId: 676,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("6/5/1997 GMT").toISOString(),
       week: 10,
       recorder: "Barb Coleman",
@@ -38263,9 +38263,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 624,
+      id: BigInt(624),
       seqId: 677,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("6/14/1997 GMT").toISOString(),
       week: 11,
       recorder: "Barb Coleman",
@@ -38325,9 +38325,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 625,
+      id: BigInt(625),
       seqId: 678,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("6/27/1997 GMT").toISOString(),
       week: 13,
       recorder: "Barb Coleman",
@@ -38387,9 +38387,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 626,
+      id: BigInt(626),
       seqId: 679,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("7/5/1997 GMT").toISOString(),
       week: 14,
       recorder: "Barb Coleman",
@@ -38449,9 +38449,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 627,
+      id: BigInt(627),
       seqId: 680,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("7/11/1997 GMT").toISOString(),
       week: 15,
       recorder: "Barb Coleman",
@@ -38511,9 +38511,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 628,
+      id: BigInt(628),
       seqId: 681,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("7/19/1997 GMT").toISOString(),
       week: 16,
       recorder: "Barb Coleman",
@@ -38574,9 +38574,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 629,
+      id: BigInt(629),
       seqId: 682,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("7/26/1997 GMT").toISOString(),
       week: 17,
       recorder: "Barb Coleman",
@@ -38636,9 +38636,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 630,
+      id: BigInt(630),
       seqId: 683,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("8/3/1997 GMT").toISOString(),
       week: 18,
       recorder: "Barb Coleman",
@@ -38698,9 +38698,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 631,
+      id: BigInt(631),
       seqId: 684,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("8/18/1997 GMT").toISOString(),
       week: 20,
       recorder: "Barb Coleman",
@@ -38760,9 +38760,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 632,
+      id: BigInt(632),
       seqId: 685,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("8/25/1997 GMT").toISOString(),
       week: 21,
       recorder: "Barb Coleman",
@@ -38822,9 +38822,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 633,
+      id: BigInt(633),
       seqId: 686,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("8/26/1997 GMT").toISOString(),
       week: 22,
       recorder: "Barb Coleman",
@@ -38884,9 +38884,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 634,
+      id: BigInt(634),
       seqId: 687,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("9/6/1997 GMT").toISOString(),
       week: 23,
       recorder: "Barb Coleman",
@@ -38945,9 +38945,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 635,
+      id: BigInt(635),
       seqId: 688,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("9/15/1997 GMT").toISOString(),
       week: 24,
       recorder: "Barb Coleman",
@@ -39006,9 +39006,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 636,
+      id: BigInt(636),
       seqId: 689,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("9/16/1997 GMT").toISOString(),
       week: 25,
       recorder: "Barb Coleman",
@@ -39067,9 +39067,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 637,
+      id: BigInt(637),
       seqId: 690,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("9/27/1997 GMT").toISOString(),
       week: 26,
       recorder: "Barb Coleman",
@@ -39128,9 +39128,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 638,
+      id: BigInt(638),
       seqId: 228,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("4/18/1998 GMT").toISOString(),
       week: 3,
       recorder: "Barbara Coleman",
@@ -39189,9 +39189,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 639,
+      id: BigInt(639),
       seqId: 229,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("4/24/1998 GMT").toISOString(),
       week: 4,
       recorder: "Barbara Coleman",
@@ -39250,9 +39250,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 640,
+      id: BigInt(640),
       seqId: 230,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("5/12/1998 GMT").toISOString(),
       week: 6,
       recorder: "Barbara Coleman",
@@ -39312,9 +39312,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 641,
+      id: BigInt(641),
       seqId: 231,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("5/15/1998 GMT").toISOString(),
       week: 7,
       recorder: "Barbara Coleman",
@@ -39374,9 +39374,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 642,
+      id: BigInt(642),
       seqId: 232,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("5/23/1998 GMT").toISOString(),
       week: 8,
       recorder: "Barbara Coleman",
@@ -39435,9 +39435,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 643,
+      id: BigInt(643),
       seqId: 233,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("5/29/1998 GMT").toISOString(),
       week: 9,
       recorder: "Barbara Coleman",
@@ -39497,9 +39497,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 644,
+      id: BigInt(644),
       seqId: 234,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("6/23/1998 GMT").toISOString(),
       week: 12,
       recorder: "Barbara Coleman",
@@ -39559,9 +39559,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 645,
+      id: BigInt(645),
       seqId: 235,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("6/26/1998 GMT").toISOString(),
       week: 13,
       recorder: "Barbara Coleman",
@@ -39621,9 +39621,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 646,
+      id: BigInt(646),
       seqId: 236,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("7/6/1998 GMT").toISOString(),
       week: 14,
       recorder: "Barbara Coleman",
@@ -39683,9 +39683,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 647,
+      id: BigInt(647),
       seqId: 237,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("7/11/1998 GMT").toISOString(),
       week: 15,
       recorder: "Barbara Coleman",
@@ -39745,9 +39745,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 648,
+      id: BigInt(648),
       seqId: 238,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("7/17/1998 GMT").toISOString(),
       week: 16,
       recorder: "Barbara Coleman",
@@ -39807,9 +39807,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 649,
+      id: BigInt(649),
       seqId: 239,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("7/25/1998 GMT").toISOString(),
       week: 17,
       recorder: "Barbara Coleman",
@@ -39868,9 +39868,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 650,
+      id: BigInt(650),
       seqId: 240,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("7/31/1998 GMT").toISOString(),
       week: 18,
       recorder: "Barbara Coleman",
@@ -39929,9 +39929,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 651,
+      id: BigInt(651),
       seqId: 242,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("8/11/1998 GMT").toISOString(),
       week: 19,
       recorder: "Barbara Coleman",
@@ -39992,9 +39992,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 652,
+      id: BigInt(652),
       seqId: 243,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("8/14/1998 GMT").toISOString(),
       week: 20,
       recorder: "Barbara Coleman",
@@ -40054,9 +40054,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 653,
+      id: BigInt(653),
       seqId: 244,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("8/27/1998 GMT").toISOString(),
       week: 22,
       recorder: "Barbara Coleman",
@@ -40117,9 +40117,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 654,
+      id: BigInt(654),
       seqId: 245,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("9/5/1998 GMT").toISOString(),
       week: 23,
       recorder: "Barbara Coleman",
@@ -40178,9 +40178,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 655,
+      id: BigInt(655),
       seqId: 246,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("9/11/1998 GMT").toISOString(),
       week: 24,
       recorder: "Barbara Coleman",
@@ -40239,9 +40239,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 656,
+      id: BigInt(656),
       seqId: 247,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("9/18/1998 GMT").toISOString(),
       week: 25,
       recorder: "Barbara Coleman",
@@ -40300,9 +40300,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 657,
+      id: BigInt(657),
       seqId: 248,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("9/25/1998 GMT").toISOString(),
       week: 26,
       recorder: "Barbara Coleman",
@@ -40361,9 +40361,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 658,
+      id: BigInt(658),
       seqId: 1266,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("4/21/1999 GMT").toISOString(),
       week: 3,
       recorder: "Barbara Coleman",
@@ -40423,9 +40423,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 659,
+      id: BigInt(659),
       seqId: 1267,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("4/30/1999 GMT").toISOString(),
       week: 5,
       recorder: "Barbara Coleman",
@@ -40485,9 +40485,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 660,
+      id: BigInt(660),
       seqId: 1268,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("5/11/1999 GMT").toISOString(),
       week: 6,
       recorder: "Barbara Coleman",
@@ -40546,9 +40546,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 661,
+      id: BigInt(661),
       seqId: 1269,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("5/13/1999 GMT").toISOString(),
       week: 7,
       recorder: "Barbara Coleman",
@@ -40608,9 +40608,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 662,
+      id: BigInt(662),
       seqId: 1270,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("5/26/1999 GMT").toISOString(),
       week: 8,
       recorder: "Barbara Coleman",
@@ -40670,9 +40670,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 663,
+      id: BigInt(663),
       seqId: 1271,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("5/28/1999 GMT").toISOString(),
       week: 9,
       recorder: "Barbara Coleman",
@@ -40732,9 +40732,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 664,
+      id: BigInt(664),
       seqId: 1272,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("6/4/1999 GMT").toISOString(),
       week: 10,
       recorder: "Barbara Coleman",
@@ -40794,9 +40794,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 665,
+      id: BigInt(665),
       seqId: 1273,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("6/11/1999 GMT").toISOString(),
       week: 11,
       recorder: "Barbara Coleman",
@@ -40855,9 +40855,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 666,
+      id: BigInt(666),
       seqId: 1274,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("6/18/1999 GMT").toISOString(),
       week: 12,
       recorder: "Barbara Coleman",
@@ -40916,9 +40916,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 667,
+      id: BigInt(667),
       seqId: 1275,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("6/25/1999 GMT").toISOString(),
       week: 13,
       recorder: "Barbara Coleman",
@@ -40978,9 +40978,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 668,
+      id: BigInt(668),
       seqId: 1276,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("7/10/1999 GMT").toISOString(),
       week: 15,
       recorder: "Barbara Coleman",
@@ -41039,9 +41039,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 669,
+      id: BigInt(669),
       seqId: 1277,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("7/15/1999 GMT").toISOString(),
       week: 16,
       recorder: "Barbara Coleman",
@@ -41100,9 +41100,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 670,
+      id: BigInt(670),
       seqId: 1278,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("7/24/1999 GMT").toISOString(),
       week: 17,
       recorder: "Barbara Coleman",
@@ -41162,9 +41162,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 671,
+      id: BigInt(671),
       seqId: 1279,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("7/30/1999 GMT").toISOString(),
       week: 18,
       recorder: "Barbara Coleman",
@@ -41224,9 +41224,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 672,
+      id: BigInt(672),
       seqId: 1280,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("8/15/1999 GMT").toISOString(),
       week: 20,
       recorder: "Barbara Coleman",
@@ -41286,9 +41286,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 673,
+      id: BigInt(673),
       seqId: 1281,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("8/21/1999 GMT").toISOString(),
       week: 21,
       recorder: "Barbara Coleman",
@@ -41347,9 +41347,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 674,
+      id: BigInt(674),
       seqId: 1282,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("8/28/1999 GMT").toISOString(),
       week: 22,
       recorder: "Barbara Coleman",
@@ -41410,9 +41410,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 675,
+      id: BigInt(675),
       seqId: 1283,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("9/7/1999 GMT").toISOString(),
       week: 23,
       recorder: "Barbara Coleman",
@@ -41471,9 +41471,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 676,
+      id: BigInt(676),
       seqId: 1284,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("9/18/1999 GMT").toISOString(),
       week: 25,
       recorder: "Barbara Coleman",
@@ -41532,9 +41532,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 677,
+      id: BigInt(677),
       seqId: 1285,
-      siteId: 10,
+      siteId: BigInt(10),
       recordDate: new Date("9/26/1999 GMT").toISOString(),
       week: 26,
       recorder: "Barbara Coleman",
@@ -41593,9 +41593,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 678,
+      id: BigInt(678),
       seqId: 691,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("4/26/1997 GMT").toISOString(),
       week: 4,
       recorder: "J. L. Wiedmann & Other",
@@ -41654,9 +41654,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 679,
+      id: BigInt(679),
       seqId: 692,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("4/30/1997 GMT").toISOString(),
       week: 5,
       recorder: "J. L. Wiedmann & Other",
@@ -41715,9 +41715,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 680,
+      id: BigInt(680),
       seqId: 693,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("5/18/1997 GMT").toISOString(),
       week: 7,
       recorder: "J. L. Wiedmann",
@@ -41776,9 +41776,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 681,
+      id: BigInt(681),
       seqId: 694,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("5/24/1997 GMT").toISOString(),
       week: 8,
       recorder: "J. L. Wiedmann",
@@ -41837,9 +41837,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 682,
+      id: BigInt(682),
       seqId: 695,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("6/2/1997 GMT").toISOString(),
       week: 9,
       recorder: "J. L. Wiedmann",
@@ -41898,9 +41898,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 683,
+      id: BigInt(683),
       seqId: 696,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("6/5/1997 GMT").toISOString(),
       week: 10,
       recorder: "J. L. Wiedmann",
@@ -41959,9 +41959,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 684,
+      id: BigInt(684),
       seqId: 697,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("6/10/1997 GMT").toISOString(),
       week: 11,
       recorder: "J. L. Wiedmann & Other",
@@ -42020,9 +42020,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 685,
+      id: BigInt(685),
       seqId: 698,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("6/20/1997 GMT").toISOString(),
       week: 12,
       recorder: "J. L. Wiedmann",
@@ -42082,9 +42082,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 686,
+      id: BigInt(686),
       seqId: 699,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("6/24/1997 GMT").toISOString(),
       week: 13,
       recorder: "J. L. Wiedmann",
@@ -42143,9 +42143,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 687,
+      id: BigInt(687),
       seqId: 700,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("7/8/1997 GMT").toISOString(),
       week: 15,
       recorder: "J. L. Wiedmann",
@@ -42204,9 +42204,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 688,
+      id: BigInt(688),
       seqId: 701,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("7/12/1997 GMT").toISOString(),
       week: 15,
       recorder: "J. L. Wiedmann",
@@ -42265,9 +42265,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 689,
+      id: BigInt(689),
       seqId: 702,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("7/18/1997 GMT").toISOString(),
       week: 16,
       recorder: "J. L. Wiedmann",
@@ -42326,9 +42326,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 690,
+      id: BigInt(690),
       seqId: 703,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("7/27/1997 GMT").toISOString(),
       week: 17,
       recorder: "J. L. Wiedmann & J. Kimmi",
@@ -42387,9 +42387,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 691,
+      id: BigInt(691),
       seqId: 704,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("7/31/1997 GMT").toISOString(),
       week: 18,
       recorder: "J. L. Wiedmann & J. Kimmi",
@@ -42449,9 +42449,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 692,
+      id: BigInt(692),
       seqId: 705,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("8/9/1997 GMT").toISOString(),
       week: 19,
       recorder: "J. L. Wiedmann",
@@ -42510,9 +42510,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 693,
+      id: BigInt(693),
       seqId: 706,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("8/14/1997 GMT").toISOString(),
       week: 20,
       recorder: "J. L. Wiedmann",
@@ -42571,9 +42571,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 694,
+      id: BigInt(694),
       seqId: 707,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("8/25/1997 GMT").toISOString(),
       week: 21,
       recorder: "J. L. Wiedmann",
@@ -42632,9 +42632,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 695,
+      id: BigInt(695),
       seqId: 708,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("8/30/1997 GMT").toISOString(),
       week: 22,
       recorder: "J. L. Wiedmann & Ed Binic",
@@ -42693,9 +42693,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 696,
+      id: BigInt(696),
       seqId: 709,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("9/5/1997 GMT").toISOString(),
       week: 23,
       recorder: "J. L. Wiedmann",
@@ -42754,9 +42754,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 697,
+      id: BigInt(697),
       seqId: 710,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("9/13/1997 GMT").toISOString(),
       week: 24,
       recorder: "J. L. Wiedmann",
@@ -42816,9 +42816,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 698,
+      id: BigInt(698),
       seqId: 711,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("9/18/1997 GMT").toISOString(),
       week: 25,
       recorder: "J. L. Wiedmann",
@@ -42877,9 +42877,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 699,
+      id: BigInt(699),
       seqId: 712,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("9/25/1997 GMT").toISOString(),
       week: 26,
       recorder: "J. L. Wiedmann",
@@ -42939,9 +42939,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 700,
+      id: BigInt(700),
       seqId: 394,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("4/13/1998 GMT").toISOString(),
       week: 2,
       recorder: "J.l.Weidmann",
@@ -43000,9 +43000,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 701,
+      id: BigInt(701),
       seqId: 395,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("4/20/1998 GMT").toISOString(),
       week: 3,
       recorder: "J.l.Weidmann",
@@ -43061,9 +43061,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 702,
+      id: BigInt(702),
       seqId: 396,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("4/25/1998 GMT").toISOString(),
       week: 4,
       recorder: "J.l.Weidmann",
@@ -43122,9 +43122,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 703,
+      id: BigInt(703),
       seqId: 397,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("4/30/1998 GMT").toISOString(),
       week: 5,
       recorder: "J.l.Weidmann",
@@ -43183,9 +43183,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 704,
+      id: BigInt(704),
       seqId: 398,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("5/9/1998 GMT").toISOString(),
       week: 6,
       recorder: "J.l.Weidmann",
@@ -43245,9 +43245,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 705,
+      id: BigInt(705),
       seqId: 399,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("5/15/1998 GMT").toISOString(),
       week: 7,
       recorder: "J.l.Weidmann,J.Kimmich &",
@@ -43306,9 +43306,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 706,
+      id: BigInt(706),
       seqId: 400,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("5/23/1998 GMT").toISOString(),
       week: 8,
       recorder: "J.l.Weidmann",
@@ -43367,9 +43367,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 707,
+      id: BigInt(707),
       seqId: 401,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("5/27/1998 GMT").toISOString(),
       week: 9,
       recorder: "J.l.Weidmann",
@@ -43428,9 +43428,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 708,
+      id: BigInt(708),
       seqId: 402,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("6/8/1998 GMT").toISOString(),
       week: 10,
       recorder: "J. L. Wiedmann",
@@ -43489,9 +43489,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 709,
+      id: BigInt(709),
       seqId: 403,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("6/12/1998 GMT").toISOString(),
       week: 11,
       recorder: "J. L. Wiedmann, Andy Wied",
@@ -43550,9 +43550,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 710,
+      id: BigInt(710),
       seqId: 404,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("6/18/1998 GMT").toISOString(),
       week: 12,
       recorder: "J. L. Wiedmann",
@@ -43611,9 +43611,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 711,
+      id: BigInt(711),
       seqId: 405,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("6/25/1998 GMT").toISOString(),
       week: 13,
       recorder: "J. L. Wiedmann",
@@ -43672,9 +43672,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 712,
+      id: BigInt(712),
       seqId: 406,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("7/3/1998 GMT").toISOString(),
       week: 14,
       recorder: "S. Harps, J. Loomis",
@@ -43733,9 +43733,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 713,
+      id: BigInt(713),
       seqId: 407,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("7/10/1998 GMT").toISOString(),
       week: 15,
       recorder: "J. L. Wiedmann",
@@ -43796,9 +43796,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 714,
+      id: BigInt(714),
       seqId: 408,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("7/16/1998 GMT").toISOString(),
       week: 16,
       recorder: "J. L. Wiedmann",
@@ -43857,9 +43857,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 715,
+      id: BigInt(715),
       seqId: 409,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("7/24/1998 GMT").toISOString(),
       week: 17,
       recorder: "J. L. Wiedmann",
@@ -43918,9 +43918,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 716,
+      id: BigInt(716),
       seqId: 410,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("8/1/1998 GMT").toISOString(),
       week: 18,
       recorder: "J. L. Wiedmann",
@@ -43980,9 +43980,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 717,
+      id: BigInt(717),
       seqId: 411,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("8/8/1998 GMT").toISOString(),
       week: 19,
       recorder: "J. L. Wiedmann",
@@ -44041,9 +44041,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 718,
+      id: BigInt(718),
       seqId: 412,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("8/16/1998 GMT").toISOString(),
       week: 20,
       recorder: "J. L. Wiedmann",
@@ -44102,9 +44102,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 719,
+      id: BigInt(719),
       seqId: 413,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("8/20/1998 GMT").toISOString(),
       week: 21,
       recorder: "J. L. Wiedmann, J. Loomis",
@@ -44163,9 +44163,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 720,
+      id: BigInt(720),
       seqId: 414,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("8/28/1998 GMT").toISOString(),
       week: 22,
       recorder: "J. L. Wiedmann",
@@ -44224,9 +44224,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 721,
+      id: BigInt(721),
       seqId: 415,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("9/3/1998 GMT").toISOString(),
       week: 23,
       recorder: "J. L. Wiedmann",
@@ -44285,9 +44285,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 722,
+      id: BigInt(722),
       seqId: 416,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("9/10/1998 GMT").toISOString(),
       week: 24,
       recorder: "J. Clemens, J. Loomis",
@@ -44346,9 +44346,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 723,
+      id: BigInt(723),
       seqId: 417,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("9/18/1998 GMT").toISOString(),
       week: 25,
       recorder: "J. L. Wiedmann",
@@ -44407,9 +44407,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 724,
+      id: BigInt(724),
       seqId: 418,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("9/26/1998 GMT").toISOString(),
       week: 26,
       recorder: "J. L. Wiedmann",
@@ -44468,9 +44468,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 725,
+      id: BigInt(725),
       seqId: 907,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("4/2/1999 GMT").toISOString(),
       week: 1,
       recorder: "J. L. Wiedman",
@@ -44529,9 +44529,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 726,
+      id: BigInt(726),
       seqId: 1049,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("4/3/1999 GMT").toISOString(),
       week: 1,
       recorder: "J. L. Wiedmann",
@@ -44590,9 +44590,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 727,
+      id: BigInt(727),
       seqId: 908,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("4/8/1999 GMT").toISOString(),
       week: 2,
       recorder: "J. L. Wiedman",
@@ -44651,9 +44651,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 728,
+      id: BigInt(728),
       seqId: 909,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("4/22/1999 GMT").toISOString(),
       week: 4,
       recorder: "J. L. Wiedman",
@@ -44712,9 +44712,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 729,
+      id: BigInt(729),
       seqId: 910,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("4/30/1999 GMT").toISOString(),
       week: 5,
       recorder: "J. L. Wiedman",
@@ -44773,9 +44773,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 730,
+      id: BigInt(730),
       seqId: 911,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("5/6/1999 GMT").toISOString(),
       week: 6,
       recorder: "J. L. Wiedman",
@@ -44834,9 +44834,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 731,
+      id: BigInt(731),
       seqId: 912,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("5/14/1999 GMT").toISOString(),
       week: 7,
       recorder: "J. L. Wiedman",
@@ -44895,9 +44895,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 732,
+      id: BigInt(732),
       seqId: 913,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("5/23/1999 GMT").toISOString(),
       week: 8,
       recorder: "J. L. Wiedman",
@@ -44956,9 +44956,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 733,
+      id: BigInt(733),
       seqId: 914,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("5/30/1999 GMT").toISOString(),
       week: 9,
       recorder: "J. L. Wiedman",
@@ -45017,9 +45017,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 734,
+      id: BigInt(734),
       seqId: 915,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("6/5/1999 GMT").toISOString(),
       week: 10,
       recorder: "J. L. Wiedman",
@@ -45078,9 +45078,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 735,
+      id: BigInt(735),
       seqId: 916,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("6/12/1999 GMT").toISOString(),
       week: 11,
       recorder: "J. L. Wiedman",
@@ -45139,9 +45139,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 736,
+      id: BigInt(736),
       seqId: 917,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("6/20/1999 GMT").toISOString(),
       week: 12,
       recorder: "J. L. Wiedman,Loomis",
@@ -45200,9 +45200,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 737,
+      id: BigInt(737),
       seqId: 918,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("6/26/1999 GMT").toISOString(),
       week: 13,
       recorder: "J. L. Wiedman, Loomis",
@@ -45261,9 +45261,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 738,
+      id: BigInt(738),
       seqId: 919,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("7/1/1999 GMT").toISOString(),
       week: 14,
       recorder: "J. Loomis, J. Clemens",
@@ -45322,9 +45322,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 739,
+      id: BigInt(739),
       seqId: 920,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("7/8/1999 GMT").toISOString(),
       week: 15,
       recorder: "J. Loomis, J. Clemens",
@@ -45383,9 +45383,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 740,
+      id: BigInt(740),
       seqId: 1050,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("7/15/1999 GMT").toISOString(),
       week: 16,
       recorder: "J. Wiedmann, J. Clemens",
@@ -45444,9 +45444,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 741,
+      id: BigInt(741),
       seqId: 1051,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("7/25/1999 GMT").toISOString(),
       week: 17,
       recorder: "J. L. Wiedmann",
@@ -45505,9 +45505,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 742,
+      id: BigInt(742),
       seqId: 1052,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("8/1/1999 GMT").toISOString(),
       week: 18,
       recorder: "J. L. Wiedmann/J. Loomis",
@@ -45566,9 +45566,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 743,
+      id: BigInt(743),
       seqId: 1053,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("8/10/1999 GMT").toISOString(),
       week: 19,
       recorder: "J. L. Wiedmann",
@@ -45627,9 +45627,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 744,
+      id: BigInt(744),
       seqId: 1054,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("8/16/1999 GMT").toISOString(),
       week: 20,
       recorder: "J. L. Wiedmann",
@@ -45689,9 +45689,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 745,
+      id: BigInt(745),
       seqId: 1055,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("8/22/1999 GMT").toISOString(),
       week: 21,
       recorder: "J. L. Wiedmann",
@@ -45750,9 +45750,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 746,
+      id: BigInt(746),
       seqId: 1056,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("8/28/1999 GMT").toISOString(),
       week: 22,
       recorder: "J. L. Wiedmann",
@@ -45811,9 +45811,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 747,
+      id: BigInt(747),
       seqId: 1057,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("9/6/1999 GMT").toISOString(),
       week: 23,
       recorder: "J. L. Wiedmann/J. Loomis",
@@ -45872,9 +45872,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 748,
+      id: BigInt(748),
       seqId: 1058,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("9/12/1999 GMT").toISOString(),
       week: 24,
       recorder: "J. L. Wiedmann/J. Loomis",
@@ -45933,9 +45933,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 749,
+      id: BigInt(749),
       seqId: 1059,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("9/19/1999 GMT").toISOString(),
       week: 25,
       recorder: "J. L. Wiedmann",
@@ -45994,9 +45994,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 750,
+      id: BigInt(750),
       seqId: 1060,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("9/26/1999 GMT").toISOString(),
       week: 26,
       recorder: "J. L. Wiedmann",
@@ -46055,9 +46055,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 751,
+      id: BigInt(751),
       seqId: 1061,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("10/2/1999 GMT").toISOString(),
       week: 27,
       recorder: "J. L. Wiedmann",
@@ -46116,9 +46116,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 752,
+      id: BigInt(752),
       seqId: 1062,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("10/9/1999 GMT").toISOString(),
       week: 28,
       recorder: "J. L. Wiedmann/J. Loomis",
@@ -46177,9 +46177,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 753,
+      id: BigInt(753),
       seqId: 1063,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("10/16/1999 GMT").toISOString(),
       week: 29,
       recorder: "J. L. Wiedmann",
@@ -46238,9 +46238,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 754,
+      id: BigInt(754),
       seqId: 1064,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("10/21/1999 GMT").toISOString(),
       week: 29,
       recorder: "J. L. Wiedmann",
@@ -46299,9 +46299,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 755,
+      id: BigInt(755),
       seqId: 1065,
-      siteId: 11,
+      siteId: BigInt(11),
       recordDate: new Date("10/28/1999 GMT").toISOString(),
       week: 30,
       recorder: "J. L. Wiedmann",
@@ -46360,9 +46360,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 756,
+      id: BigInt(756),
       seqId: 271,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("6/17/1998 GMT").toISOString(),
       week: 12,
       recorder: "P. Rydquist",
@@ -46422,9 +46422,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 757,
+      id: BigInt(757),
       seqId: 272,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("6/26/1998 GMT").toISOString(),
       week: 13,
       recorder: "P. Rydquist",
@@ -46484,9 +46484,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 758,
+      id: BigInt(758),
       seqId: 273,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("7/1/1998 GMT").toISOString(),
       week: 14,
       recorder: "P. Rydquist,Esther Stover",
@@ -46546,9 +46546,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 759,
+      id: BigInt(759),
       seqId: 274,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("7/10/1998 GMT").toISOString(),
       week: 15,
       recorder: "Esther Stover",
@@ -46607,9 +46607,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 760,
+      id: BigInt(760),
       seqId: 275,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("7/17/1998 GMT").toISOString(),
       week: 16,
       recorder: "Esther Stover",
@@ -46668,9 +46668,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 761,
+      id: BigInt(761),
       seqId: 276,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("7/19/1998 GMT").toISOString(),
       week: 16,
       recorder: "Esther Stover",
@@ -46729,9 +46729,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 762,
+      id: BigInt(762),
       seqId: 277,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("7/31/1998 GMT").toISOString(),
       week: 18,
       recorder: "Helen Bresley",
@@ -46791,9 +46791,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 763,
+      id: BigInt(763),
       seqId: 278,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("8/6/1998 GMT").toISOString(),
       week: 19,
       recorder: "Helen Bresley",
@@ -46853,9 +46853,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 764,
+      id: BigInt(764),
       seqId: 279,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("8/14/1998 GMT").toISOString(),
       week: 20,
       recorder: "Helen Bresley",
@@ -46915,9 +46915,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 765,
+      id: BigInt(765),
       seqId: 280,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("8/18/1998 GMT").toISOString(),
       week: 20,
       recorder: "Helen Bresley",
@@ -46977,9 +46977,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 766,
+      id: BigInt(766),
       seqId: 281,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("8/24/1998 GMT").toISOString(),
       week: 21,
       recorder: "Helen Bresley",
@@ -47038,9 +47038,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 767,
+      id: BigInt(767),
       seqId: 282,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("9/6/1998 GMT").toISOString(),
       week: 23,
       recorder: "Helen Bresley",
@@ -47099,9 +47099,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 768,
+      id: BigInt(768),
       seqId: 283,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("9/10/1998 GMT").toISOString(),
       week: 24,
       recorder: "Helen Bresley",
@@ -47160,9 +47160,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 769,
+      id: BigInt(769),
       seqId: 284,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("9/17/1998 GMT").toISOString(),
       week: 25,
       recorder: "Helen Bresley",
@@ -47221,9 +47221,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 770,
+      id: BigInt(770),
       seqId: 285,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("9/22/1998 GMT").toISOString(),
       week: 25,
       recorder: "Helen Bresley",
@@ -47282,9 +47282,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 771,
+      id: BigInt(771),
       seqId: 286,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("9/29/1998 GMT").toISOString(),
       week: 26,
       recorder: "Helen Bresley",
@@ -47343,9 +47343,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 772,
+      id: BigInt(772),
       seqId: 1359,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("4/7/1999 GMT").toISOString(),
       week: 1,
       recorder: "H. Bresley",
@@ -47405,9 +47405,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 773,
+      id: BigInt(773),
       seqId: 1360,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("4/20/1999 GMT").toISOString(),
       week: 3,
       recorder: "H. Bresley",
@@ -47467,9 +47467,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 774,
+      id: BigInt(774),
       seqId: 1361,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("5/3/1999 GMT").toISOString(),
       week: 5,
       recorder: "Charles White",
@@ -47529,9 +47529,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 775,
+      id: BigInt(775),
       seqId: 1362,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("5/10/1999 GMT").toISOString(),
       week: 6,
       recorder: "Charles White",
@@ -47591,9 +47591,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 776,
+      id: BigInt(776),
       seqId: 1363,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("5/20/1999 GMT").toISOString(),
       week: 8,
       recorder: "Charles White",
@@ -47653,9 +47653,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 777,
+      id: BigInt(777),
       seqId: 1364,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("5/27/1999 GMT").toISOString(),
       week: 9,
       recorder: "Helen Bresley",
@@ -47715,9 +47715,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 778,
+      id: BigInt(778),
       seqId: 1365,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("6/3/1999 GMT").toISOString(),
       week: 10,
       recorder: "Helen Bresley",
@@ -47777,9 +47777,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 779,
+      id: BigInt(779),
       seqId: 1366,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("6/7/1999 GMT").toISOString(),
       week: 10,
       recorder: "Charles White",
@@ -47838,9 +47838,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 780,
+      id: BigInt(780),
       seqId: 1367,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("6/17/1999 GMT").toISOString(),
       week: 12,
       recorder: "Charles White",
@@ -47899,9 +47899,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 781,
+      id: BigInt(781),
       seqId: 1368,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("6/21/1999 GMT").toISOString(),
       week: 12,
       recorder: "Charles White",
@@ -47961,9 +47961,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 782,
+      id: BigInt(782),
       seqId: 1369,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("6/30/1999 GMT").toISOString(),
       week: 13,
       recorder: "Phyllis Dexlin",
@@ -48022,9 +48022,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 783,
+      id: BigInt(783),
       seqId: 1370,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("7/5/1999 GMT").toISOString(),
       week: 14,
       recorder: "",
@@ -48083,9 +48083,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 784,
+      id: BigInt(784),
       seqId: 1371,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("7/12/1999 GMT").toISOString(),
       week: 15,
       recorder: "",
@@ -48145,9 +48145,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 785,
+      id: BigInt(785),
       seqId: 1372,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("7/19/1999 GMT").toISOString(),
       week: 16,
       recorder: "Helen Bresley",
@@ -48206,9 +48206,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 786,
+      id: BigInt(786),
       seqId: 1373,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("7/26/1999 GMT").toISOString(),
       week: 17,
       recorder: "Helen Bresley",
@@ -48268,9 +48268,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 787,
+      id: BigInt(787),
       seqId: 1374,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("8/3/1999 GMT").toISOString(),
       week: 18,
       recorder: "Judy Fightmaster",
@@ -48330,9 +48330,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 788,
+      id: BigInt(788),
       seqId: 1375,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("8/10/1999 GMT").toISOString(),
       week: 19,
       recorder: "Charles White",
@@ -48391,9 +48391,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 789,
+      id: BigInt(789),
       seqId: 1376,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("8/17/1999 GMT").toISOString(),
       week: 20,
       recorder: "Charles White",
@@ -48452,9 +48452,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 790,
+      id: BigInt(790),
       seqId: 1377,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("8/25/1999 GMT").toISOString(),
       week: 21,
       recorder: "Helen Bresley",
@@ -48513,9 +48513,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 791,
+      id: BigInt(791),
       seqId: 1378,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("8/31/1999 GMT").toISOString(),
       week: 22,
       recorder: "Charles White",
@@ -48574,9 +48574,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 792,
+      id: BigInt(792),
       seqId: 1379,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("9/14/1999 GMT").toISOString(),
       week: 24,
       recorder: "Helen Bresely",
@@ -48635,9 +48635,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 793,
+      id: BigInt(793),
       seqId: 1380,
-      siteId: 12,
+      siteId: BigInt(12),
       recordDate: new Date("10/12/1999 GMT").toISOString(),
       week: 28,
       recorder: "Pat Rydquist",
@@ -48696,9 +48696,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 794,
+      id: BigInt(794),
       seqId: 258,
-      siteId: 13,
+      siteId: BigInt(13),
       recordDate: new Date("7/2/1998 GMT").toISOString(),
       week: 14,
       recorder: "Pam Mowbray",
@@ -48757,9 +48757,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 795,
+      id: BigInt(795),
       seqId: 259,
-      siteId: 13,
+      siteId: BigInt(13),
       recordDate: new Date("7/8/1998 GMT").toISOString(),
       week: 15,
       recorder: "Pam Mowbray",
@@ -48818,9 +48818,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 796,
+      id: BigInt(796),
       seqId: 260,
-      siteId: 13,
+      siteId: BigInt(13),
       recordDate: new Date("7/9/1998 GMT").toISOString(),
       week: 15,
       recorder: "Pam Mowbray",
@@ -48879,9 +48879,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 797,
+      id: BigInt(797),
       seqId: 261,
-      siteId: 13,
+      siteId: BigInt(13),
       recordDate: new Date("7/18/1998 GMT").toISOString(),
       week: 16,
       recorder: "F. Pauff",
@@ -48940,9 +48940,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 798,
+      id: BigInt(798),
       seqId: 262,
-      siteId: 13,
+      siteId: BigInt(13),
       recordDate: new Date("7/23/1998 GMT").toISOString(),
       week: 17,
       recorder: "B. Obermeyer",
@@ -49001,9 +49001,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 799,
+      id: BigInt(799),
       seqId: 263,
-      siteId: 13,
+      siteId: BigInt(13),
       recordDate: new Date("7/29/1998 GMT").toISOString(),
       week: 18,
       recorder: "R. K. Thelen",
@@ -49062,9 +49062,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 800,
+      id: BigInt(800),
       seqId: 264,
-      siteId: 13,
+      siteId: BigInt(13),
       recordDate: new Date("8/9/1998 GMT").toISOString(),
       week: 19,
       recorder: "R. K. Thelen",
@@ -49123,9 +49123,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 801,
+      id: BigInt(801),
       seqId: 265,
-      siteId: 13,
+      siteId: BigInt(13),
       recordDate: new Date("8/16/1998 GMT").toISOString(),
       week: 20,
       recorder: "F. Pauff",
@@ -49184,9 +49184,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 802,
+      id: BigInt(802),
       seqId: 266,
-      siteId: 13,
+      siteId: BigInt(13),
       recordDate: new Date("8/18/1998 GMT").toISOString(),
       week: 20,
       recorder: "B. Obermeyer",
@@ -49245,9 +49245,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 803,
+      id: BigInt(803),
       seqId: 267,
-      siteId: 13,
+      siteId: BigInt(13),
       recordDate: new Date("8/25/1998 GMT").toISOString(),
       week: 21,
       recorder: "B. Obermeyer",
@@ -49306,9 +49306,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 804,
+      id: BigInt(804),
       seqId: 268,
-      siteId: 13,
+      siteId: BigInt(13),
       recordDate: new Date("9/5/1998 GMT").toISOString(),
       week: 23,
       recorder: "F. Pauff",
@@ -49367,9 +49367,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 805,
+      id: BigInt(805),
       seqId: 269,
-      siteId: 13,
+      siteId: BigInt(13),
       recordDate: new Date("9/18/1998 GMT").toISOString(),
       week: 25,
       recorder: "Pam Mowbray",
@@ -49428,9 +49428,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 806,
+      id: BigInt(806),
       seqId: 270,
-      siteId: 13,
+      siteId: BigInt(13),
       recordDate: new Date("9/24/1998 GMT").toISOString(),
       week: 26,
       recorder: "B. Obermeyer",
@@ -49489,9 +49489,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 807,
+      id: BigInt(807),
       seqId: 880,
-      siteId: 13,
+      siteId: BigInt(13),
       recordDate: new Date("4/27/1999 GMT").toISOString(),
       week: 4,
       recorder: "Rita Thelen/Cole/Becker",
@@ -49550,9 +49550,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 808,
+      id: BigInt(808),
       seqId: 881,
-      siteId: 13,
+      siteId: BigInt(13),
       recordDate: new Date("5/4/1999 GMT").toISOString(),
       week: 5,
       recorder: "Robert Overmyer",
@@ -49611,9 +49611,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 809,
+      id: BigInt(809),
       seqId: 882,
-      siteId: 13,
+      siteId: BigInt(13),
       recordDate: new Date("5/10/1999 GMT").toISOString(),
       week: 6,
       recorder: "F. Pauff",
@@ -49672,9 +49672,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 810,
+      id: BigInt(810),
       seqId: 883,
-      siteId: 13,
+      siteId: BigInt(13),
       recordDate: new Date("5/19/1999 GMT").toISOString(),
       week: 7,
       recorder: "B.J.Cole",
@@ -49733,9 +49733,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 811,
+      id: BigInt(811),
       seqId: 884,
-      siteId: 13,
+      siteId: BigInt(13),
       recordDate: new Date("5/25/1999 GMT").toISOString(),
       week: 8,
       recorder: "R. K. Thelan",
@@ -49794,9 +49794,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 812,
+      id: BigInt(812),
       seqId: 885,
-      siteId: 13,
+      siteId: BigInt(13),
       recordDate: new Date("5/28/1999 GMT").toISOString(),
       week: 9,
       recorder: "Robert Overmyer",
@@ -49855,9 +49855,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 813,
+      id: BigInt(813),
       seqId: 886,
-      siteId: 13,
+      siteId: BigInt(13),
       recordDate: new Date("6/9/1999 GMT").toISOString(),
       week: 10,
       recorder: "Frank Pauff",
@@ -49916,9 +49916,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 814,
+      id: BigInt(814),
       seqId: 887,
-      siteId: 13,
+      siteId: BigInt(13),
       recordDate: new Date("6/11/1999 GMT").toISOString(),
       week: 11,
       recorder: "B. J. Cole",
@@ -49979,9 +49979,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 815,
+      id: BigInt(815),
       seqId: 888,
-      siteId: 13,
+      siteId: BigInt(13),
       recordDate: new Date("6/21/1999 GMT").toISOString(),
       week: 12,
       recorder: "R. K. Thelan",
@@ -50041,9 +50041,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 816,
+      id: BigInt(816),
       seqId: 889,
-      siteId: 13,
+      siteId: BigInt(13),
       recordDate: new Date("6/30/1999 GMT").toISOString(),
       week: 13,
       recorder: "R. C. O",
@@ -50103,9 +50103,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 817,
+      id: BigInt(817),
       seqId: 890,
-      siteId: 13,
+      siteId: BigInt(13),
       recordDate: new Date("7/7/1999 GMT").toISOString(),
       week: 14,
       recorder: "Frank Pauff",
@@ -50164,9 +50164,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 818,
+      id: BigInt(818),
       seqId: 891,
-      siteId: 13,
+      siteId: BigInt(13),
       recordDate: new Date("7/8/1999 GMT").toISOString(),
       week: 15,
       recorder: "B. J. Cole",
@@ -50227,9 +50227,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 819,
+      id: BigInt(819),
       seqId: 892,
-      siteId: 13,
+      siteId: BigInt(13),
       recordDate: new Date("7/19/1999 GMT").toISOString(),
       week: 16,
       recorder: "R. K. Thelen",
@@ -50290,9 +50290,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 820,
+      id: BigInt(820),
       seqId: 896,
-      siteId: 13,
+      siteId: BigInt(13),
       recordDate: new Date("7/22/1999 GMT").toISOString(),
       week: 17,
       recorder: "B. Overmyer",
@@ -50352,9 +50352,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 821,
+      id: BigInt(821),
       seqId: 897,
-      siteId: 13,
+      siteId: BigInt(13),
       recordDate: new Date("8/1/1999 GMT").toISOString(),
       week: 18,
       recorder: "F. Pauff",
@@ -50413,9 +50413,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 822,
+      id: BigInt(822),
       seqId: 898,
-      siteId: 13,
+      siteId: BigInt(13),
       recordDate: new Date("8/9/1999 GMT").toISOString(),
       week: 19,
       recorder: "B. J. Cole",
@@ -50474,9 +50474,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 823,
+      id: BigInt(823),
       seqId: 899,
-      siteId: 13,
+      siteId: BigInt(13),
       recordDate: new Date("8/21/1999 GMT").toISOString(),
       week: 21,
       recorder: "F. Pauff",
@@ -50535,9 +50535,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 824,
+      id: BigInt(824),
       seqId: 900,
-      siteId: 13,
+      siteId: BigInt(13),
       recordDate: new Date("8/23/1999 GMT").toISOString(),
       week: 21,
       recorder: "R. K. Thelan",
@@ -50597,9 +50597,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 825,
+      id: BigInt(825),
       seqId: 901,
-      siteId: 13,
+      siteId: BigInt(13),
       recordDate: new Date("8/26/1999 GMT").toISOString(),
       week: 22,
       recorder: "B. Overmyer",
@@ -50658,9 +50658,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 826,
+      id: BigInt(826),
       seqId: 902,
-      siteId: 13,
+      siteId: BigInt(13),
       recordDate: new Date("9/2/1999 GMT").toISOString(),
       week: 23,
       recorder: "B. J. Cole",
@@ -50720,9 +50720,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 827,
+      id: BigInt(827),
       seqId: 903,
-      siteId: 13,
+      siteId: BigInt(13),
       recordDate: new Date("9/10/1999 GMT").toISOString(),
       week: 24,
       recorder: "R. K. Thelan",
@@ -50783,9 +50783,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 828,
+      id: BigInt(828),
       seqId: 904,
-      siteId: 13,
+      siteId: BigInt(13),
       recordDate: new Date("9/22/1999 GMT").toISOString(),
       week: 25,
       recorder: "B. Overmyer",
@@ -50844,9 +50844,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 829,
+      id: BigInt(829),
       seqId: 905,
-      siteId: 13,
+      siteId: BigInt(13),
       recordDate: new Date("9/27/1999 GMT").toISOString(),
       week: 26,
       recorder: "F. Pauff",
@@ -50905,9 +50905,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 830,
+      id: BigInt(830),
       seqId: 906,
-      siteId: 13,
+      siteId: BigInt(13),
       recordDate: new Date("9/30/1999 GMT").toISOString(),
       week: 26,
       recorder: "B. J. Cole",
@@ -50966,9 +50966,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 831,
+      id: BigInt(831),
       seqId: 174,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("4/11/1996 GMT").toISOString(),
       week: 2,
       recorder: "Tim Krynak",
@@ -51027,9 +51027,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 832,
+      id: BigInt(832),
       seqId: 175,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("4/21/1996 GMT").toISOString(),
       week: 3,
       recorder: "Tim Krynak",
@@ -51088,9 +51088,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 833,
+      id: BigInt(833),
       seqId: 176,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("5/10/1996 GMT").toISOString(),
       week: 6,
       recorder: "Tim Krynak",
@@ -51149,9 +51149,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 834,
+      id: BigInt(834),
       seqId: 177,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("5/14/1996 GMT").toISOString(),
       week: 7,
       recorder: "Tim Krynak",
@@ -51210,9 +51210,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 835,
+      id: BigInt(835),
       seqId: 178,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("5/19/1996 GMT").toISOString(),
       week: 7,
       recorder: "Tim Krynak",
@@ -51271,9 +51271,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 836,
+      id: BigInt(836),
       seqId: 179,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("5/22/1996 GMT").toISOString(),
       week: 8,
       recorder: "Tim Krynak",
@@ -51332,9 +51332,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 837,
+      id: BigInt(837),
       seqId: 180,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("5/29/1996 GMT").toISOString(),
       week: 9,
       recorder: "Tim Krynak",
@@ -51393,9 +51393,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 838,
+      id: BigInt(838),
       seqId: 181,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("6/5/1996 GMT").toISOString(),
       week: 10,
       recorder: "Tim Krynak",
@@ -51454,9 +51454,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 839,
+      id: BigInt(839),
       seqId: 182,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("6/16/1996 GMT").toISOString(),
       week: 11,
       recorder: "Tim Krynak",
@@ -51515,9 +51515,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 840,
+      id: BigInt(840),
       seqId: 183,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("7/1/1996 GMT").toISOString(),
       week: 14,
       recorder: "Tim Krynak",
@@ -51576,9 +51576,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 841,
+      id: BigInt(841),
       seqId: 184,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("8/4/1996 GMT").toISOString(),
       week: 18,
       recorder: "Tim Krynak",
@@ -51637,9 +51637,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 842,
+      id: BigInt(842),
       seqId: 185,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("8/11/1996 GMT").toISOString(),
       week: 19,
       recorder: "Tim Krynak",
@@ -51698,9 +51698,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 843,
+      id: BigInt(843),
       seqId: 186,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("8/18/1996 GMT").toISOString(),
       week: 20,
       recorder: "Tim Krynak",
@@ -51759,9 +51759,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 844,
+      id: BigInt(844),
       seqId: 187,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("8/28/1996 GMT").toISOString(),
       week: 22,
       recorder: "Tim Krynak",
@@ -51820,9 +51820,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 845,
+      id: BigInt(845),
       seqId: 188,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("9/30/1996 GMT").toISOString(),
       week: 26,
       recorder: "Tim Krynak",
@@ -51881,9 +51881,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 846,
+      id: BigInt(846),
       seqId: 189,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("5/11/1997 GMT").toISOString(),
       week: 6,
       recorder: "Tim Krynak",
@@ -51942,9 +51942,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 847,
+      id: BigInt(847),
       seqId: 190,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("5/18/1997 GMT").toISOString(),
       week: 7,
       recorder: "Tim Krynak",
@@ -52004,9 +52004,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 848,
+      id: BigInt(848),
       seqId: 191,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("5/28/1997 GMT").toISOString(),
       week: 9,
       recorder: "Tim Krynak",
@@ -52066,9 +52066,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 849,
+      id: BigInt(849),
       seqId: 192,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("6/10/1997 GMT").toISOString(),
       week: 11,
       recorder: "Tim Krynak",
@@ -52128,9 +52128,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 850,
+      id: BigInt(850),
       seqId: 193,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("6/21/1997 GMT").toISOString(),
       week: 12,
       recorder: "Tim Krynak",
@@ -52190,9 +52190,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 851,
+      id: BigInt(851),
       seqId: 194,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("6/25/1997 GMT").toISOString(),
       week: 13,
       recorder: "Tim Krynak",
@@ -52252,9 +52252,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 852,
+      id: BigInt(852),
       seqId: 195,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("7/2/1997 GMT").toISOString(),
       week: 14,
       recorder: "Tim Krynak",
@@ -52313,9 +52313,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 853,
+      id: BigInt(853),
       seqId: 196,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("7/12/1997 GMT").toISOString(),
       week: 15,
       recorder: "Tim Krynak",
@@ -52374,9 +52374,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 854,
+      id: BigInt(854),
       seqId: 197,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("7/29/1997 GMT").toISOString(),
       week: 18,
       recorder: "Tim Krynak",
@@ -52436,9 +52436,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 855,
+      id: BigInt(855),
       seqId: 198,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("8/9/1997 GMT").toISOString(),
       week: 19,
       recorder: "Tim Krynak",
@@ -52497,9 +52497,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 856,
+      id: BigInt(856),
       seqId: 199,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("9/2/1997 GMT").toISOString(),
       week: 23,
       recorder: "Tim Krynak",
@@ -52559,9 +52559,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 857,
+      id: BigInt(857),
       seqId: 200,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("7/5/1998 GMT").toISOString(),
       week: 14,
       recorder: "Heidi Wintersteen",
@@ -52621,9 +52621,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 858,
+      id: BigInt(858),
       seqId: 201,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("7/11/1998 GMT").toISOString(),
       week: 15,
       recorder: "Heidi Wintersteen",
@@ -52683,9 +52683,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 859,
+      id: BigInt(859),
       seqId: 202,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("7/16/1998 GMT").toISOString(),
       week: 16,
       recorder: "Heidi Wintersteen",
@@ -52745,9 +52745,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 860,
+      id: BigInt(860),
       seqId: 203,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("7/26/1998 GMT").toISOString(),
       week: 17,
       recorder: "Heidi Wintersteen",
@@ -52807,9 +52807,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 861,
+      id: BigInt(861),
       seqId: 204,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("8/2/1998 GMT").toISOString(),
       week: 18,
       recorder: "Heidi Wintersteen",
@@ -52869,9 +52869,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 862,
+      id: BigInt(862),
       seqId: 205,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("8/8/1998 GMT").toISOString(),
       week: 19,
       recorder: "Heidi Wintersteen",
@@ -52931,9 +52931,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 863,
+      id: BigInt(863),
       seqId: 206,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("8/16/1998 GMT").toISOString(),
       week: 20,
       recorder: "Heidi Wintersteen",
@@ -52993,9 +52993,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 864,
+      id: BigInt(864),
       seqId: 207,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("8/23/1998 GMT").toISOString(),
       week: 21,
       recorder: "Heidi Wintersteen",
@@ -53055,9 +53055,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 865,
+      id: BigInt(865),
       seqId: 208,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("8/30/1998 GMT").toISOString(),
       week: 22,
       recorder: "Heidi Wintersteen",
@@ -53117,9 +53117,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 866,
+      id: BigInt(866),
       seqId: 209,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("9/5/1998 GMT").toISOString(),
       week: 23,
       recorder: "Heidi Wintersteen",
@@ -53179,9 +53179,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 867,
+      id: BigInt(867),
       seqId: 210,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("9/12/1998 GMT").toISOString(),
       week: 24,
       recorder: "Heidi Wintersteen",
@@ -53241,9 +53241,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 868,
+      id: BigInt(868),
       seqId: 211,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("9/19/1998 GMT").toISOString(),
       week: 25,
       recorder: "Heidi Wintersteen",
@@ -53303,9 +53303,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 869,
+      id: BigInt(869),
       seqId: 212,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("9/26/1998 GMT").toISOString(),
       week: 26,
       recorder: "Heidi Wintersteen",
@@ -53365,9 +53365,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 870,
+      id: BigInt(870),
       seqId: 1192,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("5/8/1999 GMT").toISOString(),
       week: 6,
       recorder: "Heidi Wintersteen",
@@ -53427,9 +53427,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 871,
+      id: BigInt(871),
       seqId: 1193,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("5/16/1999 GMT").toISOString(),
       week: 7,
       recorder: "Heidi Wintersteen",
@@ -53489,9 +53489,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 872,
+      id: BigInt(872),
       seqId: 1194,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("5/30/1999 GMT").toISOString(),
       week: 9,
       recorder: "Heidi Wintersteen",
@@ -53551,9 +53551,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 873,
+      id: BigInt(873),
       seqId: 1195,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("6/5/1999 GMT").toISOString(),
       week: 10,
       recorder: "Heidi Wintersteen",
@@ -53613,9 +53613,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 874,
+      id: BigInt(874),
       seqId: 1196,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("6/13/1999 GMT").toISOString(),
       week: 11,
       recorder: "Heidi Wintersteen",
@@ -53675,9 +53675,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 875,
+      id: BigInt(875),
       seqId: 1197,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("6/20/1999 GMT").toISOString(),
       week: 12,
       recorder: "Heidi Wintersteen",
@@ -53737,9 +53737,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 876,
+      id: BigInt(876),
       seqId: 1198,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("6/27/1999 GMT").toISOString(),
       week: 13,
       recorder: "Heidi Wintersteen",
@@ -53799,9 +53799,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 877,
+      id: BigInt(877),
       seqId: 1199,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("7/3/1999 GMT").toISOString(),
       week: 14,
       recorder: "Heidi Wintersteen",
@@ -53861,9 +53861,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 878,
+      id: BigInt(878),
       seqId: 1200,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("7/11/1999 GMT").toISOString(),
       week: 15,
       recorder: "Heidi Wintersteen",
@@ -53923,9 +53923,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 879,
+      id: BigInt(879),
       seqId: 1201,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("7/15/1999 GMT").toISOString(),
       week: 16,
       recorder: "Heidi Wintersteen",
@@ -53985,9 +53985,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 880,
+      id: BigInt(880),
       seqId: 1202,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("7/31/1999 GMT").toISOString(),
       week: 18,
       recorder: "Heidi Wintersteen",
@@ -54047,9 +54047,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 881,
+      id: BigInt(881),
       seqId: 1203,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("8/7/1999 GMT").toISOString(),
       week: 19,
       recorder: "Heidi Wintersteen",
@@ -54109,9 +54109,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 882,
+      id: BigInt(882),
       seqId: 1204,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("8/15/1999 GMT").toISOString(),
       week: 20,
       recorder: "Heidi Wintersteen",
@@ -54171,9 +54171,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 883,
+      id: BigInt(883),
       seqId: 1205,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("8/22/1999 GMT").toISOString(),
       week: 21,
       recorder: "Heidi Wintersteen",
@@ -54233,9 +54233,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 884,
+      id: BigInt(884),
       seqId: 1206,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("8/29/1999 GMT").toISOString(),
       week: 22,
       recorder: "Heidi Wintersteen",
@@ -54295,9 +54295,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 885,
+      id: BigInt(885),
       seqId: 1207,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("9/4/1999 GMT").toISOString(),
       week: 23,
       recorder: "Heidi Wintersteen",
@@ -54357,9 +54357,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 886,
+      id: BigInt(886),
       seqId: 1208,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("9/11/1999 GMT").toISOString(),
       week: 24,
       recorder: "Heidi Wintersteen",
@@ -54419,9 +54419,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 887,
+      id: BigInt(887),
       seqId: 1209,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("9/18/1999 GMT").toISOString(),
       week: 25,
       recorder: "Heidi Wintersteen",
@@ -54481,9 +54481,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 888,
+      id: BigInt(888),
       seqId: 1462,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("9/23/1999 GMT").toISOString(),
       week: 26,
       recorder: "J. Loomis, J.L. Wiedmann",
@@ -54542,9 +54542,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 889,
+      id: BigInt(889),
       seqId: 1210,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("9/26/1999 GMT").toISOString(),
       week: 26,
       recorder: "Heidi Wintersteen",
@@ -54604,9 +54604,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 890,
+      id: BigInt(890),
       seqId: 1211,
-      siteId: 14,
+      siteId: BigInt(14),
       recordDate: new Date("10/2/1999 GMT").toISOString(),
       week: 27,
       recorder: "Heidi Wintersteen",
@@ -54666,9 +54666,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 891,
+      id: BigInt(891),
       seqId: 249,
-      siteId: 15,
+      siteId: BigInt(15),
       recordDate: new Date("7/2/1998 GMT").toISOString(),
       week: 14,
       recorder: "Yarina Hynd",
@@ -54728,9 +54728,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 892,
+      id: BigInt(892),
       seqId: 250,
-      siteId: 15,
+      siteId: BigInt(15),
       recordDate: new Date("7/10/1998 GMT").toISOString(),
       week: 15,
       recorder: "Yarina Hynd",
@@ -54789,9 +54789,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 893,
+      id: BigInt(893),
       seqId: 251,
-      siteId: 15,
+      siteId: BigInt(15),
       recordDate: new Date("7/21/1998 GMT").toISOString(),
       week: 16,
       recorder: "Yarina Hynd",
@@ -54850,9 +54850,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 894,
+      id: BigInt(894),
       seqId: 252,
-      siteId: 15,
+      siteId: BigInt(15),
       recordDate: new Date("7/27/1998 GMT").toISOString(),
       week: 17,
       recorder: "Yarina Hynd",
@@ -54911,9 +54911,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 895,
+      id: BigInt(895),
       seqId: 253,
-      siteId: 15,
+      siteId: BigInt(15),
       recordDate: new Date("8/3/1998 GMT").toISOString(),
       week: 18,
       recorder: "Yarina Hynd",
@@ -54972,9 +54972,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 896,
+      id: BigInt(896),
       seqId: 254,
-      siteId: 15,
+      siteId: BigInt(15),
       recordDate: new Date("8/11/1998 GMT").toISOString(),
       week: 19,
       recorder: "Yarina Hynd",
@@ -55033,9 +55033,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 897,
+      id: BigInt(897),
       seqId: 255,
-      siteId: 15,
+      siteId: BigInt(15),
       recordDate: new Date("8/17/1998 GMT").toISOString(),
       week: 20,
       recorder: "Yarina Hynd",
@@ -55094,9 +55094,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 898,
+      id: BigInt(898),
       seqId: 256,
-      siteId: 15,
+      siteId: BigInt(15),
       recordDate: new Date("8/27/1998 GMT").toISOString(),
       week: 22,
       recorder: "Yarina Hynd",
@@ -55155,9 +55155,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 899,
+      id: BigInt(899),
       seqId: 257,
-      siteId: 15,
+      siteId: BigInt(15),
       recordDate: new Date("9/8/1998 GMT").toISOString(),
       week: 23,
       recorder: "Yarina Hynd",
@@ -55216,9 +55216,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 900,
+      id: BigInt(900),
       seqId: 289,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("4/30/1998 GMT").toISOString(),
       week: 5,
       recorder: "John Pogacnik",
@@ -55277,9 +55277,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 901,
+      id: BigInt(901),
       seqId: 290,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("5/8/1998 GMT").toISOString(),
       week: 6,
       recorder: "John Pogacnik",
@@ -55338,9 +55338,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 902,
+      id: BigInt(902),
       seqId: 291,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("5/15/1998 GMT").toISOString(),
       week: 7,
       recorder: "John Pogacnik",
@@ -55400,9 +55400,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 903,
+      id: BigInt(903),
       seqId: 292,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("5/20/1998 GMT").toISOString(),
       week: 8,
       recorder: "John Pogacnik",
@@ -55461,9 +55461,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 904,
+      id: BigInt(904),
       seqId: 293,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("5/30/1998 GMT").toISOString(),
       week: 9,
       recorder: "John Pogacnik",
@@ -55522,9 +55522,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 905,
+      id: BigInt(905),
       seqId: 294,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("6/7/1998 GMT").toISOString(),
       week: 10,
       recorder: "John Pogacnik",
@@ -55583,9 +55583,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 906,
+      id: BigInt(906),
       seqId: 295,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("6/13/1998 GMT").toISOString(),
       week: 11,
       recorder: "John Pogacnik",
@@ -55644,9 +55644,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 907,
+      id: BigInt(907),
       seqId: 296,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("6/20/1998 GMT").toISOString(),
       week: 12,
       recorder: "John Pogacnik",
@@ -55705,9 +55705,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 908,
+      id: BigInt(908),
       seqId: 297,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("6/25/1998 GMT").toISOString(),
       week: 13,
       recorder: "John Pogacnik",
@@ -55766,9 +55766,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 909,
+      id: BigInt(909),
       seqId: 298,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("7/3/1998 GMT").toISOString(),
       week: 14,
       recorder: "John Pogacnik",
@@ -55827,9 +55827,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 910,
+      id: BigInt(910),
       seqId: 299,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("7/12/1998 GMT").toISOString(),
       week: 15,
       recorder: "John Pogacnik",
@@ -55888,9 +55888,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 911,
+      id: BigInt(911),
       seqId: 300,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("7/18/1998 GMT").toISOString(),
       week: 16,
       recorder: "John Pogacnik",
@@ -55949,9 +55949,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 912,
+      id: BigInt(912),
       seqId: 301,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("7/24/1998 GMT").toISOString(),
       week: 17,
       recorder: "John Pogacnik",
@@ -56010,9 +56010,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 913,
+      id: BigInt(913),
       seqId: 302,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("7/31/1998 GMT").toISOString(),
       week: 18,
       recorder: "John Pogacnik",
@@ -56071,9 +56071,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 914,
+      id: BigInt(914),
       seqId: 303,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("8/8/1998 GMT").toISOString(),
       week: 19,
       recorder: "John Pogacnik",
@@ -56132,9 +56132,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 915,
+      id: BigInt(915),
       seqId: 304,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("8/16/1998 GMT").toISOString(),
       week: 20,
       recorder: "John Pogacnik",
@@ -56193,9 +56193,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 916,
+      id: BigInt(916),
       seqId: 305,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("8/22/1998 GMT").toISOString(),
       week: 21,
       recorder: "John Pogacnik",
@@ -56254,9 +56254,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 917,
+      id: BigInt(917),
       seqId: 306,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("8/30/1998 GMT").toISOString(),
       week: 22,
       recorder: "John Pogacnik",
@@ -56315,9 +56315,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 918,
+      id: BigInt(918),
       seqId: 307,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("9/6/1998 GMT").toISOString(),
       week: 23,
       recorder: "John Pogacnik",
@@ -56377,9 +56377,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 919,
+      id: BigInt(919),
       seqId: 308,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("9/13/1998 GMT").toISOString(),
       week: 24,
       recorder: "John Pogacnik",
@@ -56438,9 +56438,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 920,
+      id: BigInt(920),
       seqId: 309,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("9/17/1998 GMT").toISOString(),
       week: 25,
       recorder: "John Pogacnik",
@@ -56500,9 +56500,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 921,
+      id: BigInt(921),
       seqId: 310,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("9/26/1998 GMT").toISOString(),
       week: 26,
       recorder: "John Pogacnik",
@@ -56562,9 +56562,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 922,
+      id: BigInt(922),
       seqId: 1313,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("4/7/1999 GMT").toISOString(),
       week: 1,
       recorder: "John Pogacnik",
@@ -56623,9 +56623,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 923,
+      id: BigInt(923),
       seqId: 1327,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("4/11/1999 GMT").toISOString(),
       week: 2,
       recorder: "John Pogacnik",
@@ -56684,9 +56684,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 924,
+      id: BigInt(924),
       seqId: 1314,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("4/14/1999 GMT").toISOString(),
       week: 2,
       recorder: "John Pogacnik",
@@ -56745,9 +56745,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 925,
+      id: BigInt(925),
       seqId: 1315,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("4/18/1999 GMT").toISOString(),
       week: 3,
       recorder: "John Pogacnik",
@@ -56806,9 +56806,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 926,
+      id: BigInt(926),
       seqId: 1316,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("4/22/1999 GMT").toISOString(),
       week: 4,
       recorder: "John Pogacnik",
@@ -56867,9 +56867,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 927,
+      id: BigInt(927),
       seqId: 1317,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("5/1/1999 GMT").toISOString(),
       week: 5,
       recorder: "John Pogacnik",
@@ -56928,9 +56928,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 928,
+      id: BigInt(928),
       seqId: 1318,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("5/9/1999 GMT").toISOString(),
       week: 6,
       recorder: "John Pogacnik",
@@ -56989,9 +56989,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 929,
+      id: BigInt(929),
       seqId: 1319,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("5/15/1999 GMT").toISOString(),
       week: 7,
       recorder: "John Pogacnik",
@@ -57050,9 +57050,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 930,
+      id: BigInt(930),
       seqId: 1320,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("5/23/1999 GMT").toISOString(),
       week: 8,
       recorder: "John Pogacnik",
@@ -57112,9 +57112,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 931,
+      id: BigInt(931),
       seqId: 1321,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("5/30/1999 GMT").toISOString(),
       week: 9,
       recorder: "John Pogacnik",
@@ -57173,9 +57173,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 932,
+      id: BigInt(932),
       seqId: 1322,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("6/5/1999 GMT").toISOString(),
       week: 10,
       recorder: "John Pogacnik",
@@ -57235,9 +57235,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 933,
+      id: BigInt(933),
       seqId: 1323,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("6/11/1999 GMT").toISOString(),
       week: 11,
       recorder: "John Pogacnik",
@@ -57297,9 +57297,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 934,
+      id: BigInt(934),
       seqId: 1324,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("6/19/1999 GMT").toISOString(),
       week: 12,
       recorder: "John Pogacnik",
@@ -57358,9 +57358,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 935,
+      id: BigInt(935),
       seqId: 1325,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("6/26/1999 GMT").toISOString(),
       week: 13,
       recorder: "John Pogacnik",
@@ -57419,9 +57419,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 936,
+      id: BigInt(936),
       seqId: 1326,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("7/4/1999 GMT").toISOString(),
       week: 14,
       recorder: "John Pogacnik",
@@ -57481,9 +57481,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 937,
+      id: BigInt(937),
       seqId: 1328,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("7/18/1999 GMT").toISOString(),
       week: 16,
       recorder: "John Pogacnik",
@@ -57542,9 +57542,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 938,
+      id: BigInt(938),
       seqId: 1329,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("7/24/1999 GMT").toISOString(),
       week: 17,
       recorder: "John Pogacnik",
@@ -57604,9 +57604,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 939,
+      id: BigInt(939),
       seqId: 1330,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("7/31/1999 GMT").toISOString(),
       week: 18,
       recorder: "John Pogacnik",
@@ -57666,9 +57666,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 940,
+      id: BigInt(940),
       seqId: 1331,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("8/7/1999 GMT").toISOString(),
       week: 19,
       recorder: "John Pogacnik",
@@ -57728,9 +57728,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 941,
+      id: BigInt(941),
       seqId: 1332,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("8/15/1999 GMT").toISOString(),
       week: 20,
       recorder: "John Pogacnik",
@@ -57790,9 +57790,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 942,
+      id: BigInt(942),
       seqId: 1333,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("8/21/1999 GMT").toISOString(),
       week: 21,
       recorder: "John Pogacnik",
@@ -57851,9 +57851,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 943,
+      id: BigInt(943),
       seqId: 1334,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("8/27/1999 GMT").toISOString(),
       week: 22,
       recorder: "John Pogacnik",
@@ -57913,9 +57913,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 944,
+      id: BigInt(944),
       seqId: 1335,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("9/6/1999 GMT").toISOString(),
       week: 23,
       recorder: "John Pogacnik",
@@ -57975,9 +57975,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 945,
+      id: BigInt(945),
       seqId: 1336,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("9/12/1999 GMT").toISOString(),
       week: 24,
       recorder: "John Pogacnik",
@@ -58038,9 +58038,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 946,
+      id: BigInt(946),
       seqId: 1337,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("9/18/1999 GMT").toISOString(),
       week: 25,
       recorder: "John Pogacnik",
@@ -58099,9 +58099,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 947,
+      id: BigInt(947),
       seqId: 1338,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("9/26/1999 GMT").toISOString(),
       week: 26,
       recorder: "John Pogacnik",
@@ -58160,9 +58160,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 948,
+      id: BigInt(948),
       seqId: 1339,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("9/30/1999 GMT").toISOString(),
       week: 26,
       recorder: "John Pogacnik",
@@ -58221,9 +58221,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 949,
+      id: BigInt(949),
       seqId: 1340,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("10/9/1999 GMT").toISOString(),
       week: 28,
       recorder: "John Pogacnik",
@@ -58282,9 +58282,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 950,
+      id: BigInt(950),
       seqId: 1341,
-      siteId: 16,
+      siteId: BigInt(16),
       recordDate: new Date("10/16/1999 GMT").toISOString(),
       week: 29,
       recorder: "John Pogacnik",
@@ -58343,9 +58343,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 951,
+      id: BigInt(951),
       seqId: 338,
-      siteId: 17,
+      siteId: BigInt(17),
       recordDate: new Date("6/3/1998 GMT").toISOString(),
       week: 10,
       recorder: "John Watts",
@@ -58404,9 +58404,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 952,
+      id: BigInt(952),
       seqId: 339,
-      siteId: 17,
+      siteId: BigInt(17),
       recordDate: new Date("6/18/1998 GMT").toISOString(),
       week: 12,
       recorder: "John Watts",
@@ -58466,9 +58466,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 953,
+      id: BigInt(953),
       seqId: 340,
-      siteId: 17,
+      siteId: BigInt(17),
       recordDate: new Date("6/30/1998 GMT").toISOString(),
       week: 13,
       recorder: "Christine Hura",
@@ -58527,9 +58527,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 954,
+      id: BigInt(954),
       seqId: 341,
-      siteId: 17,
+      siteId: BigInt(17),
       recordDate: new Date("8/8/1998 GMT").toISOString(),
       week: 19,
       recorder: "John Watts",
@@ -58588,9 +58588,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 955,
+      id: BigInt(955),
       seqId: 342,
-      siteId: 17,
+      siteId: BigInt(17),
       recordDate: new Date("8/26/1998 GMT").toISOString(),
       week: 22,
       recorder: "John Watts",
@@ -58649,9 +58649,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 956,
+      id: BigInt(956),
       seqId: 343,
-      siteId: 17,
+      siteId: BigInt(17),
       recordDate: new Date("9/9/1998 GMT").toISOString(),
       week: 24,
       recorder: "John Watts",
@@ -58710,9 +58710,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 957,
+      id: BigInt(957),
       seqId: 344,
-      siteId: 17,
+      siteId: BigInt(17),
       recordDate: new Date("9/24/1998 GMT").toISOString(),
       week: 26,
       recorder: "John Watts",
@@ -58771,9 +58771,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 958,
+      id: BigInt(958),
       seqId: 922,
-      siteId: 17,
+      siteId: BigInt(17),
       recordDate: new Date("5/28/1999 GMT").toISOString(),
       week: 9,
       recorder: "Barb Bloetscher",
@@ -58832,9 +58832,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 959,
+      id: BigInt(959),
       seqId: 923,
-      siteId: 17,
+      siteId: BigInt(17),
       recordDate: new Date("6/2/1999 GMT").toISOString(),
       week: 9,
       recorder: "Barb Bloetscher",
@@ -58894,9 +58894,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 960,
+      id: BigInt(960),
       seqId: 924,
-      siteId: 17,
+      siteId: BigInt(17),
       recordDate: new Date("7/3/1999 GMT").toISOString(),
       week: 14,
       recorder: "Barb Bloetscher",
@@ -58956,9 +58956,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 961,
+      id: BigInt(961),
       seqId: 925,
-      siteId: 17,
+      siteId: BigInt(17),
       recordDate: new Date("7/17/1999 GMT").toISOString(),
       week: 16,
       recorder: "Barb Bloetscher",
@@ -59018,9 +59018,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 962,
+      id: BigInt(962),
       seqId: 926,
-      siteId: 17,
+      siteId: BigInt(17),
       recordDate: new Date("8/1/1999 GMT").toISOString(),
       week: 18,
       recorder: "Barb Bloetscher",
@@ -59080,9 +59080,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 963,
+      id: BigInt(963),
       seqId: 927,
-      siteId: 17,
+      siteId: BigInt(17),
       recordDate: new Date("8/28/1999 GMT").toISOString(),
       week: 22,
       recorder: "Barb Bloetscher",
@@ -59142,9 +59142,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 964,
+      id: BigInt(964),
       seqId: 928,
-      siteId: 17,
+      siteId: BigInt(17),
       recordDate: new Date("9/17/1999 GMT").toISOString(),
       week: 25,
       recorder: "Barb Bloetscher",
@@ -59203,9 +59203,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 965,
+      id: BigInt(965),
       seqId: 929,
-      siteId: 17,
+      siteId: BigInt(17),
       recordDate: new Date("10/2/1999 GMT").toISOString(),
       week: 27,
       recorder: "Barb Bloetscher",
@@ -59264,9 +59264,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 966,
+      id: BigInt(966),
       seqId: 345,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("5/5/1998 GMT").toISOString(),
       week: 5,
       recorder: "R. W. Hawes",
@@ -59326,9 +59326,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 967,
+      id: BigInt(967),
       seqId: 346,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("5/12/1998 GMT").toISOString(),
       week: 6,
       recorder: "R. W. Hawes",
@@ -59388,9 +59388,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 968,
+      id: BigInt(968),
       seqId: 347,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("5/14/1998 GMT").toISOString(),
       week: 7,
       recorder: "R. W. Hawes",
@@ -59450,9 +59450,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 969,
+      id: BigInt(969),
       seqId: 348,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("5/20/1998 GMT").toISOString(),
       week: 8,
       recorder: "R. W. Hawes",
@@ -59512,9 +59512,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 970,
+      id: BigInt(970),
       seqId: 349,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("5/27/1998 GMT").toISOString(),
       week: 9,
       recorder: "R. W. Hawes",
@@ -59575,9 +59575,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 971,
+      id: BigInt(971),
       seqId: 350,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("6/2/1998 GMT").toISOString(),
       week: 9,
       recorder: "R. W. Hawes",
@@ -59638,9 +59638,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 972,
+      id: BigInt(972),
       seqId: 351,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("6/10/1998 GMT").toISOString(),
       week: 11,
       recorder: "R. W. Hawes",
@@ -59701,9 +59701,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 973,
+      id: BigInt(973),
       seqId: 352,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("6/12/1998 GMT").toISOString(),
       week: 11,
       recorder: "R. W. Hawes",
@@ -59763,9 +59763,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 974,
+      id: BigInt(974),
       seqId: 353,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("6/17/1998 GMT").toISOString(),
       week: 12,
       recorder: "R. W. Hawes",
@@ -59825,9 +59825,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 975,
+      id: BigInt(975),
       seqId: 354,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("6/20/1998 GMT").toISOString(),
       week: 12,
       recorder: "R. W. Hawes",
@@ -59886,9 +59886,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 976,
+      id: BigInt(976),
       seqId: 381,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("6/25/1998 GMT").toISOString(),
       week: 13,
       recorder: "R. W. Hawes",
@@ -59948,9 +59948,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 977,
+      id: BigInt(977),
       seqId: 382,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("7/1/1998 GMT").toISOString(),
       week: 14,
       recorder: "R. W. Hawes",
@@ -60011,9 +60011,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 978,
+      id: BigInt(978),
       seqId: 383,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("7/8/1998 GMT").toISOString(),
       week: 15,
       recorder: "R. W. Hawes",
@@ -60073,9 +60073,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 979,
+      id: BigInt(979),
       seqId: 384,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("7/17/1998 GMT").toISOString(),
       week: 16,
       recorder: "Cory Sica",
@@ -60135,9 +60135,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 980,
+      id: BigInt(980),
       seqId: 385,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("7/24/1998 GMT").toISOString(),
       week: 17,
       recorder: "R. W. Hawes",
@@ -60197,9 +60197,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 981,
+      id: BigInt(981),
       seqId: 386,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("8/1/1998 GMT").toISOString(),
       week: 18,
       recorder: "R. W. Hawes",
@@ -60259,9 +60259,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 982,
+      id: BigInt(982),
       seqId: 387,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("8/5/1998 GMT").toISOString(),
       week: 19,
       recorder: "R. W. Hawes",
@@ -60322,9 +60322,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 983,
+      id: BigInt(983),
       seqId: 388,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("8/13/1998 GMT").toISOString(),
       week: 20,
       recorder: "R. W. Hawes",
@@ -60383,9 +60383,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 984,
+      id: BigInt(984),
       seqId: 389,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("8/20/1998 GMT").toISOString(),
       week: 21,
       recorder: "R. W. Hawes",
@@ -60444,9 +60444,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 985,
+      id: BigInt(985),
       seqId: 390,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("8/25/1998 GMT").toISOString(),
       week: 21,
       recorder: "R. W. Hawes",
@@ -60506,9 +60506,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 986,
+      id: BigInt(986),
       seqId: 391,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("9/3/1998 GMT").toISOString(),
       week: 23,
       recorder: "R. W. Hawes",
@@ -60568,9 +60568,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 987,
+      id: BigInt(987),
       seqId: 392,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("9/9/1998 GMT").toISOString(),
       week: 24,
       recorder: "R. W. Hawes",
@@ -60630,9 +60630,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 988,
+      id: BigInt(988),
       seqId: 393,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("9/25/1998 GMT").toISOString(),
       week: 26,
       recorder: "R. W. Hawes",
@@ -60691,9 +60691,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 989,
+      id: BigInt(989),
       seqId: 1492,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("4/2/1999 GMT").toISOString(),
       week: 1,
       recorder: "R. W. Hawes",
@@ -60752,9 +60752,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 990,
+      id: BigInt(990),
       seqId: 1493,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("4/7/1999 GMT").toISOString(),
       week: 1,
       recorder: "R. W. Hawes",
@@ -60813,9 +60813,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 991,
+      id: BigInt(991),
       seqId: 1494,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("4/14/1999 GMT").toISOString(),
       week: 2,
       recorder: "R. W. Hawes",
@@ -60874,9 +60874,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 992,
+      id: BigInt(992),
       seqId: 1495,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("4/21/1999 GMT").toISOString(),
       week: 3,
       recorder: "R. W. Hawes",
@@ -60935,9 +60935,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 993,
+      id: BigInt(993),
       seqId: 1496,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("4/29/1999 GMT").toISOString(),
       week: 5,
       recorder: "R. W. Hawes",
@@ -60997,9 +60997,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 994,
+      id: BigInt(994),
       seqId: 1497,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("5/4/1999 GMT").toISOString(),
       week: 5,
       recorder: "R. W. Hawes",
@@ -61058,9 +61058,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 995,
+      id: BigInt(995),
       seqId: 1498,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("5/20/1999 GMT").toISOString(),
       week: 8,
       recorder: "R. W. Hawes",
@@ -61120,9 +61120,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 996,
+      id: BigInt(996),
       seqId: 1499,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("5/27/1999 GMT").toISOString(),
       week: 9,
       recorder: "R. W. Hawes",
@@ -61181,9 +61181,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 997,
+      id: BigInt(997),
       seqId: 1500,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("6/5/1999 GMT").toISOString(),
       week: 10,
       recorder: "R. W. Hawes",
@@ -61244,9 +61244,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 998,
+      id: BigInt(998),
       seqId: 1501,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("6/10/1999 GMT").toISOString(),
       week: 11,
       recorder: "R. W. Hawes",
@@ -61305,9 +61305,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 999,
+      id: BigInt(999),
       seqId: 1502,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("6/19/1999 GMT").toISOString(),
       week: 12,
       recorder: "R. Downer",
@@ -61366,9 +61366,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1000,
+      id: BigInt(1000),
       seqId: 1503,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("6/26/1999 GMT").toISOString(),
       week: 13,
       recorder: "R. Downer",
@@ -61427,9 +61427,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1001,
+      id: BigInt(1001),
       seqId: 1504,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("7/7/1999 GMT").toISOString(),
       week: 14,
       recorder: "R. W. Hawes",
@@ -61489,9 +61489,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1002,
+      id: BigInt(1002),
       seqId: 1505,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("7/14/1999 GMT").toISOString(),
       week: 15,
       recorder: "R. W. Hawes",
@@ -61551,9 +61551,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1003,
+      id: BigInt(1003),
       seqId: 1506,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("7/21/1999 GMT").toISOString(),
       week: 16,
       recorder: "R. W. Hawes",
@@ -61614,9 +61614,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1004,
+      id: BigInt(1004),
       seqId: 1507,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("7/30/1999 GMT").toISOString(),
       week: 18,
       recorder: "R. Downer",
@@ -61675,9 +61675,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1005,
+      id: BigInt(1005),
       seqId: 1508,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("8/5/1999 GMT").toISOString(),
       week: 19,
       recorder: "R. W. Hawes",
@@ -61737,9 +61737,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1006,
+      id: BigInt(1006),
       seqId: 1509,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("8/19/1999 GMT").toISOString(),
       week: 21,
       recorder: "R. W. Hawes",
@@ -61799,9 +61799,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1007,
+      id: BigInt(1007),
       seqId: 1510,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("8/28/1999 GMT").toISOString(),
       week: 22,
       recorder: "R. W. Hawes",
@@ -61861,9 +61861,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1008,
+      id: BigInt(1008),
       seqId: 1511,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("9/9/1999 GMT").toISOString(),
       week: 24,
       recorder: "R. W. Hawes",
@@ -61924,9 +61924,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1009,
+      id: BigInt(1009),
       seqId: 1512,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("9/14/1999 GMT").toISOString(),
       week: 24,
       recorder: "R. W. Hawes",
@@ -61986,9 +61986,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1010,
+      id: BigInt(1010),
       seqId: 1513,
-      siteId: 18,
+      siteId: BigInt(18),
       recordDate: new Date("9/25/1999 GMT").toISOString(),
       week: 26,
       recorder: "R. W. Hawes",
@@ -62048,9 +62048,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1011,
+      id: BigInt(1011),
       seqId: 1069,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("4/24/1999 GMT").toISOString(),
       week: 4,
       recorder: "B. J. Cole",
@@ -62109,9 +62109,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1012,
+      id: BigInt(1012),
       seqId: 1070,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("4/29/1999 GMT").toISOString(),
       week: 5,
       recorder: "B. J. Cole",
@@ -62171,9 +62171,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1013,
+      id: BigInt(1013),
       seqId: 1071,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("5/2/1999 GMT").toISOString(),
       week: 5,
       recorder: "B. J. Cole",
@@ -62232,9 +62232,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1014,
+      id: BigInt(1014),
       seqId: 1072,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("5/4/1999 GMT").toISOString(),
       week: 5,
       recorder: "B. J. Cole",
@@ -62293,9 +62293,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1015,
+      id: BigInt(1015),
       seqId: 1073,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("5/7/1999 GMT").toISOString(),
       week: 6,
       recorder: "B. J. Cole",
@@ -62354,9 +62354,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1016,
+      id: BigInt(1016),
       seqId: 1074,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("5/10/1999 GMT").toISOString(),
       week: 6,
       recorder: "B. J. Cole",
@@ -62416,9 +62416,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1017,
+      id: BigInt(1017),
       seqId: 1075,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("5/11/1999 GMT").toISOString(),
       week: 6,
       recorder: "B. J. Cole",
@@ -62477,9 +62477,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1018,
+      id: BigInt(1018),
       seqId: 1076,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("5/16/1999 GMT").toISOString(),
       week: 7,
       recorder: "B. J. Cole",
@@ -62538,9 +62538,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1019,
+      id: BigInt(1019),
       seqId: 1077,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("5/19/1999 GMT").toISOString(),
       week: 7,
       recorder: "B. J. Cole",
@@ -62599,9 +62599,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1020,
+      id: BigInt(1020),
       seqId: 1078,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("5/21/1999 GMT").toISOString(),
       week: 8,
       recorder: "B. J. Cole",
@@ -62660,9 +62660,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1021,
+      id: BigInt(1021),
       seqId: 1079,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("5/27/1999 GMT").toISOString(),
       week: 9,
       recorder: "B. J. Cole",
@@ -62721,9 +62721,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1022,
+      id: BigInt(1022),
       seqId: 1080,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("5/29/1999 GMT").toISOString(),
       week: 9,
       recorder: "B. J. Cole",
@@ -62782,9 +62782,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1023,
+      id: BigInt(1023),
       seqId: 1081,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("6/3/1999 GMT").toISOString(),
       week: 10,
       recorder: "B. J. Cole",
@@ -62845,9 +62845,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1024,
+      id: BigInt(1024),
       seqId: 1082,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("6/6/1999 GMT").toISOString(),
       week: 10,
       recorder: "B. J. Cole",
@@ -62906,9 +62906,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1025,
+      id: BigInt(1025),
       seqId: 1083,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("6/7/1999 GMT").toISOString(),
       week: 10,
       recorder: "B. J. Cole",
@@ -62967,9 +62967,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1026,
+      id: BigInt(1026),
       seqId: 1084,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("6/8/1999 GMT").toISOString(),
       week: 10,
       recorder: "B. J. Cole",
@@ -63028,9 +63028,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1027,
+      id: BigInt(1027),
       seqId: 1085,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("6/10/1999 GMT").toISOString(),
       week: 11,
       recorder: "B. J. Cole",
@@ -63089,9 +63089,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1028,
+      id: BigInt(1028),
       seqId: 1086,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("6/12/1999 GMT").toISOString(),
       week: 11,
       recorder: "B. J. Cole",
@@ -63150,9 +63150,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1029,
+      id: BigInt(1029),
       seqId: 1087,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("6/13/1999 GMT").toISOString(),
       week: 11,
       recorder: "B. J. Cole",
@@ -63211,9 +63211,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1030,
+      id: BigInt(1030),
       seqId: 1088,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("6/14/1999 GMT").toISOString(),
       week: 11,
       recorder: "B. J. Cole",
@@ -63273,9 +63273,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1031,
+      id: BigInt(1031),
       seqId: 1089,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("6/15/1999 GMT").toISOString(),
       week: 11,
       recorder: "B. J. Cole",
@@ -63335,9 +63335,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1032,
+      id: BigInt(1032),
       seqId: 1090,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("6/18/1999 GMT").toISOString(),
       week: 12,
       recorder: "B. J. Cole",
@@ -63397,9 +63397,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1033,
+      id: BigInt(1033),
       seqId: 1105,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("6/20/1999 GMT").toISOString(),
       week: 12,
       recorder: "B. J. Cole",
@@ -63459,9 +63459,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1034,
+      id: BigInt(1034),
       seqId: 1106,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("6/21/1999 GMT").toISOString(),
       week: 12,
       recorder: "B. J. Cole",
@@ -63520,9 +63520,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1035,
+      id: BigInt(1035),
       seqId: 1107,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("6/29/1999 GMT").toISOString(),
       week: 13,
       recorder: "B. J. Cole",
@@ -63582,9 +63582,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1036,
+      id: BigInt(1036),
       seqId: 1108,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("6/30/1999 GMT").toISOString(),
       week: 13,
       recorder: "B. J. Cole",
@@ -63644,9 +63644,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1037,
+      id: BigInt(1037),
       seqId: 1109,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("7/2/1999 GMT").toISOString(),
       week: 14,
       recorder: "B. J. Cole",
@@ -63705,9 +63705,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1038,
+      id: BigInt(1038),
       seqId: 1110,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("7/5/1999 GMT").toISOString(),
       week: 14,
       recorder: "B. J. Cole",
@@ -63767,9 +63767,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1039,
+      id: BigInt(1039),
       seqId: 1111,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("7/6/1999 GMT").toISOString(),
       week: 14,
       recorder: "B. J. Cole",
@@ -63829,9 +63829,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1040,
+      id: BigInt(1040),
       seqId: 1112,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("7/10/1999 GMT").toISOString(),
       week: 15,
       recorder: "B. J. Cole",
@@ -63892,9 +63892,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1041,
+      id: BigInt(1041),
       seqId: 1113,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("7/16/1999 GMT").toISOString(),
       week: 16,
       recorder: "B. J. Cole",
@@ -63953,9 +63953,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1042,
+      id: BigInt(1042),
       seqId: 1114,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("7/21/1999 GMT").toISOString(),
       week: 16,
       recorder: "B. J. Cole",
@@ -64014,9 +64014,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1043,
+      id: BigInt(1043),
       seqId: 1115,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("7/24/1999 GMT").toISOString(),
       week: 17,
       recorder: "B. J. Cole",
@@ -64075,9 +64075,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1044,
+      id: BigInt(1044),
       seqId: 1116,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("7/27/1999 GMT").toISOString(),
       week: 17,
       recorder: "B. J. Cole",
@@ -64136,9 +64136,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1045,
+      id: BigInt(1045),
       seqId: 1117,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("7/28/1999 GMT").toISOString(),
       week: 17,
       recorder: "B. J. Cole",
@@ -64198,9 +64198,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1046,
+      id: BigInt(1046),
       seqId: 1118,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("7/29/1999 GMT").toISOString(),
       week: 18,
       recorder: "B. J. Cole",
@@ -64260,9 +64260,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1047,
+      id: BigInt(1047),
       seqId: 1119,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("8/2/1999 GMT").toISOString(),
       week: 18,
       recorder: "B. J. Cole",
@@ -64321,9 +64321,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1048,
+      id: BigInt(1048),
       seqId: 1120,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("8/8/1999 GMT").toISOString(),
       week: 19,
       recorder: "B. J. Cole",
@@ -64382,9 +64382,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1049,
+      id: BigInt(1049),
       seqId: 1121,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("8/11/1999 GMT").toISOString(),
       week: 19,
       recorder: "B. J. Cole",
@@ -64444,9 +64444,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1050,
+      id: BigInt(1050),
       seqId: 1122,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("8/16/1999 GMT").toISOString(),
       week: 20,
       recorder: "B. J. Cole",
@@ -64505,9 +64505,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1051,
+      id: BigInt(1051),
       seqId: 1123,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("8/20/1999 GMT").toISOString(),
       week: 21,
       recorder: "B. J. Cole",
@@ -64566,9 +64566,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1052,
+      id: BigInt(1052),
       seqId: 1124,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("8/31/1999 GMT").toISOString(),
       week: 22,
       recorder: "B. J. Cole",
@@ -64627,9 +64627,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1053,
+      id: BigInt(1053),
       seqId: 1125,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("9/3/1999 GMT").toISOString(),
       week: 23,
       recorder: "B. J. Cole",
@@ -64689,9 +64689,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1054,
+      id: BigInt(1054),
       seqId: 1126,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("9/12/1999 GMT").toISOString(),
       week: 24,
       recorder: "B. J. Cole",
@@ -64751,9 +64751,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1055,
+      id: BigInt(1055),
       seqId: 1127,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("9/18/1999 GMT").toISOString(),
       week: 25,
       recorder: "B. J. Cole",
@@ -64812,9 +64812,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1056,
+      id: BigInt(1056),
       seqId: 1128,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("9/24/1999 GMT").toISOString(),
       week: 26,
       recorder: "B. J. Cole",
@@ -64873,9 +64873,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1057,
+      id: BigInt(1057),
       seqId: 1129,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("9/26/1999 GMT").toISOString(),
       week: 26,
       recorder: "B. J. Cole",
@@ -64934,9 +64934,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1058,
+      id: BigInt(1058),
       seqId: 1130,
-      siteId: 21,
+      siteId: BigInt(21),
       recordDate: new Date("9/30/1999 GMT").toISOString(),
       week: 26,
       recorder: "B. J. Cole",
@@ -64995,9 +64995,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1059,
+      id: BigInt(1059),
       seqId: 1421,
-      siteId: 22,
+      siteId: BigInt(22),
       recordDate: new Date("4/2/1999 GMT").toISOString(),
       week: 1,
       recorder: "Lois TerVeen",
@@ -65056,9 +65056,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1060,
+      id: BigInt(1060),
       seqId: 1422,
-      siteId: 22,
+      siteId: BigInt(22),
       recordDate: new Date("4/14/1999 GMT").toISOString(),
       week: 2,
       recorder: "Lois TerVeen",
@@ -65118,9 +65118,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1061,
+      id: BigInt(1061),
       seqId: 1423,
-      siteId: 22,
+      siteId: BigInt(22),
       recordDate: new Date("5/3/1999 GMT").toISOString(),
       week: 5,
       recorder: "Lois TerVeen",
@@ -65180,9 +65180,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1062,
+      id: BigInt(1062),
       seqId: 1424,
-      siteId: 22,
+      siteId: BigInt(22),
       recordDate: new Date("6/5/1999 GMT").toISOString(),
       week: 10,
       recorder: "Lois TerVeen",
@@ -65241,9 +65241,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1063,
+      id: BigInt(1063),
       seqId: 1425,
-      siteId: 22,
+      siteId: BigInt(22),
       recordDate: new Date("6/14/1999 GMT").toISOString(),
       week: 11,
       recorder: "Lois TerVeen",
@@ -65302,9 +65302,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1064,
+      id: BigInt(1064),
       seqId: 994,
-      siteId: 22,
+      siteId: BigInt(22),
       recordDate: new Date("6/21/1999 GMT").toISOString(),
       week: 12,
       recorder: "Lois TerVeen",
@@ -65363,9 +65363,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1065,
+      id: BigInt(1065),
       seqId: 1427,
-      siteId: 22,
+      siteId: BigInt(22),
       recordDate: new Date("7/8/1999 GMT").toISOString(),
       week: 15,
       recorder: "Lois TerVeen",
@@ -65424,9 +65424,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1066,
+      id: BigInt(1066),
       seqId: 1428,
-      siteId: 22,
+      siteId: BigInt(22),
       recordDate: new Date("7/14/1999 GMT").toISOString(),
       week: 15,
       recorder: "Lois TerVeen",
@@ -65487,9 +65487,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1067,
+      id: BigInt(1067),
       seqId: 1429,
-      siteId: 22,
+      siteId: BigInt(22),
       recordDate: new Date("7/19/1999 GMT").toISOString(),
       week: 16,
       recorder: "Lois TerVeen",
@@ -65549,9 +65549,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1068,
+      id: BigInt(1068),
       seqId: 1430,
-      siteId: 22,
+      siteId: BigInt(22),
       recordDate: new Date("8/4/1999 GMT").toISOString(),
       week: 18,
       recorder: "Lois TerVeen",
@@ -65611,9 +65611,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1069,
+      id: BigInt(1069),
       seqId: 1431,
-      siteId: 22,
+      siteId: BigInt(22),
       recordDate: new Date("8/25/1999 GMT").toISOString(),
       week: 21,
       recorder: "Lois TerVeen",
@@ -65674,9 +65674,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1070,
+      id: BigInt(1070),
       seqId: 1433,
-      siteId: 22,
+      siteId: BigInt(22),
       recordDate: new Date("9/1/1999 GMT").toISOString(),
       week: 22,
       recorder: "Lois TerVeen",
@@ -65735,9 +65735,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1071,
+      id: BigInt(1071),
       seqId: 1434,
-      siteId: 22,
+      siteId: BigInt(22),
       recordDate: new Date("9/8/1999 GMT").toISOString(),
       week: 23,
       recorder: "Lois TerVeen",
@@ -65796,9 +65796,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1072,
+      id: BigInt(1072),
       seqId: 1435,
-      siteId: 22,
+      siteId: BigInt(22),
       recordDate: new Date("9/14/1999 GMT").toISOString(),
       week: 24,
       recorder: "Lois TerVeen",
@@ -65857,9 +65857,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1073,
+      id: BigInt(1073),
       seqId: 1436,
-      siteId: 22,
+      siteId: BigInt(22),
       recordDate: new Date("9/26/1999 GMT").toISOString(),
       week: 26,
       recorder: "Lois TerVeen",
@@ -65918,9 +65918,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1074,
+      id: BigInt(1074),
       seqId: 1426,
-      siteId: 23,
+      siteId: BigInt(23),
       recordDate: new Date("4/3/1999 GMT").toISOString(),
       week: 1,
       recorder: "Lois TerVeen",
@@ -65979,9 +65979,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1075,
+      id: BigInt(1075),
       seqId: 995,
-      siteId: 23,
+      siteId: BigInt(23),
       recordDate: new Date("4/14/1999 GMT").toISOString(),
       week: 2,
       recorder: "Lois TerVeen",
@@ -66040,9 +66040,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1076,
+      id: BigInt(1076),
       seqId: 996,
-      siteId: 23,
+      siteId: BigInt(23),
       recordDate: new Date("5/4/1999 GMT").toISOString(),
       week: 5,
       recorder: "Lois TerVeen",
@@ -66102,9 +66102,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1077,
+      id: BigInt(1077),
       seqId: 997,
-      siteId: 23,
+      siteId: BigInt(23),
       recordDate: new Date("5/16/1999 GMT").toISOString(),
       week: 7,
       recorder: "Lois TerVeen",
@@ -66164,9 +66164,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1078,
+      id: BigInt(1078),
       seqId: 998,
-      siteId: 23,
+      siteId: BigInt(23),
       recordDate: new Date("6/6/1999 GMT").toISOString(),
       week: 10,
       recorder: "Lois TerVeen",
@@ -66226,9 +66226,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1079,
+      id: BigInt(1079),
       seqId: 999,
-      siteId: 23,
+      siteId: BigInt(23),
       recordDate: new Date("6/15/1999 GMT").toISOString(),
       week: 11,
       recorder: "Lois TerVeen",
@@ -66287,9 +66287,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1080,
+      id: BigInt(1080),
       seqId: 1000,
-      siteId: 23,
+      siteId: BigInt(23),
       recordDate: new Date("6/22/1999 GMT").toISOString(),
       week: 12,
       recorder: "Lois TerVeen",
@@ -66349,9 +66349,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1081,
+      id: BigInt(1081),
       seqId: 1001,
-      siteId: 23,
+      siteId: BigInt(23),
       recordDate: new Date("6/29/1999 GMT").toISOString(),
       week: 13,
       recorder: "Lois TerVeen",
@@ -66411,9 +66411,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1082,
+      id: BigInt(1082),
       seqId: 1002,
-      siteId: 23,
+      siteId: BigInt(23),
       recordDate: new Date("7/11/1999 GMT").toISOString(),
       week: 15,
       recorder: "Lois TerVeen",
@@ -66473,9 +66473,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1083,
+      id: BigInt(1083),
       seqId: 1003,
-      siteId: 23,
+      siteId: BigInt(23),
       recordDate: new Date("7/15/1999 GMT").toISOString(),
       week: 16,
       recorder: "Lois TerVeen",
@@ -66535,9 +66535,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1084,
+      id: BigInt(1084),
       seqId: 1004,
-      siteId: 23,
+      siteId: BigInt(23),
       recordDate: new Date("8/9/1999 GMT").toISOString(),
       week: 19,
       recorder: "Lois TerVeen",
@@ -66597,9 +66597,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1085,
+      id: BigInt(1085),
       seqId: 1005,
-      siteId: 23,
+      siteId: BigInt(23),
       recordDate: new Date("8/16/1999 GMT").toISOString(),
       week: 20,
       recorder: "Lois TerVeen",
@@ -66658,9 +66658,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1086,
+      id: BigInt(1086),
       seqId: 1006,
-      siteId: 23,
+      siteId: BigInt(23),
       recordDate: new Date("8/22/1999 GMT").toISOString(),
       week: 21,
       recorder: "Lois TerVeen",
@@ -66720,9 +66720,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1087,
+      id: BigInt(1087),
       seqId: 1007,
-      siteId: 23,
+      siteId: BigInt(23),
       recordDate: new Date("8/31/1999 GMT").toISOString(),
       week: 22,
       recorder: "Lois TerVeen",
@@ -66781,9 +66781,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1088,
+      id: BigInt(1088),
       seqId: 1008,
-      siteId: 23,
+      siteId: BigInt(23),
       recordDate: new Date("9/8/1999 GMT").toISOString(),
       week: 23,
       recorder: "Lois TerVeen",
@@ -66842,9 +66842,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1089,
+      id: BigInt(1089),
       seqId: 1009,
-      siteId: 23,
+      siteId: BigInt(23),
       recordDate: new Date("9/12/1999 GMT").toISOString(),
       week: 24,
       recorder: "Lois TerVeen",
@@ -66903,9 +66903,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1090,
+      id: BigInt(1090),
       seqId: 1010,
-      siteId: 23,
+      siteId: BigInt(23),
       recordDate: new Date("9/19/1999 GMT").toISOString(),
       week: 25,
       recorder: "Lois TerVeen",
@@ -66965,9 +66965,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1091,
+      id: BigInt(1091),
       seqId: 1011,
-      siteId: 23,
+      siteId: BigInt(23),
       recordDate: new Date("9/26/1999 GMT").toISOString(),
       week: 26,
       recorder: "Lois TerVeen",
@@ -67026,9 +67026,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1092,
+      id: BigInt(1092),
       seqId: 1212,
-      siteId: 24,
+      siteId: BigInt(24),
       recordDate: new Date("4/2/1999 GMT").toISOString(),
       week: 1,
       recorder: "Lois Terveen",
@@ -67087,9 +67087,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1093,
+      id: BigInt(1093),
       seqId: 1213,
-      siteId: 24,
+      siteId: BigInt(24),
       recordDate: new Date("4/14/1999 GMT").toISOString(),
       week: 2,
       recorder: "Diane Johnson",
@@ -67148,9 +67148,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1094,
+      id: BigInt(1094),
       seqId: 1214,
-      siteId: 24,
+      siteId: BigInt(24),
       recordDate: new Date("4/21/1999 GMT").toISOString(),
       week: 3,
       recorder: "Diane Johnson",
@@ -67209,9 +67209,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1095,
+      id: BigInt(1095),
       seqId: 1215,
-      siteId: 24,
+      siteId: BigInt(24),
       recordDate: new Date("4/28/1999 GMT").toISOString(),
       week: 4,
       recorder: "Diane Johnson",
@@ -67271,9 +67271,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1096,
+      id: BigInt(1096),
       seqId: 1216,
-      siteId: 24,
+      siteId: BigInt(24),
       recordDate: new Date("5/1/1999 GMT").toISOString(),
       week: 5,
       recorder: "Diane Johnson",
@@ -67333,9 +67333,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1097,
+      id: BigInt(1097),
       seqId: 1217,
-      siteId: 24,
+      siteId: BigInt(24),
       recordDate: new Date("5/11/1999 GMT").toISOString(),
       week: 6,
       recorder: "Diane Johnson",
@@ -67395,9 +67395,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1098,
+      id: BigInt(1098),
       seqId: 1218,
-      siteId: 24,
+      siteId: BigInt(24),
       recordDate: new Date("5/19/1999 GMT").toISOString(),
       week: 7,
       recorder: "Diane Johnson",
@@ -67456,9 +67456,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1099,
+      id: BigInt(1099),
       seqId: 1219,
-      siteId: 24,
+      siteId: BigInt(24),
       recordDate: new Date("5/26/1999 GMT").toISOString(),
       week: 8,
       recorder: "Diane Johnson",
@@ -67518,9 +67518,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1100,
+      id: BigInt(1100),
       seqId: 1220,
-      siteId: 24,
+      siteId: BigInt(24),
       recordDate: new Date("5/29/1999 GMT").toISOString(),
       week: 9,
       recorder: "Diane Johnson",
@@ -67580,9 +67580,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1101,
+      id: BigInt(1101),
       seqId: 1221,
-      siteId: 24,
+      siteId: BigInt(24),
       recordDate: new Date("6/9/1999 GMT").toISOString(),
       week: 10,
       recorder: "Diane Johnson",
@@ -67642,9 +67642,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1102,
+      id: BigInt(1102),
       seqId: 1222,
-      siteId: 24,
+      siteId: BigInt(24),
       recordDate: new Date("6/12/1999 GMT").toISOString(),
       week: 11,
       recorder: "Diane Johnson",
@@ -67704,9 +67704,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1103,
+      id: BigInt(1103),
       seqId: 1223,
-      siteId: 24,
+      siteId: BigInt(24),
       recordDate: new Date("6/17/1999 GMT").toISOString(),
       week: 12,
       recorder: "Diane Johnson",
@@ -67766,9 +67766,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1104,
+      id: BigInt(1104),
       seqId: 1228,
-      siteId: 24,
+      siteId: BigInt(24),
       recordDate: new Date("6/28/1999 GMT").toISOString(),
       week: 13,
       recorder: "Diane Johnson",
@@ -67828,9 +67828,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1105,
+      id: BigInt(1105),
       seqId: 1224,
-      siteId: 24,
+      siteId: BigInt(24),
       recordDate: new Date("6/30/1999 GMT").toISOString(),
       week: 13,
       recorder: "Lois TerVeen",
@@ -67890,9 +67890,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1106,
+      id: BigInt(1106),
       seqId: 1225,
-      siteId: 24,
+      siteId: BigInt(24),
       recordDate: new Date("7/6/1999 GMT").toISOString(),
       week: 14,
       recorder: "Diane Johnson",
@@ -67952,9 +67952,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1107,
+      id: BigInt(1107),
       seqId: 1226,
-      siteId: 24,
+      siteId: BigInt(24),
       recordDate: new Date("7/9/1999 GMT").toISOString(),
       week: 15,
       recorder: "Diane Johnson",
@@ -68014,9 +68014,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1108,
+      id: BigInt(1108),
       seqId: 1227,
-      siteId: 24,
+      siteId: BigInt(24),
       recordDate: new Date("7/21/1999 GMT").toISOString(),
       week: 16,
       recorder: "Diane Johnson",
@@ -68076,9 +68076,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1109,
+      id: BigInt(1109),
       seqId: 1229,
-      siteId: 24,
+      siteId: BigInt(24),
       recordDate: new Date("7/31/1999 GMT").toISOString(),
       week: 18,
       recorder: "Diane Johnson",
@@ -68138,9 +68138,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1110,
+      id: BigInt(1110),
       seqId: 1230,
-      siteId: 24,
+      siteId: BigInt(24),
       recordDate: new Date("8/11/1999 GMT").toISOString(),
       week: 19,
       recorder: "Diane Johnson",
@@ -68200,9 +68200,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1111,
+      id: BigInt(1111),
       seqId: 1231,
-      siteId: 24,
+      siteId: BigInt(24),
       recordDate: new Date("8/17/1999 GMT").toISOString(),
       week: 20,
       recorder: "Diane Johnson",
@@ -68262,9 +68262,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1112,
+      id: BigInt(1112),
       seqId: 1232,
-      siteId: 24,
+      siteId: BigInt(24),
       recordDate: new Date("8/22/1999 GMT").toISOString(),
       week: 21,
       recorder: "Diane Johnson",
@@ -68323,9 +68323,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1113,
+      id: BigInt(1113),
       seqId: 1233,
-      siteId: 24,
+      siteId: BigInt(24),
       recordDate: new Date("9/1/1999 GMT").toISOString(),
       week: 22,
       recorder: "Diane Johnson",
@@ -68385,9 +68385,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1114,
+      id: BigInt(1114),
       seqId: 1234,
-      siteId: 24,
+      siteId: BigInt(24),
       recordDate: new Date("9/8/1999 GMT").toISOString(),
       week: 23,
       recorder: "Diane Johnson",
@@ -68447,9 +68447,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1115,
+      id: BigInt(1115),
       seqId: 1235,
-      siteId: 24,
+      siteId: BigInt(24),
       recordDate: new Date("9/15/1999 GMT").toISOString(),
       week: 24,
       recorder: "Diane Johnson",
@@ -68509,9 +68509,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1116,
+      id: BigInt(1116),
       seqId: 1236,
-      siteId: 24,
+      siteId: BigInt(24),
       recordDate: new Date("9/19/1999 GMT").toISOString(),
       week: 25,
       recorder: "Diane Johnson",
@@ -68571,9 +68571,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1117,
+      id: BigInt(1117),
       seqId: 1237,
-      siteId: 24,
+      siteId: BigInt(24),
       recordDate: new Date("9/28/1999 GMT").toISOString(),
       week: 26,
       recorder: "Diane Johnson",
@@ -68633,9 +68633,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1118,
+      id: BigInt(1118),
       seqId: 1287,
-      siteId: 25,
+      siteId: BigInt(25),
       recordDate: new Date("4/3/1999 GMT").toISOString(),
       week: 1,
       recorder: "Brad Phillips, John Krebs",
@@ -68694,9 +68694,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1119,
+      id: BigInt(1119),
       seqId: 1288,
-      siteId: 25,
+      siteId: BigInt(25),
       recordDate: new Date("4/14/1999 GMT").toISOString(),
       week: 2,
       recorder: "Pat Krebs",
@@ -68755,9 +68755,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1120,
+      id: BigInt(1120),
       seqId: 1289,
-      siteId: 25,
+      siteId: BigInt(25),
       recordDate: new Date("4/26/1999 GMT").toISOString(),
       week: 4,
       recorder: "Pat Krebs",
@@ -68816,9 +68816,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1121,
+      id: BigInt(1121),
       seqId: 1290,
-      siteId: 25,
+      siteId: BigInt(25),
       recordDate: new Date("5/4/1999 GMT").toISOString(),
       week: 5,
       recorder: "Pat Krebs",
@@ -68877,9 +68877,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1122,
+      id: BigInt(1122),
       seqId: 1291,
-      siteId: 25,
+      siteId: BigInt(25),
       recordDate: new Date("5/10/1999 GMT").toISOString(),
       week: 6,
       recorder: "Pat Krebs",
@@ -68938,9 +68938,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1123,
+      id: BigInt(1123),
       seqId: 1292,
-      siteId: 25,
+      siteId: BigInt(25),
       recordDate: new Date("5/17/1999 GMT").toISOString(),
       week: 7,
       recorder: "Pat Krebs",
@@ -68999,9 +68999,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1124,
+      id: BigInt(1124),
       seqId: 1293,
-      siteId: 25,
+      siteId: BigInt(25),
       recordDate: new Date("5/21/1999 GMT").toISOString(),
       week: 8,
       recorder: "Pat Krebs",
@@ -69061,9 +69061,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1125,
+      id: BigInt(1125),
       seqId: 1294,
-      siteId: 25,
+      siteId: BigInt(25),
       recordDate: new Date("6/4/1999 GMT").toISOString(),
       week: 10,
       recorder: "Pat Krebs",
@@ -69122,9 +69122,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1126,
+      id: BigInt(1126),
       seqId: 1295,
-      siteId: 25,
+      siteId: BigInt(25),
       recordDate: new Date("6/9/1999 GMT").toISOString(),
       week: 10,
       recorder: "Pat Krebs",
@@ -69183,9 +69183,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1127,
+      id: BigInt(1127),
       seqId: 1296,
-      siteId: 25,
+      siteId: BigInt(25),
       recordDate: new Date("6/15/1999 GMT").toISOString(),
       week: 11,
       recorder: "Pat Krebs",
@@ -69244,9 +69244,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1128,
+      id: BigInt(1128),
       seqId: 1297,
-      siteId: 25,
+      siteId: BigInt(25),
       recordDate: new Date("6/18/1999 GMT").toISOString(),
       week: 12,
       recorder: "Pat Krebs",
@@ -69305,9 +69305,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1129,
+      id: BigInt(1129),
       seqId: 1298,
-      siteId: 25,
+      siteId: BigInt(25),
       recordDate: new Date("6/25/1999 GMT").toISOString(),
       week: 13,
       recorder: "Pat Krebs",
@@ -69366,9 +69366,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1130,
+      id: BigInt(1130),
       seqId: 1299,
-      siteId: 25,
+      siteId: BigInt(25),
       recordDate: new Date("7/2/1999 GMT").toISOString(),
       week: 14,
       recorder: "Pat Krebs",
@@ -69427,9 +69427,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1131,
+      id: BigInt(1131),
       seqId: 1300,
-      siteId: 25,
+      siteId: BigInt(25),
       recordDate: new Date("7/7/1999 GMT").toISOString(),
       week: 14,
       recorder: "Pat Krebs",
@@ -69488,9 +69488,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1132,
+      id: BigInt(1132),
       seqId: 1301,
-      siteId: 25,
+      siteId: BigInt(25),
       recordDate: new Date("7/15/1999 GMT").toISOString(),
       week: 16,
       recorder: "Pat Krebs",
@@ -69549,9 +69549,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1133,
+      id: BigInt(1133),
       seqId: 1302,
-      siteId: 25,
+      siteId: BigInt(25),
       recordDate: new Date("7/21/1999 GMT").toISOString(),
       week: 16,
       recorder: "Pat Krebs",
@@ -69610,9 +69610,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1134,
+      id: BigInt(1134),
       seqId: 1303,
-      siteId: 25,
+      siteId: BigInt(25),
       recordDate: new Date("7/29/1999 GMT").toISOString(),
       week: 18,
       recorder: "Pat Krebs",
@@ -69671,9 +69671,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1135,
+      id: BigInt(1135),
       seqId: 1304,
-      siteId: 25,
+      siteId: BigInt(25),
       recordDate: new Date("8/4/1999 GMT").toISOString(),
       week: 18,
       recorder: "Pat Krebs",
@@ -69732,9 +69732,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1136,
+      id: BigInt(1136),
       seqId: 1305,
-      siteId: 25,
+      siteId: BigInt(25),
       recordDate: new Date("8/8/1999 GMT").toISOString(),
       week: 19,
       recorder: "Pat Krebs",
@@ -69794,9 +69794,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1137,
+      id: BigInt(1137),
       seqId: 1306,
-      siteId: 25,
+      siteId: BigInt(25),
       recordDate: new Date("8/20/1999 GMT").toISOString(),
       week: 21,
       recorder: "Pat Krebs",
@@ -69855,9 +69855,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1138,
+      id: BigInt(1138),
       seqId: 1307,
-      siteId: 25,
+      siteId: BigInt(25),
       recordDate: new Date("8/28/1999 GMT").toISOString(),
       week: 22,
       recorder: "Pat Krebs",
@@ -69917,9 +69917,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1139,
+      id: BigInt(1139),
       seqId: 1308,
-      siteId: 25,
+      siteId: BigInt(25),
       recordDate: new Date("9/9/1999 GMT").toISOString(),
       week: 24,
       recorder: "Pat Krebs",
@@ -69978,9 +69978,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1140,
+      id: BigInt(1140),
       seqId: 1309,
-      siteId: 25,
+      siteId: BigInt(25),
       recordDate: new Date("9/14/1999 GMT").toISOString(),
       week: 24,
       recorder: "Pat Krebs/Ann Voight",
@@ -70039,9 +70039,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1141,
+      id: BigInt(1141),
       seqId: 1310,
-      siteId: 25,
+      siteId: BigInt(25),
       recordDate: new Date("9/22/1999 GMT").toISOString(),
       week: 25,
       recorder: "Pat Krebs/Ann Noms",
@@ -70100,9 +70100,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1142,
+      id: BigInt(1142),
       seqId: 1311,
-      siteId: 25,
+      siteId: BigInt(25),
       recordDate: new Date("10/1/1999 GMT").toISOString(),
       week: 27,
       recorder: "Pat Krebs",
@@ -70161,9 +70161,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1143,
+      id: BigInt(1143),
       seqId: 1312,
-      siteId: 25,
+      siteId: BigInt(25),
       recordDate: new Date("10/7/1999 GMT").toISOString(),
       week: 27,
       recorder: "Pat Krebs",
@@ -70222,9 +70222,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1144,
+      id: BigInt(1144),
       seqId: 1381,
-      siteId: 26,
+      siteId: BigInt(26),
       recordDate: new Date("4/27/1999 GMT").toISOString(),
       week: 4,
       recorder: "Heather Norris",
@@ -70283,9 +70283,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1145,
+      id: BigInt(1145),
       seqId: 1382,
-      siteId: 26,
+      siteId: BigInt(26),
       recordDate: new Date("4/30/1999 GMT").toISOString(),
       week: 5,
       recorder: "",
@@ -70344,9 +70344,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1146,
+      id: BigInt(1146),
       seqId: 1383,
-      siteId: 26,
+      siteId: BigInt(26),
       recordDate: new Date("5/4/1999 GMT").toISOString(),
       week: 5,
       recorder: "L.Munger,K.Menard,L.Royce",
@@ -70405,9 +70405,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1147,
+      id: BigInt(1147),
       seqId: 1384,
-      siteId: 26,
+      siteId: BigInt(26),
       recordDate: new Date("5/7/1999 GMT").toISOString(),
       week: 6,
       recorder: "K. Menard/L. Royce",
@@ -70466,9 +70466,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1148,
+      id: BigInt(1148),
       seqId: 1385,
-      siteId: 26,
+      siteId: BigInt(26),
       recordDate: new Date("5/16/1999 GMT").toISOString(),
       week: 7,
       recorder: "Steve Smith",
@@ -70527,9 +70527,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1149,
+      id: BigInt(1149),
       seqId: 1386,
-      siteId: 26,
+      siteId: BigInt(26),
       recordDate: new Date("5/21/1999 GMT").toISOString(),
       week: 8,
       recorder: "K. Menard/Steve Smith",
@@ -70588,9 +70588,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1150,
+      id: BigInt(1150),
       seqId: 1387,
-      siteId: 26,
+      siteId: BigInt(26),
       recordDate: new Date("5/27/1999 GMT").toISOString(),
       week: 9,
       recorder: "K. Menard/L.Royce",
@@ -70649,9 +70649,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1151,
+      id: BigInt(1151),
       seqId: 1388,
-      siteId: 26,
+      siteId: BigInt(26),
       recordDate: new Date("6/6/1999 GMT").toISOString(),
       week: 10,
       recorder: "Steve Smith",
@@ -70710,9 +70710,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1152,
+      id: BigInt(1152),
       seqId: 1389,
-      siteId: 26,
+      siteId: BigInt(26),
       recordDate: new Date("6/7/1999 GMT").toISOString(),
       week: 10,
       recorder: "H.M,L.M.,E.P.,M.M",
@@ -70772,9 +70772,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1153,
+      id: BigInt(1153),
       seqId: 1390,
-      siteId: 26,
+      siteId: BigInt(26),
       recordDate: new Date("6/15/1999 GMT").toISOString(),
       week: 11,
       recorder: "Karen Menard",
@@ -70833,9 +70833,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1154,
+      id: BigInt(1154),
       seqId: 1391,
-      siteId: 26,
+      siteId: BigInt(26),
       recordDate: new Date("6/22/1999 GMT").toISOString(),
       week: 12,
       recorder: "Lesley Royce",
@@ -70894,9 +70894,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1155,
+      id: BigInt(1155),
       seqId: 1392,
-      siteId: 26,
+      siteId: BigInt(26),
       recordDate: new Date("6/26/1999 GMT").toISOString(),
       week: 13,
       recorder: "Steve Smith",
@@ -70955,9 +70955,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1156,
+      id: BigInt(1156),
       seqId: 1393,
-      siteId: 26,
+      siteId: BigInt(26),
       recordDate: new Date("6/28/1999 GMT").toISOString(),
       week: 13,
       recorder: "Karen Menard,Lesley Royce",
@@ -71017,9 +71017,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1157,
+      id: BigInt(1157),
       seqId: 1394,
-      siteId: 26,
+      siteId: BigInt(26),
       recordDate: new Date("7/1/1999 GMT").toISOString(),
       week: 14,
       recorder: "",
@@ -71078,9 +71078,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1158,
+      id: BigInt(1158),
       seqId: 1395,
-      siteId: 26,
+      siteId: BigInt(26),
       recordDate: new Date("7/2/1999 GMT").toISOString(),
       week: 14,
       recorder: "Steve Smith,Katie Lublin",
@@ -71139,9 +71139,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1159,
+      id: BigInt(1159),
       seqId: 1396,
-      siteId: 26,
+      siteId: BigInt(26),
       recordDate: new Date("7/9/1999 GMT").toISOString(),
       week: 15,
       recorder: "Linda Munger",
@@ -71201,9 +71201,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1160,
+      id: BigInt(1160),
       seqId: 1397,
-      siteId: 26,
+      siteId: BigInt(26),
       recordDate: new Date("7/11/1999 GMT").toISOString(),
       week: 15,
       recorder: "Steve & Peter Smith",
@@ -71262,9 +71262,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1161,
+      id: BigInt(1161),
       seqId: 1398,
-      siteId: 26,
+      siteId: BigInt(26),
       recordDate: new Date("7/16/1999 GMT").toISOString(),
       week: 16,
       recorder: "Karen Menard,Linda Munger",
@@ -71323,9 +71323,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1162,
+      id: BigInt(1162),
       seqId: 1399,
-      siteId: 26,
+      siteId: BigInt(26),
       recordDate: new Date("7/20/1999 GMT").toISOString(),
       week: 16,
       recorder: "Steve Smith",
@@ -71385,9 +71385,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1163,
+      id: BigInt(1163),
       seqId: 1400,
-      siteId: 26,
+      siteId: BigInt(26),
       recordDate: new Date("7/27/1999 GMT").toISOString(),
       week: 17,
       recorder: "Linda Munger",
@@ -71446,9 +71446,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1164,
+      id: BigInt(1164),
       seqId: 1401,
-      siteId: 26,
+      siteId: BigInt(26),
       recordDate: new Date("7/30/1999 GMT").toISOString(),
       week: 18,
       recorder: "Steve Smith",
@@ -71507,9 +71507,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1165,
+      id: BigInt(1165),
       seqId: 1402,
-      siteId: 26,
+      siteId: BigInt(26),
       recordDate: new Date("8/6/1999 GMT").toISOString(),
       week: 19,
       recorder: "Linda Munger",
@@ -71568,9 +71568,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1166,
+      id: BigInt(1166),
       seqId: 1403,
-      siteId: 26,
+      siteId: BigInt(26),
       recordDate: new Date("8/8/1999 GMT").toISOString(),
       week: 19,
       recorder: "Steve Smith",
@@ -71630,9 +71630,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1167,
+      id: BigInt(1167),
       seqId: 1404,
-      siteId: 26,
+      siteId: BigInt(26),
       recordDate: new Date("8/12/1999 GMT").toISOString(),
       week: 20,
       recorder: "Steve Smith",
@@ -71691,9 +71691,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1168,
+      id: BigInt(1168),
       seqId: 1405,
-      siteId: 26,
+      siteId: BigInt(26),
       recordDate: new Date("8/13/1999 GMT").toISOString(),
       week: 20,
       recorder: "Karen Menard",
@@ -71752,9 +71752,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1169,
+      id: BigInt(1169),
       seqId: 1406,
-      siteId: 26,
+      siteId: BigInt(26),
       recordDate: new Date("8/20/1999 GMT").toISOString(),
       week: 21,
       recorder: "Steve Smith",
@@ -71814,9 +71814,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1170,
+      id: BigInt(1170),
       seqId: 1407,
-      siteId: 26,
+      siteId: BigInt(26),
       recordDate: new Date("8/30/1999 GMT").toISOString(),
       week: 22,
       recorder: "Linda Munger",
@@ -71875,9 +71875,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1171,
+      id: BigInt(1171),
       seqId: 1408,
-      siteId: 26,
+      siteId: BigInt(26),
       recordDate: new Date("9/1/1999 GMT").toISOString(),
       week: 22,
       recorder: "Steve Smith",
@@ -71936,9 +71936,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1172,
+      id: BigInt(1172),
       seqId: 1409,
-      siteId: 26,
+      siteId: BigInt(26),
       recordDate: new Date("9/2/1999 GMT").toISOString(),
       week: 23,
       recorder: "Steve Smith,E. Pearson",
@@ -71997,9 +71997,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1173,
+      id: BigInt(1173),
       seqId: 1410,
-      siteId: 26,
+      siteId: BigInt(26),
       recordDate: new Date("9/14/1999 GMT").toISOString(),
       week: 24,
       recorder: "E. Pearson, L. Munger",
@@ -72058,9 +72058,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1174,
+      id: BigInt(1174),
       seqId: 1411,
-      siteId: 26,
+      siteId: BigInt(26),
       recordDate: new Date("9/15/1999 GMT").toISOString(),
       week: 24,
       recorder: "Steve Smith",
@@ -72119,9 +72119,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1175,
+      id: BigInt(1175),
       seqId: 1412,
-      siteId: 26,
+      siteId: BigInt(26),
       recordDate: new Date("9/19/1999 GMT").toISOString(),
       week: 25,
       recorder: "Steve & Peter Smith",
@@ -72180,9 +72180,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1176,
+      id: BigInt(1176),
       seqId: 1413,
-      siteId: 26,
+      siteId: BigInt(26),
       recordDate: new Date("9/22/1999 GMT").toISOString(),
       week: 25,
       recorder: "",
@@ -72241,9 +72241,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1177,
+      id: BigInt(1177),
       seqId: 1414,
-      siteId: 26,
+      siteId: BigInt(26),
       recordDate: new Date("9/23/1999 GMT").toISOString(),
       week: 26,
       recorder: "Steve Smith",
@@ -72302,9 +72302,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1178,
+      id: BigInt(1178),
       seqId: 1467,
-      siteId: 27,
+      siteId: BigInt(27),
       recordDate: new Date("4/14/1999 GMT").toISOString(),
       week: 2,
       recorder: "M. Siebert",
@@ -72364,9 +72364,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1179,
+      id: BigInt(1179),
       seqId: 1468,
-      siteId: 27,
+      siteId: BigInt(27),
       recordDate: new Date("5/4/1999 GMT").toISOString(),
       week: 5,
       recorder: "M. Siebert",
@@ -72426,9 +72426,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1180,
+      id: BigInt(1180),
       seqId: 1469,
-      siteId: 27,
+      siteId: BigInt(27),
       recordDate: new Date("5/28/1999 GMT").toISOString(),
       week: 9,
       recorder: "M. Siebert",
@@ -72488,9 +72488,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1181,
+      id: BigInt(1181),
       seqId: 1470,
-      siteId: 27,
+      siteId: BigInt(27),
       recordDate: new Date("6/4/1999 GMT").toISOString(),
       week: 10,
       recorder: "P. Devlin",
@@ -72549,9 +72549,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1182,
+      id: BigInt(1182),
       seqId: 1471,
-      siteId: 27,
+      siteId: BigInt(27),
       recordDate: new Date("6/9/1999 GMT").toISOString(),
       week: 10,
       recorder: "R. Finder",
@@ -72611,9 +72611,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1183,
+      id: BigInt(1183),
       seqId: 1472,
-      siteId: 27,
+      siteId: BigInt(27),
       recordDate: new Date("6/19/1999 GMT").toISOString(),
       week: 12,
       recorder: "Trudy Beal",
@@ -72673,9 +72673,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1184,
+      id: BigInt(1184),
       seqId: 1473,
-      siteId: 27,
+      siteId: BigInt(27),
       recordDate: new Date("6/23/1999 GMT").toISOString(),
       week: 12,
       recorder: "",
@@ -72735,9 +72735,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1185,
+      id: BigInt(1185),
       seqId: 1474,
-      siteId: 27,
+      siteId: BigInt(27),
       recordDate: new Date("7/1/1999 GMT").toISOString(),
       week: 14,
       recorder: "J. Fightmaster",
@@ -72797,9 +72797,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1186,
+      id: BigInt(1186),
       seqId: 1475,
-      siteId: 27,
+      siteId: BigInt(27),
       recordDate: new Date("7/9/1999 GMT").toISOString(),
       week: 15,
       recorder: "",
@@ -72859,9 +72859,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1187,
+      id: BigInt(1187),
       seqId: 1476,
-      siteId: 27,
+      siteId: BigInt(27),
       recordDate: new Date("7/15/1999 GMT").toISOString(),
       week: 16,
       recorder: "",
@@ -72921,9 +72921,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1188,
+      id: BigInt(1188),
       seqId: 1477,
-      siteId: 27,
+      siteId: BigInt(27),
       recordDate: new Date("7/20/1999 GMT").toISOString(),
       week: 16,
       recorder: "",
@@ -72983,9 +72983,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1189,
+      id: BigInt(1189),
       seqId: 1478,
-      siteId: 27,
+      siteId: BigInt(27),
       recordDate: new Date("7/31/1999 GMT").toISOString(),
       week: 18,
       recorder: "T. Earley",
@@ -73045,9 +73045,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1190,
+      id: BigInt(1190),
       seqId: 1479,
-      siteId: 27,
+      siteId: BigInt(27),
       recordDate: new Date("8/6/1999 GMT").toISOString(),
       week: 19,
       recorder: "",
@@ -73107,9 +73107,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1191,
+      id: BigInt(1191),
       seqId: 1481,
-      siteId: 27,
+      siteId: BigInt(27),
       recordDate: new Date("8/9/1999 GMT").toISOString(),
       week: 19,
       recorder: "",
@@ -73168,9 +73168,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1192,
+      id: BigInt(1192),
       seqId: 1482,
-      siteId: 27,
+      siteId: BigInt(27),
       recordDate: new Date("8/19/1999 GMT").toISOString(),
       week: 21,
       recorder: "M. Siebert",
@@ -73231,9 +73231,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1193,
+      id: BigInt(1193),
       seqId: 1483,
-      siteId: 27,
+      siteId: BigInt(27),
       recordDate: new Date("8/26/1999 GMT").toISOString(),
       week: 22,
       recorder: "",
@@ -73292,9 +73292,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1194,
+      id: BigInt(1194),
       seqId: 1484,
-      siteId: 27,
+      siteId: BigInt(27),
       recordDate: new Date("9/2/1999 GMT").toISOString(),
       week: 23,
       recorder: "J. Barnes",
@@ -73355,9 +73355,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1195,
+      id: BigInt(1195),
       seqId: 1485,
-      siteId: 27,
+      siteId: BigInt(27),
       recordDate: new Date("9/9/1999 GMT").toISOString(),
       week: 24,
       recorder: "P. Devlin",
@@ -73416,9 +73416,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1196,
+      id: BigInt(1196),
       seqId: 1486,
-      siteId: 27,
+      siteId: BigInt(27),
       recordDate: new Date("9/15/1999 GMT").toISOString(),
       week: 24,
       recorder: "J. Barnes",
@@ -73478,9 +73478,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1197,
+      id: BigInt(1197),
       seqId: 1487,
-      siteId: 27,
+      siteId: BigInt(27),
       recordDate: new Date("9/23/1999 GMT").toISOString(),
       week: 26,
       recorder: "",
@@ -73540,9 +73540,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1198,
+      id: BigInt(1198),
       seqId: 1488,
-      siteId: 27,
+      siteId: BigInt(27),
       recordDate: new Date("9/30/1999 GMT").toISOString(),
       week: 26,
       recorder: "P. Devlin",
@@ -73601,9 +73601,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1199,
+      id: BigInt(1199),
       seqId: 1489,
-      siteId: 27,
+      siteId: BigInt(27),
       recordDate: new Date("10/7/1999 GMT").toISOString(),
       week: 27,
       recorder: "",
@@ -73662,9 +73662,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1200,
+      id: BigInt(1200),
       seqId: 1490,
-      siteId: 27,
+      siteId: BigInt(27),
       recordDate: new Date("10/13/1999 GMT").toISOString(),
       week: 28,
       recorder: "M. Siebert",
@@ -73723,9 +73723,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1201,
+      id: BigInt(1201),
       seqId: 1491,
-      siteId: 27,
+      siteId: BigInt(27),
       recordDate: new Date("10/21/1999 GMT").toISOString(),
       week: 29,
       recorder: "A. Phillips",
@@ -73784,9 +73784,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1202,
+      id: BigInt(1202),
       seqId: 1012,
-      siteId: 28,
+      siteId: BigInt(28),
       recordDate: new Date("4/2/1999 GMT").toISOString(),
       week: 1,
       recorder: "Yvonne Molhman",
@@ -73846,9 +73846,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1203,
+      id: BigInt(1203),
       seqId: 1013,
-      siteId: 28,
+      siteId: BigInt(28),
       recordDate: new Date("4/14/1999 GMT").toISOString(),
       week: 2,
       recorder: "Y. Mohlman, H. Clark",
@@ -73908,9 +73908,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1204,
+      id: BigInt(1204),
       seqId: 1014,
-      siteId: 28,
+      siteId: BigInt(28),
       recordDate: new Date("4/20/1999 GMT").toISOString(),
       week: 3,
       recorder: "Y. Mohlman",
@@ -73970,9 +73970,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1205,
+      id: BigInt(1205),
       seqId: 1015,
-      siteId: 28,
+      siteId: BigInt(28),
       recordDate: new Date("5/3/1999 GMT").toISOString(),
       week: 5,
       recorder: "Y. Mohlman",
@@ -74032,9 +74032,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1206,
+      id: BigInt(1206),
       seqId: 1017,
-      siteId: 28,
+      siteId: BigInt(28),
       recordDate: new Date("5/10/1999 GMT").toISOString(),
       week: 6,
       recorder: "Yvonne Mohlman",
@@ -74094,9 +74094,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1207,
+      id: BigInt(1207),
       seqId: 1018,
-      siteId: 28,
+      siteId: BigInt(28),
       recordDate: new Date("5/19/1999 GMT").toISOString(),
       week: 7,
       recorder: "Yvonne Mohlman",
@@ -74156,9 +74156,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1208,
+      id: BigInt(1208),
       seqId: 1019,
-      siteId: 28,
+      siteId: BigInt(28),
       recordDate: new Date("5/25/1999 GMT").toISOString(),
       week: 8,
       recorder: "Yvonne Mohlman",
@@ -74218,9 +74218,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1209,
+      id: BigInt(1209),
       seqId: 1020,
-      siteId: 28,
+      siteId: BigInt(28),
       recordDate: new Date("5/30/1999 GMT").toISOString(),
       week: 9,
       recorder: "Yvonne Mohlman",
@@ -74280,9 +74280,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1210,
+      id: BigInt(1210),
       seqId: 1021,
-      siteId: 28,
+      siteId: BigInt(28),
       recordDate: new Date("6/7/1999 GMT").toISOString(),
       week: 10,
       recorder: "Yvonne Mohlman",
@@ -74343,9 +74343,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1211,
+      id: BigInt(1211),
       seqId: 1022,
-      siteId: 28,
+      siteId: BigInt(28),
       recordDate: new Date("6/19/1999 GMT").toISOString(),
       week: 12,
       recorder: "Yvonne Mohlman",
@@ -74406,9 +74406,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1212,
+      id: BigInt(1212),
       seqId: 1023,
-      siteId: 28,
+      siteId: BigInt(28),
       recordDate: new Date("6/21/1999 GMT").toISOString(),
       week: 12,
       recorder: "Yvonne Mohlman",
@@ -74469,9 +74469,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1213,
+      id: BigInt(1213),
       seqId: 1024,
-      siteId: 28,
+      siteId: BigInt(28),
       recordDate: new Date("6/28/1999 GMT").toISOString(),
       week: 13,
       recorder: "Yvonne Mohlman",
@@ -74531,9 +74531,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1214,
+      id: BigInt(1214),
       seqId: 1025,
-      siteId: 28,
+      siteId: BigInt(28),
       recordDate: new Date("7/5/1999 GMT").toISOString(),
       week: 14,
       recorder: "Yvonne Mohlman",
@@ -74593,9 +74593,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1215,
+      id: BigInt(1215),
       seqId: 1026,
-      siteId: 28,
+      siteId: BigInt(28),
       recordDate: new Date("7/12/1999 GMT").toISOString(),
       week: 15,
       recorder: "Yvonne Mohlman",
@@ -74655,9 +74655,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1216,
+      id: BigInt(1216),
       seqId: 1027,
-      siteId: 28,
+      siteId: BigInt(28),
       recordDate: new Date("7/19/1999 GMT").toISOString(),
       week: 16,
       recorder: "Yvonne Mohlman",
@@ -74718,9 +74718,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1217,
+      id: BigInt(1217),
       seqId: 1028,
-      siteId: 28,
+      siteId: BigInt(28),
       recordDate: new Date("7/25/1999 GMT").toISOString(),
       week: 17,
       recorder: "Yvonne Mohlman",
@@ -74781,9 +74781,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1218,
+      id: BigInt(1218),
       seqId: 1029,
-      siteId: 28,
+      siteId: BigInt(28),
       recordDate: new Date("8/1/1999 GMT").toISOString(),
       week: 18,
       recorder: "Yvonne Mohlman",
@@ -74843,9 +74843,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1219,
+      id: BigInt(1219),
       seqId: 1030,
-      siteId: 28,
+      siteId: BigInt(28),
       recordDate: new Date("8/9/1999 GMT").toISOString(),
       week: 19,
       recorder: "Yvonne Mohlman",
@@ -74905,9 +74905,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1220,
+      id: BigInt(1220),
       seqId: 1031,
-      siteId: 28,
+      siteId: BigInt(28),
       recordDate: new Date("8/16/1999 GMT").toISOString(),
       week: 20,
       recorder: "Yvonne Mohlman",
@@ -74967,9 +74967,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1221,
+      id: BigInt(1221),
       seqId: 1032,
-      siteId: 28,
+      siteId: BigInt(28),
       recordDate: new Date("8/23/1999 GMT").toISOString(),
       week: 21,
       recorder: "Yvonne Mohlman",
@@ -75030,9 +75030,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1222,
+      id: BigInt(1222),
       seqId: 1033,
-      siteId: 28,
+      siteId: BigInt(28),
       recordDate: new Date("8/29/1999 GMT").toISOString(),
       week: 22,
       recorder: "Yvonne Mohlman",
@@ -75093,9 +75093,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1223,
+      id: BigInt(1223),
       seqId: 1034,
-      siteId: 28,
+      siteId: BigInt(28),
       recordDate: new Date("9/5/1999 GMT").toISOString(),
       week: 23,
       recorder: "Yvonne Mohlman",
@@ -75156,9 +75156,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1224,
+      id: BigInt(1224),
       seqId: 1035,
-      siteId: 28,
+      siteId: BigInt(28),
       recordDate: new Date("9/12/1999 GMT").toISOString(),
       week: 24,
       recorder: "Yvonne Mohlman",
@@ -75218,9 +75218,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1225,
+      id: BigInt(1225),
       seqId: 1036,
-      siteId: 28,
+      siteId: BigInt(28),
       recordDate: new Date("9/19/1999 GMT").toISOString(),
       week: 25,
       recorder: "Yvonne Mohlman",
@@ -75280,9 +75280,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1226,
+      id: BigInt(1226),
       seqId: 1037,
-      siteId: 28,
+      siteId: BigInt(28),
       recordDate: new Date("9/27/1999 GMT").toISOString(),
       week: 26,
       recorder: "Yvonne Mohlman",
@@ -75342,9 +75342,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1227,
+      id: BigInt(1227),
       seqId: 755,
-      siteId: 29,
+      siteId: BigInt(29),
       recordDate: new Date("4/3/1996 GMT").toISOString(),
       week: 1,
       recorder: "Deb Marcinski",
@@ -75403,9 +75403,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1228,
+      id: BigInt(1228),
       seqId: 756,
-      siteId: 29,
+      siteId: BigInt(29),
       recordDate: new Date("4/18/1996 GMT").toISOString(),
       week: 3,
       recorder: "Deb Marcinski",
@@ -75464,9 +75464,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1229,
+      id: BigInt(1229),
       seqId: 757,
-      siteId: 29,
+      siteId: BigInt(29),
       recordDate: new Date("5/10/1996 GMT").toISOString(),
       week: 6,
       recorder: "Deb Marcinski",
@@ -75525,9 +75525,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1230,
+      id: BigInt(1230),
       seqId: 758,
-      siteId: 29,
+      siteId: BigInt(29),
       recordDate: new Date("5/22/1996 GMT").toISOString(),
       week: 8,
       recorder: "Deb Marcinski/Metcalf",
@@ -75586,9 +75586,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1231,
+      id: BigInt(1231),
       seqId: 759,
-      siteId: 29,
+      siteId: BigInt(29),
       recordDate: new Date("5/31/1996 GMT").toISOString(),
       week: 9,
       recorder: "Deb Marcinski/Metcalf",
@@ -75648,9 +75648,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1232,
+      id: BigInt(1232),
       seqId: 760,
-      siteId: 29,
+      siteId: BigInt(29),
       recordDate: new Date("6/14/1996 GMT").toISOString(),
       week: 11,
       recorder: "Deb Marcinski",
@@ -75710,9 +75710,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1233,
+      id: BigInt(1233),
       seqId: 761,
-      siteId: 29,
+      siteId: BigInt(29),
       recordDate: new Date("6/28/1996 GMT").toISOString(),
       week: 13,
       recorder: "Deb Marcinski",
@@ -75772,9 +75772,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1234,
+      id: BigInt(1234),
       seqId: 762,
-      siteId: 29,
+      siteId: BigInt(29),
       recordDate: new Date("7/12/1996 GMT").toISOString(),
       week: 15,
       recorder: "Deb Marcinski/Metcalf",
@@ -75835,9 +75835,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1235,
+      id: BigInt(1235),
       seqId: 763,
-      siteId: 29,
+      siteId: BigInt(29),
       recordDate: new Date("7/29/1996 GMT").toISOString(),
       week: 18,
       recorder: "Deb Marcinski/Krynak",
@@ -75897,9 +75897,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1236,
+      id: BigInt(1236),
       seqId: 764,
-      siteId: 29,
+      siteId: BigInt(29),
       recordDate: new Date("8/18/1996 GMT").toISOString(),
       week: 20,
       recorder: "Deb Marcinski",
@@ -75959,9 +75959,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1237,
+      id: BigInt(1237),
       seqId: 765,
-      siteId: 29,
+      siteId: BigInt(29),
       recordDate: new Date("8/26/1996 GMT").toISOString(),
       week: 22,
       recorder: "Deb Marcinski",
@@ -76021,9 +76021,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1238,
+      id: BigInt(1238),
       seqId: 766,
-      siteId: 29,
+      siteId: BigInt(29),
       recordDate: new Date("9/4/1996 GMT").toISOString(),
       week: 23,
       recorder: "Deb Marcinski",
@@ -76083,9 +76083,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1239,
+      id: BigInt(1239),
       seqId: 767,
-      siteId: 29,
+      siteId: BigInt(29),
       recordDate: new Date("9/12/1996 GMT").toISOString(),
       week: 24,
       recorder: "Deb Marcinski",
@@ -76145,9 +76145,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1240,
+      id: BigInt(1240),
       seqId: 768,
-      siteId: 29,
+      siteId: BigInt(29),
       recordDate: new Date("9/25/1996 GMT").toISOString(),
       week: 26,
       recorder: "Deb Marcinski",
@@ -76206,9 +76206,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1241,
+      id: BigInt(1241),
       seqId: 769,
-      siteId: 29,
+      siteId: BigInt(29),
       recordDate: new Date("4/2/1997 GMT").toISOString(),
       week: 1,
       recorder: "Deb Marcinski",
@@ -76267,9 +76267,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1242,
+      id: BigInt(1242),
       seqId: 770,
-      siteId: 29,
+      siteId: BigInt(29),
       recordDate: new Date("5/27/1997 GMT").toISOString(),
       week: 9,
       recorder: "Deb Marcinski",
@@ -76329,9 +76329,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1243,
+      id: BigInt(1243),
       seqId: 771,
-      siteId: 29,
+      siteId: BigInt(29),
       recordDate: new Date("6/5/1997 GMT").toISOString(),
       week: 10,
       recorder: "Deb Marcinski",
@@ -76391,9 +76391,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1244,
+      id: BigInt(1244),
       seqId: 772,
-      siteId: 29,
+      siteId: BigInt(29),
       recordDate: new Date("6/11/1997 GMT").toISOString(),
       week: 11,
       recorder: "Deb Marcinski",
@@ -76453,9 +76453,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1245,
+      id: BigInt(1245),
       seqId: 773,
-      siteId: 29,
+      siteId: BigInt(29),
       recordDate: new Date("6/19/1997 GMT").toISOString(),
       week: 12,
       recorder: "Deb Marcinski",
@@ -76515,9 +76515,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1246,
+      id: BigInt(1246),
       seqId: 774,
-      siteId: 29,
+      siteId: BigInt(29),
       recordDate: new Date("7/2/1997 GMT").toISOString(),
       week: 14,
       recorder: "Deb Marcinski",
@@ -76577,9 +76577,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1247,
+      id: BigInt(1247),
       seqId: 775,
-      siteId: 29,
+      siteId: BigInt(29),
       recordDate: new Date("7/13/1997 GMT").toISOString(),
       week: 15,
       recorder: "Deb Marcinski",
@@ -76639,9 +76639,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1248,
+      id: BigInt(1248),
       seqId: 776,
-      siteId: 29,
+      siteId: BigInt(29),
       recordDate: new Date("8/7/1997 GMT").toISOString(),
       week: 19,
       recorder: "Deb Marcinski",
@@ -76701,9 +76701,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1249,
+      id: BigInt(1249),
       seqId: 777,
-      siteId: 29,
+      siteId: BigInt(29),
       recordDate: new Date("8/16/1997 GMT").toISOString(),
       week: 20,
       recorder: "Deb Marcinski",
@@ -76763,9 +76763,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1250,
+      id: BigInt(1250),
       seqId: 778,
-      siteId: 29,
+      siteId: BigInt(29),
       recordDate: new Date("8/28/1997 GMT").toISOString(),
       week: 22,
       recorder: "Deb Marcinski",
@@ -76825,9 +76825,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1251,
+      id: BigInt(1251),
       seqId: 779,
-      siteId: 29,
+      siteId: BigInt(29),
       recordDate: new Date("9/2/1997 GMT").toISOString(),
       week: 23,
       recorder: "Deb Marcinski",
@@ -76887,9 +76887,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1252,
+      id: BigInt(1252),
       seqId: 780,
-      siteId: 29,
+      siteId: BigInt(29),
       recordDate: new Date("9/16/1997 GMT").toISOString(),
       week: 25,
       recorder: "Deb Marcinski",
@@ -76949,9 +76949,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1253,
+      id: BigInt(1253),
       seqId: 781,
-      siteId: 29,
+      siteId: BigInt(29),
       recordDate: new Date("9/23/1997 GMT").toISOString(),
       week: 26,
       recorder: "Deb Marcinski",
@@ -77010,9 +77010,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1254,
+      id: BigInt(1254),
       seqId: 799,
-      siteId: 30,
+      siteId: BigInt(30),
       recordDate: new Date("4/3/1996 GMT").toISOString(),
       week: 1,
       recorder: "Deb Marcinski",
@@ -77071,9 +77071,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1255,
+      id: BigInt(1255),
       seqId: 800,
-      siteId: 30,
+      siteId: BigInt(30),
       recordDate: new Date("4/18/1996 GMT").toISOString(),
       week: 3,
       recorder: "Deb Marcinski",
@@ -77132,9 +77132,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1256,
+      id: BigInt(1256),
       seqId: 801,
-      siteId: 30,
+      siteId: BigInt(30),
       recordDate: new Date("5/10/1996 GMT").toISOString(),
       week: 6,
       recorder: "Deb Marcinski",
@@ -77193,9 +77193,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1257,
+      id: BigInt(1257),
       seqId: 802,
-      siteId: 30,
+      siteId: BigInt(30),
       recordDate: new Date("5/20/1996 GMT").toISOString(),
       week: 8,
       recorder: "Deb Marcinski",
@@ -77255,9 +77255,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1258,
+      id: BigInt(1258),
       seqId: 803,
-      siteId: 30,
+      siteId: BigInt(30),
       recordDate: new Date("5/31/1996 GMT").toISOString(),
       week: 9,
       recorder: "Deb Marcinski",
@@ -77318,9 +77318,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1259,
+      id: BigInt(1259),
       seqId: 804,
-      siteId: 30,
+      siteId: BigInt(30),
       recordDate: new Date("6/14/1996 GMT").toISOString(),
       week: 11,
       recorder: "Deb Marcinski",
@@ -77380,9 +77380,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1260,
+      id: BigInt(1260),
       seqId: 805,
-      siteId: 30,
+      siteId: BigInt(30),
       recordDate: new Date("6/28/1996 GMT").toISOString(),
       week: 13,
       recorder: "Deb Marcinski",
@@ -77442,9 +77442,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1261,
+      id: BigInt(1261),
       seqId: 806,
-      siteId: 30,
+      siteId: BigInt(30),
       recordDate: new Date("7/12/1996 GMT").toISOString(),
       week: 15,
       recorder: "Deb Marcinski/Metcalf",
@@ -77504,9 +77504,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1262,
+      id: BigInt(1262),
       seqId: 807,
-      siteId: 30,
+      siteId: BigInt(30),
       recordDate: new Date("7/29/1996 GMT").toISOString(),
       week: 18,
       recorder: "Deb Marcinski/Krynak",
@@ -77566,9 +77566,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1263,
+      id: BigInt(1263),
       seqId: 808,
-      siteId: 30,
+      siteId: BigInt(30),
       recordDate: new Date("8/21/1996 GMT").toISOString(),
       week: 21,
       recorder: "Deb Marcinski/Metcalf",
@@ -77628,9 +77628,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1264,
+      id: BigInt(1264),
       seqId: 809,
-      siteId: 30,
+      siteId: BigInt(30),
       recordDate: new Date("8/26/1996 GMT").toISOString(),
       week: 22,
       recorder: "Deb Marcinski",
@@ -77690,9 +77690,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1265,
+      id: BigInt(1265),
       seqId: 810,
-      siteId: 30,
+      siteId: BigInt(30),
       recordDate: new Date("9/4/1996 GMT").toISOString(),
       week: 23,
       recorder: "Deb Marcinski",
@@ -77752,9 +77752,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1266,
+      id: BigInt(1266),
       seqId: 811,
-      siteId: 30,
+      siteId: BigInt(30),
       recordDate: new Date("9/12/1996 GMT").toISOString(),
       week: 24,
       recorder: "Deb Marcinski",
@@ -77813,9 +77813,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1267,
+      id: BigInt(1267),
       seqId: 812,
-      siteId: 30,
+      siteId: BigInt(30),
       recordDate: new Date("9/25/1996 GMT").toISOString(),
       week: 26,
       recorder: "Deb Marcinski",
@@ -77874,9 +77874,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1268,
+      id: BigInt(1268),
       seqId: 813,
-      siteId: 30,
+      siteId: BigInt(30),
       recordDate: new Date("4/2/1997 GMT").toISOString(),
       week: 1,
       recorder: "Deb Marcinski",
@@ -77935,9 +77935,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1269,
+      id: BigInt(1269),
       seqId: 814,
-      siteId: 30,
+      siteId: BigInt(30),
       recordDate: new Date("5/27/1997 GMT").toISOString(),
       week: 9,
       recorder: "Deb Marcinski",
@@ -77997,9 +77997,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1270,
+      id: BigInt(1270),
       seqId: 815,
-      siteId: 30,
+      siteId: BigInt(30),
       recordDate: new Date("6/5/1997 GMT").toISOString(),
       week: 10,
       recorder: "Deb Marcinski",
@@ -78059,9 +78059,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1271,
+      id: BigInt(1271),
       seqId: 816,
-      siteId: 30,
+      siteId: BigInt(30),
       recordDate: new Date("6/11/1997 GMT").toISOString(),
       week: 11,
       recorder: "Deb Marcinski",
@@ -78121,9 +78121,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1272,
+      id: BigInt(1272),
       seqId: 817,
-      siteId: 30,
+      siteId: BigInt(30),
       recordDate: new Date("6/19/1997 GMT").toISOString(),
       week: 12,
       recorder: "Deb Marcinski",
@@ -78183,9 +78183,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1273,
+      id: BigInt(1273),
       seqId: 818,
-      siteId: 30,
+      siteId: BigInt(30),
       recordDate: new Date("7/2/1997 GMT").toISOString(),
       week: 14,
       recorder: "Deb Marcinski",
@@ -78245,9 +78245,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1274,
+      id: BigInt(1274),
       seqId: 819,
-      siteId: 30,
+      siteId: BigInt(30),
       recordDate: new Date("7/13/1997 GMT").toISOString(),
       week: 15,
       recorder: "Deb Marcinski",
@@ -78307,9 +78307,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1275,
+      id: BigInt(1275),
       seqId: 822,
-      siteId: 30,
+      siteId: BigInt(30),
       recordDate: new Date("8/7/1997 GMT").toISOString(),
       week: 19,
       recorder: "Deb Marcinski",
@@ -78369,9 +78369,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1276,
+      id: BigInt(1276),
       seqId: 823,
-      siteId: 30,
+      siteId: BigInt(30),
       recordDate: new Date("8/28/1997 GMT").toISOString(),
       week: 22,
       recorder: "Deb Marcinski",
@@ -78432,9 +78432,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1277,
+      id: BigInt(1277),
       seqId: 824,
-      siteId: 30,
+      siteId: BigInt(30),
       recordDate: new Date("9/2/1997 GMT").toISOString(),
       week: 23,
       recorder: "Deb Marcinski",
@@ -78494,9 +78494,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1278,
+      id: BigInt(1278),
       seqId: 820,
-      siteId: 30,
+      siteId: BigInt(30),
       recordDate: new Date("9/16/1997 GMT").toISOString(),
       week: 25,
       recorder: "Deb Marcinski",
@@ -78555,9 +78555,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1279,
+      id: BigInt(1279),
       seqId: 821,
-      siteId: 30,
+      siteId: BigInt(30),
       recordDate: new Date("9/23/1997 GMT").toISOString(),
       week: 26,
       recorder: "Deb Marcinski",
@@ -78617,9 +78617,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1280,
+      id: BigInt(1280),
       seqId: 825,
-      siteId: 31,
+      siteId: BigInt(31),
       recordDate: new Date("4/18/1996 GMT").toISOString(),
       week: 3,
       recorder: "Deb Marcinski",
@@ -78678,9 +78678,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1281,
+      id: BigInt(1281),
       seqId: 826,
-      siteId: 31,
+      siteId: BigInt(31),
       recordDate: new Date("5/10/1996 GMT").toISOString(),
       week: 6,
       recorder: "Deb Marcinski",
@@ -78739,9 +78739,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1282,
+      id: BigInt(1282),
       seqId: 827,
-      siteId: 31,
+      siteId: BigInt(31),
       recordDate: new Date("5/20/1996 GMT").toISOString(),
       week: 8,
       recorder: "Deb Marcinski",
@@ -78801,9 +78801,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1283,
+      id: BigInt(1283),
       seqId: 828,
-      siteId: 31,
+      siteId: BigInt(31),
       recordDate: new Date("5/31/1996 GMT").toISOString(),
       week: 9,
       recorder: "Deb Marcinski",
@@ -78863,9 +78863,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1284,
+      id: BigInt(1284),
       seqId: 829,
-      siteId: 31,
+      siteId: BigInt(31),
       recordDate: new Date("6/14/1996 GMT").toISOString(),
       week: 11,
       recorder: "Deb Marcinski",
@@ -78925,9 +78925,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1285,
+      id: BigInt(1285),
       seqId: 830,
-      siteId: 31,
+      siteId: BigInt(31),
       recordDate: new Date("6/28/1996 GMT").toISOString(),
       week: 13,
       recorder: "Deb Marcinski",
@@ -78987,9 +78987,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1286,
+      id: BigInt(1286),
       seqId: 831,
-      siteId: 31,
+      siteId: BigInt(31),
       recordDate: new Date("7/4/1996 GMT").toISOString(),
       week: 14,
       recorder: "Deb Marcinski/Metcalf/Ker",
@@ -79049,9 +79049,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1287,
+      id: BigInt(1287),
       seqId: 832,
-      siteId: 31,
+      siteId: BigInt(31),
       recordDate: new Date("7/12/1996 GMT").toISOString(),
       week: 15,
       recorder: "Deb Marcinski",
@@ -79112,9 +79112,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1288,
+      id: BigInt(1288),
       seqId: 833,
-      siteId: 31,
+      siteId: BigInt(31),
       recordDate: new Date("7/27/1996 GMT").toISOString(),
       week: 17,
       recorder: "Deb Marcinski",
@@ -79175,9 +79175,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1289,
+      id: BigInt(1289),
       seqId: 834,
-      siteId: 31,
+      siteId: BigInt(31),
       recordDate: new Date("7/29/1996 GMT").toISOString(),
       week: 18,
       recorder: "Deb Marcinski/Krynak",
@@ -79237,9 +79237,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1290,
+      id: BigInt(1290),
       seqId: 835,
-      siteId: 31,
+      siteId: BigInt(31),
       recordDate: new Date("8/7/1996 GMT").toISOString(),
       week: 19,
       recorder: "Deb Marcinski/Cherry",
@@ -79300,9 +79300,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1291,
+      id: BigInt(1291),
       seqId: 836,
-      siteId: 31,
+      siteId: BigInt(31),
       recordDate: new Date("8/16/1996 GMT").toISOString(),
       week: 20,
       recorder: "Deb Marcinski/Metcalf",
@@ -79363,9 +79363,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1292,
+      id: BigInt(1292),
       seqId: 837,
-      siteId: 31,
+      siteId: BigInt(31),
       recordDate: new Date("8/22/1996 GMT").toISOString(),
       week: 21,
       recorder: "Deb Marcinski/Metcalf",
@@ -79426,9 +79426,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1293,
+      id: BigInt(1293),
       seqId: 838,
-      siteId: 31,
+      siteId: BigInt(31),
       recordDate: new Date("8/30/1996 GMT").toISOString(),
       week: 22,
       recorder: "Deb Marcinski",
@@ -79488,9 +79488,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1294,
+      id: BigInt(1294),
       seqId: 839,
-      siteId: 31,
+      siteId: BigInt(31),
       recordDate: new Date("9/4/1996 GMT").toISOString(),
       week: 23,
       recorder: "Deb Marcinski",
@@ -79550,9 +79550,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1295,
+      id: BigInt(1295),
       seqId: 840,
-      siteId: 31,
+      siteId: BigInt(31),
       recordDate: new Date("9/12/1996 GMT").toISOString(),
       week: 24,
       recorder: "Deb Marcinski",
@@ -79612,9 +79612,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1296,
+      id: BigInt(1296),
       seqId: 842,
-      siteId: 31,
+      siteId: BigInt(31),
       recordDate: new Date("9/18/1996 GMT").toISOString(),
       week: 25,
       recorder: "Deb Marcinski",
@@ -79674,9 +79674,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1297,
+      id: BigInt(1297),
       seqId: 843,
-      siteId: 31,
+      siteId: BigInt(31),
       recordDate: new Date("9/25/1996 GMT").toISOString(),
       week: 26,
       recorder: "Deb Marcinski",
@@ -79736,9 +79736,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1298,
+      id: BigInt(1298),
       seqId: 841,
-      siteId: 31,
+      siteId: BigInt(31),
       recordDate: new Date("9/30/1996 GMT").toISOString(),
       week: 26,
       recorder: "Deb Marcinski",
@@ -79798,9 +79798,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1299,
+      id: BigInt(1299),
       seqId: 844,
-      siteId: 31,
+      siteId: BigInt(31),
       recordDate: new Date("4/2/1997 GMT").toISOString(),
       week: 1,
       recorder: "Deb Marcinski",
@@ -79859,9 +79859,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1300,
+      id: BigInt(1300),
       seqId: 845,
-      siteId: 31,
+      siteId: BigInt(31),
       recordDate: new Date("5/27/1997 GMT").toISOString(),
       week: 9,
       recorder: "Deb Marcinski",
@@ -79921,9 +79921,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1301,
+      id: BigInt(1301),
       seqId: 846,
-      siteId: 31,
+      siteId: BigInt(31),
       recordDate: new Date("6/5/1997 GMT").toISOString(),
       week: 10,
       recorder: "Deb Marcinski",
@@ -79983,9 +79983,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1302,
+      id: BigInt(1302),
       seqId: 847,
-      siteId: 31,
+      siteId: BigInt(31),
       recordDate: new Date("6/11/1997 GMT").toISOString(),
       week: 11,
       recorder: "Deb Marcinski",
@@ -80045,9 +80045,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1303,
+      id: BigInt(1303),
       seqId: 848,
-      siteId: 31,
+      siteId: BigInt(31),
       recordDate: new Date("6/19/1997 GMT").toISOString(),
       week: 12,
       recorder: "Deb Marcinski",
@@ -80107,9 +80107,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1304,
+      id: BigInt(1304),
       seqId: 849,
-      siteId: 31,
+      siteId: BigInt(31),
       recordDate: new Date("7/2/1997 GMT").toISOString(),
       week: 14,
       recorder: "Deb Marcinski",
@@ -80169,9 +80169,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1305,
+      id: BigInt(1305),
       seqId: 850,
-      siteId: 31,
+      siteId: BigInt(31),
       recordDate: new Date("7/13/1997 GMT").toISOString(),
       week: 15,
       recorder: "Deb Marcinski",
@@ -80231,9 +80231,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1306,
+      id: BigInt(1306),
       seqId: 851,
-      siteId: 31,
+      siteId: BigInt(31),
       recordDate: new Date("7/18/1997 GMT").toISOString(),
       week: 16,
       recorder: "Deb Marcinski",
@@ -80293,9 +80293,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1307,
+      id: BigInt(1307),
       seqId: 852,
-      siteId: 31,
+      siteId: BigInt(31),
       recordDate: new Date("7/29/1997 GMT").toISOString(),
       week: 18,
       recorder: "Deb Marcinski/Cherry/Kryn",
@@ -80355,9 +80355,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1308,
+      id: BigInt(1308),
       seqId: 853,
-      siteId: 31,
+      siteId: BigInt(31),
       recordDate: new Date("8/7/1997 GMT").toISOString(),
       week: 19,
       recorder: "Deb Marcinski",
@@ -80417,9 +80417,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1309,
+      id: BigInt(1309),
       seqId: 854,
-      siteId: 31,
+      siteId: BigInt(31),
       recordDate: new Date("8/16/1997 GMT").toISOString(),
       week: 20,
       recorder: "Deb Marcinski",
@@ -80479,9 +80479,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1310,
+      id: BigInt(1310),
       seqId: 858,
-      siteId: 31,
+      siteId: BigInt(31),
       recordDate: new Date("8/28/1997 GMT").toISOString(),
       week: 22,
       recorder: "Deb Marcinski",
@@ -80540,9 +80540,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1311,
+      id: BigInt(1311),
       seqId: 859,
-      siteId: 31,
+      siteId: BigInt(31),
       recordDate: new Date("9/2/1997 GMT").toISOString(),
       week: 23,
       recorder: "Deb Marcinski",
@@ -80601,9 +80601,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1312,
+      id: BigInt(1312),
       seqId: 860,
-      siteId: 31,
+      siteId: BigInt(31),
       recordDate: new Date("9/16/1997 GMT").toISOString(),
       week: 25,
       recorder: "Deb Marcinski",
@@ -80662,9 +80662,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1313,
+      id: BigInt(1313),
       seqId: 861,
-      siteId: 31,
+      siteId: BigInt(31),
       recordDate: new Date("9/23/1997 GMT").toISOString(),
       week: 26,
       recorder: "Deb Marcinski",
@@ -80723,9 +80723,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1314,
+      id: BigInt(1314),
       seqId: 783,
-      siteId: 32,
+      siteId: BigInt(32),
       recordDate: new Date("4/3/1996 GMT").toISOString(),
       week: 1,
       recorder: "Deb Marcinski",
@@ -80784,9 +80784,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1315,
+      id: BigInt(1315),
       seqId: 784,
-      siteId: 32,
+      siteId: BigInt(32),
       recordDate: new Date("4/18/1996 GMT").toISOString(),
       week: 3,
       recorder: "Deb Marcinski",
@@ -80845,9 +80845,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1316,
+      id: BigInt(1316),
       seqId: 785,
-      siteId: 32,
+      siteId: BigInt(32),
       recordDate: new Date("5/10/1996 GMT").toISOString(),
       week: 6,
       recorder: "Deb Marcinski",
@@ -80906,9 +80906,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1317,
+      id: BigInt(1317),
       seqId: 786,
-      siteId: 32,
+      siteId: BigInt(32),
       recordDate: new Date("5/20/1996 GMT").toISOString(),
       week: 8,
       recorder: "Deb Marcinski/Metcalf",
@@ -80968,9 +80968,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1318,
+      id: BigInt(1318),
       seqId: 787,
-      siteId: 32,
+      siteId: BigInt(32),
       recordDate: new Date("5/31/1996 GMT").toISOString(),
       week: 9,
       recorder: "Deb Marcinski",
@@ -81030,9 +81030,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1319,
+      id: BigInt(1319),
       seqId: 788,
-      siteId: 32,
+      siteId: BigInt(32),
       recordDate: new Date("6/14/1996 GMT").toISOString(),
       week: 11,
       recorder: "Deb Marcinski",
@@ -81092,9 +81092,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1320,
+      id: BigInt(1320),
       seqId: 789,
-      siteId: 32,
+      siteId: BigInt(32),
       recordDate: new Date("6/28/1996 GMT").toISOString(),
       week: 13,
       recorder: "Deb Marcinski",
@@ -81154,9 +81154,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1321,
+      id: BigInt(1321),
       seqId: 790,
-      siteId: 32,
+      siteId: BigInt(32),
       recordDate: new Date("7/4/1996 GMT").toISOString(),
       week: 14,
       recorder: "Deb Marcinski/Metcalf/Kar",
@@ -81216,9 +81216,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1322,
+      id: BigInt(1322),
       seqId: 791,
-      siteId: 32,
+      siteId: BigInt(32),
       recordDate: new Date("7/27/1996 GMT").toISOString(),
       week: 17,
       recorder: "Deb Marcinski/Metcalf",
@@ -81278,9 +81278,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1323,
+      id: BigInt(1323),
       seqId: 792,
-      siteId: 32,
+      siteId: BigInt(32),
       recordDate: new Date("8/7/1996 GMT").toISOString(),
       week: 19,
       recorder: "Deb Marcinski/Cherry",
@@ -81340,9 +81340,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1324,
+      id: BigInt(1324),
       seqId: 793,
-      siteId: 32,
+      siteId: BigInt(32),
       recordDate: new Date("8/16/1996 GMT").toISOString(),
       week: 20,
       recorder: "Deb Marcinski/Metcalf",
@@ -81402,9 +81402,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1325,
+      id: BigInt(1325),
       seqId: 794,
-      siteId: 32,
+      siteId: BigInt(32),
       recordDate: new Date("8/21/1996 GMT").toISOString(),
       week: 21,
       recorder: "Deb Marcinski/Metcalf",
@@ -81464,9 +81464,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1326,
+      id: BigInt(1326),
       seqId: 795,
-      siteId: 32,
+      siteId: BigInt(32),
       recordDate: new Date("8/30/1996 GMT").toISOString(),
       week: 22,
       recorder: "Deb Marcinski",
@@ -81527,9 +81527,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1327,
+      id: BigInt(1327),
       seqId: 796,
-      siteId: 32,
+      siteId: BigInt(32),
       recordDate: new Date("9/9/1996 GMT").toISOString(),
       week: 24,
       recorder: "Deb Marcinski",
@@ -81589,9 +81589,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1328,
+      id: BigInt(1328),
       seqId: 797,
-      siteId: 32,
+      siteId: BigInt(32),
       recordDate: new Date("9/18/1996 GMT").toISOString(),
       week: 25,
       recorder: "Deb Marcinski",
@@ -81651,9 +81651,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1329,
+      id: BigInt(1329),
       seqId: 798,
-      siteId: 32,
+      siteId: BigInt(32),
       recordDate: new Date("9/25/1996 GMT").toISOString(),
       week: 26,
       recorder: "Deb Marcinski",
@@ -81713,9 +81713,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1330,
+      id: BigInt(1330),
       seqId: 864,
-      siteId: 32,
+      siteId: BigInt(32),
       recordDate: new Date("4/2/1997 GMT").toISOString(),
       week: 1,
       recorder: "Deb Marcinski",
@@ -81774,9 +81774,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1331,
+      id: BigInt(1331),
       seqId: 866,
-      siteId: 32,
+      siteId: BigInt(32),
       recordDate: new Date("5/27/1997 GMT").toISOString(),
       week: 9,
       recorder: "Deb Marcinski",
@@ -81836,9 +81836,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1332,
+      id: BigInt(1332),
       seqId: 865,
-      siteId: 32,
+      siteId: BigInt(32),
       recordDate: new Date("6/5/1997 GMT").toISOString(),
       week: 10,
       recorder: "Deb Marcinski",
@@ -81898,9 +81898,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1333,
+      id: BigInt(1333),
       seqId: 867,
-      siteId: 32,
+      siteId: BigInt(32),
       recordDate: new Date("6/11/1997 GMT").toISOString(),
       week: 11,
       recorder: "Deb Marcinski",
@@ -81960,9 +81960,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1334,
+      id: BigInt(1334),
       seqId: 868,
-      siteId: 32,
+      siteId: BigInt(32),
       recordDate: new Date("6/19/1997 GMT").toISOString(),
       week: 12,
       recorder: "Deb Marcinski",
@@ -82022,9 +82022,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1335,
+      id: BigInt(1335),
       seqId: 869,
-      siteId: 32,
+      siteId: BigInt(32),
       recordDate: new Date("7/2/1997 GMT").toISOString(),
       week: 14,
       recorder: "Deb Marcinski",
@@ -82084,9 +82084,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1336,
+      id: BigInt(1336),
       seqId: 870,
-      siteId: 32,
+      siteId: BigInt(32),
       recordDate: new Date("7/13/1997 GMT").toISOString(),
       week: 15,
       recorder: "Deb Marcinski",
@@ -82146,9 +82146,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1337,
+      id: BigInt(1337),
       seqId: 871,
-      siteId: 32,
+      siteId: BigInt(32),
       recordDate: new Date("7/29/1997 GMT").toISOString(),
       week: 18,
       recorder: "Deb MarcinskiKrynak",
@@ -82208,9 +82208,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1338,
+      id: BigInt(1338),
       seqId: 872,
-      siteId: 32,
+      siteId: BigInt(32),
       recordDate: new Date("8/7/1997 GMT").toISOString(),
       week: 19,
       recorder: "Deb Marcinski",
@@ -82270,9 +82270,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1339,
+      id: BigInt(1339),
       seqId: 873,
-      siteId: 32,
+      siteId: BigInt(32),
       recordDate: new Date("8/16/1997 GMT").toISOString(),
       week: 20,
       recorder: "Deb Marcinski",
@@ -82332,9 +82332,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1340,
+      id: BigInt(1340),
       seqId: 874,
-      siteId: 32,
+      siteId: BigInt(32),
       recordDate: new Date("8/27/1997 GMT").toISOString(),
       week: 22,
       recorder: "Deb Marcinski",
@@ -82394,9 +82394,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1341,
+      id: BigInt(1341),
       seqId: 875,
-      siteId: 32,
+      siteId: BigInt(32),
       recordDate: new Date("9/1/1997 GMT").toISOString(),
       week: 22,
       recorder: "Deb Marcinski",
@@ -82456,9 +82456,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1342,
+      id: BigInt(1342),
       seqId: 876,
-      siteId: 32,
+      siteId: BigInt(32),
       recordDate: new Date("9/16/1997 GMT").toISOString(),
       week: 25,
       recorder: "Deb Marcinski",
@@ -82518,9 +82518,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1343,
+      id: BigInt(1343),
       seqId: 877,
-      siteId: 32,
+      siteId: BigInt(32),
       recordDate: new Date("9/23/1997 GMT").toISOString(),
       week: 26,
       recorder: "Deb Marcinski",
@@ -82580,9 +82580,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1344,
+      id: BigInt(1344),
       seqId: 930,
-      siteId: 34,
+      siteId: BigInt(34),
       recordDate: new Date("4/26/1999 GMT").toISOString(),
       week: 4,
       recorder: "Lynn Holtzman",
@@ -82641,9 +82641,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1345,
+      id: BigInt(1345),
       seqId: 931,
-      siteId: 34,
+      siteId: BigInt(34),
       recordDate: new Date("5/3/1999 GMT").toISOString(),
       week: 5,
       recorder: "Lynn Holtzman",
@@ -82702,9 +82702,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1346,
+      id: BigInt(1346),
       seqId: 932,
-      siteId: 34,
+      siteId: BigInt(34),
       recordDate: new Date("5/11/1999 GMT").toISOString(),
       week: 6,
       recorder: "Lynn Holtzman",
@@ -82763,9 +82763,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1347,
+      id: BigInt(1347),
       seqId: 933,
-      siteId: 34,
+      siteId: BigInt(34),
       recordDate: new Date("5/19/1999 GMT").toISOString(),
       week: 7,
       recorder: "Lynn Holtzman",
@@ -82824,9 +82824,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1348,
+      id: BigInt(1348),
       seqId: 934,
-      siteId: 34,
+      siteId: BigInt(34),
       recordDate: new Date("6/14/1999 GMT").toISOString(),
       week: 11,
       recorder: "Lynn Holtzman",
@@ -82885,9 +82885,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1349,
+      id: BigInt(1349),
       seqId: 935,
-      siteId: 34,
+      siteId: BigInt(34),
       recordDate: new Date("6/21/1999 GMT").toISOString(),
       week: 12,
       recorder: "Lynn Holtzman",
@@ -82947,9 +82947,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1350,
+      id: BigInt(1350),
       seqId: 936,
-      siteId: 34,
+      siteId: BigInt(34),
       recordDate: new Date("6/28/1999 GMT").toISOString(),
       week: 13,
       recorder: "Lynn Holtzman",
@@ -83008,9 +83008,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1351,
+      id: BigInt(1351),
       seqId: 937,
-      siteId: 34,
+      siteId: BigInt(34),
       recordDate: new Date("7/7/1999 GMT").toISOString(),
       week: 14,
       recorder: "Lynn Holtzman",
@@ -83069,9 +83069,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1352,
+      id: BigInt(1352),
       seqId: 938,
-      siteId: 34,
+      siteId: BigInt(34),
       recordDate: new Date("7/12/1999 GMT").toISOString(),
       week: 15,
       recorder: "Lynn Holtzman",
@@ -83130,9 +83130,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1353,
+      id: BigInt(1353),
       seqId: 939,
-      siteId: 34,
+      siteId: BigInt(34),
       recordDate: new Date("8/2/1999 GMT").toISOString(),
       week: 18,
       recorder: "Lynn Holtzman",
@@ -83192,9 +83192,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1354,
+      id: BigInt(1354),
       seqId: 940,
-      siteId: 34,
+      siteId: BigInt(34),
       recordDate: new Date("8/8/1999 GMT").toISOString(),
       week: 19,
       recorder: "Lynn Holtzman",
@@ -83254,9 +83254,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1355,
+      id: BigInt(1355),
       seqId: 941,
-      siteId: 34,
+      siteId: BigInt(34),
       recordDate: new Date("8/23/1999 GMT").toISOString(),
       week: 21,
       recorder: "Lynn Holtzman",
@@ -83316,9 +83316,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1356,
+      id: BigInt(1356),
       seqId: 942,
-      siteId: 34,
+      siteId: BigInt(34),
       recordDate: new Date("8/30/1999 GMT").toISOString(),
       week: 22,
       recorder: "Lynn Holtzman",
@@ -83378,9 +83378,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1357,
+      id: BigInt(1357),
       seqId: 943,
-      siteId: 34,
+      siteId: BigInt(34),
       recordDate: new Date("9/23/1999 GMT").toISOString(),
       week: 26,
       recorder: "Lynn Holtzman",
@@ -83440,9 +83440,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1358,
+      id: BigInt(1358),
       seqId: 944,
-      siteId: 35,
+      siteId: BigInt(35),
       recordDate: new Date("5/29/1999 GMT").toISOString(),
       week: 9,
       recorder: "John & Cindy Cooper",
@@ -83501,9 +83501,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1359,
+      id: BigInt(1359),
       seqId: 945,
-      siteId: 35,
+      siteId: BigInt(35),
       recordDate: new Date("6/5/1999 GMT").toISOString(),
       week: 10,
       recorder: "John & Cindy Cooper",
@@ -83562,9 +83562,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1360,
+      id: BigInt(1360),
       seqId: 946,
-      siteId: 35,
+      siteId: BigInt(35),
       recordDate: new Date("6/15/1999 GMT").toISOString(),
       week: 11,
       recorder: "John & Cindy Cooper",
@@ -83623,9 +83623,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1361,
+      id: BigInt(1361),
       seqId: 947,
-      siteId: 35,
+      siteId: BigInt(35),
       recordDate: new Date("6/20/1999 GMT").toISOString(),
       week: 12,
       recorder: "John & Cindy Cooper",
@@ -83684,9 +83684,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1362,
+      id: BigInt(1362),
       seqId: 948,
-      siteId: 35,
+      siteId: BigInt(35),
       recordDate: new Date("6/29/1999 GMT").toISOString(),
       week: 13,
       recorder: "John & Cindy Cooper",
@@ -83745,9 +83745,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1363,
+      id: BigInt(1363),
       seqId: 949,
-      siteId: 35,
+      siteId: BigInt(35),
       recordDate: new Date("7/5/1999 GMT").toISOString(),
       week: 14,
       recorder: "John & Cindy Cooper",
@@ -83806,9 +83806,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1364,
+      id: BigInt(1364),
       seqId: 950,
-      siteId: 35,
+      siteId: BigInt(35),
       recordDate: new Date("7/11/1999 GMT").toISOString(),
       week: 15,
       recorder: "John & Cindy Cooper",
@@ -83867,9 +83867,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1365,
+      id: BigInt(1365),
       seqId: 951,
-      siteId: 35,
+      siteId: BigInt(35),
       recordDate: new Date("7/18/1999 GMT").toISOString(),
       week: 16,
       recorder: "John & Cindy Cooper",
@@ -83928,9 +83928,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1366,
+      id: BigInt(1366),
       seqId: 952,
-      siteId: 35,
+      siteId: BigInt(35),
       recordDate: new Date("7/25/1999 GMT").toISOString(),
       week: 17,
       recorder: "John & Cindy Cooper",
@@ -83989,9 +83989,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1367,
+      id: BigInt(1367),
       seqId: 953,
-      siteId: 35,
+      siteId: BigInt(35),
       recordDate: new Date("8/1/1999 GMT").toISOString(),
       week: 18,
       recorder: "John & Cindy Cooper",
@@ -84050,9 +84050,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1368,
+      id: BigInt(1368),
       seqId: 954,
-      siteId: 35,
+      siteId: BigInt(35),
       recordDate: new Date("8/5/1999 GMT").toISOString(),
       week: 19,
       recorder: "John & Cindy Cooper",
@@ -84111,9 +84111,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1369,
+      id: BigInt(1369),
       seqId: 955,
-      siteId: 35,
+      siteId: BigInt(35),
       recordDate: new Date("8/12/1999 GMT").toISOString(),
       week: 20,
       recorder: "John & Cindy Cooper",
@@ -84172,9 +84172,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1370,
+      id: BigInt(1370),
       seqId: 956,
-      siteId: 35,
+      siteId: BigInt(35),
       recordDate: new Date("8/20/1999 GMT").toISOString(),
       week: 21,
       recorder: "John & Cindy Cooper",
@@ -84233,9 +84233,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1371,
+      id: BigInt(1371),
       seqId: 957,
-      siteId: 35,
+      siteId: BigInt(35),
       recordDate: new Date("8/26/1999 GMT").toISOString(),
       week: 22,
       recorder: "John & Cindy Cooper",
@@ -84294,9 +84294,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1372,
+      id: BigInt(1372),
       seqId: 958,
-      siteId: 35,
+      siteId: BigInt(35),
       recordDate: new Date("9/2/1999 GMT").toISOString(),
       week: 23,
       recorder: "John & Cindy Cooper",
@@ -84355,9 +84355,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1373,
+      id: BigInt(1373),
       seqId: 959,
-      siteId: 35,
+      siteId: BigInt(35),
       recordDate: new Date("9/6/1999 GMT").toISOString(),
       week: 23,
       recorder: "John & Cindy Cooper",
@@ -84416,9 +84416,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1374,
+      id: BigInt(1374),
       seqId: 960,
-      siteId: 35,
+      siteId: BigInt(35),
       recordDate: new Date("9/11/1999 GMT").toISOString(),
       week: 24,
       recorder: "John & Cindy Cooper",
@@ -84477,9 +84477,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1375,
+      id: BigInt(1375),
       seqId: 961,
-      siteId: 35,
+      siteId: BigInt(35),
       recordDate: new Date("9/18/1999 GMT").toISOString(),
       week: 25,
       recorder: "John & Cindy Cooper",
@@ -84538,9 +84538,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1376,
+      id: BigInt(1376),
       seqId: 962,
-      siteId: 35,
+      siteId: BigInt(35),
       recordDate: new Date("9/26/1999 GMT").toISOString(),
       week: 26,
       recorder: "John & Cindy Cooper",
@@ -84599,9 +84599,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1377,
+      id: BigInt(1377),
       seqId: 963,
-      siteId: 35,
+      siteId: BigInt(35),
       recordDate: new Date("10/3/1999 GMT").toISOString(),
       week: 27,
       recorder: "John & Cindy Cooper",
@@ -84660,9 +84660,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1378,
+      id: BigInt(1378),
       seqId: 964,
-      siteId: 35,
+      siteId: BigInt(35),
       recordDate: new Date("10/11/1999 GMT").toISOString(),
       week: 28,
       recorder: "John & Cindy Cooper",
@@ -84721,9 +84721,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1379,
+      id: BigInt(1379),
       seqId: 1238,
-      siteId: 37,
+      siteId: BigInt(37),
       recordDate: new Date("4/11/1999 GMT").toISOString(),
       week: 2,
       recorder: "Judy Evans",
@@ -84782,9 +84782,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1380,
+      id: BigInt(1380),
       seqId: 1239,
-      siteId: 37,
+      siteId: BigInt(37),
       recordDate: new Date("4/21/1999 GMT").toISOString(),
       week: 3,
       recorder: "Judy Evans",
@@ -84843,9 +84843,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1381,
+      id: BigInt(1381),
       seqId: 1240,
-      siteId: 37,
+      siteId: BigInt(37),
       recordDate: new Date("5/2/1999 GMT").toISOString(),
       week: 5,
       recorder: "Judy Evans",
@@ -84904,9 +84904,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1382,
+      id: BigInt(1382),
       seqId: 1241,
-      siteId: 37,
+      siteId: BigInt(37),
       recordDate: new Date("5/9/1999 GMT").toISOString(),
       week: 6,
       recorder: "Judy Evans",
@@ -84965,9 +84965,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1383,
+      id: BigInt(1383),
       seqId: 1242,
-      siteId: 37,
+      siteId: BigInt(37),
       recordDate: new Date("5/15/1999 GMT").toISOString(),
       week: 7,
       recorder: "Judy Evans",
@@ -85026,9 +85026,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1384,
+      id: BigInt(1384),
       seqId: 1243,
-      siteId: 37,
+      siteId: BigInt(37),
       recordDate: new Date("5/26/1999 GMT").toISOString(),
       week: 8,
       recorder: "Judy Evans",
@@ -85087,9 +85087,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1385,
+      id: BigInt(1385),
       seqId: 1244,
-      siteId: 37,
+      siteId: BigInt(37),
       recordDate: new Date("6/1/1999 GMT").toISOString(),
       week: 9,
       recorder: "Judy Evans",
@@ -85148,9 +85148,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1386,
+      id: BigInt(1386),
       seqId: 1245,
-      siteId: 37,
+      siteId: BigInt(37),
       recordDate: new Date("6/5/1999 GMT").toISOString(),
       week: 10,
       recorder: "Judy Evans",
@@ -85209,9 +85209,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1387,
+      id: BigInt(1387),
       seqId: 1246,
-      siteId: 37,
+      siteId: BigInt(37),
       recordDate: new Date("6/10/1999 GMT").toISOString(),
       week: 11,
       recorder: "Judy Evans",
@@ -85270,9 +85270,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1388,
+      id: BigInt(1388),
       seqId: 1247,
-      siteId: 37,
+      siteId: BigInt(37),
       recordDate: new Date("6/18/1999 GMT").toISOString(),
       week: 12,
       recorder: "Judy Evans",
@@ -85331,9 +85331,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1389,
+      id: BigInt(1389),
       seqId: 1248,
-      siteId: 37,
+      siteId: BigInt(37),
       recordDate: new Date("6/28/1999 GMT").toISOString(),
       week: 13,
       recorder: "Judy Evans",
@@ -85392,9 +85392,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1390,
+      id: BigInt(1390),
       seqId: 1249,
-      siteId: 37,
+      siteId: BigInt(37),
       recordDate: new Date("6/30/1999 GMT").toISOString(),
       week: 13,
       recorder: "Judy Evans",
@@ -85454,9 +85454,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1391,
+      id: BigInt(1391),
       seqId: 1250,
-      siteId: 37,
+      siteId: BigInt(37),
       recordDate: new Date("7/5/1999 GMT").toISOString(),
       week: 14,
       recorder: "Judy Evans",
@@ -85515,9 +85515,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1392,
+      id: BigInt(1392),
       seqId: 1251,
-      siteId: 37,
+      siteId: BigInt(37),
       recordDate: new Date("7/8/1999 GMT").toISOString(),
       week: 15,
       recorder: "Judy Evans",
@@ -85576,9 +85576,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1393,
+      id: BigInt(1393),
       seqId: 1252,
-      siteId: 37,
+      siteId: BigInt(37),
       recordDate: new Date("7/20/1999 GMT").toISOString(),
       week: 16,
       recorder: "Judy Evans",
@@ -85637,9 +85637,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1394,
+      id: BigInt(1394),
       seqId: 1253,
-      siteId: 37,
+      siteId: BigInt(37),
       recordDate: new Date("7/24/1999 GMT").toISOString(),
       week: 17,
       recorder: "Judy Evans",
@@ -85698,9 +85698,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1395,
+      id: BigInt(1395),
       seqId: 1254,
-      siteId: 37,
+      siteId: BigInt(37),
       recordDate: new Date("8/3/1999 GMT").toISOString(),
       week: 18,
       recorder: "Judy Evans",
@@ -85759,9 +85759,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1396,
+      id: BigInt(1396),
       seqId: 1255,
-      siteId: 37,
+      siteId: BigInt(37),
       recordDate: new Date("8/11/1999 GMT").toISOString(),
       week: 19,
       recorder: "Judy Evans",
@@ -85820,9 +85820,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1397,
+      id: BigInt(1397),
       seqId: 1256,
-      siteId: 37,
+      siteId: BigInt(37),
       recordDate: new Date("8/16/1999 GMT").toISOString(),
       week: 20,
       recorder: "Judy Evans",
@@ -85881,9 +85881,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1398,
+      id: BigInt(1398),
       seqId: 1257,
-      siteId: 37,
+      siteId: BigInt(37),
       recordDate: new Date("8/22/1999 GMT").toISOString(),
       week: 21,
       recorder: "Judy Evans",
@@ -85942,9 +85942,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1399,
+      id: BigInt(1399),
       seqId: 1258,
-      siteId: 37,
+      siteId: BigInt(37),
       recordDate: new Date("8/30/1999 GMT").toISOString(),
       week: 22,
       recorder: "Judy Evans",
@@ -86003,9 +86003,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1400,
+      id: BigInt(1400),
       seqId: 1259,
-      siteId: 37,
+      siteId: BigInt(37),
       recordDate: new Date("9/5/1999 GMT").toISOString(),
       week: 23,
       recorder: "Judy Evans",
@@ -86064,9 +86064,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1401,
+      id: BigInt(1401),
       seqId: 1260,
-      siteId: 37,
+      siteId: BigInt(37),
       recordDate: new Date("9/11/1999 GMT").toISOString(),
       week: 24,
       recorder: "Judy Evans",
@@ -86125,9 +86125,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1402,
+      id: BigInt(1402),
       seqId: 1261,
-      siteId: 37,
+      siteId: BigInt(37),
       recordDate: new Date("9/18/1999 GMT").toISOString(),
       week: 25,
       recorder: "Judy Evans",
@@ -86186,9 +86186,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1403,
+      id: BigInt(1403),
       seqId: 1262,
-      siteId: 37,
+      siteId: BigInt(37),
       recordDate: new Date("9/26/1999 GMT").toISOString(),
       week: 26,
       recorder: "Judy Evans",
@@ -86247,9 +86247,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1404,
+      id: BigInt(1404),
       seqId: 1263,
-      siteId: 37,
+      siteId: BigInt(37),
       recordDate: new Date("9/30/1999 GMT").toISOString(),
       week: 26,
       recorder: "Judy Evans",
@@ -86308,9 +86308,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1405,
+      id: BigInt(1405),
       seqId: 1415,
-      siteId: 39,
+      siteId: BigInt(39),
       recordDate: new Date("4/25/1999 GMT").toISOString(),
       week: 4,
       recorder: "Joe Riddlebarger",
@@ -86369,9 +86369,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1406,
+      id: BigInt(1406),
       seqId: 1416,
-      siteId: 39,
+      siteId: BigInt(39),
       recordDate: new Date("5/8/1999 GMT").toISOString(),
       week: 6,
       recorder: "Joe Riddlebarger",
@@ -86430,9 +86430,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1407,
+      id: BigInt(1407),
       seqId: 1417,
-      siteId: 39,
+      siteId: BigInt(39),
       recordDate: new Date("6/4/1999 GMT").toISOString(),
       week: 10,
       recorder: "Joe Riddlebarger",
@@ -86492,9 +86492,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1408,
+      id: BigInt(1408),
       seqId: 1418,
-      siteId: 39,
+      siteId: BigInt(39),
       recordDate: new Date("6/19/1999 GMT").toISOString(),
       week: 12,
       recorder: "Joe Riddlebarger",
@@ -86553,9 +86553,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1409,
+      id: BigInt(1409),
       seqId: 1419,
-      siteId: 39,
+      siteId: BigInt(39),
       recordDate: new Date("8/22/1999 GMT").toISOString(),
       week: 21,
       recorder: "Joe Riddlebarger",
@@ -86614,9 +86614,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1410,
+      id: BigInt(1410),
       seqId: 1420,
-      siteId: 39,
+      siteId: BigInt(39),
       recordDate: new Date("9/25/1999 GMT").toISOString(),
       week: 26,
       recorder: "Joe Riddlebarger",
@@ -86675,9 +86675,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1411,
+      id: BigInt(1411),
       seqId: 1066,
-      siteId: 40,
+      siteId: BigInt(40),
       recordDate: new Date("5/3/1999 GMT").toISOString(),
       week: 5,
       recorder: "H. Summerville",
@@ -86737,9 +86737,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1412,
+      id: BigInt(1412),
       seqId: 1067,
-      siteId: 40,
+      siteId: BigInt(40),
       recordDate: new Date("5/7/1999 GMT").toISOString(),
       week: 6,
       recorder: "H. Summerville",
@@ -86799,9 +86799,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1413,
+      id: BigInt(1413),
       seqId: 1068,
-      siteId: 40,
+      siteId: BigInt(40),
       recordDate: new Date("5/20/1999 GMT").toISOString(),
       week: 8,
       recorder: "H. Summerville",
@@ -86860,9 +86860,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1414,
+      id: BigInt(1414),
       seqId: 1535,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("5/4/1998 GMT").toISOString(),
       week: 5,
       recorder: "Tom Schultz",
@@ -86921,9 +86921,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1415,
+      id: BigInt(1415),
       seqId: 1536,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("5/13/1998 GMT").toISOString(),
       week: 7,
       recorder: "Tom Schultz",
@@ -86982,9 +86982,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1416,
+      id: BigInt(1416),
       seqId: 1538,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("5/15/1998 GMT").toISOString(),
       week: 7,
       recorder: "Tom Schultz",
@@ -87043,9 +87043,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1417,
+      id: BigInt(1417),
       seqId: 1539,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("5/20/1998 GMT").toISOString(),
       week: 8,
       recorder: "Tom Schultz",
@@ -87104,9 +87104,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1418,
+      id: BigInt(1418),
       seqId: 1540,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("5/27/1998 GMT").toISOString(),
       week: 9,
       recorder: "Tom Schultz",
@@ -87165,9 +87165,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1419,
+      id: BigInt(1419),
       seqId: 1541,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("6/2/1998 GMT").toISOString(),
       week: 9,
       recorder: "Tom Schultz",
@@ -87227,9 +87227,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1420,
+      id: BigInt(1420),
       seqId: 1542,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("6/10/1998 GMT").toISOString(),
       week: 11,
       recorder: "H. Menninger",
@@ -87288,9 +87288,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1421,
+      id: BigInt(1421),
       seqId: 1543,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("6/17/1998 GMT").toISOString(),
       week: 12,
       recorder: "H. Menninger",
@@ -87350,9 +87350,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1422,
+      id: BigInt(1422),
       seqId: 1544,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("6/24/1998 GMT").toISOString(),
       week: 13,
       recorder: "Tom Schultz",
@@ -87412,9 +87412,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1423,
+      id: BigInt(1423),
       seqId: 1545,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("7/1/1998 GMT").toISOString(),
       week: 14,
       recorder: "Tom Schultz & Others",
@@ -87474,9 +87474,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1424,
+      id: BigInt(1424),
       seqId: 1546,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("7/9/1998 GMT").toISOString(),
       week: 15,
       recorder: "H. Menninger",
@@ -87537,9 +87537,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1425,
+      id: BigInt(1425),
       seqId: 1547,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("7/17/1998 GMT").toISOString(),
       week: 16,
       recorder: "H. Menninger",
@@ -87600,9 +87600,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1426,
+      id: BigInt(1426),
       seqId: 1548,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("7/21/1998 GMT").toISOString(),
       week: 16,
       recorder: "Tom Schultz",
@@ -87663,9 +87663,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1427,
+      id: BigInt(1427),
       seqId: 1549,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("7/28/1998 GMT").toISOString(),
       week: 17,
       recorder: "H. Menninger",
@@ -87725,9 +87725,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1428,
+      id: BigInt(1428),
       seqId: 1550,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("8/6/1998 GMT").toISOString(),
       week: 19,
       recorder: "H. Menninger",
@@ -87787,9 +87787,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1429,
+      id: BigInt(1429),
       seqId: 1551,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("8/11/1998 GMT").toISOString(),
       week: 19,
       recorder: "Tom Schultz",
@@ -87849,9 +87849,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1430,
+      id: BigInt(1430),
       seqId: 1552,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("8/18/1998 GMT").toISOString(),
       week: 20,
       recorder: "Tom Schultz",
@@ -87910,9 +87910,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1431,
+      id: BigInt(1431),
       seqId: 1553,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("8/23/1998 GMT").toISOString(),
       week: 21,
       recorder: "H. Menninger",
@@ -87973,9 +87973,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1432,
+      id: BigInt(1432),
       seqId: 1554,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("9/2/1998 GMT").toISOString(),
       week: 23,
       recorder: "H. Menninger",
@@ -88035,9 +88035,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1433,
+      id: BigInt(1433),
       seqId: 1556,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("9/6/1998 GMT").toISOString(),
       week: 23,
       recorder: "Tom Schultz",
@@ -88097,9 +88097,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1434,
+      id: BigInt(1434),
       seqId: 1557,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("9/13/1998 GMT").toISOString(),
       week: 24,
       recorder: "Tom Schultz",
@@ -88159,9 +88159,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1435,
+      id: BigInt(1435),
       seqId: 1558,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("9/23/1998 GMT").toISOString(),
       week: 26,
       recorder: "Tom Schultz",
@@ -88220,9 +88220,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1436,
+      id: BigInt(1436),
       seqId: 1559,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("9/30/1998 GMT").toISOString(),
       week: 26,
       recorder: "Tom Schultz",
@@ -88281,9 +88281,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1437,
+      id: BigInt(1437),
       seqId: 1514,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("5/10/1999 GMT").toISOString(),
       week: 6,
       recorder: "T. Schultz",
@@ -88342,9 +88342,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1438,
+      id: BigInt(1438),
       seqId: 1515,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("5/17/1999 GMT").toISOString(),
       week: 7,
       recorder: "H. Menninger",
@@ -88405,9 +88405,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1439,
+      id: BigInt(1439),
       seqId: 1516,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("5/27/1999 GMT").toISOString(),
       week: 9,
       recorder: "T. Schultz",
@@ -88468,9 +88468,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1440,
+      id: BigInt(1440),
       seqId: 1517,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("6/3/1999 GMT").toISOString(),
       week: 10,
       recorder: "T. Schultz, H. Menninger",
@@ -88531,9 +88531,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1441,
+      id: BigInt(1441),
       seqId: 1518,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("6/10/1999 GMT").toISOString(),
       week: 11,
       recorder: "T. Schultz",
@@ -88593,9 +88593,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1442,
+      id: BigInt(1442),
       seqId: 1519,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("6/16/1999 GMT").toISOString(),
       week: 11,
       recorder: "Tom Schultz",
@@ -88655,9 +88655,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1443,
+      id: BigInt(1443),
       seqId: 1520,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("6/23/1999 GMT").toISOString(),
       week: 12,
       recorder: "H. Menninger, K. Krulia",
@@ -88717,9 +88717,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1444,
+      id: BigInt(1444),
       seqId: 1521,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("6/30/1999 GMT").toISOString(),
       week: 13,
       recorder: "H. Menninger, K. Krulia",
@@ -88779,9 +88779,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1445,
+      id: BigInt(1445),
       seqId: 1522,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("7/7/1999 GMT").toISOString(),
       week: 14,
       recorder: "H. Menninger, K. Krulia",
@@ -88841,9 +88841,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1446,
+      id: BigInt(1446),
       seqId: 1523,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("7/15/1999 GMT").toISOString(),
       week: 16,
       recorder: "Tom Schult",
@@ -88903,9 +88903,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1447,
+      id: BigInt(1447),
       seqId: 1524,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("7/22/1999 GMT").toISOString(),
       week: 17,
       recorder: "Tom Schult, Kate Krulia",
@@ -88966,9 +88966,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1448,
+      id: BigInt(1448),
       seqId: 1525,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("7/30/1999 GMT").toISOString(),
       week: 18,
       recorder: "Tom Schult",
@@ -89027,9 +89027,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1449,
+      id: BigInt(1449),
       seqId: 1526,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("8/5/1999 GMT").toISOString(),
       week: 19,
       recorder: "Tom Schult, H. Menninger",
@@ -89089,9 +89089,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1450,
+      id: BigInt(1450),
       seqId: 1527,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("8/11/1999 GMT").toISOString(),
       week: 19,
       recorder: "K. Krutia, H. Menninger",
@@ -89150,9 +89150,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1451,
+      id: BigInt(1451),
       seqId: 1528,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("8/21/1999 GMT").toISOString(),
       week: 21,
       recorder: "T. Schultz",
@@ -89212,9 +89212,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1452,
+      id: BigInt(1452),
       seqId: 1529,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("8/28/1999 GMT").toISOString(),
       week: 22,
       recorder: "T. Schultz",
@@ -89274,9 +89274,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1453,
+      id: BigInt(1453),
       seqId: 1530,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("9/2/1999 GMT").toISOString(),
       week: 23,
       recorder: "T. Schultz",
@@ -89336,9 +89336,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1454,
+      id: BigInt(1454),
       seqId: 1531,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("9/9/1999 GMT").toISOString(),
       week: 24,
       recorder: "T. Schultz",
@@ -89398,9 +89398,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1455,
+      id: BigInt(1455),
       seqId: 1571,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("9/17/1999 GMT").toISOString(),
       week: 25,
       recorder: "Tom Schultz",
@@ -89459,9 +89459,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1456,
+      id: BigInt(1456),
       seqId: 1572,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("9/23/1999 GMT").toISOString(),
       week: 26,
       recorder: "Tom Schultz",
@@ -89520,9 +89520,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1457,
+      id: BigInt(1457),
       seqId: 1534,
-      siteId: 42,
+      siteId: BigInt(42),
       recordDate: new Date("9/30/1999 GMT").toISOString(),
       week: 26,
       recorder: "Tom Schultz",
@@ -89581,9 +89581,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1458,
+      id: BigInt(1458),
       seqId: 1038,
-      siteId: 43,
+      siteId: BigInt(43),
       recordDate: new Date("4/14/1999 GMT").toISOString(),
       week: 2,
       recorder: "J. Watts",
@@ -89643,9 +89643,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1459,
+      id: BigInt(1459),
       seqId: 1039,
-      siteId: 43,
+      siteId: BigInt(43),
       recordDate: new Date("4/30/1999 GMT").toISOString(),
       week: 5,
       recorder: "J. Watts",
@@ -89704,9 +89704,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1460,
+      id: BigInt(1460),
       seqId: 1040,
-      siteId: 43,
+      siteId: BigInt(43),
       recordDate: new Date("5/21/1999 GMT").toISOString(),
       week: 8,
       recorder: "J. Watts",
@@ -89765,9 +89765,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1461,
+      id: BigInt(1461),
       seqId: 1041,
-      siteId: 43,
+      siteId: BigInt(43),
       recordDate: new Date("6/6/1999 GMT").toISOString(),
       week: 10,
       recorder: "J. Watts",
@@ -89826,9 +89826,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1462,
+      id: BigInt(1462),
       seqId: 1042,
-      siteId: 43,
+      siteId: BigInt(43),
       recordDate: new Date("7/5/1999 GMT").toISOString(),
       week: 14,
       recorder: "J. Watts",
@@ -89888,9 +89888,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1463,
+      id: BigInt(1463),
       seqId: 1043,
-      siteId: 43,
+      siteId: BigInt(43),
       recordDate: new Date("7/20/1999 GMT").toISOString(),
       week: 16,
       recorder: "J. Watts",
@@ -89950,9 +89950,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1464,
+      id: BigInt(1464),
       seqId: 1044,
-      siteId: 43,
+      siteId: BigInt(43),
       recordDate: new Date("8/12/1999 GMT").toISOString(),
       week: 20,
       recorder: "J. Watts/J. Davidson",
@@ -90011,9 +90011,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1465,
+      id: BigInt(1465),
       seqId: 1045,
-      siteId: 43,
+      siteId: BigInt(43),
       recordDate: new Date("9/2/1999 GMT").toISOString(),
       week: 23,
       recorder: "J. Watts/R. Bates",
@@ -90073,9 +90073,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1466,
+      id: BigInt(1466),
       seqId: 1046,
-      siteId: 43,
+      siteId: BigInt(43),
       recordDate: new Date("9/23/1999 GMT").toISOString(),
       week: 26,
       recorder: "J. Watts",
@@ -90135,9 +90135,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1467,
+      id: BigInt(1467),
       seqId: 1047,
-      siteId: 43,
+      siteId: BigInt(43),
       recordDate: new Date("10/6/1999 GMT").toISOString(),
       week: 27,
       recorder: "J. Watts",
@@ -90197,9 +90197,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1468,
+      id: BigInt(1468),
       seqId: 1048,
-      siteId: 43,
+      siteId: BigInt(43),
       recordDate: new Date("10/20/1999 GMT").toISOString(),
       week: 29,
       recorder: "J. Watts",
@@ -90259,9 +90259,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1469,
+      id: BigInt(1469),
       seqId: 1167,
-      siteId: 45,
+      siteId: BigInt(45),
       recordDate: new Date("4/7/1999 GMT").toISOString(),
       week: 1,
       recorder: "Karen McCracken",
@@ -90320,9 +90320,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1470,
+      id: BigInt(1470),
       seqId: 1144,
-      siteId: 45,
+      siteId: BigInt(45),
       recordDate: new Date("4/14/1999 GMT").toISOString(),
       week: 2,
       recorder: "Karen McCracken",
@@ -90381,9 +90381,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1471,
+      id: BigInt(1471),
       seqId: 1145,
-      siteId: 45,
+      siteId: BigInt(45),
       recordDate: new Date("4/26/1999 GMT").toISOString(),
       week: 4,
       recorder: "Karen McCracken",
@@ -90442,9 +90442,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1472,
+      id: BigInt(1472),
       seqId: 1146,
-      siteId: 45,
+      siteId: BigInt(45),
       recordDate: new Date("5/1/1999 GMT").toISOString(),
       week: 5,
       recorder: "Karen McCracken",
@@ -90503,9 +90503,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1473,
+      id: BigInt(1473),
       seqId: 1147,
-      siteId: 45,
+      siteId: BigInt(45),
       recordDate: new Date("5/12/1999 GMT").toISOString(),
       week: 6,
       recorder: "Karen McCracken",
@@ -90564,9 +90564,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1474,
+      id: BigInt(1474),
       seqId: 1148,
-      siteId: 45,
+      siteId: BigInt(45),
       recordDate: new Date("5/17/1999 GMT").toISOString(),
       week: 7,
       recorder: "Karen McCracken",
@@ -90625,9 +90625,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1475,
+      id: BigInt(1475),
       seqId: 1168,
-      siteId: 45,
+      siteId: BigInt(45),
       recordDate: new Date("5/25/1999 GMT").toISOString(),
       week: 8,
       recorder: "Karen McCracken",
@@ -90686,9 +90686,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1476,
+      id: BigInt(1476),
       seqId: 1149,
-      siteId: 45,
+      siteId: BigInt(45),
       recordDate: new Date("6/1/1999 GMT").toISOString(),
       week: 9,
       recorder: "Karen McCracken",
@@ -90747,9 +90747,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1477,
+      id: BigInt(1477),
       seqId: 1150,
-      siteId: 45,
+      siteId: BigInt(45),
       recordDate: new Date("6/5/1999 GMT").toISOString(),
       week: 10,
       recorder: "Karen McCracken",
@@ -90808,9 +90808,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1478,
+      id: BigInt(1478),
       seqId: 1151,
-      siteId: 45,
+      siteId: BigInt(45),
       recordDate: new Date("6/12/1999 GMT").toISOString(),
       week: 11,
       recorder: "Karen McCracken",
@@ -90869,9 +90869,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1479,
+      id: BigInt(1479),
       seqId: 1152,
-      siteId: 45,
+      siteId: BigInt(45),
       recordDate: new Date("6/21/1999 GMT").toISOString(),
       week: 12,
       recorder: "Karen McCracken",
@@ -90930,9 +90930,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1480,
+      id: BigInt(1480),
       seqId: 1153,
-      siteId: 45,
+      siteId: BigInt(45),
       recordDate: new Date("6/30/1999 GMT").toISOString(),
       week: 13,
       recorder: "Karen McCracken",
@@ -90991,9 +90991,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1481,
+      id: BigInt(1481),
       seqId: 1154,
-      siteId: 45,
+      siteId: BigInt(45),
       recordDate: new Date("7/3/1999 GMT").toISOString(),
       week: 14,
       recorder: "Karen McCracken",
@@ -91052,9 +91052,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1482,
+      id: BigInt(1482),
       seqId: 1155,
-      siteId: 45,
+      siteId: BigInt(45),
       recordDate: new Date("7/8/1999 GMT").toISOString(),
       week: 15,
       recorder: "Karen McCracken",
@@ -91113,9 +91113,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1483,
+      id: BigInt(1483),
       seqId: 1156,
-      siteId: 45,
+      siteId: BigInt(45),
       recordDate: new Date("7/16/1999 GMT").toISOString(),
       week: 16,
       recorder: "Karen McCracken",
@@ -91174,9 +91174,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1484,
+      id: BigInt(1484),
       seqId: 1157,
-      siteId: 45,
+      siteId: BigInt(45),
       recordDate: new Date("7/24/1999 GMT").toISOString(),
       week: 17,
       recorder: "Karen McCracken",
@@ -91235,9 +91235,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1485,
+      id: BigInt(1485),
       seqId: 1158,
-      siteId: 45,
+      siteId: BigInt(45),
       recordDate: new Date("7/29/1999 GMT").toISOString(),
       week: 18,
       recorder: "Karen McCracken",
@@ -91296,9 +91296,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1486,
+      id: BigInt(1486),
       seqId: 1159,
-      siteId: 45,
+      siteId: BigInt(45),
       recordDate: new Date("8/11/1999 GMT").toISOString(),
       week: 19,
       recorder: "Karen McCracken",
@@ -91357,9 +91357,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1487,
+      id: BigInt(1487),
       seqId: 1160,
-      siteId: 45,
+      siteId: BigInt(45),
       recordDate: new Date("8/12/1999 GMT").toISOString(),
       week: 20,
       recorder: "Karen McCracken",
@@ -91418,9 +91418,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1488,
+      id: BigInt(1488),
       seqId: 1161,
-      siteId: 45,
+      siteId: BigInt(45),
       recordDate: new Date("8/20/1999 GMT").toISOString(),
       week: 21,
       recorder: "Karen McCracken",
@@ -91479,9 +91479,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1489,
+      id: BigInt(1489),
       seqId: 1162,
-      siteId: 45,
+      siteId: BigInt(45),
       recordDate: new Date("8/31/1999 GMT").toISOString(),
       week: 22,
       recorder: "Karen McCracken",
@@ -91540,9 +91540,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1490,
+      id: BigInt(1490),
       seqId: 1163,
-      siteId: 45,
+      siteId: BigInt(45),
       recordDate: new Date("9/5/1999 GMT").toISOString(),
       week: 23,
       recorder: "Karen McCracken",
@@ -91601,9 +91601,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1491,
+      id: BigInt(1491),
       seqId: 1164,
-      siteId: 45,
+      siteId: BigInt(45),
       recordDate: new Date("9/11/1999 GMT").toISOString(),
       week: 24,
       recorder: "Karen McCracken",
@@ -91662,9 +91662,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1492,
+      id: BigInt(1492),
       seqId: 1165,
-      siteId: 45,
+      siteId: BigInt(45),
       recordDate: new Date("9/19/1999 GMT").toISOString(),
       week: 25,
       recorder: "Karen McCracken",
@@ -91723,9 +91723,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1493,
+      id: BigInt(1493),
       seqId: 1166,
-      siteId: 45,
+      siteId: BigInt(45),
       recordDate: new Date("9/25/1999 GMT").toISOString(),
       week: 26,
       recorder: "Karen McCracken",
@@ -91784,9 +91784,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1494,
+      id: BigInt(1494),
       seqId: 1560,
-      siteId: 47,
+      siteId: BigInt(47),
       recordDate: new Date("4/4/1999 GMT").toISOString(),
       week: 1,
       recorder: "C. Saunders",
@@ -91847,9 +91847,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1495,
+      id: BigInt(1495),
       seqId: 1561,
-      siteId: 47,
+      siteId: BigInt(47),
       recordDate: new Date("4/10/1999 GMT").toISOString(),
       week: 2,
       recorder: "C. Saunders, N.S., S. P.",
@@ -91910,9 +91910,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1496,
+      id: BigInt(1496),
       seqId: 1562,
-      siteId: 47,
+      siteId: BigInt(47),
       recordDate: new Date("4/20/1999 GMT").toISOString(),
       week: 3,
       recorder: "S. Pelikan",
@@ -91972,9 +91972,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1497,
+      id: BigInt(1497),
       seqId: 1563,
-      siteId: 47,
+      siteId: BigInt(47),
       recordDate: new Date("4/24/1999 GMT").toISOString(),
       week: 4,
       recorder: "S. Pelikan",
@@ -92034,9 +92034,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1498,
+      id: BigInt(1498),
       seqId: 1564,
-      siteId: 47,
+      siteId: BigInt(47),
       recordDate: new Date("4/29/1999 GMT").toISOString(),
       week: 5,
       recorder: "S. Pelikan",
@@ -92096,9 +92096,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1499,
+      id: BigInt(1499),
       seqId: 1565,
-      siteId: 47,
+      siteId: BigInt(47),
       recordDate: new Date("5/4/1999 GMT").toISOString(),
       week: 5,
       recorder: "S. Pelikan",
@@ -92158,9 +92158,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1500,
+      id: BigInt(1500),
       seqId: 1566,
-      siteId: 47,
+      siteId: BigInt(47),
       recordDate: new Date("5/9/1999 GMT").toISOString(),
       week: 6,
       recorder: "S. Pelikan, C.S.",
@@ -92220,9 +92220,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1501,
+      id: BigInt(1501),
       seqId: 1567,
-      siteId: 47,
+      siteId: BigInt(47),
       recordDate: new Date("5/15/1999 GMT").toISOString(),
       week: 7,
       recorder: "C. Saunders, M. Saunders",
@@ -92283,9 +92283,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1502,
+      id: BigInt(1502),
       seqId: 1568,
-      siteId: 47,
+      siteId: BigInt(47),
       recordDate: new Date("5/23/1999 GMT").toISOString(),
       week: 8,
       recorder: "N. Saunders, M. Saunders",
@@ -92345,9 +92345,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1503,
+      id: BigInt(1503),
       seqId: 1569,
-      siteId: 47,
+      siteId: BigInt(47),
       recordDate: new Date("5/27/1999 GMT").toISOString(),
       week: 9,
       recorder: "S. Pelikan, C.S., L.S.",
@@ -92406,9 +92406,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1504,
+      id: BigInt(1504),
       seqId: 1570,
-      siteId: 47,
+      siteId: BigInt(47),
       recordDate: new Date("6/12/1999 GMT").toISOString(),
       week: 11,
       recorder: "C. Saunders,S. Pelikan",
@@ -92469,9 +92469,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1505,
+      id: BigInt(1505),
       seqId: 1606,
-      siteId: 47,
+      siteId: BigInt(47),
       recordDate: new Date("6/18/1999 GMT").toISOString(),
       week: 12,
       recorder: "C. Saunders",
@@ -92530,9 +92530,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1506,
+      id: BigInt(1506),
       seqId: 1607,
-      siteId: 47,
+      siteId: BigInt(47),
       recordDate: new Date("6/26/1999 GMT").toISOString(),
       week: 13,
       recorder: "C. Saunders",
@@ -92591,9 +92591,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1507,
+      id: BigInt(1507),
       seqId: 1608,
-      siteId: 47,
+      siteId: BigInt(47),
       recordDate: new Date("6/30/1999 GMT").toISOString(),
       week: 13,
       recorder: "S. Pelikan",
@@ -92652,9 +92652,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1508,
+      id: BigInt(1508),
       seqId: 1609,
-      siteId: 47,
+      siteId: BigInt(47),
       recordDate: new Date("7/4/1999 GMT").toISOString(),
       week: 14,
       recorder: "C. Saunders",
@@ -92713,9 +92713,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1509,
+      id: BigInt(1509),
       seqId: 1610,
-      siteId: 47,
+      siteId: BigInt(47),
       recordDate: new Date("7/7/1999 GMT").toISOString(),
       week: 14,
       recorder: "C. Saunders, N.S.",
@@ -92774,9 +92774,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1510,
+      id: BigInt(1510),
       seqId: 1611,
-      siteId: 47,
+      siteId: BigInt(47),
       recordDate: new Date("7/17/1999 GMT").toISOString(),
       week: 16,
       recorder: "C. Saunders, N.S., S.P.",
@@ -92835,9 +92835,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1511,
+      id: BigInt(1511),
       seqId: 1612,
-      siteId: 47,
+      siteId: BigInt(47),
       recordDate: new Date("7/25/1999 GMT").toISOString(),
       week: 17,
       recorder: "C. Saunders, N.S.",
@@ -92896,9 +92896,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1512,
+      id: BigInt(1512),
       seqId: 1613,
-      siteId: 47,
+      siteId: BigInt(47),
       recordDate: new Date("8/7/1999 GMT").toISOString(),
       week: 19,
       recorder: "C. Saunders, S.P.",
@@ -92957,9 +92957,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1513,
+      id: BigInt(1513),
       seqId: 1614,
-      siteId: 47,
+      siteId: BigInt(47),
       recordDate: new Date("8/15/1999 GMT").toISOString(),
       week: 20,
       recorder: "S. Pelikan",
@@ -93018,9 +93018,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1514,
+      id: BigInt(1514),
       seqId: 1615,
-      siteId: 47,
+      siteId: BigInt(47),
       recordDate: new Date("8/22/1999 GMT").toISOString(),
       week: 21,
       recorder: "S. Pelikan",
@@ -93079,9 +93079,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1515,
+      id: BigInt(1515),
       seqId: 1616,
-      siteId: 47,
+      siteId: BigInt(47),
       recordDate: new Date("9/6/1999 GMT").toISOString(),
       week: 23,
       recorder: "C. Saunders, S.P., D.S.",
@@ -93140,9 +93140,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1516,
+      id: BigInt(1516),
       seqId: 1617,
-      siteId: 47,
+      siteId: BigInt(47),
       recordDate: new Date("9/11/1999 GMT").toISOString(),
       week: 24,
       recorder: "C. Saunders, N.S.",
@@ -93201,9 +93201,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1517,
+      id: BigInt(1517),
       seqId: 1618,
-      siteId: 47,
+      siteId: BigInt(47),
       recordDate: new Date("9/19/1999 GMT").toISOString(),
       week: 25,
       recorder: "C., N., L., D. S., S.P.",
@@ -93262,9 +93262,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1518,
+      id: BigInt(1518),
       seqId: 1619,
-      siteId: 47,
+      siteId: BigInt(47),
       recordDate: new Date("9/26/1999 GMT").toISOString(),
       week: 26,
       recorder: "C., L., N.S., S.P, Styler",
@@ -93323,9 +93323,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1519,
+      id: BigInt(1519),
       seqId: 1620,
-      siteId: 47,
+      siteId: BigInt(47),
       recordDate: new Date("10/2/1999 GMT").toISOString(),
       week: 27,
       recorder: "C. Saunders, S.P.",
@@ -93384,9 +93384,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1520,
+      id: BigInt(1520),
       seqId: 1621,
-      siteId: 47,
+      siteId: BigInt(47),
       recordDate: new Date("10/16/1999 GMT").toISOString(),
       week: 29,
       recorder: "C. Saunders",
@@ -93445,9 +93445,9 @@ export default async function () {
   });
   await db.siteDate.create({
     data: {
-      id: 1521,
+      id: BigInt(1521),
       seqId: 1622,
-      siteId: 47,
+      siteId: BigInt(47),
       recordDate: new Date("10/31/1999 GMT").toISOString(),
       week: 31,
       recorder: "S. Pelikan",

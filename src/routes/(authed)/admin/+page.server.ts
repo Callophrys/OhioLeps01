@@ -52,7 +52,7 @@ export const load: PageServerLoad = async ({ locals }) => {
     appConfigs: jsonResult,
     users: jsonResultUsers,
     organziations: jsonResultOrganizations,
-    sites: jsonResultSites,
+    sites: sites,
   };
 };
 

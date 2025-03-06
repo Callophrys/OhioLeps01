@@ -21,10 +21,15 @@ export async function getSiteDate(siteDateId: number) {
     },
   });
 
-  return siteDate;
+  const jsonSiteDate = JSON.stringify(
+    siteDate,
+    (key, value) => (typeof value === 'bigint' ? value.toString() : value) // return everything else unchanged
+  );
+
+  return JSON.parse(jsonSiteDate);
 }
 
-export async function getSiteDates(siteId: number) {
+export async function getSiteDates(siteId: number): SiteDateYearSiteDates[] {
   const siteDates = await prisma.siteDate.findMany({
     where: {
       siteId: siteId,
@@ -40,7 +45,12 @@ export async function getSiteDates(siteId: number) {
   });
 
   //console.log('siteDates', siteDates);
-  return siteDates;
+  const jsonSiteDates = JSON.stringify(
+    siteDates,
+    (key, value) => (typeof value === 'bigint' ? value.toString() : value) // return everything else unchanged
+  );
+
+  return JSON.parse(jsonSiteDates);
 }
 
 export async function getSiteDatesAll() {
@@ -64,7 +74,7 @@ export async function getSiteDatesAll() {
   return siteDates;
 }
 
-export async function getSiteDateSiteDates(siteDateId: number) {
+export async function getSiteDateSiteDates(siteDateId: number): SiteDateYearSiteDates[] {
   const siteDateSiteDates = await prisma.siteDate.findUnique({
     where: {
       id: siteDateId,
@@ -78,7 +88,14 @@ export async function getSiteDateSiteDates(siteDateId: number) {
     },
   });
 
-  return siteDateSiteDates?.site.siteDates;
+  const siteDates = siteDateSiteDates?.site.siteDates;
+
+  const jsonSiteDates = JSON.stringify(
+    siteDates,
+    (key, value) => (typeof value === 'bigint' ? value.toString() : value) // return everything else unchanged
+  );
+
+  return JSON.parse(jsonSiteDates);
 }
 
 export async function addSiteDate(siteDate: SiteDate) {

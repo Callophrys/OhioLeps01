@@ -16,7 +16,7 @@ export default async function () {
   );
   const siteDateLookup = Object.assign(
     {},
-    ...siteDates.map((s: any) => ({ [s.seqId]: s.id })),
+    ...siteDates.map((s: any) => ({ [s.seqId]: BigInt(s.id) })),
   );
   //console.log(checklistLookup);
   //console.log(siteDateLookup);

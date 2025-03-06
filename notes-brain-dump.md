@@ -807,4 +807,31 @@ npm -v
 npm install --force
 ```
 
+#Working with BigInt
+Overview
+BigInt fields are represented by the
+BigInt
+type
 
+(Node.js 10.4.0+ required). The following example demonstrates how to use the BigInt type:
+
+import { PrismaClient, Prisma } from '@prisma/client'
+
+const newTypes = await prisma.sample.create({
+  data: {
+    revenue: BigInt(534543543534),
+  },
+})
+
+Serializing BigInt
+
+Prisma Client returns records as plain JavaScript objects. If you attempt to use JSON.stringify on an object that includes a BigInt field, you will see the following error:
+
+Do not know how to serialize a BigInt
+
+To work around this issue, use a customized implementation of JSON.stringify:
+
+JSON.stringify(
+  this,
+  (key, value) => (typeof value === 'bigint' ? value.toString() : value) // return everything else unchanged
+)

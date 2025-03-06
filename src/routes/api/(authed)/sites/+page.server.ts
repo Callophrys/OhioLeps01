@@ -30,20 +30,10 @@ export async function load({ cookies, url }: { cookies: any; url: any }) {
     getStates(),
   ]);
 
-  const jsonCounties = JSON.stringify(counties);
-  const jsonResultCounties: County[] = JSON.parse(jsonCounties);
-
-  const jsonSites = JSON.stringify(sites);
-  const jsonResultSites: SiteCountyState[] = JSON.parse(jsonSites);
-
-  const jsonStates = JSON.stringify(states);
-  const jsonResultStates: State[] = JSON.parse(jsonStates);
-
-  // console.log(jsonResult);
   return {
-    counties: jsonResultCounties,
-    sites: jsonResultSites,
-    states: jsonResultStates,
+    counties: counties,
+    sites: sites,
+    states: states,
   };
 }
 

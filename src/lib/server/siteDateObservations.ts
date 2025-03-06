@@ -37,35 +37,21 @@ export async function sdoLoad(siteId: number, siteDateId: number) {
       getChecklists(),
     ]);
 
-  const jsonSites = JSON.stringify(sites);
-  const jsonSitesResult: SiteCounty[] = JSON.parse(jsonSites);
-
-  const jsonD = JSON.stringify(siteDates);
-  const jsonResultD: SiteDateYear[] = JSON.parse(jsonD);
-
   // need 3 lists of checklists
   // 1. all seen by this current siteDateObs
   // 2. all seen by the site of this siteDateObs
   // 3. all possible
 
   // 1. SiteDateObservations by current siteDate - this gets all checklist species for this siteDate
-  const jsonC = JSON.stringify(siteDateObservations);
-  const jsonResultC: SiteDateObservationChecklist[] = JSON.parse(jsonC);
-
   // 2. All checklists for site overall
-  const jsonT = JSON.stringify(checklistsForSite);
-  const jsonResultT: SiteDateObservationChecklist[] = JSON.parse(jsonT);
-
   // 3. All checklist items
-  const jsonA = JSON.stringify(checklistsAll);
-  const jsonResultA: SiteDateObservationChecklist[] = JSON.parse(jsonA);
 
   return {
-    sites: jsonSitesResult,
-    siteDates: jsonResultD,
-    checklistsSiteDateObs: jsonResultC,
-    checklistsSite: jsonResultT,
-    checklistsAll: jsonResultA,
+    sites: sites,
+    siteDates: siteDates,
+    checklistsSiteDateObs: siteDateObservations,
+    checklistsSite: checklistsForSite, // jsonResultT,
+    checklistsAll: checklistsAll, // jsonResultA,
   };
 }
 
@@ -91,7 +77,7 @@ export const siteDateObservationActions: Actions = {
 
     // Add form data
     const formData: any = await request.formData();
-    // console.log(formData);
+    //console.log(formData);
 
     const sdoIds: number[] = [
       ...new Set(
@@ -109,7 +95,7 @@ export const siteDateObservationActions: Actions = {
     });
 
     const dbData = await Promise.all(promises);
-    // console.log('dbData', dbData);
+    console.log('dbData', dbData);
 
     const preparedData: any = {};
     dbData.forEach((item) => {
@@ -119,13 +105,13 @@ export const siteDateObservationActions: Actions = {
         orig: {},
       };
     });
-    // console.log('preparedData', preparedData);
+    console.log('preparedData', preparedData);
 
     Array.from(formData).forEach(([k, v]: any) => {
       const parts = k.split("_");
       preparedData[parts[0]][parts.length < 3 ? "edit" : "orig"][parts[1]] = v;
     });
-    console.log('formData', formData);
+    // console.log('formData', formData);
 
     promises.length = 0;
     sdoIds.forEach((sdoId) => {
@@ -308,17 +294,15 @@ export const siteDateObservationActions: Actions = {
     const confirm = formData.get("confirm") === "true";
     const userId = locals.user.id;
 
-    console.log(siteDateObservationId, confirm, userId);
+    // console.log(siteDateObservationId, confirm, userId);
 
-    const siteDateObservation = (await reviewSiteDateObservation(
+    const siteDateObservation = await reviewSiteDateObservation(
       siteDateObservationId,
       confirm,
       userId,
-    )) as SiteDateObservationChecklist;
+    );
 
-    const json = JSON.stringify(siteDateObservation);
-    const jsonResult: SiteDateObservationChecklist = JSON.parse(json);
-    return { action: "review", success: true, siteDateObservation: jsonResult };
+    return { action: "review", success: true, siteDateObservation: siteDateObservation };
   },
 };
 

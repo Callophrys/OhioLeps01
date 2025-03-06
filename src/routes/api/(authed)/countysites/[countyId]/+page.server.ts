@@ -19,13 +19,5 @@ export async function load({ cookies, url, params }) {
       ? await Promise.all([getSites(null), getCountiesExpanded()])
       : await Promise.all([getSitesByCounty(countyId), getCountiesExpanded()]);
 
-  const jsonS = JSON.stringify(sites);
-  const jsonResultS: SiteCounty[] = JSON.parse(jsonS);
-
-  const jsonC = JSON.stringify(counties);
-  const jsonResultC: County[] = JSON.parse(jsonC);
-
-  //console.log(jsonResultC);
-
-  return { sites: jsonResultS, counties: jsonResultC, refCountyId: countyId };
+  return { sites: sites, counties: counties, refCountyId: countyId };
 }

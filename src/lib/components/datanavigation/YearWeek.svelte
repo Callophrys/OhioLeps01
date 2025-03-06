@@ -1,8 +1,8 @@
 <script lang="ts">
     let {
-        year = $bindable(),
-        week = $bindable(),
-        sdoCount = $bindable(),
+        year = $bindable(-1),
+        week = $bindable(-1),
+        sdoCount = $bindable(0),
     }: {
         year: number;
         week: number | null;

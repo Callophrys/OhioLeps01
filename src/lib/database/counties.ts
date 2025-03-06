@@ -19,7 +19,7 @@ export async function getCounties() {
   return counties;
 }
 
-export async function getCountiesExpanded() {
+export async function getCountiesExpanded(): CountyComplete[] {
   // filtering for OH by default
   const counties = await prisma.county.findMany({
     include: {
@@ -41,7 +41,12 @@ export async function getCountiesExpanded() {
     ],
   });
 
-  return counties;
+  const jsonCounties = JSON.stringify(
+    counties,
+    (key, value) => (typeof value === 'bigint' ? value.toString() : value)
+  );
+
+  return JSON.parse(jsonCounties);
 }
 
 export async function getMonitoredCounties() {

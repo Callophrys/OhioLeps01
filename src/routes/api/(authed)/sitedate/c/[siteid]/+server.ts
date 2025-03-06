@@ -10,11 +10,8 @@ export async function GET({ params }: any) {
 
   //console.log('siteDates', siteDates);
 
-  const jsonYW = JSON.stringify(siteDates);
-  const jsonResultYW: SiteDateYearSiteDates[] = JSON.parse(jsonYW);
-
   return json({
     success: true,
-    siteDates: jsonResultYW,
+    siteDates: siteDates, // jsonResultYW,
   });
 }

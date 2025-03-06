@@ -1,13 +1,14 @@
 import prisma from "$lib/prisma";
 import type { ChangelessSite } from "$lib/types";
 import type { Site } from "@prisma/client";
+import { convertSafeJson } from "../utils";
 
 /**
  * Obtain site details including county, yearly statuses, and observation dates
  * @param siteId
  * @returns
  */
-export async function getSite(siteId: number) {
+export async function getSite(siteId: BigInt): SiteCountySiteDatesSiteStatuses[] {
   // console.log('/lib/api/entry/sites.ts > getSite', siteId);
 
   const site = await prisma.site.findUnique({
@@ -35,13 +36,13 @@ export async function getSite(siteId: number) {
     },
   });
 
-  return site;
+  return convertSafeJson(site);
 }
 
 export async function getSiteData(siteId: number) {
   const site = await prisma.site.findUnique({
     where: {
-      id: siteId,
+      id: BigInt(siteId),
     },
     include: {
       siteDates: true,
@@ -223,7 +224,7 @@ where s.id = ${siteId}`;
 /*
  */
 
-export async function getSitesByCounty(countyId: number) {
+export async function getSitesByCounty(countyId: number): SiteCounty[] {
   const sites = await prisma.site.findMany({
     where: {
       countyId: countyId,
@@ -236,10 +237,10 @@ export async function getSitesByCounty(countyId: number) {
     },
   });
 
-  return sites;
+  return convertSafeJson(sites);
 }
 
-export async function getSitesSlim(idList: number[] | null) {
+export async function getSitesSlim(idList: BigInt[] | null): Site[] {
   // console.log('/lib/api/database/sites.ts > getSitesSlim');
 
   // let whereClause =
@@ -258,22 +259,18 @@ export async function getSitesSlim(idList: number[] | null) {
     },
   });
 
-  return sites;
+  return convertSafeJson(sites);
 }
 
-export async function getSites(idList: number[] | null) {
+export async function getSites(idList: number[] | null): SiteCountyState[] {
   console.log('/lib/api/database/sites.ts > getSites');
 
-  // let whereClause =
-  //     idList && idList.length
-  //         ? {
-  //               id: { in: idList },
-  //           }
-  //         : true;
+  const idsClause: any[] = idList?.length ? { id: { in: idList } } : {};
 
   const sites = await prisma.site.findMany({
     where: {
-      ...(idList && idList.length ? { id: { in: idList } } : {}),
+      // ...(idList && idList.length ? { id: { in: idList } } : {}),
+      ...idsClause
     },
     include: {
       county: {
@@ -292,7 +289,7 @@ export async function getSites(idList: number[] | null) {
     },
   });
 
-  return sites;
+  return convertSafeJson(sites);
 }
 
 export async function existsInCounty(

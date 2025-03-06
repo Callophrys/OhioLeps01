@@ -498,6 +498,7 @@
   });
 
   let sdoSections = $derived.by(() => {
+    console.log("sdoSections updating");
     const result = Object.entries(currentSiteDateObservation)
       .filter((x) => x[0].startsWith("section"))
       .map(([k, v]) => ({
@@ -566,6 +567,7 @@
     week={weekOfYearSince(new Date(siteDate.recordDate))}
     sdoCount={recordSdoCount}
   />
+  <div>psmilesmile</div>
   <!-- Hodges and P3 are not implemented yet -->
   <!-- <DataOptions bind:showRecentEdits bind:showDeletedData bind:showHodges bind:showP3 /> -->
   <DataOptions
@@ -1077,7 +1079,7 @@
                 />
                 <input
                   type="hidden"
-                  name={`${chkSdo.d}_${section.name}_orig`}
+                  name={`${chkSdo.id}_${section.name}_orig`}
                   value={section.value}
                 />
               </label>

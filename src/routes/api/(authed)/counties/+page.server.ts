@@ -12,7 +12,6 @@ export async function load({ cookies, url }) {
   }
 
   const counties = await getCountiesExpanded();
-  const json = JSON.stringify(counties);
-  const jsonResult: CountyComplete[] = JSON.parse(json);
-  return { counties: jsonResult };
+
+  return { counties: counties };
 }

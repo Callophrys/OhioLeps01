@@ -29,27 +29,12 @@ export async function siteDateLoad(siteDateId: number) {
       getChecklists(),
     ]);
 
-  const jsonSiteDate = JSON.stringify(siteDate);
-  const jsonSiteDateResult: SiteDateYearSdo = JSON.parse(jsonSiteDate);
-
-  const jsonSites = JSON.stringify(sites);
-  const jsonSitesResult: SiteCounty[] = JSON.parse(jsonSites);
-
-  const jsonSiteDates = JSON.stringify(siteDates);
-  const jsonSiteDatesResult: SiteDateYearSiteDates[] = JSON.parse(jsonSiteDates);
-
-  const jsonSdos = JSON.stringify(siteDateObservations);
-  const jsonSdosResult: SiteDateObservationChecklist[] = JSON.parse(jsonSdos);
-
-  const jsonChecklistsAll = JSON.stringify(checklistsAll);
-  const jsonChecklistsAllResult: SiteDateObservationChecklist[] = JSON.parse(jsonChecklistsAll);
-
   return {
-    siteDate: jsonSiteDateResult,
-    sites: jsonSitesResult,
-    siteDates: jsonSiteDatesResult,
-    siteDateObservations: jsonSdosResult,
-    checklistsAll: jsonChecklistsAllResult,
+    siteDate: siteDate,
+    sites: sites,
+    siteDates: siteDates,
+    siteDateObservations: siteDateObservations, // jsonSdosResult,
+    checklistsAll: checklistsAll,
   };
 }
 

@@ -37,8 +37,8 @@
     popupStyles = "",
     labelledby = "Select site-date",
   }: {
-    currentSiteId: number;
-    currentSiteDateId: number;
+    currentSiteId: BigInt;
+    currentSiteDateId: BigInt;
 
     heading: any;
     yearPrefix: any;
@@ -197,8 +197,10 @@
   };
 
   const handleSelectWeek = (event: Event & { currentTarget: any }) => {
+    console.log("handleSelectWeek");
+
     let idx = trackedWeeks.findIndex(
-      (x) => x.siteDateId === parseInt(event.currentTarget.value),
+      (x) => x.siteDateId === event.currentTarget.value,
     );
     if (idx > -1) {
       event.preventDefault();

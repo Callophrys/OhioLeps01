@@ -13,8 +13,7 @@
   import MemoryToggle from "$lib/components/data/MemoryToggle.svelte";
   import ModalSiteDate from "$lib/components/ModalSiteDate.svelte";
   import ModalSiteDateObservation from "$lib/components/ModalSiteDateObservation.svelte";
-  import SiteDatePicker from "$lib/components/datanavigation/SiteDatePicker.svelte";
-  import YearWeek from "$lib/components/datanavigation/YearWeek.svelte";
+  // import SiteDatePicker from "$lib/components/datanavigation/SiteDatePicker.svelte";
   import { getModalStore } from "@skeletonlabs/skeleton";
   import { goto } from "$app/navigation";
   import {
@@ -304,7 +303,9 @@
   // console.log(data.siteDate);
   //
 
+  let collapseAll = $state(false); // TODO: save this
   function setAccordionItemAll(open: boolean) {
+    collapseAll = !open;
     optAccA = open;
     optAccB = open;
     optAccC = open;
@@ -340,7 +341,7 @@
         <span
           class="text-green-700 dark:text-green-400 text-xl before:content-['✚']"
         ></span>
-        <span>Edit Current</span>
+        <span>Edit</span>
       </button>
       <button
         type="button"
@@ -358,7 +359,7 @@
         <span
           class="text-green-700 dark:text-green-400 text-xl before:content-['✚']"
         ></span>
-        <span>Add New</span>
+        <span>Add</span>
       </button>
     </div>
   </h2>
@@ -367,40 +368,44 @@
 {#snippet clBody()}
   <div class="flex flex-row justify-between">
     <div class="flex mb-2">
-      <button
-        class="w-full px-1 cursor-pointer hover:animate-pulse"
-        onclick={() => setAccordionItemAll(false)}
-        aria-labelledby=" "
-        type="button"
-        title="Collapse all"
-      >
-        <div
-          class="fill-current w-3 transition-tranform duration-[200mx] rotate-90"
+      <!-- TODO: temporary hack pleasedo this correctly -->
+      {#if !collapseAll}
+        <button
+          class="w-full px-1 cursor-pointer hover:animate-pulse"
+          onclick={() => setAccordionItemAll(collapseAll)}
+          aria-labelledby=" "
+          type="button"
+          title="Collapse all"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-            <path
-              d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
-            ></path>
-          </svg>
-        </div>
-      </button>
-      <button
-        class="bg-slate-200-800 text-white px-1 py-1 rounded cursor-pointer hover:animate-pulse"
-        onclick={() => setAccordionItemAll(true)}
-        aria-labelledby=" "
-        type="button"
-        title="Expand all"
-      >
-        <div
-          class="fill-current w-3 transition-tranform duration-[200mx] -rotate-90"
+          <div
+            class="fill-current w-3 transition-tranform duration-[200mx] rotate-90"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+              <path
+                d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
+              ></path>
+            </svg>
+          </div>
+        </button>
+      {:else}
+        <button
+          class="bg-slate-200-800 text-white px-1 py-1 rounded cursor-pointer hover:animate-pulse"
+          onclick={() => setAccordionItemAll(collapseAll)}
+          aria-labelledby=" "
+          type="button"
+          title="Expand all"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-            <path
-              d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
-            ></path>
-          </svg>
-        </div>
-      </button>
+          <div
+            class="fill-current w-3 transition-tranform duration-[200mx] -rotate-90"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+              <path
+                d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"
+              ></path>
+            </svg>
+          </div>
+        </button>
+      {/if}
       <div class="ml-4 text-nowrap">
         Recorder: {data.siteDate.recorder}
       </div>
