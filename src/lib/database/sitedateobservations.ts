@@ -7,7 +7,7 @@ export async function getSiteDateObservations(
   checklistId: number = 0,
   siteId: number = 0,
 ) {
-//  console.log('database.siteDateObservations.getSiteDateObservation');
+  console.log('database.siteDateObservations.getSiteDateObservation');
   if (siteDateId > 0) {
     if (checklistId > 0) {
       return await getSiteDateObservationsBySiteDateAndChecklist(
@@ -25,6 +25,7 @@ export async function getSiteDateObservations(
 }
 
 export async function getSiteDateObservationsBySiteDate(siteDateId: number) {
+  console.log('database.siteDateObservations.getSiteDateObservationBySiteDate');
   const siteDateObservations = await prisma.siteDateObservation.findMany({
     where: {
       siteDateId: siteDateId,

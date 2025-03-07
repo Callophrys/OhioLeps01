@@ -34,18 +34,41 @@
       await userObj.loadUserSets(siteId);
     }
   }
+
+  function getDefaultPrivilege(role: string) {
+    switch (role) {
+      case "SUPER":
+        return "S";
+      case "REVIEWER":
+        return "R";
+      case "ENTRY":
+        return "E";
+      case "USER":
+        return "V";
+      default:
+        throw "User role unknown.";
+    }
+  }
 </script>
 
-<div class="w-72">
-  <div>Candidate Users ({siteId})</div>
+<div class="w-56 pl-2">
+  <div class="h-12">Candidate Users</div>
   <ul class="list">
     {#each users as user}
       <li class="flex justify-between p-2 bg-gray-700 rounded-md">
         <button
-          onclick={async () => await createSiteUser(siteId, user.id, "V")}
-          class="text-red-500">Add {user.firstLast}</button
+          onclick={async () =>
+            await createSiteUser(
+              siteId,
+              user.id,
+              getDefaultPrivilege(user.role.name),
+            )}
+          class="text-red-500">+ {user.firstLast}</button
         >
-        <span>{user.name}</span>
+        <!-- <div class="flex flex-row"> -->
+        <!--   <div>{user.name}</div> -->
+        <!--   <div>{user.lastFirst}</div> -->
+        <!-- </div> -->
       </li>
     {/each}
   </ul>

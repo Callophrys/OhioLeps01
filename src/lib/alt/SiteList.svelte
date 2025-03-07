@@ -2,16 +2,31 @@
   import { getContext, setContext } from "svelte";
 
   let sites = getContext("sites");
-  let { selectedSiteState }: { seletectSite: number } = $props();
+  let {
+    selectedSiteState,
+  }: { selectedSite: number; selectedSiteName: string } = $props();
 
   $effect(
     () => console.log("selectedSite changed", selectedSiteState),
     // console.log("selectedSite changed", selectedSiteState.selectedSite),
   );
+  export async function removeAllSiteUsers(siteId: number) {
+    console.log("Removing");
+    if (siteId > 0) {
+      await fetch(`/admin/siteuser/${siteId}`, {
+        method: "DELETE",
+      });
+
+      await userObj.loadUserSets(siteId);
+    }
+  }
 </script>
 
-<div class="w-80">
-  <div>Sites - Selected {selectedSiteState.selectedSite}</div>
+<div class="">
+  <div class="h-12">
+    <div>Selected Site:</div>
+    <div class="pl-4 contrast-more">{selectedSiteState.selectedSiteName}</div>
+  </div>
   <ul class="list">
     {#each sites as site}
       <li class="flex justify-between p-2 bg-gray-700 rounded-md">
@@ -24,6 +39,7 @@
               typeof selectedSiteState,
               typeof selectedSiteState.selectedSite,
             );
+            selectedSiteState.selectedSiteName = site.siteName;
             selectedSiteState.selectedSite = site.id;
           }}
           aria-labelledby=" "

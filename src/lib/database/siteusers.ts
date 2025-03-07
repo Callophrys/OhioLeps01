@@ -35,6 +35,15 @@ export async function updateSiteUser(siteId: number, userId: string, privilege: 
   return updatedSiteUser;
 }
 
+export async function removeAllSiteUsers(siteId: number) {
+  console.log("/lib/database/siteusers.ts > removeAllSiteUsers");
+  await prisma.siteUser.deleteMany({
+    where: {
+      siteId: siteId,
+    },
+  });
+}
+
 export async function removeSiteUser(siteId: number, userId: string) {
   console.log("/lib/database/siteusers.ts > removeSiteUser");
   await prisma.siteUser.deleteMany({
@@ -47,28 +56,34 @@ export async function removeSiteUser(siteId: number, userId: string) {
   });
 }
 
-// is use?
+// // is use?
 
-export async function fetchSites(): Promise<site[]> {
-  const res = await fetch("/api/sites");
-  return res.json();
-}
+// export async function fetchSites(): Promise<site[]> {
+//   const res = await fetch("/api/sites");
+//   return res.json();
+// }
 
-export async function fetchUsersBySite(siteId: string): Promise<User[]> {
-  const res = await fetch(`/api/sites/${siteId}/users`);
-  return res.json();
-}
+// export async function fetchUsersBySite(siteId: string): Promise<User[]> {
+//   const res = await fetch(`/api/sites/${siteId}/users`);
+//   return res.json();
+// }
 
-export async function addUserToSite(siteId: string, userId: string): Promise<void> {
-  await fetch(`/api/sites/${siteId}/users`, {
-    method: "POST",
-    body: JSON.stringify({ userId }),
-    headers: { "Content-Type": "application/json" },
-  });
-}
+// export async function addUserToSite(siteId: string, userId: string): Promise<void> {
+//   await fetch(`/api/sites/${siteId}/users`, {
+//     method: "POST",
+//     body: JSON.stringify({ userId }),
+//     headers: { "Content-Type": "application/json" },
+//   });
+// }
 
-export async function removeUserFromSite(siteId: string, userId: string): Promise<void> {
-  await fetch(`/api/sites/${siteId}/users/${userId}`, {
-    method: "DELETE",
-  });
+// export async function removeAllUserFromSite(siteId: string): Promise<void> {
+//   await fetch(`/api/sites/${siteId}/users`, {
+//     method: "DELETE",
+//   });
+// }
+
+// export async function removeUserFromSite(siteId: string, userId: string): Promise<void> {
+//   await fetch(`/api/sites/${siteId}/users/${userId}`, {
+//     method: "DELETE",
+//   });
 }

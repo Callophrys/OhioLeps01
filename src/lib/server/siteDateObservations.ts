@@ -26,7 +26,6 @@ import type { SiteDateObservation } from "@prisma/client";
 
 // params: siteDateObservationId and siteId
 export async function sdoLoad(siteId: number, siteDateId: number) {
-  // console.log('.....', params);
 
   const [sites, siteDates, siteDateObservations, checklistsForSite, checklistsAll] =
     await Promise.all([
@@ -85,6 +84,7 @@ export const siteDateObservationActions: Actions = {
     const getDbData = async (
       sdoId: number,
     ): Promise<{ sdoId: number; sdo: SiteDateObservation }> => {
+      console.log("getDbData");
       const dbSdo: any = await getSiteDateObservation(sdoId);
       return { sdoId: sdoId, sdo: dbSdo };
     };
@@ -107,6 +107,7 @@ export const siteDateObservationActions: Actions = {
     sdoIds.forEach((sdoId) => {
       promises.push(getDbData(sdoId));
     });
+    console.log('promises');
 
     const dbData = await Promise.all(promises);
     // console.log('dbData', dbData);
