@@ -9,7 +9,7 @@ import {
 } from "$lib/database/appconfig";
 import { redirect } from "@sveltejs/kit";
 import { getOrganizations } from "$lib/database/organizations";
-import { getUsers } from "$lib/database/users.js";
+import { getUsers } from "$lib/database/users";
 import { getSites } from "$lib/database/sites";
 import { promises } from "dns";
 
@@ -44,14 +44,11 @@ export const load: PageServerLoad = async ({ locals }) => {
   const jsonOrganizations = JSON.stringify(organizations);
   const jsonResultOrganizations: Organization[] = JSON.parse(jsonOrganizations);
 
-  const jsonSites = JSON.stringify(sites);
-  const jsonResultSites: Site[] = JSON.parse(jsonSites);
-
   console.log("done in server ");
   return {
     appConfigs: jsonResult,
     users: jsonResultUsers,
-    organziations: jsonResultOrganizations,
+    organizations: jsonResultOrganizations,
     sites: sites,
   };
 };

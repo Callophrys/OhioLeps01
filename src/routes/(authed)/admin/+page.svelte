@@ -18,11 +18,12 @@
 
     let { data } = $props();
     // console.log(data);
+    console.log("xxx", data.sites);
 
     setContext("sites", data.sites);
     setContext("selectedSiteState", selectedSiteState);
 
-    const myOrganizations = data.organziations;
+    const myOrganizations = data.organizations;
 
     let users: User[] | null = $state([]);
 
@@ -71,17 +72,6 @@
     });
 
     let tabSet: number = $state(0);
-
-    // async function fetchSiteData(siteId: number) {
-    //     let sdpath = `/admin/${siteId}`;
-    //     try {
-    //         const response = await fetch(`${sdpath}`);
-    //         const data = await response.json();
-    //         return data.siteData;
-    //     } catch (error) {
-    //         console.error("Error fetching data:", error, "from sdpath", sdpath);
-    //     }
-    // }
 
     // https://www.basedash.com/blog/how-to-use-papaparse-with-typescript
     // https://www.papaparse.com/docs#json-to-csv
@@ -237,8 +227,19 @@
     <!-- ... -->
 
     <div class="container mx-auto p-4">
-        <h1 class="text-2xl font-bold">Sites</h1>
-        <div class="flex flex-row space-4">
+        <h1 class="text-2xl font-bold flex flex-row justify-between">
+            <div>Sites</div>
+            <div class="flex flex-row space-x-2">
+                <button type="button" class="btn variant-filled">Add all</button
+                >
+                <button
+                    type="button"
+                    class="btn variant-filled"
+                    onclick={removeAllSiteUsers}>Remove all</button
+                >
+            </div>
+        </h1>
+        <div class="flex flex-row space-x-4">
             <SiteList {selectedSiteState} />
             <SiteUsers {selectedSiteState} />
         </div>
