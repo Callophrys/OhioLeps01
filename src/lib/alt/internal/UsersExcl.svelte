@@ -1,16 +1,16 @@
 <script lang="ts">
   import { SlideToggle } from "@skeletonlabs/skeleton";
   import { getContext } from "svelte";
+  import { loadUserSets } from "$lib/alt/internal/SiteUserMethods";
 
-  let { usersExcl } = $props();
+  const context = getContext("usersContext");
+  console.log("UsersExcl usersContext", context);
 
-  const context = getContext("selectedSiteState");
-
-  let siteId = $derived.by(() => context.selectedSite);
+  let siteId = $derived.by(() => context.siteId);
 
   let users = $derived.by(() => {
-    console.log("userSet", usersExcl.users);
-    return usersExcl.users;
+    console.log("Excluded users", context.excludedUsers);
+    return context.excludedUsers;
   });
 
   async function createSiteUser(
@@ -31,7 +31,7 @@
         body: fd,
       });
 
-      await usersExcl.loadUserSets(siteId);
+      await loadUserSets(context);
     }
   }
 

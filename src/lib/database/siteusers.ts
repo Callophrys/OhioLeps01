@@ -1,5 +1,5 @@
 import prisma from "$lib/prisma";
-import { convertSafeJson } from "$lib/utils.js";
+import { convertSafeJson, privilegeFromName } from "$lib/utils.js";
 
 export async function createSiteUser(
   siteId: BigInt,
@@ -46,6 +46,39 @@ export async function updateSiteUser(
   });
 
   return updatedSiteUser;
+}
+
+export async function addAllSiteUsers(siteId: number) {
+  console.log("/lib/database/siteusers.ts > addAllSiteUsers");
+
+  const userData = await prisma.user.findMany({
+    where: {
+      disabled: false,
+      siteUser: {
+        none: {
+          siteId: siteId,
+        },
+      },
+    },
+    select: {
+      id: true,
+      role: {
+        name: true,
+      },
+    },
+  });
+
+
+  console.log('userData', userData);
+
+  // await prisma.siteUser.createMany({
+  //   data: userData.map((u) => ({
+  //     siteId: siteId,
+  //     userId: u.id,
+  //     privilege: privilegeFromName(u.role.name),
+  //   })),
+  //   skipDuplicates: true,
+  // });
 }
 
 export async function removeAllSiteUsers(siteId: number) {

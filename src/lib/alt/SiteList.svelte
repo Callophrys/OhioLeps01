@@ -1,21 +1,21 @@
 <script lang="ts">
   import { getContext } from "svelte";
 
-  let sites = getContext("sites");
-  let {
-    selectedSiteState,
-  }: { selectedSite: number; selectedSiteName: string } = $props();
+  const context = getContext("usersContext");
+  console.log("SiteList usersContext", context);
+  const sites = getContext("sites");
+  console.log("SiteList sites", sites);
 
   $effect(
-    () => console.log("selectedSite changed", selectedSiteState),
-    // console.log("selectedSite changed", selectedSiteState.selectedSite),
+    () => console.log("selectedSite changed", context),
+    // console.log("selectedSite changed", context.siteId),
   );
 </script>
 
 <div class="">
   <div class="h-12">
     <div>Selected Site:</div>
-    <div class="pl-4 contrast-more">{selectedSiteState.selectedSiteName}</div>
+    <div class="pl-4 contrast-more">{context.siteName}</div>
   </div>
   <ul class="list">
     {#each sites as site}
@@ -26,11 +26,11 @@
               "clicked",
               site.siteName,
               typeof site.id,
-              typeof selectedSiteState,
-              typeof selectedSiteState.selectedSite,
+              typeof context,
+              typeof context.siteId,
             );
-            selectedSiteState.selectedSiteName = site.siteName;
-            selectedSiteState.selectedSite = site.id;
+            context.siteId = site.id;
+            context.siteName = site.siteName;
           }}
           aria-labelledby=" "
         >

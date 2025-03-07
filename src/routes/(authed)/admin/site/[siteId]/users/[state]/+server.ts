@@ -5,10 +5,10 @@ export async function GET({ params }: any) {
   console.log("params", params);
 
   let siteId = Number(params.siteid);
-  let state = Number(params.state);
+  let state = String(params.state);
 
   console.log(
-    `get user data from /admin/site/${siteId}/users/{state}/+server.ts`,
+    `get user data from /admin/site/${siteId}/users/${state}/+server.ts`,
   );
 
   const users =

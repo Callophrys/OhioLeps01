@@ -4,7 +4,7 @@
     import ButtonAddAllSiteUsers from "$lib/alt/ButtonAddAllSiteUsers.svelte";
     import ButtonRemoveAllSiteUsers from "$lib/alt/ButtonRemoveAllSiteUsers.svelte";
     import UserManagementModal from "$lib/modals/admin/UserManagementModal.svelte";
-    import { selectedSiteState } from "$lib/alt/internal/selectedSiteState.svelte.ts";
+    import { usersContext } from "$lib/alt/internal/usersContext.svelte.ts";
 
     import { ROLE } from "$lib/types.js";
     import type { AppConfigFormKeyChecked } from "$lib/types.js";
@@ -33,7 +33,8 @@
     // console.log("yyy");
 
     setContext("sites", data.sites);
-    setContext("selectedSiteState", selectedSiteState);
+    console.log("into usersContext", usersContext);
+    setContext("usersContext", usersContext);
 
     const myOrganizations = data.organizations;
 
@@ -196,8 +197,8 @@
             </div>
         </h1>
         <div class="flex flex-row space-x-4">
-            <SiteList {selectedSiteState} />
-            <SiteUsers {selectedSiteState} />
+            <SiteList />
+            <SiteUsers />
         </div>
     </div>
 {/snippet}

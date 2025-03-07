@@ -1,16 +1,16 @@
 <script lang="ts">
   import { SlideToggle } from "@skeletonlabs/skeleton";
   import { getContext } from "svelte";
+  import { loadUserSets } from "$lib/alt/internal/SiteUserMethods";
 
-  let { usersIncl } = $props();
+  const context = getContext("usersContext");
+  console.log("UsersIncl usersContext", context);
 
-  const context = getContext("selectedSiteState");
-
-  let siteId = $derived.by(() => context.selectedSite);
+  let siteId = $derived.by(() => context.siteId);
 
   let users = $derived.by(() => {
-    console.log("userSet", usersIncl.users);
-    return usersIncl.users;
+    console.log("Included users", context.includedUsers);
+    return context.includedUsers ?? [];
   });
 
   async function updateSiteUser(
@@ -28,7 +28,7 @@
         body: fd,
       });
 
-      await usersIncl.loadUserSets(siteId);
+      await loadUserSets(context);
     }
   }
 
@@ -39,7 +39,7 @@
         method: "DELETE",
       });
 
-      await usersIncl.loadUserSets(siteId);
+      await loadUserSets(context);
     }
   }
 

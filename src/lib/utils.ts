@@ -35,6 +35,21 @@ export function decodeWeather(k: string | null): string {
   }
 }
 
+export function privilegeFromName(privName: string): string {
+  switch (privName) {
+    case "ENTRY":
+      return "E";
+    case "REVIEW":
+      return "R";
+    case "SUPER":
+      return "S";
+    case "ADMIN":
+      return "A";
+    default:
+      return "V";
+  }
+}
+
 export function daysIntoYear(date: Date): number {
   return (
     (Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) -

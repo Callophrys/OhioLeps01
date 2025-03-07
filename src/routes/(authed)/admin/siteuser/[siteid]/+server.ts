@@ -1,37 +1,25 @@
 import {
-  updateSiteUser,
-  removeSiteUser,
+  addAllSiteUsers,
   removeAllSiteUsers,
 } from "$lib/database/siteusers";
 import { json } from "@sveltejs/kit";
 
-export async function PUT({ params, request }: any) {
-  console.log(
-    `updateUser data from /admin/siteuser/${params.siteid}/${params.userid}/+server.ts`,
-  );
+export async function POST({ params }: any) {
+  console.log(`addAllSiteUsers data from /admin/siteuser/${params.siteid}/+server.ts`);
 
-  let siteId = Number(params.siteid);
-  let userId = String(params.userid);
-
-  const fd = await request.formData();
-  console.log(fd);
-
-  let privilege = fd.get("privilege");
-
-  const siteUser = await updateSiteUser(siteId, userId, privilege);
-  console.log("site user data", siteUser);
-
-  return json({ success: true, users: siteUser });
+  let siteId = BigInt(params.siteid);
+  const siteUsers = await addAllSiteUsers(siteId);
+  return json({ success: true, users: siteUsers });
 }
+
 
 export async function DELETE({ params }: any) {
   console.log(
     `removeAllSiteUsers data from /admin/siteuser/${params.siteid}/server.ts`,
   );
 
-  let siteId = Number(params.siteid);
-
-  const user = await removeAllSiteUsers(siteId);
+  let siteId = BigInt(params.siteid);
+  await removeAllSiteUsers(siteId);
 
   return json({ success: true });
 }

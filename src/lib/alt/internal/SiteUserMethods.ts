@@ -1,9 +1,18 @@
-export const UserState = {
-  IncludedUsers: "incl",
-  ExcludedUsers: "excl",
+const UserState = {
+  INCLUDEDUSERS: "incl",
+  EXCLUDEDUSERS: "excl",
 };
 
-export type UserStateType = (typeof UserState)[keyof typeof UserState]
+type UserStateType = (typeof UserState)[keyof typeof UserState]
+
+export async function addAllSiteUsers(siteId: number) {
+  console.log("Adding all site users");
+  if (siteId > 0) {
+    await fetch(`/admin/siteuser/${siteId}`, {
+      method: "POST",
+    });
+  }
+}
 
 export async function removeAllSiteUsers(siteId: number) {
   console.log("Removing all site users");
@@ -14,7 +23,26 @@ export async function removeAllSiteUsers(siteId: number) {
   }
 }
 
-export async function fetchUserSet(siteId: number, userState: UserStateType) {
+export async function loadUserSets(usersContext: any) {
+  console.log("in loadUserSets", usersContext);
+
+  if (usersContext.siteId > 0) {
+    const [excludedUsers, includedUsers] = await Promise.all([
+      fetchUserSet(String(usersContext.siteId), UserState.EXCLUDEDUSERS),
+      fetchUserSet(String(usersContext.siteId), UserState.INCLUDEDUSERS),
+    ]);
+    // console.log("excludedUsers", excludedUsers);
+    // console.log("includedUsers", includedUsers);
+
+    usersContext.excludedUsers = excludedUsers;
+    usersContext.includedUsers = includedUsers;
+    // console.log("usersExcl", usersExcl);
+    // console.log("usersIncl", usersIncl);
+  }
+}
+
+
+async function fetchUserSet(siteId: string, userState: UserStateType) {
   console.log("fetchUserSet", [...arguments]);
   try {
     console.log(`/admin/site/${siteId}/users/${userState}`);
