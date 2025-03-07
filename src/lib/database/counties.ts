@@ -41,9 +41,8 @@ export async function getCountiesExpanded(): CountyComplete[] {
     ],
   });
 
-  const jsonCounties = JSON.stringify(
-    counties,
-    (key, value) => (typeof value === 'bigint' ? value.toString() : value)
+  const jsonCounties = JSON.stringify(counties, (key, value) =>
+    typeof value === "bigint" ? value.toString() : value,
   );
 
   return JSON.parse(jsonCounties);

@@ -1,4 +1,3 @@
-
 import { getUsersInSite } from "$lib/database/users";
 import { json } from "@sveltejs/kit";
 

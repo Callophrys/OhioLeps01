@@ -1,24 +1,36 @@
 <script lang="ts">
     import SiteList from "$lib/alt/SiteList.svelte";
     import SiteUsers from "$lib/alt/SiteUsers.svelte";
+    import ButtonAddAllSiteUsers from "$lib/alt/ButtonAddAllSiteUsers.svelte";
+    import ButtonRemoveAllSiteUsers from "$lib/alt/ButtonRemoveAllSiteUsers.svelte";
     import UserManagementModal from "$lib/modals/admin/UserManagementModal.svelte";
-    import { SiteContextKey } from "$lib/context";
     import { selectedSiteState } from "$lib/alt/internal/selectedSiteState.svelte.ts";
 
-    import type { Site, User } from "@prisma/client";
     import { ROLE } from "$lib/types.js";
     import type { AppConfigFormKeyChecked } from "$lib/types.js";
+    import type { Site, User } from "@prisma/client";
     import AppConfigControl from "$lib/components/AppConfigControl.svelte";
     import Container from "$lib/components/layouts/Container.svelte";
-    import Papa from "papaparse";
+    // import Papa from "papaparse";
     import { TabGroup, Tab } from "@skeletonlabs/skeleton";
     import { page } from "$app/stores";
     import { getContext, setContext } from "svelte";
     import { SlideToggle } from "@skeletonlabs/skeleton";
 
+    const TABS = Object.freeze({
+        TAB1: 0,
+        TAB2: 1,
+        TAB3: 2,
+        TAB4: 3,
+        TAB5: 4,
+        TAB6: 5,
+        TAB7: 8,
+    });
+
     let { data } = $props();
     // console.log(data);
-    console.log("xxx", data.sites);
+    // console.log("xxx", data.users);
+    // console.log("yyy");
 
     setContext("sites", data.sites);
     setContext("selectedSiteState", selectedSiteState);
@@ -27,40 +39,6 @@
 
     let users: User[] | null = $state([]);
 
-    // async function fetchUsersBySiteId(siteId: string) {
-    //     console.log("in fetchUsersBySiteId");
-    //     const res = await fetch(`/api/site/${siteId}/users`);
-    //     const data = await res.json();
-    //     return data.users;
-    // }
-    //
-    // async function loadUsers() {
-    //     console.log("in loadUsers");
-    //     if (selectedSite) users = await fetchUsersBySiteId(selectedSite);
-    // }
-    //
-    // $effect(async () => {
-    //     console.log("reacting before loadUsers");
-    //     await loadUsers();
-    // });
-    //
-    // function doit() {
-    //     // setContext(SiteContextKey, {
-    //     //     selectedSite,
-    //     //     users,
-    //     //     loadUsers,
-    //     // });
-    //     // setContext("x", selectedSite);
-    //     // setContext("y", users);
-    //     // setContext("z", loadUsers);
-    //     setContext("selectedSite", selectedSite);
-    //     // console.log("set context", getContext(SiteContextKey));
-    // }
-
-    // doit();
-    // $effect(() => {
-    // });
-    //
     let isDebug: boolean =
         data.appConfigs.find(
             (x: AppConfigFormKeyChecked) => x.configName === "modeDebug",
@@ -71,7 +49,7 @@
         config = $page.data.config;
     });
 
-    let tabSet: number = $state(0);
+    let tabSet: number = $state(TABS.TAB0);
 
     // https://www.basedash.com/blog/how-to-use-papaparse-with-typescript
     // https://www.papaparse.com/docs#json-to-csv
@@ -112,10 +90,6 @@
             console.error("Error exporting to CSV:", error);
         }
     }
-
-    // function handleSiteUsers(e: Event) {
-    //     alert("ok");
-    // }
 
     //$: console.log(data.appConfigs);
     //$: configEntries = new Map(Object.entries(config));
@@ -213,30 +187,12 @@
 {/snippet}
 
 {#snippet siteMain()}
-    <!-- <div class="w-fit flex flex-row border-b-2 border-b-red-100"> -->
-    <!--     <div class="w-80">Site Name</div> -->
-    <!--     <div class="w-36">County</div> -->
-    <!--     <div class="w-24">State</div> -->
-    <!--     <div class="w-80"></div> -->
-    <!-- </div> -->
-    <!-- {#each data.sites as site} -->
-    <!--     <div class="flex flex-row space-y-1"> -->
-    <!--         <div class="w-80">{site.siteName}</div> -->
-    <!--         <div class="w-36">{site.county.name}</div> -->
-    <!--         <div class="w-36">{site.county.state.name}</div> -->
-    <!-- ... -->
-
     <div class="container mx-auto p-4">
         <h1 class="text-2xl font-bold flex flex-row justify-between">
             <div>Sites</div>
             <div class="flex flex-row space-x-2">
-                <button type="button" class="btn variant-filled">Add all</button
-                >
-                <button
-                    type="button"
-                    class="btn variant-filled"
-                    onclick={removeAllSiteUsers}>Remove all</button
-                >
+                <ButtonAddAllSiteUsers />
+                <ButtonRemoveAllSiteUsers />
             </div>
         </h1>
         <div class="flex flex-row space-x-4">
@@ -255,34 +211,42 @@
 {#snippet body()}
     <TabGroup>
         {#if $page.data?.user && $page.data.user.role === ROLE.SUPER}
-            <Tab bind:group={tabSet} name="tab1" value={0}>📝 Organizations</Tab
-            >
+            <Tab bind:group={tabSet} value={TABS.TAB0}>📝 Organizations</Tab>
         {:else}
-            <Tab bind:group={tabSet} name="tab1" value={0}>🛠 Organization</Tab>
+            <Tab bind:group={tabSet} value={TABS.TAB0}>🛠 Organization</Tab>
         {/if}
-        <Tab bind:group={tabSet} name="tab2" value={1}>👤 Users</Tab>
-        <Tab bind:group={tabSet} name="tab3" value={2}>👤 Sites</Tab>
-        <Tab bind:group={tabSet} name="tab4" value={3}>📝 Data</Tab>
+        <Tab bind:group={tabSet} value={TABS.TAB1}>👤 Users</Tab>
+        <Tab bind:group={tabSet} value={TABS.TAB2}>👤 Sites</Tab>
+        <Tab bind:group={tabSet} value={TABS.TAB3}>📝 Data</Tab>
         {#if isDebug}
-            <Tab bind:group={tabSet} name="tab5" value={4}>🛠 Organization</Tab>
+            <Tab bind:group={tabSet} value={TABS.TAB4}>🛠 Organization</Tab>
         {/if}
+        <Tab bind:group={tabSet} value={TABS.TAB5}>👤 Test 1</Tab>
+        <Tab bind:group={tabSet} value={TABS.TAB6}>👤 Test 2</Tab>
+        <Tab bind:group={tabSet} value={TABS.TAB7}>👤 Test 3</Tab>
 
         <!-- Tab Panels --->
         <svelte:fragment slot="panel">
-            {#if tabSet === 0}
+            {#if tabSet === TABS.TAB0}
                 {#if $page.data?.user && $page.data.user.role === ROLE.SUPER}
                     {@render organizationList(myOrganizations)}
                 {:else}
                     {@render organizationBlock()}
                 {/if}
-            {:else if tabSet === 1}
+            {:else if tabSet === TABS.TAB1}
                 {@render userList()}
-            {:else if tabSet === 2}
+            {:else if tabSet === TABS.TAB2}
                 {@render siteMain()}
-            {:else if tabSet === 3}
+            {:else if tabSet === TABS.TAB3}
                 {@render dataBlock()}
-            {:else if isDebug && tabSet === 4}
+            {:else if isDebug && tabSet === TABS.TAB4}
                 {@render organizationBlock()}
+            {:else if tabSet === TABS.TAB5}
+                <div>Okay</div>
+            {:else if tabSet === TABS.TAB6}
+                <div>Okay Okay</div>
+            {:else if tabSet === TABS.TAB7}
+                <div>Okay Okay Okay</div>
             {/if}
         </svelte:fragment>
     </TabGroup>

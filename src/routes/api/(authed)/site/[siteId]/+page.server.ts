@@ -12,7 +12,7 @@ import {
   existsInState,
   updateSite,
   getSite,
-  getSites
+  getSites,
 } from "$lib/database/sites";
 import { getCounties, getStates } from "$lib/database/counties.js";
 import { error, fail } from "@sveltejs/kit";

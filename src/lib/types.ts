@@ -17,7 +17,7 @@ import type {
   User,
 } from "@prisma/client";
 
-export enum ROLE {
+export const enum ROLE {
   USER = "USER", // can browse data and run reports, delete own unsigned data
   ENTRY = "ENTRY", // can enter observation data, can download data
   LEAD = "LEAD", // can edit,add,delete root information.
@@ -29,18 +29,18 @@ export enum ROLE {
   REVIEWER = "REVIEWER",
 }
 
-export enum GEOGRAPHIC {
+export const enum GEOGRAPHIC {
   COUNTY = 0,
   STATEREGION = 1,
 }
 
-export enum SORTORDER {
+export const enum SORTORDER {
   NONE = 0,
   ASC = 1,
   DSC = 2,
 }
 
-export enum WEATHER {
+export const enum WEATHER {
   U = "Unknown",
   O = "Overcast",
   R = "Rain",
@@ -48,12 +48,12 @@ export enum WEATHER {
   H = "Haze/Smoke",
 }
 
-export enum ZOOM_DIR {
+export const enum ZOOM_DIR {
   SHRINK = -1,
   ENLARGE = 1,
 }
 
-export enum GOTYPE {
+export const enum GOTYPE {
   UNKNOWN = -1,
   HOME = 0,
   SITEDATEOBSERVATIONS = 1,

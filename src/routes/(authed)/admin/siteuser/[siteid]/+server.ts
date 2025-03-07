@@ -1,8 +1,14 @@
-import { updateSiteUser, removeSiteUser, removeAllSiteUsers } from "$lib/database/siteusers";
+import {
+  updateSiteUser,
+  removeSiteUser,
+  removeAllSiteUsers,
+} from "$lib/database/siteusers";
 import { json } from "@sveltejs/kit";
 
 export async function PUT({ params, request }: any) {
-  console.log(`updateUser data from /admin/siteuser/${params.siteid}/${params.userid}/+server.ts`);
+  console.log(
+    `updateUser data from /admin/siteuser/${params.siteid}/${params.userid}/+server.ts`,
+  );
 
   let siteId = Number(params.siteid);
   let userId = String(params.userid);
@@ -19,7 +25,9 @@ export async function PUT({ params, request }: any) {
 }
 
 export async function DELETE({ params }: any) {
-  console.log(`removeAllSiteUsers data from /admin/siteuser/${params.siteid}/server.ts`);
+  console.log(
+    `removeAllSiteUsers data from /admin/siteuser/${params.siteid}/server.ts`,
+  );
 
   let siteId = Number(params.siteid);
 

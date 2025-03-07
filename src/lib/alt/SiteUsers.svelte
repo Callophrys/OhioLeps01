@@ -1,6 +1,8 @@
 <script lang="ts">
   import UsersExcl from "./internal/UsersExcl.svelte";
   import UsersIncl from "./internal/UsersIncl.svelte";
+  import type { UserStateType } from "$lib/alt/internal/SiteUserMethods";
+  import { UserState, fetchUserSet } from "$lib/alt/internal/SiteUserMethods";
   import { getContext } from "svelte";
 
   let { selectedSiteState } = $props();
@@ -15,26 +17,23 @@
     loadUserSets: loadUserSets,
   });
 
-  async function fetchUserSet(siteId: number, userState: string) {
-    try {
-      console.log(`/admin/site/${siteId}/users/${userState}`);
-      const response = await fetch(`/admin/site/${siteId}/users/${userState}`);
-      const data = await response.json();
-      // console.error("data", userState, data.users);
-      return data.users;
-    } catch (error) {
-      // console.error("Error fetching data", error);
-      return [];
-    }
-  }
+  const usersContext: any[] = $state({
+    includedUsers: [],
+    excludedUsers: [],
+    loadUserSets: loadUserSets,
+  });
 
-  async function loadUserSets(siteId: number) {
+  async function loadUserSets(
+    siteId: number,
+    usersExcel: any[],
+    userIncl: any[],
+  ) {
     console.log("in loadUserSets", siteId);
 
     if (siteId > 0) {
       const [excludedUsers, includedUsers] = await Promise.all([
-        fetchUserSet(siteId, "excl"),
-        fetchUserSet(siteId, "incl"),
+        fetchUserSet(siteId, UserState.ExcludedUsers),
+        fetchUserSet(siteId, UserState.IncludedUsers),
       ]);
       // console.log("excludedUsers", excludedUsers);
       // console.log("includedUsers", includedUsers);
@@ -48,7 +47,7 @@
 
   $effect(() => {
     (async () => {
-      await loadUserSets(selectedSiteState.selectedSite);
+      await loadUserSets(selectedSiteState.selectedSite, usersExcl, userIncl);
     })();
   });
 </script>

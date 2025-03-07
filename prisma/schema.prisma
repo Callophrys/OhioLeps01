@@ -67,7 +67,7 @@ model AppConfig {
 }
 
 model User {
-    id              String   @id @default(uuid())
+    id              String   @id @default(uuid()) @db.VarChar(36)
     username        String   @unique  // emailAddress
     firstName       String
     lastName        String
@@ -141,7 +141,7 @@ model User {
 }
 
 model Organization {
-    id String @id @default(uuid())
+    id String @id @default(uuid()) @db.VarChar(36)
     name String @unique
 
     // Audit
@@ -165,7 +165,7 @@ model Organization {
 // ENTRY - Data Entry    - Data entry, can delete own data
 // USER - User           - Read-only, View Reports and lists
 model Role {
-    id    String @id @default(uuid())
+    id    String @id @default(uuid()) @db.VarChar(36)
     name  String @unique
     users User[]
 }
@@ -187,42 +187,42 @@ model Section {
 
 model Site {
     id BigInt @id @default(autoincrement())
-    siteName String // @db.String(30)
-    township String? // @db.String(50)
-    locationZip String? // @db.String(50)
+    siteName String // @db.VarChar(30)
+    township String? // @db.VarChar(50)
+    locationZip String? // @db.VarChar(50)
 
-    siteAddress String? // @db.String(40)
-    siteAddress2 String? // @db.String(40)
-    siteCity String? // @db.String(40)
-    siteState String? // @db.String(40)
-    siteZip String? // @db.String(10)
+    siteAddress String? // @db.VarChar(40)
+    siteAddress2 String? // @db.VarChar(40)
+    siteCity String? // @db.VarChar(40)
+    siteState String? // @db.VarChar(40)
+    siteZip String? // @db.VarChar(10)
 
-    person String? // @db.String(30)
-    personAddress String? // @db.String(40)
-    personAddress2 String? // @db.String(40)
-    personCity String? // @db.String(40)
-    personState String? // @db.String(40)
-    personZip String? // @db.String(10)
-    personPhone String? // @db.String(12)
-    personPhone2 String? // @db.String(12)
-    personEmail String? // @db.String(30)
+    person String? // @db.VarChar(30)
+    personAddress String? // @db.VarChar(40)
+    personAddress2 String? // @db.VarChar(40)
+    personCity String? // @db.VarChar(40)
+    personState String? // @db.VarChar(40)
+    personZip String? // @db.VarChar(10)
+    personPhone String? // @db.VarChar(12)
+    personPhone2 String? // @db.VarChar(12)
+    personEmail String? // @db.VarChar(30)
 
-    latitudeStart String? // @db.String(50)
-    latitudeEnd String? // @db.String(50)
-    longitudeStart String? // @db.String(50)
-    longitudeEnd String? // @db.String(50)
+    latitudeStart String? // @db.VarChar(50)
+    latitudeEnd String? // @db.VarChar(50)
+    longitudeStart String? // @db.VarChar(50)
+    longitudeEnd String? // @db.VarChar(50)
 
-    altPerson String? // @db.String(30)
-    altPersonAddress String? // @db.String(40)
-    altPersonAddress2 String? // @db.String(40)
-    altPersonCity String? // @db.String(40)
-    altPersonState String? // @db.String(40)
-    altPersonZip String? // @db.String(10)
-    altPersonPhone String? // @db.String(12)
-    altPersonPhone2 String? // @db.String(12)
-    altPersonEmail String? // @db.String(30)
+    altPerson String? // @db.VarChar(30)
+    altPersonAddress String? // @db.VarChar(40)
+    altPersonAddress2 String? // @db.VarChar(40)
+    altPersonCity String? // @db.VarChar(40)
+    altPersonState String? // @db.VarChar(40)
+    altPersonZip String? // @db.VarChar(10)
+    altPersonPhone String? // @db.VarChar(12)
+    altPersonPhone2 String? // @db.VarChar(12)
+    altPersonEmail String? // @db.VarChar(30)
 
-    otherParticipants String? // @db.String(250)
+    otherParticipants String? // @db.VarChar(250)
     description String? @db.VarChar(2000) // @db.Text
     s1995 Int @default(5)
     s1996 Int @default(5)
@@ -273,7 +273,7 @@ model SiteUser {
 
     // Parent Relation
     user User @relation(fields: [userId], references: [id])
-    userId String @db.VarChar(32)
+    userId String @db.VarChar(36)
  
     @@id([siteId, userId])
 }
@@ -294,21 +294,21 @@ model SiteUser {
 model Checklist {
     id Int @id @default(autoincrement())
     hodges String @default("A000") // or similar, note if another system, e.g. Patterson number
-    genus String // @db.String(20) // doomed
-    species String // @db.String(20) // doomed
-    subspecies String? // @db.String(16) // doomed
-    commonName String? // @db.String(30)
+    genus String // @db.VarChar(20) // doomed
+    species String // @db.VarChar(20) // doomed
+    subspecies String? // @db.VarChar(16) // doomed
+    commonName String? // @db.VarChar(30)
     show Boolean @default(true)        // Is visible for general use?
     isSpurious Boolean @default(false) // Is this a rare, out-of-region or simply unexpected?
-    kind String // @db.String(1)
-    revised String // @db.String(1)
-    author String // @db.String(22)
+    kind String // @db.VarChar(1)
+    revised String // @db.VarChar(1)
+    author String // @db.VarChar(22)
     year String?
     referenceCount Int @default(0)
     // TODO: figure out this field and its spelling
     countyCount Int @default(0)
-    endangered String? // @db.String(50)
-    synonym String? // @db.String(50)
+    endangered String? // @db.VarChar(50)
+    synonym String? // @db.VarChar(50)
     family Int @default(0)
     gCKey Int @default(0)
     grp Int @default(0)
@@ -333,7 +333,7 @@ model SiteDateObservation {
     id BigInt @id @default(autoincrement())
     // ** use siteDateObservationId as real key now - and later just drop 'seqId BigInt?'
     seqId Int?
-    idCode String? // @db.String(1)  // in { how id'ed:  O observ, N net, P photo, C collected }
+    idCode String? // @db.VarChar(1)  // in { how id'ed:  O observ, N net, P photo, C collected }
     section1 Int?        // counts of CheckList species per section
     section2 Int?
     section3 Int?
@@ -349,7 +349,7 @@ model SiteDateObservation {
     section13 Int?
     section14 Int?
     section15 Int?
-    mark String? // @db.String(50)
+    mark String? // @db.VarChar(50)
 
     deleted Boolean @default(false)
     confirmed Boolean @default(false)
@@ -452,15 +452,15 @@ model SiteDate {
     seqId BigInt? // temp and will be query key
     recordDate DateTime // was "date", a reserved word
     week Int // TODO: find out if this should be editable or simply a derivation of recordDate
-    recorder String // @db.String(25)
+    recorder String // @db.VarChar(25)
     startTime DateTime?
     endTime DateTime?
     startTemp Int?
     endTemp Int?
     startClouds Int?
     endClouds Int?
-    startWindDir String? // @db.String(3)
-    endWindDir String? // @db.(3)
+    startWindDir String? // @db.VarChar(3)
+    endWindDir String? // @db.VarChar(3)
     startWindMPH Int?
     endWindMPH Int?
     weather1 Weather @default(U)
@@ -478,31 +478,31 @@ model SiteDate {
     weather13 Weather @default(U)
     weather14 Weather @default(U)
     weather15 Weather @default(U)
-    larvalEnergy1 String? // @db.String(8)
-    larvalEnergy2 String? // @db.String(8)
-    larvalEnergy3 String? // @db.String(8)
-    larvalEnergy4 String? // @db.String(8)
-    larvalEnergy5 String? // @db.String(8)
-    larvalEnergy6 String? // @db.String(8)
-    larvalEnergy7 String? // @db.String(8)
-    larvalEnergy8 String? // @db.String(8)
-    larvalEnergy9 String? // @db.String(8)
-    larvalEnergy10 String? // @db.String(8)
-    larvalEnergy11 String? // @db.String(8)
-    larvalEnergy12 String? // @db.String(8)
-    larvalEnergy13 String? // @db.String(8)
-    larvalEnergy14 String? // @db.String(8)
-    larvalEnergy15 String? // @db.String(8)
-    larvaObservedA String? // @db.String(25)
-    larvaObservedB String? // @db.String(25)
-    larvaObservedC String? // @db.String(25)
-    larvaObservedD String? // @db.String(25)
-    energySource1 String? // @db.String(25)
-    energySource2 String? // @db.String(25)
-    energySource3 String? // @db.String(25)
-    energySource4 String? // @db.String(25)
-    flowersInBloom String? // @db.String(150)
-    fieldNotes String? // @db.String(100)
+    larvalEnergy1 String? // @db.VarChar(8)
+    larvalEnergy2 String? // @db.VarChar(8)
+    larvalEnergy3 String? // @db.VarChar(8)
+    larvalEnergy4 String? // @db.VarChar(8)
+    larvalEnergy5 String? // @db.VarChar(8)
+    larvalEnergy6 String? // @db.VarChar(8)
+    larvalEnergy7 String? // @db.VarChar(8)
+    larvalEnergy8 String? // @db.VarChar(8)
+    larvalEnergy9 String? // @db.VarChar(8)
+    larvalEnergy10 String? // @db.VarChar(8)
+    larvalEnergy11 String? // @db.VarChar(8)
+    larvalEnergy12 String? // @db.VarChar(8)
+    larvalEnergy13 String? // @db.VarChar(8)
+    larvalEnergy14 String? // @db.VarChar(8)
+    larvalEnergy15 String? // @db.VarChar(8)
+    larvaObservedA String? // @db.VarChar(25)
+    larvaObservedB String? // @db.VarChar(25)
+    larvaObservedC String? // @db.VarChar(25)
+    larvaObservedD String? // @db.VarChar(25)
+    energySource1 String? // @db.VarChar(25)
+    energySource2 String? // @db.VarChar(25)
+    energySource3 String? // @db.VarChar(25)
+    energySource4 String? // @db.VarChar(25)
+    flowersInBloom String? // @db.VarChar(150)
+    fieldNotes String? // @db.VarChar(100)
 
     // Audit
     deleted Boolean @default(false)

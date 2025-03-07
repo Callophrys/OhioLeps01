@@ -2,15 +2,15 @@
   import { SlideToggle } from "@skeletonlabs/skeleton";
   import { getContext } from "svelte";
 
-  let { userObj } = $props();
+  let { usersExcl } = $props();
 
   const context = getContext("selectedSiteState");
 
   let siteId = $derived.by(() => context.selectedSite);
 
   let users = $derived.by(() => {
-    console.log("userSet", userObj.users);
-    return userObj.users;
+    console.log("userSet", usersExcl.users);
+    return usersExcl.users;
   });
 
   async function createSiteUser(
@@ -31,7 +31,7 @@
         body: fd,
       });
 
-      await userObj.loadUserSets(siteId);
+      await usersExcl.loadUserSets(siteId);
     }
   }
 

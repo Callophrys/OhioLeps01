@@ -2,15 +2,15 @@
   import { SlideToggle } from "@skeletonlabs/skeleton";
   import { getContext } from "svelte";
 
-  let { userObj } = $props();
+  let { usersIncl } = $props();
 
   const context = getContext("selectedSiteState");
 
   let siteId = $derived.by(() => context.selectedSite);
 
   let users = $derived.by(() => {
-    console.log("userSet", userObj.users);
-    return userObj.users;
+    console.log("userSet", usersIncl.users);
+    return usersIncl.users;
   });
 
   async function updateSiteUser(
@@ -28,7 +28,7 @@
         body: fd,
       });
 
-      await userObj.loadUserSets(siteId);
+      await usersIncl.loadUserSets(siteId);
     }
   }
 
@@ -39,7 +39,7 @@
         method: "DELETE",
       });
 
-      await userObj.loadUserSets(siteId);
+      await usersIncl.loadUserSets(siteId);
     }
   }
 

@@ -8,7 +8,7 @@ export async function getSiteDateObservations(
   checklistId: number = 0,
   siteId: number = 0,
 ) {
-//  console.log('database.siteDateObservations.getSiteDateObservation');
+  //  console.log('database.siteDateObservations.getSiteDateObservation');
   if (siteDateId > 0) {
     if (checklistId > 0) {
       return await getSiteDateObservationsBySiteDateAndChecklist(
@@ -25,7 +25,9 @@ export async function getSiteDateObservations(
   }
 }
 
-export async function getSiteDateObservationsBySiteDate(siteDateId: number): SiteDateObservationChecklist[] {
+export async function getSiteDateObservationsBySiteDate(
+  siteDateId: number,
+): SiteDateObservationChecklist[] {
   //console.log('database.siteDateObservations.getSiteDateObservationBySiteDate');
   const siteDateObservations = await prisma.siteDateObservation.findMany({
     where: {
@@ -86,9 +88,11 @@ export async function getSiteDateObservation(siteDateObservationId: number) {
 
     // console.log(`sitedateobservations.ts -> getSiteDateObservation(${siteDateObservationId}) OK`);
     return siteDateObservation;
-  }
-  catch (e) {
-    console.error(`sitedateobservations.ts -> getSiteDateObservation(${siteDateObservationId}) Error:`, e);
+  } catch (e) {
+    console.error(
+      `sitedateobservations.ts -> getSiteDateObservation(${siteDateObservationId}) Error:`,
+      e,
+    );
     return null;
   }
 }

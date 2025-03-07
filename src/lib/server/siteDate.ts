@@ -19,7 +19,6 @@ import { getSiteDateObservationsBySiteDate } from "$lib/database/sitedateobserva
 import { getChecklists } from "$lib/database/checklists.js";
 
 export async function siteDateLoad(siteDateId: number) {
-
   const [siteDate, sites, siteDates, siteDateObservations, checklistsAll] =
     await Promise.all([
       getSiteDate(siteDateId),

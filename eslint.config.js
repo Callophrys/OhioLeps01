@@ -1,7 +1,7 @@
 import svelte from "eslint-plugin-svelte";
 import ts from "@typescript-eslint/eslint-plugin";
 import tsParser from "@typescript-eslint/parser";
-import prettier from "eslint-config-prettier";
+import prettier from "eslint-plugin-prettier";
 
 export default [
   // Svelte rules
@@ -47,6 +47,7 @@ export default [
   {
     files: ["**/*.{js,ts,svelte,json}"],
     plugins: { prettier },
+    extends: ["prettier"], // Ensure prettier rules override ESLint
     rules: {
       "prettier/prettier": [
         "error",
@@ -57,6 +58,7 @@ export default [
           trailingComma: "none",
           tabWidth: 2, // ✅ Enforce 2-space indentation
           useTabs: false, // Set to true if you prefer tabs
+          svelteBracketNewLine: false, // Prevents newline before the closing `>`
           htmlWhitespaceSensitivity: "ignore", // ✅ Preserve whitespace in HTML/Svelte
         },
       ],

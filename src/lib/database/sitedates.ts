@@ -23,7 +23,7 @@ export async function getSiteDate(siteDateId: number) {
 
   const jsonSiteDate = JSON.stringify(
     siteDate,
-    (key, value) => (typeof value === 'bigint' ? value.toString() : value) // return everything else unchanged
+    (key, value) => (typeof value === "bigint" ? value.toString() : value), // return everything else unchanged
   );
 
   return JSON.parse(jsonSiteDate);
@@ -47,7 +47,7 @@ export async function getSiteDates(siteId: number): SiteDateYearSiteDates[] {
   //console.log('siteDates', siteDates);
   const jsonSiteDates = JSON.stringify(
     siteDates,
-    (key, value) => (typeof value === 'bigint' ? value.toString() : value) // return everything else unchanged
+    (key, value) => (typeof value === "bigint" ? value.toString() : value), // return everything else unchanged
   );
 
   return JSON.parse(jsonSiteDates);
@@ -74,7 +74,9 @@ export async function getSiteDatesAll() {
   return siteDates;
 }
 
-export async function getSiteDateSiteDates(siteDateId: number): SiteDateYearSiteDates[] {
+export async function getSiteDateSiteDates(
+  siteDateId: number,
+): SiteDateYearSiteDates[] {
   const siteDateSiteDates = await prisma.siteDate.findUnique({
     where: {
       id: siteDateId,
@@ -92,7 +94,7 @@ export async function getSiteDateSiteDates(siteDateId: number): SiteDateYearSite
 
   const jsonSiteDates = JSON.stringify(
     siteDates,
-    (key, value) => (typeof value === 'bigint' ? value.toString() : value) // return everything else unchanged
+    (key, value) => (typeof value === "bigint" ? value.toString() : value), // return everything else unchanged
   );
 
   return JSON.parse(jsonSiteDates);

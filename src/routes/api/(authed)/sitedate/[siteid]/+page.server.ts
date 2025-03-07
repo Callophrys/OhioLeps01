@@ -1,8 +1,8 @@
 import { getSiteDates } from "$lib/database/sitedates";
-import { redirect } from '@sveltejs/kit';
+import { redirect } from "@sveltejs/kit";
 
 export async function load({ params }: { params: any }) {
-  console.log('sitedates - params', params);
+  console.log("sitedates - params", params);
   let siteId = Number(params.siteid);
 
   const sds = await getSiteDates(siteId);
@@ -14,6 +14,6 @@ export async function load({ params }: { params: any }) {
   // TODO: handle else - e.g. when no site dates exist
 
   return {
-    siteid: siteId
+    siteid: siteId,
   };
 }

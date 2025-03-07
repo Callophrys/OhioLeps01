@@ -8,7 +8,9 @@ import { convertSafeJson } from "../utils";
  * @param siteId
  * @returns
  */
-export async function getSite(siteId: BigInt): SiteCountySiteDatesSiteStatuses[] {
+export async function getSite(
+  siteId: BigInt,
+): SiteCountySiteDatesSiteStatuses[] {
   // console.log('/lib/api/entry/sites.ts > getSite', siteId);
 
   const site = await prisma.site.findUnique({
@@ -263,14 +265,14 @@ export async function getSitesSlim(idList: BigInt[] | null): Site[] {
 }
 
 export async function getSites(idList: number[] | null): SiteCountyState[] {
-  console.log('/lib/api/database/sites.ts > getSites');
+  console.log("/lib/api/database/sites.ts > getSites");
 
   const idsClause: any[] = idList?.length ? { id: { in: idList } } : {};
 
   const sites = await prisma.site.findMany({
     where: {
       // ...(idList && idList.length ? { id: { in: idList } } : {}),
-      ...idsClause
+      ...idsClause,
     },
     include: {
       county: {

@@ -1,8 +1,12 @@
 import prisma from "$lib/prisma";
+import { convertSafeJson } from "$lib/utils.js";
 
-
-export async function createSiteUser(siteId: number, userId: string, privilege: string) {
-  console.log("/lib/database/siteusers.ts > createSiteUser");
+export async function createSiteUser(
+  siteId: BigInt,
+  userId: string,
+  privilege: string,
+) {
+  console.log("/lib/database/siteusers.ts > createSiteUser", [...arguments]);
   const createdSiteUser = await prisma.siteUser.create({
     data: {
       siteId: siteId,
@@ -13,11 +17,20 @@ export async function createSiteUser(siteId: number, userId: string, privilege: 
     },
   });
 
-  return createdSiteUser;
+  return convertSafeJson(createdSiteUser);
 }
 
-export async function updateSiteUser(siteId: number, userId: string, privilege: string) {
-  console.log('/lib/database/siteusers.ts > updateSiteUser', siteId, userId, privilege);
+export async function updateSiteUser(
+  siteId: number,
+  userId: string,
+  privilege: string,
+) {
+  console.log(
+    "/lib/database/siteusers.ts > updateSiteUser",
+    siteId,
+    userId,
+    privilege,
+  );
   const updatedSiteUser = await prisma.siteUser.update({
     where: {
       siteId_userId: {
@@ -86,4 +99,4 @@ export async function removeSiteUser(siteId: number, userId: string) {
 //   await fetch(`/api/sites/${siteId}/users/${userId}`, {
 //     method: "DELETE",
 //   });
-}
+// }

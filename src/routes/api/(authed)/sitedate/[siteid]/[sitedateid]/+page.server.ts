@@ -1,15 +1,12 @@
 import type { Actions } from "@sveltejs/kit";
-import {
-  siteDateLoad,
-  siteDateActions,
-} from "$lib/server/siteDate";
+import { siteDateLoad, siteDateActions } from "$lib/server/siteDate";
 import {
   sdoLoad,
   siteDateObservationActions,
 } from "$lib/server/siteDateObservations";
 
 export async function load({ params }: { params: any }) {
-  console.log('sitedates - params', params);
+  console.log("sitedates - params", params);
 
   let siteId = Number(params.siteid);
   let siteDateId = Number(params.sitedateid);

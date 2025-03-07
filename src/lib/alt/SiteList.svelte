@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getContext, setContext } from "svelte";
+  import { getContext } from "svelte";
 
   let sites = getContext("sites");
   let {
@@ -10,16 +10,6 @@
     () => console.log("selectedSite changed", selectedSiteState),
     // console.log("selectedSite changed", selectedSiteState.selectedSite),
   );
-  export async function removeAllSiteUsers(siteId: number) {
-    console.log("Removing");
-    if (siteId > 0) {
-      await fetch(`/admin/siteuser/${siteId}`, {
-        method: "DELETE",
-      });
-
-      await userObj.loadUserSets(siteId);
-    }
-  }
 </script>
 
 <div class="">
@@ -46,6 +36,18 @@
         >
           {site.siteName}
         </button>
+        <!-- <div class="w-fit flex flex-row border-b-2 border-b-red-100"> -->
+        <!--     <div class="w-80">Site Name</div> -->
+        <!--     <div class="w-36">County</div> -->
+        <!--     <div class="w-24">State</div> -->
+        <!--     <div class="w-80"></div> -->
+        <!-- </div> -->
+        <!-- {#each data.sites as site} -->
+        <!--     <div class="flex flex-row space-y-1"> -->
+        <!--         <div class="w-80">{site.siteName}</div> -->
+        <!--         <div class="w-36">{site.county.name}</div> -->
+        <!--         <div class="w-36">{site.county.state.name}</div> -->
+        <!-- ... -->
       </li>
     {/each}
   </ul>

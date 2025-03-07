@@ -1,2 +1,2 @@
-export const AppConfigsContextKey = 'appConfigs';
-export const SiteContextKey = 'site-context';
+export const AppConfigsContextKey = "appConfigs";
+export const SiteContextKey = "site-context";

@@ -38,16 +38,12 @@ export const load: PageServerLoad = async ({ locals }) => {
   const json = JSON.stringify(appConfigs);
   const jsonResult: AppConfigFormKeyChecked[] = JSON.parse(json);
 
-  const jsonUsers = JSON.stringify(users);
-  const jsonResultUsers: UserComplete[] = JSON.parse(jsonUsers);
-
   const jsonOrganizations = JSON.stringify(organizations);
   const jsonResultOrganizations: Organization[] = JSON.parse(jsonOrganizations);
 
-  console.log("done in server ");
   return {
     appConfigs: jsonResult,
-    users: jsonResultUsers,
+    users: users,
     organizations: jsonResultOrganizations,
     sites: sites,
   };

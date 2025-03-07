@@ -1,4 +1,4 @@
-import { createSiteUser } from "$lib/database/siteusers";
+import { createSiteUser, removeAllSiteUsers } from "$lib/database/siteusers";
 import { json } from "@sveltejs/kit";
 
 export async function POST({ request }: any) {
@@ -13,4 +13,15 @@ export async function POST({ request }: any) {
   console.log("site user data", siteUser);
 
   return json({ success: true, users: siteUser });
+}
+
+export async function DELETE({ params }: any) {
+  console.log(
+    `removeAllSiteUsers data from /admin/siteuser/${params.siteid}/server.ts`,
+  );
+
+  let siteId = BigInt(params.siteid);
+  await removeAllSiteUsers(siteId);
+
+  return json({ success: true });
 }

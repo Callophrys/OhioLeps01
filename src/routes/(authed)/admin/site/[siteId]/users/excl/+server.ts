@@ -1,4 +1,3 @@
-
 import { getUsersNotInSite } from "$lib/database/users";
 import { json } from "@sveltejs/kit";
 
@@ -11,7 +10,6 @@ export async function GET({ params }: any) {
 
   const users = await getUsersNotInSite(siteId);
   // console.log("user data", users);
-  console.log("user data");
 
   return json({ success: true, users: users });
 }

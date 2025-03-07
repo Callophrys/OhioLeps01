@@ -1,5 +1,6 @@
 import prisma from "$lib/prisma";
 import type { User } from "@prisma/client";
+import { convertSafeJson } from "$lib/utils.js";
 
 export async function getUser(userId: string) {
   const user = await prisma.user.findUnique({
@@ -16,7 +17,7 @@ export async function getUser(userId: string) {
 
 export async function getUsers(organizationId: string | null) {
   if (organizationId) {
-    return await prisma.user.findMany({
+    const result = await prisma.user.findMany({
       where: {
         organizationId: organizationId,
       },
@@ -24,19 +25,23 @@ export async function getUsers(organizationId: string | null) {
         role: true,
       },
     });
+
+    return convertSafeJson(result);
   } else {
-    return await prisma.user.findMany({
+    const result = await prisma.user.findMany({
       include: {
         role: true,
       },
     });
+
+    return convertSafeJson(result);
   }
 }
 
-export async function getUsersInSite(siteId: number | null) {
+export async function getUsersInSite(siteId: BigInt | null) {
   console.log(`users.ts->getUsersInSite: ${siteId}`);
   if (siteId) {
-    return await prisma.user.findMany({
+    const result = await prisma.user.findMany({
       where: {
         disabled: false,
         siteUsers: {
@@ -54,32 +59,38 @@ export async function getUsersInSite(siteId: number | null) {
         },
       },
     });
+
+    return convertSafeJson(result);
   }
 }
 
 export async function getUsersNotInSite(siteId: string | null) {
   console.log(`users.ts->getUsersNotInSite: ${siteId}`);
   if (siteId) {
-    return await prisma.user.findMany({
+    const result = await prisma.user.findMany({
       where: {
         disabled: false,
         siteUsers: {
           none: {
             siteId: siteId,
           },
-        }
+        },
       },
       include: {
         role: true,
         siteUsers: true, // Obviously this will be empty
       },
     });
+
+    return convertSafeJson(result);
   } else {
-    return await prisma.user.findMany({
+    const result = await prisma.user.findMany({
       include: {
         role: true,
       },
     });
+
+    return convertSafeJson(result);
   }
 }
 

@@ -26,15 +26,19 @@ import type { SiteDateObservation } from "@prisma/client";
 
 // params: siteDateObservationId and siteId
 export async function sdoLoad(siteId: number, siteDateId: number) {
-
-  const [sites, siteDates, siteDateObservations, checklistsForSite, checklistsAll] =
-    await Promise.all([
-      getSites(null),
-      getSiteDates(siteId),
-      getSiteDateObservationsBySiteDate(siteDateId),
-      getChecklistsBySiteId(siteId),
-      getChecklists(),
-    ]);
+  const [
+    sites,
+    siteDates,
+    siteDateObservations,
+    checklistsForSite,
+    checklistsAll,
+  ] = await Promise.all([
+    getSites(null),
+    getSiteDates(siteId),
+    getSiteDateObservationsBySiteDate(siteDateId),
+    getChecklistsBySiteId(siteId),
+    getChecklists(),
+  ]);
 
   // need 3 lists of checklists
   // 1. all seen by this current siteDateObs
@@ -87,7 +91,7 @@ export const siteDateObservationActions: Actions = {
         }),
       ),
     ];
-    console.log('sdoIds', sdoIds);
+    console.log("sdoIds", sdoIds);
 
     const promises: Promise<any>[] = [];
     sdoIds.forEach((sdoId) => {
@@ -96,7 +100,7 @@ export const siteDateObservationActions: Actions = {
     //console.log('promises');
 
     const dbData = await Promise.all(promises);
-    console.log('dbData', dbData);
+    console.log("dbData", dbData);
 
     const preparedData: any = {};
     dbData.forEach((item) => {
@@ -106,7 +110,7 @@ export const siteDateObservationActions: Actions = {
         orig: {},
       };
     });
-    console.log('preparedData', preparedData);
+    console.log("preparedData", preparedData);
 
     Array.from(formData).forEach(([k, v]: any) => {
       const parts = k.split("_");
@@ -303,7 +307,11 @@ export const siteDateObservationActions: Actions = {
       userId,
     );
 
-    return { action: "review", success: true, siteDateObservation: siteDateObservation };
+    return {
+      action: "review",
+      success: true,
+      siteDateObservation: siteDateObservation,
+    };
   },
 };
 

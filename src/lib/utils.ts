@@ -274,8 +274,7 @@ return JSON.parse(s);
 // Example usage
 // const safeSites = convertSafeJson(sites);
 export function convertSafeJson<T>(input: T): T {
-
-  if (typeof input === 'bigint') {
+  if (typeof input === "bigint") {
     return input.toString() as T;
   }
 
@@ -287,9 +286,12 @@ export function convertSafeJson<T>(input: T): T {
     return input.map(convertSafeJson) as T;
   }
 
-  if (typeof input === 'object' && input !== null) {
+  if (typeof input === "object" && input !== null) {
     return Object.fromEntries(
-      Object.entries(input).map(([key, value]) => [key, convertSafeJson(value)])
+      Object.entries(input).map(([key, value]) => [
+        key,
+        convertSafeJson(value),
+      ]),
     ) as T;
   }
 
@@ -299,17 +301,17 @@ export function convertSafeJson<T>(input: T): T {
 // // Example usage
 // const parsedSites = restoreBigInt(JSON.parse(jsonSites));
 export function restoreBigInt<T>(input: T): T {
-  if (typeof input === 'string' && /^\d+n?$/.test(input)) {
-    return BigInt(input.replace('n', '')) as T;
+  if (typeof input === "string" && /^\d+n?$/.test(input)) {
+    return BigInt(input.replace("n", "")) as T;
   }
 
   if (Array.isArray(input)) {
     return input.map(restoreBigInt) as T;
   }
 
-  if (typeof input === 'object' && input !== null) {
+  if (typeof input === "object" && input !== null) {
     return Object.fromEntries(
-      Object.entries(input).map(([key, value]) => [key, restoreBigInt(value)])
+      Object.entries(input).map(([key, value]) => [key, restoreBigInt(value)]),
     ) as T;
   }
 
