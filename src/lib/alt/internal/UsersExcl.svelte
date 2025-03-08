@@ -22,11 +22,11 @@
 
     if (siteId > 0) {
       const fd = new FormData();
-      fd.append("siteId", siteId);
-      fd.append("userId", userId);
+      // fd.append("siteId", siteId);
+      // fd.append("userId", userId);
       fd.append("privilege", privilege);
 
-      await fetch(`/admin/siteuser`, {
+      await fetch(`/admin/siteuser/${siteId}/${userId}`, {
         method: "POST",
         body: fd,
       });

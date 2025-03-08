@@ -10,5 +10,8 @@
 <button
   type="button"
   class="btn variant-filled"
-  onclick={async () => await addAllSiteUsers(context.siteId)}>Add all</button
+  onclick={async () => {
+    await addAllSiteUsers(context.siteId);
+    await loadUserSets(context);
+  }}>Add all</button
 >

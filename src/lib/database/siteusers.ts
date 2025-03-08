@@ -48,37 +48,25 @@ export async function updateSiteUser(
   return updatedSiteUser;
 }
 
-export async function addAllSiteUsers(siteId: number) {
+export async function addAllSiteUsers(siteId: BigInt) {
   console.log("/lib/database/siteusers.ts > addAllSiteUsers");
 
-  const userData = await prisma.user.findMany({
-    where: {
-      disabled: false,
-      siteUser: {
-        none: {
-          siteId: siteId,
-        },
-      },
-    },
-    select: {
-      id: true,
-      role: {
-        name: true,
-      },
-    },
-  });
-
-
-  console.log('userData', userData);
-
-  // await prisma.siteUser.createMany({
-  //   data: userData.map((u) => ({
-  //     siteId: siteId,
-  //     userId: u.id,
-  //     privilege: privilegeFromName(u.role.name),
-  //   })),
-  //   skipDuplicates: true,
-  // });
+  const result: number = await prisma.$executeRaw`
+    INSERT INTO siteUser (siteId, userId, privilege)
+    SELECT ${siteId} AS siteId, u.id,
+      CASE
+        WHEN r.name = 'ADMIN' THEN 'A'
+        WHEN r.name = 'SUPER' THEN 'S'
+        WHEN r.name = 'REVIEWER' THEN 'R'
+        WHEN r.name = 'ENTRY' THEN 'E'
+        WHEN r.name = 'USER' THEN 'V'
+      END
+    FROM user u
+    INNER JOIN role r ON r.id = u.roleId
+    LEFT OUTER JOIN siteuser su ON su.userId = u.id AND su.siteId = ${siteId}
+    WHERE su.siteId IS NULL
+    `;
+  console.log('users added:', result);
 }
 
 export async function removeAllSiteUsers(siteId: number) {

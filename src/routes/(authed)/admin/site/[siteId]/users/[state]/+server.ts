@@ -2,14 +2,14 @@ import { getUsersInSite } from "$lib/database/users";
 import { json } from "@sveltejs/kit";
 
 export async function GET({ params }: any) {
-  console.log("params", params);
+  // console.log("params", params);
 
   let siteId = Number(params.siteid);
   let state = String(params.state);
 
-  console.log(
-    `get user data from /admin/site/${siteId}/users/${state}/+server.ts`,
-  );
+  // console.log(
+  //   `get user data from /admin/site/${siteId}/users/${state}/+server.ts`,
+  // );
 
   const users =
     state === "incl"
