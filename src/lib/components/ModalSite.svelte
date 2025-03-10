@@ -1,11 +1,10 @@
 <script lang="ts">
-    import type { CssClasses } from '@skeletonlabs/skeleton';
-    import type { SvelteComponent } from 'svelte';
-    import type { County, Site, State } from '@prisma/client';
-    import { enhance } from '$app/forms';
-    import { getContext } from 'svelte';
-    import { getModalStore } from '@skeletonlabs/skeleton';
-    import CountySite from './datanavigation/CountySite.svelte';
+    import type { CssClasses } from "@skeletonlabs/skeleton";
+    import type { SvelteComponent } from "svelte";
+    import type { County, Site, State } from "@prisma/client";
+    import { enhance } from "$app/forms";
+    import { getModalStore } from "@skeletonlabs/skeleton";
+    import CountySite from "./datanavigation/CountySite.svelte";
 
     // TODO: After create from wherever the SiteDatePicker will not update the year
 
@@ -22,7 +21,7 @@
     const states: State[] = $modalStore[0].value.states;
     const counties: County[] = $modalStore[0].value.counties;
 
-    console.log('modal site', site);
+    console.log("modal site", site);
 
     const formData = $state(
         !$modalStore[0].value.isNewRecord && site
@@ -114,7 +113,7 @@
                   description: null,
 
                   unitGps: unitGps,
-              }
+              },
     );
     // console.log(formData);
 
@@ -140,9 +139,11 @@
     }
 
     // Base Classes
-    const cBase = 'card p-4 w-modal shadow-xl space-y-4 flex flex-col max-h-[calc(100vh_-_40px)]';
-    const cHeader = 'text-2xl font-bold';
-    const cForm: CssClasses = 'border border-surface-500 p-4 rounded-container-token overflow-y-auto';
+    const cBase =
+        "card p-4 w-modal shadow-xl space-y-4 flex flex-col max-h-[calc(100vh_-_40px)]";
+    const cHeader = "text-2xl font-bold";
+    const cForm: CssClasses =
+        "border border-surface-500 p-4 rounded-container-token overflow-y-auto";
     // let checklist: ChecklistScientificName[] = $modalStore[0].value.checklist as ChecklistScientificName[];
     // let hodges = $derived(htmlHodges(checklist.find((x: ChecklistScientificName) => x.checklistId === formData.checklistId)?.hodges));
 </script>
@@ -150,15 +151,34 @@
 {#snippet entryInput(fullId: string, fullLabel: string, inputType: string)}
     <label class="label">
         <div>{fullLabel}:</div>
-        <input type={inputType} class="input" id={fullId} name={fullId} title={fullLabel} bind:value={formData[fullId as keyof typeof formData]} />
+        <input
+            type={inputType}
+            class="input"
+            id={fullId}
+            name={fullId}
+            title={fullLabel}
+            bind:value={formData[fullId as keyof typeof formData]}
+        />
     </label>
 {/snippet}
 
 <!-- works for county and state -->
-{#snippet entrySelect(fullId: string, fullLabel: string, valueName: string, textName: string, items: any[])}
+{#snippet entrySelect(
+    fullId: string,
+    fullLabel: string,
+    valueName: string,
+    textName: string,
+    items: any[],
+)}
     <label class="label">
         <div>{fullLabel}:</div>
-        <select class="select" id={fullId} name={fullId} title={fullLabel} bind:value={formData[fullId as keyof typeof formData]}>
+        <select
+            class="select"
+            id={fullId}
+            name={fullId}
+            title={fullLabel}
+            bind:value={formData[fullId as keyof typeof formData]}
+        >
             {#each items as item}
                 <option value={item[valueName]}>{item[textName]}</option>
             {/each}
@@ -169,45 +189,72 @@
 {#snippet entryTextarea(fullId, fullLabel, rows)}
     <label class="label">
         <div>{fullLabel}:</div>
-        <textarea class="textarea" id={fullId} name={fullId} {rows} title={fullLabel} bind:value={formData[fullId as keyof typeof formData]}></textarea>
+        <textarea
+            class="textarea"
+            id={fullId}
+            name={fullId}
+            {rows}
+            title={fullLabel}
+            bind:value={formData[fullId as keyof typeof formData]}
+        ></textarea>
     </label>
 {/snippet}
 
 {#if $modalStore[0]}
     <div class={cBase}>
-        <header class={cHeader}>{$modalStore[0].title ?? '(title missing)'}</header>
-        <article>{$modalStore[0].body ?? '(body missing)'}</article>
+        <header class={cHeader}>
+            {$modalStore[0].title ?? "(title missing)"}
+        </header>
+        <article>{$modalStore[0].body ?? "(body missing)"}</article>
         <!-- Enable for debugging: -->
         <form class="modal-form {cForm}" method="post" use:enhance>
             <div>
-                {@render entryInput('siteName', 'Site Name', 'text')}
+                {@render entryInput("siteName", "Site Name", "text")}
                 <div class="pl-8">
-                    {@render entrySelect('countyId', 'County', 'id', 'name', counties)}
-                    {@render entryInput('township', 'Township', 'text')}
-                    {@render entryInput('locationZip', 'Location Zip', 'text')}
+                    {@render entrySelect(
+                        "countyId",
+                        "County",
+                        "id",
+                        "name",
+                        counties,
+                    )}
+                    {@render entryInput("township", "Township", "text")}
+                    {@render entryInput("locationZip", "Location Zip", "text")}
                 </div>
             </div>
             <div>
                 <div>Proper Address</div>
                 <div class="pl-8">
-                    {@render entryInput('siteAddress', 'Address', 'text')}
-                    {@render entryInput('siteAddress2', 'Address 2', 'text')}
-                    {@render entryInput('siteCity', 'City', 'text')}
-                    {@render entrySelect('siteState', 'State', 'name', 'name', states)}
-                    {@render entryInput('siteZip', 'Zip', 'text')}
+                    {@render entryInput("siteAddress", "Address", "text")}
+                    {@render entryInput("siteAddress2", "Address 2", "text")}
+                    {@render entryInput("siteCity", "City", "text")}
+                    {@render entrySelect(
+                        "siteState",
+                        "State",
+                        "name",
+                        "name",
+                        states,
+                    )}
+                    {@render entryInput("siteZip", "Zip", "text")}
                 </div>
             </div>
             <div>
-                {@render entryInput('person', 'Person', 'text')}
+                {@render entryInput("person", "Person", "text")}
                 <div class="pl-8">
-                    {@render entryInput('personAddress', 'Address', 'text')}
-                    {@render entryInput('personAddress2', 'Address 2', 'text')}
-                    {@render entryInput('personCity', 'City', 'text')}
-                    {@render entrySelect('personState', 'State', 'name', 'name', states)}
-                    {@render entryInput('personZip', 'Zip', 'text')}
-                    {@render entryInput('personPhone', 'Phone', 'text')}
-                    {@render entryInput('personPhone2', 'Phone 2', 'text')}
-                    {@render entryInput('personEmail', 'Email', 'text')}
+                    {@render entryInput("personAddress", "Address", "text")}
+                    {@render entryInput("personAddress2", "Address 2", "text")}
+                    {@render entryInput("personCity", "City", "text")}
+                    {@render entrySelect(
+                        "personState",
+                        "State",
+                        "name",
+                        "name",
+                        states,
+                    )}
+                    {@render entryInput("personZip", "Zip", "text")}
+                    {@render entryInput("personPhone", "Phone", "text")}
+                    {@render entryInput("personPhone2", "Phone 2", "text")}
+                    {@render entryInput("personEmail", "Email", "text")}
                 </div>
             </div>
             <div>
@@ -216,35 +263,65 @@
                     <div class="text-center">
                         <div>Range - From</div>
                         <div class="flex flex-row space-x-2">
-                            {@render entryInput('latitudeStart', 'Latitude', 'text')}
-                            {@render entryInput('longitudeStart', 'Longitude', 'text')}
+                            {@render entryInput(
+                                "latitudeStart",
+                                "Latitude",
+                                "text",
+                            )}
+                            {@render entryInput(
+                                "longitudeStart",
+                                "Longitude",
+                                "text",
+                            )}
                         </div>
                     </div>
                     <div class="text-center">
                         <div>Range - To</div>
                         <div class="flex flex-row space-x-2">
-                            {@render entryInput('latitudeEnd', 'Latitude', 'text')}
-                            {@render entryInput('longitudeEnd', 'Longitude', 'text')}
+                            {@render entryInput(
+                                "latitudeEnd",
+                                "Latitude",
+                                "text",
+                            )}
+                            {@render entryInput(
+                                "longitudeEnd",
+                                "Longitude",
+                                "text",
+                            )}
                         </div>
                     </div>
                 </div>
             </div>
             <div>
-                {@render entryInput('altPerson', 'Alternate Person', 'text')}
+                {@render entryInput("altPerson", "Alternate Person", "text")}
                 <div class="pl-8">
-                    {@render entryInput('altPersonAddress', 'Address', 'text')}
-                    {@render entryInput('altPersonAddress2', 'Address 2', 'text')}
-                    {@render entryInput('altPersonCity', 'City', 'text')}
-                    {@render entrySelect('altPersonState', 'State', 'name', 'name', states)}
-                    {@render entryInput('altPersonZip', 'Zip', 'text')}
-                    {@render entryInput('altPersonPhone', 'Phone', 'text')}
-                    {@render entryInput('altPersonPhone2', 'Phone 2', 'text')}
-                    {@render entryInput('altPersonEmail', 'Email', 'text')}
+                    {@render entryInput("altPersonAddress", "Address", "text")}
+                    {@render entryInput(
+                        "altPersonAddress2",
+                        "Address 2",
+                        "text",
+                    )}
+                    {@render entryInput("altPersonCity", "City", "text")}
+                    {@render entrySelect(
+                        "altPersonState",
+                        "State",
+                        "name",
+                        "name",
+                        states,
+                    )}
+                    {@render entryInput("altPersonZip", "Zip", "text")}
+                    {@render entryInput("altPersonPhone", "Phone", "text")}
+                    {@render entryInput("altPersonPhone2", "Phone 2", "text")}
+                    {@render entryInput("altPersonEmail", "Email", "text")}
                 </div>
             </div>
             <div>
-                {@render entryTextarea('otherParticipants', 'Other Participants', '2')}
-                {@render entryTextarea('description', 'Description', '4')}
+                {@render entryTextarea(
+                    "otherParticipants",
+                    "Other Participants",
+                    "2",
+                )}
+                {@render entryTextarea("description", "Description", "4")}
             </div>
         </form>
         <!-- prettier-ignore -->

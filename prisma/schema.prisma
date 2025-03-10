@@ -172,9 +172,9 @@ model Role {
 
 model Section {
     id BigInt @id @default(autoincrement())
-    description String @default("") // e.g. "South side savannah (restored prairie with bur and post oak trees)"
-    labelLong String @default("")   // e.g. "Section 1", "Transect 1"
-    labelShort String @default("")  // e.g. "S1", "T1"
+    description String @default("")                  // e.g. "South side savannah (restored prairie with bur and post oak trees)"
+    labelLong String @default("")   @db.VarChar(32)  // e.g. "Section 1", "Transect 1"
+    labelShort String @default("")  @db.VarChar(8)   // e.g. "S1", "T1"
     sectionIndex Int @default(0)    // e.g. 1..n
 
     // Parent Relation

@@ -26,7 +26,11 @@ export async function getSite(
           stateId: true,
         },
       },
-      sections: true,
+      sections: {
+        orderBy: {
+          sectionIndex: "asc",
+        },
+      },
       siteStatuses: {
         include: {
           statusCode: true,

@@ -13,7 +13,8 @@ import {
   getSite,
   getSites,
 } from "$lib/database/sites";
-import { getCounties, getStates } from "$lib/database/counties.js";
+import { createAuditLog } from "$lib/database/auditlog";
+import { getCounties, getStates } from "$lib/database/counties";
 import { error, fail } from "@sveltejs/kit";
 import { lockUser } from "$lib/database/users";
 
@@ -50,7 +51,7 @@ export async function load({ params }: any) {
 async function lockOutUser(locals: any, issue: string) {
   await Promise.all([
     lockUser(locals.user.id, true),
-    createAudit({
+    createAuditLog({
       id: -1,
       auditType: "Security",
       ipAddress: "localhost",
@@ -144,7 +145,7 @@ export const actions: Actions = {
     const site: ChangelessSite = prepareSite(formData, -1, siteName);
     const newSite: Site = await createSite(site, locals.user.id);
 
-    await createAudit({
+    await createAuditLog({
       id: -1,
       auditType: "Site Create",
       ipAddress: "localhost",
