@@ -651,24 +651,24 @@ model County {
     @@unique([name, stateId])
 }
 
-model AuditData {
-    id         BigInt   @id @default(autoincrement())
-    tableName  String   @db.VarChar(20)
-    recordId   BigInt
-    action     String   @db.VarChar(6) // INSERT, UPDATE, DELETE
-    changes    Json
-    userId     String   @db.VarChar(36)
-    timestamp  DateTime @default(now())
+model AuditLog {
+    id              BigInt   @id @default(autoincrement())
+    tableName       String   @db.VarChar(20)
+    recordId        BigInt
+    action          String   @db.VarChar(6) // INSERT, UPDATE, DELETE
+    changes         Json
+    userId          String   @db.VarChar(36)
+    organizationId  String?   @db.VarChar(36)
+    siteId          String?   @db.VarChar(36)
+    timestamp       DateTime @default(now())
 }
 
-model AuditUser {
+model UserLog {
     id              BigInt    @id @default(autoincrement())
     auditType       String?   @db.VarChar(16)
     ipAddress       String?   @db.VarChar(45)
     userName        String?   @db.VarChar(96)
-    userId          String?   @db.VarChar(36)
-    organizationId  String?   @db.VarChar(36)
     description     String?   @db.VarChar(96)
-    createdAt       DateTime? @default(now())
+    timestamp       DateTime? @default(now())
 }
 

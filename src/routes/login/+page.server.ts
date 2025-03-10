@@ -1,8 +1,8 @@
 import type { Action, Actions, PageServerLoad } from "./$types";
-import type { AuditUser } from "@prisma/client";
+import type { UserLog } from "@prisma/client";
 import bcrypt from "bcrypt";
 import prisma from "$lib/prisma";
-import { createAuditUser } from "$lib/database/auditUser";
+import { createUserLog } from "$lib/database/userlog";
 import { fail, redirect } from "@sveltejs/kit";
 
 export const load: PageServerLoad = async ({ locals }) => {
@@ -35,13 +35,13 @@ const login: Action = async ({ cookies, request }) => {
   console.log("login user", user);
 
   if (!user) {
-    await createAuditUser({
+    await createUserLog({
       id: -1,
-      auditUserType: "Login Fail",
+      userLogType: "Login Fail",
       ipAddress: "localhost",
       userName: username,
       description: "Invalid username",
-    } as AuditUser);
+    } as UserLog);
 
     return fail(400, { credentials: true });
   }
@@ -49,15 +49,15 @@ const login: Action = async ({ cookies, request }) => {
   const userPassword = await bcrypt.compare(password, user.passwordHash);
 
   if (!userPassword) {
-    await createAuditUser({
+    await createUserLog({
       id: -1,
-      auditUserType: "Login Fail",
+      userLogType: "Login Fail",
       ipAddress: "localhost",
       userName: username,
       userId: user.id,
       organizationId: user.organizationId,
       description: "Invalid password",
-    } as AuditUser);
+    } as UserLog);
     return fail(400, { credentials: true });
   }
 
@@ -86,7 +86,7 @@ const login: Action = async ({ cookies, request }) => {
   });
 
   //console.log('log in....okay?', user);
-  await createAuditUser({
+  await createUserLog({
     id: -1,
     auditType: "Login Success",
     ipAddress: "localhost",
@@ -94,7 +94,7 @@ const login: Action = async ({ cookies, request }) => {
     userId: user.id,
     organizationId: user.organizationId,
     description: "Successful login",
-  } as AuditUser);
+  } as UserLog);
 
   // redirect the user
   throw redirect(302, "/");

@@ -3,7 +3,7 @@ import type { Actions } from "@sveltejs/kit";
 import type { Audit } from "@prisma/client";
 import type { Site, County, State } from "@prisma/client";
 import { createSite, existsInState, updateSite } from "$lib/database/sites.js";
-import { createAudit } from "$lib/database/audit";
+import { createUserLog } from "$lib/database/userlog";
 import { fail, redirect } from "@sveltejs/kit";
 import { lockUser } from "$lib/database/users";
 import { getCountiesExpanded, getStates } from "$lib/database/counties.js";
@@ -52,7 +52,7 @@ export const actions: Actions = {
     if (locals.user.role !== ROLE.SUPER && locals.user.role !== ROLE.ADMIN) {
       await Promise.all([
         lockUser(locals.user.id, true),
-        createAudit({
+        createUserLog({
           id: -1,
           auditType: "Security",
           ipAddress: "localhost",
@@ -135,7 +135,7 @@ export const actions: Actions = {
 
     const newSite: Site = await createSite(site);
 
-    await createAudit({
+    await createUserLog({
       id: -1,
       auditType: "Site Create",
       ipAddress: "localhost",
@@ -143,7 +143,7 @@ export const actions: Actions = {
       userId: locals.user.id,
       siteId: newSite.siteId,
       description: `New site '${newSite.siteName}' created`,
-    } as Audit);
+    } as UserLog);
 
     return { action: "create", success: true, data: newSite };
   },

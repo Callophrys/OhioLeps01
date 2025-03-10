@@ -1,8 +1,8 @@
 import { ROLE } from "$lib/types";
 import type { Actions } from "@sveltejs/kit";
-import type { Audit, County, Site, State } from "@prisma/client";
+import type { UserLog, County, Site, State } from "@prisma/client";
 import type { ChangelessSite, SiteCountyState } from "$lib/types";
-import { createAudit } from "$lib/database/audit";
+import { createUserLog } from "$lib/database/userlog";
 import {
   createSite,
   existsInState,
@@ -40,7 +40,7 @@ export async function load({ cookies, url }: { cookies: any; url: any }) {
 async function lockOutUser(locals: any, issue: string) {
   await Promise.all([
     lockUser(locals.user.id, true),
-    createAudit({
+    createUserLog({
       id: -1,
       auditType: "Security",
       ipAddress: "localhost",
@@ -134,7 +134,7 @@ export const actions: Actions = {
     const site: ChangelessSite = prepareSite(formData, -1, siteName);
     const newSite: Site = await createSite(site, locals.user.id);
 
-    await createAudit({
+    await createUserLog({
       id: -1,
       auditType: "Site Create",
       ipAddress: "localhost",

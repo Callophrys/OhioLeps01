@@ -1,9 +1,9 @@
 import { ROLE } from "$lib/types";
 import type { Action, Actions, PageServerLoad } from "./$types";
-import type { Audit, User } from "@prisma/client";
+import type { UserLog, Organization, User } from "@prisma/client";
 import bcrypt from "bcrypt";
 import prisma from "$lib/prisma";
-import { createAudit } from "$lib/database/audit";
+import { createUserLog } from "$lib/database/userlog";
 import { createUser } from "$lib/database/users";
 import { defaultOrganization } from "$lib/config";
 import { fail, redirect } from "@sveltejs/kit";
@@ -33,12 +33,12 @@ const register: Action = async ({ request }) => {
     return fail(400, { invalid: true });
   }
 
-  const user = await prisma.user.findUnique({
+  const existingUser: User = await prisma.user.findUnique({
     where: { username },
   });
 
-  if (user) {
-    await createAudit({
+  if (existingUser) {
+    await createUserLog({
       id: -1,
       auditType: "Register Fail",
       ipAddress: "localhost",
@@ -48,10 +48,10 @@ const register: Action = async ({ request }) => {
     return fail(400, { user: true });
   }
 
-  const organization = await getOrganizationByName(defaultOrganization);
+  const organization: Organization = await getOrganizationByName(defaultOrganization);
   //console.log(organization);
 
-  await createUser(
+  const user: User = await createUser(
     {
       username,
       firstName,
@@ -63,11 +63,11 @@ const register: Action = async ({ request }) => {
     ROLE.USER,
   );
 
-  await createAudit({
+  await createUserLog({
     id: -1,
     auditType: "Register Success",
     ipAddress: "localhost",
-    userName: username,
+    userName: user.username,
     description: "Registered new user",
   } as Audit);
 
