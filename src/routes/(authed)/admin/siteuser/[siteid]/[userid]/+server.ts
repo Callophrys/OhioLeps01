@@ -2,7 +2,7 @@ import { createSiteUser, removeSiteUser, updateSiteUser } from "$lib/database/si
 import { json } from "@sveltejs/kit";
 
 export async function POST({ params, request }: any) {
-  console.log(`updateUser data from /admin/siteuser/${params.siteid}/${params.userid}/+server.ts`);
+  console.log(`createUser data from /admin/siteuser/${params.siteid}/${params.userid}/+server.ts`);
 
   let siteId = Number(params.siteid);
   let userId = String(params.userid);

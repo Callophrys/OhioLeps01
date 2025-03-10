@@ -159,11 +159,11 @@ model Organization {
 }
 
 // Could make this an enum
-// SUPER - Superuser     - Can do all other user functions and configure any organization and manage any user
-// ADMIN - Administrator - Administrator of own organization; Can make some org changes; Can do all other user functions; Can reset accounts for users
-// REVIEWER - Reviewer   - Reviews and confirms that data is valid - Perhaps reviewer and entry can overlap.  E.g enter own data while another reviews it
-// ENTRY - Data Entry    - Data entry, can delete own data
-// USER - User           - Read-only, View Reports and lists
+// SUPER    - S Superuser     - Can do all other user functions and configure any organization and manage any user
+// ADMIN    - A Administrator - Administrator of own organization; Can make some org changes; Can do all other user functions; Can reset accounts for users
+// REVIEWER - R Reviewer      - Reviews and confirms that data is valid - Perhaps reviewer and entry can overlap.  E.g enter own data while another reviews it
+// ENTRY    - E Data Entry    - Data entry, can delete own data
+// USER     - V User          - Read-only, View Reports and lists
 model Role {
     id    String @id @default(uuid()) @db.VarChar(36)
     name  String @unique

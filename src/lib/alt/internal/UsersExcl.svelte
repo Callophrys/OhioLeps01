@@ -39,6 +39,8 @@
     switch (role) {
       case "SUPER":
         return "S";
+      case "ADMIN":
+        return "A";
       case "REVIEWER":
         return "R";
       case "ENTRY":
@@ -57,12 +59,14 @@
     {#each users as user}
       <li class="flex justify-between p-2 bg-gray-700 rounded-md">
         <button
-          onclick={async () =>
+          onclick={async () => {
+            console.log("clicked");
             await createSiteUser(
               siteId,
               user.id,
               getDefaultPrivilege(user.role.name),
-            )}
+            );
+          }}
           class="text-red-500">+ {user.firstLast}</button
         >
         <!-- <div class="flex flex-row"> -->

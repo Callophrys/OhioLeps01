@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { SlideToggle } from "@skeletonlabs/skeleton";
   import { getContext } from "svelte";
   import { loadUserSets } from "$lib/alt/internal/SiteUserMethods";
+  import SiteUserToggle from "./SiteUserToggle.svelte";
 
   const context = getContext("usersContext");
   console.log("UsersIncl usersContext", context);
@@ -13,25 +13,6 @@
     return context.includedUsers ?? [];
   });
 
-  async function updateSiteUser(
-    siteId: number,
-    userId: string,
-    privilege: string,
-  ) {
-    console.log("Updating privilege");
-    if (siteId > 0) {
-      const fd = new FormData();
-      fd.append("privilege", privilege);
-
-      await fetch(`/admin/siteuser/${siteId}/${userId}`, {
-        method: "PUT",
-        body: fd,
-      });
-
-      await loadUserSets(context);
-    }
-  }
-
   export async function removeSiteUser(siteId: number, userId: string) {
     console.log("Removing");
     if (siteId > 0) {
@@ -40,21 +21,6 @@
       });
 
       await loadUserSets(context);
-    }
-  }
-
-  function getPrivilegeName(priv: string) {
-    switch (priv) {
-      case "V":
-        return "View/Run reports";
-      case "E":
-        return "Data entry";
-      case "R":
-        return "Review/Sign off data";
-      case "S":
-        return "Super user";
-      default:
-        return "Default/Fall back to user's role";
     }
   }
 </script>
@@ -81,38 +47,11 @@
             onclick={async () => await removeSiteUser(siteId, user.id)}
             class="text-red-500">X</button
           >
-          <SlideToggle
-            name={`toggle_s_${user.id}`}
-            size="sm"
-            checked={user.siteUsers.length > 0
-              ? user.siteUsers[0].privilege === "S"
-              : false}
-            on:click={async () => await updateSiteUser(siteId, user.id, "S")}
-          ></SlideToggle>
-          <SlideToggle
-            name={`toggle_r_${user.id}`}
-            size="sm"
-            checked={user.siteUsers.length > 0
-              ? user.siteUsers[0].privilege === "R"
-              : false}
-            on:click={async () => await updateSiteUser(siteId, user.id, "R")}
-          ></SlideToggle>
-          <SlideToggle
-            name={`toggle_u_${user.id}`}
-            size="sm"
-            checked={user.siteUsers.length > 0
-              ? user.siteUsers[0].privilege === "E"
-              : false}
-            on:click={async () => await updateSiteUser(siteId, user.id, "E")}
-          ></SlideToggle>
-          <SlideToggle
-            name={`toggle_v_${user.id}`}
-            size="sm"
-            checked={user.siteUsers.length > 0
-              ? user.siteUsers[0].privilege === "V"
-              : false}
-            on:click={async () => await updateSiteUser(siteId, user.id, "V")}
-          ></SlideToggle>
+          <SiteUserToggle {user} {siteId} privilege="S" />
+          <SiteUserToggle {user} {siteId} privilege="A" />
+          <SiteUserToggle {user} {siteId} privilege="R" />
+          <SiteUserToggle {user} {siteId} privilege="E" />
+          <SiteUserToggle {user} {siteId} privilege="V" />
         </div>
         <div class="flex flex-row space-x-2">
           <span>{user.role.name}</span>
