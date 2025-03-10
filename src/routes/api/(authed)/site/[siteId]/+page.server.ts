@@ -1,12 +1,11 @@
 import { ROLE } from "$lib/types.js";
 import type { Actions } from "@sveltejs/kit";
-import type { Audit, County, Site, State } from "@prisma/client";
+import type { County, Site, State } from "@prisma/client";
 import type {
   SiteCountyState,
   SiteCountySiteDatesSiteStatuses,
   ChangelessSite,
 } from "$lib/types.js";
-import { createAudit } from "$lib/database/auditlog";
 import {
   createSite,
   existsInState,
@@ -19,11 +18,16 @@ import { error, fail } from "@sveltejs/kit";
 import { lockUser } from "$lib/database/users";
 
 export async function load({ params }: any) {
-  // console.log('Load from /api/sites/{siteId}/+page.server.ts');
-  //console.log('params', params);
+  console.log('Load from /api/site/{siteId}/+page.server.ts');
+  console.log('params', params);
+  console.log('siteId', params.siteId);
+  // console.log('Number(siteId)', Number(params.siteId));
+  // console.log('BigInt(siteId)', BigInt(params.siteId));
+  let siteId = BigInt(params?.siteId.startsWith('BigInt,') ? params.siteId.substring(7) : params.siteId);
+  console.log('siteId', siteId);
 
   const [site, counties, sites, states] = await Promise.all([
-    getSite(Number(params.siteId)),
+    getSite(siteId),
     getCounties(),
     getSites(null),
     getStates(),
@@ -155,8 +159,9 @@ export const actions: Actions = {
   },
 
   updateSite: async ({ request, locals }) => {
+    console.log('site -> updateSite');
     const formData = await request.formData();
-    // console.log(formData);
+    // console.log('formData', formData);
 
     if (locals.user.role !== ROLE.SUPER && locals.user.role !== ROLE.ADMIN) {
       // It would take some hacking or trickery to get here.  Lock them out.
@@ -175,17 +180,6 @@ export const actions: Actions = {
     const site: ChangelessSite = prepareSite(formData, siteId, siteName);
     const updatedSite: Site = await updateSite(site, locals.user.id);
 
-    await createAudit({
-      id: -1,
-      auditType: "Site Update",
-      ipAddress: "localhost",
-      userName: locals.user.name,
-      userId: locals.user.id,
-      siteId: updatedSite.id,
-      organizationId: locals.user.organizationId,
-      description: `Site '${updatedSite.siteName}' updated`,
-    } as Audit);
-
-    return { action: "create", success: true, data: updatedSite };
+    return { action: "update", success: true, data: updatedSite };
   },
 };

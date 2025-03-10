@@ -13,3 +13,16 @@ export async function getAuditLog() {
 
   return convertSafeJson(auditLog);
 }
+
+export async function createAuditLog(auditLog: AuditLog) {
+  await prisma.auditLog.create({
+    data: {
+      tableName: auditLog.tableName,
+      recordId: auditLog.recordId,
+      action: auditLog.action,
+      userId: auditLog.userId,
+      organizationId: auditLog.organizationId,
+      siteId: auditLog.siteId,
+    },
+  });
+}

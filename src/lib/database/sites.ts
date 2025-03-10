@@ -11,7 +11,7 @@ import { convertSafeJson } from "../utils";
 export async function getSite(
   siteId: BigInt,
 ): SiteCountySiteDatesSiteStatuses[] {
-  // console.log('/lib/api/entry/sites.ts > getSite', siteId);
+  console.log('/lib/api/entry/sites.ts > getSite', siteId);
 
   const site = await prisma.site.findUnique({
     where: {

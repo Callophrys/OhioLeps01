@@ -8,8 +8,8 @@ import {
 export async function load({ params }: { params: any }) {
   console.log("sitedates - params", params);
 
-  let siteId = Number(params.siteid);
-  let siteDateId = Number(params.sitedateid);
+  let siteId = BigInt(params.siteid);
+  let siteDateId = BigInt(params.sitedateid);
 
   const siteData = await siteDateLoad(siteDateId);
 

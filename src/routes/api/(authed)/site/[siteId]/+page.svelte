@@ -163,8 +163,8 @@
             ? "Add New Site"
             : `Edit Site - ${site?.siteName}`;
         const componentUrl = isNewRecord
-            ? "../sites/-1?/createSite"
-            : `../sites/${site?.id ?? "-1"}?/updateSite`;
+            ? "../site/-1?/createSite"
+            : `../site/${site?.id ?? "-1"}?/updateSite`;
 
         const componentValues = isNewRecord
             ? {
@@ -211,15 +211,20 @@
                             if (data.status === 200) {
                                 const rdata = JSON.parse(data.data);
                                 console.log("rdata:", rdata);
-                                let dataIndex = rdata[0].data;
-                                let valueIndex = rdata[dataIndex].id;
-                                let siteId = rdata[valueIndex];
-                                //TODO: Assure that SiteDatePicker updates.  The following goto + invalidateAll does
-                                // not accomplish it.  Thought that udpating the bound currentSiteDateId would cause
-                                // the SiteDatePicker to update itself.  Hmmm.
-                                //currentSiteDateId = siteDateId;
+                                let objectIdx = rdata[0].data;
+                                let siteIdIdx = rdata[objectIdx].id;
+                                let tmpSiteId = rdata[siteIdIdx];
+                                let retSiteId =
+                                    Array.isArray(tmpSiteId) &&
+                                    tmpSiteId.length > 1
+                                        ? tmpSiteId[1]
+                                        : tmpSiteId;
+                                // let dataIndex = rdata[0].data;
+                                // let valueIndex = rdata[dataIndex].id;
+                                // let siteId = rdata[valueIndex];
                                 //NOTE: verified that invalidateAll assure that browsed for data renders after update
-                                goto("/api/sites/" + siteId, {
+                                console.log("retSiteId", retSiteId);
+                                goto(`/api/site/${retSiteId}`, {
                                     invalidateAll: true,
                                 });
                             }
@@ -284,14 +289,18 @@
                         .then((data) => {
                             if (data.status === 200) {
                                 const rdata = JSON.parse(data.data);
+                                debugger;
                                 console.log("rdata:", rdata);
-                                let siteDateId = rdata[rdata[0].id];
-                                //TODO: Assure that SiteDatePicker updates.  The following goto + invalidateAll does
-                                // not accomplish it.  Thought that udpating the bound currentSiteDateId would cause
-                                // the SiteDatePicker to update itself.  Hmmm.
-                                //currentSiteDateId = siteDateId;
-                                //NOTE: verified that invalidateAll assure that browsed for data renders after update
-                                goto("/api/sitedate/" + siteDateId, {
+                                let objectIdx = rdata[0].data;
+                                let siteIdIdx = rdata[objectIdx].id;
+                                let tmpSiteId = rdata[siteIdIdx];
+                                let retSiteId =
+                                    Array.isArray(tmpSiteId) &&
+                                    tmpSiteId.length > 1
+                                        ? tmpSiteId[1]
+                                        : tmpSiteId;
+                                console.log("retSiteId", retSiteId);
+                                goto(`/api/sitedate/${retSiteId}`, {
                                     invalidateAll: true,
                                 });
                             }
