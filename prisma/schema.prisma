@@ -241,9 +241,9 @@ model Site {
 
     // User relations
     createdBy User? @relation("CreateUserOfSite", fields: [createdById], references: [id])
-    createdById String? // Probably should never be null
+    createdById String? @db.VarChar(36) // Probably should never be null
     updatedBy User? @relation("UpdateUserOfSite", fields: [updatedById], references: [id])
-    updatedById String?
+    updatedById String? @db.VarChar(36)
 
     // Parent Relation
     countyId Int
@@ -561,7 +561,7 @@ model NameAddress {
 model Continent {
     id Int @id @default(autoincrement())
     abbreviation String @db.VarChar(2) @unique
-    name String @unique
+    name String @unique @db.VarChar(64)
 
     // Child Relation
     countries Country[] @relation("CountriesInContinent")
@@ -570,7 +570,7 @@ model Continent {
 model Country {
     id Int @id @default(autoincrement())
     abbreviation String @db.VarChar(2) @unique
-    name String @unique
+    name String @unique @db.VarChar(64)
 
     // Parent Relation
     continentId Int
@@ -589,7 +589,7 @@ model Country {
 // Supports intra-country regions, e.g. sets of states within a country 
 model CountryRegion {
     id Int @id @default(autoincrement())
-    name String
+    name String @db.VarChar(64)
 
     // Parent Relation
     countryId Int
@@ -602,7 +602,7 @@ model CountryRegion {
 model State {
     id Int @id @default(autoincrement())
     abbreviation String @db.VarChar(4)
-    name String
+    name String @db.VarChar(64)
 
     // Parent Relation
     countryId Int
@@ -622,7 +622,7 @@ model State {
 // Supports intra-state regions, e.g. sets of counties within a state
 model StateRegion {
     id Int @id @default(autoincrement())
-    name String
+    name String @db.VarChar(64)
 
     // Parent Relation
     stateId Int
@@ -651,7 +651,17 @@ model County {
     @@unique([name, stateId])
 }
 
-model Audit {
+model AuditLog {
+    id BigInt @id @default(autoincrement())
+    tableName String @db.VarChar(20)
+    recordId BigInt
+    action String @db.VarChar(6) // INSERT, UPDATE, DELETE
+    changes Json
+    userId String @db.VarChar(36)
+    timestamp DateTime @default(now())
+}
+
+model UserAudit {
     id BigInt @id @default(autoincrement())
     auditType String?
     ipAddress String?

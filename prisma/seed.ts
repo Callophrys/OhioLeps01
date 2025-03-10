@@ -12,7 +12,77 @@ import seedTaxonomy from "./seed.taxonomy";
 import seedNameAddress from "./seed.nameaddress";
 
 /*
- */
+
+// site audit
+await db.$executeRaw`
+CREATE TRIGGER after_insert_site
+AFTER INSERT ON site
+FOR EACH ROW
+INSERT INTO AuditLog (tableName, recordId, action, changes, timestamp)
+VALUES ('site', NEW.id, 'INSERT', JSON_OBJECT('new', JSON_OBJECT('sitename', NEW.siteName)), NEW.createdAt);
+`;
+
+await db.$executeRaw`
+CREATE TRIGGER after_update_site
+AFTER UPDATE ON site
+FOR EACH ROW
+INSERT INTO AuditLog (tableName, recordId, action, changes, timestamp)
+VALUES ('site', NEW.id, 'UPDATE', JSON_OBJECT('old', JSON_OBJECT('sitename', OLD.siteName), 'new', JSON_OBJECT('siteName', NEW.siteName)), NEW.updatedAt);
+`;
+*/
+
+/* Deletes for Site are just a delete flag being set */
+
+// // siteDate audit
+// await db.$executeRaw`
+// CREATE TRIGGER after_insert_siteDate
+// AFTER INSERT ON siteDate
+// FOR EACH ROW
+// INSERT INTO AuditLog (tableName, recordId, action, changes, timestamp)
+// VALUES ('sitedate', NEW.id, 'INSERT', JSON_OBJECT('new', NEW.*), NEW.createdAt);
+// `;
+//
+// await db.$executeRaw`
+// CREATE TRIGGER after_update_siteDate
+// AFTER UPDATE ON siteDate
+// FOR EACH ROW
+// INSERT INTO AuditLog (tableName, recordId, action, changes, timestamp)
+// VALUES ('sitedate', NEW.id, 'UPDATE', JSON_OBJECT('old', OLD.*, 'new', NEW.*), NEW.updatedAt);
+// `;
+//
+// await db.$executeRaw`
+// CREATE TRIGGER after_delete_siteDate
+// AFTER DELETE ON siteDate
+// FOR EACH ROW
+// INSERT INTO AuditLog (tableName, recordId, action, changes, timestamp)
+// VALUES ('sitedate', OLD.id, 'DELETE', JSON_OBJECT('old', OLD.*), NEW.updatedAt);
+// `;
+//
+// // siteDateObservation audit
+// await db.$executeRaw`
+// CREATE TRIGGER after_insert_siteDateObservation
+// AFTER INSERT ON siteDateObservation
+// FOR EACH ROW
+// INSERT INTO AuditLog (tableName, recordId, action, changes, timestamp)
+// VALUES ('sitedateobservation', NEW.id, 'INSERT', JSON_OBJECT('new', NEW.*), NOW());
+// `;
+//
+// await db.$executeRaw`
+// CREATE TRIGGER after_update_siteDateObservation
+// AFTER UPDATE ON siteDateObservation
+// FOR EACH ROW
+// INSERT INTO AuditLog (tableName, recordId, action, changes, timestamp)
+// VALUES ('sitedateobservation', NEW.id, 'UPDATE', JSON_OBJECT('old', OLD.*, 'new', NEW.*), NOW());
+// `;
+//
+// await db.$executeRaw`
+// CREATE TRIGGER after_delete_siteDateObservation
+// AFTER DELETE ON siteDateObservation
+// FOR EACH ROW
+// INSERT INTO AuditLog (tableName, recordId, action, changes, timestamp)
+// VALUES ('sitedateobservation', OLD.id, 'DELETE', JSON_OBJECT('old', OLD.*), NOW());
+// `;
+//
 await seedStates();
 await seedStatusCode();
 await seedSite();
@@ -24,6 +94,7 @@ await seedTaxonomy();
 await seedNameAddress();
 let organization = await updateOrganizations();
 await updateRoles(organization);
+
 /*
  */
 await db.$executeRaw`

@@ -28,9 +28,11 @@
     sites = await fetchSites();
   }
 
-  $effect(async () => {
-    console.log("selected site change", selectedSite);
-    await loadSites();
+  $effect(() => {
+    (async () => {
+      console.log("selected site change", selectedSite);
+      await loadSites();
+    })();
   });
 </script>
 
