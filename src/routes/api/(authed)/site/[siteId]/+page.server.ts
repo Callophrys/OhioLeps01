@@ -6,7 +6,7 @@ import type {
   SiteCountySiteDatesSiteStatuses,
   ChangelessSite,
 } from "$lib/types.js";
-import { createAudit } from "$lib/database/audit";
+import { createAudit } from "$lib/database/auditlog";
 import {
   createSite,
   existsInState,

@@ -1,8 +1,9 @@
 import prisma from "$lib/prisma";
 import type { SiteDate } from "@prisma/client";
 import type { Weather } from "@prisma/client";
+import { convertSafeJson, privilegeFromName } from "$lib/utils.js";
 
-export async function getSiteDate(siteDateId: number) {
+export async function getSiteDate(siteDateId: BigInt) {
   // console.log('getSiteDate');
   const siteDate = await prisma.siteDate.findFirst({
     where: {
@@ -21,15 +22,10 @@ export async function getSiteDate(siteDateId: number) {
     },
   });
 
-  const jsonSiteDate = JSON.stringify(
-    siteDate,
-    (key, value) => (typeof value === "bigint" ? value.toString() : value), // return everything else unchanged
-  );
-
-  return JSON.parse(jsonSiteDate);
+  return convertSafeJson(siteDate);
 }
 
-export async function getSiteDates(siteId: number): SiteDateYearSiteDates[] {
+export async function getSiteDates(siteId: BigInt): SiteDateYearSiteDates[] {
   const siteDates = await prisma.siteDate.findMany({
     where: {
       siteId: siteId,
@@ -45,12 +41,8 @@ export async function getSiteDates(siteId: number): SiteDateYearSiteDates[] {
   });
 
   //console.log('siteDates', siteDates);
-  const jsonSiteDates = JSON.stringify(
-    siteDates,
-    (key, value) => (typeof value === "bigint" ? value.toString() : value), // return everything else unchanged
-  );
 
-  return JSON.parse(jsonSiteDates);
+  return convertSafeJson(siteDates);
 }
 
 export async function getSiteDatesAll() {
@@ -71,11 +63,11 @@ export async function getSiteDatesAll() {
     ],
   });
 
-  return siteDates;
+  return convertSafeJson(siteDates);
 }
 
 export async function getSiteDateSiteDates(
-  siteDateId: number,
+  siteDateId: BigInt,
 ): SiteDateYearSiteDates[] {
   const siteDateSiteDates = await prisma.siteDate.findUnique({
     where: {
@@ -92,12 +84,7 @@ export async function getSiteDateSiteDates(
 
   const siteDates = siteDateSiteDates?.site.siteDates;
 
-  const jsonSiteDates = JSON.stringify(
-    siteDates,
-    (key, value) => (typeof value === "bigint" ? value.toString() : value), // return everything else unchanged
-  );
-
-  return JSON.parse(jsonSiteDates);
+  return convertSafeJson(siteDates);
 }
 
 export async function addSiteDate(siteDate: SiteDate) {
@@ -163,7 +150,7 @@ export async function addSiteDate(siteDate: SiteDate) {
     },
   });
 
-  return createdSiteDate;
+  return convertSafeJson(createdSiteDate);
 }
 
 export async function updateSiteDate(siteDate: SiteDate) {
@@ -173,6 +160,7 @@ export async function updateSiteDate(siteDate: SiteDate) {
       id: siteDate.id,
     },
     data: {
+      siteId: siteDate.siteId,
       recordDate: siteDate.recordDate,
       week: siteDate.week,
       recorder: siteDate.recorder,
@@ -231,5 +219,5 @@ export async function updateSiteDate(siteDate: SiteDate) {
     },
   });
 
-  return updatedSiteDate;
+  return convertSafeJson(updatedSiteDate);
 }

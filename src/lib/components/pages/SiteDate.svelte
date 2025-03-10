@@ -214,7 +214,7 @@
         }
       : {
           siteId: siteId,
-          siteDate: siteDate?.recordDate,
+          siteDate: siteDate,
           useMph: unitSpeed,
           useFarenheit: unitTemp,
           isNewRecord: isNewRecord,
@@ -246,7 +246,7 @@
                 // the SiteDatePicker to update itself.  Hmmm.
                 //currentSiteDateId = siteDateId;
                 //NOTE: verified that invalidateAll assure that browsed for data renders after update
-                goto("/api/sitedate/" + siteDateId, {
+                goto(`/api/sitedate/${siteId}/${siteDateId}`, {
                   invalidateAll: true,
                 });
               }
