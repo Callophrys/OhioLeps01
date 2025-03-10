@@ -1,8 +1,8 @@
 import type { Action, Actions, PageServerLoad } from "./$types";
-import type { Audit } from "@prisma/client";
+import type { AuditUser } from "@prisma/client";
 import bcrypt from "bcrypt";
 import prisma from "$lib/prisma";
-import { createAudit } from "$lib/database/audit";
+import { createAuditUser } from "$lib/database/auditUser";
 import { fail, redirect } from "@sveltejs/kit";
 
 export const load: PageServerLoad = async ({ locals }) => {
@@ -17,7 +17,11 @@ const login: Action = async ({ cookies, request }) => {
   const username = data.get("username");
   const password = data.get("password");
 
+  // console.log("login data", data);
+  // console.log("login request", request);
+
   //  console.log('trying to log in ', username, password);
+
   if (
     typeof username !== "string" ||
     typeof password !== "string" ||
@@ -28,28 +32,32 @@ const login: Action = async ({ cookies, request }) => {
   }
 
   const user = await prisma.user.findUnique({ where: { username } });
+  console.log("login user", user);
 
   if (!user) {
-    await createAudit({
+    await createAuditUser({
       id: -1,
-      auditType: "Login Fail",
+      auditUserType: "Login Fail",
       ipAddress: "localhost",
       userName: username,
       description: "Invalid username",
-    } as Audit);
+    } as AuditUser);
+
     return fail(400, { credentials: true });
   }
 
   const userPassword = await bcrypt.compare(password, user.passwordHash);
 
   if (!userPassword) {
-    await createAudit({
+    await createAuditUser({
       id: -1,
-      auditType: "Login Fail",
+      auditUserType: "Login Fail",
       ipAddress: "localhost",
       userName: username,
+      userId: user.id,
+      organizationId: user.organizationId,
       description: "Invalid password",
-    } as Audit);
+    } as AuditUser);
     return fail(400, { credentials: true });
   }
 
@@ -78,13 +86,15 @@ const login: Action = async ({ cookies, request }) => {
   });
 
   //console.log('log in....okay?', user);
-  await createAudit({
+  await createAuditUser({
     id: -1,
     auditType: "Login Success",
     ipAddress: "localhost",
     userName: username,
+    userId: user.id,
+    organizationId: user.organizationId,
     description: "Successful login",
-  } as Audit);
+  } as AuditUser);
 
   // redirect the user
   throw redirect(302, "/");
